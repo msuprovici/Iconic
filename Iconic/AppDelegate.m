@@ -7,11 +7,25 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Parse setApplicationId:@"LiLukyOROzCPxkNIvG9SD6nPMFdZsFNxzYsB06LT"
+                  clientKey:@"NWnu7sQiFf9t3vyruSWQ8CqepFjKQh7IAZr8b3WA"];
+    
+    //Round Robin: testing out new schedule parse cloud function
+    [PFCloud callFunctionInBackground:@"schedule"
+                       withParameters:@{@"NumberOfTeams":@5}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        // result is @"Hello world!"
+                                        NSLog(@"%@", result);
+                                    }
+                                }];
+
     // Override point for customization after application launch.
     return YES;
 }
