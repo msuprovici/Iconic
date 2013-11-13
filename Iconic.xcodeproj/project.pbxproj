@@ -33,6 +33,7 @@
 		5CA3D1D31831E054006C7932 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D21831E054006C7932 /* StoreKit.framework */; };
 		5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */; };
 		5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D1E61832F9D1006C7932 /* LogInViewController.m */; };
+		5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5CA3D1E51832F9D1006C7932 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ../LogInViewController.h; sourceTree = "<group>"; };
 		5CA3D1E61832F9D1006C7932 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ../LogInViewController.m; sourceTree = "<group>"; };
+		5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				5CA3D18F1831DF51006C7932 /* UIKit.framework in Frameworks */,
 				5CA3D1C31831DFCE006C7932 /* Parse.framework in Frameworks */,
 				5CA3D18B1831DF51006C7932 /* Foundation.framework in Frameworks */,
+				5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +140,7 @@
 		5CA3D1891831DF51006C7932 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */,
 				5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */,
 				5CA3D1D21831E054006C7932 /* StoreKit.framework */,
 				5CA3D1D01831E04C006C7932 /* Security.framework */,
@@ -432,7 +436,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					/Users/msadmin/iOS/IconicBuilds/Iconic,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";
@@ -449,7 +454,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					/Users/msadmin/iOS/IconicBuilds/Iconic,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";

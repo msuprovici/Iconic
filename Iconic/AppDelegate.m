@@ -25,7 +25,8 @@
                                         NSLog(@"%@", result);
                                     }
                                 }];
-    
+    //Intitialize FB
+    [PFFacebookUtils initializeFacebook];
     
     //If user is already logged in, skip the login screen and go to the main view
    if([PFUser currentUser]) {
@@ -38,6 +39,23 @@
     // Override point for customization after application launch.
     return YES;
 }
+
+// Facebook oauth callback
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [PFFacebookUtils handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [PFFacebookUtils handleOpenURL:url];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    // Handle an interruption during the authorization flow, such as the user clicking the home button.
+    [FBSession.activeSession handleDidBecomeActive];
+}
+
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -56,10 +74,10 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
+/*- (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
+}*/
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {

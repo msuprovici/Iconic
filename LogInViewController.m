@@ -52,6 +52,9 @@
     PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
     [logInViewController setDelegate:self]; // Set ourselves as the delegate
     
+    logInViewController.facebookPermissions = @[@"friends_about_me"];
+    logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsSignUpButton ;
+    
     // Create the sign up view controller
     PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
     [signUpViewController setDelegate:self]; // Set ourselves as the delegate
