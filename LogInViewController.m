@@ -35,6 +35,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
+//Skip Login
+- (IBAction)skipLogin:(id)sender {
+}
+
+//Login
 - (IBAction)userLogin:(id)sender {
     
     // Create the log in view controller

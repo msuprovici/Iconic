@@ -112,7 +112,17 @@
                                 </state>
                                 <connections>
                                     <action selector="userLogin:" destination="H5O-hK-5UJ" eventType="touchUpInside" id="Ptl-mG-llO"/>
-                                    <segue destination="8YX-ce-x5E" kind="push" identifier="LoginSuccesful" id="9Nh-t6-nBN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GBB-8W-alr">
+                                <rect key="frame" x="124" y="307" width="73" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Skip Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="skipLogin:" destination="H5O-hK-5UJ" eventType="touchUpInside" id="ora-3b-ysT"/>
+                                    <segue destination="8YX-ce-x5E" kind="push" identifier="LoginSuccesful" id="Hy8-T6-faz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -122,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KW9-y0-Amg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="186" y="180"/>
+            <point key="canvasLocation" x="193" y="180"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Vex-rW-GRa">

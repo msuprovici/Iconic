@@ -28,7 +28,7 @@
     
     
     //If user is already logged in, skip the login screen and go to the main view
-    if([PFUser currentUser]) {
+   if([PFUser currentUser]) {
         
         UIStoryboard *storyboard = self.window.rootViewController.storyboard;
         UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"Main"];
