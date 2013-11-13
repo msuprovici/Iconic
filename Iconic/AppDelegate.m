@@ -25,6 +25,15 @@
                                         NSLog(@"%@", result);
                                     }
                                 }];
+    
+    
+    //If user is already logged in, skip the login screen and go to the main view
+    if([PFUser currentUser]) {
+        
+        UIStoryboard *storyboard = self.window.rootViewController.storyboard;
+        UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"Main"];
+        self.window.rootViewController = rootViewController;
+    }
 
     // Override point for customization after application launch.
     return YES;
