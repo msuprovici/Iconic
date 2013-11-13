@@ -32,6 +32,7 @@
 		5CA3D1D11831E04C006C7932 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D01831E04C006C7932 /* Security.framework */; };
 		5CA3D1D31831E054006C7932 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D21831E054006C7932 /* StoreKit.framework */; };
 		5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */; };
+		5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D1E61832F9D1006C7932 /* LogInViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		5CA3D1D01831E04C006C7932 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5CA3D1D21831E054006C7932 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5CA3D1E51832F9D1006C7932 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ../LogInViewController.h; sourceTree = "<group>"; };
+		5CA3D1E61832F9D1006C7932 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ../LogInViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +161,8 @@
 				5CA3D1991831DF51006C7932 /* AppDelegate.h */,
 				5CA3D19A1831DF51006C7932 /* AppDelegate.m */,
 				5CA3D19C1831DF51006C7932 /* Main.storyboard */,
+				5CA3D1E51832F9D1006C7932 /* LogInViewController.h */,
+				5CA3D1E61832F9D1006C7932 /* LogInViewController.m */,
 				5CA3D19F1831DF51006C7932 /* FirstViewController.h */,
 				5CA3D1A01831DF51006C7932 /* FirstViewController.m */,
 				5CA3D1A21831DF51006C7932 /* SecondViewController.h */,
@@ -296,6 +301,7 @@
 			files = (
 				5CA3D1A41831DF51006C7932 /* SecondViewController.m in Sources */,
 				5CA3D19B1831DF51006C7932 /* AppDelegate.m in Sources */,
+				5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */,
 				5CA3D1A11831DF51006C7932 /* FirstViewController.m in Sources */,
 				5CA3D1971831DF51006C7932 /* main.m in Sources */,
 			);
@@ -514,6 +520,7 @@
 				5CA3D1BE1831DF51006C7932 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5CA3D1BF1831DF51006C7932 /* Build configuration list for PBXNativeTarget "IconicTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +529,7 @@
 				5CA3D1C11831DF51006C7932 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

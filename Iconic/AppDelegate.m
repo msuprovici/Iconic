@@ -18,7 +18,7 @@
     
     //Round Robin: testing out new schedule parse cloud function
     [PFCloud callFunctionInBackground:@"schedule"
-                       withParameters:@{@"NumberOfTeams":@5}
+                       withParameters:@{@"NumberOfTeams":@3}
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         // result is @"Hello world!"
