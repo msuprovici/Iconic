@@ -15,7 +15,6 @@
 		5CA3D19B1831DF51006C7932 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D19A1831DF51006C7932 /* AppDelegate.m */; };
 		5CA3D19E1831DF51006C7932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CA3D19C1831DF51006C7932 /* Main.storyboard */; };
 		5CA3D1A11831DF51006C7932 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D1A01831DF51006C7932 /* FirstViewController.m */; };
-		5CA3D1A41831DF51006C7932 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D1A31831DF51006C7932 /* SecondViewController.m */; };
 		5CA3D1A61831DF51006C7932 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CA3D1A51831DF51006C7932 /* Images.xcassets */; };
 		5CA3D1AD1831DF51006C7932 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1AC1831DF51006C7932 /* XCTest.framework */; };
 		5CA3D1AE1831DF51006C7932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18A1831DF51006C7932 /* Foundation.framework */; };
@@ -34,6 +33,8 @@
 		5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */; };
 		5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D1E61832F9D1006C7932 /* LogInViewController.m */; };
 		5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */; };
+		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
+		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,8 +61,6 @@
 		5CA3D19D1831DF51006C7932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5CA3D19F1831DF51006C7932 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		5CA3D1A01831DF51006C7932 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		5CA3D1A21831DF51006C7932 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		5CA3D1A31831DF51006C7932 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		5CA3D1A51831DF51006C7932 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5CA3D1AB1831DF51006C7932 /* IconicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IconicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CA3D1AC1831DF51006C7932 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -81,6 +80,10 @@
 		5CA3D1E51832F9D1006C7932 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ../LogInViewController.h; sourceTree = "<group>"; };
 		5CA3D1E61832F9D1006C7932 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ../LogInViewController.m; sourceTree = "<group>"; };
 		5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
+		5CFB1EB81834381C0026AEB4 /* ScheduleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleGenerator.h; sourceTree = "<group>"; };
+		5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleGenerator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,12 +168,14 @@
 				5CA3D1991831DF51006C7932 /* AppDelegate.h */,
 				5CA3D19A1831DF51006C7932 /* AppDelegate.m */,
 				5CA3D19C1831DF51006C7932 /* Main.storyboard */,
+				5CFB1EB81834381C0026AEB4 /* ScheduleGenerator.h */,
+				5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */,
+				5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */,
+				5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */,
 				5CA3D1E51832F9D1006C7932 /* LogInViewController.h */,
 				5CA3D1E61832F9D1006C7932 /* LogInViewController.m */,
 				5CA3D19F1831DF51006C7932 /* FirstViewController.h */,
 				5CA3D1A01831DF51006C7932 /* FirstViewController.m */,
-				5CA3D1A21831DF51006C7932 /* SecondViewController.h */,
-				5CA3D1A31831DF51006C7932 /* SecondViewController.m */,
 				5CA3D1A51831DF51006C7932 /* Images.xcassets */,
 				5CA3D1911831DF51006C7932 /* Supporting Files */,
 			);
@@ -303,7 +308,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CA3D1A41831DF51006C7932 /* SecondViewController.m in Sources */,
+				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
+				5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */,
 				5CA3D19B1831DF51006C7932 /* AppDelegate.m in Sources */,
 				5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */,
 				5CA3D1A11831DF51006C7932 /* FirstViewController.m in Sources */,

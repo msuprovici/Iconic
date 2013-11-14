@@ -17,14 +17,14 @@
                   clientKey:@"NWnu7sQiFf9t3vyruSWQ8CqepFjKQh7IAZr8b3WA"];
     
     //Round Robin: testing out new schedule parse cloud function
-    [PFCloud callFunctionInBackground:@"schedule"
+    /*[PFCloud callFunctionInBackground:@"schedule"
                        withParameters:@{@"NumberOfTeams":@3}
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         // result is @"Hello world!"
                                         NSLog(@"%@", result);
                                     }
-                                }];
+                                }];*/
     //Intitialize FB
     [PFFacebookUtils initializeFacebook];
     
