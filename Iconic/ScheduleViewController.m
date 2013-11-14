@@ -18,38 +18,6 @@
 
 @implementation ScheduleViewController
 
-//method for loading table cells with scheduled matachups
-- (void)loadInitialData {
-    
-    
-  ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
-  item1.itemName = @"Team 1 vs Team 2";
-    
-        //Get data schedule data from parse based on Number of Teams input bellow
-    [PFCloud callFunctionInBackground:@"schedule"
-                       withParameters:@{@"NumberOfTeams":@4}
-                                block:^(NSString *result, NSError *error) {
-                                    if (!error) {
-                                        // show matchups
-                                        /*NSString *myString = [NSString string[@"%@", result]];
-                                    
-                                        ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
-                                        item1.itemName = @"%@d result";
-                                        [self.scheduledMatchups addObject:item1];*/
-                                    
-                                         //To do: add this data to
-                                         NSLog(@"%@", result);
-                                    }
-                                }];
-
-    
-    //hardcoding values bellow to test - MS
-    //TO DO: dynamically populate with data from parse cloud fuction: roundRobin
-   
- 
-    [self.scheduledMatchups addObject:item1];
-  
-}
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -76,6 +44,32 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+//method for loading table cells with scheduled matachups
+- (void)loadInitialData {
+    
+     ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
+    //This approach takes place on the main thread
+    //Warning: A long-running Parse operation is being executed on the main thread.
+    
+    item1.itemName = [NSString stringWithFormat: @"%@", [PFCloud callFunction:@"schedule" withParameters:@{@"NumberOfTeams":@4}]];
+    [self.scheduledMatchups addObject:item1];
+    
+    //This approach takes place in the background but I can not yet display it in a cell
+    //Get data schedule data from parse based on Number of Teams input bellow
+    [PFCloud callFunctionInBackground:@"schedule"
+                       withParameters:@{@"NumberOfTeams":@4}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        // show matchups
+                                        
+                                        /*ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
+                                        item1.itemName = [NSString stringWithFormat: @"%@", result
+                                        [self.scheduledMatchups addObject:item1];*/
+
+                                        NSLog(@"%@", result);
+                                    }
+                                }];
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -113,12 +107,10 @@
     ScheduleGenerator *scheduleMatchup = [self.scheduledMatchups objectAtIndex:indexPath.row];
     cell.textLabel.text = scheduleMatchup.itemName;
     
-    //
-    
     if (scheduleMatchup.selected) {
         
-    //TO DO: perfom segue to detailed view - MS
-        //the checkmark bellow is just a tes and will be taken out later
+    //TO DO: perfom segue to VS (matchup detail) view - MS
+   //the checkmark bellow is just a test and will be taken out later
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
