@@ -44,7 +44,7 @@
 //Skip Login
 - (IBAction)skipLogin:(id)sender {
     
-    //create a new anonymous user and creates an id on the parse server
+    //create a new anonymous user and create an id on the parse server
     [PFUser enableAutomaticUser];
     [[PFUser currentUser] saveInBackground];
  

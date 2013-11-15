@@ -20,11 +20,37 @@
 
 
 
-- (id)initWithStyle:(UITableViewStyle)style
+/*- (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+    }
+    return self;
+}*/
+
+- (id)initWithCoder:(NSCoder *)aCoder {
+    self = [super initWithCoder:aCoder];
+    if (self) {
+        // Customize the table
+        
+        // The className to query on
+        self.parseClassName = @"Schedule";
+        
+        // The key of the PFObject to display in the label of the default cell style
+        self.textKey = @"NumberOfTeams";
+        
+        // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
+        // self.imageKey = @"image";
+        
+        // Whether the built-in pull-to-refresh is enabled
+        self.pullToRefreshEnabled = YES;
+        
+        // Whether the built-in pagination is enabled
+        self.paginationEnabled = YES;
+        
+        // The number of objects to show per page
+        self.objectsPerPage = 25;
     }
     return self;
 }
@@ -35,7 +61,7 @@
     
     self.scheduledMatchups = [[NSMutableArray alloc] init];
     
-    [self loadInitialData];
+   [self loadInitialData];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -51,7 +77,7 @@
     //This approach takes place on the main thread
     //Warning: A long-running Parse operation is being executed on the main thread.
     
-    item1.itemName = [NSString stringWithFormat: @"%@", [PFCloud callFunction:@"schedule" withParameters:@{@"NumberOfTeams":@4}]];
+  item1.itemName = [NSString stringWithFormat: @"%@", [PFCloud callFunction:@"schedule" withParameters:@{@"NumberOfTeams":@4}]];
     [self.scheduledMatchups addObject:item1];
     
     //This approach takes place in the background but I can not yet display it in a cell
@@ -65,10 +91,12 @@
                                         /*ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
                                         item1.itemName = [NSString stringWithFormat: @"%@", result
                                         [self.scheduledMatchups addObject:item1];*/
-
+                                        
+                                        
                                         NSLog(@"%@", result);
                                     }
                                 }];
+   
 }
 
 
@@ -77,6 +105,109 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - PFQueryTableViewController
+
+- (void)objectsWillLoad {
+    [super objectsWillLoad];
+    
+    // This method is called before a PFQuery is fired to get more objects
+    
+    ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
+    //This approach takes place on the main thread
+    //Warning: A long-running Parse operation is being executed on the main thread.
+    
+    item1.itemName = [NSString stringWithFormat: @"%@", [PFCloud callFunction:@"schedule" withParameters:@{@"NumberOfTeams":@4}]];
+    [self.scheduledMatchups addObject:item1];
+    
+    /*  [PFCloud callFunctionInBackground:@"schedule"
+     withParameters:@{@"NumberOfTeams":@4}
+     block:^(NSString *result, NSError *error) {
+     if (!error) {
+     // show matchups
+     
+     NSLog(@"%@", result);
+     }
+     }];*/
+
+
+}
+
+- (void)objectsDidLoad:(NSError *)error {
+    [super objectsDidLoad:error];
+    
+    // This method is called every time objects are loaded from Parse via the PFQuery
+}
+
+/*
+ // Override to customize what kind of query to perform on the class. The default is to query for
+ // all objects ordered by createdAt descending.
+ - (PFQuery *)queryForTable {
+ PFQuery *query = [PFQuery queryWithClassName:self.className];
+ 
+ // If Pull To Refresh is enabled, query against the network by default.
+ if (self.pullToRefreshEnabled) {
+ query.cachePolicy = kPFCachePolicyNetworkOnly;
+ }
+ 
+ // If no objects are loaded in memory, we look to the cache first to fill the table
+ // and then subsequently do a query against the network.
+ if (self.objects.count == 0) {
+ query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+ }
+ 
+ [query orderByDescending:@"createdAt"];
+ 
+ return query;
+ }
+ */
+
+/*
+ // Override to customize the look of a cell representing an object. The default is to display
+ // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
+ // and the imageView being the imageKey in the object.
+ - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+ static NSString *CellIdentifier = @"Cell";
+ 
+ PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+ if (cell == nil) {
+ cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+ }
+ 
+ // Configure the cell
+ cell.textLabel.text = [object objectForKey:self.textKey];
+ cell.imageView.file = [object objectForKey:self.imageKey];
+ 
+ return cell;
+ }
+ */
+
+/*
+ // Override if you need to change the ordering of objects in the table.
+ - (PFObject *)objectAtIndex:(NSIndexPath *)indexPath {
+ return [self.objects objectAtIndex:indexPath.row];
+ }
+ */
+
+/*
+ // Override to customize the look of the cell that allows the user to load the next page of objects.
+ // The default implementation is a UITableViewCellStyleDefault cell with simple labels.
+ - (UITableViewCell *)tableView:(UITableView *)tableView cellForNextPageAtIndexPath:(NSIndexPath *)indexPath {
+ static NSString *CellIdentifier = @"NextPage";
+ 
+ UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+ 
+ if (cell == nil) {
+ cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+ }
+ 
+ cell.selectionStyle = UITableViewCellSelectionStyleNone;
+ cell.textLabel.text = @"Load more...";
+ 
+ return cell;
+ }
+ */
+
 
 #pragma mark - Table view data source
 

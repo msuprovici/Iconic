@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
-@interface ScheduleViewController : UITableViewController
+@interface ScheduleViewController : PFQueryTableViewController
 
 @end
