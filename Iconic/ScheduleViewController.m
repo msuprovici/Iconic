@@ -14,10 +14,14 @@
 
 @property NSMutableArray *scheduledMatchups;
 
+@property (nonatomic, retain) NSMutableDictionary *matchups;
+@property (nonatomic, retain) NSMutableDictionary *round;
+
 @end
 
 @implementation ScheduleViewController
-
+@synthesize matchups = _matchups;
+@synthesize round = _round;
 
 
 /*- (id)initWithStyle:(UITableViewStyle)style
@@ -35,10 +39,12 @@
         // Customize the table
         
         // The className to query on
-        self.parseClassName = @"Schedule";
+        self.parseClassName = @"team";
+        //self.parseClassName = @"matchups";
         
         // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @"NumberOfTeams";
+        //self.textKey = @"name";
+        self.textKey = @"name";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
@@ -51,6 +57,10 @@
         
         // The number of objects to show per page
         self.objectsPerPage = 25;
+        
+        //dictionaries for matchups & round
+        self.matchups = [NSMutableDictionary dictionary];
+        self.round = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -77,13 +87,13 @@
     //This approach takes place on the main thread
     //Warning: A long-running Parse operation is being executed on the main thread.
     
-  item1.itemName = [NSString stringWithFormat: @"%@", [PFCloud callFunction:@"schedule" withParameters:@{@"NumberOfTeams":@4}]];
-    [self.scheduledMatchups addObject:item1];
-    
-    //This approach takes place in the background but I can not yet display it in a cell
-    //Get data schedule data from parse based on Number of Teams input bellow
-    [PFCloud callFunctionInBackground:@"schedule"
-                       withParameters:@{@"NumberOfTeams":@4}
+//  item1.itemName = [NSString stringWithFormat: @"%@", [PFCloud callFunction:@"schedule" withParameters:@{@"NumberOfTeams":@4}]];
+//    [self.scheduledMatchups addObject:item1];
+//    
+//    //This approach takes place in the background but I can not yet display it in a cell
+//    //Get data schedule data from parse based on Number of Teams input bellow
+    [PFCloud callFunctionInBackground:@"matchups"
+                       withParameters:@{@"name":@""}
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         // show matchups
@@ -108,59 +118,92 @@
 
 #pragma mark - PFQueryTableViewController
 
-- (void)objectsWillLoad {
-    [super objectsWillLoad];
-    
-    // This method is called before a PFQuery is fired to get more objects
-    
-    ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
-    //This approach takes place on the main thread
-    //Warning: A long-running Parse operation is being executed on the main thread.
-    
-    item1.itemName = [NSString stringWithFormat: @"%@", [PFCloud callFunction:@"schedule" withParameters:@{@"NumberOfTeams":@4}]];
-    [self.scheduledMatchups addObject:item1];
-    
-    /*  [PFCloud callFunctionInBackground:@"schedule"
-     withParameters:@{@"NumberOfTeams":@4}
-     block:^(NSString *result, NSError *error) {
-     if (!error) {
-     // show matchups
-     
-     NSLog(@"%@", result);
-     }
-     }];*/
+//- (void)objectsWillLoad {
+//    [super objectsWillLoad];
+//    
+//    // This method is called before a PFQuery is fired to get more objects
+//    
+//    ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
+//    //This approach takes place on the main thread
+//    //Warning: A long-running Parse operation is being executed on the main thread.
+//    
+////    item1.itemName = [NSString stringWithFormat: @"%@", [PFCloud callFunction:@"schedule" withParameters:@{@"NumberOfTeams":@4}]];
+////    [self.scheduledMatchups addObject:item1];
+//    
+//    /*  [PFCloud callFunctionInBackground:@"schedule"
+//     withParameters:@{@"NumberOfTeams":@4}
+//     block:^(NSString *result, NSError *error) {
+//     if (!error) {
+//     // show matchups
+//     
+//     NSLog(@"%@", result);
+//     }
+//     }];*/
+//
+//
+//}
 
 
-}
+//using sections, to keep track of which PFObjects belong to which section
+//Since every round is represented as a PFObject in self.objects, we are storing the index of their PFObject in sections
+//sorting our objects into the sections dictionary
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
     
     // This method is called every time objects are loaded from Parse via the PFQuery
+    
+    [self.matchups removeAllObjects];
+    [self.round removeAllObjects];
+    
+    NSInteger section = 0;
+    NSInteger rowIndex = 0;
+    for (PFObject *object in self.objects) {
+        NSString *teamMatchup = [object objectForKey:@"name"];
+        NSMutableArray *objectsInSection = [self.matchups objectForKey:teamMatchup];
+        if (!objectsInSection) {
+            objectsInSection = [NSMutableArray array];
+            
+            // this is the first time we see this teamMatchup - increment the section index
+            [self.round setObject:teamMatchup forKey:[NSNumber numberWithInt:section++]];
+        }
+        
+        [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
+        [self.matchups setObject:objectsInSection forKey:teamMatchup];
+    }
+    
+  
 }
 
-/*
+
  // Override to customize what kind of query to perform on the class. The default is to query for
  // all objects ordered by createdAt descending.
- - (PFQuery *)queryForTable {
- PFQuery *query = [PFQuery queryWithClassName:self.className];
- 
- // If Pull To Refresh is enabled, query against the network by default.
- if (self.pullToRefreshEnabled) {
- query.cachePolicy = kPFCachePolicyNetworkOnly;
- }
- 
- // If no objects are loaded in memory, we look to the cache first to fill the table
- // and then subsequently do a query against the network.
- if (self.objects.count == 0) {
- query.cachePolicy = kPFCachePolicyCacheThenNetwork;
- }
- 
- [query orderByDescending:@"createdAt"];
- 
- return query;
- }
- */
+- (PFQuery *)queryForTable {
+    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    
+    // If Pull To Refresh is enabled, query against the network by default.
+    if (self.pullToRefreshEnabled) {
+        query.cachePolicy = kPFCachePolicyNetworkOnly;
+    }
+    
+    // If no objects are loaded in memory, we look to the cache first to fill the table
+    // and then subsequently do a query against the network.
+    if (self.objects.count == 0) {
+        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    }
+    
+    // Order by teamMatchup type
+    [query orderByAscending:@"name"];
+    return query;
+}
+
+
+// We will use the section indeces as keys to look up which round is represented by a section.
+- (NSString *)round:(NSInteger)section {
+    return [self.round objectForKey:[NSNumber numberWithInt:section]];
+}
+
+
 
 /*
  // Override to customize the look of a cell representing an object. The default is to display
@@ -182,12 +225,17 @@
  }
  */
 
-/*
- // Override if you need to change the ordering of objects in the table.
- - (PFObject *)objectAtIndex:(NSIndexPath *)indexPath {
- return [self.objects objectAtIndex:indexPath.row];
- }
- */
+
+ // Get the array of indeces for that section. This lets us pick the correct PFObject from self.objects
+- (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *teamMatchups = [self round:indexPath.section];
+    
+    NSArray *rowIndecesInSection = [self.matchups objectForKey:teamMatchups];
+    
+    NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
+    return [self.objects objectAtIndex:[rowIndex intValue]];
+}
+
 
 /*
  // Override to customize the look of the cell that allows the user to load the next page of objects.
@@ -215,59 +263,87 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return self.matchups.allKeys.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)matchup
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     //return 0;
     
     //return the # of matchups in the array
-    return [self.scheduledMatchups count];
+    
+    NSString *roundType = [self round:matchup];
+    NSArray *rowIndecesInSection = [self.matchups objectForKey:roundType];
+    return rowIndecesInSection.count;
+ 
+    //return [self.scheduledMatchups count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Matchup";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    ScheduleGenerator *scheduleMatchup = [self.scheduledMatchups objectAtIndex:indexPath.row];
-    cell.textLabel.text = scheduleMatchup.itemName;
-    
-    if (scheduleMatchup.selected) {
-        
-    //TO DO: perfom segue to VS (matchup detail) view - MS
-   //the checkmark bellow is just a test and will be taken out later
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-    
-    return cell;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *roundType = [self round:section];
+    return roundType;
 }
+
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//   static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    if (indexPath.section == self.objects.count) {
+//        
+//        UITableViewCell *cell = [self tableView:tableView cellForNextPageAtIndexPath:indexPath];
+//        return cell;
+//    }
+//    
+//
+// //static NSString *CellIdentifier = @"Matchup";
+////    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    
+//        
+//    // Configure the cell...
+//    
+////    ScheduleGenerator *scheduleMatchup = [self.scheduledMatchups objectAtIndex:indexPath.row];
+////    cell.textLabel.text = scheduleMatchup.itemName;
+////    
+////    if (scheduleMatchup.selected) {
+////        
+////    //TO DO: perfom segue to VS (matchup detail) view - MS
+////   //the checkmark bellow is just a test and will be taken out later
+////        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+////    } else {
+////        cell.accessoryType = UITableViewCellAccessoryNone;
+////    }
+//    
+//    return cell;
+//}
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //create selection here
-    
-    //code de-selects cell after selection
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    //find the corresponding item scheduledMatchups
-    ScheduleGenerator *tappedItem = [self.scheduledMatchups objectAtIndex:indexPath.row];
-    
-    //toggle the compeltion state of the tapped item
-    tappedItem.selected = !tappedItem.selected;
-    
-    //tell the table view to reload the row whose data you just updated
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+//    
+//    PFObject *selectedObject = [self objectAtIndexPath:indexPath];
+//    
+//    
+//    
+//    //    //create selection here
+////    
+////    //code de-selects cell after selection
+////    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+////    
+////    //find the corresponding item scheduledMatchups
+////    ScheduleGenerator *tappedItem = [self.scheduledMatchups objectAtIndex:indexPath.row];
+////    
+////    //toggle the compeltion state of the tapped item
+////    tappedItem.selected = !tappedItem.selected;
+////    
+////    //tell the table view to reload the row whose data you just updated
+////    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//}
 
 /*
 // Override to support conditional editing of the table view.
