@@ -159,7 +159,7 @@
     NSInteger section = 0;
     NSInteger rowIndex = 0;
     for (PFObject *object in self.objects) {
-        NSString *teamMatchup = [object objectForKey:@"name"];
+        NSString *teamMatchup = [object objectForKey:@"round"];
         NSMutableArray *objectsInSection = [self.matchups objectForKey:teamMatchup];
         if (!objectsInSection) {
             objectsInSection = [NSMutableArray array];
@@ -193,7 +193,7 @@
     }
     
     // Order by teamMatchup type
-    [query orderByAscending:@"name"];
+    [query orderByAscending:@"round"];
     return query;
 }
 
