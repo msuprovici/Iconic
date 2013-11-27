@@ -39,12 +39,12 @@
         // Customize the table
         
         // The className to query on
-        self.parseClassName = @"team";
+        self.parseClassName = @"TeamMatchups";
         //self.parseClassName = @"matchups";
         
         // The key of the PFObject to display in the label of the default cell style
         //self.textKey = @"name";
-        self.textKey = @"name";
+        self.textKey = @"matchups";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
@@ -90,10 +90,10 @@
 //  item1.itemName = [NSString stringWithFormat: @"%@", [PFCloud callFunction:@"schedule" withParameters:@{@"NumberOfTeams":@4}]];
 //    [self.scheduledMatchups addObject:item1];
 //    
-//    //This approach takes place in the background but I can not yet display it in a cell
-//    //Get data schedule data from parse based on Number of Teams input bellow
-    [PFCloud callFunctionInBackground:@"matchups"
-                       withParameters:@{@"name":@""}
+    //This approach takes place in the background but I can not yet display it in a cell
+    //Get data schedule data from parse based on Number of Teams input bellow
+    [PFCloud callFunctionInBackground:@"tournament"
+                       withParameters:@{@"NumberOfTeams":@"4"}
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         // show matchups
