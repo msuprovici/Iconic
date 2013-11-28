@@ -8,6 +8,7 @@
 
 #import "LogInViewController.h"
 #import <Parse/Parse.h>
+#import "TutorialViewController.h"
 
 @interface LogInViewController ()
 
@@ -27,7 +28,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    [[self view] setBackgroundColor:[UIColor blackColor]];
+    
+    _modelArray = [NSMutableArray arrayWithObjects:[[TutorialScreens alloc] initWithImageName:@"tutorial1.png"], [[TutorialScreens alloc] initWithImageName:@"tutorial2.png"], [[TutorialScreens alloc] initWithImageName:@"tutorial3.png"], [[TutorialScreens alloc] initWithImageName:@"tutorial4.png"], nil];
+    
+    
+    _pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                                          navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                        options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:0.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
+    
+    _pageViewController.delegate = self;
+    _pageViewController.dataSource = self;
+    
+    TutorialViewController *imageViewController = [[TutorialViewController alloc] init];
+    imageViewController.model = [_modelArray objectAtIndex:0];
+    NSArray *viewControllers = [NSArray arrayWithObject:imageViewController];
+    
+    [self.pageViewController setViewControllers:viewControllers
+                                      direction:UIPageViewControllerNavigationDirectionForward
+                                       animated:NO
+                                     completion:nil];
+    
+    [self addChildViewController:_pageViewController];
+    [self.view addSubview:_pageViewController.view];
+    
+    [_pageViewController didMoveToParentViewController:self];
+    
+    CGRect pageViewRect = self.view.bounds;
+    pageViewRect = [[UIScreen mainScreen] bounds];
+    self.pageViewController.view.frame = pageViewRect;
+    
+    self.view.gestureRecognizers = _pageViewController.gestureRecognizers;
+    [self.view sendSubviewToBack: _pageViewController.view];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,7 +179,53 @@
 }
 
 
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    TutorialViewController *contentVc = (TutorialViewController *)viewController;
+    
+    NSUInteger currentIndex = [_modelArray indexOfObject:[contentVc model]];
+    _vcIndex = currentIndex;
+    
+    if (currentIndex == 0)
+    {
+        return nil;
+    }
+    
+    TutorialViewController *imageViewController = [[TutorialViewController alloc] init];
+    imageViewController.model = [_modelArray objectAtIndex:currentIndex - 1];
+    return imageViewController;
+}
 
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+    TutorialViewController *contentVc = (TutorialViewController *)viewController;
+    
+    NSUInteger currentIndex = [_modelArray indexOfObject:[contentVc model]];
+    _vcIndex = currentIndex;
+    //ImageModel *model = [_modelArray objectAtIndex:_vcIndex];
+    
+    if (currentIndex == _modelArray.count - 1)
+    {
+        return nil;
+    }
+    
+    TutorialViewController *imageViewController = [[TutorialViewController alloc] init];
+    imageViewController.model = [_modelArray objectAtIndex:currentIndex + 1];
+    return imageViewController;
+}
+
+#pragma mark -
+#pragma mark - UIPageViewControllerDataSource Method
+
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
+{
+    return _modelArray.count;
+}
+
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+{
+    return 0;
+}
 
 
 
