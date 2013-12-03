@@ -56,7 +56,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 25;
+        self.objectsPerPage = 100;
         
         //dictionaries for matchups & round
         self.matchups = [NSMutableDictionary dictionary];
@@ -92,20 +92,20 @@
 //    
     //This approach takes place in the background but I can not yet display it in a cell
     //Get data schedule data from parse based on Number of Teams input bellow
-    [PFCloud callFunctionInBackground:@"tournament2"
-                       withParameters:@{@"NumberOfTeams":@"4"}
-                                block:^(NSString *result, NSError *error) {
-                                    if (!error) {
-                                        // show matchups
-                                        
-                                        /*ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
-                                        item1.itemName = [NSString stringWithFormat: @"%@", result
-                                        [self.scheduledMatchups addObject:item1];*/
-                                        
-                                        
-                                        NSLog(@"%@", result);
-                                    }
-                                }];
+//    [PFCloud callFunctionInBackground:@"tournament2"
+//                       withParameters:@{@"NumberOfTeams":@"8"}
+//                                block:^(NSString *result, NSError *error) {
+//                                    if (!error) {
+//                                        // show matchups
+//                                        
+//                                        /*ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
+//                                        item1.itemName = [NSString stringWithFormat: @"%@", result
+//                                        [self.scheduledMatchups addObject:item1];*/
+//                                        
+//                                        
+//                                        NSLog(@"%@", result);
+//                                    }
+//                                }];
    
 }
 
