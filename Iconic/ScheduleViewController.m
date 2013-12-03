@@ -92,7 +92,7 @@
 //    
     //This approach takes place in the background but I can not yet display it in a cell
     //Get data schedule data from parse based on Number of Teams input bellow
-    [PFCloud callFunctionInBackground:@"tournament"
+    [PFCloud callFunctionInBackground:@"tournament2"
                        withParameters:@{@"NumberOfTeams":@"4"}
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
@@ -159,7 +159,7 @@
     NSInteger section = 0;
     NSInteger rowIndex = 0;
     for (PFObject *object in self.objects) {
-        NSString *teamMatchup = [object objectForKey:@"round"];
+        NSString *teamMatchup = [NSString stringWithFormat:@"Round %@",[object objectForKey:@"round"]];
         NSMutableArray *objectsInSection = [self.matchups objectForKey:teamMatchup];
         if (!objectsInSection) {
             objectsInSection = [NSMutableArray array];
