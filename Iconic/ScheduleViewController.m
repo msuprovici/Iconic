@@ -83,7 +83,14 @@
 //method for loading table cells with scheduled matachups
 - (void)loadInitialData {
     
-     ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
+    //[super objectsDidLoad:error];
+    
+    // This method is called every time objects are loaded from Parse via the PFQuery
+    
+  
+
+    
+     //ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
     //This approach takes place on the main thread
     //Warning: A long-running Parse operation is being executed on the main thread.
     
@@ -106,6 +113,8 @@
 //                                        NSLog(@"%@", result);
 //                                    }
 //                                }];
+    
+    
    
 }
 
@@ -152,10 +161,10 @@
     [super objectsDidLoad:error];
     
     // This method is called every time objects are loaded from Parse via the PFQuery
-    
+
     [self.matchups removeAllObjects];
     [self.round removeAllObjects];
-    
+  
     NSInteger section = 0;
     NSInteger rowIndex = 0;
     for (PFObject *object in self.objects) {
