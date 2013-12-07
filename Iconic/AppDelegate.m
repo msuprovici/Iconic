@@ -6,8 +6,16 @@
 //  Copyright (c) 2013 Explorence. All rights reserved.
 //
 
+
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "ContentController.h"
+
+
+@interface AppDelegate ()
+//@property (nonatomic, strong) IBOutlet ContentController * contentController;
+@end
+
 
 @implementation AppDelegate
 

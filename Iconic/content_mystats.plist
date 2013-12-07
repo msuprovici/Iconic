@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>nameKey</key>
+		<string>All Time</string>
+		<key>imageKey</key>
+		<string>tutorial2.png</string>
+	</dict>
+	<dict>
+		<key>nameKey</key>
+		<string>7 Days</string>
+		<key>imageKey</key>
+		<string>tutorial3.png</string>
+	</dict>
+	<dict>
+		<key>nameKey</key>
+		<string>24 hrs</string>
+		<key>imageKey</key>
+		<string>tutorial4.png</string>
+	</dict>
+</array>
+</plist>
