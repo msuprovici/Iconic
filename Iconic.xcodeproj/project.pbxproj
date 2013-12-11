@@ -39,6 +39,7 @@
 		5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */; };
 		5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D1E61832F9D1006C7932 /* LogInViewController.m */; };
 		5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */; };
+		5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7FAAF185810A600A360A1 /* TeamatesCell.m */; };
 		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
 		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
 		72CA13C61846DEC700B19D53 /* tutorial1.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CA13C31846DEC700B19D53 /* tutorial1.png */; };
@@ -102,6 +103,8 @@
 		5CA3D1E51832F9D1006C7932 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ../LogInViewController.h; sourceTree = "<group>"; };
 		5CA3D1E61832F9D1006C7932 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ../LogInViewController.m; sourceTree = "<group>"; };
 		5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		5CC7FAAE185810A500A360A1 /* TeamatesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamatesCell.h; sourceTree = "<group>"; };
+		5CC7FAAF185810A600A360A1 /* TeamatesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamatesCell.m; sourceTree = "<group>"; };
 		5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		5CFB1EB81834381C0026AEB4 /* ScheduleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleGenerator.h; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 				5C2EA545185164BE00B21C52 /* MyStatsContentController.h */,
 				5C2EA546185164BE00B21C52 /* MyStatsContentController.m */,
 				5C2EA54818516B0E00B21C52 /* content_mystats.plist */,
+				5CC7FAAE185810A500A360A1 /* TeamatesCell.h */,
+				5CC7FAAF185810A600A360A1 /* TeamatesCell.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
 				5C225AA8184FF85600B38AEF /* VSViewController.m in Sources */,
 				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,

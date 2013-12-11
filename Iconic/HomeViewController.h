@@ -7,9 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import "TeamatesCell.h"
 
-@interface HomeViewController : UIViewController <UIScrollViewDelegate>
+
+@interface HomeViewController : UIViewController <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UITableViewDelegate>
+
+{
+    
+    NSArray *teamatesArray;
+}
+
 
 @property (nonatomic, strong) NSArray *contentList;
+
+
+@property (nonatomic, weak) IBOutlet UITableView *teamatesTable;
 
 @end

@@ -21,9 +21,12 @@ static NSString *kImageKey = @"imageKey";
 @property (nonatomic, strong) IBOutlet ContentController * contentController;
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 
+
 @end
 
 @implementation HomeViewController
+
+@synthesize teamatesTable;
 
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,6 +40,12 @@ static NSString *kImageKey = @"imageKey";
 
 - (void)viewDidLoad
 {
+    
+    [super viewDidLoad];
+    
+  
+    [self performSelector:@selector(retrieveFromParse)];
+    
     NSUInteger numberPages = self.contentList.count;
     
     // view controllers are created lazily
@@ -66,6 +75,12 @@ static NSString *kImageKey = @"imageKey";
     //
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
+    
+    
+    
+    
+    
+    
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -163,6 +178,79 @@ static NSString *kImageKey = @"imageKey";
 {
     [self gotoPage:YES];    // YES = animate
 }
+
+
+#pragma mark table view metods
+
+
+- (void) retrieveFromParse {
+    
+    PFQuery *retrieveTeamates = [PFQuery queryWithClassName:@"Test"];
+    
+    
+    
+    [retrieveTeamates findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        NSLog(@"%@", objects);
+       if (!error) {
+            teamatesArray = [[NSArray alloc] initWithArray:objects];
+        }
+        [teamatesTable reloadData];
+    }];
+}
+
+
+
+
+
+//*********************Setup table of folder names ************************
+
+//get number of sections in tableview
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+}
+
+//get number of rows by counting number of folders
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return teamatesArray.count;
+}
+
+
+//setup cells in tableView
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+   
+    
+    //setup cell
+    static NSString *CellIdentifier = @"teamatesCell";
+    
+    
+    TeamatesCell *cell = (TeamatesCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (!cell)
+    {
+        cell = [[TeamatesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    PFObject *tempObject = [teamatesArray objectAtIndex:indexPath.row];
+    
+    cell.teamateName.text = [tempObject objectForKey:@"teammate"];
+    
+    
+     //cell.teamateName.text = @"hello";
+    
+    return cell;
+}
+
+
+//user selects folder to add tag to
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"cell tapped");
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

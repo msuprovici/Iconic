@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XeB-8R-LyU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XeB-8R-LyU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="517"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,6 +27,32 @@
                                         <outlet property="delegate" destination="url-9a-9C7" id="vXF-2g-kzO"/>
                                     </connections>
                                 </scrollView>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="teamatesCell" textLabel="7eL-gs-3vZ" rowHeight="55" style="IBUITableViewCellStyleDefault" id="Rhv-4m-FPf" customClass="TeamatesCell">
+                                        <rect key="frame" x="0.0" y="170" width="320" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rhv-4m-FPf" id="J21-Pl-FBE">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7eL-gs-3vZ">
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="54"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="teamateName" destination="7eL-gs-3vZ" id="6i2-kV-k5Q"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="url-9a-9C7" id="Hz0-Qa-BMX"/>
+                                    <outlet property="delegate" destination="url-9a-9C7" id="4lm-Ld-OLW"/>
+                                </connections>
                             </tableView>
                             <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="xci-qs-vQo">
                                 <rect key="frame" x="100" y="98" width="120" height="37"/>
@@ -43,6 +69,7 @@
                         <outlet property="contentController" destination="ze2-rn-IC6" id="wGu-TM-PUv"/>
                         <outlet property="pageControl" destination="xci-qs-vQo" id="wgg-Yp-Ktx"/>
                         <outlet property="scrollView" destination="6sl-sf-QQB" id="6xx-ph-Jqa"/>
+                        <outlet property="teamatesTable" destination="XeB-8R-LyU" id="wrg-gm-7xR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fM-c1-U08" userLabel="First Responder" sceneMemberID="firstResponder"/>
