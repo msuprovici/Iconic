@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XeB-8R-LyU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XeB-8R-LyU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="517"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -28,24 +28,89 @@
                                     </connections>
                                 </scrollView>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="teamatesCell" textLabel="7eL-gs-3vZ" rowHeight="55" style="IBUITableViewCellStyleDefault" id="Rhv-4m-FPf" customClass="TeamatesCell">
-                                        <rect key="frame" x="0.0" y="170" width="320" height="55"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="teamatesCell" rowHeight="69" id="Rhv-4m-FPf" customClass="TeamatesCell">
+                                        <rect key="frame" x="0.0" y="170" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rhv-4m-FPf" id="J21-Pl-FBE">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7eL-gs-3vZ">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="54"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKA-dH-7OV">
+                                                    <rect key="frame" x="149" y="4" width="54" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="23" id="uzO-bt-er0"/>
+                                                        <constraint firstAttribute="width" constant="54" id="wx9-gX-hRs"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1A-0I-O4m">
+                                                    <rect key="frame" x="232" y="4" width="54" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial1.png" translatesAutoresizingMaskIntoConstraints="NO" id="dPU-SP-47R">
+                                                    <rect key="frame" x="8" y="4" width="51" height="57"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="51" id="BQW-Zm-bXP"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="teamate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chM-Cn-b0H" userLabel="Label - teamate">
+                                                    <rect key="frame" x="67" y="15" width="75" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yA3-p0-pV8">
+                                                    <rect key="frame" x="149" y="28" width="53" height="38"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="53" id="TtQ-ot-Lyu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJr-5v-a2g" userLabel="Label - XP">
+                                                    <rect key="frame" x="238" y="28" width="41" height="38"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="41" id="arD-vr-siy"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="yA3-p0-pV8" firstAttribute="leading" secondItem="IKA-dH-7OV" secondAttribute="leading" id="7Tc-sD-e0i"/>
+                                                <constraint firstAttribute="trailing" secondItem="sJr-5v-a2g" secondAttribute="trailing" constant="41" id="BI6-Hd-vHc"/>
+                                                <constraint firstAttribute="bottom" secondItem="yA3-p0-pV8" secondAttribute="bottom" constant="2" id="Fu1-sq-tpz"/>
+                                                <constraint firstItem="dPU-SP-47R" firstAttribute="top" secondItem="J21-Pl-FBE" secondAttribute="top" constant="4" id="J5A-32-8fl"/>
+                                                <constraint firstItem="yA3-p0-pV8" firstAttribute="baseline" secondItem="sJr-5v-a2g" secondAttribute="baseline" id="Lpr-iy-SxE"/>
+                                                <constraint firstItem="sJr-5v-a2g" firstAttribute="leading" secondItem="yA3-p0-pV8" secondAttribute="trailing" constant="36" id="NnP-Nh-VPz"/>
+                                                <constraint firstItem="chM-Cn-b0H" firstAttribute="leading" secondItem="dPU-SP-47R" secondAttribute="trailing" constant="8" symbolic="YES" id="SVc-Zs-soO"/>
+                                                <constraint firstAttribute="bottom" secondItem="chM-Cn-b0H" secondAttribute="bottom" constant="20" symbolic="YES" id="SeS-sC-pk6"/>
+                                                <constraint firstItem="p1A-0I-O4m" firstAttribute="leading" secondItem="IKA-dH-7OV" secondAttribute="trailing" constant="29" id="Tiv-hb-7g7"/>
+                                                <constraint firstItem="chM-Cn-b0H" firstAttribute="top" secondItem="J21-Pl-FBE" secondAttribute="top" constant="15" id="UGh-7K-Zfi"/>
+                                                <constraint firstAttribute="trailing" secondItem="p1A-0I-O4m" secondAttribute="trailing" constant="34" id="WlB-ky-iAl"/>
+                                                <constraint firstItem="dPU-SP-47R" firstAttribute="leading" secondItem="J21-Pl-FBE" secondAttribute="leading" constant="8" id="ccR-df-qRS"/>
+                                                <constraint firstItem="p1A-0I-O4m" firstAttribute="top" secondItem="IKA-dH-7OV" secondAttribute="top" id="iPA-Kz-r5z"/>
+                                                <constraint firstItem="yA3-p0-pV8" firstAttribute="top" secondItem="IKA-dH-7OV" secondAttribute="bottom" constant="1" id="l0q-Dq-4ux"/>
+                                                <constraint firstItem="p1A-0I-O4m" firstAttribute="baseline" secondItem="IKA-dH-7OV" secondAttribute="baseline" id="sU9-fc-dae"/>
+                                                <constraint firstItem="IKA-dH-7OV" firstAttribute="top" secondItem="dPU-SP-47R" secondAttribute="top" id="u67-hv-IDZ"/>
+                                                <constraint firstItem="yA3-p0-pV8" firstAttribute="top" secondItem="sJr-5v-a2g" secondAttribute="top" id="veP-Lu-YT3"/>
+                                                <constraint firstItem="IKA-dH-7OV" firstAttribute="leading" secondItem="chM-Cn-b0H" secondAttribute="trailing" constant="7" id="vkS-m2-aa0"/>
+                                                <constraint firstAttribute="bottom" secondItem="dPU-SP-47R" secondAttribute="bottom" constant="7" id="zhO-7m-5xK"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="teamateName" destination="7eL-gs-3vZ" id="6i2-kV-k5Q"/>
+                                            <outlet property="teamateName" destination="chM-Cn-b0H" id="d64-Yp-ysd"/>
+                                            <outlet property="teamtePicture" destination="dPU-SP-47R" id="qiw-3k-HuH"/>
+                                            <outlet property="teamtePoints" destination="yA3-p0-pV8" id="WtA-74-elw"/>
+                                            <outlet property="teamteXP" destination="sJr-5v-a2g" id="Y0g-oT-q6x"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -253,6 +318,7 @@
     <resources>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
+        <image name="tutorial1.png" width="220" height="220"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

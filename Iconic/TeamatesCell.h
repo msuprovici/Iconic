@@ -12,4 +12,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *teamateName;
 
+@property (weak, nonatomic) IBOutlet UIImageView *teamtePicture;
+
+@property (weak, nonatomic) IBOutlet UILabel *teamtePoints;
+
+@property (weak, nonatomic) IBOutlet UILabel *teamteXP;
+
+
 @end

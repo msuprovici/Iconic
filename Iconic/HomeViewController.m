@@ -226,7 +226,7 @@ static NSString *kImageKey = @"imageKey";
     //setup cell
     static NSString *CellIdentifier = @"teamatesCell";
     
-    
+   
     TeamatesCell *cell = (TeamatesCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell)
@@ -235,11 +235,23 @@ static NSString *kImageKey = @"imageKey";
     }
     
     PFObject *tempObject = [teamatesArray objectAtIndex:indexPath.row];
-    
+    //Teamate Name
     cell.teamateName.text = [tempObject objectForKey:@"teammate"];
     
+    //Teammate Points & XP
+    cell.teamtePoints.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
+    cell.teamteXP.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];
     
-     //cell.teamateName.text = @"hello";
+    
+    //Teammate photos
+    
+    PFFile *imageFile = [tempObject objectForKey: @"Photo"];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if(!error)
+        {
+            cell.teamtePicture.image = [UIImage imageWithData:data];
+        }
+    }];
     
     return cell;
 }
