@@ -205,10 +205,18 @@ static NSString *kImageKey = @"imageKey";
 
 //*********************Setup table of folder names ************************
 
+
+
 //get number of sections in tableview
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
+}
+
+//create a section title
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"My Team";
 }
 
 //get number of rows by counting number of folders
@@ -220,8 +228,6 @@ static NSString *kImageKey = @"imageKey";
 //setup cells in tableView
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-   
     
     //setup cell
     static NSString *CellIdentifier = @"teamatesCell";
@@ -254,6 +260,7 @@ static NSString *kImageKey = @"imageKey";
     }];
     
     return cell;
+    
 }
 
 
