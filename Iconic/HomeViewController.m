@@ -213,11 +213,26 @@ static NSString *kImageKey = @"imageKey";
     return 1;
 }
 
-//create a section title
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+
+
+//create a header section for My Team
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return @"My Team";
+    return 20;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    sectionHeader.backgroundColor = [UIColor redColor];
+    sectionHeader.textAlignment = NSTextAlignmentCenter;
+    sectionHeader.font = [UIFont boldSystemFontOfSize:15];
+    sectionHeader.textColor = [UIColor whiteColor];
+    sectionHeader.text = @"My Team";
+    return sectionHeader;
+}
+
+
 
 //get number of rows by counting number of folders
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

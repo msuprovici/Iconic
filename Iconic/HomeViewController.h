@@ -11,7 +11,7 @@
 #import "TeamatesCell.h"
 
 
-@interface HomeViewController : UIViewController <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 {
     
