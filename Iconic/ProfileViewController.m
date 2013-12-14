@@ -1,49 +1,40 @@
 //
-//  HomeViewController.m
+//  ProfileViewController.m
 //  Iconic
 //
-//  Created by Mike Suprovici on 12/5/13.
+//  Created by Mike Suprovici on 12/13/13.
 //  Copyright (c) 2013 Explorence. All rights reserved.
 //
 
-#import "HomeViewController.h"
-#import "MyStatsViewController.h"
+#import "ProfileViewController.h"
+//#import "MyStatsViewController.h"
 #import "ContentController.h"
 
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
 
-@interface HomeViewController ()
+
+@interface ProfileViewController ()
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
 
-@property (nonatomic, strong) IBOutlet ContentController * contentController;
+//@property (nonatomic, strong) IBOutlet ContentController * contentController;
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 
 
 @end
 
-@implementation HomeViewController
+@implementation ProfileViewController
 
-@synthesize teamatesTable;
-
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}*/
+@synthesize friendsTable;
 
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
     
-  
+    
     [self performSelector:@selector(retrieveFromParse)];
     
     NSUInteger numberPages = self.contentList.count;
@@ -117,30 +108,30 @@ static NSString *kImageKey = @"imageKey";
     if (page >= self.contentList.count)
         return;
     
-    // replace the placeholder if necessary
-    MyStatsViewController *controller = [self.viewControllers objectAtIndex:page];
-    if ((NSNull *)controller == [NSNull null])
-    {
-        controller = [[MyStatsViewController alloc] initWithPointsLabelNumber:page];
-        [self.viewControllers replaceObjectAtIndex:page withObject:controller];
-    }
-    
-    // add the controller's view to the scroll view
-    if (controller.view.superview == nil)
-    {
-        CGRect frame = self.scrollView.frame;
-        frame.origin.x = CGRectGetWidth(frame) * page;
-        frame.origin.y = 0;
-        controller.view.frame = frame;
-        
-        [self addChildViewController:controller];
-        [self.scrollView addSubview:controller.view];
-        [controller didMoveToParentViewController:self];
-        
-        NSDictionary *numberItem = [self.contentList objectAtIndex:page];
-        controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
-        controller.xpTitle.text = [numberItem valueForKey:kNameKey];
-    }
+//    // replace the placeholder if necessary
+//    MyStatsViewController *controller = [self.viewControllers objectAtIndex:page];
+//    if ((NSNull *)controller == [NSNull null])
+//    {
+//        controller = [[MyStatsViewController alloc] initWithPointsLabelNumber:page];
+//        [self.viewControllers replaceObjectAtIndex:page withObject:controller];
+//    }
+//    
+//    // add the controller's view to the scroll view
+//    if (controller.view.superview == nil)
+//    {
+//        CGRect frame = self.scrollView.frame;
+//        frame.origin.x = CGRectGetWidth(frame) * page;
+//        frame.origin.y = 0;
+//        controller.view.frame = frame;
+//        
+//        [self addChildViewController:controller];
+//        [self.scrollView addSubview:controller.view];
+//        [controller didMoveToParentViewController:self];
+//        
+//     /*   NSDictionary *numberItem = [self.contentList objectAtIndex:page];
+//        controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
+//        controller.xpTitle.text = [numberItem valueForKey:kNameKey];*/
+//    }
 }
 
 // at the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
@@ -174,6 +165,7 @@ static NSString *kImageKey = @"imageKey";
     [self.scrollView scrollRectToVisible:bounds animated:animated];
 }
 
+
 - (IBAction)changePage:(id)sender
 {
     [self gotoPage:YES];    // YES = animate
@@ -192,10 +184,10 @@ static NSString *kImageKey = @"imageKey";
     [retrieveTeamates findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         NSLog(@"%@", objects);
-       if (!error) {
+        if (!error) {
             teamatesArray = [[NSArray alloc] initWithArray:objects];
         }
-        [teamatesTable reloadData];
+        [friendsTable reloadData];
     }];
 }
 
@@ -224,11 +216,11 @@ static NSString *kImageKey = @"imageKey";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    sectionHeader.backgroundColor = [UIColor redColor];
+    sectionHeader.backgroundColor = [UIColor blueColor];
     sectionHeader.textAlignment = NSTextAlignmentCenter;
     sectionHeader.font = [UIFont boldSystemFontOfSize:15];
     sectionHeader.textColor = [UIColor whiteColor];
-    sectionHeader.text = @"My Team";
+    sectionHeader.text = @"Friends";
     return sectionHeader;
 }
 
@@ -245,9 +237,9 @@ static NSString *kImageKey = @"imageKey";
     
     
     //setup cell
-    static NSString *CellIdentifier = @"teamatesCell";
+    static NSString *CellIdentifier = @"friendsCell";
     
-   
+    
     TeamatesCell *cell = (TeamatesCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell)
@@ -279,17 +271,11 @@ static NSString *kImageKey = @"imageKey";
 }
 
 
-//user selects cell
+//user selects folder to add tag to
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"cell tapped");
 }
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if([segue.identifier isEqualToString:@"teammateProfile"])
-    {
-        NSLog(@"segue to teammateProfile");
-    }
-}
+
 
 
 - (void)didReceiveMemoryWarning

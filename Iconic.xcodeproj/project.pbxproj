@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C225AA8184FF85600B38AEF /* VSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C225AA7184FF85600B38AEF /* VSViewController.m */; };
+		5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */; };
 		5C2EA5291851472000B21C52 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2EA5281851472000B21C52 /* HomeViewController.m */; };
 		5C2EA53D1851516700B21C52 /* MyStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2EA53B1851516700B21C52 /* MyStatsViewController.m */; };
 		5C2EA53E1851516700B21C52 /* MyStatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C2EA53C1851516700B21C52 /* MyStatsViewController.xib */; };
@@ -63,6 +64,8 @@
 /* Begin PBXFileReference section */
 		5C225AA6184FF85600B38AEF /* VSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSViewController.h; sourceTree = "<group>"; };
 		5C225AA7184FF85600B38AEF /* VSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSViewController.m; sourceTree = "<group>"; };
+		5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		5C2EA5271851472000B21C52 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		5C2EA5281851472000B21C52 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		5C2EA53A1851516700B21C52 /* MyStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStatsViewController.h; sourceTree = "<group>"; };
@@ -154,6 +157,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C2C1CBE185BAF12006722D2 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */,
+				5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */,
+			);
+			name = Social;
+			sourceTree = "<group>";
+		};
 		5C2EA52A1851474400B21C52 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +262,7 @@
 				5C2EA5421851641500B21C52 /* ContentController.h */,
 				5C2EA5431851641500B21C52 /* ContentController.m */,
 				5CA3D19C1831DF51006C7932 /* Main.storyboard */,
+				5C2C1CBE185BAF12006722D2 /* Social */,
 				5C2EA52A1851474400B21C52 /* Home */,
 				5C2EA52B1851475900B21C52 /* Schedule */,
 				5C2EA52C1851476B00B21C52 /* VS */,
@@ -423,6 +436,7 @@
 				5C225AA8184FF85600B38AEF /* VSViewController.m in Sources */,
 				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
+				5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */,
 				5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */,
 				5C2EA5441851641500B21C52 /* ContentController.m in Sources */,
 				5C2EA547185164BE00B21C52 /* MyStatsContentController.m in Sources */,
