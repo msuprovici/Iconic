@@ -166,6 +166,9 @@
                                 <scrollView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="6eT-51-NiO">
                                     <rect key="frame" x="0.0" y="44" width="320" height="148"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="z4K-7d-GbM" id="b1J-FB-POR"/>
+                                    </connections>
                                 </scrollView>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendsCell" rowHeight="69" id="ySA-L2-fmh" customClass="TeamatesCell">
@@ -262,18 +265,27 @@
                             <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="O9G-ap-PWY">
                                 <rect key="frame" x="100" y="156" width="120" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changePage:" destination="z4K-7d-GbM" eventType="valueChanged" id="ipc-0k-SH2"/>
+                                </connections>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="cQv-aS-3OY"/>
                     <connections>
+                        <outlet property="contentController" destination="hGl-Fb-EnL" id="Bh4-e0-MJL"/>
                         <outlet property="friendsTable" destination="shB-Fh-aNF" id="GVE-ct-sNG"/>
+                        <outlet property="pageControl" destination="O9G-ap-PWY" id="UHw-na-5rd"/>
                         <outlet property="scrollView" destination="6eT-51-NiO" id="23s-eZ-d4X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIy-ya-fpw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="hGl-Fb-EnL" customClass="MyStatsContentController"/>
+                <customObject id="hGl-Fb-EnL" customClass="ProfileContentController">
+                    <connections>
+                        <outlet property="profileViewController" destination="z4K-7d-GbM" id="Dc3-LC-cxq"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="2317" y="-990"/>
         </scene>

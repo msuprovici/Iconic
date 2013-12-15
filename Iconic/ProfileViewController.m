@@ -7,7 +7,7 @@
 //
 
 #import "ProfileViewController.h"
-//#import "MyStatsViewController.h"
+#import "MyStatsViewController.h"
 #import "ContentController.h"
 
 static NSString *kNameKey = @"nameKey";
@@ -19,7 +19,7 @@ static NSString *kImageKey = @"imageKey";
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
 
-//@property (nonatomic, strong) IBOutlet ContentController * contentController;
+@property (nonatomic, strong) IBOutlet ContentController * contentController;
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 
 
@@ -108,30 +108,30 @@ static NSString *kImageKey = @"imageKey";
     if (page >= self.contentList.count)
         return;
     
-//    // replace the placeholder if necessary
-//    MyStatsViewController *controller = [self.viewControllers objectAtIndex:page];
-//    if ((NSNull *)controller == [NSNull null])
-//    {
-//        controller = [[MyStatsViewController alloc] initWithPointsLabelNumber:page];
-//        [self.viewControllers replaceObjectAtIndex:page withObject:controller];
-//    }
-//    
-//    // add the controller's view to the scroll view
-//    if (controller.view.superview == nil)
-//    {
-//        CGRect frame = self.scrollView.frame;
-//        frame.origin.x = CGRectGetWidth(frame) * page;
-//        frame.origin.y = 0;
-//        controller.view.frame = frame;
-//        
-//        [self addChildViewController:controller];
-//        [self.scrollView addSubview:controller.view];
-//        [controller didMoveToParentViewController:self];
-//        
-//     /*   NSDictionary *numberItem = [self.contentList objectAtIndex:page];
-//        controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
-//        controller.xpTitle.text = [numberItem valueForKey:kNameKey];*/
-//    }
+    // replace the placeholder if necessary
+    MyStatsViewController *controller = [self.viewControllers objectAtIndex:page];
+    if ((NSNull *)controller == [NSNull null])
+    {
+        controller = [[MyStatsViewController alloc] initWithPointsLabelNumber:page];
+        [self.viewControllers replaceObjectAtIndex:page withObject:controller];
+    }
+    
+    // add the controller's view to the scroll view
+    if (controller.view.superview == nil)
+    {
+        CGRect frame = self.scrollView.frame;
+        frame.origin.x = CGRectGetWidth(frame) * page;
+        frame.origin.y = 0;
+        controller.view.frame = frame;
+        
+        [self addChildViewController:controller];
+        [self.scrollView addSubview:controller.view];
+        [controller didMoveToParentViewController:self];
+        
+      NSDictionary *numberItem = [self.contentList objectAtIndex:page];
+        controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
+        controller.xpTitle.text = [numberItem valueForKey:kNameKey];
+    }
 }
 
 // at the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl

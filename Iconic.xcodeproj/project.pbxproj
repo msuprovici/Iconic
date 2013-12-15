@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5C225AA8184FF85600B38AEF /* VSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C225AA7184FF85600B38AEF /* VSViewController.m */; };
 		5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */; };
+		5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */; };
 		5C2EA5291851472000B21C52 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2EA5281851472000B21C52 /* HomeViewController.m */; };
 		5C2EA53D1851516700B21C52 /* MyStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2EA53B1851516700B21C52 /* MyStatsViewController.m */; };
 		5C2EA53E1851516700B21C52 /* MyStatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C2EA53C1851516700B21C52 /* MyStatsViewController.xib */; };
@@ -66,6 +67,8 @@
 		5C225AA7184FF85600B38AEF /* VSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSViewController.m; sourceTree = "<group>"; };
 		5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileContentController.h; sourceTree = "<group>"; };
+		5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileContentController.m; sourceTree = "<group>"; };
 		5C2EA5271851472000B21C52 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		5C2EA5281851472000B21C52 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		5C2EA53A1851516700B21C52 /* MyStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStatsViewController.h; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 			children = (
 				5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */,
 				5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */,
+				5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */,
+				5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -434,6 +439,7 @@
 			files = (
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
 				5C225AA8184FF85600B38AEF /* VSViewController.m in Sources */,
+				5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */,
 				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
 				5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */,
