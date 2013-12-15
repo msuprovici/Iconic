@@ -178,6 +178,7 @@ static NSString *kImageKey = @"imageKey";
 - (void) retrieveFromParse {
     
     PFQuery *retrieveTeamates = [PFQuery queryWithClassName:@"Test"];
+    retrieveTeamates.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
     
     

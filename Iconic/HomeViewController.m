@@ -186,7 +186,7 @@ static NSString *kImageKey = @"imageKey";
 - (void) retrieveFromParse {
     
     PFQuery *retrieveTeamates = [PFQuery queryWithClassName:@"Test"];
-    
+    retrieveTeamates.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
     
     [retrieveTeamates findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -255,7 +255,13 @@ static NSString *kImageKey = @"imageKey";
         cell = [[TeamatesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    
+    //PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    
+    
     PFObject *tempObject = [teamatesArray objectAtIndex:indexPath.row];
+    
+   
     //Teamate Name
     cell.teamateName.text = [tempObject objectForKey:@"teammate"];
     
