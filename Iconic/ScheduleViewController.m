@@ -9,6 +9,7 @@
 #import "ScheduleViewController.h"
 #import "ScheduleGenerator.h"
 #import <Parse/Parse.h>
+#import "SWRevealViewController.h"
 
 @interface ScheduleViewController ()
 
@@ -16,6 +17,8 @@
 
 @property (nonatomic, retain) NSMutableDictionary *matchups;
 @property (nonatomic, retain) NSMutableDictionary *round;
+
+@property (nonatomic) IBOutlet UIBarButtonItem* revealButtonItem;
 
 @end
 
@@ -33,9 +36,17 @@
     return self;
 }*/
 
+
+
+
+
 - (id)initWithCoder:(NSCoder *)aCoder {
     self = [super initWithCoder:aCoder];
     if (self) {
+        
+        
+        
+        
         // Customize the table
         
         // The className to query on
@@ -68,6 +79,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //reveal navigator
+    [self.revealButtonItem setTarget: self.revealViewController];
+    [self.revealButtonItem setAction: @selector( revealToggle: )];
+    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
+    
     
     self.scheduledMatchups = [[NSMutableArray alloc] init];
     

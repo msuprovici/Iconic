@@ -10,6 +10,10 @@
 		5C225AA8184FF85600B38AEF /* VSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C225AA7184FF85600B38AEF /* VSViewController.m */; };
 		5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */; };
 		5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */; };
+		5C2C1CC7185E9040006722D2 /* reveal-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2C1CC6185E9040006722D2 /* reveal-icon@2x.png */; };
+		5C2C1CCC185E9142006722D2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CCB185E9142006722D2 /* SWRevealViewController.m */; };
+		5C2C1CCF185E98A3006722D2 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CCE185E98A3006722D2 /* MenuViewController.m */; };
+		5C2C1CD3185EADF2006722D2 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CD2185EADF2006722D2 /* ActivityViewController.m */; };
 		5C2EA5291851472000B21C52 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2EA5281851472000B21C52 /* HomeViewController.m */; };
 		5C2EA53D1851516700B21C52 /* MyStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2EA53B1851516700B21C52 /* MyStatsViewController.m */; };
 		5C2EA53E1851516700B21C52 /* MyStatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C2EA53C1851516700B21C52 /* MyStatsViewController.xib */; };
@@ -69,6 +73,13 @@
 		5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileContentController.h; sourceTree = "<group>"; };
 		5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileContentController.m; sourceTree = "<group>"; };
+		5C2C1CC6185E9040006722D2 /* reveal-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reveal-icon@2x.png"; sourceTree = "<group>"; };
+		5C2C1CCA185E9142006722D2 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		5C2C1CCB185E9142006722D2 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		5C2C1CCD185E98A3006722D2 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		5C2C1CCE185E98A3006722D2 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		5C2C1CD1185EADF2006722D2 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
+		5C2C1CD2185EADF2006722D2 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
 		5C2EA5271851472000B21C52 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		5C2EA5281851472000B21C52 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		5C2EA53A1851516700B21C52 /* MyStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStatsViewController.h; sourceTree = "<group>"; };
@@ -171,6 +182,44 @@
 			name = Social;
 			sourceTree = "<group>";
 		};
+		5C2C1CC8185E9051006722D2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5C2C1CC6185E9040006722D2 /* reveal-icon@2x.png */,
+			);
+			name = Resources;
+			path = Iconic;
+			sourceTree = "<group>";
+		};
+		5C2C1CC9185E9118006722D2 /* Reveal View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5C2C1CCA185E9142006722D2 /* SWRevealViewController.h */,
+				5C2C1CCB185E9142006722D2 /* SWRevealViewController.m */,
+			);
+			name = "Reveal View Controller";
+			path = Iconic;
+			sourceTree = "<group>";
+		};
+		5C2C1CD0185E98C8006722D2 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				5C2C1CCD185E98A3006722D2 /* MenuViewController.h */,
+				5C2C1CCE185E98A3006722D2 /* MenuViewController.m */,
+			);
+			name = Menu;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		5C2C1CD4185EADFA006722D2 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				5C2C1CD1185EADF2006722D2 /* ActivityViewController.h */,
+				5C2C1CD2185EADF2006722D2 /* ActivityViewController.m */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
 		5C2EA52A1851474400B21C52 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,7 +270,9 @@
 			isa = PBXGroup;
 			children = (
 				5CA3D1901831DF51006C7932 /* Iconic */,
+				5C2C1CC9185E9118006722D2 /* Reveal View Controller */,
 				72F3252A1846D477000B5D34 /* Tutorial Controllers */,
+				5C2C1CC8185E9051006722D2 /* Resources */,
 				5CA3D1B21831DF51006C7932 /* IconicTests */,
 				5CA3D1891831DF51006C7932 /* Frameworks */,
 				5CA3D1881831DF51006C7932 /* Products */,
@@ -270,8 +321,10 @@
 				5C2C1CBE185BAF12006722D2 /* Social */,
 				5C2EA52A1851474400B21C52 /* Home */,
 				5C2EA52B1851475900B21C52 /* Schedule */,
+				5C2C1CD4185EADFA006722D2 /* Activity */,
 				5C2EA52C1851476B00B21C52 /* VS */,
 				5C2EA52D1851477D00B21C52 /* LogIn */,
+				5C2C1CD0185E98C8006722D2 /* Menu */,
 				5CA3D1A51831DF51006C7932 /* Images.xcassets */,
 				5CA3D1911831DF51006C7932 /* Supporting Files */,
 			);
@@ -416,6 +469,7 @@
 				5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */,
 				5CA3D1951831DF51006C7932 /* InfoPlist.strings in Resources */,
 				72CA13C81846DEC700B19D53 /* tutorial3.png in Resources */,
+				5C2C1CC7185E9040006722D2 /* reveal-icon@2x.png in Resources */,
 				5CA3D19E1831DF51006C7932 /* Main.storyboard in Resources */,
 				5C2EA53E1851516700B21C52 /* MyStatsViewController.xib in Resources */,
 				72CA13C71846DEC700B19D53 /* tutorial2.png in Resources */,
@@ -438,16 +492,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
+				5C2C1CCF185E98A3006722D2 /* MenuViewController.m in Sources */,
 				5C225AA8184FF85600B38AEF /* VSViewController.m in Sources */,
 				5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */,
 				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
 				5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */,
+				5C2C1CD3185EADF2006722D2 /* ActivityViewController.m in Sources */,
 				5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */,
 				5C2EA5441851641500B21C52 /* ContentController.m in Sources */,
 				5C2EA547185164BE00B21C52 /* MyStatsContentController.m in Sources */,
 				5C2EA53D1851516700B21C52 /* MyStatsViewController.m in Sources */,
 				72F325291846D25D000B5D34 /* TutorialScreens.m in Sources */,
+				5C2C1CCC185E9142006722D2 /* SWRevealViewController.m in Sources */,
 				5C2EA5291851472000B21C52 /* HomeViewController.m in Sources */,
 				5CA3D19B1831DF51006C7932 /* AppDelegate.m in Sources */,
 				5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */,

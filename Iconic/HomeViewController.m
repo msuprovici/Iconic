@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "MyStatsViewController.h"
 #import "ContentController.h"
+#import "SWRevealViewController.h"
 
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
@@ -19,6 +20,9 @@ static NSString *kImageKey = @"imageKey";
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
 
 @property (nonatomic, strong) IBOutlet ContentController * contentController;
+
+@property (nonatomic) IBOutlet UIBarButtonItem* revealButtonItem;
+
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 
 
@@ -42,6 +46,11 @@ static NSString *kImageKey = @"imageKey";
 {
     
     [super viewDidLoad];
+    
+    //reveal menu slider
+    [self.revealButtonItem setTarget: self.revealViewController];
+    [self.revealButtonItem setAction: @selector( revealToggle: )];
+    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
     
   
     [self performSelector:@selector(retrieveFromParse)];
