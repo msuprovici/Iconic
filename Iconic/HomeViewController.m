@@ -32,15 +32,6 @@ static NSString *kImageKey = @"imageKey";
 
 @synthesize teamatesTable;
 
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}*/
 
 - (void)viewDidLoad
 {
@@ -199,9 +190,10 @@ static NSString *kImageKey = @"imageKey";
 
 #pragma mark table view metods
 
-
+//retrive table view data from parse
 - (void) retrieveFromParse {
     
+    //My Teamates
     PFQuery *retrieveTeamates = [PFQuery queryWithClassName:@"Test"];
     retrieveTeamates.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
@@ -215,7 +207,7 @@ static NSString *kImageKey = @"imageKey";
         [teamatesTable reloadData];
     }];
     
-    
+    //Competion
     PFQuery *retrieveScores = [PFQuery queryWithClassName:@"TeamName"];
     retrieveScores.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
@@ -264,7 +256,7 @@ static NSString *kImageKey = @"imageKey";
     
     if(section == 0)
     
-        sectionHeader.text = @"This week's contest";
+        sectionHeader.text = @"Competion";
     
     
     else
@@ -302,34 +294,17 @@ static NSString *kImageKey = @"imageKey";
     {
         VSCell *cell = [tableView dequeueReusableCellWithIdentifier:vsCellIdentfier forIndexPath:indexPath];
         
-        //PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-        
-        
         PFObject *tempObject = [vsTeamsArray objectAtIndex:indexPath.row];
         
-        //My Team Name
+        //My Team
         
-        cell.MyTeam.text = [tempObject objectForKey:@"MyTeam"];
+        cell.MyTeam.text = [tempObject objectForKey:@"MyTeam"]; //Team Name
+        cell.MyTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score
         
-        //Opponent Team Name
-        cell.VSTeam.text = [tempObject objectForKey:@"VSTeam"];
+        //Opponent Team
+        cell.VSTeam.text = [tempObject objectForKey:@"VSTeam"]; //Team Name
+        cell.VSTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"VSTeamScore"]]; //Team Score
         
-        //Teammate Points & XP
-        cell.MyTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"MyTeamScore"]];
-        cell.VSTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"VSTeamScore"]];
-        
-        
-        //Teammate photos
-       /*
-        PFFile *imageFile = [tempObject objectForKey: @"Photo"];
-        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if(!error)
-            {
-                cell.teamtePicture.image = [UIImage imageWithData:data];
-            }
-        }];*/
-        
-
         
         return cell;
 
@@ -345,9 +320,6 @@ static NSString *kImageKey = @"imageKey";
     {
         cell = [[TeamatesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    
-    //PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
     
     
     PFObject *tempObject = [teamatesArray objectAtIndex:indexPath.row];
