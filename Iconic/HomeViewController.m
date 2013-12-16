@@ -214,6 +214,21 @@ static NSString *kImageKey = @"imageKey";
         }
         [teamatesTable reloadData];
     }];
+    
+    
+    PFQuery *retrieveScores = [PFQuery queryWithClassName:@"TeamName"];
+    retrieveScores.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    
+    [retrieveScores findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        NSLog(@"%@", objects);
+        if (!error) {
+            vsTeamsArray = [[NSArray alloc] initWithArray:objects];
+        }
+        [teamatesTable reloadData];
+    }];
+
 }
 
 
@@ -249,7 +264,7 @@ static NSString *kImageKey = @"imageKey";
     
     if(section == 0)
     
-        sectionHeader.text = @"Team 1 vs Team 2";
+        sectionHeader.text = @"This week's contest";
     
     
     else
@@ -285,9 +300,36 @@ static NSString *kImageKey = @"imageKey";
     
     if(indexPath.section == 0)
     {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:vsCellIdentfier forIndexPath:indexPath];
+        VSCell *cell = [tableView dequeueReusableCellWithIdentifier:vsCellIdentfier forIndexPath:indexPath];
         
-        // Configure the cell...
+        //PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+        
+        
+        PFObject *tempObject = [vsTeamsArray objectAtIndex:indexPath.row];
+        
+        //My Team Name
+        
+        cell.MyTeam.text = [tempObject objectForKey:@"MyTeam"];
+        
+        //Opponent Team Name
+        cell.VSTeam.text = [tempObject objectForKey:@"VSTeam"];
+        
+        //Teammate Points & XP
+        cell.MyTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"MyTeamScore"]];
+        cell.VSTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"VSTeamScore"]];
+        
+        
+        //Teammate photos
+       /*
+        PFFile *imageFile = [tempObject objectForKey: @"Photo"];
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if(!error)
+            {
+                cell.teamtePicture.image = [UIImage imageWithData:data];
+            }
+        }];*/
+        
+
         
         return cell;
 

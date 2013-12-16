@@ -20,6 +20,7 @@
 		5C2EA547185164BE00B21C52 /* MyStatsContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2EA546185164BE00B21C52 /* MyStatsContentController.m */; };
 		5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C2EA54818516B0E00B21C52 /* content_mystats.plist */; };
 		5C328BF5185F70C100E0E985 /* VSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C328BF4185F70C100E0E985 /* VSViewController.m */; };
+		5C328BF8185F773300E0E985 /* VSCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C328BF7185F773300E0E985 /* VSCell.m */; };
 		5CA3D18B1831DF51006C7932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18A1831DF51006C7932 /* Foundation.framework */; };
 		5CA3D18D1831DF51006C7932 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */; };
 		5CA3D18F1831DF51006C7932 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18E1831DF51006C7932 /* UIKit.framework */; };
@@ -90,6 +91,8 @@
 		5C2EA54818516B0E00B21C52 /* content_mystats.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = content_mystats.plist; sourceTree = "<group>"; };
 		5C328BF3185F70C100E0E985 /* VSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSViewController.h; sourceTree = "<group>"; };
 		5C328BF4185F70C100E0E985 /* VSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSViewController.m; sourceTree = "<group>"; };
+		5C328BF6185F773300E0E985 /* VSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCell.h; sourceTree = "<group>"; };
+		5C328BF7185F773300E0E985 /* VSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCell.m; sourceTree = "<group>"; };
 		5CA3D1871831DF51006C7932 /* Iconic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Iconic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CA3D18A1831DF51006C7932 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -233,6 +236,8 @@
 				5C2EA54818516B0E00B21C52 /* content_mystats.plist */,
 				5CC7FAAE185810A500A360A1 /* TeamatesCell.h */,
 				5CC7FAAF185810A600A360A1 /* TeamatesCell.m */,
+				5C328BF6185F773300E0E985 /* VSCell.h */,
+				5C328BF7185F773300E0E985 /* VSCell.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -508,6 +513,7 @@
 				5C2EA5291851472000B21C52 /* HomeViewController.m in Sources */,
 				5CA3D19B1831DF51006C7932 /* AppDelegate.m in Sources */,
 				5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */,
+				5C328BF8185F773300E0E985 /* VSCell.m in Sources */,
 				5CA3D1971831DF51006C7932 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "TeamatesCell.h"
+#import "VSCell.h"
 
 
 @interface HomeViewController : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
@@ -16,6 +17,8 @@
 {
     
     NSArray *teamatesArray;
+    
+    NSArray *vsTeamsArray;
 }
 
 
