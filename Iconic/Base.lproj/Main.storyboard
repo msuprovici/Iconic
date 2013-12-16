@@ -37,8 +37,19 @@
                                     </connections>
                                 </scrollView>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="teamatesCell" rowHeight="69" id="Rhv-4m-FPf" customClass="TeamatesCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="vsCell" id="QKs-Zm-DNV">
                                         <rect key="frame" x="0.0" y="170" width="320" height="69"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKs-Zm-DNV" id="opp-oI-1zY">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Q3n-4V-DYw" kind="push" id="djV-QL-gg7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="teamatesCell" rowHeight="69" id="Rhv-4m-FPf" customClass="TeamatesCell">
+                                        <rect key="frame" x="0.0" y="239" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rhv-4m-FPf" id="J21-Pl-FBE">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="68"/>
@@ -117,6 +128,31 @@
                 </customObject>
             </objects>
             <point key="canvasLocation" x="1735" y="-2210"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="BT7-sc-49v">
+            <objects>
+                <viewController id="Q3n-4V-DYw" customClass="VSViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6OQ-mH-Vwx"/>
+                        <viewControllerLayoutGuide type="bottom" id="TL3-Ch-rHm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uYc-Eu-ehx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tutorial4.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dar-n1-z5w">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DUF-43-G8a"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ggb-Yb-C8A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2358" y="-2920"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="mcB-oh-bUv">
@@ -378,7 +414,6 @@
         <!--Reveal View Controller-->
         <scene sceneID="KYW-NF-rL7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="egZ-Vm-X5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Main" id="V11-hn-g9J" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5fr-MM-kzn"/>
@@ -395,6 +430,7 @@
                         <segue destination="Gvb-Hc-USI" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegue" id="bmz-0f-BWP"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="egZ-Vm-X5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-219" y="-1372"/>
         </scene>
@@ -502,6 +538,7 @@
         <image name="reveal-icon.png" width="22" height="17"/>
         <image name="second" width="30" height="30"/>
         <image name="tutorial1.png" width="220" height="220"/>
+        <image name="tutorial4.png" width="220" height="220"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

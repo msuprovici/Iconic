@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C225AA8184FF85600B38AEF /* VSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C225AA7184FF85600B38AEF /* VSViewController.m */; };
 		5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */; };
 		5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */; };
 		5C2C1CC7185E9040006722D2 /* reveal-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2C1CC6185E9040006722D2 /* reveal-icon@2x.png */; };
@@ -20,6 +19,7 @@
 		5C2EA5441851641500B21C52 /* ContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2EA5431851641500B21C52 /* ContentController.m */; };
 		5C2EA547185164BE00B21C52 /* MyStatsContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2EA546185164BE00B21C52 /* MyStatsContentController.m */; };
 		5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C2EA54818516B0E00B21C52 /* content_mystats.plist */; };
+		5C328BF5185F70C100E0E985 /* VSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C328BF4185F70C100E0E985 /* VSViewController.m */; };
 		5CA3D18B1831DF51006C7932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18A1831DF51006C7932 /* Foundation.framework */; };
 		5CA3D18D1831DF51006C7932 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */; };
 		5CA3D18F1831DF51006C7932 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18E1831DF51006C7932 /* UIKit.framework */; };
@@ -67,8 +67,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5C225AA6184FF85600B38AEF /* VSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSViewController.h; sourceTree = "<group>"; };
-		5C225AA7184FF85600B38AEF /* VSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSViewController.m; sourceTree = "<group>"; };
 		5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileContentController.h; sourceTree = "<group>"; };
@@ -90,6 +88,8 @@
 		5C2EA545185164BE00B21C52 /* MyStatsContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStatsContentController.h; sourceTree = "<group>"; };
 		5C2EA546185164BE00B21C52 /* MyStatsContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyStatsContentController.m; sourceTree = "<group>"; };
 		5C2EA54818516B0E00B21C52 /* content_mystats.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = content_mystats.plist; sourceTree = "<group>"; };
+		5C328BF3185F70C100E0E985 /* VSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSViewController.h; sourceTree = "<group>"; };
+		5C328BF4185F70C100E0E985 /* VSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSViewController.m; sourceTree = "<group>"; };
 		5CA3D1871831DF51006C7932 /* Iconic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Iconic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CA3D18A1831DF51006C7932 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -251,8 +251,8 @@
 		5C2EA52C1851476B00B21C52 /* VS */ = {
 			isa = PBXGroup;
 			children = (
-				5C225AA6184FF85600B38AEF /* VSViewController.h */,
-				5C225AA7184FF85600B38AEF /* VSViewController.m */,
+				5C328BF3185F70C100E0E985 /* VSViewController.h */,
+				5C328BF4185F70C100E0E985 /* VSViewController.m */,
 			);
 			name = VS;
 			sourceTree = "<group>";
@@ -493,7 +493,6 @@
 			files = (
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
 				5C2C1CCF185E98A3006722D2 /* MenuViewController.m in Sources */,
-				5C225AA8184FF85600B38AEF /* VSViewController.m in Sources */,
 				5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */,
 				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
@@ -501,6 +500,7 @@
 				5C2C1CD3185EADF2006722D2 /* ActivityViewController.m in Sources */,
 				5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */,
 				5C2EA5441851641500B21C52 /* ContentController.m in Sources */,
+				5C328BF5185F70C100E0E985 /* VSViewController.m in Sources */,
 				5C2EA547185164BE00B21C52 /* MyStatsContentController.m in Sources */,
 				5C2EA53D1851516700B21C52 /* MyStatsViewController.m in Sources */,
 				72F325291846D25D000B5D34 /* TutorialScreens.m in Sources */,
