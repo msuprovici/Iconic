@@ -315,6 +315,13 @@
  */
 
 
+- (IBAction)joinTeam:(id)sender {
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're on the team" message: @"" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alert show];
+
+}
 
 
 

@@ -477,9 +477,15 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Team" id="k8m-HH-2kz">
-                        <barButtonItem key="backBarButtonItem" title="Choose Team" id="hKR-vr-aIN"/>
-                        <barButtonItem key="rightBarButtonItem" title="Join" id="Jn0-mu-JKI"/>
+                        <barButtonItem key="rightBarButtonItem" title="Join" id="Jn0-mu-JKI">
+                            <connections>
+                                <action selector="joinTeam:" destination="k2R-Un-KHX" id="uMW-WZ-bOr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="joinTeam" destination="Jn0-mu-JKI" id="laa-c2-AWi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TjZ-00-MGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
