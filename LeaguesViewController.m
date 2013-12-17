@@ -166,7 +166,7 @@
 }
 
 
-// We will use the section indeces as keys to look up which round is represented by a section.
+// We will use the section indeces as keys to look up which category is represented by a section.
 - (NSString *)categories:(NSInteger)section {
     return [self.categories objectForKey:[NSNumber numberWithInt:section]];
 }
@@ -187,10 +187,34 @@
  
  // Configure the cell
  cell.textLabel.text = [object objectForKey:self.textKey];
+ cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
  //cell.imageView.file = [object objectForKey:self.imageKey];
  
  return cell;
  }
+
+
+//create a header section for Leagues
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    sectionHeader.backgroundColor = [UIColor greenColor];
+    sectionHeader.textAlignment = NSTextAlignmentCenter;
+    sectionHeader.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+    sectionHeader.textColor = [UIColor blackColor];
+    
+    sectionHeader.text =[self categories:section];
+
+    return sectionHeader;
+    
+}
+
 
 
 
@@ -240,7 +264,7 @@
     // Return the number of rows in the section.
     //return 0;
     
-    //return the # of matchups in the array
+    //return the # of leagues in the array
     
     NSString *roundType = [self categories:league];
     NSArray *rowIndecesInSection = [self.leagues objectForKey:roundType];
@@ -248,11 +272,12 @@
     
     //return [self.scheduledMatchups count];
 }
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSString *roundType = [self categories:section];
-    return roundType;
-}
+//
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    NSString *roundType = [self categories:section];
+//    
+//    return roundType;
+//}
 
 //
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -232,12 +232,12 @@
 
 
 
-/*
+
  // Override to customize the look of a cell representing an object. The default is to display
  // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
  // and the imageView being the imageKey in the object.
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
- static NSString *CellIdentifier = @"Cell";
+ static NSString *CellIdentifier = @"Matchup";
  
  PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
  if (cell == nil) {
@@ -246,11 +246,33 @@
  
  // Configure the cell
  cell.textLabel.text = [object objectForKey:self.textKey];
- cell.imageView.file = [object objectForKey:self.imageKey];
+ cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+// cell.imageView.file = [object objectForKey:self.imageKey];
  
  return cell;
  }
- */
+
+//create custom section header for schedule view
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    sectionHeader.backgroundColor = [UIColor greenColor];
+    sectionHeader.textAlignment = NSTextAlignmentCenter;
+    sectionHeader.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+    sectionHeader.textColor = [UIColor blackColor];
+    
+    sectionHeader.text =[self round:section];
+    
+    return sectionHeader;
+    
+}
 
 
  // Get the array of indeces for that section. This lets us pick the correct PFObject from self.objects
@@ -308,10 +330,10 @@
     //return [self.scheduledMatchups count];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSString *roundType = [self round:section];
-    return roundType;
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    NSString *roundType = [self round:section];
+//    return roundType;
+//}
 
 //
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

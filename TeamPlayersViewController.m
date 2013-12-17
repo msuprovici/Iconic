@@ -171,9 +171,30 @@
     
     // Configure the cell
     cell.textLabel.text = [object objectForKey:self.textKey];
+    cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
     cell.imageView.file = [object objectForKey:self.imageKey];
     
     return cell;
+}
+
+//Create custom header for teams view
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    sectionHeader.backgroundColor = [UIColor greenColor];
+    sectionHeader.textAlignment = NSTextAlignmentCenter;
+    sectionHeader.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+    sectionHeader.textColor = [UIColor blackColor];
+    
+        
+    return sectionHeader;
+    
 }
 
 

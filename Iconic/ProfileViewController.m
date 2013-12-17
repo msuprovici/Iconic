@@ -217,7 +217,7 @@ static NSString *kImageKey = @"imageKey";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    sectionHeader.backgroundColor = [UIColor blueColor];
+    sectionHeader.backgroundColor = [UIColor greenColor];
     sectionHeader.textAlignment = NSTextAlignmentCenter;
     sectionHeader.font = [UIFont boldSystemFontOfSize:15];
     sectionHeader.textColor = [UIColor whiteColor];

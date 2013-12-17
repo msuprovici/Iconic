@@ -249,13 +249,15 @@ static NSString *kImageKey = @"imageKey";
 {
     
     UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    sectionHeader.backgroundColor = [UIColor redColor];
+    sectionHeader.backgroundColor = [UIColor greenColor];
     sectionHeader.textAlignment = NSTextAlignmentCenter;
-    sectionHeader.font = [UIFont boldSystemFontOfSize:15];
-    sectionHeader.textColor = [UIColor whiteColor];
+    sectionHeader.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+    sectionHeader.textColor = [UIColor blackColor];
+    
+    
     
     if(section == 0)
-    
+        
         sectionHeader.text = @"Competion";
     
     
@@ -263,7 +265,7 @@ static NSString *kImageKey = @"imageKey";
         sectionHeader.text = @"My Team";
     
     return sectionHeader;
-   
+    
 }
 
 
