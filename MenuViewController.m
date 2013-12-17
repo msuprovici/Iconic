@@ -71,7 +71,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,12 +85,18 @@
             break;
             
         case 1:
-            CellIdentifier = @"schedule";
+            CellIdentifier = @"leagues";
             break;
             
         case 2:
+            CellIdentifier = @"schedule";
+            break;
+            
+        case 3:
             CellIdentifier = @"activity";
             break;
+            
+        
     }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier forIndexPath: indexPath];
