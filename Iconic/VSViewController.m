@@ -10,9 +10,15 @@
 
 @interface VSViewController ()
 
+@property (strong, nonatomic) NSTimer *timer;
+
 @end
 
 @implementation VSViewController
+
+@synthesize progressView = _progressview;
+@synthesize circleProgressView = _circleProgressView;
+@synthesize timer = _timer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +33,49 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
+    //self.progressView.roundedCorners = YES;
+    self.progressView.trackTintColor = [UIColor clearColor];
+    [self.view addSubview:self.progressView];
+    
+    
+    
+    self.circleProgressView.trackTintColor = [UIColor lightGrayColor];
+    self.circleProgressView.progressTintColor = [UIColor greenColor];
+    //self.circleProgressView.roundedCorners = YES;
+    self.circleProgressView.thicknessRatio = .11f;
+    
+    [self.view addSubview:self.circleProgressView];
+    
+    [self startAnimation];
+    
+    //[self progressChange];
+    
+}
+
+- (void)progressChange
+{
+    
+    NSArray *progressViews = @[self.circleProgressView ];
+    for (DACircularProgressView *progressView in progressViews) {
+        
+        //this is where we will compute the score ratio and display it to the user
+        //simple equation:  myteam score / opponent score
+        CGFloat progress = .60;
+       [progressView setProgress:progress animated:YES];
+        
+        if (progressView.progress >= 1.0f && [self.timer isValid]) {
+            [progressView setProgress:0.f animated:YES];
+        }
+    }
+}
+
+
+- (void)startAnimation
+{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(progressChange) userInfo:nil repeats:NO];
+    
 }
 
 - (void)didReceiveMemoryWarning

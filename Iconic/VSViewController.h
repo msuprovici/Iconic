@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DACircularProgressView.h"
 
 @interface VSViewController : UIViewController
+
+
+
+@property (strong, nonatomic) DACircularProgressView *progressView;
+
+@property (strong, nonatomic) IBOutlet DACircularProgressView *circleProgressView;
+
 
 @end

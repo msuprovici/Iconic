@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Yi2-3K-q1V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Yi2-3K-q1V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -163,10 +163,10 @@
             </objects>
             <point key="canvasLocation" x="1735" y="-2210"/>
         </scene>
-        <!--View Controller-->
+        <!--VS View Controller-->
         <scene sceneID="BT7-sc-49v">
             <objects>
-                <viewController id="Q3n-4V-DYw" customClass="VSViewController" sceneMemberID="viewController">
+                <viewController id="Q3n-4V-DYw" userLabel="VS View Controller" customClass="VSViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6OQ-mH-Vwx"/>
                         <viewControllerLayoutGuide type="bottom" id="TL3-Ch-rHm"/>
@@ -175,14 +175,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tutorial4.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dar-n1-z5w">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vyb-w8-c3v" customClass="DACircularProgressView">
+                                <rect key="frame" x="35" y="119" width="251" height="329"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="DUF-43-G8a"/>
+                    <connections>
+                        <outlet property="circleProgressView" destination="Vyb-w8-c3v" id="dlg-DG-sQg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggb-Yb-C8A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -723,7 +727,6 @@
         <image name="reveal-icon.png" width="22" height="17"/>
         <image name="second" width="30" height="30"/>
         <image name="tutorial1.png" width="220" height="220"/>
-        <image name="tutorial4.png" width="220" height="220"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
