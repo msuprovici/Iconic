@@ -1,37 +1,31 @@
 //
-//  TeamsViewController.m
+//  TeamPlayersViewController.m
 //  Iconic
 //
 //  Created by Mike Suprovici on 12/16/13.
 //  Copyright (c) 2013 Explorence. All rights reserved.
 //
 
-#import "TeamsViewController.h"
+#import "TeamPlayersViewController.h"
 #import <Parse/Parse.h>
 
-@interface TeamsViewController ()
+@interface TeamPlayersViewController ()
 
 @property NSMutableArray *leaguesArray;
 
-@property (nonatomic, retain) NSMutableDictionary *teams;
+@property (nonatomic, retain) NSMutableDictionary *players;
 @property (nonatomic, retain) NSMutableDictionary *categories;
+
 
 @end
 
-@implementation TeamsViewController
+@implementation TeamPlayersViewController
 
-@synthesize teams = _teams;
+
+
+@synthesize players = _players;
 @synthesize categories = _categories;
 
-
-/*- (id)initWithStyle:(UITableViewStyle)style
- {
- self = [super initWithStyle:style];
- if (self) {
- // Custom initialization
- }
- return self;
- }*/
 
 
 
@@ -47,15 +41,14 @@
         // Customize the table
         
         // The className to query on
-        self.parseClassName = @"TeamName";
+        self.parseClassName = @"TeamPlayers";
         
         
         // The key of the PFObject to display in the label of the default cell style
-        
-        self.textKey = @"teams";
+                self.textKey = @"players";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
-        // self.imageKey = @"image";
+        self.imageKey = @"photo";
         
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
@@ -66,8 +59,8 @@
         // The number of objects to show per page
         self.objectsPerPage = 100;
         
-        //dictionaries for teams & categories
-        self.teams = [NSMutableDictionary dictionary];
+        //dictionaries for players & categories
+        self.players = [NSMutableDictionary dictionary];
         self.categories = [NSMutableDictionary dictionary];
     }
     return self;
@@ -112,23 +105,23 @@
     
     // This method is called every time objects are loaded from Parse via the PFQuery
     
-    [self.teams removeAllObjects];
+    [self.players removeAllObjects];
     [self.categories removeAllObjects];
     
     NSInteger section = 0;
     NSInteger rowIndex = 0;
     for (PFObject *object in self.objects) {
-        NSString *Teams = [NSString stringWithFormat:@"%@",[object objectForKey:@"categories"]];
-        NSMutableArray *objectsInSection = [self.teams objectForKey:Teams];
+        NSString *teamPlayers = [NSString stringWithFormat:@"%@",[object objectForKey:@"categories"]];
+        NSMutableArray *objectsInSection = [self.players objectForKey:teamPlayers];
         if (!objectsInSection) {
             objectsInSection = [NSMutableArray array];
             
-            // this is the first time we see this Teams - increment the section index
-            [self.categories setObject:Teams forKey:[NSNumber numberWithInt:section++]];
+            // this is the first time we see this teamMatchup - increment the section index
+            [self.categories setObject:teamPlayers forKey:[NSNumber numberWithInt:section++]];
         }
         
         [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
-        [self.teams setObject:objectsInSection forKey:Teams];
+        [self.players setObject:objectsInSection forKey:teamPlayers];
     }
     
     
@@ -151,7 +144,7 @@
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
     
-    // Order by Teams type
+    // Order by categories type
     [query orderByAscending:@"categories"];
     return query;
 }
@@ -169,7 +162,7 @@
 // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
 // and the imageView being the imageKey in the object.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    static NSString *CellIdentifier = @"teamsCell";
+    static NSString *CellIdentifier = @"playersCell";
     
     PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -178,7 +171,7 @@
     
     // Configure the cell
     cell.textLabel.text = [object objectForKey:self.textKey];
-    //cell.imageView.file = [object objectForKey:self.imageKey];
+    cell.imageView.file = [object objectForKey:self.imageKey];
     
     return cell;
 }
@@ -187,9 +180,9 @@
 
 // Get the array of indeces for that section. This lets us pick the correct PFObject from self.objects
 - (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *Teamss = [self categories:indexPath.section];
+    NSString *teamPlayers = [self categories:indexPath.section];
     
-    NSArray *rowIndecesInSection = [self.teams objectForKey:Teamss];
+    NSArray *rowIndecesInSection = [self.players objectForKey:teamPlayers];
     
     NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
     return [self.objects objectAtIndex:[rowIndex intValue]];
@@ -222,7 +215,7 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return self.teams.allKeys.count;
+    return self.players.allKeys.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)league
@@ -231,10 +224,10 @@
     // Return the number of rows in the section.
     //return 0;
     
-    //return the # of teams in the array
+    //return the # of players in the array
     
     NSString *categoryType = [self categories:league];
-    NSArray *rowIndecesInSection = [self.teams objectForKey:categoryType];
+    NSArray *rowIndecesInSection = [self.players objectForKey:categoryType];
     return rowIndecesInSection.count;
     
     
@@ -252,7 +245,7 @@
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
     
-    PFObject *selectedObject = [self objectAtIndexPath:indexPath];
+    //PFObject *selectedObject = [self objectAtIndexPath:indexPath];
     
     
     
@@ -320,6 +313,7 @@
  }
  
  */
+
 
 
 
