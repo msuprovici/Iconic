@@ -192,6 +192,7 @@
     sectionHeader.font = [UIFont fontWithName:@"DIN Alternate" size:17];
     sectionHeader.textColor = [UIColor blackColor];
     
+    sectionHeader.text =[self categories:section];
         
     return sectionHeader;
     
@@ -254,10 +255,10 @@
     
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSString *categoryType = [self categories:section];
-    return categoryType;
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    NSString *categoryType = [self categories:section];
+//    return categoryType;
+//}
 
 
 #pragma mark - Table view delegate
