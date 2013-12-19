@@ -16,6 +16,7 @@
     
     NSArray *teamatesArray;
 }
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
 
 @property (nonatomic, strong) NSArray *contentList;
 

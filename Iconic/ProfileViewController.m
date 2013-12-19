@@ -9,6 +9,7 @@
 #import "ProfileViewController.h"
 #import "MyStatsViewController.h"
 #import "ContentController.h"
+#import "SWRevealViewController.h"
 
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
@@ -33,6 +34,14 @@ static NSString *kImageKey = @"imageKey";
 {
     
     [super viewDidLoad];
+    
+    
+    //reveal navigator
+    [self.revealButtonItem setTarget: self.revealViewController];
+    [self.revealButtonItem setAction: @selector( revealToggle: )];
+    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
+    //this enables us to move the whole view with a swipe
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     
     [self performSelector:@selector(retrieveFromParse)];

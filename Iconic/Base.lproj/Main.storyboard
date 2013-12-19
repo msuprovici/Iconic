@@ -243,7 +243,7 @@
             </objects>
             <point key="canvasLocation" x="2358" y="-2920"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Profile View Controller - My Profile-->
         <scene sceneID="mcB-oh-bUv">
             <objects>
                 <viewController id="z4K-7d-GbM" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -260,7 +260,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <scrollView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="6eT-51-NiO">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                                    <rect key="frame" x="0.0" y="64" width="320" height="170"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <subviews>
                                         <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="O9G-ap-PWY">
@@ -277,7 +277,7 @@
                                 </scrollView>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendsCell" rowHeight="69" id="ySA-L2-fmh" customClass="TeamatesCell">
-                                        <rect key="frame" x="0.0" y="192" width="320" height="69"/>
+                                        <rect key="frame" x="0.0" y="256" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ySA-L2-fmh" id="zzs-VI-Ojo">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
@@ -336,11 +336,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cQv-aS-3OY"/>
+                    <navigationItem key="navigationItem" title="My Profile" id="cQv-aS-3OY">
+                        <barButtonItem key="leftBarButtonItem" image="reveal-icon.png" id="BrL-sA-byV"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="contentController" destination="hGl-Fb-EnL" id="Bh4-e0-MJL"/>
                         <outlet property="friendsTable" destination="shB-Fh-aNF" id="GVE-ct-sNG"/>
                         <outlet property="pageControl" destination="O9G-ap-PWY" id="UHw-na-5rd"/>
+                        <outlet property="revealButtonItem" destination="BrL-sA-byV" id="5z9-e1-Ge7"/>
                         <outlet property="scrollView" destination="6eT-51-NiO" id="23s-eZ-d4X"/>
                     </connections>
                 </viewController>
@@ -662,6 +666,7 @@
                                 <connections>
                                     <outlet property="profileName" destination="fTv-cE-QfU" id="NMd-N3-loF"/>
                                     <outlet property="profilePhoto" destination="smI-KJ-QOO" id="BfR-Ym-Pqm"/>
+                                    <segue destination="z4K-7d-GbM" kind="custom" customClass="SWRevealViewControllerSegue" id="AzD-xV-CDV"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="home" textLabel="Q2g-1Z-4ab" style="IBUITableViewCellStyleDefault" id="vJM-yW-OmA" customClass="SWUITableViewCell">
@@ -808,5 +813,6 @@
         <segue reference="kBj-mf-isH"/>
         <segue reference="FhS-7d-4Cl"/>
         <segue reference="YCB-li-iW7"/>
+        <segue reference="kd5-hD-PUf"/>
     </inferredMetricsTieBreakers>
 </document>
