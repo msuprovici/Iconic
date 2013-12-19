@@ -19,6 +19,8 @@
     NSArray *teamatesArray;
     
     NSArray *vsTeamsArray;
+    
+   
 }
 
 

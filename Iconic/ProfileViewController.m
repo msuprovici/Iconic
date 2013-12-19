@@ -130,7 +130,7 @@ static NSString *kImageKey = @"imageKey";
         
       NSDictionary *numberItem = [self.contentList objectAtIndex:page];
         controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
-        controller.xpTitle.text = [numberItem valueForKey:kNameKey];
+        controller.viewTitle.text = [numberItem valueForKey:kNameKey];
     }
 }
 

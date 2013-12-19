@@ -25,6 +25,7 @@
 		5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C328BFE18601ADF00E0E985 /* TeamsViewController.m */; };
 		5C349E9D18602ED600325A29 /* TeamPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */; };
 		5C5399F61860D2FB006676FA /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5399F51860D2FB006676FA /* DACircularProgressView.m */; };
+		5C5399FB1862432C006676FA /* bluesquare.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5C5399F91862432B006676FA /* bluesquare.jpeg */; };
 		5CA3D18B1831DF51006C7932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18A1831DF51006C7932 /* Foundation.framework */; };
 		5CA3D18D1831DF51006C7932 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */; };
 		5CA3D18F1831DF51006C7932 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18E1831DF51006C7932 /* UIKit.framework */; };
@@ -105,6 +106,7 @@
 		5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamPlayersViewController.m; sourceTree = "<group>"; };
 		5C5399F41860D2FB006676FA /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
 		5C5399F51860D2FB006676FA /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
+		5C5399F91862432B006676FA /* bluesquare.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bluesquare.jpeg; sourceTree = "<group>"; };
 		5CA3D1871831DF51006C7932 /* Iconic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Iconic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CA3D18A1831DF51006C7932 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -200,6 +202,7 @@
 		5C2C1CC8185E9051006722D2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5C5399F91862432B006676FA /* bluesquare.jpeg */,
 				5C2C1CC6185E9040006722D2 /* reveal-icon@2x.png */,
 			);
 			name = Resources;
@@ -518,6 +521,7 @@
 				5CA3D1A61831DF51006C7932 /* Images.xcassets in Resources */,
 				72CA13C61846DEC700B19D53 /* tutorial1.png in Resources */,
 				72CA13CA1846DF2F00B19D53 /* tutorial4.png in Resources */,
+				5C5399FB1862432C006676FA /* bluesquare.jpeg in Resources */,
 				5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */,
 				5CA3D1951831DF51006C7932 /* InfoPlist.strings in Resources */,
 				72CA13C81846DEC700B19D53 /* tutorial3.png in Resources */,

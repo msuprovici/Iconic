@@ -77,6 +77,7 @@ static NSString *kImageKey = @"imageKey";
     self.pageControl.numberOfPages = numberPages;
     self.pageControl.currentPage = 0;
     
+    
     // pages are created on demand
     // load the visible page
     // load the page on either side to avoid flashes when the user starts scrolling
@@ -147,8 +148,9 @@ static NSString *kImageKey = @"imageKey";
         
         NSDictionary *numberItem = [self.contentList objectAtIndex:page];
         controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
-        controller.xpTitle.text = [numberItem valueForKey:kNameKey];
-    }
+        controller.viewTitle.text = [numberItem valueForKey:kNameKey];
+        
+            }
 }
 
 // at the end of scroll animation, reset the boolean used when scrolls originate from the UIPageControl
@@ -181,6 +183,7 @@ static NSString *kImageKey = @"imageKey";
     bounds.origin.y = 0;
     [self.scrollView scrollRectToVisible:bounds animated:animated];
 }
+
 
 - (IBAction)changePage:(id)sender
 {
@@ -220,6 +223,9 @@ static NSString *kImageKey = @"imageKey";
         }
         [teamatesTable reloadData];
     }];
+    
+   
+    
 
 }
 

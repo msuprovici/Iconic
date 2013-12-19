@@ -4,21 +4,21 @@
 <array>
 	<dict>
 		<key>nameKey</key>
-		<string>All Time</string>
+		<string>Score</string>
 		<key>imageKey</key>
-		<string>tutorial2.png</string>
+		<string>bluesquare.jpeg</string>
 	</dict>
 	<dict>
 		<key>nameKey</key>
-		<string>7 Days</string>
+		<string>Activity</string>
 		<key>imageKey</key>
-		<string>tutorial3.png</string>
+		<string>bluesquare.jpeg</string>
 	</dict>
 	<dict>
 		<key>nameKey</key>
-		<string>24 hrs</string>
+		<string>Insight</string>
 		<key>imageKey</key>
-		<string>tutorial4.png</string>
+		<string>bluesquare.jpeg</string>
 	</dict>
 </array>
 </plist>
