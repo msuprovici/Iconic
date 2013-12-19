@@ -26,6 +26,8 @@
 @synthesize xpProgressDial = _xpProgressDial;
 @synthesize timer = _timer;
 
+
+
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -51,27 +53,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
-    PFFile *imageFile = [pfObject objectForKey:@"image"];
-    PFImageView *imageView = [[PFImageView alloc] init];
-    imageView.file = imageFile;
-    [imageView loadInBackground];
+
+    
     
     //Cycle through label string
     for (int i = 0; i <= pointslabelNumber; i++) {
         
         if (i == 0) {
             
+            // This is to generate thumbnail a player's thumbnail, name & title
+           /* PFQuery* queryPhoto = [PFQuery queryWithClassName:@"User"];
+            queryPhoto.cachePolicy = kPFCachePolicyCacheThenNetwork;
+            PFUser* currentUser = [PFUser currentUser];
             
-            
-            
-            
+            if (currentUser) {
+                
+                [queryPhoto findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    self.playerName.text = [NSString stringWithFormat:@"%@",[[PFUser currentUser]valueForKey:@"username"]] ;
+                    
+                    self.playerTitle.text = [NSString stringWithFormat:@"%@",[[PFUser currentUser]valueForKey:@"Title"]] ;
+                    
+                    
+                    PFFile *thumbnail = [currentUser objectForKey:@"photo"];
+                    NSData *imageData = [thumbnail getData];
+                    self.playerPhoto.image = [UIImage imageWithData:imageData];
+                    
+                    
+                    
+                }];
+                
+                
+            }*/
+                   
         
-        //self.pointsLabel.text = [NSString stringWithFormat:@"Points %d", pointslabelNumber + 1];
-        self.xpLabel.text = @"XP"; //[NSString stringWithFormat:@"XP", myArray[i]];
+        
+        self.xpLabel.text = @"XP";
         self.pointsLabel.text = @"Points";
-        
+
         self.xpProgressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
        
         self.xpProgressView.trackTintColor = [UIColor clearColor];
@@ -88,6 +107,11 @@
             //set the xp value here?
             self.xpValue.text = @"3";
             self.pointsValue.text = @"45";
+            
+            
+           // self.playerPhoto.image = [UIImage imageNamed: @"first"];
+            
+            
 
             
             [self startAnimation];
@@ -114,6 +138,7 @@
             
             self.pointsValue.text = @"15";
             self.xpValue.text = @"1";
+           
             
             [self startAnimation];
 
@@ -137,7 +162,7 @@
             self.xpProgressDial.progressTintColor = [UIColor greenColor];
             
             [self startAnimation];
-
+            
         }
         
         
@@ -150,7 +175,7 @@
     
     }
     }
-
+//retrive table view data from parse
 
 - (void)progressChange
 {

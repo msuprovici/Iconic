@@ -224,7 +224,7 @@ static NSString *kImageKey = @"imageKey";
         [teamatesTable reloadData];
     }];
     
-   
+    
     
 
 }
@@ -264,7 +264,7 @@ static NSString *kImageKey = @"imageKey";
     
     if(section == 0)
         
-        sectionHeader.text = @"Competion";
+        sectionHeader.text = @"Match";
     
     
     else

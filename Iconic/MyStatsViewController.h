@@ -12,14 +12,12 @@
 @interface MyStatsViewController : UIViewController
 
 {
-     NSObject *ProfilePhoto;
+     NSArray *ProfileInfo;
 }
 @property (weak, nonatomic) IBOutlet UILabel *xpValue;
 @property (weak, nonatomic) IBOutlet UILabel *pointsValue;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *playerPhoto;
-@property (weak, nonatomic) IBOutlet UILabel *playerName;
-@property (weak, nonatomic) IBOutlet UILabel *playerTitle;
+
 
 @property (nonatomic, strong) IBOutlet UILabel *xpLabel;
 

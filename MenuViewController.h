@@ -7,11 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+
 
 @interface SWUITableViewCell : UITableViewCell
-@property (nonatomic) IBOutlet UILabel *menuLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePhoto;
+@property (weak, nonatomic) IBOutlet UILabel *profileName;
+
+
+
 @end
 
 @interface MenuViewController : UITableViewController
+{
+    
+    NSArray *playerProfile;
+    
+}
+
 
 @end

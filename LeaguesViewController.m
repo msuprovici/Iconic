@@ -148,7 +148,7 @@
 // all objects ordered by createdAt descending.
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     // If Pull To Refresh is enabled, query against the network by default.
     if (self.pullToRefreshEnabled) {
         query.cachePolicy = kPFCachePolicyNetworkOnly;
@@ -161,7 +161,7 @@
     }
     
     // Order by teamMatchup type
-    [query orderByAscending:@"round"];
+   // [query orderByAscending:@"round"];
     return query;
 }
 
