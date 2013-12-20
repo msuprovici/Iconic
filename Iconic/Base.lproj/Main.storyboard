@@ -173,7 +173,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="1735" y="-2210"/>
+            <point key="canvasLocation" x="1679" y="-1700"/>
         </scene>
         <!--VS View Controller-->
         <scene sceneID="BT7-sc-49v">
@@ -249,7 +249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggb-Yb-C8A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2358" y="-2920"/>
+            <point key="canvasLocation" x="2319" y="-836"/>
         </scene>
         <!--Profile View Controller - My Profile-->
         <scene sceneID="mcB-oh-bUv">
@@ -371,7 +371,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="2347" y="-2210"/>
+            <point key="canvasLocation" x="2319" y="-1700"/>
         </scene>
         <!--Activity View Controller - Activity-->
         <scene sceneID="Ay6-Fh-eSi">
@@ -406,7 +406,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q7L-Np-Oxf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1381" y="-1348"/>
+            <point key="canvasLocation" x="249" y="50"/>
         </scene>
         <!--Schedule View Controller - Schedule-->
         <scene sceneID="Ady-YN-Mkh">
@@ -461,7 +461,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4oE-r9-rjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1381" y="-657"/>
+            <point key="canvasLocation" x="1420" y="-836"/>
         </scene>
         <!--Leagues View Controller - Leagues-->
         <scene sceneID="C8b-lU-tvu">
@@ -724,7 +724,7 @@
                                     <segue destination="url-9a-9C7" kind="custom" customClass="SWRevealViewControllerSegue" id="FhS-7d-4Cl"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="leagues" textLabel="0b9-gf-pkT" style="IBUITableViewCellStyleDefault" id="aPQ-HE-g4f">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="leagues" textLabel="0b9-gf-pkT" style="IBUITableViewCellStyleDefault" id="aPQ-HE-g4f" customClass="SWUITableViewCell">
                                 <rect key="frame" x="0.0" y="110" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aPQ-HE-g4f" id="wEn-cl-dCz">
@@ -744,28 +744,8 @@
                                     <segue destination="C4a-YJ-kes" kind="custom" customClass="SWRevealViewControllerSegue" id="5qL-qO-dRN"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="schedule" textLabel="VlE-es-enI" style="IBUITableViewCellStyleDefault" id="ylI-11-O15" customClass="SWUITableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="schedule" textLabel="TaL-9g-aa1" style="IBUITableViewCellStyleDefault" id="4W2-rS-cO4" customClass="SWUITableViewCell">
                                 <rect key="frame" x="0.0" y="154" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ylI-11-O15" id="XCS-m3-9SK">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VlE-es-enI">
-                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="eRC-hV-aQj" kind="custom" customClass="SWRevealViewControllerSegue" id="DL3-AC-jG3"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="activity" textLabel="TaL-9g-aa1" style="IBUITableViewCellStyleDefault" id="4W2-rS-cO4" customClass="SWUITableViewCell">
-                                <rect key="frame" x="0.0" y="198" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4W2-rS-cO4" id="S85-KQ-ekJ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -782,6 +762,26 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="Lae-yS-QNg" kind="custom" customClass="SWRevealViewControllerSegue" id="YCB-li-iW7"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="activity" textLabel="VlE-es-enI" style="IBUITableViewCellStyleDefault" id="ylI-11-O15" customClass="SWUITableViewCell">
+                                <rect key="frame" x="0.0" y="198" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ylI-11-O15" id="XCS-m3-9SK">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Activity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VlE-es-enI">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="eRC-hV-aQj" kind="custom" customClass="SWRevealViewControllerSegue" id="DL3-AC-jG3"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -812,7 +812,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJA-7h-qUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1209" y="-2210"/>
+            <point key="canvasLocation" x="1153" y="-1700"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gU5-aa-U3V">
@@ -847,9 +847,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="5qL-qO-dRN"/>
         <segue reference="kBj-mf-isH"/>
-        <segue reference="FhS-7d-4Cl"/>
-        <segue reference="YCB-li-iW7"/>
         <segue reference="AzD-xV-CDV"/>
-        <segue reference="Nu5-Om-fG4"/>
+        <segue reference="YCB-li-iW7"/>
+        <segue reference="FhS-7d-4Cl"/>
+        <segue reference="djV-QL-gg7"/>
     </inferredMetricsTieBreakers>
 </document>
