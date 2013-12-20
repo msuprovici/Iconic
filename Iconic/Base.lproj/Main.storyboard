@@ -417,13 +417,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Matchup" id="WjP-PK-tVi">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Matchup" id="WjP-PK-tVi">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WjP-PK-tVi" id="xoT-CQ-Oee">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Q3n-4V-DYw" kind="push" id="Nu5-Om-fG4"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -831,5 +834,6 @@
         <segue reference="FhS-7d-4Cl"/>
         <segue reference="YCB-li-iW7"/>
         <segue reference="AzD-xV-CDV"/>
+        <segue reference="Nu5-Om-fG4"/>
     </inferredMetricsTieBreakers>
 </document>
