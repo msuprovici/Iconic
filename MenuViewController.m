@@ -100,7 +100,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -130,9 +130,9 @@
             CellIdentifier = @"schedule";
             break;
             
-        case 4:
+       /* case 4:
             CellIdentifier = @"activity";
-            break;
+            break;*/
             
         
     }
