@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "ScheduleCell.h"
 
 @interface ScheduleViewController : PFQueryTableViewController
+
+@property (weak, nonatomic) IBOutlet UILabel *matchupsLabel;
 
 @end

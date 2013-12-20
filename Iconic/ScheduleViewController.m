@@ -57,6 +57,7 @@
         //self.textKey = @"name";
         self.textKey = @"matchups";
         
+        
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
         
@@ -207,7 +208,7 @@
  // all objects ordered by createdAt descending.
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     // If Pull To Refresh is enabled, query against the network by default.
     if (self.pullToRefreshEnabled) {
         query.cachePolicy = kPFCachePolicyNetworkOnly;
@@ -238,18 +239,34 @@
  // and the imageView being the imageKey in the object.
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
  static NSString *CellIdentifier = @"Matchup";
+     
+     
+     ScheduleCell *cell = (ScheduleCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+     if (cell == nil) {
+         cell = [[ScheduleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+     }
+     
+     // Configure the cell
+     cell.teamMatchups.text = [object objectForKey:@"matchups"];
+     cell.teamScore.text = [object objectForKey:@"Score"];
+     cell.teamMatchups.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+     // cell.imageView.file = [object objectForKey:self.imageKey];
+     
+     return cell;
+
  
- PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
- if (cell == nil) {
- cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
- }
- 
- // Configure the cell
- cell.textLabel.text = [object objectForKey:self.textKey];
- cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
-// cell.imageView.file = [object objectForKey:self.imageKey];
- 
- return cell;
+     
+// PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+// if (cell == nil) {
+// cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+// }
+// 
+// // Configure the cell
+// cell.textLabel.text = [object objectForKey:self.textKey];
+// cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+//// cell.imageView.file = [object objectForKey:self.imageKey];
+// 
+// return cell;
  }
 
 //create custom section header for schedule view
