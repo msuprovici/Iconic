@@ -8,7 +8,14 @@
 
 #import "TeamatesCell.h"
 
+@interface TeamatesCell()
+
+
+@end
+
 @implementation TeamatesCell
+
+
 
 //@synthesize teamateName;
 

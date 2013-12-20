@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DACircularProgressView.h"
 
 @interface TeamatesCell : UITableViewCell
 
@@ -18,5 +19,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *teamteXP;
 
+
+//progress View Controller
+
+@property (strong, nonatomic) DACircularProgressView *progressView;
+
+@property (strong, nonatomic) IBOutlet DACircularProgressView *circleProgressView;
 
 @end

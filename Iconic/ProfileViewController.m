@@ -276,6 +276,31 @@ static NSString *kImageKey = @"imageKey";
         }
     }];
     
+    //XP Dials
+    
+    cell.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
+    //self.progressView.roundedCorners = YES;
+    // cell.progressView.trackTintColor = [UIColor clearColor];
+    // [cell.view addSubview:self.progressView];
+    
+    
+    
+    cell.circleProgressView.trackTintColor = [UIColor lightGrayColor];
+    cell.circleProgressView.progressTintColor = [UIColor greenColor];
+    //self.circleProgressView.roundedCorners = YES;
+    cell.circleProgressView.thicknessRatio = .4f;
+    
+    
+    //Convert XP # into a float & show progress indicator
+    
+    NSNumber *progress = [tempObject objectForKey:@"xp"];
+    //this is just for demo purposes
+    //TO DO:  playerProgress needs to be determined by how much one has to progress to get to the next XP level.  This value will be stored in parse.
+    CGFloat playerProgress = [progress floatValue]/10;
+    
+    [cell.circleProgressView setProgress:playerProgress animated:YES];
+
+    
     return cell;
     
 }
