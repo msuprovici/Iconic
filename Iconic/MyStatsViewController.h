@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *pointsValue;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *playerPhoto;
+@property (weak, nonatomic) IBOutlet UILabel *playerName;
 
 @property (nonatomic, strong) IBOutlet UILabel *xpLabel;
 

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "TeamatesCell.h"
+#import "ProfileInfoCell.h"
+#import "FeedCell.h"
 
 @interface ProfileViewController : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 

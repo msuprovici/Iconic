@@ -138,6 +138,15 @@ static NSString *kImageKey = @"imageKey";
         [controller didMoveToParentViewController:self];
         
       NSDictionary *numberItem = [self.contentList objectAtIndex:page];
+        //add a player's profile photo
+        
+        if (page == 0) {
+            controller.playerPhoto.image = [UIImage imageNamed:@"empty_avatar.png"];
+            controller.playerName.text = @"Mike";
+        }
+        
+
+        
         controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
         controller.viewTitle.text = [numberItem valueForKey:kNameKey];
     }
@@ -212,7 +221,7 @@ static NSString *kImageKey = @"imageKey";
 //get number of sections in tableview
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 
@@ -220,6 +229,11 @@ static NSString *kImageKey = @"imageKey";
 //create a header section for My Team
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (section == 0)
+    {
+        return 5;
+    }
+    else
     return 20;
 }
 
@@ -229,8 +243,20 @@ static NSString *kImageKey = @"imageKey";
     sectionHeader.backgroundColor = [UIColor greenColor];
     sectionHeader.textAlignment = NSTextAlignmentCenter;
     sectionHeader.font = [UIFont boldSystemFontOfSize:15];
-    sectionHeader.textColor = [UIColor whiteColor];
-    sectionHeader.text = @"Friends";
+    sectionHeader.textColor = [UIColor blackColor];
+    
+    if (section == 0)
+    {
+        sectionHeader.backgroundColor = [UIColor whiteColor];
+        sectionHeader.text = nil;
+    }
+    else
+        
+    sectionHeader.text = @"Feed";
+    
+    
+    
+    
     return sectionHeader;
 }
 
@@ -238,70 +264,165 @@ static NSString *kImageKey = @"imageKey";
 
 //get number of rows by counting number of folders
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return teamatesArray.count;
+    if(section == 0)
+        
+        return 1;
+    
+    
+    else
+        return teamatesArray.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0)
+    {
+    return 50;
+    }
+        else return 60;
 }
 
 
 //setup cells in tableView
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    //setup cell
-    static NSString *CellIdentifier = @"friendsCell";
-    
-    
-    TeamatesCell *cell = (TeamatesCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (!cell)
-    {
-        cell = [[TeamatesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    PFObject *tempObject = [teamatesArray objectAtIndex:indexPath.row];
-    //Teamate Name
-    cell.teamateName.text = [tempObject objectForKey:@"teammate"];
-    
-    //Teammate Points & XP
-    cell.teamtePoints.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
-    cell.teamteXP.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];
-    
-    
-    //Teammate photos
-    
-    PFFile *imageFile = [tempObject objectForKey: @"Photo"];
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if(!error)
-        {
-            cell.teamtePicture.image = [UIImage imageWithData:data];
-        }
-    }];
-    
-    //XP Dials
-    
-    cell.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
-    //self.progressView.roundedCorners = YES;
-    // cell.progressView.trackTintColor = [UIColor clearColor];
-    // [cell.view addSubview:self.progressView];
-    
-    
-    
-    cell.circleProgressView.trackTintColor = [UIColor lightGrayColor];
-    cell.circleProgressView.progressTintColor = [UIColor greenColor];
-    //self.circleProgressView.roundedCorners = YES;
-    cell.circleProgressView.thicknessRatio = .4f;
-    
-    
-    //Convert XP # into a float & show progress indicator
-    
-    NSNumber *progress = [tempObject objectForKey:@"xp"];
-    //this is just for demo purposes
-    //TO DO:  playerProgress needs to be determined by how much one has to progress to get to the next XP level.  This value will be stored in parse.
-    CGFloat playerProgress = [progress floatValue]/10;
-    
-    [cell.circleProgressView setProgress:playerProgress animated:YES];
 
     
-    return cell;
+    //cell identifiers
+    
+    static NSString *ProfileInfoCellID = @"ProfileInfoCell";
+
+    static NSString *FeedCellID = @"FeedCell";
+    
+   // static NSString *CellIdentifier = @"friendsCell";
+    
+    //Profile info stats cell: followers, following etc...
+    if (indexPath.section == 0)
+    {
+        ProfileInfoCell *profileInfoCell = (ProfileInfoCell*)[tableView dequeueReusableCellWithIdentifier:ProfileInfoCellID];
+        
+        if (!profileInfoCell)
+        {
+            profileInfoCell = [[ProfileInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ProfileInfoCellID];
+        }
+        
+        PFObject *tempObject = [teamatesArray objectAtIndex:indexPath.row];
+        //Number of Teams
+        profileInfoCell.numberOfTeams.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
+        
+        //Number following you
+        profileInfoCell.numberFollowing.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
+        
+        //profileInfoCellNumber follwers
+        profileInfoCell.numberFollwers.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];
+        
+        
+        //Player photo
+        
+        PFFile *imageFile = [tempObject objectForKey: @"Photo"];
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if(!error)
+            {
+              //  cell.teamtePicture.image = [UIImage imageWithData:data];
+            }
+        }];
+        
+        return profileInfoCell;
+
+    }
+    
+    //activity feed
+    else
+    {
+        FeedCell *feedCell = (FeedCell*)[tableView dequeueReusableCellWithIdentifier:FeedCellID];
+        
+        if (!feedCell)
+        {
+            feedCell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FeedCellID];
+        }
+        
+        PFObject *tempObject = [teamatesArray objectAtIndex:indexPath.row];
+        //Number of Teams
+        feedCell.activityStatusText.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"activity"]];
+        
+        //Number following you
+        feedCell.likesCounter.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
+        
+        //profileInfoCellNumber follwers
+        feedCell.commentsCounter.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];
+        
+        
+        //Player photo
+        
+        PFFile *imageFile = [tempObject objectForKey: @"Photo"];
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if(!error)
+            {
+                feedCell.profilePhoto.image = [UIImage imageWithData:data];
+            }
+        }];
+        
+        return feedCell;
+        
+    }
+
+    //friends
+//    else
+//    {
+//    
+//    TeamatesCell *cell = (TeamatesCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    if (!cell)
+//    {
+//        cell = [[TeamatesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+//    
+//    PFObject *tempObject = [teamatesArray objectAtIndex:indexPath.row];
+//    //Teamate Name
+//    cell.teamateName.text = [tempObject objectForKey:@"teammate"];
+//    
+//    //Teammate Points & XP
+//    cell.teamtePoints.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
+//    cell.teamteXP.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];
+//    
+//    
+//    //Teammate photos
+//    
+//    PFFile *imageFile = [tempObject objectForKey: @"Photo"];
+//    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//        if(!error)
+//        {
+//            cell.teamtePicture.image = [UIImage imageWithData:data];
+//        }
+//    }];
+//    
+//    //XP Dials
+//    
+//    cell.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
+//    //self.progressView.roundedCorners = YES;
+//    // cell.progressView.trackTintColor = [UIColor clearColor];
+//    // [cell.view addSubview:self.progressView];
+//    
+//    
+//    
+//    cell.circleProgressView.trackTintColor = [UIColor lightGrayColor];
+//    cell.circleProgressView.progressTintColor = [UIColor greenColor];
+//    //self.circleProgressView.roundedCorners = YES;
+//    cell.circleProgressView.thicknessRatio = .4f;
+//    
+//    
+//    //Convert XP # into a float & show progress indicator
+//    
+//    NSNumber *progress = [tempObject objectForKey:@"xp"];
+//    //this is just for demo purposes
+//    //TO DO:  playerProgress needs to be determined by how much one has to progress to get to the next XP level.  This value will be stored in parse.
+//    CGFloat playerProgress = [progress floatValue]/10;
+//    
+//    [cell.circleProgressView setProgress:playerProgress animated:YES];
+//
+//    
+//    return cell;
+//    }
     
 }
 

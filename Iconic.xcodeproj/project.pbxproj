@@ -28,6 +28,8 @@
 		5C5399FB1862432C006676FA /* bluesquare.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5C5399F91862432B006676FA /* bluesquare.jpeg */; };
 		5C539A001863D9A1006676FA /* empty_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5399FF1863D9A1006676FA /* empty_avatar.png */; };
 		5C539A031863F774006676FA /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A021863F774006676FA /* ScheduleCell.m */; };
+		5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A051864E8DA006676FA /* ProfileInfoCell.m */; };
+		5C539A091864E900006676FA /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A081864E900006676FA /* FeedCell.m */; };
 		5CA3D18B1831DF51006C7932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18A1831DF51006C7932 /* Foundation.framework */; };
 		5CA3D18D1831DF51006C7932 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */; };
 		5CA3D18F1831DF51006C7932 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18E1831DF51006C7932 /* UIKit.framework */; };
@@ -112,6 +114,10 @@
 		5C5399FF1863D9A1006676FA /* empty_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty_avatar.png; sourceTree = "<group>"; };
 		5C539A011863F774006676FA /* ScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCell.h; sourceTree = "<group>"; };
 		5C539A021863F774006676FA /* ScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleCell.m; sourceTree = "<group>"; };
+		5C539A041864E8DA006676FA /* ProfileInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileInfoCell.h; sourceTree = "<group>"; };
+		5C539A051864E8DA006676FA /* ProfileInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileInfoCell.m; sourceTree = "<group>"; };
+		5C539A071864E900006676FA /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
+		5C539A081864E900006676FA /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
 		5CA3D1871831DF51006C7932 /* Iconic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Iconic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CA3D18A1831DF51006C7932 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -200,6 +206,10 @@
 				5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */,
 				5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */,
 				5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */,
+				5C539A041864E8DA006676FA /* ProfileInfoCell.h */,
+				5C539A051864E8DA006676FA /* ProfileInfoCell.m */,
+				5C539A071864E900006676FA /* FeedCell.h */,
+				5C539A081864E900006676FA /* FeedCell.m */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -559,6 +569,7 @@
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
 				5C2C1CCF185E98A3006722D2 /* MenuViewController.m in Sources */,
 				5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */,
+				5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */,
 				5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */,
 				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
@@ -568,6 +579,7 @@
 				5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */,
 				5C349E9D18602ED600325A29 /* TeamPlayersViewController.m in Sources */,
 				5C2EA5441851641500B21C52 /* ContentController.m in Sources */,
+				5C539A091864E900006676FA /* FeedCell.m in Sources */,
 				5C328BF5185F70C100E0E985 /* VSViewController.m in Sources */,
 				5C2EA547185164BE00B21C52 /* MyStatsContentController.m in Sources */,
 				5C539A031863F774006676FA /* ScheduleCell.m in Sources */,

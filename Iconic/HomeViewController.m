@@ -145,7 +145,8 @@ static NSString *kImageKey = @"imageKey";
         
         [self addChildViewController:controller];
         [self.scrollView addSubview:controller.view];
-        [controller didMoveToParentViewController:self];
+        
+         [controller didMoveToParentViewController:self];
         
         NSDictionary *numberItem = [self.contentList objectAtIndex:page];
         controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
