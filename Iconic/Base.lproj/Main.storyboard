@@ -335,13 +335,46 @@
                                                     <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19D-Am-zZD">
+                                                    <rect key="frame" x="74" y="2" width="75" height="62"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="1aX-ly-UO6" kind="push" identifier="following" id="ag6-Mr-WZi"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rU1-TW-Xhr">
+                                                    <rect key="frame" x="156" y="0.0" width="75" height="64"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="1aX-ly-UO6" kind="push" identifier="followers" id="A92-of-JDp"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucT-Ml-cIQ">
+                                                    <rect key="frame" x="8" y="0.0" width="63" height="64"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="1aX-ly-UO6" kind="push" identifier="teams" id="ECB-Hy-Y7b"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="followPlayer" destination="7s1-Sx-WBg" id="YA2-j4-Vdf"/>
+                                            <outlet property="followersButton" destination="rU1-TW-Xhr" id="Qz8-gp-72Z"/>
+                                            <outlet property="followingLabelButton" destination="19D-Am-zZD" id="Ies-eb-GGT"/>
                                             <outlet property="numberFollowing" destination="Wvb-d6-4kh" id="i54-6C-2Bg"/>
                                             <outlet property="numberFollwers" destination="Iie-cN-lJC" id="WcF-9B-FGQ"/>
                                             <outlet property="numberOfTeams" destination="SXi-O6-RQU" id="Ord-Fz-hne"/>
+                                            <outlet property="teamsButton" destination="ucT-Ml-cIQ" id="pHR-ah-lY0"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" id="vOo-QN-Y8E" customClass="FeedCell">
@@ -494,6 +527,44 @@
                 </customObject>
             </objects>
             <point key="canvasLocation" x="2319" y="-1700"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="CrJ-nK-281">
+            <objects>
+                <tableViewController id="1aX-ly-UO6" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rit-xj-Umy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zbW-vE-CkL">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zbW-vE-CkL" id="EaS-sW-RsO">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFJ-oF-96m">
+                                            <rect key="frame" x="266" y="7" width="45" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Follow">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1aX-ly-UO6" id="MmY-ty-nLx"/>
+                            <outlet property="delegate" destination="1aX-ly-UO6" id="u7d-Hm-yi8"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="BYx-Ug-fBx"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rYt-Gv-QLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2842" y="-1700"/>
         </scene>
         <!--Activity View Controller - Activity-->
         <scene sceneID="Ay6-Fh-eSi">
@@ -947,11 +1018,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="FhS-7d-4Cl"/>
-        <segue reference="kBj-mf-isH"/>
-        <segue reference="YCB-li-iW7"/>
         <segue reference="5qL-qO-dRN"/>
+        <segue reference="kBj-mf-isH"/>
+        <segue reference="FhS-7d-4Cl"/>
+        <segue reference="YCB-li-iW7"/>
         <segue reference="djV-QL-gg7"/>
         <segue reference="kd5-hD-PUf"/>
+        <segue reference="ag6-Mr-WZi"/>
     </inferredMetricsTieBreakers>
 </document>

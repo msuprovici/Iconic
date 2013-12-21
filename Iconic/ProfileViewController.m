@@ -313,6 +313,7 @@ static NSString *kImageKey = @"imageKey";
         //Number following you
         profileInfoCell.numberFollowing.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
         
+        
         //profileInfoCellNumber follwers
         profileInfoCell.numberFollwers.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];
         

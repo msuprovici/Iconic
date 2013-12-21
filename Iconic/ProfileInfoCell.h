@@ -13,5 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberFollowing;
 @property (weak, nonatomic) IBOutlet UILabel *numberFollwers;
 @property (weak, nonatomic) IBOutlet UIButton *followPlayer;
+@property (weak, nonatomic) IBOutlet UIButton *followingLabelButton;
+@property (weak, nonatomic) IBOutlet UIButton *followersButton;
+@property (weak, nonatomic) IBOutlet UIButton *teamsButton;
 
 @end
