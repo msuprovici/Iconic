@@ -433,6 +433,30 @@ static NSString *kImageKey = @"imageKey";
     NSLog(@"cell tapped");
 }
 
+//segue to follow, followers or teams
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    UIViewController * viewController = [segue destinationViewController];
+    
+    if ([segue.identifier isEqualToString:@"teams"]) {
+        viewController.title = @"Teams";
+        
+    }
+    else if ([segue.identifier isEqualToString:@"following"]) {
+        viewController.title = @"Following";
+        
+    }
+    else if ([segue.identifier isEqualToString:@"followers"]) {
+        viewController.title = @"Followers";
+        
+    }
+    
+    
+}
 
 
 - (void)didReceiveMemoryWarning
