@@ -336,13 +336,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="19D-Am-zZD">
-                                                    <rect key="frame" x="74" y="2" width="75" height="62"/>
+                                                    <rect key="frame" x="72" y="-1" width="79" height="65"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="1aX-ly-UO6" kind="push" identifier="following" id="ag6-Mr-WZi"/>
+                                                        <segue destination="QoA-og-MH6" kind="push" identifier="followers" id="Xlf-PN-Naq"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rU1-TW-Xhr">
@@ -352,7 +352,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="1aX-ly-UO6" kind="push" identifier="followers" id="A92-of-JDp"/>
+                                                        <segue destination="Ong-fU-EIj" kind="push" identifier="following" id="Wzu-xt-aJt"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucT-Ml-cIQ">
@@ -362,7 +362,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="1aX-ly-UO6" kind="push" identifier="teams" id="ECB-Hy-Y7b"/>
+                                                        <segue destination="mja-qb-LTs" kind="push" identifier="teams" id="Wxu-Rj-WGk"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -469,43 +469,92 @@
             </objects>
             <point key="canvasLocation" x="2319" y="-1700"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="CrJ-nK-281">
+        <!--Followers View Controller-->
+        <scene sceneID="Ggg-q3-FpN">
             <objects>
-                <tableViewController id="1aX-ly-UO6" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rit-xj-Umy">
+                <tableViewController id="Ong-fU-EIj" customClass="FollowersViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ZPA-QC-Z8i">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zbW-vE-CkL">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="follow" id="7xw-EI-8x9" customClass="FollowCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zbW-vE-CkL" id="EaS-sW-RsO">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7xw-EI-8x9" id="yum-Ze-KMx">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFJ-oF-96m">
-                                            <rect key="frame" x="266" y="7" width="45" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Follow">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
-                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="1aX-ly-UO6" id="MmY-ty-nLx"/>
-                            <outlet property="delegate" destination="1aX-ly-UO6" id="u7d-Hm-yi8"/>
+                            <outlet property="dataSource" destination="Ong-fU-EIj" id="QTA-zR-w9E"/>
+                            <outlet property="delegate" destination="Ong-fU-EIj" id="iOy-B3-AYD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="BYx-Ug-fBx"/>
+                    <navigationItem key="navigationItem" id="L7L-aG-AXi"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rYt-Gv-QLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L41-Rg-SeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2842" y="-1700"/>
+            <point key="canvasLocation" x="3196" y="-1933"/>
+        </scene>
+        <!--Player Teams View Controller-->
+        <scene sceneID="ODh-Cm-rnk">
+            <objects>
+                <tableViewController id="mja-qb-LTs" customClass="PlayerTeamsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="unF-fc-ucQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="follow" id="D2C-Jm-CgW" customClass="FollowCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D2C-Jm-CgW" id="P0z-b0-A7H">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="mja-qb-LTs" id="M4Y-fc-FG6"/>
+                            <outlet property="delegate" destination="mja-qb-LTs" id="uDK-BB-zlu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="CoT-yU-kzf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CA8-Hw-g2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3204" y="-1221"/>
+        </scene>
+        <!--Following View Controller-->
+        <scene sceneID="TNr-mo-UyL">
+            <objects>
+                <tableViewController id="QoA-og-MH6" customClass="FollowingViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="45A-eR-lhr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="follow" id="w1f-zs-XIu" customClass="FollowCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w1f-zs-XIu" id="1Ae-95-dNx">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QoA-og-MH6" id="eYX-KN-0NU"/>
+                            <outlet property="delegate" destination="QoA-og-MH6" id="6RL-d9-dA9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="GA7-lk-cpW"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F1a-dU-KsE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3196" y="-2677"/>
         </scene>
         <!--Activity View Controller - Activity-->
         <scene sceneID="Ay6-Fh-eSi">
@@ -965,6 +1014,5 @@
         <segue reference="YCB-li-iW7"/>
         <segue reference="djV-QL-gg7"/>
         <segue reference="kd5-hD-PUf"/>
-        <segue reference="ag6-Mr-WZi"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -30,6 +30,10 @@
 		5C539A031863F774006676FA /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A021863F774006676FA /* ScheduleCell.m */; };
 		5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A051864E8DA006676FA /* ProfileInfoCell.m */; };
 		5C539A091864E900006676FA /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A081864E900006676FA /* FeedCell.m */; };
+		5C539A0C18679A37006676FA /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A0B18679A37006676FA /* FollowingViewController.m */; };
+		5C539A0F18679A57006676FA /* FollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A0E18679A57006676FA /* FollowersViewController.m */; };
+		5C539A1318679F3A006676FA /* PlayerTeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A1218679F3A006676FA /* PlayerTeamsViewController.m */; };
+		5C539A161867A2AC006676FA /* FollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A151867A2AC006676FA /* FollowCell.m */; };
 		5CA3D18B1831DF51006C7932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18A1831DF51006C7932 /* Foundation.framework */; };
 		5CA3D18D1831DF51006C7932 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */; };
 		5CA3D18F1831DF51006C7932 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18E1831DF51006C7932 /* UIKit.framework */; };
@@ -118,6 +122,14 @@
 		5C539A051864E8DA006676FA /* ProfileInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileInfoCell.m; sourceTree = "<group>"; };
 		5C539A071864E900006676FA /* FeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = "<group>"; };
 		5C539A081864E900006676FA /* FeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = "<group>"; };
+		5C539A0A18679A37006676FA /* FollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingViewController.h; sourceTree = "<group>"; };
+		5C539A0B18679A37006676FA /* FollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingViewController.m; sourceTree = "<group>"; };
+		5C539A0D18679A56006676FA /* FollowersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowersViewController.h; sourceTree = "<group>"; };
+		5C539A0E18679A57006676FA /* FollowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowersViewController.m; sourceTree = "<group>"; };
+		5C539A1118679F3A006676FA /* PlayerTeamsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTeamsViewController.h; sourceTree = "<group>"; };
+		5C539A1218679F3A006676FA /* PlayerTeamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTeamsViewController.m; sourceTree = "<group>"; };
+		5C539A141867A2AC006676FA /* FollowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowCell.h; sourceTree = "<group>"; };
+		5C539A151867A2AC006676FA /* FollowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowCell.m; sourceTree = "<group>"; };
 		5CA3D1871831DF51006C7932 /* Iconic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Iconic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CA3D18A1831DF51006C7932 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -204,6 +216,7 @@
 			children = (
 				5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */,
 				5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */,
+				5C539A1018679A66006676FA /* Followers_following_teams */,
 				5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */,
 				5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */,
 				5C539A041864E8DA006676FA /* ProfileInfoCell.h */,
@@ -336,6 +349,21 @@
 			path = Iconic;
 			sourceTree = "<group>";
 		};
+		5C539A1018679A66006676FA /* Followers_following_teams */ = {
+			isa = PBXGroup;
+			children = (
+				5C539A0A18679A37006676FA /* FollowingViewController.h */,
+				5C539A0B18679A37006676FA /* FollowingViewController.m */,
+				5C539A0D18679A56006676FA /* FollowersViewController.h */,
+				5C539A0E18679A57006676FA /* FollowersViewController.m */,
+				5C539A1118679F3A006676FA /* PlayerTeamsViewController.h */,
+				5C539A1218679F3A006676FA /* PlayerTeamsViewController.m */,
+				5C539A141867A2AC006676FA /* FollowCell.h */,
+				5C539A151867A2AC006676FA /* FollowCell.m */,
+			);
+			name = Followers_following_teams;
+			sourceTree = "<group>";
+		};
 		5CA3D17E1831DF51006C7932 = {
 			isa = PBXGroup;
 			children = (
@@ -391,11 +419,11 @@
 				5CA3D19C1831DF51006C7932 /* Main.storyboard */,
 				5C2C1CBE185BAF12006722D2 /* Social */,
 				5C2EA52A1851474400B21C52 /* Home */,
-				5C328BFC186002DC00E0E985 /* Leagues */,
 				5C328C0018601AEE00E0E985 /* Teams */,
 				5C2EA52B1851475900B21C52 /* Schedule */,
 				5C2C1CD4185EADFA006722D2 /* Activity */,
 				5C2EA52C1851476B00B21C52 /* VS */,
+				5C328BFC186002DC00E0E985 /* Leagues */,
 				5C2EA52D1851477D00B21C52 /* LogIn */,
 				5C2C1CD0185E98C8006722D2 /* Menu */,
 				5CA3D1A51831DF51006C7932 /* Images.xcassets */,
@@ -566,7 +594,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C539A161867A2AC006676FA /* FollowCell.m in Sources */,
+				5C539A0F18679A57006676FA /* FollowersViewController.m in Sources */,
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
+				5C539A0C18679A37006676FA /* FollowingViewController.m in Sources */,
 				5C2C1CCF185E98A3006722D2 /* MenuViewController.m in Sources */,
 				5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */,
 				5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */,
@@ -577,6 +608,7 @@
 				5C2C1CD3185EADF2006722D2 /* ActivityViewController.m in Sources */,
 				5C328BFB186002D300E0E985 /* LeaguesViewController.m in Sources */,
 				5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */,
+				5C539A1318679F3A006676FA /* PlayerTeamsViewController.m in Sources */,
 				5C349E9D18602ED600325A29 /* TeamPlayersViewController.m in Sources */,
 				5C2EA5441851641500B21C52 /* ContentController.m in Sources */,
 				5C539A091864E900006676FA /* FeedCell.m in Sources */,

@@ -356,12 +356,18 @@ static NSString *kImageKey = @"imageKey";
         //Player photo
         
         PFFile *imageFile = [tempObject objectForKey: @"Photo"];
+        
+        if([imageFile isDataAvailable])
+        {
+
         [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             if(!error)
             {
                 feedCell.profilePhoto.image = [UIImage imageWithData:data];
-            }
+                        }
         }];
+         
+        }
         
         return feedCell;
         
