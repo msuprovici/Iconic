@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface FollowCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnailPhoto;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *followButton;
+
+
 
 @end

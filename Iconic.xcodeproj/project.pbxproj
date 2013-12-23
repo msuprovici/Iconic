@@ -216,13 +216,13 @@
 			children = (
 				5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */,
 				5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */,
-				5C539A1018679A66006676FA /* Followers_following_teams */,
 				5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */,
 				5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */,
 				5C539A041864E8DA006676FA /* ProfileInfoCell.h */,
 				5C539A051864E8DA006676FA /* ProfileInfoCell.m */,
 				5C539A071864E900006676FA /* FeedCell.h */,
 				5C539A081864E900006676FA /* FeedCell.m */,
+				5C539A1018679A66006676FA /* Followers_following_teams */,
 			);
 			name = Social;
 			sourceTree = "<group>";

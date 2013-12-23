@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+#import "FollowCell.h"
 
 @interface FollowingViewController : PFQueryTableViewController
 

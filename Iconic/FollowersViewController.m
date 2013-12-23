@@ -30,15 +30,15 @@
         // Customize the table
         
         // The className to query on
-        self.parseClassName = @" ";//<- followers
+        self.parseClassName = @"Test";//<- followers
        
         
         // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @" ";
+        self.textKey = @"teammate";
         
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
-        // self.imageKey = @"image";
+        self.imageKey = @"Photo";
         
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
@@ -134,25 +134,47 @@
  }
  */
 
-/*
+
  // Override to customize the look of a cell representing an object. The default is to display
  // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
  // and the imageView being the imageKey in the object.
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
- static NSString *CellIdentifier = @"Cell";
+ static NSString *CellIdentifier = @"follow";
  
- PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+ //PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+     
+ FollowCell *cell = (FollowCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+     
  if (cell == nil) {
- cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+ cell = [[FollowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
  }
  
  // Configure the cell
- cell.textLabel.text = [object objectForKey:self.textKey];
- cell.imageView.file = [object objectForKey:self.imageKey];
+ /*cell.textLabel.text = [object objectForKey:self.textKey];
+ cell.imageView.file = [object objectForKey:self.imageKey];*/
+     
+     cell.nameLabel.text = [object objectForKey:self.textKey];
+     //cell.thumbnailPhoto.image = [object objectForKey:@"Photo"];
+     
+     PFFile *imageFile = [object objectForKey:self.imageKey];
+     
+     if([imageFile isDataAvailable])
+     {
+         
+         [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+             if(!error)
+             {
+                 cell.thumbnailPhoto.image = [UIImage imageWithData:data];
+             }
+         }];
+         
+     }
+
+     
  
  return cell;
  }
- */
+
 
 /*
  // Override if you need to change the ordering of objects in the table.
@@ -219,6 +241,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
+
+
+#pragma mark - Followers Button
+
+- (IBAction)followPressed:(id)sender {
+    
+    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"You followed" message:@"Player" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    
+    [theAlert show];
+
 }
 
 @end
