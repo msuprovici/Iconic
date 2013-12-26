@@ -124,7 +124,7 @@
         [self.players setObject:objectsInSection forKey:teamPlayers];
     }
     
-    
+    [self.tableView reloadData];
 }
 
 

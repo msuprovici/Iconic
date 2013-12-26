@@ -199,7 +199,7 @@
         [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
         [self.matchups setObject:objectsInSection forKey:teamMatchup];
     }
-    
+    [self.tableView reloadData];
   
 }
 

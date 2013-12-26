@@ -130,7 +130,7 @@
         [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
         [self.teams setObject:objectsInSection forKey:Teams];
     }
-    
+    [self.tableView reloadData];
     
 }
 
@@ -209,9 +209,9 @@
 
 // Get the array of indeces for that section. This lets us pick the correct PFObject from self.objects
 - (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *Teamss = [self categories:indexPath.section];
+    NSString *Teams = [self categories:indexPath.section];
     
-    NSArray *rowIndecesInSection = [self.teams objectForKey:Teamss];
+    NSArray *rowIndecesInSection = [self.teams objectForKey:Teams];
     
     NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
     return [self.objects objectAtIndex:[rowIndex intValue]];

@@ -140,7 +140,7 @@
         [self.leagues setObject:objectsInSection forKey:teamMatchup];
     }
     
-    
+    [self.tableView reloadData];
 }
 
 

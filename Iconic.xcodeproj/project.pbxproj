@@ -24,6 +24,8 @@
 		5C328BFB186002D300E0E985 /* LeaguesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C328BFA186002D300E0E985 /* LeaguesViewController.m */; };
 		5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C328BFE18601ADF00E0E985 /* TeamsViewController.m */; };
 		5C349E9D18602ED600325A29 /* TeamPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */; };
+		5C4EF97F1868D99B000E0E59 /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4EF97E1868D99B000E0E59 /* Cache.m */; };
+		5C4EF982186CA7BD000E0E59 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4EF981186CA7BD000E0E59 /* Constants.m */; };
 		5C5399F61860D2FB006676FA /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C5399F51860D2FB006676FA /* DACircularProgressView.m */; };
 		5C5399FB1862432C006676FA /* bluesquare.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5C5399F91862432B006676FA /* bluesquare.jpeg */; };
 		5C539A001863D9A1006676FA /* empty_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C5399FF1863D9A1006676FA /* empty_avatar.png */; };
@@ -112,6 +114,10 @@
 		5C328BFE18601ADF00E0E985 /* TeamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamsViewController.m; sourceTree = "<group>"; };
 		5C349E9B18602ED600325A29 /* TeamPlayersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamPlayersViewController.h; sourceTree = "<group>"; };
 		5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamPlayersViewController.m; sourceTree = "<group>"; };
+		5C4EF97D1868D99B000E0E59 /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
+		5C4EF97E1868D99B000E0E59 /* Cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cache.m; sourceTree = "<group>"; };
+		5C4EF980186CA7BD000E0E59 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		5C4EF981186CA7BD000E0E59 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		5C5399F41860D2FB006676FA /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
 		5C5399F51860D2FB006676FA /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
 		5C5399F91862432B006676FA /* bluesquare.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bluesquare.jpeg; sourceTree = "<group>"; };
@@ -417,6 +423,10 @@
 				5C2EA5421851641500B21C52 /* ContentController.h */,
 				5C2EA5431851641500B21C52 /* ContentController.m */,
 				5CA3D19C1831DF51006C7932 /* Main.storyboard */,
+				5C4EF980186CA7BD000E0E59 /* Constants.h */,
+				5C4EF981186CA7BD000E0E59 /* Constants.m */,
+				5C4EF97D1868D99B000E0E59 /* Cache.h */,
+				5C4EF97E1868D99B000E0E59 /* Cache.m */,
 				5C2C1CBE185BAF12006722D2 /* Social */,
 				5C2EA52A1851474400B21C52 /* Home */,
 				5C328C0018601AEE00E0E985 /* Teams */,
@@ -597,10 +607,12 @@
 				5C539A161867A2AC006676FA /* FollowCell.m in Sources */,
 				5C539A0F18679A57006676FA /* FollowersViewController.m in Sources */,
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
+				5C4EF982186CA7BD000E0E59 /* Constants.m in Sources */,
 				5C539A0C18679A37006676FA /* FollowingViewController.m in Sources */,
 				5C2C1CCF185E98A3006722D2 /* MenuViewController.m in Sources */,
 				5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */,
 				5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */,
+				5C4EF97F1868D99B000E0E59 /* Cache.m in Sources */,
 				5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */,
 				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
