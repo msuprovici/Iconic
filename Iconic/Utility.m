@@ -22,7 +22,7 @@
 + (void)likeActivityInBackground:(id)activity block:(void (^)(BOOL succeeded, NSError *error))completionBlock {
     PFQuery *queryExistingLikes = [PFQuery queryWithClassName:kPlayerActionClassKey];
     [queryExistingLikes whereKey:kPlayerActionActivityKey equalTo:activity];
-    [queryExistingLikes whereKey:kPlayerActionTypeKey equalTo:kPlayerActionFromUserKey];
+    [queryExistingLikes whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeLike];
     [queryExistingLikes whereKey:kPlayerActionFromUserKey equalTo:[PFUser currentUser]];
     [queryExistingLikes setCachePolicy:kPFCachePolicyNetworkOnly];
     [queryExistingLikes findObjectsInBackgroundWithBlock:^(NSArray *activities, NSError *error) {
@@ -41,7 +41,7 @@
         
         PFACL *likeACL = [PFACL ACLWithUser:[PFUser currentUser]];
         [likeACL setPublicReadAccess:YES];
-        [likeACL setWriteAccess:YES forUser:[activity objectForKey:kPlayerActionActivityKey]];
+        [likeACL setWriteAccess:YES forUser:[activity objectForKey:kActivityUserKey]];
         likeActivity.ACL = likeACL;
         
         [likeActivity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

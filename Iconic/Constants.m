@@ -69,9 +69,9 @@ NSString *const kUserProfilePicMediumKey                     = @"profilePictureM
 NSString *const kUserFacebookFriendsKey                      = @"facebookFriends";
 NSString *const kUserAlreadyAutoFollowedFacebookFriendsKey   = @"userAlreadyAutoFollowedFacebookFriends";
 
-#pragma mark - Photo Class
+#pragma mark - Activity Class
 // Class key
-NSString *const kActivityClassKey = @"Photo";
+NSString *const kActivityClassKey = @"Photo";// <-careful, make sure to set the right class here
 
 // Field keys
 NSString *const kActivityKey         = @"image";
