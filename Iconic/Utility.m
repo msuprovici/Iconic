@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "UIImage+ResizeAdditions.h"
 
+
 @implementation Utility
 
 
@@ -322,6 +323,15 @@
     return query;
 }
 
+#pragma mark Points Algorithm
+
+
++(float)calculatePoints:(float)steps
+{
+    
+    return (0.75 * (log(steps)/log(2))/20) * steps * 50;
+
+}
 
 
 @end
