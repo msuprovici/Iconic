@@ -31,5 +31,6 @@
 + (PFQuery *)queryForActivitiesOnActivity:(PFObject *)activity cachePolicy:(PFCachePolicy)cachePolicy;
 
 - (float)calculatePoints:(float)steps;
+- (void)saveUserPointsInBackground:(PFUser *)user block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
 
 @end

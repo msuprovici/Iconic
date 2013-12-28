@@ -343,6 +343,7 @@ static NSString *kImageKey = @"imageKey";
     //cell.teamtePoints.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
         
         //Using calculatePoints method to generate points:  hardcoded step count to 100 for now for now
+    
         Utility * points =  [[Utility alloc]init] ;
         cell.teamtePoints.text = [NSString stringWithFormat:@"%f", [points calculatePoints:100]];
         cell.teamteXP.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];

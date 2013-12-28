@@ -329,7 +329,10 @@
 -(float)calculatePoints:(float)steps
 {
     
-    return (0.75 * (log(steps)/log(2))/20) * steps * 50;
+    //alogrithm for calcuating steps: yourPoints = ((0.75^( ln(steps) /ln (2)))/time)*steps*constantValue
+    
+    return ((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50);
+    
 
 }
 
