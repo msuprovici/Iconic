@@ -10,6 +10,7 @@
 #import "MyStatsViewController.h"
 #import "ContentController.h"
 #import "SWRevealViewController.h"
+#import "Utility.h"
 
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
@@ -337,11 +338,15 @@ static NSString *kImageKey = @"imageKey";
    
     //Teamate Name
     cell.teamateName.text = [tempObject objectForKey:@"teammate"];
-    
+        
     //Teammate Points & XP
-    cell.teamtePoints.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
-    cell.teamteXP.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];
-    
+    //cell.teamtePoints.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
+        
+        //Using calculatePoints method to generate points:  hardcoded step count to 100 for now for now
+        Utility * points =  [[Utility alloc]init] ;
+        cell.teamtePoints.text = [NSString stringWithFormat:@"%f", [points calculatePoints:100]];
+        cell.teamteXP.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];
+        
     
     //Teammate photos
     
@@ -383,6 +388,7 @@ static NSString *kImageKey = @"imageKey";
     return cell;
     }
 }
+
 
 
 

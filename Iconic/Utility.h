@@ -30,6 +30,6 @@
 
 + (PFQuery *)queryForActivitiesOnActivity:(PFObject *)activity cachePolicy:(PFCachePolicy)cachePolicy;
 
-+(float)calculatePoints:(float)steps;
+- (float)calculatePoints:(float)steps;
 
 @end
