@@ -10,7 +10,9 @@
 #import "MyStatsViewController.h"
 #import "ContentController.h"
 #import "SWRevealViewController.h"
-#import "Utility.h"
+#import "Cache.h"
+//#import "Utility.h"
+#import "Constants.h"
 
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
@@ -87,7 +89,7 @@ static NSString *kImageKey = @"imageKey";
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
     
-    
+    [self savePoints];
     
     
     
@@ -152,6 +154,35 @@ static NSString *kImageKey = @"imageKey";
         NSDictionary *numberItem = [self.contentList objectAtIndex:page];
         controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
         controller.viewTitle.text = [numberItem valueForKey:kNameKey];
+       // controller.pointsValue.text = [NSString stringWithFormat:@"%@",[numberItem objectForKey:@"points"]];
+        
+        //Utility * addPoints =  [[Utility alloc]init] ;
+        //[addPoints calculatePoints:100];
+        
+       // NSNumber * myNumber = [NSNumber numberWithFloat:[addPoints calculatePoints:100]];
+        
+        //self.PointsForPlayer[kPlayerPoints] = @"100";
+        
+        //PointsForPlayer[kPlayerPoints] = @"100";
+        
+//        PFObject *steps = [PFObject objectWithClassName:kPhysicalActivityClass];
+//         steps[kPlayerPoints]=@150;
+//        [self saveUserPointsInBackground:steps block:^(BOOL succeeded, NSError *error) {
+//            if (!error) {
+//                NSLog(@"Points Saved");
+//               // self.PointsForPlayer[kPlayerPoints] = @"100";
+//                
+//               
+//
+//            
+//            }
+//            else
+//            {
+//                NSLog(@"Did not save points");
+//            }
+//            
+//            
+//        }];
         
             }
 }
@@ -340,15 +371,14 @@ static NSString *kImageKey = @"imageKey";
     cell.teamateName.text = [tempObject objectForKey:@"teammate"];
         
     //Teammate Points & XP
-    //cell.teamtePoints.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
+    cell.teamtePoints.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"points"]];
         
         //Using calculatePoints method to generate points:  hardcoded step count to 100 for now for now
-    
-        Utility * points =  [[Utility alloc]init] ;
-        cell.teamtePoints.text = [NSString stringWithFormat:@"%f", [points calculatePoints:100]];
+       
+        //Utility * points =  [[Utility alloc]init] ;
+        //cell.teamtePoints.text = [NSString stringWithFormat:@"%f", [points calculatePoints:100]];
         cell.teamteXP.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];
         
-    
     //Teammate photos
     
     PFFile *imageFile = [tempObject objectForKey: @"Photo"];
@@ -411,5 +441,60 @@ static NSString *kImageKey = @"imageKey";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark points & xp calculations
+
+
+
+-(void)savePoints
+{
+    
+    //if it's current user, update points, else create a new points object
+    if ([PFUser currentUser]) {
+        
+        PFQuery *query = [PFQuery queryWithClassName:kPhysicalActivityClass];
+        
+        PFObject *points = [PFObject objectWithClassName:kPhysicalActivityClass];
+        //    [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
+        
+        NSString * objectID = [points objectId];//To Do: dynamically get objectID
+        
+        
+        // Retrieve the object by id: m1A7qaRqc3
+        [query getObjectInBackgroundWithId:@"m1A7qaRqc3" block:^(PFObject *points, NSError *error) {
+            
+            [points incrementKey:kPlayerPoints byAmount:@125]; //To Do: create method for generating by amount increase in points & when to reset. Value is currently hardcoded.
+            
+            [points saveEventually];
+            [points refresh];
+            
+        }];
+
+    }
+    else
+    {
+   
+        PFObject *points = [PFObject objectWithClassName:kPhysicalActivityClass];
+        //    [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
+        [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
+         points[kPlayerPoints]= @1055;
+        [points saveEventually];
+        [points refresh];
+    }
+    
+    
+
+}
+
+-(float)calculatePoints:(float)steps
+{
+    
+    //alogrithm for generating points from steps: yourPoints = ((0.85^( ln(steps) /ln (2)))/time)*steps*constantValue
+    
+    return ((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50);
+    
+    
+}
+
 
 @end

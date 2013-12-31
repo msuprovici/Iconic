@@ -15,6 +15,15 @@ NSString *const kUserDefaultsCacheFacebookFriendsKey                     = @"com
 #pragma mark - Launch URLs
 
 NSString *const kLaunchURLHostLoadActivity = @"camera";// <- define
+// player physical activity keys
+
+#pragma mark - Player Physical Activity Points
+
+NSString *const kPhysicalActivityClass = @"Test";
+
+NSString *const kPlayerPoints = @"points";
+NSString *const kPlayerXP = @"playerXP";
+NSString *const kPlayerSteps = @"playerSteps";
 
 
 #pragma mark - NSNotification
@@ -113,3 +122,6 @@ NSString *const kPushPayloadActivityFollowKey   = @"f";
 NSString *const kPushPayloadFromUserObjectIdKey = @"fu";
 NSString *const kPushPayloadToUserObjectIdKey   = @"tu";
 NSString *const kPushPayloadPhotoObjectIdKey    = @"pid";
+
+
+

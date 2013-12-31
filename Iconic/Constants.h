@@ -17,6 +17,14 @@ extern NSString *const kUserDefaultsCacheFacebookFriendsKey;
 
 extern NSString *const kLaunchURLHostLoadActivity;
 
+#pragma mark - Player Physical Activity Points
+
+//test class
+extern NSString *const kPhysicalActivityClass;
+
+extern NSString *const kPlayerPoints;
+extern NSString *const kPlayerXP;
+extern NSString *const kPlayerSteps;
 
 #pragma mark - NSNotification
 extern NSString *const AppDelegateApplicationDidReceiveRemoteNotification;
@@ -113,3 +121,4 @@ extern NSString *const kPushPayloadActivityFollowKey;
 extern NSString *const kPushPayloadFromUserObjectIdKey;
 extern NSString *const kPushPayloadToUserObjectIdKey;
 extern NSString *const kPushPayloadPhotoObjectIdKey;
+
