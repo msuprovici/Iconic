@@ -463,10 +463,10 @@ static NSString *kImageKey = @"imageKey";
         // Retrieve the object by id: m1A7qaRqc3
         [query getObjectInBackgroundWithId:@"m1A7qaRqc3" block:^(PFObject *points, NSError *error) {
             
-            [points incrementKey:kPlayerPoints byAmount:@125]; //To Do: create method for generating by amount increase in points & when to reset. Value is currently hardcoded.
-            
+            [points incrementKey:kPlayerPoints byAmount:[self calculatePoints:100]]; //To Do: create method for generating by amount increase in points & when to reset. Value is currently hardcoded.
+            //[points saveInBackground];
             [points saveEventually];
-            [points refresh];
+            //[points refresh]; //<- long running operation on the main thread
             
         }];
 
@@ -478,23 +478,38 @@ static NSString *kImageKey = @"imageKey";
         //    [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
         [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
          points[kPlayerPoints]= @1055;
+        //[points saveInBackground];
         [points saveEventually];
-        [points refresh];
+        //[points refresh]; //<- long running operation on the main thread
     }
     
     
 
 }
 
--(float)calculatePoints:(float)steps
+-(NSNumber*)calculatePoints:(float)steps
 {
     
     //alogrithm for generating points from steps: yourPoints = ((0.85^( ln(steps) /ln (2)))/time)*steps*constantValue
     
-    return ((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50);
+    //Converting float to NSNumber
+    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50)];//rounded up to the largest following integer using ceiling function
     
-    
+    return points;
 }
+
+//-(float)calculatePoints:(float)steps
+//{
+//    
+//    //alogrithm for generating points from steps: yourPoints = ((0.85^( ln(steps) /ln (2)))/time)*steps*constantValue
+//    
+//    return ((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50);
+//    
+//    
+//}
+
+
+
 
 
 @end
