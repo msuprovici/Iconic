@@ -19,9 +19,11 @@ extern NSString *const kLaunchURLHostLoadActivity;
 
 #pragma mark - Player Physical Activity Points
 
+
 //test class
 extern NSString *const kPhysicalActivityClass;
 
+extern NSString *const kUser;
 extern NSString *const kPlayerPoints;
 extern NSString *const kPlayerXP;
 extern NSString *const kPlayerSteps;

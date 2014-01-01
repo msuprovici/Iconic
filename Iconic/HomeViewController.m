@@ -449,35 +449,38 @@ static NSString *kImageKey = @"imageKey";
 -(void)savePoints
 {
     
-    //if it's current user, update points, else create a new points object
+    //if it's the current user update points
     if ([PFUser currentUser]) {
         
-        PFQuery *query = [PFQuery queryWithClassName:kPhysicalActivityClass];
+        //Query special 'User' class in parse -> need to use PFUser
+        PFQuery *query = [PFUser query];
+        //creating query for current loggedin user
+        [query whereKey:kUser equalTo:[PFUser currentUser]];
+        //creating a points object for loggedin user
+        PFObject *points = [PFUser currentUser];
         
-        PFObject *points = [PFObject objectWithClassName:kPhysicalActivityClass];
-        //    [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
-        
-        NSString * objectID = [points objectId];//To Do: dynamically get objectID
-        
-        
-        // Retrieve the object by id: m1A7qaRqc3
-        [query getObjectInBackgroundWithId:@"m1A7qaRqc3" block:^(PFObject *points, NSError *error) {
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+        {
+            //To Do: create method for generating by amount increase in points & when to reset. 100 value is currently hardcoded.
+            [points incrementKey:kPlayerPoints byAmount:[self calculatePoints:100]];
             
-            [points incrementKey:kPlayerPoints byAmount:[self calculatePoints:100]]; //To Do: create method for generating by amount increase in points & when to reset. Value is currently hardcoded.
             //[points saveInBackground];
+            
             [points saveEventually];
             //[points refresh]; //<- long running operation on the main thread
             
-        }];
+       }];
 
     }
+    
+    //if it's a new user create a new points object
     else
     {
    
-        PFObject *points = [PFObject objectWithClassName:kPhysicalActivityClass];
-        //    [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
+        PFObject *points = [PFUser currentUser];
+        
         [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
-         points[kPlayerPoints]= @1055;
+         points[kPlayerPoints]= [self calculatePoints:150];
         //[points saveInBackground];
         [points saveEventually];
         //[points refresh]; //<- long running operation on the main thread

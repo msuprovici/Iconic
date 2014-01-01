@@ -19,8 +19,10 @@ NSString *const kLaunchURLHostLoadActivity = @"camera";// <- define
 
 #pragma mark - Player Physical Activity Points
 
-NSString *const kPhysicalActivityClass = @"Test";
+NSString *const kUserClass = @"Test";
 
+
+NSString *const kUser = @"User";
 NSString *const kPlayerPoints = @"points";
 NSString *const kPlayerXP = @"playerXP";
 NSString *const kPlayerSteps = @"playerSteps";
