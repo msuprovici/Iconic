@@ -23,10 +23,12 @@ NSString *const kUserClass = @"Test";
 
 
 NSString *const kUser = @"User";
+NSString *const kUsername = @"username";
+NSString *const kProfilePicture = @"photo";
+NSString *const kPlayerTitle = @"Title";
 NSString *const kPlayerPoints = @"points";
-NSString *const kPlayerXP = @"playerXP";
-NSString *const kPlayerSteps = @"playerSteps";
-
+NSString *const kPlayerXP = @"xp";
+NSString *const kPlayerSteps = @"steps";
 
 #pragma mark - NSNotification
 

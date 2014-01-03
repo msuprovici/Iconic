@@ -89,7 +89,7 @@ static NSString *kImageKey = @"imageKey";
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
     
-    [self savePoints];
+     [self savePoints];
     
     
     
@@ -151,9 +151,11 @@ static NSString *kImageKey = @"imageKey";
         
          [controller didMoveToParentViewController:self];
         
-        NSDictionary *numberItem = [self.contentList objectAtIndex:page];
-        controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
-        controller.viewTitle.text = [numberItem valueForKey:kNameKey];
+        
+        
+//        NSDictionary *numberItem = [self.contentList objectAtIndex:page];
+//        controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
+//        controller.viewTitle.text = [numberItem valueForKey:kNameKey];
        // controller.pointsValue.text = [NSString stringWithFormat:@"%@",[numberItem objectForKey:@"points"]];
         
         //Utility * addPoints =  [[Utility alloc]init] ;
@@ -449,24 +451,29 @@ static NSString *kImageKey = @"imageKey";
 -(void)savePoints
 {
     
+    
+    //Query special 'User' class in parse -> need to use PFUser
+    PFQuery *query = [PFUser query];
+    PFUser* currentUser = [PFUser currentUser];
+    
+    //creating query for current loggedin user
+    //[query whereKey:kUsername equalTo:[PFUser currentUser]];// Error: no results matched the query
+    //creating a points object for loggedin user
+    PFObject *points = [PFUser currentUser];
+
+    
     //if it's the current user update points
-    if ([PFUser currentUser]) {
+    if (currentUser) {
         
-        //Query special 'User' class in parse -> need to use PFUser
-        PFQuery *query = [PFUser query];
-        //creating query for current loggedin user
-        [query whereKey:kUser equalTo:[PFUser currentUser]];
-        //creating a points object for loggedin user
-        PFObject *points = [PFUser currentUser];
         
         [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
         {
             //To Do: create method for generating by amount increase in points & when to reset. 100 value is currently hardcoded.
             [points incrementKey:kPlayerPoints byAmount:[self calculatePoints:100]];
             
-            //[points saveInBackground];
+            [points saveInBackground];
             
-            [points saveEventually];
+            //[points saveEventually];
             //[points refresh]; //<- long running operation on the main thread
             
        }];
@@ -481,14 +488,55 @@ static NSString *kImageKey = @"imageKey";
         
         [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
          points[kPlayerPoints]= [self calculatePoints:150];
-        //[points saveInBackground];
-        [points saveEventually];
+        [points saveInBackground];
+       //[points saveEventually];
         //[points refresh]; //<- long running operation on the main thread
     }
     
     
 
 }
+
+
+//-(void)retrievePlayerStats
+//{
+//    PFQuery *query = [PFUser query];
+//    //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    [query whereKey:kUser equalTo:[PFUser currentUser]];
+//    
+//    PFObject *playerStats = [PFUser currentUser];
+//   
+//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+//     {
+//         
+//    //retrieve player stats from server
+//    NSString *playerName = playerStats[KUsername];
+//    PFFile *profilePicture = playerStats[kProfilePicture];
+//    int points = [[playerStats objectForKey:kPlayerPoints] intValue];
+//    int xp = [[playerStats objectForKey:kPlayerXP] intValue];
+//    int steps = [[playerStats objectForKey:kPlayerSteps]intValue];//TO DO: retrieve steps from M7
+//    NSString *playerTitle = playerStats[KPlayerTitle];
+//         
+//         //Download & display player photo from parse server
+//         PFImageView *playerProfilePicture = [[PFImageView alloc] init];
+//         playerProfilePicture.image = [UIImage imageNamed:@"empty_avatar.png"];//placeholder iamge
+//         playerProfilePicture.file = (PFFile *)profilePicture;
+//         [playerProfilePicture loadInBackground];
+//         
+//         
+//         MyStatsViewController *controller = [[MyStatsViewController alloc] init];
+////         controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
+////         controller.viewTitle.text = [numberItem valueForKey:kNameKey];
+//         
+//         controller.playerName.text = playerName;
+//         controller.playerPhoto = playerProfilePicture;
+//         controller.viewTitle.text = playerTitle;
+//         controller.xpValue.text = [NSString stringWithFormat:@"%d",xp];
+//         controller.pointsValue.text = [NSString stringWithFormat:@"%d",points];
+//
+//     }];
+//    
+//}
 
 -(NSNumber*)calculatePoints:(float)steps
 {

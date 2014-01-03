@@ -24,6 +24,9 @@ extern NSString *const kLaunchURLHostLoadActivity;
 extern NSString *const kPhysicalActivityClass;
 
 extern NSString *const kUser;
+extern NSString *const kUsername;
+extern NSString *const kProfilePicture;
+extern NSString *const kPlayerTitle;
 extern NSString *const kPlayerPoints;
 extern NSString *const kPlayerXP;
 extern NSString *const kPlayerSteps;
