@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DACircularProgressView.h"
+#import <Parse/Parse.h>
 
 @interface TeamatesCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *teamateName;
 
-@property (weak, nonatomic) IBOutlet UIImageView *teamtePicture;
+@property (weak, nonatomic) IBOutlet PFImageView *teamtePicture;
 
 @property (weak, nonatomic) IBOutlet UILabel *teamtePoints;
 

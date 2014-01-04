@@ -84,14 +84,16 @@
                     
                     self.xpValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerXP]];
                     
+                    //Player photo
+                    //using PFImageView
+                    self.playerPhoto.file = [currentUser objectForKey:kProfilePicture];
                     
-                    //Download player image in background
-                    PFFile *thumbnail = [currentUser objectForKey:kProfilePicture];
-                    [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                     
-                    NSData *imageData = data;
-                    self.playerPhoto.image = [UIImage imageWithData:imageData];
-                    }];
+                    PFImageView *photo = [[PFImageView alloc] init];
+                    
+                    photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
+                    photo.file = (PFFile *)self.playerPhoto.file;
+                    
+                    [photo loadInBackground];
                     
                     
                 }];

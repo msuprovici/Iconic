@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface FeedCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *profilePhoto;
+@property (weak, nonatomic) IBOutlet PFImageView *profilePhoto;
 @property (weak, nonatomic) IBOutlet UILabel *activityStatusText;
 
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;

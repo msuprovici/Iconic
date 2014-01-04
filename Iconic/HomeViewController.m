@@ -382,14 +382,17 @@ static NSString *kImageKey = @"imageKey";
         cell.teamteXP.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];
         
     //Teammate photos
-    
-    PFFile *imageFile = [tempObject objectForKey: @"Photo"];
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if(!error)
-        {
-            cell.teamtePicture.image = [UIImage imageWithData:data];
-        }
-    }];
+        
+        //using PFImageView
+        cell.teamtePicture.file = [tempObject objectForKey:@"Photo"];
+        
+        PFImageView *photo = [[PFImageView alloc] init];
+        
+        photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
+        photo.file = (PFFile *)cell.teamtePicture.file;
+        
+        [photo loadInBackground];
+
         
         //XP Dials
         

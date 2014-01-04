@@ -141,13 +141,13 @@ static NSString *kImageKey = @"imageKey";
         //add a player's profile photo
         
         if (page == 0) {
-            controller.playerPhoto.image = [UIImage imageNamed:@"empty_avatar.png"];
+           // controller.playerPhoto.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"];
             controller.playerName.text = @"Mike";
         }
         
 
         
-        controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
+        controller.statsImage.image = [UIImage imageWithContentsOfFile:[numberItem valueForKey:kImageKey]];
         controller.viewTitle.text = [numberItem valueForKey:kNameKey];
     }
 }
@@ -354,21 +354,16 @@ static NSString *kImageKey = @"imageKey";
         
         
         //Player photo
+        //using PFImageView
+        feedCell.profilePhoto.file = [tempObject objectForKey:@"Photo"];
         
-        PFFile *imageFile = [tempObject objectForKey: @"Photo"];
+        PFImageView *photo = [[PFImageView alloc] init];
         
-        if([imageFile isDataAvailable])
-        {
-
-        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if(!error)
-            {
-                feedCell.profilePhoto.image = [UIImage imageWithData:data];
-                        }
-        }];
+        photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
+        photo.file = (PFFile *)feedCell.profilePhoto.file;
+        
+        [photo loadInBackground];
          
-        }
-        
         return feedCell;
         
     }

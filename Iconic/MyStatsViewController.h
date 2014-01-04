@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DACircularProgressView.h"
+#import <Parse/Parse.h>
 
 @interface MyStatsViewController : UIViewController
 
@@ -18,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *pointsValue;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 
-@property (weak, nonatomic) IBOutlet UIImageView *playerPhoto;
+@property (weak, nonatomic) IBOutlet PFImageView *playerPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *playerName;
 
 @property (nonatomic, strong) IBOutlet UILabel *xpLabel;
