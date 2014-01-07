@@ -67,6 +67,16 @@
 		5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D1E61832F9D1006C7932 /* LogInViewController.m */; };
 		5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */; };
 		5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7FAAF185810A600A360A1 /* TeamatesCell.m */; };
+		5CD93826187B5047006CE08B /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9381D187B5047006CE08B /* MZFormSheetBackgroundWindow.m */; };
+		5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9381F187B5047006CE08B /* MZFormSheetController.m */; };
+		5CD93828187B5047006CE08B /* MZFormSheetSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD93821187B5047006CE08B /* MZFormSheetSegue.m */; };
+		5CD93829187B5047006CE08B /* MZTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD93823187B5047006CE08B /* MZTransition.m */; };
+		5CD9382A187B5047006CE08B /* UIImage+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD93825187B5047006CE08B /* UIImage+Additional.m */; };
+		5CD93830187B510E006CE08B /* MZAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9382D187B510E006CE08B /* MZAppearance.m */; };
+		5CD93831187B510E006CE08B /* NSInvocation+Copy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9382F187B510E006CE08B /* NSInvocation+Copy.m */; };
+		5CD93835187B551D006CE08B /* CustomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD93834187B551D006CE08B /* CustomTransition.m */; };
+		5CD93838187B5627006CE08B /* DialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD93837187B5627006CE08B /* DialogViewController.m */; };
+		5CD9383A187B814F006CE08B /* achievment_test.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD93839187B814F006CE08B /* achievment_test.png */; };
 		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
 		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
 		72CA13C61846DEC700B19D53 /* tutorial1.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CA13C31846DEC700B19D53 /* tutorial1.png */; };
@@ -183,6 +193,25 @@
 		5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		5CC7FAAE185810A500A360A1 /* TeamatesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamatesCell.h; sourceTree = "<group>"; };
 		5CC7FAAF185810A600A360A1 /* TeamatesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamatesCell.m; sourceTree = "<group>"; };
+		5CD9381C187B5047006CE08B /* MZFormSheetBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindow.h; sourceTree = "<group>"; };
+		5CD9381D187B5047006CE08B /* MZFormSheetBackgroundWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetBackgroundWindow.m; sourceTree = "<group>"; };
+		5CD9381E187B5047006CE08B /* MZFormSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetController.h; sourceTree = "<group>"; };
+		5CD9381F187B5047006CE08B /* MZFormSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetController.m; sourceTree = "<group>"; };
+		5CD93820187B5047006CE08B /* MZFormSheetSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetSegue.h; sourceTree = "<group>"; };
+		5CD93821187B5047006CE08B /* MZFormSheetSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetSegue.m; sourceTree = "<group>"; };
+		5CD93822187B5047006CE08B /* MZTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTransition.h; sourceTree = "<group>"; };
+		5CD93823187B5047006CE08B /* MZTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTransition.m; sourceTree = "<group>"; };
+		5CD93824187B5047006CE08B /* UIImage+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additional.h"; sourceTree = "<group>"; };
+		5CD93825187B5047006CE08B /* UIImage+Additional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additional.m"; sourceTree = "<group>"; };
+		5CD9382C187B510E006CE08B /* MZAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZAppearance.h; sourceTree = "<group>"; };
+		5CD9382D187B510E006CE08B /* MZAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZAppearance.m; sourceTree = "<group>"; };
+		5CD9382E187B510E006CE08B /* NSInvocation+Copy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Copy.h"; sourceTree = "<group>"; };
+		5CD9382F187B510E006CE08B /* NSInvocation+Copy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Copy.m"; sourceTree = "<group>"; };
+		5CD93833187B551D006CE08B /* CustomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTransition.h; sourceTree = "<group>"; };
+		5CD93834187B551D006CE08B /* CustomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTransition.m; sourceTree = "<group>"; };
+		5CD93836187B5627006CE08B /* DialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogViewController.h; sourceTree = "<group>"; };
+		5CD93837187B5627006CE08B /* DialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogViewController.m; sourceTree = "<group>"; };
+		5CD93839187B814F006CE08B /* achievment_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = achievment_test.png; sourceTree = "<group>"; };
 		5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		5CFB1EB81834381C0026AEB4 /* ScheduleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleGenerator.h; sourceTree = "<group>"; };
@@ -251,6 +280,7 @@
 		5C2C1CC8185E9051006722D2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5CD93839187B814F006CE08B /* achievment_test.png */,
 				5C5399F91862432B006676FA /* bluesquare.jpeg */,
 				5C2C1CC6185E9040006722D2 /* reveal-icon@2x.png */,
 				5C5399FF1863D9A1006676FA /* empty_avatar.png */,
@@ -363,6 +393,7 @@
 		5C4EF986186D01FF000E0E59 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				5CD9381B187B5000006CE08B /* MZFromSheetControler */,
 				5C4EF991186D0225000E0E59 /* UIImage Categories */,
 				5C2C1CC9185E9118006722D2 /* Reveal View Controller */,
 				5C5399F71860D30C006676FA /* CircularProgressView */,
@@ -468,6 +499,7 @@
 				5C4EF984186CBC15000E0E59 /* Utility.m */,
 				5C4EF97D1868D99B000E0E59 /* Cache.h */,
 				5C4EF97E1868D99B000E0E59 /* Cache.m */,
+				5CD93832187B54D1006CE08B /* Custom Dialog */,
 				5C2C1CBE185BAF12006722D2 /* Social */,
 				5C2EA52A1851474400B21C52 /* Home */,
 				5C328C0018601AEE00E0E985 /* Teams */,
@@ -510,6 +542,46 @@
 				5CA3D1B51831DF51006C7932 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5CD9381B187B5000006CE08B /* MZFromSheetControler */ = {
+			isa = PBXGroup;
+			children = (
+				5CD9382B187B50E5006CE08B /* Additional */,
+				5CD9381C187B5047006CE08B /* MZFormSheetBackgroundWindow.h */,
+				5CD9381D187B5047006CE08B /* MZFormSheetBackgroundWindow.m */,
+				5CD9381E187B5047006CE08B /* MZFormSheetController.h */,
+				5CD9381F187B5047006CE08B /* MZFormSheetController.m */,
+				5CD93820187B5047006CE08B /* MZFormSheetSegue.h */,
+				5CD93821187B5047006CE08B /* MZFormSheetSegue.m */,
+				5CD93822187B5047006CE08B /* MZTransition.h */,
+				5CD93823187B5047006CE08B /* MZTransition.m */,
+				5CD93824187B5047006CE08B /* UIImage+Additional.h */,
+				5CD93825187B5047006CE08B /* UIImage+Additional.m */,
+			);
+			name = MZFromSheetControler;
+			sourceTree = "<group>";
+		};
+		5CD9382B187B50E5006CE08B /* Additional */ = {
+			isa = PBXGroup;
+			children = (
+				5CD9382C187B510E006CE08B /* MZAppearance.h */,
+				5CD9382D187B510E006CE08B /* MZAppearance.m */,
+				5CD9382E187B510E006CE08B /* NSInvocation+Copy.h */,
+				5CD9382F187B510E006CE08B /* NSInvocation+Copy.m */,
+			);
+			name = Additional;
+			sourceTree = "<group>";
+		};
+		5CD93832187B54D1006CE08B /* Custom Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				5CD93833187B551D006CE08B /* CustomTransition.h */,
+				5CD93834187B551D006CE08B /* CustomTransition.m */,
+				5CD93836187B5627006CE08B /* DialogViewController.h */,
+				5CD93837187B5627006CE08B /* DialogViewController.m */,
+			);
+			name = "Custom Dialog";
 			sourceTree = "<group>";
 		};
 		72CA13C21846DEAF00B19D53 /* Tutorial Slides */ = {
@@ -625,6 +697,7 @@
 				72CA13C81846DEC700B19D53 /* tutorial3.png in Resources */,
 				5C2C1CC7185E9040006722D2 /* reveal-icon@2x.png in Resources */,
 				5CA3D19E1831DF51006C7932 /* Main.storyboard in Resources */,
+				5CD9383A187B814F006CE08B /* achievment_test.png in Resources */,
 				5C2EA53E1851516700B21C52 /* MyStatsViewController.xib in Resources */,
 				72CA13C71846DEC700B19D53 /* tutorial2.png in Resources */,
 			);
@@ -647,6 +720,7 @@
 			files = (
 				5C539A161867A2AC006676FA /* FollowCell.m in Sources */,
 				5C539A0F18679A57006676FA /* FollowersViewController.m in Sources */,
+				5CD93829187B5047006CE08B /* MZTransition.m in Sources */,
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
 				5C4EF982186CA7BD000E0E59 /* Constants.m in Sources */,
 				5C539A0C18679A37006676FA /* FollowingViewController.m in Sources */,
@@ -655,14 +729,19 @@
 				5C4EF985186CBC15000E0E59 /* Utility.m in Sources */,
 				5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */,
 				5C4EF97F1868D99B000E0E59 /* Cache.m in Sources */,
+				5CD93828187B5047006CE08B /* MZFormSheetSegue.m in Sources */,
+				5CD93826187B5047006CE08B /* MZFormSheetBackgroundWindow.m in Sources */,
 				5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */,
 				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
 				5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */,
+				5CD93830187B510E006CE08B /* MZAppearance.m in Sources */,
 				5C2C1CD3185EADF2006722D2 /* ActivityViewController.m in Sources */,
 				5C328BFB186002D300E0E985 /* LeaguesViewController.m in Sources */,
+				5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */,
 				5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */,
 				5C539A1318679F3A006676FA /* PlayerTeamsViewController.m in Sources */,
+				5CD93831187B510E006CE08B /* NSInvocation+Copy.m in Sources */,
 				5C4EF993186D03CB000E0E59 /* UIImage+RoundedCornerAdditions.m in Sources */,
 				5C4EF98F186D0217000E0E59 /* UIImage+Alpha.m in Sources */,
 				5C349E9D18602ED600325A29 /* TeamPlayersViewController.m in Sources */,
@@ -671,7 +750,9 @@
 				5C539A091864E900006676FA /* FeedCell.m in Sources */,
 				5C328BF5185F70C100E0E985 /* VSViewController.m in Sources */,
 				5C2EA547185164BE00B21C52 /* MyStatsContentController.m in Sources */,
+				5CD93835187B551D006CE08B /* CustomTransition.m in Sources */,
 				5C539A031863F774006676FA /* ScheduleCell.m in Sources */,
+				5CD93838187B5627006CE08B /* DialogViewController.m in Sources */,
 				5C4EF98E186D0217000E0E59 /* UIImage+AlphaAdditions.m in Sources */,
 				5C2EA53D1851516700B21C52 /* MyStatsViewController.m in Sources */,
 				72F325291846D25D000B5D34 /* TutorialScreens.m in Sources */,
@@ -679,6 +760,7 @@
 				5C2EA5291851472000B21C52 /* HomeViewController.m in Sources */,
 				5CA3D19B1831DF51006C7932 /* AppDelegate.m in Sources */,
 				5C5399F61860D2FB006676FA /* DACircularProgressView.m in Sources */,
+				5CD9382A187B5047006CE08B /* UIImage+Additional.m in Sources */,
 				5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */,
 				5C328BF8185F773300E0E985 /* VSCell.m in Sources */,
 				5CA3D1971831DF51006C7932 /* main.m in Sources */,

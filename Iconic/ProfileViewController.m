@@ -11,11 +11,17 @@
 #import "ContentController.h"
 #import "SWRevealViewController.h"
 
+//Dialog view controller
+#import "DialogViewController.h"
+#import "MZFormSheetController.h"
+#import "CustomTransition.h"
+
+
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
 
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <MZFormSheetBackgroundWindowDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
@@ -34,6 +40,13 @@ static NSString *kImageKey = @"imageKey";
 {
     
     [super viewDidLoad];
+    
+    //custom dialog
+    [[MZFormSheetBackgroundWindow appearance] setBackgroundBlurEffect:YES];
+    [[MZFormSheetBackgroundWindow appearance] setBlurRadius:5.0];
+    [[MZFormSheetBackgroundWindow appearance] setBackgroundColor:[UIColor clearColor]];
+    
+    [MZFormSheetController registerTransitionClass:[CustomTransition class] forTransitionStyle:MZFormSheetTransitionStyleCustom];
     
     
     //reveal navigator
@@ -465,5 +478,57 @@ static NSString *kImageKey = @"imageKey";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark custom dialog
+- (IBAction)showFormSheet:(id *)sender {
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"dialog"];
+    
+    MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:vc];
+    
+    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
+    formSheet.shadowRadius = 2.0;
+    formSheet.shadowOpacity = 0.3;
+    formSheet.shouldDismissOnBackgroundViewTap = YES;
+    formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
+    //    formSheet.shouldMoveToTopWhenKeyboardAppears = NO;
+    
+    __weak MZFormSheetController *weakFormSheet = formSheet;
+    
+    
+    // If you want to animate status bar use this code
+//    formSheet.didTapOnBackgroundViewCompletionHandler = ^(CGPoint location) {
+//        UINavigationController *navController = (UINavigationController *)weakFormSheet.presentedFSViewController;
+//        if ([navController.topViewController isKindOfClass:[MZModalViewController class]]) {
+//            MZModalViewController *mzvc = (MZModalViewController *)navController.topViewController;
+//            mzvc.showStatusBar = NO;
+//        }
+//        
+//        
+//        [UIView animateWithDuration:0.3 animations:^{
+//            if ([weakFormSheet respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+//                [weakFormSheet setNeedsStatusBarAppearanceUpdate];
+//            }
+//        }];
+//    };
+    
+    formSheet.willPresentCompletionHandler = ^(UIViewController *presentedFSViewController) {
+        // Passing data
+//        UINavigationController *navController = (UINavigationController *)presentedFSViewController;
+//        navController.topViewController.title = @"PASSING DATA";
+    };
+    formSheet.transitionStyle = MZFormSheetTransitionStyleCustom;
+    
+    [MZFormSheetController sharedBackgroundWindow].formSheetBackgroundWindowDelegate = self;
+    
+    [self mz_presentFormSheetController:formSheet animated:YES completionHandler:^(MZFormSheetController *formSheetController) {
+        
+    }];
+
+    
+    
+    
+}
+
+
 
 @end

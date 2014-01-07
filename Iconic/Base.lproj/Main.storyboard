@@ -251,6 +251,31 @@
             </objects>
             <point key="canvasLocation" x="2319" y="-836"/>
         </scene>
+        <!--Dialog View Controller - dialog-->
+        <scene sceneID="es0-wK-jC1">
+            <objects>
+                <viewController storyboardIdentifier="dialog" title="dialog" id="m8P-KC-yjp" customClass="DialogViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pdK-Ze-2Jn"/>
+                        <viewControllerLayoutGuide type="bottom" id="TsM-jf-IOb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r2L-5H-l5a">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="achievment_test.png" translatesAutoresizingMaskIntoConstraints="NO" id="vJB-Eg-Cdd">
+                                <rect key="frame" x="31" y="58" width="221" height="170"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Hj6-my-L2D"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9JJ-M9-FKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2237" y="-2697"/>
+        </scene>
         <!--Profile View Controller - My Profile-->
         <scene sceneID="mcB-oh-bUv">
             <objects>
@@ -450,6 +475,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="My Profile" id="cQv-aS-3OY">
                         <barButtonItem key="leftBarButtonItem" image="reveal-icon.png" id="BrL-sA-byV"/>
+                        <barButtonItem key="rightBarButtonItem" title="Dialog" id="Ejd-KD-YQT">
+                            <connections>
+                                <action selector="showFormSheet:" destination="z4K-7d-GbM" id="A42-Zz-2pT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
@@ -523,7 +553,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L41-Rg-SeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3196" y="-1933"/>
+            <point key="canvasLocation" x="3722" y="-1933"/>
         </scene>
         <!--Player Teams View Controller-->
         <scene sceneID="ODh-Cm-rnk">
@@ -636,7 +666,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F1a-dU-KsE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3196" y="-2677"/>
+            <point key="canvasLocation" x="3722" y="-2677"/>
         </scene>
         <!--Activity View Controller - Activity-->
         <scene sceneID="Ay6-Fh-eSi">
@@ -1077,8 +1107,27 @@
             </objects>
             <point key="canvasLocation" x="857" y="50"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4B4-CH-RnM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cBw-Ml-MuB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O7S-NY-zGJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="m8P-KC-yjp" kind="relationship" relationship="rootViewController" id="GlC-f2-v4y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j2E-jM-JeX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1711" y="-2697"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="achievment_test.png" width="894" height="894"/>
         <image name="empty_avatar.png" width="500" height="500"/>
         <image name="reveal-icon.png" width="22" height="17"/>
         <image name="second" width="30" height="30"/>
