@@ -64,7 +64,7 @@
 }
 
 - (IBAction)Share:(id)sender {
-        NSArray *items   = [NSArray arrayWithObjects: UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeMessage, nil];
+        NSArray *items   = [NSArray arrayWithObjects: UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeMessage, UIActivityTypeMail, UIActivityTypePostToWeibo, nil];
     
     UIActivityViewController *activityController =  [[UIActivityViewController alloc]initWithActivityItems:items applicationActivities:nil];
     ;

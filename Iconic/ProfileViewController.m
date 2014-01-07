@@ -469,6 +469,11 @@ static NSString *kImageKey = @"imageKey";
         
     }
     
+     //perform segue here to silence warning: Presenting view controllers on detached view controllers is discouraged
+    else if ([segue.identifier isEqualToString:@"dialog_segue"]) {
+       [self performSegueWithIdentifier:@"dialog_segue" sender:sender];
+        
+    }
     
 }
 
@@ -524,6 +529,7 @@ static NSString *kImageKey = @"imageKey";
         
     }];
 
+   
     
     
     

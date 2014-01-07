@@ -498,6 +498,7 @@
                         <outlet property="pageControl" destination="O9G-ap-PWY" id="UHw-na-5rd"/>
                         <outlet property="revealButtonItem" destination="BrL-sA-byV" id="5z9-e1-Ge7"/>
                         <outlet property="scrollView" destination="6eT-51-NiO" id="23s-eZ-d4X"/>
+                        <segue destination="m8P-KC-yjp" kind="custom" identifier="dialog_segue" customClass="MZFormSheetSegue" id="TGw-xZ-C7R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIy-ya-fpw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1155,5 +1156,6 @@
         <segue reference="YCB-li-iW7"/>
         <segue reference="djV-QL-gg7"/>
         <segue reference="kd5-hD-PUf"/>
+        <segue reference="TGw-xZ-C7R"/>
     </inferredMetricsTieBreakers>
 </document>
