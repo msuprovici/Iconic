@@ -492,7 +492,7 @@ static NSString *kImageKey = @"imageKey";
     formSheet.shouldCenterVerticallyWhenKeyboardAppears = YES;
     //    formSheet.shouldMoveToTopWhenKeyboardAppears = NO;
     
-    __weak MZFormSheetController *weakFormSheet = formSheet;
+//    __weak MZFormSheetController *weakFormSheet = formSheet;
     
     
     // If you want to animate status bar use this code

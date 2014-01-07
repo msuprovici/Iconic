@@ -7,6 +7,9 @@
 //
 
 #import "MZTransition.h"
+extern NSString *const MZTransitionExceptionMethodNotImplemented;
+
+typedef void(^MZTransitionCompletionHandler)();
 
 @interface CustomTransition : MZTransition
 

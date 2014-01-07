@@ -63,6 +63,16 @@
     return self.showStatusBar; // your own visibility code
 }
 
+- (IBAction)Share:(id)sender {
+        NSArray *items   = [NSArray arrayWithObjects: UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypeMessage, nil];
+    
+    UIActivityViewController *activityController =  [[UIActivityViewController alloc]initWithActivityItems:items applicationActivities:nil];
+    ;
+
+    
+    [self presentViewController:activityController
+                       animated:YES completion:nil];
+}
 
 - (void)didReceiveMemoryWarning
 {
