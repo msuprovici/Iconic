@@ -36,4 +36,8 @@
 @property (strong, nonatomic) IBOutlet DACircularProgressView *stepsProgressDial;
 - (id)initWithPointsLabelNumber:(NSUInteger)pointslabel;
 
+//bar chart
+
+@property (strong, nonatomic) IBOutlet PNBarChart *stepsBarChart;
+
 @end

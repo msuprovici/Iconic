@@ -67,7 +67,8 @@
     for (int i = 0; i <= pointslabelNumber; i++) {
         
         if (i == 0) {
-            
+            if (pointslabelNumber == 0) {
+               
             // This is to generate thumbnail a player's thumbnail, name & title
             PFQuery* query = [PFUser query];
             query.cachePolicy = kPFCachePolicyCacheThenNetwork;
@@ -101,7 +102,7 @@
                 
             }
 
-        
+           
         
         self.xpLabel.text = @"XP";
         self.pointsLabel.text = @"Points";
@@ -112,9 +113,9 @@
         [self.view addSubview:self.xpProgressView];
         
                 [self.view addSubview:self.xpProgressDial];
-            
-             self.stepsProgressDial.trackTintColor = [UIColor clearColor];
-            self.stepsProgressDial.progressTintColor = [UIColor clearColor];
+            self.stepsProgressDial.hidden = true;
+//             self.stepsProgressDial.trackTintColor = [UIColor clearColor];
+//            self.stepsProgressDial.progressTintColor = [UIColor clearColor];
             
             self.xpProgressDial.trackTintColor = PNGrey;
             self.xpProgressDial.progressTintColor = PNFreshGreen;
@@ -130,14 +131,38 @@
            
             
             [self startAnimation];
-
+            }
         }
         if (i == 1)
         {
+//            if (pointslabelNumber == 1) {
+//                
+//                
+////                self.pointsLabel.hidden = true;
+////                self.xpLabel.hidden = true;
+////                self.pointsValue.hidden = true;
+////                self.xpValue.hidden = true;
+//                self.playerName.hidden = true;
+//                self.playerPhoto.hidden = true;
+//                
+//                self.viewTitle.hidden = true;
+//                
+//                self.pointsValue.hidden = true;
+//                
+////                self.xpValue.hidden = true;
+////                self.stepsProgressDial.hidden = true;
+////                self.xpProgressDial.hidden = true;
+//                
+//                
+//            }
+
+             self.viewTitle.text = @"Today's Activity";
             self.xpLabel.text = @"Steps"; //[NSString stringWithFormat:@"XP", myArray[i]];
             self.pointsLabel.text = @"Time Active";
             
             self.xpProgressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
+            
+        
             
             self.xpProgressView.trackTintColor = [UIColor clearColor];
             [self.view addSubview:self.xpProgressView];
@@ -150,9 +175,9 @@
             
             self.stepsProgressDial.thicknessRatio = 1.0f;
             
-            
-            self.pointsValue.text = @"15";
-            self.xpValue.text = @"1";
+                        
+            self.pointsValue.text = @"15 min";
+            self.xpValue.text = @"200";
            
             
             [self startAnimation];
@@ -160,23 +185,40 @@
         }
         if (i == 2)
         {
-            //self.xpLabel.text = @"Distance"; //[NSString stringWithFormat:@"XP", myArray[i]];
-            self.pointsLabel.text = @"Activity";
-            self.xpLabel.text = @"";
-           /*
-            self.xpProgressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
             
-            self.xpProgressView.trackTintColor = [UIColor clearColor];
-            [self.view addSubview:self.xpProgressView];
-            */
+            if (pointslabelNumber == 2) {
+                
             
-            self.stepsProgressDial.trackTintColor = PNGrey;
-            self.stepsProgressDial.progressTintColor = PNFreshGreen;
+            self.pointsLabel.hidden = true;
+            self.xpLabel.hidden = true;
+            self.pointsValue.hidden = true;
+            self.xpValue.hidden = true;
+            self.playerName.hidden = true;
+            self.playerPhoto.hidden = true;
             
-            self.xpProgressDial.trackTintColor = PNGrey;
-            self.xpProgressDial.progressTintColor = PNFreshGreen;
+            //self.viewTitle.hidden = true;
             
-            [self startAnimation];
+            self.pointsValue.hidden = true;
+            
+            self.xpValue.hidden = true;
+                self.stepsProgressDial.hidden = true;
+                self.xpProgressDial.hidden = true;
+                
+                
+            }
+            
+            self.viewTitle.text = @"Points";
+            
+            PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
+            [barChart setXLabels:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri", @"Sat",@"Sun"]];
+            [barChart setYValues:@[@1,  @10, @2, @6, @3, @15, @5]];
+            [barChart strokeChart];
+            
+            [self.stepsBarChart addSubview:barChart];
+
+            
+            
+
             
         }
         

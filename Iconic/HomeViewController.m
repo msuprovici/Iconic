@@ -246,22 +246,22 @@ static NSString *kImageKey = @"imageKey";
        if (!error) {
             teamatesArray = [[NSArray alloc] initWithArray:objects];
         }
-        [teamatesTable reloadData];
+       [teamatesTable reloadData];
     }];
     
     //Competion
-    PFQuery *retrieveScores = [PFQuery queryWithClassName:@"TeamName"];
-    retrieveScores.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    
-    
-    [retrieveScores findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        NSLog(@"%@", objects);
-        if (!error) {
-            vsTeamsArray = [[NSArray alloc] initWithArray:objects];
-        }
-        [teamatesTable reloadData];
-    }];
+//    PFQuery *retrieveScores = [PFQuery queryWithClassName:@"TeamName"];
+//    retrieveScores.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    
+//    
+//    [retrieveScores findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        
+//        NSLog(@"%@", objects);
+//        if (!error) {
+//            vsTeamsArray = [[NSArray alloc] initWithArray:objects];
+//        }
+//        //[teamatesTable reloadData];
+//    }];
     
     
     
