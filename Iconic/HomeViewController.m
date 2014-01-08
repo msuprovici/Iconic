@@ -90,7 +90,7 @@ static NSString *kImageKey = @"imageKey";
     // load the page on either side to avoid flashes when the user starts scrolling
     //
     [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
+    //[self loadScrollViewWithPage:1];
     
      [self savePoints];
     
@@ -203,7 +203,7 @@ static NSString *kImageKey = @"imageKey";
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
     [self loadScrollViewWithPage:page - 1];
     [self loadScrollViewWithPage:page];
-    [self loadScrollViewWithPage:page + 1];
+    //[self loadScrollViewWithPage:page + 1];
     
     // a possible optimization would be to unload the views+controllers which are no longer visible
 }
