@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "TeamatesCell.h"
 #import "VSCell.h"
-
+#import "PNChart.h"
 
 @interface HomeViewController : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -22,6 +22,7 @@
     
    
 }
+
 
 
 @property (nonatomic, strong) NSArray *contentList;

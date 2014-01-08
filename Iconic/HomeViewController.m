@@ -13,6 +13,9 @@
 #import "Cache.h"
 //#import "Utility.h"
 #import "Constants.h"
+#import "PNChart.h"
+#import "PNLineChartData.h"
+#import "PNLineChartDataItem.h"
 
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
@@ -287,11 +290,25 @@ static NSString *kImageKey = @"imageKey";
     return 20;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return 122;
+        }
+    }
+    else if (indexPath.section == 1)
+    {
+    return 70;
+    }
+    return 70;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
     UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    sectionHeader.backgroundColor = [UIColor greenColor];
+    sectionHeader.backgroundColor = PNWhite;
     sectionHeader.textAlignment = NSTextAlignmentCenter;
     sectionHeader.font = [UIFont fontWithName:@"DIN Alternate" size:17];
     sectionHeader.textColor = [UIColor blackColor];
@@ -338,16 +355,49 @@ static NSString *kImageKey = @"imageKey";
     {
         VSCell *cell = [tableView dequeueReusableCellWithIdentifier:vsCellIdentfier forIndexPath:indexPath];
         
-        PFObject *tempObject = [vsTeamsArray objectAtIndex:indexPath.row];
+      //  PFObject *tempObject = [vsTeamsArray objectAtIndex:indexPath.row];
         
-        //My Team
+//        //My Team
+//        
+//        cell.MyTeam.text = [tempObject objectForKey:@"MyTeam"]; //Team Name
+//        cell.MyTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score
+//        
+//        //Opponent Team
+//        cell.VSTeam.text = [tempObject objectForKey:@"VSTeam"]; //Team Name
+//        cell.VSTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"VSTeamScore"]]; //Team Score
         
-        cell.MyTeam.text = [tempObject objectForKey:@"MyTeam"]; //Team Name
-        cell.MyTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score
         
-        //Opponent Team
-        cell.VSTeam.text = [tempObject objectForKey:@"VSTeam"]; //Team Name
-        cell.VSTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"VSTeamScore"]]; //Team Score
+        //Line Chart Section
+        
+        //For LineChart
+        PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, 275, 120)];
+        [lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5", @"6", @"7"]];
+        //[lineChart setYLabels:@[@"0",@"100", @"200"]];
+        
+        // Line Chart No.1
+        NSArray * data01Array = @[@60.1, @160.1, @126.4, @262.2, @186.2, @127.2, @176.2];
+        PNLineChartData *data01 = [PNLineChartData new];
+        data01.color = PNFreshGreen;
+        data01.itemCount = lineChart.xLabels.count;
+        data01.getData = ^(NSUInteger index) {
+            CGFloat yValue = [[data01Array objectAtIndex:index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        // Line Chart No.2
+        NSArray * data02Array = @[@20.1, @180.1, @26.4, @202.2, @126.2, @167.2, @276.2];
+        PNLineChartData *data02 = [PNLineChartData new];
+        data02.color = PNTwitterColor;
+        data02.itemCount = lineChart.xLabels.count;
+        data02.getData = ^(NSUInteger index) {
+            CGFloat yValue = [[data02Array objectAtIndex:index] floatValue];
+            return [PNLineChartDataItem dataItemWithY:yValue];
+        };
+        
+        lineChart.chartData = @[data01, data02];
+        [lineChart strokeChart];
+        [cell.teamMatchChart addSubview:lineChart];
+        
+        
         
         
         return cell;
@@ -395,6 +445,14 @@ static NSString *kImageKey = @"imageKey";
 
         
         //XP Dials
+//        
+//        PNCircleChart * circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(0, 0, 40, 40.0) andTotal:[NSNumber numberWithInt:100] andCurrent:[NSNumber numberWithInt:60]];
+//        circleChart.backgroundColor = [UIColor clearColor];
+//        [circleChart setStrokeColor:PNGreen];
+//        [circleChart strokeChart];
+//        
+//        
+//        [cell.circleProgressView addSubview:circleChart];
         
         cell.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
         //self.progressView.roundedCorners = YES;
@@ -403,8 +461,8 @@ static NSString *kImageKey = @"imageKey";
         
         
         
-        cell.circleProgressView.trackTintColor = [UIColor lightGrayColor];
-        cell.circleProgressView.progressTintColor = [UIColor greenColor];
+        cell.circleProgressView.trackTintColor = PNGrey;
+        cell.circleProgressView.progressTintColor = PNFreshGreen;
         //self.circleProgressView.roundedCorners = YES;
         cell.circleProgressView.thicknessRatio = .4f;
         

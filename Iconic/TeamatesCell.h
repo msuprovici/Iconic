@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DACircularProgressView.h"
+#import "PNChart.h";
 #import <Parse/Parse.h>
 
 @interface TeamatesCell : UITableViewCell
@@ -26,5 +27,7 @@
 @property (strong, nonatomic) DACircularProgressView *progressView;
 
 @property (strong, nonatomic) IBOutlet DACircularProgressView *circleProgressView;
+
+//@property (strong, nonatomic) IBOutlet PNCircleChart *circleProgressView;
 
 @end

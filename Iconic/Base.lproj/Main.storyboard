@@ -41,53 +41,27 @@
                                     </connections>
                                 </scrollView>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="vsCell" id="QKs-Zm-DNV" customClass="VSCell">
-                                        <rect key="frame" x="0.0" y="192" width="320" height="69"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="vsCell" rowHeight="125" id="QKs-Zm-DNV" customClass="VSCell">
+                                        <rect key="frame" x="0.0" y="192" width="320" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKs-Zm-DNV" id="opp-oI-1zY">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="68"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MyTeam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rw3-M5-HrF">
-                                                    <rect key="frame" x="25" y="9" width="110" height="21"/>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cKm-Zn-9jw" customClass="PNLineChart">
+                                                    <rect key="frame" x="6" y="2" width="275" height="122"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MyTeamScore" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJx-Ly-ycE">
-                                                    <rect key="frame" x="25" y="32" width="110" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VSTeam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtY-4A-mZ3">
-                                                    <rect key="frame" x="160" y="9" width="110" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VSTeamScore" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGJ-f3-nHx">
-                                                    <rect key="frame" x="160" y="32" width="110" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="MyTeam" destination="Rw3-M5-HrF" id="DtW-Cl-ar0"/>
-                                            <outlet property="MyTeamScore" destination="TJx-Ly-ycE" id="wtJ-oK-CAq"/>
-                                            <outlet property="VSTeam" destination="CtY-4A-mZ3" id="i1W-TL-Tfm"/>
-                                            <outlet property="VSTeamScore" destination="GGJ-f3-nHx" id="lH4-Me-5IF"/>
+                                            <outlet property="teamMatchChart" destination="cKm-Zn-9jw" id="L4X-VZ-2B9"/>
                                             <segue destination="Q3n-4V-DYw" kind="push" id="djV-QL-gg7"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="teamatesCell" rowHeight="69" id="Rhv-4m-FPf" customClass="TeamatesCell">
-                                        <rect key="frame" x="0.0" y="261" width="320" height="69"/>
+                                        <rect key="frame" x="0.0" y="317" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rhv-4m-FPf" id="J21-Pl-FBE">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="68"/>
@@ -123,11 +97,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OBw-Fc-a1i" customClass="DACircularProgressView">
-                                                    <rect key="frame" x="239" y="25" width="40" height="40"/>
+                                                    <rect key="frame" x="240" y="25" width="41" height="41"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJr-5v-a2g" userLabel="Label - XP">
-                                                            <rect key="frame" x="0.0" y="2" width="41" height="36"/>
+                                                            <rect key="frame" x="3" y="4" width="35" height="33"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
                                                             <nil key="highlightedColor"/>
@@ -138,7 +112,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="circleProgressView" destination="OBw-Fc-a1i" id="OEw-dq-rrq"/>
+                                            <outlet property="circleProgressView" destination="OBw-Fc-a1i" id="sln-OH-X5s"/>
                                             <outlet property="teamateName" destination="chM-Cn-b0H" id="d64-Yp-ysd"/>
                                             <outlet property="teamtePicture" destination="dPU-SP-47R" id="qiw-3k-HuH"/>
                                             <outlet property="teamtePoints" destination="yA3-p0-pV8" id="WtA-74-elw"/>
@@ -147,6 +121,7 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="url-9a-9C7" id="Hz0-Qa-BMX"/>
                                     <outlet property="delegate" destination="url-9a-9C7" id="qAS-24-5SD"/>
@@ -1150,9 +1125,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5qL-qO-dRN"/>
         <segue reference="kBj-mf-isH"/>
         <segue reference="FhS-7d-4Cl"/>
+        <segue reference="5qL-qO-dRN"/>
         <segue reference="YCB-li-iW7"/>
         <segue reference="djV-QL-gg7"/>
         <segue reference="kd5-hD-PUf"/>

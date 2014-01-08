@@ -116,8 +116,8 @@
              self.stepsProgressDial.trackTintColor = [UIColor clearColor];
             self.stepsProgressDial.progressTintColor = [UIColor clearColor];
             
-            self.xpProgressDial.trackTintColor = [UIColor lightGrayColor];
-            self.xpProgressDial.progressTintColor = [UIColor greenColor];
+            self.xpProgressDial.trackTintColor = PNGrey;
+            self.xpProgressDial.progressTintColor = PNFreshGreen;
             
             //set the xp value here?
 //            self.xpValue.text = @"3";
@@ -142,11 +142,11 @@
             self.xpProgressView.trackTintColor = [UIColor clearColor];
             [self.view addSubview:self.xpProgressView];
             
-            self.stepsProgressDial.trackTintColor = [UIColor lightGrayColor];
-            self.stepsProgressDial.progressTintColor = [UIColor redColor];
+            self.stepsProgressDial.trackTintColor = PNGrey;
+            self.stepsProgressDial.progressTintColor = PNFreshGreen;
             
-            self.xpProgressDial.trackTintColor = [UIColor lightGrayColor];
-            self.xpProgressDial.progressTintColor = [UIColor greenColor];
+            self.xpProgressDial.trackTintColor = PNGrey;
+            self.xpProgressDial.progressTintColor = PNFreshGreen;
             
             self.stepsProgressDial.thicknessRatio = 1.0f;
             
@@ -170,11 +170,11 @@
             [self.view addSubview:self.xpProgressView];
             */
             
-            self.stepsProgressDial.trackTintColor = [UIColor lightGrayColor];
-            self.stepsProgressDial.progressTintColor = [UIColor redColor];
+            self.stepsProgressDial.trackTintColor = PNGrey;
+            self.stepsProgressDial.progressTintColor = PNFreshGreen;
             
-            self.xpProgressDial.trackTintColor = [UIColor lightGrayColor];
-            self.xpProgressDial.progressTintColor = [UIColor greenColor];
+            self.xpProgressDial.trackTintColor = PNGrey;
+            self.xpProgressDial.progressTintColor = PNFreshGreen;
             
             [self startAnimation];
             

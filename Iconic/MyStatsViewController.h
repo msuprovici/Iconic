@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DACircularProgressView.h"
 #import <Parse/Parse.h>
-
+#import "PNChart.h"
 @interface MyStatsViewController : UIViewController
 
 {

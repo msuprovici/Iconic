@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PNLineChart.h"
 
 @interface VSCell : UITableViewCell
 
@@ -18,5 +19,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *VSTeamScore;
 
+@property (strong, nonatomic) IBOutlet PNLineChart *teamMatchChart;
 
 @end
