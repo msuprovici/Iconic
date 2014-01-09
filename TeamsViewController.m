@@ -180,7 +180,7 @@
     
     // Configure the cell
     cell.textLabel.text = [object objectForKey:self.textKey];
-    cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+    //cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
     //cell.imageView.file = [object objectForKey:self.imageKey];
     
     return cell;

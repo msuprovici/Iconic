@@ -15,7 +15,7 @@
 #define HeaderTextColor PNLightBlue
 #define HeaderHeight    20
 #define HeaderAlignment  NSTextAlignmentCenter
-#define HeaderFont [UIFont fontWithName:@"DIN Alternate" size:17]
+#define HeaderFont [UIFont boldSystemFontOfSize:17]
 
 #pragma mark - NSUserDefaults
 extern NSString *const kUserDefaultsActivityFeedViewControllerLastRefreshKey;

@@ -476,7 +476,7 @@ static NSString *kImageKey = @"imageKey";
         cell.circleProgressView.trackTintColor = PNGrey;
         cell.circleProgressView.progressTintColor = PNFreshGreen;
         //self.circleProgressView.roundedCorners = YES;
-        cell.circleProgressView.thicknessRatio = .4f;
+        cell.circleProgressView.thicknessRatio = .25f;
         
         
         //Convert XP # into a float & show progress indicator

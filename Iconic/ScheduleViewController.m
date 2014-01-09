@@ -250,7 +250,7 @@
      // Configure the cell
      cell.teamMatchups.text = [object objectForKey:@"matchups"];
      cell.teamScore.text = [object objectForKey:@"Score"];
-     cell.teamMatchups.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+     //cell.teamMatchups.font = [UIFont fontWithName:@"DIN Alternate" size:17];
      // cell.imageView.file = [object objectForKey:self.imageKey];
      
      return cell;
