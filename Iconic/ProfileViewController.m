@@ -92,7 +92,7 @@ static NSString *kImageKey = @"imageKey";
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
     
-    
+    [self.friendsTable addSubview:self.pageControl];
     
     
     

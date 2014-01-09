@@ -28,7 +28,8 @@
 @property (nonatomic, strong) IBOutlet UIImageView *statsImage;
 
 //page control
-@property (nonatomic, strong) IBOutlet UIPageControl *myPageControl;
+
+
 
 //progres dial
 @property (strong, nonatomic) DACircularProgressView *xpProgressView;

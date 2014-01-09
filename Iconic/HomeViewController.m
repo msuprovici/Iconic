@@ -95,9 +95,8 @@ static NSString *kImageKey = @"imageKey";
     //
     [self loadScrollViewWithPage:0];
     //[self loadScrollViewWithPage:1];
-    
- 
-    
+    [self.teamatesTable addSubview:self.pageControl];
+   
     
          [self savePoints];
     
