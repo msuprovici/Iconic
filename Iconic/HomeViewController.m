@@ -44,6 +44,8 @@ static NSString *kImageKey = @"imageKey";
 {
     
     [super viewDidLoad];
+
+    
     
     //reveal menu slider
     [self.revealButtonItem setTarget: self.revealViewController];
@@ -58,9 +60,12 @@ static NSString *kImageKey = @"imageKey";
     //[self.revealViewController setFrontViewPosition:FrontViewPositionRight];
 
     
-  
+    //Retrieve from Parse
     [self performSelector:@selector(retrieveFromParse)];
     
+    
+    
+    //Page control for MyStatsView
     NSUInteger numberPages = self.contentList.count;
     
     // view controllers are created lazily
@@ -84,7 +89,6 @@ static NSString *kImageKey = @"imageKey";
     self.pageControl.numberOfPages = numberPages;
     self.pageControl.currentPage = 0;
     
-    
     // pages are created on demand
     // load the visible page
     // load the page on either side to avoid flashes when the user starts scrolling
@@ -92,9 +96,14 @@ static NSString *kImageKey = @"imageKey";
     [self loadScrollViewWithPage:0];
     //[self loadScrollViewWithPage:1];
     
-     [self savePoints];
+ 
     
     
+         [self savePoints];
+    
+    
+
+
     
     
 }
@@ -144,6 +153,8 @@ static NSString *kImageKey = @"imageKey";
     // add the controller's view to the scroll view
     if (controller.view.superview == nil)
     {
+        
+        
         CGRect frame = self.scrollView.frame;
         frame.origin.x = CGRectGetWidth(frame) * page;
         frame.origin.y = 0;
@@ -155,7 +166,7 @@ static NSString *kImageKey = @"imageKey";
          [controller didMoveToParentViewController:self];
         
         
-        
+    
 //        NSDictionary *numberItem = [self.contentList objectAtIndex:page];
 //        controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
 //        controller.viewTitle.text = [numberItem valueForKey:kNameKey];
@@ -349,11 +360,12 @@ static NSString *kImageKey = @"imageKey";
     static NSString *CellIdentifier = @"teamatesCell";
     
     static NSString *vsCellIdentfier = @"vsCell";
-    
+ 
     
     if(indexPath.section == 0)
     {
         VSCell *cell = [tableView dequeueReusableCellWithIdentifier:vsCellIdentfier forIndexPath:indexPath];
+        
         
       //  PFObject *tempObject = [vsTeamsArray objectAtIndex:indexPath.row];
         
@@ -386,7 +398,7 @@ static NSString *kImageKey = @"imageKey";
         // Line Chart No.2
         NSArray * data02Array = @[@20.1, @180.1, @26.4, @202.2, @126.2, @167.2, @276.2];
         PNLineChartData *data02 = [PNLineChartData new];
-        data02.color = PNTwitterColor;
+        data02.color = PNDeepGrey;
         data02.itemCount = lineChart.xLabels.count;
         data02.getData = ^(NSUInteger index) {
             CGFloat yValue = [[data02Array objectAtIndex:index] floatValue];

@@ -61,10 +61,13 @@
     
     [super viewDidLoad];
     
-
+ //self.myPageControl.currentPage = pointslabelNumber;
     
     //Cycle through label string
     for (int i = 0; i <= pointslabelNumber; i++) {
+        
+        
+
         
         if (i == 0) {
             if (pointslabelNumber == 0) {
@@ -128,8 +131,7 @@
            // self.playerPhoto.image = [UIImage imageNamed: @"first"];
             
             
-           
-            
+                
             [self startAnimation];
             }
         }
@@ -155,6 +157,7 @@
 //                
 //                
 //            }
+            if (pointslabelNumber == 1) {
 
              self.viewTitle.text = @"Today's Activity";
             self.xpLabel.text = @"Steps"; //[NSString stringWithFormat:@"XP", myArray[i]];
@@ -168,19 +171,21 @@
             [self.view addSubview:self.xpProgressView];
             
             self.stepsProgressDial.trackTintColor = PNGrey;
-            self.stepsProgressDial.progressTintColor = PNFreshGreen;
+            self.stepsProgressDial.progressTintColor = PNDarkBlue;
             
             self.xpProgressDial.trackTintColor = PNGrey;
-            self.xpProgressDial.progressTintColor = PNFreshGreen;
+            self.xpProgressDial.progressTintColor = PNMauve;
             
             self.stepsProgressDial.thicknessRatio = 1.0f;
             
                         
             self.pointsValue.text = @"15 min";
             self.xpValue.text = @"200";
-           
+            
+               
             
             [self startAnimation];
+            }
 
         }
         if (i == 2)
@@ -212,12 +217,13 @@
             PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
             [barChart setXLabels:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri", @"Sat",@"Sun"]];
             [barChart setYValues:@[@1,  @10, @2, @6, @3, @15, @5]];
+            [barChart setStrokeColor:PNLightBlue];
             [barChart strokeChart];
             
             [self.stepsBarChart addSubview:barChart];
 
             
-            
+           
 
             
         }

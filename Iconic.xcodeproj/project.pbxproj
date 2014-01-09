@@ -358,10 +358,7 @@
 				5C2EA545185164BE00B21C52 /* MyStatsContentController.h */,
 				5C2EA546185164BE00B21C52 /* MyStatsContentController.m */,
 				5C2EA54818516B0E00B21C52 /* content_mystats.plist */,
-				5CC7FAAE185810A500A360A1 /* TeamatesCell.h */,
-				5CC7FAAF185810A600A360A1 /* TeamatesCell.m */,
-				5C328BF6185F773300E0E985 /* VSCell.h */,
-				5C328BF7185F773300E0E985 /* VSCell.m */,
+				5C394AB0187E5AF000617C9B /* HomeCells */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -417,6 +414,17 @@
 			);
 			name = Teams;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		5C394AB0187E5AF000617C9B /* HomeCells */ = {
+			isa = PBXGroup;
+			children = (
+				5CC7FAAE185810A500A360A1 /* TeamatesCell.h */,
+				5CC7FAAF185810A600A360A1 /* TeamatesCell.m */,
+				5C328BF6185F773300E0E985 /* VSCell.h */,
+				5C328BF7185F773300E0E985 /* VSCell.m */,
+			);
+			name = HomeCells;
 			sourceTree = "<group>";
 		};
 		5C4EF986186D01FF000E0E59 /* External */ = {
