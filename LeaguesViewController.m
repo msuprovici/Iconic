@@ -9,6 +9,8 @@
 #import "LeaguesViewController.h"
 #import <Parse/Parse.h>
 #import "SWRevealViewController.h"
+#import "Constants.h"
+#import "PNChart.h"
 
 @interface LeaguesViewController ()
 
@@ -197,17 +199,17 @@
 //create a header section for Leagues
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return HeaderHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
     UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    sectionHeader.backgroundColor = [UIColor greenColor];
-    sectionHeader.textAlignment = NSTextAlignmentCenter;
-    sectionHeader.font = [UIFont fontWithName:@"DIN Alternate" size:17];
-    sectionHeader.textColor = [UIColor blackColor];
+    sectionHeader.backgroundColor = HeaderColor;
+    sectionHeader.textAlignment = HeaderAlignment;
+    sectionHeader.font = HeaderFont;
+    sectionHeader.textColor = HeaderTextColor;
     
     sectionHeader.text =[self categories:section];
 

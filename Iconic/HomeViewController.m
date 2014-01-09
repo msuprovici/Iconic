@@ -298,7 +298,7 @@ static NSString *kImageKey = @"imageKey";
 //create a header section for My Team
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return HeaderHeight;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
@@ -319,10 +319,10 @@ static NSString *kImageKey = @"imageKey";
 {
     
     UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    sectionHeader.backgroundColor = PNWhite;
-    sectionHeader.textAlignment = NSTextAlignmentCenter;
-    sectionHeader.font = [UIFont fontWithName:@"DIN Alternate" size:17];
-    sectionHeader.textColor = [UIColor blackColor];
+    sectionHeader.backgroundColor = HeaderColor;
+    sectionHeader.textAlignment = HeaderAlignment;
+    sectionHeader.font = HeaderFont;
+    sectionHeader.textColor = HeaderTextColor;
     
     
     

@@ -16,6 +16,9 @@
 #import "MZFormSheetController.h"
 #import "CustomTransition.h"
 
+#import "PNChart.h"
+#import "Constants.h"
+
 
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
@@ -247,20 +250,20 @@ static NSString *kImageKey = @"imageKey";
         return 5;
     }
     else
-    return 20;
+    return HeaderHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    sectionHeader.backgroundColor = [UIColor greenColor];
-    sectionHeader.textAlignment = NSTextAlignmentCenter;
-    sectionHeader.font = [UIFont boldSystemFontOfSize:15];
-    sectionHeader.textColor = [UIColor blackColor];
+    sectionHeader.backgroundColor = HeaderColor;
+    sectionHeader.textAlignment = HeaderAlignment;
+    sectionHeader.font = HeaderFont;
+    sectionHeader.textColor = HeaderTextColor;
     
     if (section == 0)
     {
-        sectionHeader.backgroundColor = [UIColor whiteColor];
+        sectionHeader.backgroundColor = HeaderColor;
         sectionHeader.text = nil;
     }
     else

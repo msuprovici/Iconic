@@ -10,7 +10,8 @@
 #import "ScheduleGenerator.h"
 #import <Parse/Parse.h>
 #import "SWRevealViewController.h"
-
+#import "PNChart.h"
+#import  "Constants.h"
 @interface ScheduleViewController ()
 
 @property NSMutableArray *scheduledMatchups;
@@ -273,17 +274,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return HeaderHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
     UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    sectionHeader.backgroundColor = [UIColor greenColor];
-    sectionHeader.textAlignment = NSTextAlignmentCenter;
-    sectionHeader.font = [UIFont fontWithName:@"DIN Alternate" size:17];
-    sectionHeader.textColor = [UIColor blackColor];
+    sectionHeader.backgroundColor = HeaderColor;
+    sectionHeader.textAlignment = HeaderAlignment;
+    sectionHeader.font = HeaderFont;
+    sectionHeader.textColor = HeaderTextColor;
     
     sectionHeader.text =[self round:section];
     

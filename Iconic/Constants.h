@@ -9,6 +9,14 @@
 // Define an array of Facebook Ids for accounts to auto-follow on signup
 #define kAutoFollowAccountFacebookIds @[ ]
 
+
+//table headers
+#define HeaderColor PNWhite
+#define HeaderTextColor PNLightBlue
+#define HeaderHeight    20
+#define HeaderAlignment  NSTextAlignmentCenter
+#define HeaderFont [UIFont fontWithName:@"DIN Alternate" size:17]
+
 #pragma mark - NSUserDefaults
 extern NSString *const kUserDefaultsActivityFeedViewControllerLastRefreshKey;
 extern NSString *const kUserDefaultsCacheFacebookFriendsKey;
