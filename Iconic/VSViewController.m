@@ -42,8 +42,8 @@
     
     
     self.circleProgressView.trackTintColor = PNGrey;
-    self.circleProgressView.progressTintColor = PNDarkYellow;
-    //self.circleProgressView.roundedCorners = YES;
+    self.circleProgressView.progressTintColor = PNBlue;
+    self.circleProgressView.roundedCorners = YES;
     self.circleProgressView.thicknessRatio = .11f;
     
     
@@ -54,7 +54,7 @@
     [self startAnimation];
     
     //[self progressChange];
-    self.circleProgressView.roundedCorners = YES;
+    //self.circleProgressView.roundedCorners = YES;
 }
 
 - (void)progressChange
