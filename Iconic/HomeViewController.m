@@ -507,7 +507,7 @@ static NSString *kImageKey = @"imageKey";
         //XP Dials
 
         
-        cell.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
+        //cell.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
         //self.progressView.roundedCorners = YES;
        // cell.progressView.trackTintColor = [UIColor clearColor];
        // [cell.view addSubview:self.progressView];

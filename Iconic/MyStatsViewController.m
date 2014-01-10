@@ -110,10 +110,10 @@
         self.xpLabel.text = @"XP";
         self.pointsLabel.text = @"Points";
             
-        self.xpProgressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
-       
-        self.xpProgressView.trackTintColor = [UIColor clearColor];
-        [self.view addSubview:self.xpProgressView];
+//        self.xpProgressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
+//       
+//        self.xpProgressView.trackTintColor = [UIColor clearColor];
+//        [self.view addSubview:self.xpProgressView];
         
                 [self.view addSubview:self.xpProgressDial];
                 
@@ -164,12 +164,12 @@
             self.xpLabel.text = @"Steps"; //[NSString stringWithFormat:@"XP", myArray[i]];
             self.pointsLabel.text = @"Time Active";
             
-            self.xpProgressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
-            
-        
-            
-            self.xpProgressView.trackTintColor = [UIColor clearColor];
-            [self.view addSubview:self.xpProgressView];
+//            self.xpProgressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
+//            
+//        
+//            
+//            self.xpProgressView.trackTintColor = [UIColor clearColor];
+//            [self.view addSubview:self.xpProgressView];
             
             self.stepsProgressDial.trackTintColor = PNGrey;
             self.stepsProgressDial.progressTintColor = PNDarkBlue;

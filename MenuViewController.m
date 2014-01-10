@@ -126,7 +126,7 @@
         
          
          PFQuery* query = [PFUser query];
-         //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
          PFUser* currentUser = [PFUser currentUser];
 
          

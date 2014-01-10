@@ -34,10 +34,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
-    //self.progressView.roundedCorners = YES;
-    self.progressView.trackTintColor = [UIColor clearColor];
-    [self.view addSubview:self.progressView];
+//    self.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0, 30.0, 40.0, 40.0)];
+//    //self.progressView.roundedCorners = YES;
+//    self.progressView.trackTintColor = [UIColor clearColor];
+//    [self.view addSubview:self.progressView];
     
     
     
