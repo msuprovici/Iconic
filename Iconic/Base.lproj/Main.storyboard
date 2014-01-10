@@ -17,7 +17,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <scrollView key="tableHeaderView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="6sl-sf-QQB">
-                                    <rect key="frame" x="0.0" y="94" width="320" height="199"/>
+                                    <rect key="frame" x="0.0" y="64" width="320" height="199"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial1.png" id="ece-cm-hJQ">
@@ -41,7 +41,7 @@
                                 </scrollView>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="vsCell" rowHeight="140" id="QKs-Zm-DNV" customClass="VSCell">
-                                        <rect key="frame" x="0.0" y="315" width="320" height="140"/>
+                                        <rect key="frame" x="0.0" y="285" width="320" height="140"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QKs-Zm-DNV" id="opp-oI-1zY">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="139"/>
@@ -96,7 +96,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="teamatesCell" rowHeight="69" id="Rhv-4m-FPf" customClass="TeamatesCell">
-                                        <rect key="frame" x="0.0" y="455" width="320" height="69"/>
+                                        <rect key="frame" x="0.0" y="425" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rhv-4m-FPf" id="J21-Pl-FBE">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="68"/>
@@ -168,7 +168,6 @@
                     <navigationItem key="navigationItem" title="Iconic" id="zBm-BQ-Xmb">
                         <barButtonItem key="leftBarButtonItem" image="reveal-icon.png" id="O8W-iy-JBC"/>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="contentController" destination="ze2-rn-IC6" id="wGu-TM-PUv"/>
                         <outlet property="pageControl" destination="xci-qs-vQo" id="wgg-Yp-Ktx"/>
@@ -1137,19 +1136,18 @@
         <image name="second" width="30" height="30"/>
         <image name="tutorial1.png" width="220" height="220"/>
     </resources>
-    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TGw-xZ-C7R"/>
-        <segue reference="kd5-hD-PUf"/>
-        <segue reference="FhS-7d-4Cl"/>
-        <segue reference="kBj-mf-isH"/>
         <segue reference="YCB-li-iW7"/>
-        <segue reference="5qL-qO-dRN"/>
+        <segue reference="kBj-mf-isH"/>
+        <segue reference="I2H-DB-eRZ"/>
+        <segue reference="kd5-hD-PUf"/>
         <segue reference="djV-QL-gg7"/>
+        <segue reference="TGw-xZ-C7R"/>
+        <segue reference="5qL-qO-dRN"/>
     </inferredMetricsTieBreakers>
 </document>
