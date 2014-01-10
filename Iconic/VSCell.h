@@ -19,6 +19,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *VSTeamScore;
 
+
+@property (strong, nonatomic) IBOutlet UILabel *xChartLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *yChartLabel;
+
 @property (strong, nonatomic) IBOutlet PNLineChart *teamMatchChart;
 
 @end

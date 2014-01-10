@@ -43,25 +43,34 @@ static NSString *kImageKey = @"imageKey";
 - (void)viewDidLoad
 {
     
-    [super viewDidLoad];
-
-    
-    
-    //reveal menu slider
+    //reveal navigator
     [self.revealButtonItem setTarget: self.revealViewController];
-    [self.revealButtonItem setAction: @selector( revealToggle:)];
+    [self.revealButtonItem setAction: @selector( revealToggle: )];
     [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
     //this enables us to move the whole view with a swipe
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    self.revealViewController.rearViewRevealWidth = 150;
-    //self.revealViewController.rearViewRevealOverdraw = 130;
-   self.revealViewController.bounceBackOnOverdraw = YES;
-    self.revealViewController.stableDragOnOverdraw = YES;
-    //[self.revealViewController setFrontViewPosition:FrontViewPositionRight];
 
     
     //Retrieve from Parse
     [self performSelector:@selector(retrieveFromParse)];
+    
+    
+    
+    
+//    //reveal menu slider
+//    [self.revealButtonItem setTarget: self.revealViewController];
+//    [self.revealButtonItem setAction: @selector( revealToggle:)];
+//    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
+//    //this enables us to move the whole view with a swipe
+//    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+//    self.revealViewController.rearViewRevealWidth = 150;
+//    //self.revealViewController.rearViewRevealOverdraw = 130;
+//   self.revealViewController.bounceBackOnOverdraw = YES;
+//    self.revealViewController.stableDragOnOverdraw = YES;
+//    //[self.revealViewController setFrontViewPosition:FrontViewPositionRight];
+
+    
+    
     
     
     
@@ -98,9 +107,10 @@ static NSString *kImageKey = @"imageKey";
     [self.teamatesTable addSubview:self.pageControl];
    
     
-         [self savePoints];
+         //[self savePoints];
     
     
+    [super viewDidLoad];
 
 
     
@@ -270,7 +280,7 @@ static NSString *kImageKey = @"imageKey";
 //        if (!error) {
 //            vsTeamsArray = [[NSArray alloc] initWithArray:objects];
 //        }
-//        //[teamatesTable reloadData];
+//        [teamatesTable reloadData];
 //    }];
     
     
@@ -304,7 +314,7 @@ static NSString *kImageKey = @"imageKey";
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            return 122;
+            return 140;
         }
     }
     else if (indexPath.section == 1)
@@ -375,20 +385,51 @@ static NSString *kImageKey = @"imageKey";
 //        
 //        //Opponent Team
 //        cell.VSTeam.text = [tempObject objectForKey:@"VSTeam"]; //Team Name
-//        cell.VSTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"VSTeamScore"]]; //Team Score
+//        cell.MyTeamScore.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score
         
         
         //Line Chart Section
         
         //For LineChart
-        PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, 275, 120)];
+        
+        //Static Labels
+        cell.yChartLabel.text = @"Points";
+        cell.yChartLabel.textColor = PNDeepGrey;
+        cell.yChartLabel.font = [UIFont systemFontOfSize:11];
+        cell.yChartLabel.textAlignment = NSTextAlignmentLeft;
+
+        cell.xChartLabel.text = @"Day";
+        cell.xChartLabel.textColor = PNDeepGrey;
+        cell.xChartLabel.font = [UIFont systemFontOfSize:11];
+        cell.xChartLabel.textAlignment = NSTextAlignmentCenter;
+        
+        //Dynamic Labels
+       // PFObject *tempObject = [vsTeamsArray objectAtIndex:indexPath.row]; //Get team score from Parse
+        
+        // cell.MyTeamScore.text = [NSString stringWithFormat:@"MyTeam %@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score from Parse
+        
+        cell.MyTeamScore.text = @"MyTeam 1532"; //hardcoded for demo
+        cell.MyTeamScore.textColor = PNBlue;
+        cell.MyTeamScore.font = [UIFont boldSystemFontOfSize:13];
+        cell.MyTeamScore.textAlignment = NSTextAlignmentLeft;
+        
+        
+        
+        //cell.VSTeamScore.text = [NSString stringWithFormat:@"Opponent %@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score from Parse
+        
+        cell.VSTeamScore.text = @"VsTeam 1711"; //hardcoded for demo
+        cell.VSTeamScore.textColor = PNFreshGreen;
+        cell.VSTeamScore.font = [UIFont boldSystemFontOfSize:13];
+        cell.VSTeamScore.textAlignment = NSTextAlignmentLeft;
+        
+        PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, 275, 115)];
         [lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5", @"6", @"7"]];
         //[lineChart setYLabels:@[@"0",@"100", @"200"]];
         
         // Line Chart No.1
         NSArray * data01Array = @[@60.1, @160.1, @126.4, @262.2, @186.2, @127.2, @176.2];
         PNLineChartData *data01 = [PNLineChartData new];
-        data01.color = PNFreshGreen;
+        data01.color = PNBlue;
         data01.itemCount = lineChart.xLabels.count;
         data01.getData = ^(NSUInteger index) {
             CGFloat yValue = [[data01Array objectAtIndex:index] floatValue];
@@ -397,7 +438,7 @@ static NSString *kImageKey = @"imageKey";
         // Line Chart No.2
         NSArray * data02Array = @[@20.1, @180.1, @26.4, @202.2, @126.2, @167.2, @276.2];
         PNLineChartData *data02 = [PNLineChartData new];
-        data02.color = PNDeepGrey;
+        data02.color = PNFreshGreen;
         data02.itemCount = lineChart.xLabels.count;
         data02.getData = ^(NSUInteger index) {
             CGFloat yValue = [[data02Array objectAtIndex:index] floatValue];
@@ -407,7 +448,10 @@ static NSString *kImageKey = @"imageKey";
         lineChart.chartData = @[data01, data02];
         [lineChart strokeChart];
         [cell.teamMatchChart addSubview:lineChart];
-        
+       [cell addSubview:cell.yChartLabel];
+       [cell addSubview:cell.xChartLabel];
+        [cell addSubview:cell.MyTeamScore];
+        [cell addSubview:cell.VSTeamScore];
         
         
         
@@ -438,7 +482,7 @@ static NSString *kImageKey = @"imageKey";
         
         //Using calculatePoints method to generate points:  hardcoded step count to 100 for now for now
        
-        //Utility * points =  [[Utility alloc]init] ;
+        
         //cell.teamtePoints.text = [NSString stringWithFormat:@"%f", [points calculatePoints:100]];
         cell.teamteXP.text = [NSString stringWithFormat:@"%@",[tempObject objectForKey:@"xp"]];
         
@@ -456,14 +500,7 @@ static NSString *kImageKey = @"imageKey";
 
         
         //XP Dials
-//        
-//        PNCircleChart * circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(0, 0, 40, 40.0) andTotal:[NSNumber numberWithInt:100] andCurrent:[NSNumber numberWithInt:60]];
-//        circleChart.backgroundColor = [UIColor clearColor];
-//        [circleChart setStrokeColor:PNGreen];
-//        [circleChart strokeChart];
-//        
-//        
-//        [cell.circleProgressView addSubview:circleChart];
+
         
         cell.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
         //self.progressView.roundedCorners = YES;
@@ -473,8 +510,8 @@ static NSString *kImageKey = @"imageKey";
         
         
         cell.circleProgressView.trackTintColor = PNGrey;
-        cell.circleProgressView.progressTintColor = PNFreshGreen;
-        //self.circleProgressView.roundedCorners = YES;
+        cell.circleProgressView.progressTintColor = PNBlue;
+        cell.circleProgressView.roundedCorners = YES;
         cell.circleProgressView.thicknessRatio = .25f;
         
         

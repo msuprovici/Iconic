@@ -44,29 +44,29 @@
         self.window.rootViewController = rootViewController;
     }
 
-    [self customizeAppearance];
+   // [self customizeAppearance];
     
     // Override point for customization after application launch.
     return YES;
 }
 
-- (void)customizeAppearance
-{
-    // Customize the title text for *all* UINavigationBars
-    /*[[UINavigationBar appearance] setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
-      NSForegroundColorAttributeName,[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],
-      NSShadowAttributeName, [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
-      NSShadowAttributeName, [UIFont fontWithName:@"DIN Alternate" size:17],
-      NSFontAttributeName,
-      nil]];*/
-    
-    
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
-    
-   
-}
+//- (void)customizeAppearance
+//{
+//    // Customize the title text for *all* UINavigationBars
+//    /*[[UINavigationBar appearance] setTitleTextAttributes:
+//     [NSDictionary dictionaryWithObjectsAndKeys:
+//      [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
+//      NSForegroundColorAttributeName,[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],
+//      NSShadowAttributeName, [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
+//      NSShadowAttributeName, [UIFont fontWithName:@"DIN Alternate" size:17],
+//      NSFontAttributeName,
+//      nil]];*/
+//    
+//    
+//    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:17], NSFontAttributeName, nil]];
+//    
+//   
+//}
 
 // Facebook oauth callback
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {

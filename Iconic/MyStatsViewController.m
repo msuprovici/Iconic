@@ -116,12 +116,13 @@
         [self.view addSubview:self.xpProgressView];
         
                 [self.view addSubview:self.xpProgressDial];
+                
             self.stepsProgressDial.hidden = true;
 //             self.stepsProgressDial.trackTintColor = [UIColor clearColor];
 //            self.stepsProgressDial.progressTintColor = [UIColor clearColor];
             
             self.xpProgressDial.trackTintColor = PNGrey;
-            self.xpProgressDial.progressTintColor = PNFreshGreen;
+            self.xpProgressDial.progressTintColor = PNBlue;
             
             //set the xp value here?
 //            self.xpValue.text = @"3";
@@ -231,6 +232,10 @@
         
         //self.circleProgressView.roundedCorners = YES;
         self.xpProgressDial.thicknessRatio = .25f;
+        self.xpProgressDial.roundedCorners = YES;
+        
+//        self.stepsProgressDial.thicknessRatio = .25f;
+//        self.stepsProgressDial.roundedCorners = YES;
 
         
         

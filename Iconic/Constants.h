@@ -12,7 +12,7 @@
 
 //table headers
 #define HeaderColor PNWhite
-#define HeaderTextColor PNLightBlue
+#define HeaderTextColor PNDeepGrey
 #define HeaderHeight    20
 #define HeaderAlignment  NSTextAlignmentCenter
 #define HeaderFont [UIFont boldSystemFontOfSize:17]

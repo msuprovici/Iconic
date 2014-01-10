@@ -9,7 +9,7 @@
 #import "MenuViewController.h"
 #import "ScheduleViewController.h"
 #import "SWRevealViewController.h"
-
+#import "Constants.h"
 @implementation SWUITableViewCell
 
 @end
@@ -22,7 +22,10 @@
 
 - (void)viewDidLoad
 {
-    [self performSelector:@selector(retrieveFromParse)];
+    
+    //[super viewDidLoad];
+    
+    
 }
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
@@ -66,28 +69,6 @@
         };
     }
 }
-
-
-//to do: wire this to the correspoing user class in parse instead of "Test"
-- (void) retrieveFromParse {
-    
-    //My Teamates
-    PFQuery *retrieveTeamates = [PFQuery queryWithClassName:@"Test"];
-    retrieveTeamates.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    
-    
-    [retrieveTeamates findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        NSLog(@"%@", objects);
-        if (!error) {
-            playerProfile = [[NSArray alloc] initWithArray:objects];
-        }
-        //[self reloadData];
-    }];
-    
-    
-}
-
 
 
 
@@ -140,21 +121,33 @@
      if (indexPath.row == 0) {
                 SWUITableViewCell *profileCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
-        PFObject *tempObject = [playerProfile objectAtIndex:indexPath.row];
+        
+         
+         PFQuery* query = [PFUser query];
+         //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+         PFUser* currentUser = [PFUser currentUser];
+
+         
+         if (currentUser) {
+         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+         
         
         //My Profile Name
-        profileCell.profileName.text = [tempObject objectForKey:@"teammate"];
+        profileCell.profileName.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kUsername]] ;
         
-        
-        //My Profile Picture
-        PFFile *imageFile = [tempObject objectForKey: @"Photo"];
-        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if(!error)
-            {
-                profileCell.profilePhoto.image = [UIImage imageWithData:data];
-            }
-        }];
-        
+        profileCell.profilePhoto.file = [currentUser objectForKey:kProfilePicture];
+             
+         PFImageView *photo = [[PFImageView alloc] init];
+         
+         photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
+         photo.file = (PFFile *)profileCell.profilePhoto.file;
+         
+         [photo loadInBackground];
+             
+             [profileCell addSubview:profileCell.profilePhoto];
+         }];
+             
+}
         return profileCell;
     }
     

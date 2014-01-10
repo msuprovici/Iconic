@@ -11,9 +11,10 @@
 
 
 @interface SWUITableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *profilePhoto;
+
 @property (weak, nonatomic) IBOutlet UILabel *profileName;
 
+@property (strong, nonatomic) IBOutlet PFImageView *profilePhoto;
 
 
 @end
