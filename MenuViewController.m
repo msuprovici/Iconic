@@ -145,6 +145,13 @@
          photo.file = (PFFile *)profileCell.profilePhoto.file;
          
          [photo loadInBackground];
+             CALayer *imageLayer = profileCell.profilePhoto.layer;
+             [imageLayer setCornerRadius:profileCell.profilePhoto.frame.size.width/2];
+             [imageLayer setBorderWidth:0];
+             
+             [imageLayer setMasksToBounds:YES];
+
+             
              
              [profileCell addSubview:profileCell.profilePhoto];
          }];

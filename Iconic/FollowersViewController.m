@@ -169,6 +169,12 @@
          }];
          
      }
+     //turn photo to circle
+     CALayer *imageLayer = cell.thumbnailPhoto.layer;
+     [imageLayer setCornerRadius:cell.thumbnailPhoto.frame.size.width/2];
+     [imageLayer setBorderWidth:0];
+     [imageLayer setMasksToBounds:YES];
+
 
      
  

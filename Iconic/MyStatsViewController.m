@@ -10,6 +10,9 @@
 #import  <Parse/Parse.h>
 #import "Constants.h"
 
+#import "UIImage+RoundedCornerAdditions.h"
+#import "UIImage+ResizeAdditions.h"
+
 @interface MyStatsViewController ()
 {
     int pointslabelNumber;
@@ -28,18 +31,6 @@
 @synthesize timer = _timer;
 
 
-
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        //pageNumber = page;
-    }
-    return self;
-}
- */
 
 - (id)initWithPointsLabelNumber:(NSUInteger)pointslabel
 {
@@ -61,7 +52,7 @@
     
     [super viewDidLoad];
     
- //self.myPageControl.currentPage = pointslabelNumber;
+
     
     //Cycle through label string
     for (int i = 0; i <= pointslabelNumber; i++) {
@@ -82,7 +73,7 @@
                 [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                     self.playerName.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kUsername]] ;
                     
-                    self.viewTitle.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerTitle]] ;
+                    //self.viewTitle.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerTitle]] ;
                     
                     self.pointsValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerPoints]];
                     
@@ -96,41 +87,31 @@
                     
                     photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
                     photo.file = (PFFile *)self.playerPhoto.file;
-                    
+                    photo.image = [photo.image thumbnailImage:280 transparentBorder:0 cornerRadius:10 interpolationQuality:kCGInterpolationHigh];
                     [photo loadInBackground];
                     
-                    
+                    //turn photo to circle
+                    CALayer *imageLayer = self.playerPhoto.layer;
+                    [imageLayer setCornerRadius:self.playerPhoto.frame.size.width/2];
+                    [imageLayer setBorderWidth:0];
+                    [imageLayer setMasksToBounds:YES];
+               
                 }];
                 
                 
             }
 
            
-        
+        self.viewTitle.hidden = YES;
         self.xpLabel.text = @"XP";
         self.pointsLabel.text = @"Points";
             
-//        self.xpProgressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
-//       
-//        self.xpProgressView.trackTintColor = [UIColor clearColor];
-//        [self.view addSubview:self.xpProgressView];
-        
-                [self.view addSubview:self.xpProgressDial];
                 
             self.stepsProgressDial.hidden = true;
-//             self.stepsProgressDial.trackTintColor = [UIColor clearColor];
-//            self.stepsProgressDial.progressTintColor = [UIColor clearColor];
+
             
             self.xpProgressDial.trackTintColor = PNGrey;
             self.xpProgressDial.progressTintColor = PNBlue;
-            
-            //set the xp value here?
-//            self.xpValue.text = @"3";
-//            self.pointsValue.text = @"45";
-            
-            
-           // self.playerPhoto.image = [UIImage imageNamed: @"first"];
-            
             
                 
             [self startAnimation];
@@ -138,38 +119,14 @@
         }
         if (i == 1)
         {
-//            if (pointslabelNumber == 1) {
-//                
-//                
-////                self.pointsLabel.hidden = true;
-////                self.xpLabel.hidden = true;
-////                self.pointsValue.hidden = true;
-////                self.xpValue.hidden = true;
-//                self.playerName.hidden = true;
-//                self.playerPhoto.hidden = true;
-//                
-//                self.viewTitle.hidden = true;
-//                
-//                self.pointsValue.hidden = true;
-//                
-////                self.xpValue.hidden = true;
-////                self.stepsProgressDial.hidden = true;
-////                self.xpProgressDial.hidden = true;
-//                
-//                
-//            }
+
             if (pointslabelNumber == 1) {
 
              self.viewTitle.text = @"Today's Activity";
             self.xpLabel.text = @"Steps"; //[NSString stringWithFormat:@"XP", myArray[i]];
             self.pointsLabel.text = @"Time Active";
             
-//            self.xpProgressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
-//            
-//        
-//            
-//            self.xpProgressView.trackTintColor = [UIColor clearColor];
-//            [self.view addSubview:self.xpProgressView];
+
             
             self.stepsProgressDial.trackTintColor = PNGrey;
             self.stepsProgressDial.progressTintColor = PNDarkBlue;
@@ -224,23 +181,11 @@
             [self.stepsBarChart addSubview:barChart];
 
             
-           
-
-            
         }
         
-        
-        //self.circleProgressView.roundedCorners = YES;
         self.xpProgressDial.thicknessRatio = .25f;
         self.xpProgressDial.roundedCorners = YES;
         
-//        self.stepsProgressDial.thicknessRatio = .25f;
-//        self.stepsProgressDial.roundedCorners = YES;
-
-        
-        
-
-    
     }
     }
 //retrive table view data from parse

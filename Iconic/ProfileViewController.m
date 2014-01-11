@@ -379,7 +379,14 @@ static NSString *kImageKey = @"imageKey";
         photo.file = (PFFile *)feedCell.profilePhoto.file;
         
         [photo loadInBackground];
-         
+        
+        //turn photo to circle
+        CALayer *imageLayer = feedCell.profilePhoto.layer;
+        [imageLayer setCornerRadius:feedCell.profilePhoto.frame.size.width/2];
+        [imageLayer setBorderWidth:0];
+        [imageLayer setMasksToBounds:YES];
+        
+        
         return feedCell;
         
     }

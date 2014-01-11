@@ -503,7 +503,12 @@ static NSString *kImageKey = @"imageKey";
         
         [photo loadInBackground];
 
-        
+        //turn photo to circle
+        CALayer *imageLayer = cell.teamtePicture.layer;
+        [imageLayer setCornerRadius:cell.teamtePicture.frame.size.width/2];
+        [imageLayer setBorderWidth:0];
+        [imageLayer setMasksToBounds:YES];
+
         //XP Dials
 
         
