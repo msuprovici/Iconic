@@ -127,7 +127,7 @@ static NSString *kImageKey = @"imageKey";
     self.VSTeamScore.font = [UIFont boldSystemFontOfSize:15];
     self.VSTeamScore.textAlignment = NSTextAlignmentLeft;
     
-    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, 280, 210)];
+    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, 280, 188)];
     [lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5", @"6", @"7"]];
     //[lineChart setYLabels:@[@"0",@"100", @"200"]];
     

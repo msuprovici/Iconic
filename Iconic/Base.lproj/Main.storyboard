@@ -209,7 +209,7 @@
                                 </connections>
                             </pageControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NhF-r7-sxk">
-                                <rect key="frame" x="15" y="286" width="70" height="22"/>
+                                <rect key="frame" x="15" y="296" width="70" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -217,7 +217,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" id="U7e-ci-fmc" customClass="PNLineChart">
-                                <rect key="frame" x="20" y="292" width="280" height="200"/>
+                                <rect key="frame" x="20" y="304" width="280" height="188"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -234,7 +234,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RXG-16-KzV">
-                                <rect key="frame" x="180" y="275" width="97" height="21"/>
+                                <rect key="frame" x="180" y="274" width="97" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -242,7 +242,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fWw-1Y-jm8">
-                                <rect key="frame" x="146" y="489" width="49" height="22"/>
+                                <rect key="frame" x="146" y="478" width="49" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -262,6 +262,19 @@
                                     <outlet property="delegate" destination="iLB-wQ-v5S" id="1Zg-NI-Bmh"/>
                                 </connections>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hva-Od-iJh">
+                                <rect key="frame" x="15" y="519" width="292" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.32156862749999998" green="0.4549019608" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Join A Team">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="C4a-YJ-kes" kind="push" id="EEi-Sc-kIX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1252,11 +1265,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5qL-qO-dRN"/>
+        <segue reference="AzD-xV-CDV"/>
         <segue reference="kBj-mf-isH"/>
         <segue reference="1W0-hY-T94"/>
-        <segue reference="AzD-xV-CDV"/>
         <segue reference="YCB-li-iW7"/>
+        <segue reference="EEi-Sc-kIX"/>
         <segue reference="TGw-xZ-C7R"/>
         <segue reference="1aU-1X-0Xx"/>
     </inferredMetricsTieBreakers>

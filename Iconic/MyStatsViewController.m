@@ -137,8 +137,9 @@
             self.stepsProgressDial.thicknessRatio = 1.0f;
             
                         
-            self.pointsValue.text = @"15 min";
-            self.xpValue.text = @"200";
+            self.pointsValue.text = @"15";
+            
+            self.xpValue.text = @"20";
             
                
             
