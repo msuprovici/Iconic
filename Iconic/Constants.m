@@ -84,7 +84,7 @@ NSString *const kUserAlreadyAutoFollowedFacebookFriendsKey   = @"userAlreadyAuto
 
 #pragma mark - Activity Class
 // Class key
-NSString *const kActivityClassKey = @"Photo";// <-careful, make sure to set the right class here
+NSString *const kActivityClassKey = @"Activity";// <-careful, make sure to set the right class here
 
 // Field keys
 NSString *const kActivityKey         = @"image";

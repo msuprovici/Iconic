@@ -42,6 +42,12 @@
 		5C539A0F18679A57006676FA /* FollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A0E18679A57006676FA /* FollowersViewController.m */; };
 		5C539A1318679F3A006676FA /* PlayerTeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A1218679F3A006676FA /* PlayerTeamsViewController.m */; };
 		5C539A161867A2AC006676FA /* FollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A151867A2AC006676FA /* FollowCell.m */; };
+		5C8BB5B21884627000E89ADF /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B11884627000E89ADF /* TimelineViewController.m */; };
+		5C8BB5B51884AF7300E89ADF /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B41884AF7300E89ADF /* CommentsViewController.m */; };
+		5C8BB5B81884AFE900E89ADF /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B71884AFE900E89ADF /* CommentCell.m */; };
+		5C8BB5BB1884B05300E89ADF /* FollowersCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5BA1884B05300E89ADF /* FollowersCommentsCell.m */; };
+		5C8BB5C418860F9700E89ADF /* ActivityHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5C318860F9700E89ADF /* ActivityHeaderCell.m */; };
+		5C8BB5CB1886256400E89ADF /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5CA1886256400E89ADF /* TTTTimeIntervalFormatter.m */; };
 		5C966BB5187D0F480022AF0F /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C966BA1187D0F480022AF0F /* PNBar.m */; };
 		5C966BB6187D0F480022AF0F /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C966BA3187D0F480022AF0F /* PNBarChart.m */; };
 		5C966BB7187D0F480022AF0F /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C966BA7187D0F480022AF0F /* PNChartLabel.m */; };
@@ -172,6 +178,18 @@
 		5C539A1218679F3A006676FA /* PlayerTeamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTeamsViewController.m; sourceTree = "<group>"; };
 		5C539A141867A2AC006676FA /* FollowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowCell.h; sourceTree = "<group>"; };
 		5C539A151867A2AC006676FA /* FollowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowCell.m; sourceTree = "<group>"; };
+		5C8BB5B01884627000E89ADF /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
+		5C8BB5B11884627000E89ADF /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
+		5C8BB5B31884AF7300E89ADF /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
+		5C8BB5B41884AF7300E89ADF /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
+		5C8BB5B61884AFE900E89ADF /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		5C8BB5B71884AFE900E89ADF /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		5C8BB5B91884B05300E89ADF /* FollowersCommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowersCommentsCell.h; sourceTree = "<group>"; };
+		5C8BB5BA1884B05300E89ADF /* FollowersCommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowersCommentsCell.m; sourceTree = "<group>"; };
+		5C8BB5C218860F9700E89ADF /* ActivityHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityHeaderCell.h; sourceTree = "<group>"; };
+		5C8BB5C318860F9700E89ADF /* ActivityHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityHeaderCell.m; sourceTree = "<group>"; };
+		5C8BB5C91886256400E89ADF /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
+		5C8BB5CA1886256400E89ADF /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
 		5C966BA0187D0F480022AF0F /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
 		5C966BA1187D0F480022AF0F /* PNBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNBar.m; sourceTree = "<group>"; };
 		5C966BA2187D0F480022AF0F /* PNBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBarChart.h; sourceTree = "<group>"; };
@@ -293,6 +311,16 @@
 		5C2C1CBE185BAF12006722D2 /* Social */ = {
 			isa = PBXGroup;
 			children = (
+				5C8BB5B01884627000E89ADF /* TimelineViewController.h */,
+				5C8BB5B11884627000E89ADF /* TimelineViewController.m */,
+				5C8BB5C218860F9700E89ADF /* ActivityHeaderCell.h */,
+				5C8BB5C318860F9700E89ADF /* ActivityHeaderCell.m */,
+				5C8BB5B31884AF7300E89ADF /* CommentsViewController.h */,
+				5C8BB5B41884AF7300E89ADF /* CommentsViewController.m */,
+				5C8BB5B61884AFE900E89ADF /* CommentCell.h */,
+				5C8BB5B71884AFE900E89ADF /* CommentCell.m */,
+				5C8BB5B91884B05300E89ADF /* FollowersCommentsCell.h */,
+				5C8BB5BA1884B05300E89ADF /* FollowersCommentsCell.m */,
 				5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */,
 				5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */,
 				5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */,
@@ -432,6 +460,7 @@
 		5C4EF986186D01FF000E0E59 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				5C8BB5C8188616CB00E89ADF /* TTTTImeIntervalFormatter */,
 				5C966B9F187D0F480022AF0F /* PNChart */,
 				5CD9381B187B5000006CE08B /* MZFromSheetControler */,
 				5C4EF991186D0225000E0E59 /* UIImage Categories */,
@@ -477,6 +506,15 @@
 				5C539A151867A2AC006676FA /* FollowCell.m */,
 			);
 			name = Followers_following_teams;
+			sourceTree = "<group>";
+		};
+		5C8BB5C8188616CB00E89ADF /* TTTTImeIntervalFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				5C8BB5C91886256400E89ADF /* TTTTimeIntervalFormatter.h */,
+				5C8BB5CA1886256400E89ADF /* TTTTimeIntervalFormatter.m */,
+			);
+			name = TTTTImeIntervalFormatter;
 			sourceTree = "<group>";
 		};
 		5C966B9F187D0F480022AF0F /* PNChart */ = {
@@ -792,6 +830,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C539A161867A2AC006676FA /* FollowCell.m in Sources */,
+				5C8BB5B21884627000E89ADF /* TimelineViewController.m in Sources */,
 				5C539A0F18679A57006676FA /* FollowersViewController.m in Sources */,
 				5CD93829187B5047006CE08B /* MZTransition.m in Sources */,
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
@@ -808,6 +847,8 @@
 				5CD93826187B5047006CE08B /* MZFormSheetBackgroundWindow.m in Sources */,
 				5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */,
 				5C48B8961880CFAA00A09A1C /* SimpleHomeViewController.m in Sources */,
+				5C8BB5C418860F9700E89ADF /* ActivityHeaderCell.m in Sources */,
+				5C8BB5BB1884B05300E89ADF /* FollowersCommentsCell.m in Sources */,
 				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5C48B8BD1880F89F00A09A1C /* UIImage+ResizeAdditions.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
@@ -818,6 +859,7 @@
 				5C328BFB186002D300E0E985 /* LeaguesViewController.m in Sources */,
 				5C48B8BC1880F89F00A09A1C /* UIImage+AlphaAdditions.m in Sources */,
 				5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */,
+				5C8BB5CB1886256400E89ADF /* TTTTimeIntervalFormatter.m in Sources */,
 				5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */,
 				5C539A1318679F3A006676FA /* PlayerTeamsViewController.m in Sources */,
 				5CD93831187B510E006CE08B /* NSInvocation+Copy.m in Sources */,
@@ -825,12 +867,14 @@
 				5C966BBB187D0F480022AF0F /* PNLineChartData.m in Sources */,
 				5C349E9D18602ED600325A29 /* TeamPlayersViewController.m in Sources */,
 				5C2EA5441851641500B21C52 /* ContentController.m in Sources */,
+				5C8BB5B81884AFE900E89ADF /* CommentCell.m in Sources */,
 				5C966BB6187D0F480022AF0F /* PNBarChart.m in Sources */,
 				5C539A091864E900006676FA /* FeedCell.m in Sources */,
 				5C328BF5185F70C100E0E985 /* VSViewController.m in Sources */,
 				5C966BBC187D0F480022AF0F /* PNLineChartDataItem.m in Sources */,
 				5C2EA547185164BE00B21C52 /* MyStatsContentController.m in Sources */,
 				5CD93835187B551D006CE08B /* CustomTransition.m in Sources */,
+				5C8BB5B51884AF7300E89ADF /* CommentsViewController.m in Sources */,
 				5C539A031863F774006676FA /* ScheduleCell.m in Sources */,
 				5C966BB7187D0F480022AF0F /* PNChartLabel.m in Sources */,
 				5CD93838187B5627006CE08B /* DialogViewController.m in Sources */,
@@ -914,6 +958,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -953,7 +998,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_NS_ASSERTIONS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;

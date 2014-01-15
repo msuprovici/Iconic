@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DACircularProgressView.h"
-#import "PNChart.h";
+#import "PNChart.h"
 #import <Parse/Parse.h>
 
 @interface TeamatesCell : UITableViewCell

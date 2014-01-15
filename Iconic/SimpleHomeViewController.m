@@ -33,11 +33,17 @@ static NSString *kImageKey = @"imageKey";
 
 @property (strong, nonatomic) NSTimer *timer;
 
+//for background taks
+
+@property (nonatomic, assign) UIBackgroundTaskIdentifier activityPostBackgroundTaskId;
 
 @end
 
+
+
 @implementation SimpleHomeViewController
 
+@synthesize activityPostBackgroundTaskId;
 
 - (void)viewDidLoad
 {
@@ -290,7 +296,7 @@ static NSString *kImageKey = @"imageKey";
 
 -(void)savePoints
 {
-    
+   
     
     //Query special 'User' class in parse -> need to use PFUser
     PFQuery *query = [PFUser query];
@@ -327,10 +333,59 @@ static NSString *kImageKey = @"imageKey";
         PFObject *points = [PFUser currentUser];
         
         [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
-        points[kPlayerPoints]= [self calculatePoints:150];
+        points[kPlayerPoints]= [self calculatePoints:150];//<- hardcoded for now
+        
+        // Activity is public, but may only be modified by the user
+        PFACL *activityACL = [PFACL ACLWithUser:[PFUser currentUser]];
+        [activityACL setPublicReadAccess:YES];
+        points.ACL = activityACL;
+        
+        // Request a background execution task to allow us to finish uploading the points even if the app is backgrounded
+        self.activityPostBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+            [[UIApplication sharedApplication] endBackgroundTask:self.activityPostBackgroundTaskId];
+        }];
+
+        // save
         [points saveInBackground];
-        //[points saveEventually];
-        //[points refresh]; //<- long running operation on the main thread
+        
+//        [points saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            if (succeeded) {
+//                NSLog(@"Activity uploaded");
+//                
+//                [[Cache sharedCache] setAttributesForActivity:points likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
+//                
+//                // userInfo might contain any caption which might have been posted by the uploader
+//                if (userInfo) {
+//                    NSString *commentText = [userInfo objectForKey:kEditActivityViewControllerUserInfoCommentKey];
+//                    
+//                    if (commentText && commentText.length != 0) {
+//                        // create and save photo caption
+//                        PFObject *comment = [PFObject objectWithClassName:kPlayerActionClassKey];
+//                        [comment setObject:kPlayerActionTypeComment forKey:kPlayerActionTypeKey];
+//                        [comment setObject:points forKey:kActivityClassKey];
+//                        [comment setObject:[PFUser currentUser] forKey:kPlayerActionFromUserKey];
+//                        [comment setObject:[PFUser currentUser] forKey:kPlayerActionToUserKey];
+//                        [comment setObject:commentText forKey:kPlayerActionContentKey];
+//                        
+//                        PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+//                        [ACL setPublicReadAccess:YES];
+//                        comment.ACL = ACL;
+//                        
+//                        [comment saveEventually];
+//                        [[Cache sharedCache] incrementCommentCountForActivity:points];
+//                    }
+//                }
+//                
+//                [[NSNotificationCenter defaultCenter] postNotificationName:PAPTabBarControllerDidFinishEditingPhotoNotification object:points];
+//            } else {
+//                NSLog(@"Photo failed to save: %@", error);
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't post your photo" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
+//                [alert show];
+//            }
+//            [[UIApplication sharedApplication] endBackgroundTask:self.activityPostBackgroundTaskId];
+//        }];
+
+
     }
     
     
