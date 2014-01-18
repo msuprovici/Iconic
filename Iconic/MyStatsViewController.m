@@ -71,7 +71,7 @@
             if (currentUser) {
                 //Get all player stats from Parse
                 [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                    self.playerName.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kUsername]] ;
+                   // self.playerName.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kUsername]] ;
                     
                     //self.viewTitle.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerTitle]] ;
                     
@@ -79,33 +79,34 @@
                     
                     self.xpValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerXP]];
                     
-                    //Player photo
-                    //using PFImageView
-                    self.playerPhoto.file = [currentUser objectForKey:kProfilePicture];
-                    
-                    PFImageView *photo = [[PFImageView alloc] init];
-                    
-                    photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
-                    photo.file = (PFFile *)self.playerPhoto.file;
-                    photo.image = [photo.image thumbnailImage:280 transparentBorder:0 cornerRadius:10 interpolationQuality:kCGInterpolationHigh];
-                    [photo loadInBackground];
-                    
-                    //turn photo to circle
-                    CALayer *imageLayer = self.playerPhoto.layer;
-                    [imageLayer setCornerRadius:self.playerPhoto.frame.size.width/2];
-                    [imageLayer setBorderWidth:0];
-                    [imageLayer setMasksToBounds:YES];
+//                    //Player photo
+//                    //using PFImageView
+//                    self.playerPhoto.file = [currentUser objectForKey:kProfilePicture];
+//                    
+//                    PFImageView *photo = [[PFImageView alloc] init];
+//                    
+//                    photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
+//                    photo.file = (PFFile *)self.playerPhoto.file;
+//                    photo.image = [photo.image thumbnailImage:280 transparentBorder:0 cornerRadius:10 interpolationQuality:kCGInterpolationHigh];
+//                    [photo loadInBackground];
+//                    
+//                    //turn photo to circle
+//                    CALayer *imageLayer = self.playerPhoto.layer;
+//                    [imageLayer setCornerRadius:self.playerPhoto.frame.size.width/2];
+//                    [imageLayer setBorderWidth:0];
+//                    [imageLayer setMasksToBounds:YES];
                
                 }];
                 
                 
             }
 
-           
+        
         self.viewTitle.hidden = YES;
-        self.xpLabel.text = @"XP";
+        self.xpLabel.text = @"Level";
         self.pointsLabel.text = @"Points";
-            
+                
+            //self.timeActiveLabel.hidden = YES;
                 
             self.stepsProgressDial.hidden = true;
 
@@ -121,11 +122,16 @@
         {
 
             if (pointslabelNumber == 1) {
+                
+                self.viewTitle.hidden = YES;
 
-             self.viewTitle.text = @"Today's Activity";
+//            self.viewTitle.text = @"Today";
             self.xpLabel.text = @"Steps"; //[NSString stringWithFormat:@"XP", myArray[i]];
-            self.pointsLabel.text = @"Time Active";
-            
+            self.pointsLabel.text = @"Active";
+        
+            //self.xpLabel.hidden = YES;
+            //self.pointsLabel.hidden = YES;
+                
 
             
             self.stepsProgressDial.trackTintColor = PNGrey;
@@ -137,9 +143,11 @@
             self.stepsProgressDial.thicknessRatio = 1.0f;
             
                         
-            self.pointsValue.text = @"15";
+            self.timeActiveLabel.text = @"60%";
+           // self.pointsValue.hidden = YES;
             
-            self.xpValue.text = @"20";
+            
+            self.xpValue.text = @"2349";
             
                
             
@@ -152,7 +160,7 @@
             
             if (pointslabelNumber == 2) {
                 
-            
+            self.timeActiveLabel.hidden = YES;
             self.pointsLabel.hidden = true;
             self.xpLabel.hidden = true;
             self.pointsValue.hidden = true;

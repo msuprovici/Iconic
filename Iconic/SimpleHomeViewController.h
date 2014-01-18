@@ -28,9 +28,13 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
 
+@property (strong, nonatomic) IBOutlet UILabel *playerName;
+
+@property (strong, nonatomic) IBOutlet PFImageView *playerPhoto;
 
 
 //Team Chart labels
+
 
 
 

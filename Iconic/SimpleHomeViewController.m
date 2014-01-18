@@ -17,6 +17,9 @@
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
 
+#import "UIImage+RoundedCornerAdditions.h"
+#import "UIImage+ResizeAdditions.h"
+
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
 
@@ -60,7 +63,8 @@ static NSString *kImageKey = @"imageKey";
     //Retrieve from Parse
     [self performSelector:@selector(retrieveFromParse)];
     
-    
+    //show player name header
+    [self playerNameHeader];
     
     
     
@@ -104,12 +108,12 @@ static NSString *kImageKey = @"imageKey";
     //For LineChart
     
     //Static Labels
-    self.yChartLabel.text = @"Points";
+    //self.yChartLabel.text = @"Points";
     self.yChartLabel.textColor = PNDeepGrey;
     self.yChartLabel.font = [UIFont systemFontOfSize:11];
     self.yChartLabel.textAlignment = NSTextAlignmentLeft;
     
-    self.xChartLabel.text = @"Day";
+    //self.xChartLabel.text = @"Day";
     self.xChartLabel.textColor = PNDeepGrey;
     self.xChartLabel.font = [UIFont systemFontOfSize:11];
     self.xChartLabel.textAlignment = NSTextAlignmentCenter;
@@ -119,7 +123,7 @@ static NSString *kImageKey = @"imageKey";
     
     // cell.MyTeamScore.text = [NSString stringWithFormat:@"MyTeam %@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score from Parse
     
-    self.MyTeamScore.text = @"MyTeam 1532"; //hardcoded for demo
+    self.MyTeamScore.text = @"MyTeam"; //hardcoded for demo
     self.MyTeamScore.textColor = PNBlue;
     self.MyTeamScore.font = [UIFont boldSystemFontOfSize:15];
     self.MyTeamScore.textAlignment = NSTextAlignmentLeft;
@@ -128,13 +132,13 @@ static NSString *kImageKey = @"imageKey";
     
     //cell.VSTeamScore.text = [NSString stringWithFormat:@"Opponent %@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score from Parse
     
-    self.VSTeamScore.text = @"VsTeam 1711"; //hardcoded for demo
+    self.VSTeamScore.text = @"VsTeam"; //hardcoded for demo
     self.VSTeamScore.textColor = PNFreshGreen;
     self.VSTeamScore.font = [UIFont boldSystemFontOfSize:15];
     self.VSTeamScore.textAlignment = NSTextAlignmentLeft;
     
-    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, 280, 188)];
-    [lineChart setXLabels:@[@"1",@"2",@"3",@"4",@"5", @"6", @"7"]];
+    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, 280, 220)];
+    [lineChart setXLabels:@[@"S",@"M",@"T",@"W",@"T", @"F", @"S"]];
     //[lineChart setYLabels:@[@"0",@"100", @"200"]];
     
     // Line Chart No.1
@@ -286,6 +290,41 @@ static NSString *kImageKey = @"imageKey";
     
       
     
+}
+
+-(void) playerNameHeader
+{
+    // This is to generate thumbnail a player's thumbnail, name & title
+    PFQuery* query = [PFUser query];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    PFUser* currentUser = [PFUser currentUser];
+    
+    if (currentUser) {
+        //Get all player stats from Parse
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            self.playerName.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kUsername]] ;
+            
+           
+            
+            //Player photo
+            //using PFImageView
+            self.playerPhoto.file = [currentUser objectForKey:kProfilePicture];
+            
+            PFImageView *photo = [[PFImageView alloc] init];
+            
+            photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
+            photo.file = (PFFile *)self.playerPhoto.file;
+            photo.image = [photo.image thumbnailImage:280 transparentBorder:0 cornerRadius:10 interpolationQuality:kCGInterpolationHigh];
+            [photo loadInBackground];
+            
+            //turn photo to circle
+            CALayer *imageLayer = self.playerPhoto.layer;
+            [imageLayer setCornerRadius:self.playerPhoto.frame.size.width/2];
+            [imageLayer setBorderWidth:0];
+            [imageLayer setMasksToBounds:YES];
+            
+        }];
+    }
 }
 
 

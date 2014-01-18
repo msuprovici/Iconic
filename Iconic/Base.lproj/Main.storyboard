@@ -199,7 +199,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <pageControl opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="3" id="pp4-bC-Hv9">
-                                <rect key="frame" x="123" y="231" width="73" height="37"/>
+                                <rect key="frame" x="124" y="240" width="73" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="pageIndicatorTintColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
@@ -217,7 +217,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" id="U7e-ci-fmc" customClass="PNLineChart">
-                                <rect key="frame" x="20" y="304" width="280" height="188"/>
+                                <rect key="frame" x="20" y="320" width="280" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -250,11 +250,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="83S-Gt-Rep">
-                                <rect key="frame" x="0.0" y="65" width="320" height="200"/>
+                                <rect key="frame" x="0.0" y="72" width="320" height="211"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial1.png" id="cFv-Zz-Mvj">
-                                        <rect key="frame" x="0.0" y="327" width="62" height="62"/>
+                                        <rect key="frame" x="0.0" y="317" width="62" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
@@ -262,19 +262,17 @@
                                     <outlet property="delegate" destination="iLB-wQ-v5S" id="1Zg-NI-Bmh"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hva-Od-iJh">
-                                <rect key="frame" x="15" y="519" width="292" height="33"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="nvP-Ak-eUZ" customClass="PFImageView">
+                                <rect key="frame" x="114" y="72" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.32156862749999998" green="0.4549019608" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Join A Team">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="C4a-YJ-kes" kind="push" id="EEi-Sc-kIX"/>
-                                </connections>
-                            </button>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uXx-N8-ZNb">
+                                <rect key="frame" x="152" y="75" width="77" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -292,6 +290,8 @@
                         <outlet property="VSTeamScore" destination="RXG-16-KzV" id="CvZ-Kw-PeJ"/>
                         <outlet property="contentController" destination="ze2-rn-IC6" id="X1i-6N-i6N"/>
                         <outlet property="pageControl" destination="pp4-bC-Hv9" id="YR2-LS-lqO"/>
+                        <outlet property="playerName" destination="uXx-N8-ZNb" id="nDB-XD-jOK"/>
+                        <outlet property="playerPhoto" destination="nvP-Ak-eUZ" id="Oos-3i-cPo"/>
                         <outlet property="revealButtonItem" destination="USa-54-SfC" id="xS6-PI-IfK"/>
                         <outlet property="scrollView" destination="83S-Gt-Rep" id="f3n-ah-bHJ"/>
                         <outlet property="teamMatchChart" destination="U7e-ci-fmc" id="HG3-wD-t4A"/>
@@ -1472,12 +1472,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="EEi-Sc-kIX"/>
+        <segue reference="9JY-IR-Ra1"/>
         <segue reference="1W0-hY-T94"/>
         <segue reference="kBj-mf-isH"/>
         <segue reference="YCB-li-iW7"/>
         <segue reference="kd5-hD-PUf"/>
-        <segue reference="djV-QL-gg7"/>
+        <segue reference="1aU-1X-0Xx"/>
         <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>
