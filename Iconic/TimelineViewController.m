@@ -57,7 +57,9 @@
         // Customize the table
         
         // The className to query on
-        self.parseClassName = kActivityClassKey;//<- followers
+       // self.parseClassName = kActivityClassKey;//<- following
+        
+        self.parseClassName = @"Test";
         
         // Whether the built-in pagination is enabled
         self.paginationEnabled = YES;
@@ -156,99 +158,104 @@
 }
 
 #pragma mark - UITableViewDelegate
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == self.objects.count) {
-        // Load More section
-        return nil;
-    }
-    
-     ActivityHeaderCell *headerView = [self dequeueReusableSectionHeaderView];
-    
-    if (!headerView) {
-        headerView = [[ActivityHeaderCell alloc] initWithFrame:CGRectMake( 0.0f, 0.0f, self.view.bounds.size.width, 44.0f) buttons:ActivityHeaderButtonsDefault];
-        headerView.delegate = self;
-        [self.reusableSectionHeaderCells addObject:headerView];
-    }
-    
-   PFObject *activity = [self.objects objectAtIndex:section];
-    [headerView setActivity:activity];
-    headerView.tag = section;
-    [headerView.likeButton setTag:section];
-    
-    NSDictionary *attributesForActivity = [[Cache sharedCache] attributesForActivity:activity];
-    
-    if (attributesForActivity) {
-        [headerView setLikeStatus:[[Cache sharedCache] isActivityLikedByCurrentUser:activity]];
-        [headerView.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
-        [headerView.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
-        
-        if (headerView.likeButton.alpha < 1.0f || headerView.commentButton.alpha < 1.0f) {
-            [UIView animateWithDuration:0.200f animations:^{
-                headerView.likeButton.alpha = 1.0f;
-                headerView.commentButton.alpha = 1.0f;
-            }];
-        }
-    } else {
-        headerView.likeButton.alpha = 0.0f;
-        headerView.commentButton.alpha = 0.0f;
-    
-        @synchronized(self) {
-            // check if we can update the cache
-            NSNumber *outstandingSectionHeaderQueryStatus = [self.outstandingSectionHeaderQueries objectForKey:[NSNumber numberWithInt:section]];
-            if (!outstandingSectionHeaderQueryStatus) {
-                PFQuery *query = [Utility queryForActivitiesOnActivity:activity cachePolicy:kPFCachePolicyNetworkOnly];
-                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                    @synchronized(self) {
-                        [self.outstandingSectionHeaderQueries removeObjectForKey:[NSNumber numberWithInt:section]];
-                        
-                        if (error) {
-                            return;
-                        }
-                        
-                        NSMutableArray *likers = [NSMutableArray array];
-                        NSMutableArray *commenters = [NSMutableArray array];
-                        
-                        BOOL isLikedByCurrentUser = NO;
-                        
-                        for (PFObject *activity in objects) {
-                            if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeLike] && [activity objectForKey:kPlayerActionFromUserKey]) {
-                                [likers addObject:[activity objectForKey:kPlayerActionFromUserKey]];
-                            } else if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeComment] && [activity objectForKey:kPlayerActionFromUserKey]) {
-                                [commenters addObject:[activity objectForKey:kPlayerActionFromUserKey]];
-                            }
-                            
-                            if ([[[activity objectForKey:kPlayerActionFromUserKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
-                                if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeLike]) {
-                                    isLikedByCurrentUser = YES;
-                                }
-                            }
-                        }
-                        
-                        [[Cache sharedCache] setAttributesForActivity:activity likers:likers commenters:commenters likedByCurrentUser:isLikedByCurrentUser];
-                        
-                        if (headerView.tag != section) {
-                            return;
-                        }
-                        
-                        [headerView setLikeStatus:[[Cache sharedCache] isActivityLikedByCurrentUser:activity]];
-                        [headerView.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
-                        [headerView.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
-                        
-                        if (headerView.likeButton.alpha < 1.0f || headerView.commentButton.alpha < 1.0f) {
-                            [UIView animateWithDuration:0.200f animations:^{
-                                headerView.likeButton.alpha = 1.0f;
-                                headerView.commentButton.alpha = 1.0f;
-                            }];
-                        }
-                    }
-                }];
-            }
-        }
-    }
-    
-    return headerView;
-}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    
+//    static NSString *CellIdentifier = @"SectionHeader";
+//    ActivityHeaderCell *headerView = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    
+//    if (section == self.objects.count) {
+//        // Load More section
+//        return nil;
+//    }
+//    
+//     //ActivityHeaderCell *headerView = [self dequeueReusableSectionHeaderView];
+//    
+//    if (!headerView) {
+//        headerView = [[ActivityHeaderCell alloc] initWithFrame:CGRectMake( 0.0f, 0.0f, self.view.bounds.size.width, 44.0f) buttons:ActivityHeaderButtonsDefault];
+//        headerView.delegate = self;
+//        [self.reusableSectionHeaderCells addObject:headerView];
+//    }
+//    
+//   PFObject *activity = [self.objects objectAtIndex:section];
+//    [headerView setActivity:activity];
+//    headerView.tag = section;
+//    [headerView.likeButton setTag:section];
+//    
+//    NSDictionary *attributesForActivity = [[Cache sharedCache] attributesForActivity:activity];
+//    
+//    if (attributesForActivity) {
+//        [headerView setLikeStatus:[[Cache sharedCache] isActivityLikedByCurrentUser:activity]];
+//        [headerView.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
+//        [headerView.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
+//        
+//        if (headerView.likeButton.alpha < 1.0f || headerView.commentButton.alpha < 1.0f) {
+//            [UIView animateWithDuration:0.200f animations:^{
+//                headerView.likeButton.alpha = 1.0f;
+//                headerView.commentButton.alpha = 1.0f;
+//            }];
+//        }
+//    } else {
+//        headerView.likeButton.alpha = 0.0f;
+//        headerView.commentButton.alpha = 0.0f;
+//    
+//        @synchronized(self) {
+//            // check if we can update the cache
+//            NSNumber *outstandingSectionHeaderQueryStatus = [self.outstandingSectionHeaderQueries objectForKey:[NSNumber numberWithInt:section]];
+//            if (!outstandingSectionHeaderQueryStatus) {
+//                PFQuery *query = [Utility queryForActivitiesOnActivity:activity cachePolicy:kPFCachePolicyNetworkOnly];
+//                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//                    @synchronized(self) {
+//                        [self.outstandingSectionHeaderQueries removeObjectForKey:[NSNumber numberWithInt:section]];
+//                        
+//                        if (error) {
+//                            return;
+//                        }
+//                        
+//                        NSMutableArray *likers = [NSMutableArray array];
+//                        NSMutableArray *commenters = [NSMutableArray array];
+//                        
+//                        BOOL isLikedByCurrentUser = NO;
+//                        
+//                        for (PFObject *activity in objects) {
+//                            if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeLike] && [activity objectForKey:kPlayerActionFromUserKey]) {
+//                                [likers addObject:[activity objectForKey:kPlayerActionFromUserKey]];
+//                            } else if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeComment] && [activity objectForKey:kPlayerActionFromUserKey]) {
+//                                [commenters addObject:[activity objectForKey:kPlayerActionFromUserKey]];
+//                            }
+//                            
+//                            if ([[[activity objectForKey:kPlayerActionFromUserKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+//                                if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeLike]) {
+//                                    isLikedByCurrentUser = YES;
+//                                }
+//                            }
+//                        }
+//                        
+//                        [[Cache sharedCache] setAttributesForActivity:activity likers:likers commenters:commenters likedByCurrentUser:isLikedByCurrentUser];
+//                        
+//                        if (headerView.tag != section) {
+//                            return;
+//                        }
+//                        
+//                        [headerView setLikeStatus:[[Cache sharedCache] isActivityLikedByCurrentUser:activity]];
+//                        [headerView.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
+//                        [headerView.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
+//                        
+//                        if (headerView.likeButton.alpha < 1.0f || headerView.commentButton.alpha < 1.0f) {
+//                            [UIView animateWithDuration:0.200f animations:^{
+//                                headerView.likeButton.alpha = 1.0f;
+//                                headerView.commentButton.alpha = 1.0f;
+//                            }];
+//                        }
+//                    }
+//                }];
+//            }
+//        }
+//    }
+//    
+//    return headerView;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == self.objects.count) {
@@ -319,7 +326,8 @@
      
      
      // Query for the friends the current user is following
-     PFQuery *followingActivitiesQuery = [PFQuery queryWithClassName:kPlayerActionClassKey];
+     PFQuery *followingActivitiesQuery = [PFQuery queryWithClassName:@"Test"];
+     //PFQuery *followingActivitiesQuery = [PFQuery queryWithClassName:kPlayerActionClassKey];
      [followingActivitiesQuery whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeFollow];
      [followingActivitiesQuery whereKey:kPlayerActionFromUserKey equalTo:[PFUser currentUser]];
      followingActivitiesQuery.cachePolicy = kPFCachePolicyNetworkOnly;
@@ -365,48 +373,200 @@
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
 // and the imageView being the imageKey in the object.
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+//    static NSString *CellIdentifier = @"followCell";
+//    
+//    //PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    FeedCell *cell = (FeedCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    if (cell == nil) {
+//        cell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+//    
+//    // Configure the cell
+//    /*cell.textLabel.text = [object objectForKey:self.textKey];
+//     cell.imageView.file = [object objectForKey:self.imageKey];*/
+//    
+//    cell.activityStatusText.text = [object objectForKey:self.textKey];
+//    //cell.thumbnailPhoto.image = [object objectForKey:@"Photo"];
+//    
+//    PFFile *imageFile = [object objectForKey:self.imageKey];
+//    
+//    if([imageFile isDataAvailable])
+//    {
+//        
+//        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//            if(!error)
+//            {
+//                cell.profilePhoto.image = [UIImage imageWithData:data];
+//            }
+//        }];
+//        
+//    }
+//    //turn photo to circle
+//    CALayer *imageLayer = cell.profilePhoto.layer;
+//    [imageLayer setCornerRadius:cell.profilePhoto.frame.size.width/2];
+//    [imageLayer setBorderWidth:0];
+//    [imageLayer setMasksToBounds:YES];
+//    
+//    
+//    
+//    
+//    return cell;
+//}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    static NSString *CellIdentifier = @"follow";
     
-    //PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    FeedCell *cell = (FeedCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"SectionHeader";
+    ActivityHeaderCell *headerView = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil) {
-        cell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
     
-    // Configure the cell
-    /*cell.textLabel.text = [object objectForKey:self.textKey];
-     cell.imageView.file = [object objectForKey:self.imageKey];*/
     
-    cell.activityStatusText.text = [object objectForKey:self.textKey];
-    //cell.thumbnailPhoto.image = [object objectForKey:@"Photo"];
+//    if (!headerView) {
+//        headerView = [[ActivityHeaderCell alloc] initWithFrame:CGRectMake( 0.0f, 0.0f, self.view.bounds.size.width, 44.0f) buttons:ActivityHeaderButtonsDefault];
+//        headerView.delegate = self;
+//        [self.reusableSectionHeaderCells addObject:headerView];
+//    }
     
-    PFFile *imageFile = [object objectForKey:self.imageKey];
+    //PFObject *activity = [self.objects objectAtIndex:section];
     
-    if([imageFile isDataAvailable])
-    {
+    PFObject *activity = object;
+    [headerView setActivity:activity];
+//    headerView.tag = object;
+//    [headerView.likeButton setTag:object];
+    
+    NSDictionary *attributesForActivity = [[Cache sharedCache] attributesForActivity:activity];
+    
+    if (attributesForActivity) {
+        [headerView setLikeStatus:[[Cache sharedCache] isActivityLikedByCurrentUser:activity]];
+        [headerView.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
+        [headerView.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
         
-        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if(!error)
-            {
-                cell.profilePhoto.image = [UIImage imageWithData:data];
+        if (headerView.likeButton.alpha < 1.0f || headerView.commentButton.alpha < 1.0f) {
+            [UIView animateWithDuration:0.200f animations:^{
+                headerView.likeButton.alpha = 1.0f;
+                headerView.commentButton.alpha = 1.0f;
+            }];
+        }
+    } else {
+        headerView.likeButton.alpha = 0.0f;
+        headerView.commentButton.alpha = 0.0f;
+        
+        @synchronized(self) {
+            // check if we can update the cache
+            NSNumber *outstandingSectionHeaderQueryStatus = [self.outstandingSectionHeaderQueries objectForKey:object];
+            if (!outstandingSectionHeaderQueryStatus) {
+                PFQuery *query = [Utility queryForActivitiesOnActivity:activity cachePolicy:kPFCachePolicyNetworkOnly];
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    @synchronized(self) {
+                        [self.outstandingSectionHeaderQueries removeObjectForKey:object];
+                        
+                        if (error) {
+                            return;
+                        }
+                        
+                        NSMutableArray *likers = [NSMutableArray array];
+                        NSMutableArray *commenters = [NSMutableArray array];
+                        
+                        BOOL isLikedByCurrentUser = NO;
+                        
+                        for (PFObject *activity in objects) {
+                            if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeLike] && [activity objectForKey:kPlayerActionFromUserKey]) {
+                                [likers addObject:[activity objectForKey:kPlayerActionFromUserKey]];
+                            } else if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeComment] && [activity objectForKey:kPlayerActionFromUserKey]) {
+                                [commenters addObject:[activity objectForKey:kPlayerActionFromUserKey]];
+                            }
+                            
+                            if ([[[activity objectForKey:kPlayerActionFromUserKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+                                if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeLike]) {
+                                    isLikedByCurrentUser = YES;
+                                }
+                            }
+                        }
+                        
+                        [[Cache sharedCache] setAttributesForActivity:activity likers:likers commenters:commenters likedByCurrentUser:isLikedByCurrentUser];
+                        
+//                        if (headerView.tag != section) {
+//                            return;
+//                        }
+                        
+                        [headerView setLikeStatus:[[Cache sharedCache] isActivityLikedByCurrentUser:activity]];
+                        [headerView.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
+                        [headerView.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
+                        
+                        if (headerView.likeButton.alpha < 1.0f || headerView.commentButton.alpha < 1.0f) {
+                            [UIView animateWithDuration:0.200f animations:^{
+                                headerView.likeButton.alpha = 1.0f;
+                                headerView.commentButton.alpha = 1.0f;
+                            }];
+                        }
+                    }
+                }];
             }
-        }];
-        
+        }
     }
-    //turn photo to circle
-    CALayer *imageLayer = cell.profilePhoto.layer;
-    [imageLayer setCornerRadius:cell.profilePhoto.frame.size.width/2];
-    [imageLayer setBorderWidth:0];
-    [imageLayer setMasksToBounds:YES];
+    
+    return headerView;
     
     
     
     
-    return cell;
+    
+//    static NSString *CellIdentifier = @"followCell";
+    
+//    if (indexPath.section == self.objects.count) {
+//        // this behavior is normally handled by PFQueryTableViewController, but we are using sections for each object and we must handle this ourselves
+//        UITableViewCell *cell = [self tableView:tableView cellForNextPageAtIndexPath:indexPath];
+//        
+//        
+//        return cell;
+//    } else {
+//        FeedCell *cell = (FeedCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//        
+//        if (cell == nil) {
+//            cell = [[FeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//            //[cell.photoButton addTarget:self action:@selector(didTapOnPhotoAction:) forControlEvents:UIControlEventTouchUpInside];
+//        }
+//        
+////        cell.photoButton.tag = indexPath.section;
+////        cell.imageView.image = [UIImage imageNamed:@"PlaceholderPhoto.png"];
+////        
+////        if (object) {
+////            cell.imageView.file = [object objectForKey:kPAPPhotoPictureKey];
+////            
+////            // PFQTVC will take care of asynchronously downloading files, but will only load them when the tableview is not moving. If the data is there, let's load it right away.
+////            if ([cell.imageView.file isDataAvailable]) {
+////                [cell.imageView loadInBackground];
+////            }
+////        }
+//        
+//        return cell;
+//    }
+    
+    
+    
 }
+
+
+
+
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForNextPageAtIndexPath:(NSIndexPath *)indexPath {
+//    static NSString *LoadMoreCellIdentifier = @"LoadMoreCell";
+//    
+//    PAPLoadMoreCell *cell = [tableView dequeueReusableCellWithIdentifier:LoadMoreCellIdentifier];
+//    if (!cell) {
+//        cell = [[PAPLoadMoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LoadMoreCellIdentifier];
+//        cell.selectionStyle =UITableViewCellSelectionStyleGray;
+//        cell.separatorImageTop.image = [UIImage imageNamed:@"SeparatorTimelineDark.png"];
+//        cell.hideSeparatorBottom = YES;
+//        cell.mainView.backgroundColor = [UIColor clearColor];
+//    }
+//    return cell;
+//}
 
 
 #pragma mark - PAPPhotoTimelineViewController

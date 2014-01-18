@@ -22,7 +22,7 @@ typedef enum {
 @protocol ActivityHeaderCellDelegate;
 
 
-@interface ActivityHeaderCell : UITableViewCell
+@interface ActivityHeaderCell : PFTableViewCell
 
 
 
@@ -31,7 +31,8 @@ typedef enum {
  Initializes the view with the specified interaction elements.
  @param buttons A bitmask specifying the interaction elements which are enabled in the view
  */
-- (id)initWithFrame:(CGRect)frame buttons:(ActivityHeaderButtons)otherButtons;
+
+//- (id)initWithFrame:(CGRect)frame buttons:(ActivityHeaderButtons)otherButtons;
 
 /// The activity associated with this view
 @property (nonatomic,strong) PFObject *activity;

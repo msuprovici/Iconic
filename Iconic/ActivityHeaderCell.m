@@ -23,18 +23,20 @@
 @synthesize delegate;
 
 
-//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-- (id)initWithFrame:(CGRect)frame buttons:(ActivityHeaderButtons)otherButtons
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+
+//- (id)initWithStyle:(UITableViewCellStyle)style buttons:(ActivityHeaderButtons)otherButtons
+//- (id)initWithFrame:(CGRect)frame buttons:(ActivityHeaderButtons)otherButtons
 {
-    //self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
-    self = [super initWithFrame:frame];
+    //self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         
-        [ActivityHeaderCell validateButtons:otherButtons];
-        buttons = otherButtons;
-        
+//        [ActivityHeaderCell validateButtons:otherButtons];
+//        buttons = otherButtons;
+//        
         
         
 // we will set the parameters bellow in the storyboard
@@ -189,7 +191,7 @@
 
 + (void)validateButtons:(ActivityHeaderButtons)buttons {
     if (buttons == ActivityHeaderButtonsNone) {
-        [NSException raise:NSInvalidArgumentException format:@"Buttons must be set before initializing ActivityHeaderView."];
+        [NSException raise:NSInvalidArgumentException format:@"Buttons must be set before initializing ActivityHeaderCell."];
     }
 }
 

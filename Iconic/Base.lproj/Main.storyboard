@@ -188,7 +188,7 @@
                 </customObject>
                 <tapGestureRecognizer id="UC8-Sk-sBb"/>
             </objects>
-            <point key="canvasLocation" x="3379" y="-190"/>
+            <point key="canvasLocation" x="4147" y="-90"/>
         </scene>
         <!--Simple Home View Controller - Iconic-->
         <scene sceneID="7w4-jO-MWX">
@@ -414,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9JJ-M9-FKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2821" y="-4363"/>
+            <point key="canvasLocation" x="4673" y="-2319"/>
         </scene>
         <!--Profile View Controller - My Profile-->
         <scene sceneID="mcB-oh-bUv">
@@ -647,36 +647,93 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZV8-y9-rXe" customClass="FollowersCommentsCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="96" id="m3h-Tc-FYF" customClass="ActivityDeatailsHeaderCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZV8-y9-rXe" id="tMh-P5-EWb">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m3h-Tc-FYF" id="OuS-Ej-zWH">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2lc-YN-yIx">
-                                            <rect key="frame" x="52" y="11" width="235" height="21"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uDv-Gk-Lmh">
+                                            <rect key="frame" x="14" y="58" width="46" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="T3W-Ff-qSQ" customClass="PFImageView">
+                                            <rect key="frame" x="17" y="3" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ivb-j3-CEw">
+                                            <rect key="frame" x="73" y="3" width="46" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Stamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hXt-3c-c3q">
+                                            <rect key="frame" x="73" y="27" width="93" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="FXO-wM-hSc" customClass="PFImageView">
-                                            <rect key="frame" x="12" y="6" width="32" height="32"/>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="avatarImageView" destination="T3W-Ff-qSQ" id="K3m-tY-dKZ"/>
+                                    <outlet property="likeButton" destination="uDv-Gk-Lmh" id="vQf-DO-7cQ"/>
+                                    <outlet property="timeLabel" destination="hXt-3c-c3q" id="niI-vX-BM3"/>
+                                    <outlet property="userButton" destination="ivb-j3-CEw" id="8Rc-wb-7kr"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="67" id="ZV8-y9-rXe" customClass="PlayerCommentCell">
+                                <rect key="frame" x="0.0" y="182" width="320" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZV8-y9-rXe" id="tMh-P5-EWb">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2lc-YN-yIx">
+                                            <rect key="frame" x="138" y="2" width="153" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IBk-tP-u7L">
+                                            <rect key="frame" x="52" y="-2" width="46" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Stamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sdV-KH-M7H">
+                                            <rect key="frame" x="52" y="23" width="93" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="zZC-Sg-FoM" customClass="PFImageView">
+                                            <rect key="frame" x="9" y="13" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="followersComment" destination="2lc-YN-yIx" id="Nro-lo-UIi"/>
-                                    <outlet property="followersPhoto" destination="FXO-wM-hSc" id="dkC-kR-QPo"/>
+                                    <outlet property="avatarImageView" destination="zZC-Sg-FoM" id="Xxw-39-0Cw"/>
+                                    <outlet property="contentLabel" destination="2lc-YN-yIx" id="xJv-OT-lsg"/>
+                                    <outlet property="nameButton" destination="IBk-tP-u7L" id="knP-af-vvV"/>
+                                    <outlet property="timeLabel" destination="sdV-KH-M7H" id="1vs-xG-d48"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PNN-Jt-Wyd" customClass="CommentCell">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="46" id="PNN-Jt-Wyd" customClass="CommentCell">
+                                <rect key="frame" x="0.0" y="249" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PNN-Jt-Wyd" id="7AA-sH-f4m">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Add a comment" borderStyle="roundedRect" minimumFontSize="17" id="SJ4-G1-F8U">
@@ -688,7 +745,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="commentField" destination="7AA-sH-f4m" id="ZJM-c5-hWB"/>
+                                    <outlet property="commentField" destination="SJ4-G1-F8U" id="6Uu-hm-sDv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -701,7 +758,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BDK-Cg-bhE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3066" y="-1316"/>
+            <point key="canvasLocation" x="2602" y="-2628"/>
         </scene>
         <!--Followers View Controller-->
         <scene sceneID="Ggg-q3-FpN">
@@ -757,7 +814,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L41-Rg-SeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3540" y="-2441"/>
+            <point key="canvasLocation" x="5909" y="-1721"/>
         </scene>
         <!--Player Teams View Controller-->
         <scene sceneID="ODh-Cm-rnk">
@@ -813,7 +870,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CA8-Hw-g2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3164" y="-2015"/>
+            <point key="canvasLocation" x="5533" y="-1295"/>
         </scene>
         <!--Following View Controller-->
         <scene sceneID="TNr-mo-UyL">
@@ -870,7 +927,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F1a-dU-KsE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3154" y="-2697"/>
+            <point key="canvasLocation" x="5523" y="-1977"/>
         </scene>
         <!--Activity View Controller - Activity-->
         <scene sceneID="Ay6-Fh-eSi">
@@ -907,16 +964,16 @@
             </objects>
             <point key="canvasLocation" x="249" y="50"/>
         </scene>
-        <!--Timeline View Controller-->
+        <!--Feed View Controller-->
         <scene sceneID="lBY-ZS-NvU">
             <objects>
-                <tableViewController id="YRb-r1-hFU" customClass="TimelineViewController" sceneMemberID="viewController">
+                <tableViewController id="YRb-r1-hFU" customClass="FeedViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rm3-hb-ptd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="pfj-yT-uTa" customClass="ActivityHeaderCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="pfj-yT-uTa" customClass="ActivityHeaderCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pfj-yT-uTa" id="3vR-QE-zlI">
@@ -940,6 +997,9 @@
                                                     <state key="normal" title="Comment">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="tuF-GK-KB7" kind="push" id="qLx-Qv-ZGQ"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qqm-bp-BZy">
                                                     <rect key="frame" x="252" y="5" width="30" height="30"/>
@@ -971,14 +1031,6 @@
                                     <outlet property="timestampLabel" destination="Ly7-M7-Xvp" id="2dn-pU-4Tx"/>
                                     <outlet property="userButton" destination="EhL-VV-CE3" id="6Nb-0O-fny"/>
                                 </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hec-BV-K3H">
-                                <rect key="frame" x="0.0" y="166" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hec-BV-K3H" id="N31-xe-HFH">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1404,7 +1456,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j2E-jM-JeX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2295" y="-4363"/>
+            <point key="canvasLocation" x="4147" y="-2319"/>
         </scene>
     </scenes>
     <resources>
@@ -1420,12 +1472,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kBj-mf-isH"/>
-        <segue reference="AzD-xV-CDV"/>
-        <segue reference="YCB-li-iW7"/>
-        <segue reference="1W0-hY-T94"/>
         <segue reference="EEi-Sc-kIX"/>
+        <segue reference="1W0-hY-T94"/>
+        <segue reference="kBj-mf-isH"/>
+        <segue reference="YCB-li-iW7"/>
+        <segue reference="kd5-hD-PUf"/>
+        <segue reference="djV-QL-gg7"/>
         <segue reference="GlC-f2-v4y"/>
-        <segue reference="1aU-1X-0Xx"/>
     </inferredMetricsTieBreakers>
 </document>

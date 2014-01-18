@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface CommentCell : UITableViewCell
+@interface CommentCell : PFTableViewCell
 
-@property (strong, nonatomic) IBOutlet UIView *commentField;
+
+
+
+
+@property (strong, nonatomic) IBOutlet UITextField *commentField;
 
 @end
+

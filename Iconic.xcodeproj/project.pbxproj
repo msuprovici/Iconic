@@ -45,7 +45,6 @@
 		5C8BB5B21884627000E89ADF /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B11884627000E89ADF /* TimelineViewController.m */; };
 		5C8BB5B51884AF7300E89ADF /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B41884AF7300E89ADF /* CommentsViewController.m */; };
 		5C8BB5B81884AFE900E89ADF /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B71884AFE900E89ADF /* CommentCell.m */; };
-		5C8BB5BB1884B05300E89ADF /* FollowersCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5BA1884B05300E89ADF /* FollowersCommentsCell.m */; };
 		5C8BB5C418860F9700E89ADF /* ActivityHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5C318860F9700E89ADF /* ActivityHeaderCell.m */; };
 		5C8BB5CB1886256400E89ADF /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5CA1886256400E89ADF /* TTTTimeIntervalFormatter.m */; };
 		5C966BB5187D0F480022AF0F /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C966BA1187D0F480022AF0F /* PNBar.m */; };
@@ -82,7 +81,11 @@
 		5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */; };
 		5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D1E61832F9D1006C7932 /* LogInViewController.m */; };
 		5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */; };
+		5CB75DF71889A0630047BC47 /* PlayerCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF61889A0630047BC47 /* PlayerCommentCell.m */; };
+		5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF91889CCB60047BC47 /* ActivityDeatailsHeaderCell.m */; };
+		5CB75DFD1889F65C0047BC47 /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DFC1889F65C0047BC47 /* ProfileImageView.m */; };
 		5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7FAAF185810A600A360A1 /* TeamatesCell.m */; };
+		5CD76B5F188852530014072F /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD76B5E188852530014072F /* FeedViewController.m */; };
 		5CD93826187B5047006CE08B /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9381D187B5047006CE08B /* MZFormSheetBackgroundWindow.m */; };
 		5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9381F187B5047006CE08B /* MZFormSheetController.m */; };
 		5CD93828187B5047006CE08B /* MZFormSheetSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD93821187B5047006CE08B /* MZFormSheetSegue.m */; };
@@ -184,8 +187,6 @@
 		5C8BB5B41884AF7300E89ADF /* CommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewController.m; sourceTree = "<group>"; };
 		5C8BB5B61884AFE900E89ADF /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
 		5C8BB5B71884AFE900E89ADF /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
-		5C8BB5B91884B05300E89ADF /* FollowersCommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowersCommentsCell.h; sourceTree = "<group>"; };
-		5C8BB5BA1884B05300E89ADF /* FollowersCommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowersCommentsCell.m; sourceTree = "<group>"; };
 		5C8BB5C218860F9700E89ADF /* ActivityHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityHeaderCell.h; sourceTree = "<group>"; };
 		5C8BB5C318860F9700E89ADF /* ActivityHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityHeaderCell.m; sourceTree = "<group>"; };
 		5C8BB5C91886256400E89ADF /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
@@ -240,8 +241,16 @@
 		5CA3D1E51832F9D1006C7932 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ../LogInViewController.h; sourceTree = "<group>"; };
 		5CA3D1E61832F9D1006C7932 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ../LogInViewController.m; sourceTree = "<group>"; };
 		5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		5CB75DF51889A0630047BC47 /* PlayerCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCommentCell.h; sourceTree = "<group>"; };
+		5CB75DF61889A0630047BC47 /* PlayerCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCommentCell.m; sourceTree = "<group>"; };
+		5CB75DF81889CCB60047BC47 /* ActivityDeatailsHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDeatailsHeaderCell.h; sourceTree = "<group>"; };
+		5CB75DF91889CCB60047BC47 /* ActivityDeatailsHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDeatailsHeaderCell.m; sourceTree = "<group>"; };
+		5CB75DFB1889F65C0047BC47 /* ProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageView.h; sourceTree = "<group>"; };
+		5CB75DFC1889F65C0047BC47 /* ProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageView.m; sourceTree = "<group>"; };
 		5CC7FAAE185810A500A360A1 /* TeamatesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamatesCell.h; sourceTree = "<group>"; };
 		5CC7FAAF185810A600A360A1 /* TeamatesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamatesCell.m; sourceTree = "<group>"; };
+		5CD76B5D188852530014072F /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
+		5CD76B5E188852530014072F /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		5CD9381C187B5047006CE08B /* MZFormSheetBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindow.h; sourceTree = "<group>"; };
 		5CD9381D187B5047006CE08B /* MZFormSheetBackgroundWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZFormSheetBackgroundWindow.m; sourceTree = "<group>"; };
 		5CD9381E187B5047006CE08B /* MZFormSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetController.h; sourceTree = "<group>"; };
@@ -313,14 +322,20 @@
 			children = (
 				5C8BB5B01884627000E89ADF /* TimelineViewController.h */,
 				5C8BB5B11884627000E89ADF /* TimelineViewController.m */,
+				5CD76B5D188852530014072F /* FeedViewController.h */,
+				5CD76B5E188852530014072F /* FeedViewController.m */,
 				5C8BB5C218860F9700E89ADF /* ActivityHeaderCell.h */,
 				5C8BB5C318860F9700E89ADF /* ActivityHeaderCell.m */,
+				5CB75DF81889CCB60047BC47 /* ActivityDeatailsHeaderCell.h */,
+				5CB75DF91889CCB60047BC47 /* ActivityDeatailsHeaderCell.m */,
 				5C8BB5B31884AF7300E89ADF /* CommentsViewController.h */,
 				5C8BB5B41884AF7300E89ADF /* CommentsViewController.m */,
+				5CB75DF51889A0630047BC47 /* PlayerCommentCell.h */,
+				5CB75DF61889A0630047BC47 /* PlayerCommentCell.m */,
 				5C8BB5B61884AFE900E89ADF /* CommentCell.h */,
 				5C8BB5B71884AFE900E89ADF /* CommentCell.m */,
-				5C8BB5B91884B05300E89ADF /* FollowersCommentsCell.h */,
-				5C8BB5BA1884B05300E89ADF /* FollowersCommentsCell.m */,
+				5CB75DFB1889F65C0047BC47 /* ProfileImageView.h */,
+				5CB75DFC1889F65C0047BC47 /* ProfileImageView.m */,
 				5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */,
 				5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */,
 				5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */,
@@ -831,6 +846,7 @@
 			files = (
 				5C539A161867A2AC006676FA /* FollowCell.m in Sources */,
 				5C8BB5B21884627000E89ADF /* TimelineViewController.m in Sources */,
+				5CD76B5F188852530014072F /* FeedViewController.m in Sources */,
 				5C539A0F18679A57006676FA /* FollowersViewController.m in Sources */,
 				5CD93829187B5047006CE08B /* MZTransition.m in Sources */,
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
@@ -848,7 +864,6 @@
 				5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */,
 				5C48B8961880CFAA00A09A1C /* SimpleHomeViewController.m in Sources */,
 				5C8BB5C418860F9700E89ADF /* ActivityHeaderCell.m in Sources */,
-				5C8BB5BB1884B05300E89ADF /* FollowersCommentsCell.m in Sources */,
 				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5C48B8BD1880F89F00A09A1C /* UIImage+ResizeAdditions.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
@@ -889,7 +904,10 @@
 				5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */,
 				5C328BF8185F773300E0E985 /* VSCell.m in Sources */,
 				5C966BB8187D0F480022AF0F /* PNCircleChart.m in Sources */,
+				5CB75DFD1889F65C0047BC47 /* ProfileImageView.m in Sources */,
+				5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */,
 				5CA3D1971831DF51006C7932 /* main.m in Sources */,
+				5CB75DF71889A0630047BC47 /* PlayerCommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
