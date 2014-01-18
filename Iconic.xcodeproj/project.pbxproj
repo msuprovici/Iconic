@@ -320,30 +320,9 @@
 		5C2C1CBE185BAF12006722D2 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				5C8BB5B01884627000E89ADF /* TimelineViewController.h */,
-				5C8BB5B11884627000E89ADF /* TimelineViewController.m */,
-				5CD76B5D188852530014072F /* FeedViewController.h */,
-				5CD76B5E188852530014072F /* FeedViewController.m */,
-				5C8BB5C218860F9700E89ADF /* ActivityHeaderCell.h */,
-				5C8BB5C318860F9700E89ADF /* ActivityHeaderCell.m */,
-				5CB75DF81889CCB60047BC47 /* ActivityDeatailsHeaderCell.h */,
-				5CB75DF91889CCB60047BC47 /* ActivityDeatailsHeaderCell.m */,
-				5C8BB5B31884AF7300E89ADF /* CommentsViewController.h */,
-				5C8BB5B41884AF7300E89ADF /* CommentsViewController.m */,
-				5CB75DF51889A0630047BC47 /* PlayerCommentCell.h */,
-				5CB75DF61889A0630047BC47 /* PlayerCommentCell.m */,
-				5C8BB5B61884AFE900E89ADF /* CommentCell.h */,
-				5C8BB5B71884AFE900E89ADF /* CommentCell.m */,
-				5CB75DFB1889F65C0047BC47 /* ProfileImageView.h */,
-				5CB75DFC1889F65C0047BC47 /* ProfileImageView.m */,
-				5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */,
-				5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */,
-				5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */,
-				5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */,
-				5C539A041864E8DA006676FA /* ProfileInfoCell.h */,
-				5C539A051864E8DA006676FA /* ProfileInfoCell.m */,
-				5C539A071864E900006676FA /* FeedCell.h */,
-				5C539A081864E900006676FA /* FeedCell.m */,
+				5CB75E01188A233C0047BC47 /* Feed */,
+				5CB75DFE188A21C70047BC47 /* Comments+Likes On Activity */,
+				5CB75E00188A23060047BC47 /* Profile */,
 				5C539A1018679A66006676FA /* Followers_following_teams */,
 			);
 			name = Social;
@@ -395,8 +374,6 @@
 			children = (
 				5C48B8941880CFAA00A09A1C /* SimpleHomeViewController.h */,
 				5C48B8951880CFAA00A09A1C /* SimpleHomeViewController.m */,
-				5C2EA5271851472000B21C52 /* HomeViewController.h */,
-				5C2EA5281851472000B21C52 /* HomeViewController.m */,
 				5C2EA53A1851516700B21C52 /* MyStatsViewController.h */,
 				5C2EA53B1851516700B21C52 /* MyStatsViewController.m */,
 				5C2EA53C1851516700B21C52 /* MyStatsViewController.xib */,
@@ -571,6 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				5CA3D1901831DF51006C7932 /* Iconic */,
+				5CB75DFF188A22C70047BC47 /* Not in use */,
 				72F3252A1846D477000B5D34 /* Tutorial Controllers */,
 				5C2C1CC8185E9051006722D2 /* Resources */,
 				5CA3D1B21831DF51006C7932 /* IconicTests */,
@@ -668,6 +646,61 @@
 				5CA3D1B51831DF51006C7932 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5CB75DFE188A21C70047BC47 /* Comments+Likes On Activity */ = {
+			isa = PBXGroup;
+			children = (
+				5CB75DF81889CCB60047BC47 /* ActivityDeatailsHeaderCell.h */,
+				5CB75DF91889CCB60047BC47 /* ActivityDeatailsHeaderCell.m */,
+				5C8BB5B31884AF7300E89ADF /* CommentsViewController.h */,
+				5C8BB5B41884AF7300E89ADF /* CommentsViewController.m */,
+				5CB75DF51889A0630047BC47 /* PlayerCommentCell.h */,
+				5CB75DF61889A0630047BC47 /* PlayerCommentCell.m */,
+				5C8BB5B61884AFE900E89ADF /* CommentCell.h */,
+				5C8BB5B71884AFE900E89ADF /* CommentCell.m */,
+			);
+			name = "Comments+Likes On Activity";
+			sourceTree = "<group>";
+		};
+		5CB75DFF188A22C70047BC47 /* Not in use */ = {
+			isa = PBXGroup;
+			children = (
+				5C8BB5B01884627000E89ADF /* TimelineViewController.h */,
+				5C8BB5B11884627000E89ADF /* TimelineViewController.m */,
+				5C2EA5271851472000B21C52 /* HomeViewController.h */,
+				5C2EA5281851472000B21C52 /* HomeViewController.m */,
+			);
+			name = "Not in use";
+			path = Iconic;
+			sourceTree = "<group>";
+		};
+		5CB75E00188A23060047BC47 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5CB75DFB1889F65C0047BC47 /* ProfileImageView.h */,
+				5CB75DFC1889F65C0047BC47 /* ProfileImageView.m */,
+				5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */,
+				5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */,
+				5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */,
+				5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */,
+				5C539A041864E8DA006676FA /* ProfileInfoCell.h */,
+				5C539A051864E8DA006676FA /* ProfileInfoCell.m */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		5CB75E01188A233C0047BC47 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				5CD76B5D188852530014072F /* FeedViewController.h */,
+				5CD76B5E188852530014072F /* FeedViewController.m */,
+				5C8BB5C218860F9700E89ADF /* ActivityHeaderCell.h */,
+				5C8BB5C318860F9700E89ADF /* ActivityHeaderCell.m */,
+				5C539A071864E900006676FA /* FeedCell.h */,
+				5C539A081864E900006676FA /* FeedCell.m */,
+			);
+			name = Feed;
 			sourceTree = "<group>";
 		};
 		5CD9381B187B5000006CE08B /* MZFromSheetControler */ = {
