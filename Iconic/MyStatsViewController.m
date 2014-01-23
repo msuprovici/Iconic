@@ -101,8 +101,9 @@
                 
             }
 
-        
+        self.stepsImage.hidden = YES;
         self.viewTitle.hidden = YES;
+        self.statsImage.hidden = YES;
         self.xpLabel.text = @"Level";
         self.pointsLabel.text = @"Points";
                 
@@ -136,10 +137,12 @@
             
             self.stepsProgressDial.trackTintColor = PNGrey;
             self.stepsProgressDial.progressTintColor = PNDarkBlue;
+                
+            self.xpProgressDial.hidden = YES;
             
-            self.xpProgressDial.trackTintColor = PNGrey;
-            self.xpProgressDial.progressTintColor = PNMauve;
-            
+//            self.xpProgressDial.trackTintColor = PNGrey;
+//            self.xpProgressDial.progressTintColor = PNMauve;
+//            
             self.stepsProgressDial.thicknessRatio = 1.0f;
             
                         
@@ -148,7 +151,7 @@
             
             
             self.xpValue.text = @"2349";
-            
+            self.pointsImage.hidden = YES;
                
             
             [self startAnimation];
@@ -159,7 +162,9 @@
         {
             
             if (pointslabelNumber == 2) {
-                
+            
+            self.pointsImage.hidden = YES;
+            self.stepsImage.hidden = YES;
             self.timeActiveLabel.hidden = YES;
             self.pointsLabel.hidden = true;
             self.xpLabel.hidden = true;
@@ -194,6 +199,8 @@
         
         self.xpProgressDial.thicknessRatio = .25f;
         self.xpProgressDial.roundedCorners = YES;
+//        self.stepsProgressDial.thicknessRatio = .25f;
+//        self.stepsProgressDial.roundedCorners = YES;
         
     }
     }

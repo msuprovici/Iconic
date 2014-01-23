@@ -414,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9JJ-M9-FKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4673" y="-2319"/>
+            <point key="canvasLocation" x="3845" y="-2615"/>
         </scene>
         <!--Profile View Controller - My Profile-->
         <scene sceneID="mcB-oh-bUv">
@@ -814,7 +814,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L41-Rg-SeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5909" y="-1721"/>
+            <point key="canvasLocation" x="5081" y="-2017"/>
         </scene>
         <!--Player Teams View Controller-->
         <scene sceneID="ODh-Cm-rnk">
@@ -870,7 +870,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CA8-Hw-g2o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5533" y="-1295"/>
+            <point key="canvasLocation" x="4705" y="-1591"/>
         </scene>
         <!--Following View Controller-->
         <scene sceneID="TNr-mo-UyL">
@@ -927,7 +927,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F1a-dU-KsE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5523" y="-1977"/>
+            <point key="canvasLocation" x="4695" y="-2273"/>
         </scene>
         <!--Activity View Controller - Activity-->
         <scene sceneID="Ay6-Fh-eSi">
@@ -984,15 +984,15 @@
                                             <rect key="frame" x="0.0" y="2" width="320" height="79"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EhL-VV-CE3">
-                                                    <rect key="frame" x="45" y="5" width="98" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EhL-VV-CE3">
+                                                    <rect key="frame" x="78" y="5" width="109" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="User">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="slb-3g-iGi">
-                                                    <rect key="frame" x="163" y="5" width="68" height="30"/>
+                                                    <rect key="frame" x="226" y="5" width="26" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Comment">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1002,20 +1002,27 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qqm-bp-BZy">
-                                                    <rect key="frame" x="252" y="5" width="30" height="30"/>
+                                                    <rect key="frame" x="271" y="5" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Like">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="tiJ-Zk-FHB" customClass="PFImageView">
-                                                    <rect key="frame" x="28" y="5" width="44" height="39"/>
+                                                    <rect key="frame" x="20" y="16" width="40" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Stamp" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ly7-M7-Xvp">
-                                                    <rect key="frame" x="88" y="43" width="93" height="21"/>
+                                                    <rect key="frame" x="78" y="50" width="194" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ybt-Is-eQl">
+                                                    <rect key="frame" x="78" y="29" width="204" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1024,6 +1031,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="activityStatusLabel" destination="Ybt-Is-eQl" id="d8C-9h-1qo"/>
                                     <outlet property="avatarImageView" destination="tiJ-Zk-FHB" id="nJX-8u-p6P"/>
                                     <outlet property="commentButton" destination="slb-3g-iGi" id="0F4-Sv-v7B"/>
                                     <outlet property="containerView" destination="dQW-F3-Rxf" id="4Qf-A5-2Qp"/>
@@ -1456,7 +1464,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j2E-jM-JeX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4147" y="-2319"/>
+            <point key="canvasLocation" x="3319" y="-2615"/>
         </scene>
     </scenes>
     <resources>

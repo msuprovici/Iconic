@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 Explorence. All rights reserved.
 //
 
+//s9bHjtPJmIosc4TX9QqG9NTkbZHc2usrJDxoEExx
+//ziKjpay7oUalpigStoBzZ5Stp9WTI3IeYhhCYEk2
+
 #import "Constants.h"
 
 NSString *const kUserDefaultsActivityFeedViewControllerLastRefreshKey    = @"com.stickyplay.Iconic.userDefaults.activityFeedViewController.lastRefresh";
@@ -74,10 +77,10 @@ NSString *const kPlayerActionTypeJoined     = @"joined";
 
 #pragma mark - User Class
 // Field keys
-NSString *const kUserDisplayNameKey                          = @"displayName";
+NSString *const kUserDisplayNameKey                          = @"username";
 NSString *const kUserFacebookIDKey                           = @"facebookId";
 NSString *const kUserActivityIDKey                              = @"photoId";
-NSString *const kUserProfilePicSmallKey                      = @"profilePictureSmall";
+NSString *const kUserProfilePicSmallKey                      = @"photo";
 NSString *const kUserProfilePicMediumKey                     = @"profilePictureMedium";
 NSString *const kUserFacebookFriendsKey                      = @"facebookFriends";
 NSString *const kUserAlreadyAutoFollowedFacebookFriendsKey   = @"userAlreadyAutoFollowedFacebookFriends";
@@ -87,7 +90,7 @@ NSString *const kUserAlreadyAutoFollowedFacebookFriendsKey   = @"userAlreadyAuto
 NSString *const kActivityClassKey = @"Activity";// <-careful, make sure to set the right class here
 
 // Field keys
-NSString *const kActivityKey         = @"image";
+NSString *const kActivityKey         = @"activity";
 //NSString *const kPhotoThumbnailKey       = @"thumbnail";
 NSString *const kActivityUserKey            = @"user";
 NSString *const kActivityOpenGraphIDKey    = @"fbOpenGraphID";

@@ -15,7 +15,8 @@
 @synthesize avatarImageView;
 @synthesize userButton;
 @synthesize timestampLabel;
-@synthesize timeIntervalFormatter;
+@synthesize activityStatusLabel;
+//@synthesize timeIntervalFormatter;
 @synthesize activity;
 @synthesize buttons;
 @synthesize likeButton;
@@ -96,26 +97,28 @@
 //        }
 
         
-        self.timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
         
         // timestamp
-        self.timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake( 50.0f, 24.0f, containerView.bounds.size.width - 50.0f - 72.0f, 18.0f)];
-        [containerView addSubview:self.timestampLabel];
-        [self.timestampLabel setTextColor:[UIColor colorWithRed:124.0f/255.0f green:124.0f/255.0f blue:124.0f/255.0f alpha:1.0f]];
-        [self.timestampLabel setShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f]];
-        [self.timestampLabel setShadowOffset:CGSizeMake( 0.0f, 1.0f)];
-        [self.timestampLabel setFont:[UIFont systemFontOfSize:11.0f]];
-        [self.timestampLabel setBackgroundColor:[UIColor clearColor]];
-        
-        CALayer *layer = [containerView layer];
-        layer.backgroundColor = [[UIColor whiteColor] CGColor];
-        layer.masksToBounds = NO;
-        layer.shadowRadius = 1.0f;
-        layer.shadowOffset = CGSizeMake( 0.0f, 2.0f);
-        layer.shadowOpacity = 0.5f;
-        layer.shouldRasterize = YES;
-        layer.shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake( 0.0f, containerView.frame.size.height - 4.0f, containerView.frame.size.width, 4.0f)].CGPath;
+//        self.timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake( 50.0f, 24.0f, containerView.bounds.size.width - 50.0f - 72.0f, 18.0f)];
+//        [containerView addSubview:self.timestampLabel];
+//        [self.timestampLabel setTextColor:[UIColor colorWithRed:124.0f/255.0f green:124.0f/255.0f blue:124.0f/255.0f alpha:1.0f]];
+//        [self.timestampLabel setShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f]];
+//        [self.timestampLabel setShadowOffset:CGSizeMake( 0.0f, 1.0f)];
+//        [self.timestampLabel setFont:[UIFont systemFontOfSize:11.0f]];
+//        [self.timestampLabel setBackgroundColor:[UIColor clearColor]];
+//        
+//        CALayer *layer = [containerView layer];
+//        layer.backgroundColor = [[UIColor whiteColor] CGColor];
+//        layer.masksToBounds = NO;
+//        layer.shadowRadius = 1.0f;
+//        layer.shadowOffset = CGSizeMake( 0.0f, 2.0f);
+//        layer.shadowOpacity = 0.5f;
+//        layer.shouldRasterize = YES;
+//        layer.shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake( 0.0f, containerView.frame.size.height - 4.0f, containerView.frame.size.width, 4.0f)].CGPath;
     
+        //self.timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+
+        
     }
     return self;
 }
@@ -128,7 +131,7 @@
 }
 
 
-#pragma mark - ActivityHeaderView
+#pragma mark - ActivityHeaderCell
 
 - (void)setActivity:(PFObject *)anActivity {
     activity = anActivity;
@@ -138,8 +141,16 @@
     PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
     [self.avatarImageView setFile:profilePictureSmall];
     
+    //turn photo to circle
+    CALayer *imageLayer = self.avatarImageView.layer;
+    [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
+    [imageLayer setBorderWidth:0];
+    [imageLayer setMasksToBounds:YES];
+
+    
     NSString *authorName = [user objectForKey:kUserDisplayNameKey];
     [self.userButton setTitle:authorName forState:UIControlStateNormal];
+    
     
     CGFloat constrainWidth = containerView.bounds.size.width;
     
@@ -157,10 +168,12 @@
         [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     
-  
-    NSTimeInterval timeInterval = [[self.activity createdAt] timeIntervalSinceNow];
-    NSString *timestamp = [self.timeIntervalFormatter stringForTimeInterval:timeInterval];
-    [self.timestampLabel setText:timestamp];
+// moved the time stamp to FeedViewController in cellForRowAtIndexPath
+//    NSTimeInterval timeInterval = [[self.activity createdAt] timeIntervalSinceNow];
+//    NSString *timestamp = [self.timeIntervalFormatter stringForTimeInterval:timeInterval];
+//    [self.timestampLabel setText:timestamp];
+    
+
     
     [self setNeedsDisplay];
 }

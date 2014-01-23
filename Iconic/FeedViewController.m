@@ -8,31 +8,57 @@
 
 #import "FeedViewController.h"
 #import "ActivityHeaderCell.h"
+#import "CommentsViewController.h"
 #import <Parse/Parse.h>
 #import "Constants.h"
 #import "Cache.h"
 #import "Utility.h"
 
 @interface FeedViewController()
+@property (nonatomic, assign) BOOL shouldReloadOnAppear;
+@property (nonatomic, strong) NSMutableDictionary *outstandingActivityObjectQueries;
+@property (nonatomic, strong) TTTTimeIntervalFormatter *timeIntervalFormatter;
 
 @end
 
 @implementation FeedViewController
+@synthesize shouldReloadOnAppear;
+@synthesize outstandingActivityObjectQueries;
+@synthesize timeIntervalFormatter;
+
+
+#pragma mark - Initialization
+
+- (void)dealloc {
+    
+    //be carefull with the notifications here - we currently don't have a TabBarController
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:TabBarControllerDidFinishEditingActivityNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UtilityUserFollowingChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ActivityDetailsViewControllerUserLikedUnlikedActivityNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UtilityUserLikedUnlikedActivityCallbackFinishedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ActivityDetailsViewControllerUserCommentedOnActivityNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ActivityDetailsViewControllerUserDeletedActivityNotification object:nil];
+}
+
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 
 {
-    self = [super initWithClassName:@"Test"];
+    
+    //self = [super initWithClassName:kActivityClassKey];
+   // self = [super initWithClassName:@"Test"];
     self = [super initWithCoder:aDecoder];
    
     if (self) {
         // Custom the table
         
         // The className to query on
-        self.parseClassName = @"Test";
+        
+        self.parseClassName = kActivityClassKey;
+        //self.parseClassName = @"Test";
         
         // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @"text";
+        //self.textKey = @"text";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
@@ -45,6 +71,8 @@
         
         // The number of objects to show per page
         self.objectsPerPage = 10;
+        
+        self.timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
     }
     return self;
 }
@@ -67,6 +95,15 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidPublishActivity:) name:TabBarControllerDidFinishEditingActivityNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userFollowingChanged:) name:UtilityUserFollowingChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidDeleteActivity:) name:ActivityDetailsViewControllerUserDeletedActivityNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLikeOrUnlikeActivity:) name:ActivityDetailsViewControllerUserLikedUnlikedActivityNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLikeOrUnlikeActivity:) name:UtilityUserLikedUnlikedActivityCallbackFinishedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidCommentOnActivity:) name:ActivityDetailsViewControllerUserCommentedOnActivityNotification object:nil];
+    
+
 }
 
 - (void)viewDidUnload {
@@ -81,6 +118,12 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    if (self.shouldReloadOnAppear) {
+        self.shouldReloadOnAppear = NO;
+        [self loadObjects];
+    }
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -114,52 +157,59 @@
 
  // Override to customize what kind of query to perform on the class. The default is to query for
  // all objects ordered by createdAt descending.
-// - (PFQuery *)queryForTable {
-//     
-//     // Query for the friends the current user is following
-//     PFQuery *followingActivitiesQuery = [PFQuery queryWithClassName:@"Test"];//<- using this for testing purposes
-//     //PFQuery *followingActivitiesQuery = [PFQuery queryWithClassName:kPlayerActionClassKey];
-//     [followingActivitiesQuery whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeFollow];
-//     [followingActivitiesQuery whereKey:kPlayerActionFromUserKey equalTo:[PFUser currentUser]];
-//     followingActivitiesQuery.cachePolicy = kPFCachePolicyNetworkOnly;
-//     followingActivitiesQuery.limit = 1000;
-// 
-//     
-//     // Using the activities from the query above, we find all of the activity by
-//     // the friends the current user is following
-//     PFQuery *activityFromFollowedUsersQuery = [PFQuery queryWithClassName:self.parseClassName];
-//     [activityFromFollowedUsersQuery whereKey:kActivityUserKey matchesKey:kPlayerActionToUserKey inQuery:followingActivitiesQuery];
-//     [activityFromFollowedUsersQuery whereKeyExists:kActivityKey];//<-kActivityKey this key needs to be revised, in anypic example it reffers to the photo take by a user.  we are replacing phtos with a user's physical activity.
-//
-//     
-//     // We create a second query for the current user's activity
-//     PFQuery *activityFromCurrentUserQuery = [PFQuery queryWithClassName:self.parseClassName];
-//     [activityFromCurrentUserQuery whereKey:kActivityUserKey equalTo:[PFUser currentUser]];
-//     [activityFromCurrentUserQuery whereKeyExists:kActivityKey]; //<-kActivityKey this key needs to be revised see above
-//     
-//     
-//     
-//     // We create a final compound query that will find all of the activities that were
-//     // participated in by the user's friends or by the user
-//     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:activityFromFollowedUsersQuery, activityFromCurrentUserQuery, nil]];
-//     [query includeKey:kActivityUserKey];
-//
-//     
-// // If Pull To Refresh is enabled, query against the network by default.
-// if (self.pullToRefreshEnabled) {
-// query.cachePolicy = kPFCachePolicyNetworkOnly;
-// }
-// 
-// // If no objects are loaded in memory, we look to the cache first to fill the table
-// // and then subsequently do a query against the network.
-// if (self.objects.count == 0) {
-// query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-// }
-// 
-// [query orderByDescending:@"createdAt"];
-// 
-// return query;
-// }
+ - (PFQuery *)queryForTable {
+     
+     if (![PFUser currentUser]) {
+         PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+         [query setLimit:0];
+         return query;
+     }
+
+     
+     // Query for the friends the current user is following
+     //PFQuery *followingActivitiesQuery = [PFQuery queryWithClassName:@"Test"];//<- using this for testing purposes
+     PFQuery *followingActivitiesQuery = [PFQuery queryWithClassName:kPlayerActionClassKey];
+     [followingActivitiesQuery whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeFollow];
+     [followingActivitiesQuery whereKey:kPlayerActionFromUserKey equalTo:[PFUser currentUser]];
+     followingActivitiesQuery.cachePolicy = kPFCachePolicyNetworkOnly;
+     followingActivitiesQuery.limit = 1000;
+ 
+     
+     // Using the activities from the query above, we find all of the activity by
+     // the friends the current user is following
+     PFQuery *activityFromFollowedUsersQuery = [PFQuery queryWithClassName:self.parseClassName];
+     [activityFromFollowedUsersQuery whereKey:kActivityUserKey matchesKey:kPlayerActionToUserKey inQuery:followingActivitiesQuery];
+     [activityFromFollowedUsersQuery whereKeyExists:kActivityKey];//<-kActivityKey this key needs to be revised, in anypic example it reffers to the photo take by a user.  we are replacing phtos with a user's physical activity.
+
+     
+     // We create a second query for the current user's activity
+     PFQuery *activityFromCurrentUserQuery = [PFQuery queryWithClassName:self.parseClassName];
+     [activityFromCurrentUserQuery whereKey:kActivityUserKey equalTo:[PFUser currentUser]];
+     [activityFromCurrentUserQuery whereKeyExists:kActivityKey]; //<-kActivityKey this key needs to be revised see above
+     
+     
+     
+     // We create a final compound query that will find all of the activities that were
+     // participated in by the user's friends or by the user
+     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:activityFromFollowedUsersQuery, activityFromCurrentUserQuery, nil]];
+     [query includeKey:kActivityUserKey];
+     [query orderByDescending:@"createdAt"];
+     
+ // If Pull To Refresh is enabled, query against the network by default.
+ if (self.pullToRefreshEnabled) {
+ query.cachePolicy = kPFCachePolicyNetworkOnly;
+ }
+ 
+ // If no objects are loaded in memory, we look to the cache first to fill the table
+ // and then subsequently do a query against the network.
+ if (self.objects.count == 0) {
+ query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+ }
+ 
+ 
+ 
+ return query;
+ }
 
 
 
@@ -175,9 +225,101 @@
  }
  
  // Configure the cell
- cell.textLabel.text = [object objectForKey:self.textKey];
- cell.imageView.file = [object objectForKey:self.imageKey];
- 
+// cell.textLabel.text = [object objectForKey:self.textKey];
+// cell.imageView.file = [object objectForKey:self.imageKey];
+
+     
+     PFObject *activity = [self.objects objectAtIndex:indexPath.row];
+     [cell setActivity:activity];
+     cell.tag = indexPath.row;
+     [cell.likeButton setTag:indexPath.row];
+     
+     // show points
+     if (object) {
+         cell.activityStatusLabel.text = [NSString stringWithFormat:@"Scored %@ points",[object objectForKey:kActivityKey]];
+     }
+     
+     // add time stamp
+     NSTimeInterval timeInterval = [[activity createdAt] timeIntervalSinceNow];
+     NSString *timestamp = [NSString stringWithFormat:@"%@",[self.timeIntervalFormatter stringForTimeInterval:timeInterval]];
+     
+     //NSString *timestamp = [cell.timeIntervalFormatter stringForTimeInterval:timeInterval];
+     
+     //NSString *timestamp = [NSString stringWithFormat:@"%f",timeInterval];
+
+     
+     [cell.timestampLabel setText:timestamp];
+
+     
+     NSDictionary *attributesForActivity = [[Cache sharedCache] attributesForActivity:activity];
+     
+     if (attributesForActivity) {
+         [cell setLikeStatus:[[Cache sharedCache] isActivityLikedByCurrentUser:activity]];
+         [cell.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
+         [cell.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
+         
+         if (cell.likeButton.alpha < 1.0f || cell.commentButton.alpha < 1.0f) {
+             [UIView animateWithDuration:0.200f animations:^{
+                 cell.likeButton.alpha = 1.0f;
+                 cell.commentButton.alpha = 1.0f;
+             }];
+         }
+     } else {
+         cell.likeButton.alpha = 0.0f;
+         cell.commentButton.alpha = 0.0f;
+         
+         @synchronized(self) {
+             // check if we can update the cache
+             NSNumber *outstandingActivityObjectQueryStatus = [self.outstandingActivityObjectQueries objectForKey:object];
+             if (!outstandingActivityObjectQueryStatus) {
+                 PFQuery *query = [Utility queryForActivitiesOnActivity:activity cachePolicy:kPFCachePolicyNetworkOnly];
+                 [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                     @synchronized(self) {
+                         [self.outstandingActivityObjectQueries removeObjectForKey:object];
+                         
+                         if (error) {
+                             return;
+                         }
+                         
+                         NSMutableArray *likers = [NSMutableArray array];
+                         NSMutableArray *commenters = [NSMutableArray array];
+                         
+                         BOOL isLikedByCurrentUser = NO;
+                         
+                         for (PFObject *activity in objects) {
+                             if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeLike] && [activity objectForKey:kPlayerActionFromUserKey]) {
+                                 [likers addObject:[activity objectForKey:kPlayerActionFromUserKey]];
+                             } else if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeComment] && [activity objectForKey:kPlayerActionFromUserKey]) {
+                                 [commenters addObject:[activity objectForKey:kPlayerActionFromUserKey]];
+                             }
+                             
+                             if ([[[activity objectForKey:kPlayerActionFromUserKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+                                 if ([[activity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeLike]) {
+                                     isLikedByCurrentUser = YES;
+                                 }
+                             }
+                         }
+                         
+                         [[Cache sharedCache] setAttributesForActivity:activity likers:likers commenters:commenters likedByCurrentUser:isLikedByCurrentUser];
+                         
+                         
+                         [cell setLikeStatus:[[Cache sharedCache] isActivityLikedByCurrentUser:activity]];
+                         [cell.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
+                         [cell.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
+                         
+                         if (cell.likeButton.alpha < 1.0f || cell.commentButton.alpha < 1.0f) {
+                             [UIView animateWithDuration:0.200f animations:^{
+                                 cell.likeButton.alpha = 1.0f;
+                                 cell.commentButton.alpha = 1.0f;
+                             }];
+                         }
+                     }
+                 }];
+             }
+         }
+     }
+     
+
  return cell;
  }
 
@@ -257,6 +399,129 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
+#pragma mark - PAPPhotoHeaderViewDelegate
+
+//- (void)activityHeaderCell:(ActivityHeaderCell *)activityHeaderCell didTapUserButton:(UIButton *)button user:(PFUser *)user {
+//    PAPAccountViewController *accountViewController = [[PAPAccountViewController alloc] initWithStyle:UITableViewStylePlain];
+//    [accountViewController setUser:user];
+//    [self.navigationController pushViewController:accountViewController animated:YES];
+//}
+
+- (void)activityHeaderCell:(ActivityHeaderCell *)activityHeaderCell didTapLikeActivityButton:(UIButton *)button activity:(PFObject *)activity {
+    [activityHeaderCell shouldEnableLikeButton:NO];
+    
+    BOOL liked = !button.selected;
+    [activityHeaderCell setLikeStatus:liked];
+    
+    NSString *originalButtonTitle = button.titleLabel.text;
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    
+    NSNumber *likeCount = [numberFormatter numberFromString:button.titleLabel.text];
+    if (liked) {
+        likeCount = [NSNumber numberWithInt:[likeCount intValue] + 1];
+        [[Cache sharedCache] incrementLikerCountForActivity:activity];
+    } else {
+        if ([likeCount intValue] > 0) {
+            likeCount = [NSNumber numberWithInt:[likeCount intValue] - 1];
+        }
+        [[Cache sharedCache] decrementLikerCountForActivity:activity];
+    }
+    
+    [[Cache sharedCache] setActivityIsLikedByCurrentUser:activity liked:liked];
+    
+    [button setTitle:[numberFormatter stringFromNumber:likeCount] forState:UIControlStateNormal];
+    
+    //convert button.tag, an NSInteger, to NSIndexpath
+    NSIndexPath *path = [NSIndexPath indexPathWithIndex:button.tag];
+    
+    if (liked) {
+        [Utility likeActivityInBackground:activity block:^(BOOL succeeded, NSError *error) {
+            ActivityHeaderCell *actualHeaderCell = (ActivityHeaderCell *)[self tableView:self.tableView cellForRowAtIndexPath:path];
+            [actualHeaderCell shouldEnableLikeButton:YES];
+            [actualHeaderCell setLikeStatus:succeeded];
+            
+            if (!succeeded) {
+                [actualHeaderCell.likeButton setTitle:originalButtonTitle forState:UIControlStateNormal];
+            }
+        }];
+    } else {
+        [Utility unlikeActivityInBackground:activity block:^(BOOL succeeded, NSError *error) {
+            ActivityHeaderCell *actualHeaderView = (ActivityHeaderCell *)[self tableView:self.tableView cellForRowAtIndexPath:path];
+            [actualHeaderView shouldEnableLikeButton:YES];
+            [actualHeaderView setLikeStatus:!succeeded];
+            
+            if (!succeeded) {
+                [actualHeaderView.likeButton setTitle:originalButtonTitle forState:UIControlStateNormal];
+            }
+        }];
+    }
+}
+
+- (void)activityHeaderCell:(ActivityHeaderCell *)activityHeaderCell didTapCommentOnActivityButton:(UIButton *)button  activity:(PFObject *)activity {
+    CommentsViewController *activityDetailsVC = [[CommentsViewController alloc] initWithActivity:activity];
+    [self.navigationController pushViewController:activityDetailsVC animated:YES];
+}
+
+
+#pragma mark - ()
+
+- (NSIndexPath *)indexPathForObject:(PFObject *)targetObject {
+    for (int i = 0; i < self.objects.count; i++) {
+        PFObject *object = [self.objects objectAtIndex:i];
+        if ([[object objectId] isEqualToString:[targetObject objectId]]) {
+            return [NSIndexPath indexPathForRow:0 inSection:i];
+        }
+    }
+    
+    return nil;
+}
+
+- (void)userDidLikeOrUnlikeActivity:(NSNotification *)note {
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+
+- (void)userDidCommentOnActivity:(NSNotification *)note {
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+
+- (void)userDidDeleteActivity:(NSNotification *)note {
+    // refresh timeline after a delay
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^(void){
+        [self loadObjects];
+    });
+}
+
+- (void)userDidPublishActivity:(NSNotification *)note {
+    if (self.objects.count > 0) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
+    
+    [self loadObjects];
+}
+
+- (void)userFollowingChanged:(NSNotification *)note {
+    NSLog(@"User following changed.");
+    self.shouldReloadOnAppear = YES;
+}
+
+
+- (void)didTapOnActivityAction:(UIButton *)sender {
+    PFObject *activity = [self.objects objectAtIndex:sender.tag];
+    if (activity) {
+        CommentsViewController *activityDetailsVC = [[CommentsViewController alloc] initWithActivity:activity];
+        [self.navigationController pushViewController:activityDetailsVC animated:YES];
+    }
+}
+
+- (void)refreshControlValueChanged:(UIRefreshControl *)refreshControl {
+    [self loadObjects];
 }
 
 @end

@@ -6,10 +6,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyStatsViewController">
             <connections>
+                <outlet property="pointsImage" destination="ODG-Hl-uej" id="M5Q-9f-1tA"/>
                 <outlet property="pointsLabel" destination="Cgd-iW-EVt" id="FhX-Ml-YF7"/>
                 <outlet property="pointsValue" destination="R4v-Xa-L3V" id="3tv-Lo-nkG"/>
                 <outlet property="statsImage" destination="K28-Fd-8YS" id="FMk-21-HaE"/>
                 <outlet property="stepsBarChart" destination="9EY-LR-iiP" id="JTT-jA-9LW"/>
+                <outlet property="stepsImage" destination="BfP-Vx-bxt" id="A3n-cd-899"/>
                 <outlet property="stepsProgressDial" destination="rA5-yN-SpM" id="nty-MJ-37i"/>
                 <outlet property="timeActiveLabel" destination="R4v-Xa-L3V" id="7gJ-su-PeB"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -28,6 +30,14 @@
                     <rect key="frame" x="0.0" y="15" width="320" height="193"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ODG-Hl-uej">
+                            <rect key="frame" x="26" y="35" width="106" height="110"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stepsicon-01.png" translatesAutoresizingMaskIntoConstraints="NO" id="BfP-Vx-bxt">
+                            <rect key="frame" x="185" y="25" width="110" height="110"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrK-V3-ShG" userLabel="Label - XPvalue">
                             <rect key="frame" x="199" y="58" width="84" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -43,12 +53,12 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jr-vO-xQk" customClass="DACircularProgressView">
-                            <rect key="frame" x="180" y="20" width="120" height="120"/>
+                            <rect key="frame" x="185" y="25" width="110" height="110"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rA5-yN-SpM" customClass="DACircularProgressView">
-                            <rect key="frame" x="20" y="20" width="120" height="120"/>
+                            <rect key="frame" x="25" y="25" width="110" height="110"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
@@ -89,4 +99,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
         </imageView>
     </objects>
+    <resources>
+        <image name="stepsicon-01.png" width="1667" height="1667"/>
+    </resources>
 </document>
