@@ -281,38 +281,38 @@ static TTTTimeIntervalFormatter *timeFormatter;
     /*
      Create bottom section fo the header view; the likes
      */
-    likeBarView = [[UIView alloc] initWithFrame:CGRectMake(likeBarX, likeBarY, likeBarWidth, likeBarHeight)];
-    [likeBarView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundComments.png"]]];
-    [self addSubview:likeBarView];
+//    likeBarView = [[UIView alloc] initWithFrame:CGRectMake(likeBarX, likeBarY, likeBarWidth, likeBarHeight)];
+//    [likeBarView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"BackgroundComments.png"]]];
+//    [self addSubview:likeBarView];
+//    
+//    // Create the heart-shaped like button
+//    likeButton = self.likeButton;
+//    [likeButton setFrame:CGRectMake(likeButtonX, likeButtonY, likeButtonDim, likeButtonDim)];
+//    [likeButton setBackgroundColor:[UIColor clearColor]];
+//    [likeButton setTitleColor:[UIColor colorWithRed:0.369f green:0.271f blue:0.176f alpha:1.0f] forState:UIControlStateNormal];
+//    [likeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+//    [likeButton setTitleShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f] forState:UIControlStateNormal];
+//    [likeButton setTitleShadowColor:[UIColor colorWithWhite:0.0f alpha:0.750f] forState:UIControlStateSelected];
+//    [likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
+//    [[likeButton titleLabel] setFont:[UIFont systemFontOfSize:12.0f]];
+//    [[likeButton titleLabel] setMinimumScaleFactor:11.0f];
+//    [[likeButton titleLabel] setAdjustsFontSizeToFitWidth:YES];
+//    [[likeButton titleLabel] setShadowOffset:CGSizeMake(0.0f, 1.0f)];
+//    [likeButton setAdjustsImageWhenDisabled:NO];
+//    [likeButton setAdjustsImageWhenHighlighted:NO];
+//    [likeButton setBackgroundImage:[UIImage imageNamed:@"ButtonLike.png"] forState:UIControlStateNormal];
+//    [likeButton setBackgroundImage:[UIImage imageNamed:@"ButtonLikeSelected.png"] forState:UIControlStateSelected];
+//    [likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [likeBarView addSubview:likeButton];
+//    
+//    [self reloadLikeBar];
+//    
+//    UIImageView *separator = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"SeparatorComments.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 1.0f, 0.0f, 1.0f)]];
+//    [separator setFrame:CGRectMake(0.0f, likeBarView.frame.size.height - 2.0f, likeBarView.frame.size.width, 2.0f)];
+//    [likeBarView addSubview:separator];
+//    
     
-    // Create the heart-shaped like button
-    likeButton = self.likeButton;
-    [likeButton setFrame:CGRectMake(likeButtonX, likeButtonY, likeButtonDim, likeButtonDim)];
-    [likeButton setBackgroundColor:[UIColor clearColor]];
-    [likeButton setTitleColor:[UIColor colorWithRed:0.369f green:0.271f blue:0.176f alpha:1.0f] forState:UIControlStateNormal];
-    [likeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [likeButton setTitleShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f] forState:UIControlStateNormal];
-    [likeButton setTitleShadowColor:[UIColor colorWithWhite:0.0f alpha:0.750f] forState:UIControlStateSelected];
-    [likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
-    [[likeButton titleLabel] setFont:[UIFont systemFontOfSize:12.0f]];
-    [[likeButton titleLabel] setMinimumScaleFactor:11.0f];
-    [[likeButton titleLabel] setAdjustsFontSizeToFitWidth:YES];
-    [[likeButton titleLabel] setShadowOffset:CGSizeMake(0.0f, 1.0f)];
-    [likeButton setAdjustsImageWhenDisabled:NO];
-    [likeButton setAdjustsImageWhenHighlighted:NO];
-    [likeButton setBackgroundImage:[UIImage imageNamed:@"ButtonLike.png"] forState:UIControlStateNormal];
-    [likeButton setBackgroundImage:[UIImage imageNamed:@"ButtonLikeSelected.png"] forState:UIControlStateSelected];
     [likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [likeBarView addSubview:likeButton];
-    
-    [self reloadLikeBar];
-    
-    UIImageView *separator = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"SeparatorComments.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.0f, 1.0f, 0.0f, 1.0f)]];
-    [separator setFrame:CGRectMake(0.0f, likeBarView.frame.size.height - 2.0f, likeBarView.frame.size.width, 2.0f)];
-    [likeBarView addSubview:separator];
-    
-    
-    
 }
 
 - (void)didTapLikeActivityButtonAction:(UIButton *)button {
@@ -368,6 +368,8 @@ static TTTTimeIntervalFormatter *timeFormatter;
         [delegate activityDetailsHeaderCell:self didTapUserButton:button user:user];
     }
 }
+
+
 
 - (void)didTapUserNameButtonAction:(UIButton *)button {
     if (delegate && [delegate respondsToSelector:@selector(activityDetailsHeaderCell:didTapUserButton:user:)]) {

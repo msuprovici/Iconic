@@ -24,7 +24,10 @@
 @implementation FeedViewController
 @synthesize shouldReloadOnAppear;
 @synthesize outstandingActivityObjectQueries;
+
+
 @synthesize timeIntervalFormatter;
+@synthesize delegate;
 
 
 #pragma mark - Initialization
@@ -50,6 +53,9 @@
     self = [super initWithCoder:aDecoder];
    
     if (self) {
+        
+        self.outstandingActivityObjectQueries = [NSMutableDictionary dictionary];
+        
         // Custom the table
         
         // The className to query on
@@ -103,7 +109,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLikeOrUnlikeActivity:) name:UtilityUserLikedUnlikedActivityCallbackFinishedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidCommentOnActivity:) name:ActivityDetailsViewControllerUserCommentedOnActivityNotification object:nil];
     
-
+  
 }
 
 - (void)viewDidUnload {
@@ -222,8 +228,16 @@
  ActivityHeaderCell *cell = (ActivityHeaderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
  if (cell == nil) {
  cell = [[ActivityHeaderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+     cell.delegate = self;
  }
  
+     
+//     if (!cell) {
+//         cell = [[ActivityHeaderCell alloc] initWithFrame:CGRectMake( 0.0f, 0.0f, self.view.bounds.size.width, 44.0f) buttons:ActivityHeaderButtons];
+//         cell.delegate = self;
+//         [self.reusableSectionHeaderViews addObject:cell];
+//     }
+     
  // Configure the cell
 // cell.textLabel.text = [object objectForKey:self.textKey];
 // cell.imageView.file = [object objectForKey:self.imageKey];
@@ -401,7 +415,7 @@
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
-#pragma mark - PAPPhotoHeaderViewDelegate
+#pragma mark - FeedViewDelegate
 
 //- (void)activityHeaderCell:(ActivityHeaderCell *)activityHeaderCell didTapUserButton:(UIButton *)button user:(PFUser *)user {
 //    PAPAccountViewController *accountViewController = [[PAPAccountViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -409,7 +423,28 @@
 //    [self.navigationController pushViewController:accountViewController animated:YES];
 //}
 
+//- (IBAction)likeButtonPressed:(id)sender {
+//    
+//    [self activityHeaderCell:(ActivityHeaderCell *) didTapLikeActivityButton:(UIButton *) activity:(PFObject *)activity];
+//}
+
+//- (IBAction)didTapLikeActivityButton {
+//    NSLog(@"like activity is tapped");
+//    [self activityHeaderCell:self didTapLikeActivityButton:button activity:self.activity];
+//    
+//}
+- (IBAction)didTapActivityButton:(UIButton *)sender  {
+    
+    
+    ActivityHeaderCell * cell;
+    
+    PFObject *activity = [self.objects objectAtIndex:sender.tag];
+    
+    [self activityHeaderCell:cell didTapLikeActivityButton:sender activity:activity];
+}
+
 - (void)activityHeaderCell:(ActivityHeaderCell *)activityHeaderCell didTapLikeActivityButton:(UIButton *)button activity:(PFObject *)activity {
+    
     [activityHeaderCell shouldEnableLikeButton:NO];
     
     BOOL liked = !button.selected;
@@ -422,6 +457,7 @@
     
     NSNumber *likeCount = [numberFormatter numberFromString:button.titleLabel.text];
     if (liked) {
+        NSLog(@"like activity is tapped");
         likeCount = [NSNumber numberWithInt:[likeCount intValue] + 1];
         [[Cache sharedCache] incrementLikerCountForActivity:activity];
     } else {
@@ -436,7 +472,9 @@
     [button setTitle:[numberFormatter stringFromNumber:likeCount] forState:UIControlStateNormal];
     
     //convert button.tag, an NSInteger, to NSIndexpath
-    NSIndexPath *path = [NSIndexPath indexPathWithIndex:button.tag];
+    //NSIndexPath *path = [NSIndexPath indexPathWithIndex:button.tag];
+    
+    NSIndexPath * path = [NSIndexPath indexPathForRow:button.tag inSection:0];
     
     if (liked) {
         [Utility likeActivityInBackground:activity block:^(BOOL succeeded, NSError *error) {
@@ -445,8 +483,10 @@
             [actualHeaderCell setLikeStatus:succeeded];
             
             if (!succeeded) {
+                
                 [actualHeaderCell.likeButton setTitle:originalButtonTitle forState:UIControlStateNormal];
             }
+            else NSLog(@"Like button succeded");
         }];
     } else {
         [Utility unlikeActivityInBackground:activity block:^(BOOL succeeded, NSError *error) {
@@ -473,7 +513,7 @@
     for (int i = 0; i < self.objects.count; i++) {
         PFObject *object = [self.objects objectAtIndex:i];
         if ([[object objectId] isEqualToString:[targetObject objectId]]) {
-            return [NSIndexPath indexPathForRow:0 inSection:i];
+            return [NSIndexPath indexPathWithIndex:i];
         }
     }
     
@@ -483,6 +523,7 @@
 - (void)userDidLikeOrUnlikeActivity:(NSNotification *)note {
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+   
 }
 
 - (void)userDidCommentOnActivity:(NSNotification *)note {
@@ -500,7 +541,7 @@
 
 - (void)userDidPublishActivity:(NSNotification *)note {
     if (self.objects.count > 0) {
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathWithIndex:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
     
     [self loadObjects];
@@ -519,6 +560,32 @@
         [self.navigationController pushViewController:activityDetailsVC animated:YES];
     }
 }
+
+
+
+//- (IBAction)didTapOnLikeAction:(id)sender {
+//    
+//    ActivityHeaderCell *cell;
+//    
+//    [cell.likeButton addTarget:cell action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    NSLog(@"like button pressed");
+//    
+//    //[cell.likeButton addTarget:cell action:cell.didTapLikeActivityButtonAction ];
+//    
+//}
+//
+//- (void)didTapLikeActivityButtonAction:(UIButton *)button {
+//    
+//    
+//     ActivityHeaderCell *cell;
+//    
+//    if (delegate && [delegate respondsToSelector:@selector(activityHeaderCell:didTapLikeActivityButton:activity:)]) {
+//        [delegate activityHeaderCell:cell didTapLikeActivityButton:button activity:cell.activity];
+//        
+//        
+//    }
+//}
 
 - (void)refreshControlValueChanged:(UIRefreshControl *)refreshControl {
     [self loadObjects];

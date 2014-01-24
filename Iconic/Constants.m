@@ -67,7 +67,7 @@ NSString *const kPlayerActionTypeKey        = @"type";
 NSString *const kPlayerActionFromUserKey    = @"fromUser";
 NSString *const kPlayerActionToUserKey      = @"toUser";
 NSString *const kPlayerActionContentKey     = @"content";
-NSString *const kPlayerActionActivityKey       = @"activity";
+NSString *const kPlayerActionActivityKey       = @"playerActivity";
 
 // Type values
 NSString *const kPlayerActionTypeLike       = @"like";

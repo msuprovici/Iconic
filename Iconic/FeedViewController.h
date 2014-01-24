@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "TTTTimeIntervalFormatter.h"
+#import "ActivityHeaderCell.h"
 
-@interface FeedViewController : PFQueryTableViewController
+@interface FeedViewController : PFQueryTableViewController <ActivityHeaderCellDelegate>
+
+@property (nonatomic,weak) id <ActivityHeaderCellDelegate> delegate;
 
 @end

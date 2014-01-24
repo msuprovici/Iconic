@@ -24,20 +24,20 @@
 @synthesize delegate;
 
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 
 //- (id)initWithStyle:(UITableViewCellStyle)style buttons:(ActivityHeaderButtons)otherButtons
-//- (id)initWithFrame:(CGRect)frame buttons:(ActivityHeaderButtons)otherButtons
+- (id)initWithFrame:(CGRect)frame buttons:(ActivityHeaderButtons)otherButtons
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    //self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     //self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         
-//        [ActivityHeaderCell validateButtons:otherButtons];
-//        buttons = otherButtons;
-//        
+        [ActivityHeaderCell validateButtons:otherButtons];
+        buttons = otherButtons;
+//
         
         
 // we will set the parameters bellow in the storyboard
@@ -117,7 +117,9 @@
 //        layer.shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake( 0.0f, containerView.frame.size.height - 4.0f, containerView.frame.size.width, 4.0f)].CGPath;
     
         //self.timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
-
+     likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+      [self.likeButton setSelected:NO];
         
     }
     return self;
@@ -150,7 +152,14 @@
     
     NSString *authorName = [user objectForKey:kUserDisplayNameKey];
     [self.userButton setTitle:authorName forState:UIControlStateNormal];
-    
+//    
+//    [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [self.commentButton addTarget:self action:@selector(didTapCommentOnActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [self.userButton setTitle:authorName forState:UIControlStateNormal];
+//    
+//    [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     CGFloat constrainWidth = containerView.bounds.size.width;
     
@@ -164,8 +173,9 @@
     }
     
     if (self.buttons & ActivityHeaderButtonsLike) {
-        constrainWidth = self.likeButton.frame.origin.x;
+       constrainWidth = self.likeButton.frame.origin.x;
         [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        NSLog(@"like activity is tapped");
     }
     
 // moved the time stamp to FeedViewController in cellForRowAtIndexPath
@@ -193,6 +203,7 @@
 - (void)shouldEnableLikeButton:(BOOL)enable {
     if (enable) {
         [self.likeButton removeTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+       
     } else {
         [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -217,8 +228,19 @@
 - (void)didTapLikeActivityButtonAction:(UIButton *)button {
     if (delegate && [delegate respondsToSelector:@selector(activityHeaderCell:didTapLikeActivityButton:activity:)]) {
         [delegate activityHeaderCell:self didTapLikeActivityButton:button activity:self.activity];
+       
     }
 }
+- (IBAction)didTapLikeButton:(id)sender {
+    
+    if (delegate && [delegate respondsToSelector:@selector(activityHeaderCell:didTapLikeActivityButton:activity:)]) {
+        [delegate activityHeaderCell:self didTapLikeActivityButton:sender activity:self.activity];
+        
+    }
+}
+
+
+
 
 - (void)didTapCommentOnActivityButtonAction:(UIButton *)sender {
     if (delegate && [delegate respondsToSelector:@selector(activityHeaderCell:didTapCommentOnActivityButton:activity:)]) {

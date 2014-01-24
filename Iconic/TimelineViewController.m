@@ -30,7 +30,7 @@
 @synthesize shouldReloadOnAppear;
 @synthesize outstandingSectionHeaderQueries;
 
-@synthesize playerActivity = _playerActivity;
+//@synthesize playerActivity = _playerActivity;
 
 #pragma mark - Initialization
 
