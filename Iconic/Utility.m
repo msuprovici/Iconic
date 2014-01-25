@@ -28,8 +28,8 @@
     [queryExistingLikes setCachePolicy:kPFCachePolicyNetworkOnly];
     [queryExistingLikes findObjectsInBackgroundWithBlock:^(NSArray *activities, NSError *error) {
         if (!error) {
-            for (PFObject *activity in activities) {
-                [activity delete];
+            for (PFObject *playeraction in activities) {
+                [playeraction deleteInBackground];
             }
         }
         
@@ -93,8 +93,8 @@
     [queryExistingLikes setCachePolicy:kPFCachePolicyNetworkOnly];
     [queryExistingLikes findObjectsInBackgroundWithBlock:^(NSArray *activities, NSError *error) {
         if (!error) {
-            for (PFObject *activity in activities) {
-                [activity delete];
+            for (PFObject *playeraction in activities) {
+                [playeraction deleteInBackground];
             }
             
             if (completionBlock) {
