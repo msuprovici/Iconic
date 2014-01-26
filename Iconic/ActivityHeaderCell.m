@@ -24,19 +24,19 @@
 @synthesize delegate;
 
 
-//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 
 //- (id)initWithStyle:(UITableViewCellStyle)style buttons:(ActivityHeaderButtons)otherButtons
-- (id)initWithFrame:(CGRect)frame buttons:(ActivityHeaderButtons)otherButtons
+//- (id)initWithFrame:(CGRect)frame buttons:(ActivityHeaderButtons)otherButtons
 {
-    //self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     //self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
         
-        [ActivityHeaderCell validateButtons:otherButtons];
-        buttons = otherButtons;
+//        [ActivityHeaderCell validateButtons:otherButtons];
+//        buttons = otherButtons;
 //
         
         
@@ -117,20 +117,20 @@
 //        layer.shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake( 0.0f, containerView.frame.size.height - 4.0f, containerView.frame.size.width, 4.0f)].CGPath;
     
         //self.timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
-     likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+     //likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         
-      [self.likeButton setSelected:NO];
+     //[self.likeButton setSelected:NO];
         
     }
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+//{
+//    [super setSelected:selected animated:animated];
+//
+//    // Configure the view for the selected state
+//}
 
 
 #pragma mark - ActivityHeaderCell
@@ -152,31 +152,30 @@
     
     NSString *authorName = [user objectForKey:kUserDisplayNameKey];
     [self.userButton setTitle:authorName forState:UIControlStateNormal];
-//    
-//    [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [self.commentButton addTarget:self action:@selector(didTapCommentOnActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [self.userButton setTitle:authorName forState:UIControlStateNormal];
-//    
-//    [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+   
+    [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    CGFloat constrainWidth = containerView.bounds.size.width;
+    [self.commentButton addTarget:self action:@selector(didTapCommentOnActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    if (self.buttons & ActivityHeaderButtonsUser) {
-        [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
     
-    if (self.buttons & ActivityHeaderButtonsComment) {
-        constrainWidth = self.commentButton.frame.origin.x;
-        [self.commentButton addTarget:self action:@selector(didTapCommentOnActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    //[self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    if (self.buttons & ActivityHeaderButtonsLike) {
-       constrainWidth = self.likeButton.frame.origin.x;
-        [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        NSLog(@"like activity is tapped");
-    }
+//    CGFloat constrainWidth = containerView.bounds.size.width;
+//    
+//    if (self.buttons & ActivityHeaderButtonsUser) {
+//        [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    
+//    if (self.buttons & ActivityHeaderButtonsComment) {
+//        constrainWidth = self.commentButton.frame.origin.x;
+//        [self.commentButton addTarget:self action:@selector(didTapCommentOnActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    
+//    if (self.buttons & ActivityHeaderButtonsLike) {
+//       constrainWidth = self.likeButton.frame.origin.x;
+//        [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//        NSLog(@"like activity is tapped");
+//    }
     
 // moved the time stamp to FeedViewController in cellForRowAtIndexPath
 //    NSTimeInterval timeInterval = [[self.activity createdAt] timeIntervalSinceNow];
@@ -191,22 +190,23 @@
 - (void)setLikeStatus:(BOOL)liked {
     [self.likeButton setSelected:liked];
     
-    if (liked) {
-        [self.likeButton setTitleEdgeInsets:UIEdgeInsetsMake(-1.0f, 0.0f, 0.0f, 0.0f)];
-        [[self.likeButton titleLabel] setShadowOffset:CGSizeMake(0.0f, -1.0f)];
-    } else {
-        [self.likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
-        [[self.likeButton titleLabel] setShadowOffset:CGSizeMake(0.0f, 1.0f)];
-    }
+//    
+//    if (liked) {
+//        [self.likeButton setTitleEdgeInsets:UIEdgeInsetsMake(-1.0f, 0.0f, 0.0f, 0.0f)];
+//        [[self.likeButton titleLabel] setShadowOffset:CGSizeMake(0.0f, -1.0f)];
+//    } else {
+//        [self.likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
+//        [[self.likeButton titleLabel] setShadowOffset:CGSizeMake(0.0f, 1.0f)];
+//    }
 }
 
 - (void)shouldEnableLikeButton:(BOOL)enable {
-    if (enable) {
-        [self.likeButton removeTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-       
-    } else {
-        [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
+//    if (enable) {
+//        [self.likeButton removeTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//       
+//    } else {
+//        [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    }
 }
 
 
@@ -231,14 +231,6 @@
        
     }
 }
-- (IBAction)didTapLikeButton:(id)sender {
-    
-    if (delegate && [delegate respondsToSelector:@selector(activityHeaderCell:didTapLikeActivityButton:activity:)]) {
-        [delegate activityHeaderCell:self didTapLikeActivityButton:sender activity:self.activity];
-        
-    }
-}
-
 
 
 

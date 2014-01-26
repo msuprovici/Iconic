@@ -11,7 +11,7 @@
 #import "TTTTimeIntervalFormatter.h"
 #import "ActivityHeaderCell.h"
 
-@interface FeedViewController : PFQueryTableViewController <ActivityHeaderCellDelegate>
+@interface FeedViewController : PFQueryTableViewController //<ActivityHeaderCellDelegate>
 
 @property (nonatomic,weak) id <ActivityHeaderCellDelegate> delegate;
 

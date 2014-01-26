@@ -272,15 +272,15 @@
          [cell.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
          [cell.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
          
-         if (cell.likeButton.alpha < 1.0f || cell.commentButton.alpha < 1.0f) {
-             [UIView animateWithDuration:0.200f animations:^{
-                 cell.likeButton.alpha = 1.0f;
-                 cell.commentButton.alpha = 1.0f;
-             }];
-         }
+//         if (cell.likeButton.alpha < 1.0f || cell.commentButton.alpha < 1.0f) {
+//             [UIView animateWithDuration:0.200f animations:^{
+//                 cell.likeButton.alpha = 1.0f;
+//                 cell.commentButton.alpha = 1.0f;
+//             }];
+//         }
      } else {
-         cell.likeButton.alpha = 0.0f;
-         cell.commentButton.alpha = 0.0f;
+//         cell.likeButton.alpha = 0.0f;
+//         cell.commentButton.alpha = 0.0f;
          
          @synchronized(self) {
              // check if we can update the cache
@@ -321,12 +321,12 @@
                          [cell.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
                          [cell.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
                          
-                         if (cell.likeButton.alpha < 1.0f || cell.commentButton.alpha < 1.0f) {
-                             [UIView animateWithDuration:0.200f animations:^{
-                                 cell.likeButton.alpha = 1.0f;
-                                 cell.commentButton.alpha = 1.0f;
-                             }];
-                         }
+//                         if (cell.likeButton.alpha < 1.0f || cell.commentButton.alpha < 1.0f) {
+//                             [UIView animateWithDuration:0.200f animations:^{
+//                                 cell.likeButton.alpha = 1.0f;
+//                                 cell.commentButton.alpha = 1.0f;
+//                             }];
+//                         }
                      }
                  }];
              }
@@ -435,12 +435,103 @@
 //}
 - (IBAction)didTapActivityButton:(UIButton *)sender  {
     
-    
-    ActivityHeaderCell * cell;
+   
+    ActivityHeaderCell * cell = [[ActivityHeaderCell alloc]init];
     
     PFObject *activity = [self.objects objectAtIndex:sender.tag];
     
     [self activityHeaderCell:cell didTapLikeActivityButton:sender activity:activity];
+    
+    
+    
+ //bellow is an attempt to bring the code from [self activityHeaderCell:cell didTapLikeActivityButton:sender activity:activity]; into this IBAction to see if it would have any effect on performance.  No impact.
+    
+//    BOOL liked = !sender.selected;
+//    [cell setLikeStatus:liked];
+//    
+//    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+//    [numberFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+//    
+//    NSNumber *likeCount = [numberFormatter numberFromString:sender.titleLabel.text];
+//    [sender setTitle:[numberFormatter stringFromNumber:likeCount]  forState:UIControlStateNormal];
+//    
+//    NSString *originalButtonTitle = sender.titleLabel.text;
+//    
+//     NSIndexPath * path = [NSIndexPath indexPathForRow:sender.tag inSection:0];
+//    
+//    if (liked) {
+//        NSLog(@"like button is tapped");
+//        likeCount = [NSNumber numberWithInt:[likeCount intValue] + 1];
+//        [[Cache sharedCache] incrementLikerCountForActivity:activity];
+//        
+//        
+//        //        [self.tableView beginUpdates];
+//        //        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
+//        //        [self.tableView endUpdates];
+//    } else {
+//        NSLog(@"unlike button is tapped");
+//        if ([likeCount intValue] > 0) {
+//            likeCount = [NSNumber numberWithInt:[likeCount intValue] - 1];
+//        }
+//        [[Cache sharedCache] decrementLikerCountForActivity:activity];
+//        
+//        //        [self.tableView beginUpdates];
+//        //        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
+//        //        [self.tableView endUpdates];
+//    }
+//    
+//    [[Cache sharedCache] setActivityIsLikedByCurrentUser:activity liked:liked];
+//    
+//    [sender setTitle:[numberFormatter stringFromNumber:likeCount] forState:UIControlStateNormal];
+//    
+//    //convert button.tag, an NSInteger, to NSIndexpath
+//    //NSIndexPath *path = [NSIndexPath indexPathWithIndex:button.tag];
+//    
+//    
+//    
+//    if (liked) {
+//        
+//        //        [self.tableView beginUpdates];
+//        //        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
+//        //        [self.tableView endUpdates];
+//        
+//        [Utility likeActivityInBackground:activity block:^(BOOL succeeded, NSError *error) {
+//            ActivityHeaderCell *actualHeaderCell = (ActivityHeaderCell *)[self tableView:self.tableView cellForRowAtIndexPath:path];
+//            [actualHeaderCell shouldEnableLikeButton:YES];
+//            [actualHeaderCell setLikeStatus:succeeded];
+//            
+//            if (!succeeded) {
+//                
+//                [actualHeaderCell.likeButton setTitle:originalButtonTitle forState:UIControlStateNormal];
+//            }
+//            else
+//                NSLog(@"Like button succeded");
+//            
+//        }];
+//        
+//        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
+//    } else {
+//        
+//        //        [self.tableView beginUpdates];
+//        //        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
+//        //        [self.tableView endUpdates];
+//        
+//        [Utility unlikeActivityInBackground:activity block:^(BOOL succeeded, NSError *error) {
+//            ActivityHeaderCell *actualHeaderView = (ActivityHeaderCell *)[self tableView:self.tableView cellForRowAtIndexPath:path];
+//            [actualHeaderView shouldEnableLikeButton:YES];
+//            [actualHeaderView setLikeStatus:!succeeded];
+//            
+//            if (!succeeded) {
+//                [actualHeaderView.likeButton setTitle:originalButtonTitle forState:UIControlStateNormal];
+//            }
+//            else
+//                NSLog(@"Unlike button succeded");
+//        }];
+//        
+//        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
+//    }
+
+
 }
 
 - (void)activityHeaderCell:(ActivityHeaderCell *)activityHeaderCell didTapLikeActivityButton:(UIButton *)button activity:(PFObject *)activity {
@@ -450,6 +541,8 @@
     BOOL liked = !button.selected;
     [activityHeaderCell setLikeStatus:liked];
     
+     NSIndexPath * path = [NSIndexPath indexPathForRow:button.tag inSection:0];
+    
     NSString *originalButtonTitle = button.titleLabel.text;
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
@@ -457,14 +550,24 @@
     
     NSNumber *likeCount = [numberFormatter numberFromString:button.titleLabel.text];
     if (liked) {
-        NSLog(@"like activity is tapped");
+        NSLog(@"like button is tapped");
         likeCount = [NSNumber numberWithInt:[likeCount intValue] + 1];
         [[Cache sharedCache] incrementLikerCountForActivity:activity];
+        
+        
+//        [self.tableView beginUpdates];
+//        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
+//        [self.tableView endUpdates];
     } else {
+        NSLog(@"unlike button is tapped");
         if ([likeCount intValue] > 0) {
             likeCount = [NSNumber numberWithInt:[likeCount intValue] - 1];
         }
         [[Cache sharedCache] decrementLikerCountForActivity:activity];
+        
+//        [self.tableView beginUpdates];
+//        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
+//        [self.tableView endUpdates];
     }
     
     [[Cache sharedCache] setActivityIsLikedByCurrentUser:activity liked:liked];
@@ -474,9 +577,15 @@
     //convert button.tag, an NSInteger, to NSIndexpath
     //NSIndexPath *path = [NSIndexPath indexPathWithIndex:button.tag];
     
-    NSIndexPath * path = [NSIndexPath indexPathForRow:button.tag inSection:0];
+   
     
     if (liked) {
+        
+        //update cell
+        [self.tableView beginUpdates];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+        
         [Utility likeActivityInBackground:activity block:^(BOOL succeeded, NSError *error) {
             ActivityHeaderCell *actualHeaderCell = (ActivityHeaderCell *)[self tableView:self.tableView cellForRowAtIndexPath:path];
             [actualHeaderCell shouldEnableLikeButton:YES];
@@ -486,9 +595,19 @@
                 
                 [actualHeaderCell.likeButton setTitle:originalButtonTitle forState:UIControlStateNormal];
             }
-            else NSLog(@"Like button succeded");
+            else
+                NSLog(@"Like button succeded");
+            
         }];
+        
+        //[self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
     } else {
+        
+        //update cell
+        [self.tableView beginUpdates];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+        
         [Utility unlikeActivityInBackground:activity block:^(BOOL succeeded, NSError *error) {
             ActivityHeaderCell *actualHeaderView = (ActivityHeaderCell *)[self tableView:self.tableView cellForRowAtIndexPath:path];
             [actualHeaderView shouldEnableLikeButton:YES];
@@ -497,7 +616,11 @@
             if (!succeeded) {
                 [actualHeaderView.likeButton setTitle:originalButtonTitle forState:UIControlStateNormal];
             }
+            else
+                NSLog(@"Unlike button succeded");
         }];
+        
+       // [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
