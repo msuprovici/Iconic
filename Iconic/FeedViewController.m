@@ -440,6 +440,7 @@
     
     PFObject *activity = [self.objects objectAtIndex:sender.tag];
     
+    
     [self activityHeaderCell:cell didTapLikeActivityButton:sender activity:activity];
     
     
@@ -572,7 +573,8 @@
     
     [[Cache sharedCache] setActivityIsLikedByCurrentUser:activity liked:liked];
     
-    [button setTitle:[numberFormatter stringFromNumber:likeCount] forState:UIControlStateNormal];
+//    [button setTitle:[numberFormatter stringFromNumber:likeCount] forState:UIControlStateNormal];
+//    [button setTitle:[numberFormatter stringFromNumber:likeCount] forState:UIControlStateSelected];
     
     //convert button.tag, an NSInteger, to NSIndexpath
     //NSIndexPath *path = [NSIndexPath indexPathWithIndex:button.tag];

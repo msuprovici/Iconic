@@ -973,7 +973,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="pfj-yT-uTa" customClass="ActivityHeaderCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="pfj-yT-uTa" customClass="ActivityHeaderCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pfj-yT-uTa" id="3vR-QE-zlI">
@@ -1001,10 +1001,12 @@
                                                         <segue destination="tuF-GK-KB7" kind="push" id="qLx-Qv-ZGQ"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="qqm-bp-BZy">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="qqm-bp-BZy">
                                                     <rect key="frame" x="271" y="5" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <state key="normal">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -1483,12 +1485,12 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="9JY-IR-Ra1"/>
-        <segue reference="1W0-hY-T94"/>
+        <segue reference="kd5-hD-PUf"/>
         <segue reference="kBj-mf-isH"/>
         <segue reference="YCB-li-iW7"/>
-        <segue reference="kd5-hD-PUf"/>
-        <segue reference="1aU-1X-0Xx"/>
+        <segue reference="s2g-Lm-v4Q"/>
         <segue reference="GlC-f2-v4y"/>
+        <segue reference="9JY-IR-Ra1"/>
+        <segue reference="1aU-1X-0Xx"/>
     </inferredMetricsTieBreakers>
 </document>

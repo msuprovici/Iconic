@@ -44,7 +44,7 @@ typedef enum {
 
 /// The Like Activity button
 //@property (nonatomic,readonly) UIButton *likeButton;
-@property (strong, nonatomic) IBOutlet UIButton *likeButton;
+@property (strong, nonatomic, readonly) IBOutlet UIButton *likeButton;
 
 /// The Comment On Activity button
 //@property (nonatomic,readonly) UIButton *commentButton;

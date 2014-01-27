@@ -158,7 +158,7 @@
     [self.commentButton addTarget:self action:@selector(didTapCommentOnActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    //[self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
 //    CGFloat constrainWidth = containerView.bounds.size.width;
 //    
@@ -201,12 +201,12 @@
 }
 
 - (void)shouldEnableLikeButton:(BOOL)enable {
-//    if (enable) {
-//        [self.likeButton removeTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//       
-//    } else {
-//        [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//    }
+    if (enable) {
+        [self.likeButton removeTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+       
+    } else {
+        [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
 }
 
 
