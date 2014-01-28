@@ -9,11 +9,14 @@
 #import "PlayerCommentCell.h"
 #import "CommentCell.h"
 #import <Parse/Parse.h>
+#import "ActivityDeatailsHeaderCell.h"
 
-@interface CommentsViewController : PFQueryTableViewController <UITextFieldDelegate, UIActionSheetDelegate, PlayerCommentCellDelegate>
+@interface CommentsViewController : PFQueryTableViewController <UITextFieldDelegate, UIActionSheetDelegate, ActivityDeatailsHeaderCellDelegate, PlayerCommentCellDelegate>
 
 @property (nonatomic, strong) PFObject *activity;
 
-- (id)initWithActivity:(PFObject*)anActivity;
+//- (id)initWithActivity:(PFObject*)anActivity;
+
+-(void)initWithActivity:(PFObject*)anActivity;
 
 @end

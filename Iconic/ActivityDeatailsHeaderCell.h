@@ -16,7 +16,7 @@
 /*! @name Managing View Properties */
 
 /// The activity displayed in the view
-@property (nonatomic, strong) PFObject *activity;
+@property (nonatomic, strong, readonly) PFObject *activity;
 
 /// The user that did the activity
 @property (nonatomic, strong, readonly) PFUser *activeplayer;
@@ -29,6 +29,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *likeButton;
 
+@property (strong, nonatomic) IBOutlet UILabel *ActivityLabel;
 
 //all other images
 
@@ -43,9 +44,9 @@
 /*! @name Delegate */
 @property (nonatomic, strong) id<ActivityDeatailsHeaderCellDelegate> delegate;
 
-//+ (CGRect)rectForView;
++ (CGRect)rectForView;
 
-//- (id)initWithFrame:(CGRect)frame activity:(PFObject*)anActivity;
+- (id)initWithFrame:(CGRect)frame activity:(PFObject*)anActivity;
 - (id)initWithFrame:(CGRect)frame activity:(PFObject*)anActivity activeplayer:(PFUser*)anActivity likeUsers:(NSArray*)theLikeUsers;
 
 - (void)setLikeButtonState:(BOOL)selected;

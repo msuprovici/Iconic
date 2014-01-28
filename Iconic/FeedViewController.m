@@ -417,22 +417,7 @@
 
 #pragma mark - FeedViewDelegate
 
-//- (void)activityHeaderCell:(ActivityHeaderCell *)activityHeaderCell didTapUserButton:(UIButton *)button user:(PFUser *)user {
-//    PAPAccountViewController *accountViewController = [[PAPAccountViewController alloc] initWithStyle:UITableViewStylePlain];
-//    [accountViewController setUser:user];
-//    [self.navigationController pushViewController:accountViewController animated:YES];
-//}
 
-//- (IBAction)likeButtonPressed:(id)sender {
-//    
-//    [self activityHeaderCell:(ActivityHeaderCell *) didTapLikeActivityButton:(UIButton *) activity:(PFObject *)activity];
-//}
-
-//- (IBAction)didTapLikeActivityButton {
-//    NSLog(@"like activity is tapped");
-//    [self activityHeaderCell:self didTapLikeActivityButton:button activity:self.activity];
-//    
-//}
 - (IBAction)didTapActivityButton:(UIButton *)sender  {
     
    
@@ -445,95 +430,7 @@
     
     
     
- //bellow is an attempt to bring the code from [self activityHeaderCell:cell didTapLikeActivityButton:sender activity:activity]; into this IBAction to see if it would have any effect on performance.  No impact.
-    
-//    BOOL liked = !sender.selected;
-//    [cell setLikeStatus:liked];
-//    
-//    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-//    [numberFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-//    
-//    NSNumber *likeCount = [numberFormatter numberFromString:sender.titleLabel.text];
-//    [sender setTitle:[numberFormatter stringFromNumber:likeCount]  forState:UIControlStateNormal];
-//    
-//    NSString *originalButtonTitle = sender.titleLabel.text;
-//    
-//     NSIndexPath * path = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-//    
-//    if (liked) {
-//        NSLog(@"like button is tapped");
-//        likeCount = [NSNumber numberWithInt:[likeCount intValue] + 1];
-//        [[Cache sharedCache] incrementLikerCountForActivity:activity];
-//        
-//        
-//        //        [self.tableView beginUpdates];
-//        //        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
-//        //        [self.tableView endUpdates];
-//    } else {
-//        NSLog(@"unlike button is tapped");
-//        if ([likeCount intValue] > 0) {
-//            likeCount = [NSNumber numberWithInt:[likeCount intValue] - 1];
-//        }
-//        [[Cache sharedCache] decrementLikerCountForActivity:activity];
-//        
-//        //        [self.tableView beginUpdates];
-//        //        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
-//        //        [self.tableView endUpdates];
-//    }
-//    
-//    [[Cache sharedCache] setActivityIsLikedByCurrentUser:activity liked:liked];
-//    
-//    [sender setTitle:[numberFormatter stringFromNumber:likeCount] forState:UIControlStateNormal];
-//    
-//    //convert button.tag, an NSInteger, to NSIndexpath
-//    //NSIndexPath *path = [NSIndexPath indexPathWithIndex:button.tag];
-//    
-//    
-//    
-//    if (liked) {
-//        
-//        //        [self.tableView beginUpdates];
-//        //        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
-//        //        [self.tableView endUpdates];
-//        
-//        [Utility likeActivityInBackground:activity block:^(BOOL succeeded, NSError *error) {
-//            ActivityHeaderCell *actualHeaderCell = (ActivityHeaderCell *)[self tableView:self.tableView cellForRowAtIndexPath:path];
-//            [actualHeaderCell shouldEnableLikeButton:YES];
-//            [actualHeaderCell setLikeStatus:succeeded];
-//            
-//            if (!succeeded) {
-//                
-//                [actualHeaderCell.likeButton setTitle:originalButtonTitle forState:UIControlStateNormal];
-//            }
-//            else
-//                NSLog(@"Like button succeded");
-//            
-//        }];
-//        
-//        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
-//    } else {
-//        
-//        //        [self.tableView beginUpdates];
-//        //        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
-//        //        [self.tableView endUpdates];
-//        
-//        [Utility unlikeActivityInBackground:activity block:^(BOOL succeeded, NSError *error) {
-//            ActivityHeaderCell *actualHeaderView = (ActivityHeaderCell *)[self tableView:self.tableView cellForRowAtIndexPath:path];
-//            [actualHeaderView shouldEnableLikeButton:YES];
-//            [actualHeaderView setLikeStatus:!succeeded];
-//            
-//            if (!succeeded) {
-//                [actualHeaderView.likeButton setTitle:originalButtonTitle forState:UIControlStateNormal];
-//            }
-//            else
-//                NSLog(@"Unlike button succeded");
-//        }];
-//        
-//        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:path, nil] withRowAnimation:UITableViewRowAnimationNone];
-//    }
-
-
-}
+ }
 
 - (void)activityHeaderCell:(ActivityHeaderCell *)activityHeaderCell didTapLikeActivityButton:(UIButton *)button activity:(PFObject *)activity {
     
@@ -626,10 +523,56 @@
     }
 }
 
-- (void)activityHeaderCell:(ActivityHeaderCell *)activityHeaderCell didTapCommentOnActivityButton:(UIButton *)button  activity:(PFObject *)activity {
-    CommentsViewController *activityDetailsVC = [[CommentsViewController alloc] initWithActivity:activity];
-    [self.navigationController pushViewController:activityDetailsVC animated:YES];
+
+
+//- (IBAction)didTapCommentOnActivityButton:(UIButton *)sender {
+//    
+//    //ActivityHeaderCell * cell = [[ActivityHeaderCell alloc]init];
+//    
+//     //NSIndexPath *indexPath = [self.objects objectAtIndex:sender.tag];
+//    
+//    PFObject *activity = [self.objects objectAtIndex:sender.tag];
+//    
+//    //[self activityHeaderCell:cell didTapCommentOnActivityButton:sender activity:activity];
+//   
+//  
+//        
+//    CommentsViewController *activityDetailsVC = [[CommentsViewController alloc] init];
+//    
+//    [activityDetailsVC initWithActivity:activity];
+//    
+//      // [self.navigationController pushViewController:activityDetailsVC animated:YES];
+//}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ActivityDetails"]) {
+       
+        //Find the row the button was selected from
+        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+  
+        PFObject *activity = [self.objects objectAtIndex:hitIndex.row];
+        
+        [segue.destinationViewController initWithActivity:activity];
+        
+    }
 }
+
+-(void)yourButtonPressed:(id)sender
+{
+    
+    CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+    NSLog(@"%i",hitIndex.row);
+    
+    
+}
+//
+//- (void)activityHeaderCell:(ActivityHeaderCell *)activityHeaderCell didTapCommentOnActivityButton:(UIButton *)button  activity:(PFObject *)activity {
+//    CommentsViewController *activityDetailsVC = [[CommentsViewController alloc] initWithActivity:activity];
+//    [self.navigationController pushViewController:activityDetailsVC animated:YES];
+//}
 
 
 #pragma mark - ()
@@ -680,10 +623,10 @@
 
 - (void)didTapOnActivityAction:(UIButton *)sender {
     PFObject *activity = [self.objects objectAtIndex:sender.tag];
-    if (activity) {
-        CommentsViewController *activityDetailsVC = [[CommentsViewController alloc] initWithActivity:activity];
-        [self.navigationController pushViewController:activityDetailsVC animated:YES];
-    }
+//    if (activity) {
+//        CommentsViewController *activityDetailsVC = [[CommentsViewController alloc] initWithActivity:activity];
+//        [self.navigationController pushViewController:activityDetailsVC animated:YES];
+//    }
 }
 
 

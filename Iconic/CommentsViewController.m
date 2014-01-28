@@ -8,28 +8,38 @@
 
 #import "CommentsViewController.h"
 
-
-
 #import <UIKit/UIKit.h>
 #import "Parse/Parse.h"
+
 #import "Utility.h"
 #import "Constants.h"
 #import "Cache.h"
 
+#import "ActivityHeaderCell.h"
 #import "ActivityDeatailsHeaderCell.h"
+#import "ProfileImageView.h"
 
 @interface CommentsViewController ()
 
 @property (nonatomic, strong) UITextField * commentTextField;
 @property (nonatomic, assign) BOOL likersQueryInProgress;
 @property (nonatomic, strong) ActivityDeatailsHeaderCell *headerView;
+@property (nonatomic, strong) TTTTimeIntervalFormatter *timeIntervalFormatter;
+@property (nonatomic, strong, readwrite) PFUser *player;
+
 
 @end
+
+static TTTTimeIntervalFormatter *timeFormatter;
 
 @implementation CommentsViewController
 
 @synthesize commentTextField;
-@synthesize activity, headerView;
+@synthesize activity;
+@synthesize headerView;
+@synthesize timeIntervalFormatter;
+@synthesize player;
+
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
@@ -37,25 +47,19 @@
 }
 
 
-
-
-- (id)initWithCoder:(NSCoder *)anActivity {
-
-//- (id)initWithActivity:(PFObject *)anActivity {
-    
-    self = [super initWithClassName:@"Test"];
-    //self = [super initWithCoder:anActivity];
+- (id)initWithCoder:(NSCoder *)aCoder {
+    self = [super initWithCoder:aCoder];
     
     if (self) {
         // Custom the table
         
         // The className to query on
-        self.parseClassName = @"Test";
+        //self.parseClassName = @"Test";
         
-        //self.parseClassName = kPlayerActionClassKey;
+        self.parseClassName = kPlayerActionClassKey;
         
         // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @"text";
+        // self.textKey = @"text";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
@@ -67,15 +71,28 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 25;
+        self.objectsPerPage = 10;
         
         //self.activity = anActivity;
         
+        
         self.likersQueryInProgress = NO;
+        
+        self.timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+       
         
     }
     return self;
+
+    
 }
+-(void)initWithActivity:(PFObject *)anActivity
+{
+    self.activity = anActivity;
+    self.player = [self.activity objectForKey:kActivityUserKey];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -97,18 +114,20 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // Set table header
-    //self.headerView = [[ActivityDeatailsHeaderCell alloc] initWithFrame:[ActivityDeatailsHeaderCell rectForView] activity:self.activity];
-    self.headerView = [[ActivityDeatailsHeaderCell alloc] init];
-    self.headerView.delegate = self;
     
-    self.tableView.tableHeaderView = self.headerView;
+//    self.headerView = [[ActivityDeatailsHeaderCell alloc] initWithFrame:[ActivityDeatailsHeaderCell rectForView] activity:self.activity];
+//    
+//    self.headerView.delegate = self;
+//    
+//    self.tableView.tableHeaderView = self.headerView;
 
+//    self.tableView.tableHeaderView = [[ActivityDeatailsHeaderCell alloc]init];
     
     // Set table footer
-    CommentCell *footerView = [[CommentCell alloc] init];
-    commentTextField = footerView.commentField;
-    commentTextField.delegate = self;
-    self.tableView.tableFooterView = footerView;
+//    CommentCell *footerView = [[CommentCell alloc] init];
+//    commentTextField = footerView.commentField;
+//    commentTextField.delegate = self;
+//    self.tableView.tableFooterView = footerView;
     
     
     // Register to be notified when the keyboard will be shown to scroll the view
@@ -134,7 +153,7 @@
     
     BOOL hasCachedLikers = [[Cache sharedCache] attributesForActivity:self.activity] != nil;
     if (!hasCachedLikers) {
-        [self loadLikers];
+   // [self loadLikers];
     }
 }
 
@@ -152,6 +171,30 @@
 }
 
 
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section >= self.objects.count) {
+        // Load More Section
+        return 44.0f;
+    }
+    
+    return 80.0f;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+}
+
 #pragma mark - PFQueryTableViewController
 
 - (void)objectsWillLoad {
@@ -160,54 +203,104 @@
     // This method is called before a PFQuery is fired to get more objects
 }
 
+
+
+ // Override to customize what kind of query to perform on the class. The default is to query for
+ // all objects ordered by createdAt descending.
+// - (PFQuery *)queryForTable {
+// PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+//     [query whereKey:kPlayerActionActivityKey equalTo:self.activity];
+//     [query includeKey:kPlayerActionFromUserKey];
+//     [query whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeComment];
+//     [query orderByAscending:@"createdAt"];
+// 
+// // If Pull To Refresh is enabled, query against the network by default.
+// if (self.pullToRefreshEnabled) {
+// query.cachePolicy = kPFCachePolicyNetworkOnly;
+// }
+// 
+// // If no objects are loaded in memory, we look to the cache first to fill the table
+// // and then subsequently do a query against the network.
+// if (self.objects.count == 0) {
+// query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+// }
+// 
+// [query orderByDescending:@"createdAt"];
+// 
+// return query;
+// }
+
+
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
     
     // This method is called every time objects are loaded from Parse via the PFQuery
+    
+   // [self.headerView reloadLikeBar];
+   // [self loadLikers];
 }
 
-/*
- // Override to customize what kind of query to perform on the class. The default is to query for
- // all objects ordered by createdAt descending.
- - (PFQuery *)queryForTable {
- PFQuery *query = [PFQuery queryWithClassName:self.className];
- 
- // If Pull To Refresh is enabled, query against the network by default.
- if (self.pullToRefreshEnabled) {
- query.cachePolicy = kPFCachePolicyNetworkOnly;
- }
- 
- // If no objects are loaded in memory, we look to the cache first to fill the table
- // and then subsequently do a query against the network.
- if (self.objects.count == 0) {
- query.cachePolicy = kPFCachePolicyCacheThenNetwork;
- }
- 
- [query orderByDescending:@"createdAt"];
- 
- return query;
- }
- */
 
-/*
+
  // Override to customize the look of a cell representing an object. The default is to display
  // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
  // and the imageView being the imageKey in the object.
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
- static NSString *CellIdentifier = @"Cell";
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+
+
+//using a cell to display the header...
+ - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath  {
+ static NSString *CellIdentifier = @"ActivityDetailsCell";
  
- PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+ ActivityDeatailsHeaderCell *cell = (ActivityDeatailsHeaderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
  if (cell == nil) {
- cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+ cell = [[ActivityDeatailsHeaderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+     //cell.delegate = self;
  }
  
  // Configure the cell
- cell.textLabel.text = [object objectForKey:self.textKey];
- cell.imageView.file = [object objectForKey:self.imageKey];
- 
+
+     
+     //setup activity text
+     cell.ActivityLabel.text = [NSString stringWithFormat:@"Scored %@ points",[self.activity objectForKey:kActivityKey]];
+     
+     NSString *timeString = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:[self.activity createdAt]];
+     
+     [cell.timeLabel setText:timeString];
+     
+     PFUser *user = [self.player objectForKey:kUserDisplayNameKey];
+     
+     NSString * playerName = [NSString stringWithFormat:@"%@",user];
+     
+     [cell.userButton setTitle:playerName forState:UIControlStateNormal];
+     
+     //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
+     
+//     [cell.avatarImageView setFile:[user objectForKey:kUserProfilePicSmallKey]];
+//     
+//     //turn photo to circle
+//     CALayer *imageLayer = cell.avatarImageView.layer;
+//     [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
+//     [imageLayer setBorderWidth:0];
+//     [imageLayer setMasksToBounds:YES];
+     
+     
+     
+     
+     //[cell.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+     
+     
+     [cell reloadLikeBar];
+     
+
+     
+     
+     
+     
  return cell;
  }
- */
+
 
 /*
  // Override if you need to change the ordering of objects in the table.
@@ -270,11 +363,9 @@
  }
  */
 
-#pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-}
+
+
 
 
 #pragma mark - ()
@@ -337,7 +428,7 @@
     }
     
     self.likersQueryInProgress = YES;
-    PFQuery *query = [Utility queryForActivitiesOnActivity:self.activity cachePolicy:kPFCachePolicyNetworkOnly];
+    PFQuery *query = [Utility queryForActivitiesOnActivity:activity cachePolicy:kPFCachePolicyNetworkOnly];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.likersQueryInProgress = NO;
         if (error) {
@@ -357,7 +448,7 @@
                 [commenters addObject:[playeractivity objectForKey:kPlayerActionFromUserKey]];
             }
             
-            if ([[[playeractivity objectForKey:kPlayerActionTypeKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+            if ([[[playeractivity objectForKey:kPlayerActionFromUserKey] objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
                 if ([[playeractivity objectForKey:kPlayerActionTypeKey] isEqualToString:kPlayerActionTypeLike]) {
                     isLikedByCurrentUser = YES;
                 }
