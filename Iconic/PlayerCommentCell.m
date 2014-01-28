@@ -16,7 +16,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
 
 @implementation PlayerCommentCell
 
-@synthesize avatarImageView;
+//@synthesize avatarImageView;
 @synthesize nameButton;
 //@synthesize contentLabel;
 @synthesize timeLabel;

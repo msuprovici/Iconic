@@ -219,25 +219,31 @@ static TTTTimeIntervalFormatter *timeFormatter;
     //setup activity text
     cell.ActivityLabel.text = [NSString stringWithFormat:@"Scored %@ points",[self.activity objectForKey:kActivityKey]];
     
-    NSString *timeString = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:[self.activity createdAt]];
     
-    [cell.timeLabel setText:timeString];
+    //set time stamp
     
+    NSTimeInterval timeInterval = [[activity createdAt] timeIntervalSinceNow];
+    NSString *timestamp = [NSString stringWithFormat:@"%@",[self.timeIntervalFormatter stringForTimeInterval:timeInterval]];
+    
+    //NSString *timeString = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:[self.activity createdAt]];
+    
+    [cell.timeLabel setText:timestamp];
+       
     PFUser *user = [self.player objectForKey:kUserDisplayNameKey];
     
     NSString * playerName = [NSString stringWithFormat:@"%@",user];
     
     [cell.userButton setTitle:playerName forState:UIControlStateNormal];
     
-    //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
+    PFFile *profilePictureSmall = [self.player objectForKey:kUserProfilePicSmallKey];
     
-    //     [cell.avatarImageView setFile:[user objectForKey:kUserProfilePicSmallKey]];
-    //
-    //     //turn photo to circle
-    //     CALayer *imageLayer = cell.avatarImageView.layer;
-    //     [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
-    //     [imageLayer setBorderWidth:0];
-    //     [imageLayer setMasksToBounds:YES];
+    [cell.avatarImageView setFile:profilePictureSmall];
+    
+        //turn photo to circle
+         CALayer *imageLayer = cell.avatarImageView.layer;
+         [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
+         [imageLayer setBorderWidth:0];
+         [imageLayer setMasksToBounds:YES];
     
     
     
@@ -351,34 +357,32 @@ static TTTTimeIntervalFormatter *timeFormatter;
  
  // Configure the cell
     
+    //add a player's comment
     [cell.contentLabel setText: [NSString stringWithFormat:@"%@", [object objectForKey:kPlayerActionContentKey]]];
     
-    //[cell setUser:[object objectForKey:kPlayerActionFromUserKey]];
     
-    //set comment
-//    NSString *comment = [object objectForKey:kPlayerActionContentKey];
-//    cell.contentLabel.text = comment;
- //   cell.contentLabel.text = @"hello";
-//    
-     NSString *timeString = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:[self.activity createdAt]];
-     
-     [cell.timeLabel setText:timeString];
-     
+    //add the time since the comment was made
+      NSTimeInterval timeInterval = [[object createdAt] timeIntervalSinceNow];
+      NSString *timestamp = [NSString stringWithFormat:@"%@",[self.timeIntervalFormatter stringForTimeInterval:timeInterval]];
+     [cell.timeLabel setText:timestamp];
+    
+    
+    //add the player's photo
      PFUser *user = [self.player objectForKey:kUserDisplayNameKey];
      
      NSString * playerName = [NSString stringWithFormat:@"%@",user];
      
      [cell.nameButton setTitle:playerName forState:UIControlStateNormal];
     
-     //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
+     PFFile *profilePictureSmall = [self.player objectForKey:kUserProfilePicSmallKey];
      
-//     [cell.avatarImageView setFile:[user objectForKey:kUserProfilePicSmallKey]];
-//     
-//     //turn photo to circle
-//     CALayer *imageLayer = cell.avatarImageView.layer;
-//     [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
-//     [imageLayer setBorderWidth:0];
-//     [imageLayer setMasksToBounds:YES];
+     [cell.avatarImageView setFile:profilePictureSmall];
+
+     //turn photo to circle
+     CALayer *imageLayer = cell.avatarImageView.layer;
+     [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
+     [imageLayer setBorderWidth:0];
+     [imageLayer setMasksToBounds:YES];
 
     
     return cell;
