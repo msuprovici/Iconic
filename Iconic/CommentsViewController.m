@@ -174,13 +174,26 @@ static TTTTimeIntervalFormatter *timeFormatter;
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section >= self.objects.count) {
-        // Load More Section
-        return 44.0f;
+    if (indexPath.row < self.objects.count) { // A comment row
+        PFObject *object = [self.objects objectAtIndex:indexPath.row];
+        
+        if (object) {
+            NSString *commentString = [self.objects[indexPath.row] objectForKey:kPlayerActionContentKey];
+            
+            PFUser *commentAuthor = (PFUser *)[object objectForKey:kPlayerActionFromUserKey];
+            
+            NSString *nameString = @"";
+            if (commentAuthor) {
+                nameString = [commentAuthor objectForKey:kUserDisplayNameKey];
+            }
+            return 80.0f;
+            //return [PAPActivityCell heightForCellWithName:nameString contentString:commentString cellInsetWidth:kPAPCellInsetWidth];
+        }
     }
     
     return 80.0f;
 }
+
 
 
 
@@ -245,50 +258,16 @@ static TTTTimeIntervalFormatter *timeFormatter;
 
 -(UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     static NSString *CellIdentifier = @"CommentCell";
-    
+    //set comment cell as the footer
     CommentCell *cell = (CommentCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
         [NSException raise:@"CommentCell == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
     }
-    //setup activity text
-//    cell.ActivityLabel.text = [NSString stringWithFormat:@"Scored %@ points",[self.activity objectForKey:kActivityKey]];
-//    
-//    NSString *timeString = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:[self.activity createdAt]];
-//    
-//    [cell.timeLabel setText:timeString];
-//    
-//    PFUser *user = [self.player objectForKey:kUserDisplayNameKey];
-//    
-//    NSString * playerName = [NSString stringWithFormat:@"%@",user];
-//    
-//    [cell.userButton setTitle:playerName forState:UIControlStateNormal];
-//    
-//    //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
-//    
-//    //     [cell.avatarImageView setFile:[user objectForKey:kUserProfilePicSmallKey]];
-//    //
-//    //     //turn photo to circle
-//    //     CALayer *imageLayer = cell.avatarImageView.layer;
-//    //     [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
-//    //     [imageLayer setBorderWidth:0];
-//    //     [imageLayer setMasksToBounds:YES];
-//    
-//    
-//    
-//    
-//    //[cell.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    
-//    [cell reloadLikeBar];
-    
-    
-    
-    
-    
-    
-    return cell;
+     return cell;
     
 }
+
+
 
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -362,22 +341,25 @@ static TTTTimeIntervalFormatter *timeFormatter;
 // - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath  {
 // static NSString *CellIdentifier = @"ActivityDetailsCell";
 //
- static NSString *CellIdentifier = @"CommentCell";
+ static NSString *CellIdentifier = @"PlayerCommentCell";
     
  PlayerCommentCell *cell = (PlayerCommentCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
  if (cell == nil) {
  cell = [[PlayerCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-     //cell.delegate = self;
+     cell.delegate = self;
  }
  
  // Configure the cell
+    
+    [cell.contentLabel setText: [NSString stringWithFormat:@"%@", [object objectForKey:kPlayerActionContentKey]]];
+    
     //[cell setUser:[object objectForKey:kPlayerActionFromUserKey]];
     
     //set comment
-    NSString *comment = [object objectForKey:kPlayerActionContentKey];
-    cell.contentLabel.text = comment;
-    
-    
+//    NSString *comment = [object objectForKey:kPlayerActionContentKey];
+//    cell.contentLabel.text = comment;
+ //   cell.contentLabel.text = @"hello";
+//    
      NSString *timeString = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:[self.activity createdAt]];
      
      [cell.timeLabel setText:timeString];
@@ -387,7 +369,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
      NSString * playerName = [NSString stringWithFormat:@"%@",user];
      
      [cell.nameButton setTitle:playerName forState:UIControlStateNormal];
-     
+    
      //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
      
 //     [cell.avatarImageView setFile:[user objectForKey:kUserProfilePicSmallKey]];
@@ -474,7 +456,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
         [comment setObject:[self.activity objectForKey:kActivityUserKey] forKey:kPlayerActionToUserKey]; // Set toUser
         [comment setObject:[PFUser currentUser] forKey:kPlayerActionFromUserKey]; // Set fromUser
         [comment setObject:kPlayerActionTypeComment forKey:kPlayerActionTypeKey];
-        [comment setObject:self.activity forKey:kActivityUserKey];
+        [comment setObject:self.activity forKey:kPlayerActionActivityKey];
         
         PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
         [ACL setPublicReadAccess:YES];

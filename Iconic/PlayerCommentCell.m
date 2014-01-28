@@ -18,7 +18,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
 
 @synthesize avatarImageView;
 @synthesize nameButton;
-@synthesize contentLabel;
+//@synthesize contentLabel;
 @synthesize timeLabel;
 @synthesize delegate;
 @synthesize user;
@@ -72,15 +72,15 @@ static TTTTimeIntervalFormatter *timeFormatter;
     [self.nameButton setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateHighlighted];
     
     // If user is set after the contentText, we reset the content to include padding
-    if (self.contentLabel.text) {
-        [self setContentText:self.contentLabel.text];
-    }
+//    if (self.contentLabel.text) {
+//        [self setContentText:self.contentLabel.text];
+//    }
     [self setNeedsDisplay];
 }
 
 - (void)setContentText:(NSString *)contentString {
     
-    [self.contentLabel setText:contentString];
+    //[self.contentLabel setText:contentString];
     
     [self setNeedsDisplay];
     
