@@ -30,6 +30,12 @@ static TTTTimeIntervalFormatter *timeFormatter;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        
+        if (!timeFormatter) {
+            timeFormatter = [[TTTTimeIntervalFormatter alloc] init];
+        }
+        
+        
     }
     return self;
 }

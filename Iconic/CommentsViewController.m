@@ -153,7 +153,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
     
     BOOL hasCachedLikers = [[Cache sharedCache] attributesForActivity:self.activity] != nil;
     if (!hasCachedLikers) {
-   // [self loadLikers];
+   [self loadLikers];
     }
 }
 
@@ -182,14 +182,123 @@ static TTTTimeIntervalFormatter *timeFormatter;
     return 80.0f;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 80.0f;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 40.0f;
 }
+
+
+
+-(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    static NSString *CellIdentifier = @"ActivityDetailsCell";
+    
+    ActivityDeatailsHeaderCell *cell = (ActivityDeatailsHeaderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil){
+        [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
+    }
+    //setup activity text
+    cell.ActivityLabel.text = [NSString stringWithFormat:@"Scored %@ points",[self.activity objectForKey:kActivityKey]];
+    
+    NSString *timeString = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:[self.activity createdAt]];
+    
+    [cell.timeLabel setText:timeString];
+    
+    PFUser *user = [self.player objectForKey:kUserDisplayNameKey];
+    
+    NSString * playerName = [NSString stringWithFormat:@"%@",user];
+    
+    [cell.userButton setTitle:playerName forState:UIControlStateNormal];
+    
+    //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
+    
+    //     [cell.avatarImageView setFile:[user objectForKey:kUserProfilePicSmallKey]];
+    //
+    //     //turn photo to circle
+    //     CALayer *imageLayer = cell.avatarImageView.layer;
+    //     [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
+    //     [imageLayer setBorderWidth:0];
+    //     [imageLayer setMasksToBounds:YES];
+    
+    
+    
+    
+    //[cell.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [cell reloadLikeBar];
+    
+    
+    
+    
+    
+    
+    return cell;
+
+}
+
+-(UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    static NSString *CellIdentifier = @"CommentCell";
+    
+    CommentCell *cell = (CommentCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil){
+        [NSException raise:@"CommentCell == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
+    }
+    //setup activity text
+//    cell.ActivityLabel.text = [NSString stringWithFormat:@"Scored %@ points",[self.activity objectForKey:kActivityKey]];
+//    
+//    NSString *timeString = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:[self.activity createdAt]];
+//    
+//    [cell.timeLabel setText:timeString];
+//    
+//    PFUser *user = [self.player objectForKey:kUserDisplayNameKey];
+//    
+//    NSString * playerName = [NSString stringWithFormat:@"%@",user];
+//    
+//    [cell.userButton setTitle:playerName forState:UIControlStateNormal];
+//    
+//    //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
+//    
+//    //     [cell.avatarImageView setFile:[user objectForKey:kUserProfilePicSmallKey]];
+//    //
+//    //     //turn photo to circle
+//    //     CALayer *imageLayer = cell.avatarImageView.layer;
+//    //     [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
+//    //     [imageLayer setBorderWidth:0];
+//    //     [imageLayer setMasksToBounds:YES];
+//    
+//    
+//    
+//    
+//    //[cell.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    
+//    [cell reloadLikeBar];
+    
+    
+    
+    
+    
+    
+    return cell;
+    
+}
+
+
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    // Return the number of sections.
+//    return 1;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return 1;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
@@ -207,28 +316,28 @@ static TTTTimeIntervalFormatter *timeFormatter;
 
  // Override to customize what kind of query to perform on the class. The default is to query for
  // all objects ordered by createdAt descending.
-// - (PFQuery *)queryForTable {
-// PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-//     [query whereKey:kPlayerActionActivityKey equalTo:self.activity];
-//     [query includeKey:kPlayerActionFromUserKey];
-//     [query whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeComment];
-//     [query orderByAscending:@"createdAt"];
-// 
-// // If Pull To Refresh is enabled, query against the network by default.
-// if (self.pullToRefreshEnabled) {
-// query.cachePolicy = kPFCachePolicyNetworkOnly;
-// }
-// 
-// // If no objects are loaded in memory, we look to the cache first to fill the table
-// // and then subsequently do a query against the network.
-// if (self.objects.count == 0) {
-// query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-// }
-// 
-// [query orderByDescending:@"createdAt"];
-// 
-// return query;
-// }
+ - (PFQuery *)queryForTable {
+ PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+     [query whereKey:kPlayerActionActivityKey equalTo:self.activity];
+     [query includeKey:kPlayerActionFromUserKey];
+     [query whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeComment];
+     [query orderByAscending:@"createdAt"];
+ 
+ // If Pull To Refresh is enabled, query against the network by default.
+ if (self.pullToRefreshEnabled) {
+ query.cachePolicy = kPFCachePolicyNetworkOnly;
+ }
+ 
+ // If no objects are loaded in memory, we look to the cache first to fill the table
+ // and then subsequently do a query against the network.
+ if (self.objects.count == 0) {
+ query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+ }
+ 
+ [query orderByDescending:@"createdAt"];
+ 
+ return query;
+ }
 
 
 - (void)objectsDidLoad:(NSError *)error {
@@ -237,7 +346,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
     // This method is called every time objects are loaded from Parse via the PFQuery
     
    // [self.headerView reloadLikeBar];
-   // [self loadLikers];
+   [self loadLikers];
 }
 
 
@@ -246,25 +355,29 @@ static TTTTimeIntervalFormatter *timeFormatter;
  // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
  // and the imageView being the imageKey in the object.
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
 
 
-//using a cell to display the header...
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath  {
- static NSString *CellIdentifier = @"ActivityDetailsCell";
- 
- ActivityDeatailsHeaderCell *cell = (ActivityDeatailsHeaderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+////using a cell to display the header...
+// - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath  {
+// static NSString *CellIdentifier = @"ActivityDetailsCell";
+//
+ static NSString *CellIdentifier = @"CommentCell";
+    
+ PlayerCommentCell *cell = (PlayerCommentCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
  if (cell == nil) {
- cell = [[ActivityDeatailsHeaderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+ cell = [[PlayerCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
      //cell.delegate = self;
  }
  
  // Configure the cell
-
-     
-     //setup activity text
-     cell.ActivityLabel.text = [NSString stringWithFormat:@"Scored %@ points",[self.activity objectForKey:kActivityKey]];
-     
+    //[cell setUser:[object objectForKey:kPlayerActionFromUserKey]];
+    
+    //set comment
+    NSString *comment = [object objectForKey:kPlayerActionContentKey];
+    cell.contentLabel.text = comment;
+    
+    
      NSString *timeString = [timeFormatter stringForTimeIntervalFromDate:[NSDate date] toDate:[self.activity createdAt]];
      
      [cell.timeLabel setText:timeString];
@@ -273,7 +386,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
      
      NSString * playerName = [NSString stringWithFormat:@"%@",user];
      
-     [cell.userButton setTitle:playerName forState:UIControlStateNormal];
+     [cell.nameButton setTitle:playerName forState:UIControlStateNormal];
      
      //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
      
@@ -284,21 +397,9 @@ static TTTTimeIntervalFormatter *timeFormatter;
 //     [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
 //     [imageLayer setBorderWidth:0];
 //     [imageLayer setMasksToBounds:YES];
-     
-     
-     
-     
-     //[cell.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-     
-     
-     [cell reloadLikeBar];
-     
 
-     
-     
-     
-     
- return cell;
+    
+    return cell;
  }
 
 
@@ -362,6 +463,52 @@ static TTTTimeIntervalFormatter *timeFormatter;
  return YES;
  }
  */
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    NSString *trimmedComment = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (trimmedComment.length != 0 && [self.activity objectForKey:kActivityUserKey]) {
+        PFObject *comment = [PFObject objectWithClassName:kPlayerActionClassKey];
+        [comment setObject:trimmedComment forKey:kPlayerActionContentKey]; // Set comment text
+        [comment setObject:[self.activity objectForKey:kActivityUserKey] forKey:kPlayerActionToUserKey]; // Set toUser
+        [comment setObject:[PFUser currentUser] forKey:kPlayerActionFromUserKey]; // Set fromUser
+        [comment setObject:kPlayerActionTypeComment forKey:kPlayerActionTypeKey];
+        [comment setObject:self.activity forKey:kActivityUserKey];
+        
+        PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+        [ACL setPublicReadAccess:YES];
+        [ACL setWriteAccess:YES forUser:[self.activity objectForKey:kActivityUserKey]];
+        comment.ACL = ACL;
+        
+        [[Cache sharedCache] incrementCommentCountForActivity:self.activity];
+        
+        // Show HUD view
+       // [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
+        
+        // If more than 5 seconds pass since we post a comment, stop waiting for the server to respond
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(handleCommentTimeout:) userInfo:@{@"comment": comment} repeats:NO];
+        
+        [comment saveEventually:^(BOOL succeeded, NSError *error) {
+            [timer invalidate];
+            
+            if (error && error.code == kPFErrorObjectNotFound) {
+                [[Cache sharedCache] decrementCommentCountForActivity:self.activity];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Could not post comment", nil) message:NSLocalizedString(@"This activity is no longer available", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                [alert show];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:ActivityDetailsViewControllerUserCommentedOnActivityNotification object:self.activity userInfo:@{@"comments": @(self.objects.count + 1)}];
+            
+          //  [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
+            [self loadObjects];
+        }];
+    }
+    
+    [textField setText:@""];
+    return [textField resignFirstResponder];
+}
 
 
 
