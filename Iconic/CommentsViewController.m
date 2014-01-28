@@ -113,36 +113,13 @@ static TTTTimeIntervalFormatter *timeFormatter;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    // Set table header
-    
-//    self.headerView = [[ActivityDeatailsHeaderCell alloc] initWithFrame:[ActivityDeatailsHeaderCell rectForView] activity:self.activity];
-//    
-//    self.headerView.delegate = self;
-//    
-//    self.tableView.tableHeaderView = self.headerView;
-
-//    self.tableView.tableHeaderView = [[ActivityDeatailsHeaderCell alloc]init];
-    
-    // Set table footer
-//    CommentCell *footerView = [[CommentCell alloc] init];
-//    commentTextField = footerView.commentField;
-//    commentTextField.delegate = self;
-//    self.tableView.tableFooterView = footerView;
-    
-    
-    // Register to be notified when the keyboard will be shown to scroll the view
+       // Register to be notified when the keyboard will be shown to scroll the view
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLikedOrUnlikedActivity:) name:UtilityUserLikedUnlikedActivityCallbackFinishedNotification object:self.activity];
     
     
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -174,24 +151,24 @@ static TTTTimeIntervalFormatter *timeFormatter;
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row < self.objects.count) { // A comment row
-        PFObject *object = [self.objects objectAtIndex:indexPath.row];
-        
-        if (object) {
-            NSString *commentString = [self.objects[indexPath.row] objectForKey:kPlayerActionContentKey];
-            
-            PFUser *commentAuthor = (PFUser *)[object objectForKey:kPlayerActionFromUserKey];
-            
-            NSString *nameString = @"";
-            if (commentAuthor) {
-                nameString = [commentAuthor objectForKey:kUserDisplayNameKey];
-            }
-            return 80.0f;
-            //return [PAPActivityCell heightForCellWithName:nameString contentString:commentString cellInsetWidth:kPAPCellInsetWidth];
-        }
-    }
+//    if (indexPath.row < self.objects.count) { // A comment row
+//        PFObject *object = [self.objects objectAtIndex:indexPath.row];
+//        
+//        if (object) {
+//            NSString *commentString = [self.objects[indexPath.row] objectForKey:kPlayerActionContentKey];
+//            
+//            PFUser *commentAuthor = (PFUser *)[object objectForKey:kPlayerActionFromUserKey];
+//            
+//            NSString *nameString = @"";
+//            if (commentAuthor) {
+//                nameString = [commentAuthor objectForKey:kUserDisplayNameKey];
+//            }
+//            return 100.0f;
+//            //return [PAPActivityCell heightForCellWithName:nameString contentString:commentString cellInsetWidth:kPAPCellInsetWidth];
+//        }
+//    }
     
-    return 80.0f;
+    return 60.0f;
 }
 
 
@@ -199,7 +176,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 80.0f;
+    return 100.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -495,7 +472,6 @@ static TTTTimeIntervalFormatter *timeFormatter;
     [textField setText:@""];
     return [textField resignFirstResponder];
 }
-
 
 
 

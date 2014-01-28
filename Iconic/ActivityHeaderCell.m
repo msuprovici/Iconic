@@ -34,6 +34,8 @@
     //self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        //[self.likeButton setBackgroundImage:[UIImage imageNamed:@"activity_speaker_icon_green-01.png"] forState:UIControlStateSelected];
+        
         
 //        [ActivityHeaderCell validateButtons:otherButtons];
 //        buttons = otherButtons;
@@ -189,6 +191,7 @@
 
 - (void)setLikeStatus:(BOOL)liked {
     [self.likeButton setSelected:liked];
+    [self.likeButton setBackgroundImage:[UIImage imageNamed:@"activity_speaker_icon_green-01.png"] forState:UIControlStateSelected];
     
 //    
 //    if (liked) {
