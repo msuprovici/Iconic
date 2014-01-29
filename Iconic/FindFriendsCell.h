@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 
 
-@protocol FindFreindsCellDelegate;
+@protocol FindFriendsCellDelegate;
 
 @interface FindFriendsCell : UITableViewCell
 {
@@ -18,7 +18,7 @@
 }
 
 
-@property (nonatomic, strong) id<FindFreindsCellDelegate> delegate;
+@property (nonatomic, strong) id<FindFriendsCellDelegate> delegate;
 
 
 @property (nonatomic, strong) PFUser *user;
@@ -26,7 +26,7 @@
 
 @property (strong, nonatomic) IBOutlet PFImageView *avatarImageView;
 
-@property (strong, nonatomic) IBOutlet UILabel *photoLabel;
+@property (strong, nonatomic) IBOutlet UILabel *activityLabel;
 
 @property (strong, nonatomic) IBOutlet UIButton *followButton;
 
@@ -51,7 +51,7 @@
  The protocol defines methods a delegate that other cells should implement.
  */
 
-@protocol FindFreindsCellDelegate <NSObject>
+@protocol FindFriendsCellDelegate <NSObject>
 @optional
 
 /*!

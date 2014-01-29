@@ -11,6 +11,10 @@
 
 #import "Constants.h"
 
+
+// Define an array of Facebook Ids for accounts to auto-follow on signup
+#define kAutoFollowAccountFacebookIds @[ ]
+
 NSString *const kUserDefaultsActivityFeedViewControllerLastRefreshKey    = @"com.stickyplay.Iconic.userDefaults.activityFeedViewController.lastRefresh";
 NSString *const kUserDefaultsCacheFacebookFriendsKey                     = @"com.stickyplay.Iconic.userDefaults.cache.facebookFriends";
 

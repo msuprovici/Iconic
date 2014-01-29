@@ -9,20 +9,53 @@
 #import "FindFriendsViewController.h"
 #import "Parse/Parse.h"
 #import "SWRevealViewController.h"
+#import "AppDelegate.h"
+#import "Cache.h"
+#import "Constants.h"
+#import "MBProgressHUD.h"
+#import "Utility.h"
+
+typedef enum {
+    FindFriendsFollowingNone = 0,    // User isn't following anybody in Friends list
+    FindFriendsFollowingAll,         // User is following all Friends
+    FindFriendsFollowingSome         // User is following some of their Friends
+} FindFriendsFollowStatus;
 
 @interface FindFriendsViewController ()
 
 @property (nonatomic) IBOutlet UIBarButtonItem* revealButtonItem;
 
+@property (nonatomic, strong) NSString *selectedEmailAddress;
+@property (nonatomic, strong) NSMutableDictionary *outstandingFollowQueries;
+@property (nonatomic, strong) NSMutableDictionary *outstandingCountQueries;
+@property (nonatomic, assign) FindFriendsFollowStatus followStatus;
 @end
 
+static NSUInteger const kCellFollowTag = 2;
+static NSUInteger const kCellNameLabelTag = 3;
+static NSUInteger const kCellAvatarTag = 4;
+static NSUInteger const kCellActivityNumLabelTag = 5;
+
+
 @implementation FindFriendsViewController
+
+@synthesize followStatus;
+@synthesize selectedEmailAddress;
+@synthesize outstandingFollowQueries;
+@synthesize outstandingCountQueries;
+
+
 
 -(id)initWithCoder:(NSCoder *)aCoder {
     self = [super initWithCoder:aCoder];
     
     if (self) {
         // Custom the table
+        
+        self.outstandingFollowQueries = [NSMutableDictionary dictionary];
+        self.outstandingCountQueries = [NSMutableDictionary dictionary];
+        
+        self.selectedEmailAddress = @"";
         
         // The className to query on
         self.parseClassName = @"Foo";
@@ -40,7 +73,10 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 25;
+        self.objectsPerPage = 15;
+        
+        // Used to determine Follow/Unfollow All button status
+        self.followStatus = FindFriendsFollowingSome;
     }
     return self;
 }
@@ -101,6 +137,16 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row < self.objects.count) {
+        return [FindFriendsCell heightForCell];
+    } else {
+        return 44.0f;
+    }
+}
+
 
 #pragma mark - PFQueryTableViewController
 
@@ -110,17 +156,35 @@
     // This method is called before a PFQuery is fired to get more objects
 }
 
-- (void)objectsDidLoad:(NSError *)error {
-    [super objectsDidLoad:error];
-    
-    // This method is called every time objects are loaded from Parse via the PFQuery
-}
 
-/*
+
+
  // Override to customize what kind of query to perform on the class. The default is to query for
  // all objects ordered by createdAt descending.
  - (PFQuery *)queryForTable {
- PFQuery *query = [PFQuery queryWithClassName:self.className];
+     
+    
+     // Use cached facebook friend ids
+     NSArray *facebookFriends = [[Cache sharedCache] facebookFriends];
+     
+     // Query for all friends you have on facebook and who are using the app
+     PFQuery *friendsQuery = [PFUser query];
+     [friendsQuery whereKey:kUserFacebookIDKey containedIn:facebookFriends];
+     
+     // Query for all auto-follow accounts
+     NSMutableArray *autoFollowAccountFacebookIds = [[NSMutableArray alloc] initWithArray:kAutoFollowAccountFacebookIds];
+     [autoFollowAccountFacebookIds removeObject:[[PFUser currentUser] objectForKey:kUserFacebookIDKey]];
+     PFQuery *autoFollowedUsersQuery = [PFUser query];
+     [autoFollowedUsersQuery whereKey:kUserFacebookIDKey containedIn:autoFollowAccountFacebookIds];
+     
+     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:friendsQuery, autoFollowedUsersQuery, nil]];
+     query.cachePolicy = kPFCachePolicyNetworkOnly;
+     
+     if (self.objects.count == 0) {
+         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+     }
+     
+     [query orderByAscending:kUserDisplayNameKey];
  
  // If Pull To Refresh is enabled, query against the network by default.
  if (self.pullToRefreshEnabled) {
@@ -132,32 +196,171 @@
  if (self.objects.count == 0) {
  query.cachePolicy = kPFCachePolicyCacheThenNetwork;
  }
- 
- [query orderByDescending:@"createdAt"];
+
+     
+  
+     
+     return query;
+
+     
+     
+     
  
  return query;
  }
- */
 
-/*
+- (void)objectsDidLoad:(NSError *)error {
+    [super objectsDidLoad:error];
+    
+    // This method is called every time objects are loaded from Parse via the PFQuery
+    PFQuery *isFollowingQuery = [PFQuery queryWithClassName:kPlayerActionClassKey];
+    [isFollowingQuery whereKey:kPlayerActionFromUserKey equalTo:[PFUser currentUser]];
+    [isFollowingQuery whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeFollow];
+    [isFollowingQuery whereKey:kPlayerActionToUserKey containedIn:self.objects];
+    [isFollowingQuery setCachePolicy:kPFCachePolicyNetworkOnly];
+    
+    [isFollowingQuery countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        if (!error) {
+            if (number == self.objects.count) {
+                self.followStatus = FindFriendsFollowingAll;
+                //[self configureUnfollowAllButton];
+                for (PFUser *user in self.objects) {
+                    [[Cache sharedCache] setFollowStatus:YES user:user];
+                }
+            } else if (number == 0) {
+                self.followStatus = FindFriendsFollowingNone;
+                //[self configureFollowAllButton];
+                for (PFUser *user in self.objects) {
+                    [[Cache sharedCache] setFollowStatus:NO user:user];
+                }
+            } else {
+                self.followStatus = FindFriendsFollowingSome;
+                //[self configureFollowAllButton];
+            }
+        }
+        
+        if (self.objects.count == 0) {
+            self.navigationItem.rightBarButtonItem = nil;
+        }
+    }];
+    
+    if (self.objects.count == 0) {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+
+    
+}
+
  // Override to customize the look of a cell representing an object. The default is to display
  // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
  // and the imageView being the imageKey in the object.
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
- static NSString *CellIdentifier = @"Cell";
+ static NSString *FriendCellIdentifier = @"FriendCell";
  
- PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+ FindFriendsCell *cell = (FindFriendsCell *)[tableView dequeueReusableCellWithIdentifier:FriendCellIdentifier];
  if (cell == nil) {
- cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+ cell = [[FindFriendsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FriendCellIdentifier];
  }
  
  // Configure the cell
- cell.textLabel.text = [object objectForKey:self.textKey];
- cell.imageView.file = [object objectForKey:self.imageKey];
+ 
+     
+     [cell setUser:(PFUser*)object];
+     
+     [cell.activityLabel setText:@"0 activities"];
+     
+     NSDictionary *attributes = [[Cache sharedCache] attributesForUser:(PFUser *)object];
+     
+     if (attributes) {
+         // set them now
+         NSString *pluralizedActivity;
+         NSNumber *number = [[Cache sharedCache] activityCountForUser:(PFUser *)object];
+         if ([number intValue] == 1) {
+             pluralizedActivity = @"activity";
+         } else {
+             pluralizedActivity = @"activities";
+         }
+         [cell.activityLabel setText:[NSString stringWithFormat:@"%@ %@", number, pluralizedActivity]];
+     } else {
+         @synchronized(self) {
+             NSNumber *outstandingCountQueryStatus = [self.outstandingCountQueries objectForKey:indexPath];
+             if (!outstandingCountQueryStatus) {
+                 [self.outstandingCountQueries setObject:[NSNumber numberWithBool:YES] forKey:indexPath];
+                 PFQuery *activityNumQuery = [PFQuery queryWithClassName:kPlayerActionClassKey];
+                 [activityNumQuery whereKey:kActivityUserKey equalTo:object];
+                 [activityNumQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
+                 [activityNumQuery countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+                     @synchronized(self) {
+                         [[Cache sharedCache] setActivityCount:[NSNumber numberWithInt:number] user:(PFUser *)object];
+                         [self.outstandingCountQueries removeObjectForKey:indexPath];
+                     }
+                     FindFriendsCell *actualCell = (FindFriendsCell*)[tableView cellForRowAtIndexPath:indexPath];
+                     NSString *pluralizedActivity;
+                     if (number == 1) {
+                         pluralizedActivity = @"activity";
+                     } else {
+                         pluralizedActivity = @"activities";
+                     }
+                     [actualCell.activityLabel setText:[NSString stringWithFormat:@"%d %@", number, pluralizedActivity]];
+                     
+                 }];
+             };
+         }
+     }
+
+     
+     cell.followButton.selected = NO;
+     cell.tag = indexPath.row;
+     
+     
+     if (self.followStatus == FindFriendsFollowingSome) {
+         if (attributes) {
+             [cell.followButton setSelected:[[Cache sharedCache] followStatusForUser:(PFUser *)object]];
+         } else {
+             @synchronized(self) {
+                 NSNumber *outstandingQuery = [self.outstandingFollowQueries objectForKey:indexPath];
+                 if (!outstandingQuery) {
+                     [self.outstandingFollowQueries setObject:[NSNumber numberWithBool:YES] forKey:indexPath];
+                     PFQuery *isFollowingQuery = [PFQuery queryWithClassName:kPlayerActionClassKey];
+                     [isFollowingQuery whereKey:kPlayerActionFromUserKey equalTo:[PFUser currentUser]];
+                     [isFollowingQuery whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeFollow];
+                     [isFollowingQuery whereKey:kPlayerActionToUserKey equalTo:object];
+                     [isFollowingQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
+                     
+                     [isFollowingQuery countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+                         @synchronized(self) {
+                             [self.outstandingFollowQueries removeObjectForKey:indexPath];
+                             [[Cache sharedCache] setFollowStatus:(!error && number > 0) user:(PFUser *)object];
+                         }
+                         if (cell.tag == indexPath.row) {
+                             [cell.followButton setSelected:(!error && number > 0)];
+                         }
+                     }];
+                 }
+             }
+         }
+     } else {
+         [cell.followButton setSelected:(self.followStatus == FindFriendsFollowingAll)];
+     }
+
+     
  
  return cell;
  }
- */
+
+#pragma mark - PAPFindFriendsCellDelegate
+
+//- (void)cell:(FindFriendsCell *)cellView didTapUserButton:(PFUser *)aUser {
+//    // Push account view controller
+//    AccountViewController *accountViewController = [[AccountViewController alloc] initWithStyle:UITableViewStylePlain];
+//    [accountViewController setUser:aUser];
+//    [self.navigationController pushViewController:accountViewController animated:YES];
+//}
+//
+//- (void)cell:(FindFriendsCell *)cellView didTapFollowButton:(PFUser *)aUser {
+//    [self shouldToggleFollowFriendForCell:cellView];
+//}
+
 
 /*
  // Override if you need to change the ordering of objects in the table.
@@ -165,6 +368,232 @@
  return [self.objects objectAtIndex:indexPath.row];
  }
  */
+
+/* Called when the user cancels the address book view controller. We simply dismiss it. */
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
+    [self dismissModalViewControllerAnimated:YES ];
+}
+
+/* Called when a member of the address book is selected, we return YES to display the member's details. */
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+    return YES;
+}
+
+/* Called when the user selects a property of a person in their address book (ex. phone, email, location,...)
+ This method will allow them to send a text or email inviting them to Anypic.  */
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+    
+    if (property == kABPersonEmailProperty) {
+        
+        ABMultiValueRef emailProperty = ABRecordCopyValue(person,property);
+        NSString *email = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(emailProperty,identifier);
+        self.selectedEmailAddress = email;
+        
+        if ([MFMailComposeViewController canSendMail] && [MFMessageComposeViewController canSendText]) {
+            // ask user
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Invite %@",@""] delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Email", @"iMessage", nil];
+            [actionSheet showFromTabBar:self.tabBarController.tabBar];
+        } else if ([MFMailComposeViewController canSendMail]) {
+            // go directly to mail
+            [self presentMailComposeViewController:email];
+        } else if ([MFMessageComposeViewController canSendText]) {
+            // go directly to iMessage
+            [self presentMessageComposeViewController:email];
+        }
+        
+    } else if (property == kABPersonPhoneProperty) {
+        ABMultiValueRef phoneProperty = ABRecordCopyValue(person,property);
+        NSString *phone = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(phoneProperty,identifier);
+        
+        if ([MFMessageComposeViewController canSendText]) {
+            [self presentMessageComposeViewController:phone];
+        }
+    }
+    
+    return NO;
+}
+
+#pragma mark - MFMailComposeDelegate
+
+/* Simply dismiss the MFMailComposeViewController when the user sends an email or cancels */
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
+#pragma mark - MFMessageComposeDelegate
+
+/* Simply dismiss the MFMessageComposeViewController when the user sends a text or cancels */
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        return;
+    }
+    
+    if (buttonIndex == 0) {
+        [self presentMailComposeViewController:self.selectedEmailAddress];
+    } else if (buttonIndex == 1) {
+        [self presentMessageComposeViewController:self.selectedEmailAddress];
+    }
+}
+
+#pragma mark - ()
+
+- (void)backButtonAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)inviteFriendsButtonAction:(id)sender {
+    ABPeoplePickerNavigationController *addressBook = [[ABPeoplePickerNavigationController alloc] init];
+    addressBook.peoplePickerDelegate = self;
+    
+    if ([MFMailComposeViewController canSendMail] && [MFMessageComposeViewController canSendText]) {
+        addressBook.displayedProperties = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonEmailProperty], [NSNumber numberWithInt:kABPersonPhoneProperty], nil];
+    } else if ([MFMailComposeViewController canSendMail]) {
+        addressBook.displayedProperties = [NSArray arrayWithObject:[NSNumber numberWithInt:kABPersonEmailProperty]];
+    } else if ([MFMessageComposeViewController canSendText]) {
+        addressBook.displayedProperties = [NSArray arrayWithObject:[NSNumber numberWithInt:kABPersonPhoneProperty]];
+    }
+    
+    [self presentModalViewController:addressBook animated:YES];
+}
+
+- (void)followAllFriendsButtonAction:(id)sender {
+    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    self.followStatus = FindFriendsFollowingAll;
+    [self configureUnfollowAllButton];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Unfollow All" style:UIBarButtonItemStyleBordered target:self action:@selector(unfollowAllFriendsButtonAction:)];
+        
+        NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:self.objects.count];
+        for (int r = 0; r < self.objects.count; r++) {
+            PFObject *user = [self.objects objectAtIndex:r];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:r inSection:0];
+            FindFriendsCell *cell = (FindFriendsCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath object:user];
+            cell.followButton.selected = YES;
+            [indexPaths addObject:indexPath];
+        }
+        
+        [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+        [MBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(followUsersTimerFired:) userInfo:nil repeats:NO];
+        [Utility followUsersEventually:self.objects block:^(BOOL succeeded, NSError *error) {
+            // note -- this block is called once for every user that is followed successfully. We use a timer to only execute the completion block once no more saveEventually blocks have been called in 2 seconds
+            [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:2.0f]];
+        }];
+        
+    });
+}
+
+- (void)unfollowAllFriendsButtonAction:(id)sender {
+    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+    
+    self.followStatus = FindFriendsFollowingNone;
+    [self configureFollowAllButton];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Follow All" style:UIBarButtonItemStyleBordered target:self action:@selector(followAllFriendsButtonAction:)];
+        
+        NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:self.objects.count];
+        for (int r = 0; r < self.objects.count; r++) {
+            PFObject *user = [self.objects objectAtIndex:r];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:r inSection:0];
+            FindFriendsCell *cell = (FindFriendsCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath object:user];
+            cell.followButton.selected = NO;
+            [indexPaths addObject:indexPath];
+        }
+        
+        [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+        [MBProgressHUD hideAllHUDsForView:[UIApplication sharedApplication].keyWindow animated:YES];
+        
+        [Utility unfollowUsersEventually:self.objects];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserFollowingChangedNotification object:nil];
+    });
+    
+}
+
+- (void)shouldToggleFollowFriendForCell:(FindFriendsCell*)cell {
+    PFUser *cellUser = cell.user;
+    if ([cell.followButton isSelected]) {
+        // Unfollow
+        cell.followButton.selected = NO;
+        [Utility unfollowUserEventually:cellUser];
+        [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserFollowingChangedNotification object:nil];
+    } else {
+        // Follow
+        cell.followButton.selected = YES;
+        [Utility followUserEventually:cellUser block:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserFollowingChangedNotification object:nil];
+            } else {
+                cell.followButton.selected = NO;
+            }
+        }];
+    }
+}
+
+- (void)configureUnfollowAllButton {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Unfollow All" style:UIBarButtonItemStyleBordered target:self action:@selector(unfollowAllFriendsButtonAction:)];
+}
+
+- (void)configureFollowAllButton {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Follow All" style:UIBarButtonItemStyleBordered target:self action:@selector(followAllFriendsButtonAction:)];
+}
+
+- (void)presentMailComposeViewController:(NSString *)recipient {
+    // Create the compose email view controller
+    MFMailComposeViewController *composeEmailViewController = [[MFMailComposeViewController alloc] init];
+    
+    // Set the recipient to the selected email and a default text
+    [composeEmailViewController setMailComposeDelegate:self];
+    [composeEmailViewController setSubject:@"Join me on Anypic"];
+    [composeEmailViewController setToRecipients:[NSArray arrayWithObjects:recipient, nil]];
+    [composeEmailViewController setMessageBody:@"Come join my team" isHTML:NO];
+   // [composeEmailViewController setMessageBody:@"<h2>Share your activity, share your story.</h2><p><a href=\"http://anypic.org\">Anypic</a> is the easiest way to share activity with your friends. Get the app and share your fun activity with the world.</p><p><a href=\"http://anypic.org\">Anypic</a> is fully powered by <a href=\"http://parse.com\">Parse</a>.</p>" isHTML:YES];
+    
+    // Dismiss the current modal view controller and display the compose email one.
+    // Note that we do not animate them. Doing so would require us to present the compose
+    // mail one only *after* the address book is dismissed.
+    [self dismissModalViewControllerAnimated:NO];
+    [self presentModalViewController:composeEmailViewController animated:NO];
+}
+
+- (void)presentMessageComposeViewController:(NSString *)recipient {
+    // Create the compose text message view controller
+    MFMessageComposeViewController *composeTextViewController = [[MFMessageComposeViewController alloc] init];
+    
+    // Send the destination phone number and a default text
+    [composeTextViewController setMessageComposeDelegate:self];
+    [composeTextViewController setRecipients:[NSArray arrayWithObjects:recipient, nil]];
+    [composeTextViewController setBody:@"Check out Iconic! http://iconic.co"];
+    
+    // Dismiss the current modal view controller and display the compose text one.
+    // See previous use for reason why these are not animated.
+    [self dismissModalViewControllerAnimated:NO];
+    [self presentModalViewController:composeTextViewController animated:NO];
+}
+
+- (void)followUsersTimerFired:(NSTimer *)timer {
+    [self.tableView reloadData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserFollowingChangedNotification object:nil];
+}
+
+- (void)refreshControlValueChanged:(UIRefreshControl *)refreshControl {
+    [self loadObjects];
+}
+
 
 /*
  // Override to customize the look of the cell that allows the user to load the next page of objects.

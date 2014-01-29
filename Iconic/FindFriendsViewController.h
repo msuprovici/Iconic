@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AddressBookUI/AddressBookUI.h>
+#import <MessageUI/MessageUI.h>
 #import <Parse/Parse.h>
+#import "FindFriendsCell.h"
 
-@interface FindFriendsViewController : PFQueryTableViewController
+@interface FindFriendsViewController : PFQueryTableViewController <FindFriendsCellDelegate, ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
 
 @end

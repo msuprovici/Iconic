@@ -1436,7 +1436,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Find Friends" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5DC-jF-4bO">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Friends" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5DC-jF-4bO">
                                             <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -1469,8 +1469,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="88" id="oC2-Ly-xLk" customClass="FindFriendsCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="88"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="88" id="oC2-Ly-xLk" customClass="FindFriendsCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oC2-Ly-xLk" id="dDM-tz-SFq">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
@@ -1511,11 +1511,11 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="activityLabel" destination="5fg-Ey-hb3" id="gvg-tB-yOK"/>
                                     <outlet property="avatarImageButton" destination="Prv-gG-OfC" id="e3a-X4-iRq"/>
                                     <outlet property="avatarImageView" destination="j4e-7Q-XzV" id="uzg-Hb-hSX"/>
                                     <outlet property="followButton" destination="UGN-r0-e8q" id="ffd-5H-BZL"/>
                                     <outlet property="nameButton" destination="4MU-5P-iWZ" id="Gw4-E4-nih"/>
-                                    <outlet property="photoLabel" destination="5fg-Ey-hb3" id="LAI-Fs-i14"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1624,13 +1624,13 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kd5-hD-PUf"/>
-        <segue reference="YCB-li-iW7"/>
+        <segue reference="AzD-xV-CDV"/>
         <segue reference="kBj-mf-isH"/>
-        <segue reference="s2g-Lm-v4Q"/>
-        <segue reference="9JY-IR-Ra1"/>
+        <segue reference="1W0-hY-T94"/>
+        <segue reference="Gad-89-30B"/>
+        <segue reference="YCB-li-iW7"/>
+        <segue reference="5qL-qO-dRN"/>
         <segue reference="1aU-1X-0Xx"/>
-        <segue reference="vKG-FO-4mg"/>
         <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>
