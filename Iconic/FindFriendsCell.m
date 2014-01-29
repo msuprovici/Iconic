@@ -10,6 +10,15 @@
 
 @implementation FindFriendsCell
 
+@synthesize delegate;
+@synthesize user;
+@synthesize avatarImageView;
+@synthesize avatarImageButton;
+@synthesize nameButton;
+@synthesize photoLabel;
+@synthesize followButton;
+
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
