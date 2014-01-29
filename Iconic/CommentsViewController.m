@@ -479,28 +479,52 @@ static TTTTimeIntervalFormatter *timeFormatter;
 
 #pragma mark - ()
 
+- (IBAction)shareButton:(id)sender {
+    
+    [self showShareSheet];
+    
+}
+
+
 - (void)showShareSheet {
-    [[self.activity objectForKey:kActivityKey] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (!error) {
-            NSMutableArray *activityItems = [NSMutableArray arrayWithCapacity:3];
-            
-            // Prefill caption if this is the original poster of the photo, and then only if they added a caption initially.
-            if ([[[PFUser currentUser] objectId] isEqualToString:[[self.activity objectForKey:kActivityUserKey] objectId]] && [self.objects count] > 0) {
-                PFObject *firstActivity = self.objects[0];
-                if ([[[firstActivity objectForKey:kPlayerActionFromUserKey] objectId] isEqualToString:[[self.activity objectForKey:kActivityUserKey] objectId]]) {
-                    NSString *commentString = [firstActivity objectForKey:kPlayerActionContentKey];
-                    [activityItems addObject:commentString];
-                }
-            }
-            //create the share page URL here
-            /*
-            [activityItems addObject:[UIImage imageWithData:data]];
-            [activityItems addObject:[NSURL URLWithString:[NSString stringWithFormat:@"https://anypic.org/#pic/%@", self.activity.objectId]]];
-            */
-            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-            [self.navigationController presentViewController:activityViewController animated:YES completion:nil];
+    
+    
+    NSMutableArray *activityItems = [NSMutableArray arrayWithCapacity:3];
+    
+    // Prefill caption if this is the original poster of the activity, and then only if they added a caption initially.
+    if ([[[PFUser currentUser] objectId] isEqualToString:[[self.activity objectForKey:kActivityUserKey] objectId]] && [self.objects count] > 0) {
+        PFObject *firstActivity = self.objects[0];
+        if ([[[firstActivity objectForKey:kPlayerActionFromUserKey] objectId] isEqualToString:[[self.activity objectForKey:kActivityUserKey] objectId]]) {
+            NSString *commentString = [firstActivity objectForKey:kPlayerActionContentKey];
+            [activityItems addObject:commentString];
         }
-    }];
+    }
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    [self.navigationController presentViewController:activityViewController animated:YES completion:nil];
+
+    
+//    [[self.activity objectForKey:kActivityKey] getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//        if (!error) {
+//            NSMutableArray *activityItems = [NSMutableArray arrayWithCapacity:3];
+//            
+//            // Prefill caption if this is the original poster of the photo, and then only if they added a caption initially.
+//            if ([[[PFUser currentUser] objectId] isEqualToString:[[self.activity objectForKey:kActivityUserKey] objectId]] && [self.objects count] > 0) {
+//                PFObject *firstActivity = self.objects[0];
+//                if ([[[firstActivity objectForKey:kPlayerActionFromUserKey] objectId] isEqualToString:[[self.activity objectForKey:kActivityUserKey] objectId]]) {
+//                    NSString *commentString = [firstActivity objectForKey:kPlayerActionContentKey];
+//                    [activityItems addObject:commentString];
+//                }
+//            }
+//            //create the share page URL here
+//            /*
+//            [activityItems addObject:[UIImage imageWithData:data]];
+//            [activityItems addObject:[NSURL URLWithString:[NSString stringWithFormat:@"https://anypic.org/#pic/%@", self.activity.objectId]]];
+//            */
+//            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+//            [self.navigationController presentViewController:activityViewController animated:YES completion:nil];
+//        }
+//    }];
 }
 
 - (void)handleCommentTimeout:(NSTimer *)aTimer {

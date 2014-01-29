@@ -278,7 +278,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Iconic" id="yfo-eL-rfj">
                         <barButtonItem key="leftBarButtonItem" image="reveal-icon.png" id="USa-54-SfC"/>
-                        <barButtonItem key="rightBarButtonItem" title="Activity" id="6z7-yO-Bl5">
+                        <barButtonItem key="rightBarButtonItem" title="News" id="6z7-yO-Bl5">
                             <connections>
                                 <segue destination="YRb-r1-hFU" kind="push" id="xQS-Yo-UPV"/>
                             </connections>
@@ -657,10 +657,14 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uDv-Gk-Lmh">
                                             <rect key="frame" x="22" y="68" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <state key="normal" title="0" backgroundImage="activity_speaker_icon_blue-01.png">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="likeButtonPressed:" destination="tuF-GK-KB7" eventType="touchUpInside" id="sb8-3F-KrX"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="T3W-Ff-qSQ" customClass="PFImageView">
                                             <rect key="frame" x="20" y="5" width="35" height="35"/>
@@ -768,7 +772,13 @@
                             <outlet property="delegate" destination="tuF-GK-KB7" id="owu-xi-UNy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Comments" id="3X7-VE-7t5"/>
+                    <navigationItem key="navigationItem" title="Comments" id="3X7-VE-7t5">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="UZl-qJ-mCl">
+                            <connections>
+                                <action selector="shareButton:" destination="tuF-GK-KB7" id="JZE-iU-eFB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BDK-Cg-bhE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1502,11 +1512,11 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="kd5-hD-PUf"/>
-        <segue reference="djV-QL-gg7"/>
-        <segue reference="kBj-mf-isH"/>
         <segue reference="YCB-li-iW7"/>
+        <segue reference="kBj-mf-isH"/>
         <segue reference="s2g-Lm-v4Q"/>
-        <segue reference="GlC-f2-v4y"/>
         <segue reference="9JY-IR-Ra1"/>
+        <segue reference="1aU-1X-0Xx"/>
+        <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>

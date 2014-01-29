@@ -555,7 +555,7 @@
         PFObject *activity = [self.objects objectAtIndex:hitIndex.row];
         
         [segue.destinationViewController initWithActivity:activity];
-        
+       
     }
 }
 
