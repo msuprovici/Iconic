@@ -46,6 +46,8 @@
 		5C78DA4E189872BF00CBA29B /* activity_comment_icon_green-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA4A189872BF00CBA29B /* activity_comment_icon_green-01.png */; };
 		5C78DA4F189872BF00CBA29B /* activity_speaker_icon_green-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA4B189872BF00CBA29B /* activity_speaker_icon_green-01.png */; };
 		5C78DA50189872BF00CBA29B /* activity_speaker_icon_blue-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA4C189872BF00CBA29B /* activity_speaker_icon_blue-01.png */; };
+		5C78DA531899676000CBA29B /* FindFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C78DA521899676000CBA29B /* FindFriendsViewController.m */; };
+		5C78DA561899678400CBA29B /* FindFriendsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C78DA551899678400CBA29B /* FindFriendsCell.m */; };
 		5C8BB5B21884627000E89ADF /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B11884627000E89ADF /* TimelineViewController.m */; };
 		5C8BB5B51884AF7300E89ADF /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B41884AF7300E89ADF /* CommentsViewController.m */; };
 		5C8BB5B81884AFE900E89ADF /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B71884AFE900E89ADF /* CommentCell.m */; };
@@ -192,6 +194,10 @@
 		5C78DA4A189872BF00CBA29B /* activity_comment_icon_green-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_comment_icon_green-01.png"; sourceTree = "<group>"; };
 		5C78DA4B189872BF00CBA29B /* activity_speaker_icon_green-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_speaker_icon_green-01.png"; sourceTree = "<group>"; };
 		5C78DA4C189872BF00CBA29B /* activity_speaker_icon_blue-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_speaker_icon_blue-01.png"; sourceTree = "<group>"; };
+		5C78DA511899676000CBA29B /* FindFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindFriendsViewController.h; sourceTree = "<group>"; };
+		5C78DA521899676000CBA29B /* FindFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindFriendsViewController.m; sourceTree = "<group>"; };
+		5C78DA541899678400CBA29B /* FindFriendsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindFriendsCell.h; sourceTree = "<group>"; };
+		5C78DA551899678400CBA29B /* FindFriendsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindFriendsCell.m; sourceTree = "<group>"; };
 		5C8BB5B01884627000E89ADF /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
 		5C8BB5B11884627000E89ADF /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
 		5C8BB5B31884AF7300E89ADF /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
@@ -517,6 +523,10 @@
 				5C539A1218679F3A006676FA /* PlayerTeamsViewController.m */,
 				5C539A141867A2AC006676FA /* FollowCell.h */,
 				5C539A151867A2AC006676FA /* FollowCell.m */,
+				5C78DA511899676000CBA29B /* FindFriendsViewController.h */,
+				5C78DA521899676000CBA29B /* FindFriendsViewController.m */,
+				5C78DA541899678400CBA29B /* FindFriendsCell.h */,
+				5C78DA551899678400CBA29B /* FindFriendsCell.m */,
 			);
 			name = Followers_following_teams;
 			sourceTree = "<group>";
@@ -923,10 +933,12 @@
 				5C966BBD187D0F480022AF0F /* UICountingLabel.m in Sources */,
 				5CD93826187B5047006CE08B /* MZFormSheetBackgroundWindow.m in Sources */,
 				5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */,
+				5C78DA561899678400CBA29B /* FindFriendsCell.m in Sources */,
 				5C48B8961880CFAA00A09A1C /* SimpleHomeViewController.m in Sources */,
 				5C8BB5C418860F9700E89ADF /* ActivityHeaderCell.m in Sources */,
 				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5C48B8BD1880F89F00A09A1C /* UIImage+ResizeAdditions.m in Sources */,
+				5C78DA531899676000CBA29B /* FindFriendsViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
 				5C966BBA187D0F480022AF0F /* PNLineChart.m in Sources */,
 				5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */,

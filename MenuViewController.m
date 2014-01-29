@@ -83,7 +83,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -113,9 +113,9 @@
             CellIdentifier = @"schedule";
             break;
             
-       /* case 4:
-            CellIdentifier = @"activity";
-            break;*/
+       case 4:
+            CellIdentifier = @"findfriendsmenu";
+            break;
             
         
     }
