@@ -58,10 +58,10 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
         self.selectedEmailAddress = @"";
         
         // The className to query on
-        self.parseClassName = @"Foo";
+        //self.parseClassName = @"Foo";
         
         // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @"text";
+        //self.textKey = @"text";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
@@ -177,7 +177,13 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
      PFQuery *autoFollowedUsersQuery = [PFUser query];
      [autoFollowedUsersQuery whereKey:kUserFacebookIDKey containedIn:autoFollowAccountFacebookIds];
      
-     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:friendsQuery, autoFollowedUsersQuery, nil]];
+     // Query for all users to test follow
+     PFQuery *allusers = [PFUser query];
+     
+     [allusers whereKeyExists:kUsername];
+     
+     
+     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:friendsQuery, autoFollowedUsersQuery,allusers, nil]];
      query.cachePolicy = kPFCachePolicyNetworkOnly;
      
      if (self.objects.count == 0) {
@@ -186,28 +192,20 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
      
      [query orderByAscending:kUserDisplayNameKey];
  
- // If Pull To Refresh is enabled, query against the network by default.
- if (self.pullToRefreshEnabled) {
- query.cachePolicy = kPFCachePolicyNetworkOnly;
- }
+     // If Pull To Refresh is enabled, query against the network by default.
+     if (self.pullToRefreshEnabled) {
+         query.cachePolicy = kPFCachePolicyNetworkOnly;
+     }
  
- // If no objects are loaded in memory, we look to the cache first to fill the table
- // and then subsequently do a query against the network.
- if (self.objects.count == 0) {
- query.cachePolicy = kPFCachePolicyCacheThenNetwork;
- }
+     // If no objects are loaded in memory, we look to the cache first to fill the table
+     // and then subsequently do a query against the network.
+     if (self.objects.count == 0) {
+         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+     }
 
-     
-  
-     
+
      return query;
-
-     
-     
-     
- 
- return query;
- }
+    }
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
