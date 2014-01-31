@@ -285,6 +285,7 @@
             }
         }
     }];
+    NSLog(@"player unfollowed");
     [[Cache sharedCache] setFollowStatus:NO user:user];
 }
 

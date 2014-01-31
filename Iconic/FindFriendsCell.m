@@ -25,6 +25,14 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        
+//        
+//        self.followButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [self.followButton setTitle:@"Follow  " forState:UIControlStateNormal]; // space added for centering
+//        [self.followButton setTitle:@"Following" forState:UIControlStateSelected];
+//        [self.followButton addTarget:self action:@selector(didTapFollowButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        
     }
     return self;
 }
@@ -42,22 +50,33 @@
     user = aUser;
     
     // Configure the cell
+    [self.followButton setTitle:@"Follow  " forState:UIControlStateNormal]; // space added for centering
+    [self.followButton setTitle:@"Following" forState:UIControlStateSelected];
+    //[self.followButton addTarget:self action:@selector(didTapFollowButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    
+    
     [avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
+    //turn photo to circle
+    CALayer *imageLayer = self.avatarImageView.layer;
+    [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
+    [imageLayer setBorderWidth:0];
+    [imageLayer setMasksToBounds:YES];
     
     // Set name
-//    NSString *nameString = [self.user objectForKey:kUserDisplayNameKey];
-//    CGSize nameSize = [nameString sizeWithFont:[UIFont boldSystemFontOfSize:16.0f] forWidth:144.0f lineBreakMode:UILineBreakModeTailTruncation];
-//    [nameButton setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateNormal];
-//    [nameButton setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateHighlighted];
-//    
-//    [nameButton setFrame:CGRectMake( 60.0f, 17.0f, nameSize.width, nameSize.height)];
-//    
-//    // Set activity number label
-//    CGSize photoLabelSize = [@"activity" sizeWithFont:[UIFont systemFontOfSize:11.0f] forWidth:144.0f lineBreakMode:UILineBreakModeTailTruncation];
-//    [activityLabel setFrame:CGRectMake( 60.0f, 17.0f + nameSize.height, 140.0f, photoLabelSize.height)];
-//    
-//    // Set follow button
-//    [followButton setFrame:CGRectMake( 208.0f, 20.0f, 103.0f, 32.0f)];
+    NSString *nameString = [self.user objectForKey:kUserDisplayNameKey];
+    CGSize nameSize = [nameString sizeWithFont:[UIFont boldSystemFontOfSize:16.0f] forWidth:144.0f lineBreakMode:UILineBreakModeTailTruncation];
+    [nameButton setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateNormal];
+    [nameButton setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateHighlighted];
+    
+    [nameButton setFrame:CGRectMake( 60.0f, 17.0f, nameSize.width, nameSize.height)];
+    
+    // Set activity number label
+    CGSize photoLabelSize = [@"activity" sizeWithFont:[UIFont systemFontOfSize:11.0f] forWidth:144.0f lineBreakMode:UILineBreakModeTailTruncation];
+    [activityLabel setFrame:CGRectMake( 60.0f, 17.0f + nameSize.height, 140.0f, photoLabelSize.height)];
+    
+    // Set follow button
+    [followButton setFrame:CGRectMake( 208.0f, 20.0f, 103.0f, 32.0f)];
 }
 
 #pragma mark - ()
@@ -65,9 +84,15 @@
 + (CGFloat)heightForCell {
     return 67.0f;
 }
+- (IBAction)followButtonSelected:(id)sender {
+    [self.followButton addTarget:self action:@selector(didTapFollowButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+     NSLog(@"follow Button Selected");
+}
 
 /* Inform delegate that a user image or name was tapped */
 - (void)didTapUserButtonAction:(id)sender {
+    NSLog(@"Did tap user action");
     if (self.delegate && [self.delegate respondsToSelector:@selector(cell:didTapUserButton:)]) {
         [self.delegate cell:self didTapUserButton:self.user];
     }

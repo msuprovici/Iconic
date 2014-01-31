@@ -284,7 +284,7 @@ static NSString *kImageKey = @"imageKey";
     
     [retrieveTeamates findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
-        NSLog(@"%@", objects);
+       // NSLog(@"%@", objects);
         if (!error) {
             teamScores = [[NSArray alloc] initWithArray:objects];
         }
@@ -365,7 +365,7 @@ static NSString *kImageKey = @"imageKey";
     
     [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            NSLog(@"Points uploaded");
+          //  NSLog(@"Points uploaded");
             [[Cache sharedCache] setAttributesForActivity:activity likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
 
         }

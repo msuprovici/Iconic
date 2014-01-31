@@ -309,6 +309,7 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
      
      cell.followButton.selected = NO;
      cell.tag = indexPath.row;
+
      
      
      if (self.followStatus == FindFriendsFollowingSome) {
@@ -355,9 +356,29 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 //    [self.navigationController pushViewController:accountViewController animated:YES];
 //}
 //
-//- (void)cell:(FindFriendsCell *)cellView didTapFollowButton:(PFUser *)aUser {
-//    [self shouldToggleFollowFriendForCell:cellView];
-//}
+
+
+- (IBAction)followButtonTapped:(UIButton *)sender {
+    
+    
+
+    
+    //Find the row the button was selected from
+    CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+    
+
+    
+   FindFriendsCell * tappedcell = (FindFriendsCell *)[(UITableView *)self.view cellForRowAtIndexPath:hitIndex];
+    
+    [self shouldToggleFollowFriendForCell:tappedcell];
+}
+
+
+- (void)cell:(FindFriendsCell *)cellView didTapFollowButton:(PFUser *)aUser {
+    NSLog(@"did tap follow button");
+    [self shouldToggleFollowFriendForCell:cellView];
+}
 
 
 /*
@@ -526,11 +547,13 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     PFUser *cellUser = cell.user;
     if ([cell.followButton isSelected]) {
         // Unfollow
+        NSLog(@"unfollow player");
         cell.followButton.selected = NO;
         [Utility unfollowUserEventually:cellUser];
         [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserFollowingChangedNotification object:nil];
     } else {
         // Follow
+        NSLog(@"follow player");
         cell.followButton.selected = YES;
         [Utility followUserEventually:cellUser block:^(BOOL succeeded, NSError *error) {
             if (!error) {
@@ -556,7 +579,7 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     
     // Set the recipient to the selected email and a default text
     [composeEmailViewController setMailComposeDelegate:self];
-    [composeEmailViewController setSubject:@"Join me on Anypic"];
+    [composeEmailViewController setSubject:@"Join me on Iconic"];
     [composeEmailViewController setToRecipients:[NSArray arrayWithObjects:recipient, nil]];
     [composeEmailViewController setMessageBody:@"Come join my team" isHTML:NO];
    // [composeEmailViewController setMessageBody:@"<h2>Share your activity, share your story.</h2><p><a href=\"http://anypic.org\">Anypic</a> is the easiest way to share activity with your friends. Get the app and share your fun activity with the world.</p><p><a href=\"http://anypic.org\">Anypic</a> is fully powered by <a href=\"http://parse.com\">Parse</a>.</p>" isHTML:YES];
