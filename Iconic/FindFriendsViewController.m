@@ -371,7 +371,12 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     
    FindFriendsCell * tappedcell = (FindFriendsCell *)[(UITableView *)self.view cellForRowAtIndexPath:hitIndex];
     
-    [self shouldToggleFollowFriendForCell:tappedcell];
+    //[self shouldToggleFollowFriendForCell:tappedcell];
+    PFUser *cellUser = tappedcell.user;
+   [self cell:tappedcell didTapFollowButton:cellUser];
+    
+    //[self cell:tappedcell didTapFollowButton:[PFUser currentUser]];
+
 }
 
 
