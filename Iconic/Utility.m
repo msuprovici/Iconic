@@ -251,7 +251,7 @@
         return;
     }
     
-    PFObject *followActivity = [PFObject objectWithClassName:kPlayerActionTypeKey];
+    PFObject *followActivity = [PFObject objectWithClassName:kPlayerActionClassKey];
     [followActivity setObject:[PFUser currentUser] forKey:kPlayerActionFromUserKey];
     [followActivity setObject:user forKey:kPlayerActionToUserKey];
     [followActivity setObject:kPlayerActionTypeFollow forKey:kPlayerActionTypeKey];
@@ -272,7 +272,7 @@
 }
 
 + (void)unfollowUserEventually:(PFUser *)user {
-    PFQuery *query = [PFQuery queryWithClassName:kPlayerActionTypeKey];
+    PFQuery *query = [PFQuery queryWithClassName:kPlayerActionClassKey];
     [query whereKey:kPlayerActionFromUserKey equalTo:[PFUser currentUser]];
     [query whereKey:kPlayerActionToUserKey equalTo:user];
     [query whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeFollow];
