@@ -70,32 +70,30 @@ static TTTTimeIntervalFormatter *timeFormatter;
  //   [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
     [self.nameButton setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateNormal];
     [self.nameButton setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateHighlighted];
-    [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
-    [self.avatarImageView loadInBackground];
+//    [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
+//    [self.avatarImageView loadInBackground];
     
     //turn photo to circle
-    CALayer *imageLayer = self.avatarImageView.layer;
-    [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
-    [imageLayer setBorderWidth:0];
-    [imageLayer setMasksToBounds:YES];
+    //    CALayer *imageLayer = self.avatarImageView.layer;
+    //    [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
+    //    [imageLayer setBorderWidth:0];
+    //    [imageLayer setMasksToBounds:YES];
+    
+    // Set a placeholder image first
+    self.avatarImageView.image = [UIImage imageNamed:@"empty_avatar.png"];
+    PFFile *imageFile = [self.user objectForKey:kUserProfilePicSmallKey];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        // Now that the data is fetched, update the cell's image property.
+        self.avatarImageView.image = [UIImage imageWithData:data];
+     }];
+    
+    //turn photo to circle
+        CALayer *imageLayer = self.avatarImageView.layer;
+        [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
+        [imageLayer setBorderWidth:0];
+        [imageLayer setMasksToBounds:YES];
 
-    
-        // PFFile *profilePictureSmall = [self.user objectForKey:kUserProfilePicSmallKey];
-    
-//         [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
-//    
-//    self.avatarImageView = [[PFImageView alloc] init];
-//   // self.avatarImageView.image = [UIImage imageNamed:@"empty_avatar.png"]; // placeholder image
-//    //self.avatarImageView.file = [self.user objectForKey:kUserProfilePicSmallKey];
-//   // [self.avatarImageView loadInBackground];
-//
-//    //turn photo to circle
-//    CALayer *imageLayer = self.avatarImageView.layer;
-//    [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
-//    [imageLayer setBorderWidth:0];
-//    [imageLayer setMasksToBounds:YES];
-    
-    
+
        
     // If user is set after the contentText, we reset the content to include padding
 //    if (self.contentLabel.text) {

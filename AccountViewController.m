@@ -1,21 +1,19 @@
 //
-//  ActivityViewController.m
+//  AccountViewController.m
 //  Iconic
 //
-//  Created by Mike Suprovici on 12/15/13.
-//  Copyright (c) 2013 Explorence. All rights reserved.
+//  Created by Mike Suprovici on 1/31/14.
+//  Copyright (c) 2014 Explorence. All rights reserved.
 //
 
-#import "ActivityViewController.h"
+#import "AccountViewController.h"
+#import "Constants.h"
 
-
-
-@interface ActivityViewController ()
-
+@interface AccountViewController ()
 
 @end
 
-@implementation ActivityViewController
+@implementation AccountViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,7 +28,10 @@
 {
     [super viewDidLoad];
     
-  
+    //set the title of the account the user's name
+    PFUser * username = [PFUser currentUser];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@", [username objectForKey:kUserDisplayNameKey]];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

@@ -86,7 +86,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
 @synthesize activeplayer;
 @synthesize likeUsers;
 @synthesize nameHeaderView;
-@synthesize avatarImageView;
+@synthesize avatarImage;
 @synthesize likeBarView;
 @synthesize likeButton;
 @synthesize delegate;

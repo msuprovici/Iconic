@@ -143,14 +143,31 @@
     // user's avatar
     PFUser *user = [activity objectForKey:kActivityUserKey];
     //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
-    [self.avatarImageView setFile:[user objectForKey:kUserProfilePicSmallKey]];
-    [self.avatarImageView loadInBackground];
-    //turn photo to circle
-    CALayer *imageLayer = self.avatarImageView.layer;
-    [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
-    [imageLayer setBorderWidth:0];
-    [imageLayer setMasksToBounds:YES];
+    
+//    [self.avatarImageView setFile:[user objectForKey:kUserProfilePicSmallKey]];
+//    [self.avatarImageView loadInBackground];
+//    //turn photo to circle
+//    CALayer *imageLayer = self.avatarImageView.layer;
+//    [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
+//    [imageLayer setBorderWidth:0];
+//    [imageLayer setMasksToBounds:YES];
 
+    //new approach for setting the photo that is more robust
+    // Set a placeholder image first
+    self.avatarImageView.image = [UIImage imageNamed:@"empty_avatar.png"];
+    PFFile *imageFile = [user objectForKey:kUserProfilePicSmallKey];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        // Now that the data is fetched, update the cell's image property.
+        self.avatarImageView.image = [UIImage imageWithData:data];
+
+    }];
+    
+        //turn photo to circle
+        CALayer *imageLayer = self.avatarImageView.layer;
+        [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
+        [imageLayer setBorderWidth:0];
+        [imageLayer setMasksToBounds:YES];
+    
     
     NSString *authorName = [user objectForKey:kUserDisplayNameKey];
     [self.userButton setTitle:authorName forState:UIControlStateNormal];

@@ -14,10 +14,11 @@
 #import "Utility.h"
 #import "Constants.h"
 #import "Cache.h"
-
+#import "MBProgressHUD.h"
 #import "ActivityHeaderCell.h"
 #import "ActivityDeatailsHeaderCell.h"
 #import "ProfileImageView.h"
+#import "FeedViewController.h"
 
 @interface CommentsViewController ()
 
@@ -212,13 +213,21 @@ static TTTTimeIntervalFormatter *timeFormatter;
     
     [cell.userButton setTitle:playerName forState:UIControlStateNormal];
     
-    PFFile *profilePictureSmall = [self.player objectForKey:kUserProfilePicSmallKey];
     
-    [cell.avatarImageView setFile:profilePictureSmall];
+    
+    
+    // Set a placeholder image first
+    cell.avatarImage.image = [UIImage imageNamed:@"empty_avatar.png"];
+   PFFile *imageFile = [self.player objectForKey:kUserProfilePicSmallKey];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        // Now that the data is fetched, update the cell's image property.
+        cell.avatarImage.image = [UIImage imageWithData:data];
+    }];
+
     
         //turn photo to circle
-         CALayer *imageLayer = cell.avatarImageView.layer;
-         [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
+         CALayer *imageLayer = cell.avatarImage.layer;
+         [imageLayer setCornerRadius:cell.avatarImage.frame.size.width/2];
          [imageLayer setBorderWidth:0];
          [imageLayer setMasksToBounds:YES];
     
@@ -466,7 +475,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
         [[Cache sharedCache] incrementCommentCountForActivity:self.activity];
         
         // Show HUD view
-       // [MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
+       //[MBProgressHUD showHUDAddedTo:self.view.superview animated:YES];
         
         // If more than 5 seconds pass since we post a comment, stop waiting for the server to respond
         NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(handleCommentTimeout:) userInfo:@{@"comment": comment} repeats:NO];
@@ -483,14 +492,16 @@ static TTTTimeIntervalFormatter *timeFormatter;
             
             [[NSNotificationCenter defaultCenter] postNotificationName:ActivityDetailsViewControllerUserCommentedOnActivityNotification object:self.activity userInfo:@{@"comments": @(self.objects.count + 1)}];
             
-          //  [MBProgressHUD hideHUDForView:self.view.superview animated:YES];
+            
+          //[MBProgressHUD hideHUDForView:self.view.superview animated:YES];
             [self loadObjects];
+            
         }];
     }
     
     [textField setText:@""];
     return [textField resignFirstResponder];
-}
+    }
 
 
 

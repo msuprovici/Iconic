@@ -15,4 +15,5 @@
 
 @property (nonatomic,weak) id <ActivityHeaderCellDelegate> delegate;
 
+
 @end

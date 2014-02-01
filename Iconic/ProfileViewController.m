@@ -9,7 +9,7 @@
 #import "ProfileViewController.h"
 #import "MyStatsViewController.h"
 #import "ContentController.h"
-#import "SWRevealViewController.h"
+
 
 //Dialog view controller
 #import "DialogViewController.h"
@@ -52,14 +52,7 @@ static NSString *kImageKey = @"imageKey";
     [MZFormSheetController registerTransitionClass:[CustomTransition class] forTransitionStyle:MZFormSheetTransitionStyleCustom];
     
     
-    //reveal navigator
-    [self.revealButtonItem setTarget: self.revealViewController];
-    [self.revealButtonItem setAction: @selector( revealToggle: )];
-    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
-    //this enables us to move the whole view with a swipe
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
-    
+     
     [self performSelector:@selector(retrieveFromParse)];
     
     NSUInteger numberPages = self.contentList.count;

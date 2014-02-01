@@ -9,7 +9,7 @@
 #import "ScheduleViewController.h"
 #import "ScheduleGenerator.h"
 #import <Parse/Parse.h>
-#import "SWRevealViewController.h"
+
 #import "PNChart.h"
 #import  "Constants.h"
 @interface ScheduleViewController ()
@@ -19,7 +19,7 @@
 @property (nonatomic, retain) NSMutableDictionary *matchups;
 @property (nonatomic, retain) NSMutableDictionary *round;
 
-@property (nonatomic) IBOutlet UIBarButtonItem* revealButtonItem;
+
 
 @end
 
@@ -82,12 +82,7 @@
 {
     [super viewDidLoad];
     
-    //reveal navigator
-    [self.revealButtonItem setTarget: self.revealViewController];
-    [self.revealButtonItem setAction: @selector( revealToggle: )];
-    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
-    //this enables us to move the whole view with a swipe
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
     
     self.scheduledMatchups = [[NSMutableArray alloc] init];
     

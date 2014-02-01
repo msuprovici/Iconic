@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "MyStatsViewController.h"
 #import "ContentController.h"
-#import "SWRevealViewController.h"
+
 #import "Cache.h"
 //#import "Utility.h"
 #import "Constants.h"
@@ -27,7 +27,7 @@ static NSString *kImageKey = @"imageKey";
 
 @property (nonatomic, strong) IBOutlet ContentController * contentController;
 
-//@property (nonatomic) IBOutlet UIBarButtonItem* revealButtonItem;
+;
 
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 
@@ -45,13 +45,7 @@ static NSString *kImageKey = @"imageKey";
 - (void)viewDidLoad
 {
     
-    
-    //reveal navigator
-    [self.revealButtonItem setTarget: self.revealViewController];
-    [self.revealButtonItem setAction: @selector( revealToggle: )];
-    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
-    //this enables us to move the whole view with a swipe
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+
 
 
     //Retrieve from Parse
@@ -60,18 +54,6 @@ static NSString *kImageKey = @"imageKey";
     
     
     
-//    //reveal menu slider
-//    [self.revealButtonItem setTarget: self.revealViewController];
-//    [self.revealButtonItem setAction: @selector( revealToggle:)];
-//    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
-//    //this enables us to move the whole view with a swipe
-//    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-//    self.revealViewController.rearViewRevealWidth = 150;
-//    //self.revealViewController.rearViewRevealOverdraw = 130;
-//   self.revealViewController.bounceBackOnOverdraw = YES;
-//    self.revealViewController.stableDragOnOverdraw = YES;
-//    //[self.revealViewController setFrontViewPosition:FrontViewPositionRight];
-
     
     
     

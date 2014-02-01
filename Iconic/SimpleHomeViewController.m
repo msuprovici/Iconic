@@ -9,7 +9,7 @@
 #import "SimpleHomeViewController.h"
 #import "MyStatsViewController.h"
 #import "ContentController.h"
-#import "SWRevealViewController.h"
+
 #import "Cache.h"
 
 #import "Constants.h"
@@ -31,7 +31,7 @@ static NSString *kImageKey = @"imageKey";
 @property (nonatomic, strong) IBOutlet ContentController * contentController;
 @property (nonatomic, strong) PFObject * activityObject;
 
-//@property (nonatomic) IBOutlet UIBarButtonItem* revealButtonItem;
+
 
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 
@@ -54,14 +54,7 @@ static NSString *kImageKey = @"imageKey";
 {
     [super viewDidLoad];
     
-    //reveal navigator
-    [self.revealButtonItem setTarget: self.revealViewController];
-    [self.revealButtonItem setAction: @selector( revealToggle: )];
-    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
-    //this enables us to move the whole view with a swipe
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
-    
+      
     //Retrieve from Parse
     [self performSelector:@selector(retrieveFromParse)];
     
@@ -311,14 +304,13 @@ static NSString *kImageKey = @"imageKey";
             
             //Player photo
             //using PFImageView
-            self.playerPhoto.file = [currentUser objectForKey:kProfilePicture];
+            self.playerPhoto.file = [currentUser objectForKey:kUserProfilePicSmallKey];
             
-            PFImageView *photo = [[PFImageView alloc] init];
+//            PFImageView *photo = [[PFImageView alloc] init];
+//            
+//            photo.file = (PFFile *)self.playerPhoto.file;
             
-            photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
-            photo.file = (PFFile *)self.playerPhoto.file;
-            photo.image = [photo.image thumbnailImage:280 transparentBorder:0 cornerRadius:10 interpolationQuality:kCGInterpolationHigh];
-            [photo loadInBackground];
+            [self.playerPhoto loadInBackground];
             
             //turn photo to circle
             CALayer *imageLayer = self.playerPhoto.layer;
@@ -340,7 +332,7 @@ static NSString *kImageKey = @"imageKey";
 {
     
     //test points value here
-    NSNumber *newPoints = [self calculatePoints:150];
+    NSNumber *newPoints = [self calculatePoints:450];
   
     
 // New inplementation bellow

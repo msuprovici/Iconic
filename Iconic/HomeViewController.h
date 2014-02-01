@@ -30,8 +30,8 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *teamatesTable;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
 
-//@property (weak, nonatomic) IBOutlet UIBarButtonItem revealButton;
+
+
 
 @end

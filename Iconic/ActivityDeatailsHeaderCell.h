@@ -33,7 +33,7 @@
 
 //all other images
 
-@property (strong, nonatomic) IBOutlet PFImageView *avatarImageView;
+@property (strong, nonatomic) IBOutlet PFImageView *avatarImage;
 @property (strong, nonatomic) IBOutlet UIButton *userButton;
 
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;

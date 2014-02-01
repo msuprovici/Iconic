@@ -125,6 +125,9 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    //should use delegation instead of reloading the view everytime
+    [self.tableView reloadData];
+    
     if (self.shouldReloadOnAppear) {
         self.shouldReloadOnAppear = NO;
         [self loadObjects];

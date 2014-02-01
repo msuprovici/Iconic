@@ -26,7 +26,7 @@
 
 
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButtonItem;
+
 
 @property (strong, nonatomic) IBOutlet UILabel *playerName;
 

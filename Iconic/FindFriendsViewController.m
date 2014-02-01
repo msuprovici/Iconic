@@ -8,7 +8,7 @@
 
 #import "FindFriendsViewController.h"
 #import "Parse/Parse.h"
-#import "SWRevealViewController.h"
+
 #import "AppDelegate.h"
 #import "Cache.h"
 #import "Constants.h"
@@ -23,7 +23,7 @@ typedef enum {
 
 @interface FindFriendsViewController ()
 
-@property (nonatomic) IBOutlet UIBarButtonItem* revealButtonItem;
+
 
 @property (nonatomic, strong) NSString *selectedEmailAddress;
 @property (nonatomic, strong) NSMutableDictionary *outstandingFollowQueries;
@@ -100,12 +100,7 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    //reveal navigator
-    [self.revealButtonItem setTarget: self.revealViewController];
-    [self.revealButtonItem setAction: @selector( revealToggle: )];
-    [self.navigationController.navigationBar addGestureRecognizer: self.revealViewController.panGestureRecognizer];
-    //this enables us to move the whole view with a swipe
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+
     
    
 }
@@ -190,7 +185,10 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
          query.cachePolicy = kPFCachePolicyCacheThenNetwork;
      }
      
-     [query orderByAscending:kUserDisplayNameKey];
+     //[query orderByAscending:kUserDisplayNameKey];
+     
+     //sort by the time created so that we can test new accounts
+     [query orderByDescending:@"createdAt"];
  
      // If Pull To Refresh is enabled, query against the network by default.
      if (self.pullToRefreshEnabled) {
@@ -629,6 +627,15 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 - (void)refreshControlValueChanged:(UIRefreshControl *)refreshControl {
     [self loadObjects];
 }
+
+
+
+- (IBAction)exitFindFriendsView:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 
 /*

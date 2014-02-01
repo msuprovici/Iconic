@@ -58,6 +58,8 @@
 		5C78DA66189997CA00CBA29B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C78DA65189997C900CBA29B /* libsqlite3.dylib */; };
 		5C78DA691899B61700CBA29B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C78DA681899B61700CBA29B /* MBProgressHUD.m */; };
 		5C78DA711899B91400CBA29B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C78DA6F1899B91400CBA29B /* Reachability.m */; };
+		5C8B0476189CAE3F000AD0DF /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B0475189CAE3F000AD0DF /* AccountViewController.m */; };
+		5C8B047A189CAF8E000AD0DF /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B0479189CAF8E000AD0DF /* TabBarViewController.m */; };
 		5C8BB5B21884627000E89ADF /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B11884627000E89ADF /* TimelineViewController.m */; };
 		5C8BB5B51884AF7300E89ADF /* CommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B41884AF7300E89ADF /* CommentsViewController.m */; };
 		5C8BB5B81884AFE900E89ADF /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B71884AFE900E89ADF /* CommentCell.m */; };
@@ -220,6 +222,10 @@
 		5C78DA681899B61700CBA29B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5C78DA6F1899B91400CBA29B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		5C78DA701899B91400CBA29B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		5C8B0474189CAE3F000AD0DF /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
+		5C8B0475189CAE3F000AD0DF /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
+		5C8B0478189CAF8E000AD0DF /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		5C8B0479189CAF8E000AD0DF /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		5C8BB5B01884627000E89ADF /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
 		5C8BB5B11884627000E89ADF /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
 		5C8BB5B31884AF7300E89ADF /* CommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewController.h; sourceTree = "<group>"; };
@@ -581,6 +587,25 @@
 			name = Reachability;
 			sourceTree = "<group>";
 		};
+		5C8B0477189CAE4D000AD0DF /* MyAccount */ = {
+			isa = PBXGroup;
+			children = (
+				5C8B0474189CAE3F000AD0DF /* AccountViewController.h */,
+				5C8B0475189CAE3F000AD0DF /* AccountViewController.m */,
+			);
+			name = MyAccount;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		5C8B047B189CAF9B000AD0DF /* TabMenu */ = {
+			isa = PBXGroup;
+			children = (
+				5C8B0478189CAF8E000AD0DF /* TabBarViewController.h */,
+				5C8B0479189CAF8E000AD0DF /* TabBarViewController.m */,
+			);
+			name = TabMenu;
+			sourceTree = "<group>";
+		};
 		5C8BB5C8188616CB00E89ADF /* TTTTImeIntervalFormatter */ = {
 			isa = PBXGroup;
 			children = (
@@ -692,7 +717,8 @@
 				5C4EF984186CBC15000E0E59 /* Utility.m */,
 				5C4EF97D1868D99B000E0E59 /* Cache.h */,
 				5C4EF97E1868D99B000E0E59 /* Cache.m */,
-				5CD93832187B54D1006CE08B /* Custom Dialog */,
+				5C8B047B189CAF9B000AD0DF /* TabMenu */,
+				5C8B0477189CAE4D000AD0DF /* MyAccount */,
 				5C2C1CBE185BAF12006722D2 /* Social */,
 				5C2EA52A1851474400B21C52 /* Home */,
 				5C328C0018601AEE00E0E985 /* Teams */,
@@ -701,7 +727,7 @@
 				5C2EA52C1851476B00B21C52 /* VS */,
 				5C328BFC186002DC00E0E985 /* Leagues */,
 				5C2EA52D1851477D00B21C52 /* LogIn */,
-				5C2C1CD0185E98C8006722D2 /* Menu */,
+				5CD93832187B54D1006CE08B /* Custom Dialog */,
 				5CA3D1A51831DF51006C7932 /* Images.xcassets */,
 				5CA3D1911831DF51006C7932 /* Supporting Files */,
 			);
@@ -755,6 +781,7 @@
 		5CB75DFF188A22C70047BC47 /* Not in use */ = {
 			isa = PBXGroup;
 			children = (
+				5C2C1CD0185E98C8006722D2 /* Menu */,
 				5C8BB5B01884627000E89ADF /* TimelineViewController.h */,
 				5C8BB5B11884627000E89ADF /* TimelineViewController.m */,
 				5C2EA5271851472000B21C52 /* HomeViewController.h */,
@@ -1003,6 +1030,7 @@
 				5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */,
 				5CD93830187B510E006CE08B /* MZAppearance.m in Sources */,
 				5C2C1CD3185EADF2006722D2 /* ActivityViewController.m in Sources */,
+				5C8B047A189CAF8E000AD0DF /* TabBarViewController.m in Sources */,
 				5C328BFB186002D300E0E985 /* LeaguesViewController.m in Sources */,
 				5C48B8BC1880F89F00A09A1C /* UIImage+AlphaAdditions.m in Sources */,
 				5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */,
@@ -1022,6 +1050,7 @@
 				5C2EA547185164BE00B21C52 /* MyStatsContentController.m in Sources */,
 				5CD93835187B551D006CE08B /* CustomTransition.m in Sources */,
 				5C8BB5B51884AF7300E89ADF /* CommentsViewController.m in Sources */,
+				5C8B0476189CAE3F000AD0DF /* AccountViewController.m in Sources */,
 				5C539A031863F774006676FA /* ScheduleCell.m in Sources */,
 				5C78DA711899B91400CBA29B /* Reachability.m in Sources */,
 				5C966BB7187D0F480022AF0F /* PNChartLabel.m in Sources */,
