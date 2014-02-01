@@ -56,7 +56,9 @@
 
     
     
-    [avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
+    [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
+    [self.avatarImageView loadInBackground];
+    
     //turn photo to circle
     CALayer *imageLayer = self.avatarImageView.layer;
     [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];

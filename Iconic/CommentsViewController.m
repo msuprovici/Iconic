@@ -246,6 +246,8 @@ static TTTTimeIntervalFormatter *timeFormatter;
     if (cell == nil){
         [NSException raise:@"CommentCell == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
     }
+    
+    
      return cell;
     
 }
@@ -334,6 +336,10 @@ static TTTTimeIntervalFormatter *timeFormatter;
  
  // Configure the cell
     
+    [cell setUser:[object objectForKey:kPlayerActionFromUserKey]];
+    [cell setContentText:[object objectForKey:kPlayerActionContentKey]];
+    [cell setDate:[object createdAt]];
+    
     //add a player's comment
     [cell.contentLabel setText: [NSString stringWithFormat:@"%@", [object objectForKey:kPlayerActionContentKey]]];
     
@@ -344,22 +350,35 @@ static TTTTimeIntervalFormatter *timeFormatter;
      [cell.timeLabel setText:timestamp];
     
     
+    //PFUser *user = [self.player objectForKey:kUserDisplayNameKey];
+     
+//     NSString * playerName = [NSString stringWithFormat:@"%@",user];
+//     
+//     [cell.nameButton setTitle:playerName forState:UIControlStateNormal];
     //add the player's photo
-     PFUser *user = [self.player objectForKey:kUserDisplayNameKey];
-     
-     NSString * playerName = [NSString stringWithFormat:@"%@",user];
-     
-     [cell.nameButton setTitle:playerName forState:UIControlStateNormal];
-    
-     PFFile *profilePictureSmall = [self.player objectForKey:kUserProfilePicSmallKey];
-     
-     [cell.avatarImageView setFile:profilePictureSmall];
 
-     //turn photo to circle
-     CALayer *imageLayer = cell.avatarImageView.layer;
-     [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
-     [imageLayer setBorderWidth:0];
-     [imageLayer setMasksToBounds:YES];
+    PFFile *profilePictureSmall = [object objectForKey:kUserProfilePicSmallKey];
+//     
+//     [cell.avatarImageView setFile:profilePictureSmall];
+//    [cell.avatarImageView loadInBackground];
+//
+//     //turn photo to circle
+//     CALayer *imageLayer = cell.avatarImageView.layer;
+//     [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
+//     [imageLayer setBorderWidth:0];
+//     [imageLayer setMasksToBounds:YES];
+    
+    //[cell.avatarImageView setFile:profilePictureSmall];
+//    cell.avatarImageView.file = profilePictureSmall;
+//    
+//    
+//    
+//    //turn photo to circle
+//    CALayer *imageLayer = cell.avatarImageView.layer;
+//    [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
+//    [imageLayer setBorderWidth:0];
+//    [imageLayer setMasksToBounds:YES];
+//
 
     
     return cell;

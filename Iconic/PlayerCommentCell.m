@@ -16,9 +16,9 @@ static TTTTimeIntervalFormatter *timeFormatter;
 
 @implementation PlayerCommentCell
 
-//@synthesize avatarImageView;
+@synthesize avatarImageView;
 @synthesize nameButton;
-//@synthesize contentLabel;
+@synthesize contentLabel;
 @synthesize timeLabel;
 @synthesize delegate;
 @synthesize user;
@@ -67,10 +67,36 @@ static TTTTimeIntervalFormatter *timeFormatter;
     user = aUser;
     
     // Set name button properties and avatar image
-    [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
+ //   [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
     [self.nameButton setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateNormal];
     [self.nameButton setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateHighlighted];
+    [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
+    [self.avatarImageView loadInBackground];
     
+    //turn photo to circle
+    CALayer *imageLayer = self.avatarImageView.layer;
+    [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
+    [imageLayer setBorderWidth:0];
+    [imageLayer setMasksToBounds:YES];
+
+    
+        // PFFile *profilePictureSmall = [self.user objectForKey:kUserProfilePicSmallKey];
+    
+//         [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
+//    
+//    self.avatarImageView = [[PFImageView alloc] init];
+//   // self.avatarImageView.image = [UIImage imageNamed:@"empty_avatar.png"]; // placeholder image
+//    //self.avatarImageView.file = [self.user objectForKey:kUserProfilePicSmallKey];
+//   // [self.avatarImageView loadInBackground];
+//
+//    //turn photo to circle
+//    CALayer *imageLayer = self.avatarImageView.layer;
+//    [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
+//    [imageLayer setBorderWidth:0];
+//    [imageLayer setMasksToBounds:YES];
+    
+    
+       
     // If user is set after the contentText, we reset the content to include padding
 //    if (self.contentLabel.text) {
 //        [self setContentText:self.contentLabel.text];

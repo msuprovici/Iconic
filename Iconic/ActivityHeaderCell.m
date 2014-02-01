@@ -141,10 +141,10 @@
     activity = anActivity;
     
     // user's avatar
-    PFUser *user = [self.activity objectForKey:kActivityUserKey];
-    PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
-    [self.avatarImageView setFile:profilePictureSmall];
-    
+    PFUser *user = [activity objectForKey:kActivityUserKey];
+    //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
+    [self.avatarImageView setFile:[user objectForKey:kUserProfilePicSmallKey]];
+    [self.avatarImageView loadInBackground];
     //turn photo to circle
     CALayer *imageLayer = self.avatarImageView.layer;
     [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
