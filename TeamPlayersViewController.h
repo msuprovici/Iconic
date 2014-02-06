@@ -11,7 +11,8 @@
 
 @interface TeamPlayersViewController : PFQueryTableViewController
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *joinTeam;
 
+
+@property (strong, nonatomic) IBOutlet UIButton *joinTeam;
 
 @end

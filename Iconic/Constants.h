@@ -102,6 +102,15 @@ extern NSString *const kActivityUserKey;
 extern NSString *const kActivityOpenGraphIDKey;
 
 
+#pragma mark - Team Class
+//Class key
+NSString *const kTeamClass;
+
+//Field keys
+NSString *const kTeamate;
+
+
+
 #pragma mark - Cached Activity Attributes
 // keys
 extern NSString *const kActivityAttributesIsLikedByCurrentUserKey;

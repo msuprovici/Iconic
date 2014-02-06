@@ -99,8 +99,15 @@ NSString *const kActivityKey         = @"activity";
 NSString *const kActivityUserKey            = @"user";
 NSString *const kActivityOpenGraphIDKey    = @"fbOpenGraphID";
 
+#pragma mark - Team Class
+//Class key
+NSString *const kTeamClass = @"TeamPlayers";
 
-#pragma mark - Cached Photo Attributes
+//Field keys
+NSString *const kTeamate = @"playerpointer";
+
+
+#pragma mark - Cached Activity Attributes
 // keys
 NSString *const kActivityAttributesIsLikedByCurrentUserKey = @"isLikedByCurrentUser";
 NSString *const kActivityAttributesLikeCountKey            = @"likeCount";

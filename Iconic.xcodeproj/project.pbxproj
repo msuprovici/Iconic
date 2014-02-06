@@ -116,6 +116,7 @@
 		5CD93835187B551D006CE08B /* CustomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD93834187B551D006CE08B /* CustomTransition.m */; };
 		5CD93838187B5627006CE08B /* DialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD93837187B5627006CE08B /* DialogViewController.m */; };
 		5CD9383A187B814F006CE08B /* achievment_test.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD93839187B814F006CE08B /* achievment_test.png */; };
+		5CEC3BDE18A2A86200C444FA /* TeamPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC3BDD18A2A86200C444FA /* TeamPlayerCell.m */; };
 		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
 		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
 		72CA13C61846DEC700B19D53 /* tutorial1.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CA13C31846DEC700B19D53 /* tutorial1.png */; };
@@ -316,6 +317,8 @@
 		5CD93836187B5627006CE08B /* DialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogViewController.h; sourceTree = "<group>"; };
 		5CD93837187B5627006CE08B /* DialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogViewController.m; sourceTree = "<group>"; };
 		5CD93839187B814F006CE08B /* achievment_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = achievment_test.png; sourceTree = "<group>"; };
+		5CEC3BDC18A2A86200C444FA /* TeamPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamPlayerCell.h; sourceTree = "<group>"; };
+		5CEC3BDD18A2A86200C444FA /* TeamPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamPlayerCell.m; sourceTree = "<group>"; };
 		5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		5CFB1EB81834381C0026AEB4 /* ScheduleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleGenerator.h; sourceTree = "<group>"; };
@@ -443,7 +446,6 @@
 				5C2EA545185164BE00B21C52 /* MyStatsContentController.h */,
 				5C2EA546185164BE00B21C52 /* MyStatsContentController.m */,
 				5C2EA54818516B0E00B21C52 /* content_mystats.plist */,
-				5C394AB0187E5AF000617C9B /* HomeCells */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -496,6 +498,8 @@
 				5C328BFE18601ADF00E0E985 /* TeamsViewController.m */,
 				5C349E9B18602ED600325A29 /* TeamPlayersViewController.h */,
 				5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */,
+				5CEC3BDC18A2A86200C444FA /* TeamPlayerCell.h */,
+				5CEC3BDD18A2A86200C444FA /* TeamPlayerCell.m */,
 			);
 			name = Teams;
 			path = ..;
@@ -654,13 +658,13 @@
 			isa = PBXGroup;
 			children = (
 				5CA3D1901831DF51006C7932 /* Iconic */,
-				5CB75DFF188A22C70047BC47 /* Not in use */,
 				72F3252A1846D477000B5D34 /* Tutorial Controllers */,
 				5C2C1CC8185E9051006722D2 /* Resources */,
 				5CA3D1B21831DF51006C7932 /* IconicTests */,
 				5CA3D1891831DF51006C7932 /* Frameworks */,
 				5C4EF986186D01FF000E0E59 /* External */,
 				5CA3D1881831DF51006C7932 /* Products */,
+				5CB75DFF188A22C70047BC47 /* Not in use */,
 			);
 			sourceTree = "<group>";
 		};
@@ -781,6 +785,7 @@
 		5CB75DFF188A22C70047BC47 /* Not in use */ = {
 			isa = PBXGroup;
 			children = (
+				5C394AB0187E5AF000617C9B /* HomeCells */,
 				5C2C1CD0185E98C8006722D2 /* Menu */,
 				5C8BB5B01884627000E89ADF /* TimelineViewController.h */,
 				5C8BB5B11884627000E89ADF /* TimelineViewController.m */,
@@ -1011,6 +1016,7 @@
 				5C2C1CCF185E98A3006722D2 /* MenuViewController.m in Sources */,
 				5C48B8BB1880F89F00A09A1C /* UIImage+RoundedCornerAdditions.m in Sources */,
 				5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */,
+				5CEC3BDE18A2A86200C444FA /* TeamPlayerCell.m in Sources */,
 				5C4EF985186CBC15000E0E59 /* Utility.m in Sources */,
 				5C78DA691899B61700CBA29B /* MBProgressHUD.m in Sources */,
 				5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */,

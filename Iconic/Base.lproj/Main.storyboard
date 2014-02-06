@@ -642,18 +642,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uDv-Gk-Lmh">
-                                            <rect key="frame" x="22" y="68" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <state key="normal" title="0" backgroundImage="activity_speaker_icon_blue-01.png">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="likeButtonPressed:" destination="tuF-GK-KB7" eventType="touchUpInside" id="sb8-3F-KrX"/>
-                                            </connections>
-                                        </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_avatar.png" id="T3W-Ff-qSQ" customClass="PFImageView">
                                             <rect key="frame" x="20" y="5" width="35" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -685,7 +673,6 @@
                                 <connections>
                                     <outlet property="ActivityLabel" destination="ZUz-qx-zxI" id="jOW-nX-CpV"/>
                                     <outlet property="avatarImage" destination="T3W-Ff-qSQ" id="mPk-Ph-zsl"/>
-                                    <outlet property="likeButton" destination="uDv-Gk-Lmh" id="vQf-DO-7cQ"/>
                                     <outlet property="timeLabel" destination="hXt-3c-c3q" id="niI-vX-BM3"/>
                                     <outlet property="userButton" destination="ivb-j3-CEw" id="8Rc-wb-7kr"/>
                                 </connections>
@@ -1233,13 +1220,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="teamPlayer" rowHeight="51" id="UYf-Vy-sfV">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="teamatesCell" rowHeight="51" id="UYf-Vy-sfV" customClass="TeamPlayerCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="51"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UYf-Vy-sfV" id="1Vw-qr-CC3">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="c4W-SQ-lBh" customClass="PFImageView">
+                                            <rect key="frame" x="16" y="5" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="i1Y-J8-5Oe">
+                                            <rect key="frame" x="61" y="10" width="88" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Player Name">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="playerName" destination="i1Y-J8-5Oe" id="vvg-0b-UN9"/>
+                                    <outlet property="playerPhoto" destination="c4W-SQ-lBh" id="5ff-yY-vcF"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1248,14 +1252,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="My Team" id="k8m-HH-2kz">
-                        <barButtonItem key="rightBarButtonItem" title="Join" id="Jn0-mu-JKI">
-                            <connections>
-                                <action selector="joinTeam:" destination="k2R-Un-KHX" id="uMW-WZ-bOr"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="nI4-3m-LI2">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SNh-hs-EDZ">
+                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="joinTeam:" destination="k2R-Un-KHX" eventType="touchUpInside" id="aLW-2c-Uys"/>
+                                </connections>
+                            </button>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="joinTeam" destination="Jn0-mu-JKI" id="laa-c2-AWi"/>
+                        <outlet property="joinTeam" destination="SNh-hs-EDZ" id="uDD-01-Hu4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TjZ-00-MGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1540,7 +1553,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="Main" definesPresentationContext="YES" id="sEI-Ya-ylU" customClass="TabBarViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="IU5-dq-xHT"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="zEj-zi-NgI">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>

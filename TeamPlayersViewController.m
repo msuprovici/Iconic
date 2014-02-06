@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "PNChart.h"
 #import "Constants.h"
+#import "TeamPlayerCell.h"
 
 @interface TeamPlayersViewController ()
 
@@ -43,14 +44,14 @@
         // Customize the table
         
         // The className to query on
-        self.parseClassName = @"TeamPlayers";
+        self.parseClassName = kTeamClass;
         
         
         // The key of the PFObject to display in the label of the default cell style
-                self.textKey = @"players";
+         //       self.textKey = @"players";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
-        self.imageKey = @"photo";
+      //  self.imageKey = @"photo";
         
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
@@ -59,35 +60,67 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 100;
+        self.objectsPerPage = 10;
         
         //dictionaries for players & categories
-        self.players = [NSMutableDictionary dictionary];
-        self.categories = [NSMutableDictionary dictionary];
+//        self.players = [NSMutableDictionary dictionary];
+//        self.categories = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+   
+    
     [super viewDidLoad];
     
     
-    self.leaguesArray = [[NSMutableArray alloc] init];
+    [self.joinTeam setTitle:@"Join" forState:UIControlStateNormal];
+    [self.joinTeam setTitle:@"Leave" forState:UIControlStateSelected];
     
-    [self loadInitialData];
+    [self joinTeamButtonState];
+    [self.tableView reloadData];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-//method for loading table cells with leagues
-- (void)loadInitialData {
     
-}
+//     if (self.joinTeam.selected == NO) {
+//         self.joinTeam.titleLabel.text = @"Join";
+//     }
+//    else if (self.joinTeam.selected == YES)
+//    {
+//        self.joinTeam.titleLabel.text = @"Leave";
+//        
+//    }
+    
+    
+    
+   }
+
+//-(void) viewWillAppear:(BOOL)animated
+//{
+//    [self.joinTeam setTitle:@"Join" forState:UIControlStateNormal];
+//    [self.joinTeam setTitle:@"Leave" forState:UIControlStateSelected];
+//    
+//    [self joinTeamButtonState];
+//    [self.tableView reloadData];
+//}
+
+//-(void) viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    
+//    [self.joinTeam setTitle:@"Join" forState:UIControlStateNormal];
+//    [self.joinTeam setTitle:@"Leave" forState:UIControlStateSelected];
+//    
+//    [self joinTeamButtonState];
+//    [self.tableView reloadData];
+//    
+//}
 
 
 - (void)didReceiveMemoryWarning
@@ -105,28 +138,32 @@
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
     
+    
+   
+    
+    
     // This method is called every time objects are loaded from Parse via the PFQuery
     
-    [self.players removeAllObjects];
-    [self.categories removeAllObjects];
-    
-    NSInteger section = 0;
-    NSInteger rowIndex = 0;
-    for (PFObject *object in self.objects) {
-        NSString *teamPlayers = [NSString stringWithFormat:@"%@",[object objectForKey:@"categories"]];
-        NSMutableArray *objectsInSection = [self.players objectForKey:teamPlayers];
-        if (!objectsInSection) {
-            objectsInSection = [NSMutableArray array];
-            
-            // this is the first time we see this teamMatchup - increment the section index
-            [self.categories setObject:teamPlayers forKey:[NSNumber numberWithInt:section++]];
-        }
-        
-        [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
-        [self.players setObject:objectsInSection forKey:teamPlayers];
-    }
-    
-    [self.tableView reloadData];
+//    [self.players removeAllObjects];
+//    [self.categories removeAllObjects];
+//    
+//    NSInteger section = 0;
+//    NSInteger rowIndex = 0;
+//    for (PFObject *object in self.objects) {
+//        NSString *teamPlayers = [NSString stringWithFormat:@"%@",[object objectForKey:@"categories"]];
+//        NSMutableArray *objectsInSection = [self.players objectForKey:teamPlayers];
+//        if (!objectsInSection) {
+//            objectsInSection = [NSMutableArray array];
+//            
+//            // this is the first time we see this teamMatchup - increment the section index
+//            [self.categories setObject:teamPlayers forKey:[NSNumber numberWithInt:section++]];
+//        }
+//        
+//        [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
+//        [self.players setObject:objectsInSection forKey:teamPlayers];
+//    }
+//    
+//    [self.tableView reloadData];
 }
 
 
@@ -134,7 +171,13 @@
 // all objects ordered by createdAt descending.
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    [query includeKey:kTeamate];
+    
+        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    
+    
     // If Pull To Refresh is enabled, query against the network by default.
     if (self.pullToRefreshEnabled) {
         query.cachePolicy = kPFCachePolicyNetworkOnly;
@@ -147,7 +190,7 @@
     }
     
     // Order by categories type
-    [query orderByAscending:@"categories"];
+    [query orderByDescending:@"createdAt"];
     return query;
 }
 
@@ -164,53 +207,55 @@
 // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
 // and the imageView being the imageKey in the object.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    static NSString *CellIdentifier = @"playersCell";
+    static NSString *CellIdentifier = @"teamatesCell";
     
-    PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TeamPlayerCell *cell = (TeamPlayerCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[TeamPlayerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    
     }
     
     // Configure the cell
-    cell.textLabel.text = [object objectForKey:self.textKey];
-   // cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
-    cell.imageView.file = [object objectForKey:self.imageKey];
+    
+    [cell setUser:[object objectForKey:kTeamate]];
+    
+   
     
     return cell;
 }
 
 //Create custom header for teams view
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return HeaderHeight;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    
-    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    sectionHeader.backgroundColor = HeaderColor;
-    sectionHeader.textAlignment = HeaderAlignment;
-    sectionHeader.font = HeaderFont;
-    sectionHeader.textColor = HeaderTextColor;
-    
-    sectionHeader.text =[self categories:section];
-        
-    return sectionHeader;
-    
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return HeaderHeight;
+//}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    
+//    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+//    sectionHeader.backgroundColor = HeaderColor;
+//    sectionHeader.textAlignment = HeaderAlignment;
+//    sectionHeader.font = HeaderFont;
+//    sectionHeader.textColor = HeaderTextColor;
+//    
+//    sectionHeader.text =[self categories:section];
+//        
+//    return sectionHeader;
+//    
+//}
 
 
 
 // Get the array of indeces for that section. This lets us pick the correct PFObject from self.objects
-- (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *teamPlayers = [self categories:indexPath.section];
-    
-    NSArray *rowIndecesInSection = [self.players objectForKey:teamPlayers];
-    
-    NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
-    return [self.objects objectAtIndex:[rowIndex intValue]];
-}
+//- (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
+//    NSString *teamPlayers = [self categories:indexPath.section];
+//    
+//    NSArray *rowIndecesInSection = [self.players objectForKey:teamPlayers];
+//    
+//    NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
+//    return [self.objects objectAtIndex:[rowIndex intValue]];
+//}
 
 
 /*
@@ -235,27 +280,27 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return self.players.allKeys.count;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//#warning Potentially incomplete method implementation.
+//    // Return the number of sections.
+//    return self.players.allKeys.count;
+//}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)league
-{
-    
-    // Return the number of rows in the section.
-    //return 0;
-    
-    //return the # of players in the array
-    
-    NSString *categoryType = [self categories:league];
-    NSArray *rowIndecesInSection = [self.players objectForKey:categoryType];
-    return rowIndecesInSection.count;
-    
-    
-}
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)league
+//{
+//    
+//    // Return the number of rows in the section.
+//    //return 0;
+//    
+//    //return the # of players in the array
+//    
+//    NSString *categoryType = [self categories:league];
+//    NSArray *rowIndecesInSection = [self.players objectForKey:categoryType];
+//    return rowIndecesInSection.count;
+//    
+//    
+//}
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 //    NSString *categoryType = [self categories:section];
@@ -341,12 +386,98 @@
 
 - (IBAction)joinTeam:(id)sender {
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"You're on the team" message: @"" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    PFRelation *relation = [self relationforKey:@"myRelation"];
+//    PFQuery *query = [relation query];
+//    [query whereKey:@"objectId" equalTo:myObject.objectId];
+//    [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
+//        completionBlock(count > 0, error);
+//    }];
     
-    [alert show];
+    
+    PFUser *loggedInUser = [PFUser objectWithClassName:self.parseClassName];
+    
+    if(self.joinTeam.selected == NO)
+    {
+        
+       
+        
+        [loggedInUser setObject:[PFUser currentUser] forKey:kTeamate];
+        
+        [loggedInUser saveEventually:^(BOOL succeeded, NSError *error) {
+            
+            if (succeeded) {
+                 [self.joinTeam setSelected:YES];
+                
+                [self loadObjects];
+                
+                
+               
+               
+            }
+        }];
+       
+       
 
+    }
+    else if (self.joinTeam.selected == YES)
+    {
+   
+
+        PFQuery *query = [PFQuery queryWithClassName:kTeamClass];
+        [query whereKey:kTeamate equalTo:[PFUser currentUser]];
+         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if (!error) {
+                
+                //[object deleteEventually];
+                [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        
+                        [self.joinTeam setSelected:NO];
+                        
+                        [self loadObjects];
+                    }
+                    }];
+          
+                
+            }
+            
+// this is not always a network problem, so we can't use a network alert - need a different approach
+//            else
+//            {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"The Internet conection appears to be offline" message: @"Please try again later" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            
+//            [alert show];
+//    
+//        }
+            }];
+        
+        
+    }
+    
+
+    
 }
 
+
+//find out if current user is on a team
+-(void)joinTeamButtonState
+{
+    PFQuery *query = [PFQuery queryWithClassName:kTeamClass];
+    [query whereKey:kTeamate equalTo:[PFUser currentUser]];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            [self.joinTeam setSelected:YES];
+        }
+        else
+        {
+            [self.joinTeam setSelected:NO];
+        }
+    }];
+}
 
 
 @end

@@ -47,8 +47,6 @@
     if (self) {
         
         
-        
-        
         // Customize the table
         
         // The className to query on
@@ -69,7 +67,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 100;
+        self.objectsPerPage = 10;
         
         //dictionaries for matchups & round
         self.leagues = [NSMutableDictionary dictionary];
