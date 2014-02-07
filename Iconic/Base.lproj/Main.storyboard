@@ -1190,7 +1190,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="k2R-Un-KHX" kind="push" id="BKk-Oi-vMX"/>
+                                    <segue destination="k2R-Un-KHX" kind="push" identifier="teamates" id="BKk-Oi-vMX"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

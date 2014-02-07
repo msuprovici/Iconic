@@ -108,7 +108,7 @@ NSString *const kTeamClass;
 
 //Field keys
 NSString *const kTeamate;
-
+NSString *const kTeam;
 
 
 #pragma mark - Cached Activity Attributes

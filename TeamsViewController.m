@@ -7,6 +7,7 @@
 //
 
 #import "TeamsViewController.h"
+#import "TeamPlayersViewController.h"
 #import <Parse/Parse.h>
 #import "PNChart.h"
 #import "Constants.h"
@@ -345,6 +346,22 @@
  
  */
 
+//pass the team to the teammates view controller
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"teamates"]) {
+        
+        //Find the row the button was selected from
+        //        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+        //        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+        
+        NSIndexPath *hitIndex = [self.tableView indexPathForSelectedRow];
+        
+        PFObject *team = [self.objects objectAtIndex:hitIndex.row];
+        
+        [segue.destinationViewController initWithTeam:team];
+        
+    }
+}
 
 
 

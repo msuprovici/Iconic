@@ -17,7 +17,7 @@
 @property NSMutableArray *leaguesArray;
 
 @property (nonatomic, retain) NSMutableDictionary *players;
-@property (nonatomic, retain) NSMutableDictionary *categories;
+//@property (nonatomic, retain) NSMutableDictionary *categories;
 
 
 @end
@@ -27,7 +27,7 @@
 
 
 @synthesize players = _players;
-@synthesize categories = _categories;
+//@synthesize categories = _categories;
 
 
 
@@ -68,6 +68,14 @@
     }
     return self;
 }
+
+-(void)initWithTeam:(PFObject *)aTeam
+{
+    self.team = aTeam;
+    
+}
+
+
 
 - (void)viewDidLoad
 {
@@ -171,6 +179,7 @@
 // all objects ordered by createdAt descending.
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    [query whereKey:kTeam equalTo:self.team];
     
     [query includeKey:kTeamate];
     
@@ -196,9 +205,9 @@
 
 
 // We will use the section indeces as keys to look up which categories is represented by a section.
-- (NSString *)categories:(NSInteger)section {
-    return [self.categories objectForKey:[NSNumber numberWithInt:section]];
-}
+//- (NSString *)categories:(NSInteger)section {
+//    return [self.categories objectForKey:[NSNumber numberWithInt:section]];
+//}
 
 
 
@@ -402,6 +411,8 @@
        
         
         [loggedInUser setObject:[PFUser currentUser] forKey:kTeamate];
+        
+        [loggedInUser setObject:self.team forKey:kTeam];
         
         [loggedInUser saveEventually:^(BOOL succeeded, NSError *error) {
             

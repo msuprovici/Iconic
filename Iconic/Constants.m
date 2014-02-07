@@ -105,6 +105,7 @@ NSString *const kTeamClass = @"TeamPlayers";
 
 //Field keys
 NSString *const kTeamate = @"playerpointer";
+NSString *const kTeam = @"team";
 
 
 #pragma mark - Cached Activity Attributes

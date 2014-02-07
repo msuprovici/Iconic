@@ -15,4 +15,9 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *joinTeam;
 
+@property (nonatomic, strong) PFObject *team;
+
+-(void)initWithTeam:(PFObject*)aTeam;
+
+
 @end
