@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "TeamPlayersViewController.h"
 
-@interface TeamsViewController : PFQueryTableViewController
+@interface TeamsViewController : PFQueryTableViewController<TeamsViewControllerDelegate>
 
 @end

@@ -11,6 +11,7 @@
 #import "PNChart.h"
 #import "Constants.h"
 #import "TeamPlayerCell.h"
+#import "TeamCell.h"
 
 @interface TeamPlayersViewController ()
 
@@ -18,6 +19,7 @@
 
 @property (nonatomic, retain) NSMutableDictionary *players;
 //@property (nonatomic, retain) NSMutableDictionary *categories;
+
 
 
 @end
@@ -29,7 +31,7 @@
 @synthesize players = _players;
 //@synthesize categories = _categories;
 
-
+@synthesize delegate;
 
 
 
@@ -407,7 +409,7 @@
     
     if(self.joinTeam.selected == NO)
     {
-        
+        [self.delegate didSelectJoinTeam:self team:self.team];
        
         
         [loggedInUser setObject:[PFUser currentUser] forKey:kTeamate];
@@ -421,18 +423,21 @@
                 
                 [self loadObjects];
                 
-                
-               
                
             }
         }];
-       
+        NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
+        [teamInfo setObject:self.team forKey:@"team"];
+        
+        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:@"JoinedTeam" object:self userInfo:teamInfo];
+
        
 
     }
     else if (self.joinTeam.selected == YES)
     {
-   
+        [self.delegate didSelectJoinTeam:self team:self.team];
 
         PFQuery *query = [PFQuery queryWithClassName:kTeamClass];
         [query whereKey:kTeamate equalTo:[PFUser currentUser]];
@@ -454,6 +459,12 @@
                 
             }
             
+             NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
+            [teamInfo setObject:self.team forKey:@"team"];
+            
+            NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+            [nc postNotificationName:@"LeftTeam" object:self userInfo:teamInfo];
+            
 // this is not always a network problem, so we can't use a network alert - need a different approach
 //            else
 //            {
@@ -472,23 +483,59 @@
 }
 
 
-//find out if current user is on a team
 -(void)joinTeamButtonState
 {
     PFQuery *query = [PFQuery queryWithClassName:kTeamClass];
     [query whereKey:kTeamate equalTo:[PFUser currentUser]];
-    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!error) {
-            [self.joinTeam setSelected:YES];
-        }
-        else
-        {
-            [self.joinTeam setSelected:NO];
-        }
-    }];
+    
+     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+         
+         
+         //if the player is not on a team at all enable the join button
+         if (error) {
+             [self.joinTeam setEnabled:YES];
+             [self.joinTeam setSelected:NO];
+         }
+         else
+         {
+             //find out if the team is the same as the selected team
+             //if the player is on a team but NOT on the selected team disable the join button
+             //this prevents the player from being on more then 1 team at a time
+             
+             [query whereKey:kTeam equalTo:self.team];
+             query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+             
+             [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                 if (!error) {
+                     
+                     [self.joinTeam setEnabled:YES];
+                     [self.joinTeam setSelected:YES];
+                     
+                 }
+                 
+                 
+                 else
+                 {
+                     
+                     //disable the join button
+                     if (self.joinTeam.selected == NO) {
+                         [self.joinTeam setEnabled:NO];
+                         [self.tableView reloadData];
+                     }
+                     
+                 }
+             }];
+
+         }
+         
+         
+     }];
+    
+    
 }
+
 
 
 @end

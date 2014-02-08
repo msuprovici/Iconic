@@ -8,6 +8,7 @@
 
 #import "TeamsViewController.h"
 #import "TeamPlayersViewController.h"
+#import "TeamCell.h"
 #import <Parse/Parse.h>
 #import "PNChart.h"
 #import "Constants.h"
@@ -36,7 +37,14 @@
  return self;
  }*/
 
-
+- (void) dealloc
+{
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+   // [super dealloc];
+}
 
 
 
@@ -72,7 +80,18 @@
         //dictionaries for teams & categories
         self.teams = [NSMutableDictionary dictionary];
         self.categories = [NSMutableDictionary dictionary];
-    }
+        
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"JoinedTeam" object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"LeftTeam" object:nil];
+        
+
+
+    
+            }
+    
+    
     return self;
 }
 
@@ -82,6 +101,8 @@
     
     
     self.leaguesArray = [[NSMutableArray alloc] init];
+    
+    //TeamsViewController.teamsViewControllerDelegate = self;
     
     [self loadInitialData];
     
@@ -133,6 +154,31 @@
         [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
         [self.teams setObject:objectsInSection forKey:Teams];
     }
+    
+    
+    
+//    //cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    PFQuery *query = [PFQuery queryWithClassName:kTeamClass];
+//    //[query whereKey:kTeamate equalTo:[PFUser currentUser]];
+//    [query whereKey:kTeam equalTo:object];
+//    
+//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//        if (!error) {
+//            
+//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//            
+//        }
+//        else
+//        {
+//            [self.tableView reloadData];
+//            
+//            //[self.tableView reloadRowsAtIndexPaths:self.objects withRowAnimation:UITableViewRowAnimationNone];
+//        }
+//        
+//    }];
+
+    
+    
     [self.tableView reloadData];
     
 }
@@ -174,15 +220,42 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     static NSString *CellIdentifier = @"teamsCell";
     
-    PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    TeamCell *cell = (TeamCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[TeamCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell
-    cell.textLabel.text = [object objectForKey:self.textKey];
+    cell.teamName.text = [object objectForKey:self.textKey];
     //cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
     //cell.imageView.file = [object objectForKey:self.imageKey];
+    
+
+    //cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    PFQuery *query = [PFQuery queryWithClassName:kTeamClass];
+    //[query whereKey:kTeamate equalTo:[PFUser currentUser]];
+    [query whereKey:kTeam equalTo:object];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        
+        
+        
+        if (!error) {
+            
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            
+                }
+        else if(error)
+        {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+        }
+       
+            }];
+    
+    
+    
     
     return cell;
 }
@@ -273,27 +346,27 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    
-    PFObject *selectedObject = [self objectAtIndexPath:indexPath];
-    
-    
-    
-    //create selection here
-    
-    //code de-selects cell after selection
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    //find the corresponding item scheduledMatchups
-    //    ScheduleGenerator *tappedItem = [self.scheduledMatchups objectAtIndex:indexPath.row];
-    //
-    //    //toggle the compeltion state of the tapped item
-    //    tappedItem.selected = !tappedItem.selected;
-    //
-    //tell the table view to reload the row whose data you just updated
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+//    
+//    PFObject *selectedObject = [self objectAtIndexPath:indexPath];
+//    
+//    
+//    
+//    //create selection here
+//    
+//    //code de-selects cell after selection
+//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+//    //find the corresponding item scheduledMatchups
+//    //    ScheduleGenerator *tappedItem = [self.scheduledMatchups objectAtIndex:indexPath.row];
+//    //
+//    //    //toggle the compeltion state of the tapped item
+//    //    tappedItem.selected = !tappedItem.selected;
+//    //
+//    //tell the table view to reload the row whose data you just updated
+//    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//}
 
 /*
  // Override to support conditional editing of the table view.
@@ -334,17 +407,8 @@
  }
  */
 
-/*
+
  #pragma mark - Navigation
- 
- // In a story board-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- 
- */
 
 //pass the team to the teammates view controller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -363,6 +427,146 @@
     }
 }
 
+
+- (IBAction)unwindToTeams:(UIStoryboardSegue *)segue
+{
+//    TeamPlayersViewController *source = [segue sourceViewController];
+//    TeamCell * cell = [[TeamCell alloc]init];
+//    
+//    NSIndexPath *hitIndex = [self.tableView indexPathForCell:cell];
+//    
+//    PFObject *team = source.team;
+//   // cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//    
+//    
+////    if (hitIndex == team)
+////    {
+////        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+////    }
+////    else {
+////        cell.accessoryType = UITableViewCellAccessoryNone;
+////    }
+//
+    
+    TeamPlayersViewController * vc = [segue sourceViewController];
+    vc.delegate = self;
+    
+    [self loadObjects];
+}
+
+
+//attempt to use a NSNotification to update cell accessoryType - does not work.
+//using NSNotification to refresh view controller
+- (void) receiveTestNotification:(NSNotification *) notification
+{
+    // [notification name] should always be @"TestNotification"
+    // unless you use this method for observation of other notifications
+    // as well.
+    
+    if ([[notification name] isEqualToString:@"JoinedTeam"])
+    {
+        NSDictionary* teamInfo = notification.userInfo;
+       //PFObject *pushedteams = [[teamInfo objectForKey:@"team"] object];
+        
+         NSString *team = [[teamInfo objectForKey:@"team"] objectId];
+        NSLog (@"Successfully received Joined Team notification! %@", team);
+        
+        
+        TeamCell *cell = [[TeamCell alloc]init];
+
+        NSIndexPath *hitIndex = [self.tableView indexPathForCell:cell];
+       // NSInteger rowOfTheCell = [hitIndex row];
+        
+        NSString *teamCell = [[self.objects objectAtIndex:hitIndex.row]objectId];
+        
+       // PFObject *teams = [self.objects objectAtIndex:hitIndex.row];
+
+       //comparing the objectId pushed in the NSNotificaiton to the objectId at indexpath
+        if (team == teamCell ) {
+            if (team) {
+            
+            
+                //attempt to update the accessory - does not work
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                NSLog(@"Objects are equal");
+            
+
+            [self.tableView reloadData];
+                }
+            else{
+                NSLog(@"Object not found");
+            }
+
+        }
+        else
+        {
+            
+             NSLog(@"Objects are NOT equal");
+             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+           
+            
+        }
+//        }
+    }
+    else if ([[notification name] isEqualToString:@"LeftTeam"])
+    {
+        NSDictionary* teamInfo = notification.userInfo;
+        // PFObject *team = [[teamInfo objectForKey:@"team"] object];
+        
+        NSString *team = [[teamInfo objectForKey:@"team"] objectId];
+        NSLog (@"Successfully received Left Team notification! %@", team);
+        
+        
+        
+        TeamCell *cell = [[TeamCell alloc]init];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        [self.view setNeedsDisplay];
+        
+        
+        
+        //using a timer in case parse did not receive all the data
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(followUsersTimerFired:) userInfo:nil repeats:NO];
+        
+        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0f]];
+        
+//        NSIndexPath *hitIndex = [self.tableView indexPathForCell:cell];
+//        
+//        NSString *teamCell = [[self.objects objectAtIndex:hitIndex.row]objectId];
+//        
+//        
+//        
+//        if (team == teamCell) {
+//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//            
+//        }
+//        else
+//        {
+//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//            
+//        }
+
+    }
+}
+
+- (void)followUsersTimerFired:(NSTimer *)timer {
+    [self.tableView reloadData];
+    [self.view setNeedsDisplay];
+}
+
+
+
+//attempt to use a delegate to update cell accessoryType - does not work.
+-(void)updateCells
+{
+    NSLog(@"This delegate works");
+}
+
+-(void)didSelectJoinTeam:(TeamPlayersViewController *)controller team:(NSObject *)team
+{
+    NSLog(@"This delegate works");
+    
+}
 
 
 @end
