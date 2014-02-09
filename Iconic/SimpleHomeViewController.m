@@ -50,13 +50,35 @@ static NSString *kImageKey = @"imageKey";
 @synthesize activityPostBackgroundTaskId;
 @synthesize activityObject;
 
+
+//Notifications NOT working
+
+//- (void)dealloc {
+//    
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"JoinedTeam" object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LeftTeam" object:nil];
+//}
+//
+//-(id)init
+//{
+//    //Notification to let the view konw that a player has joined/left team
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTeamNotification:) name:@"JoinedTeam" object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTeamNotification:) name:@"LeftTeam" object:nil];
+//    
+//
+//    return self;
+//}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-      
-    //Retrieve from Parse
-    [self performSelector:@selector(retrieveFromParse)];
+    
+    
+
+    
     
     //show player name header
     [self playerNameHeader];
@@ -168,6 +190,17 @@ static NSString *kImageKey = @"imageKey";
     
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES ];
+   
+    
+     
+    //[self receiveTestNotification:(NSNotification *)];
+    //Retrieve from Parse
+    [self performSelector:@selector(retrieveFromParse)];
+    }
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     // remove all the subviews from our scrollview
@@ -270,21 +303,112 @@ static NSString *kImageKey = @"imageKey";
 //retrive table view data from parse
 - (void) retrieveFromParse {
     
-    //My Teamates
-    PFQuery *retrieveTeamates = [PFQuery queryWithClassName:@"Test"];
-    retrieveTeamates.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    //My Teamates
+//    PFQuery *retrieveTeamates = [PFQuery queryWithClassName:@"Test"];
+//    retrieveTeamates.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    
+//    
+//    [retrieveTeamates findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        
+//       // NSLog(@"%@", objects);
+//        if (!error) {
+//            teamScores = [[NSArray alloc] initWithArray:objects];
+//        }
+//        
+//    }];
     
+//    PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
+//    [query whereKey:kTeamate equalTo:[PFUser currentUser]];
+//    
+//    [query includeKey:kTeam];
+//    //[query includeKey:kTeams];
+//
+//    
+////    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+////        
+////        if(!error)
+////        {
+////        NSLog(@"query worked");
+//    
+//        
+//        PFQuery *queryTeams = [PFQuery queryWithClassName:kTeamTeamsClass];
+//            
+//        //THIS DOES NOT WORK
+//       //PFObject * firstObject = [object objectForKey:kTeam];
+//       [queryTeams whereKey:kTeams matchesKey:kTeam inQuery:query];
+//            //[queryTeams whereKey:kTeam matchesQuery:query];
+//            
+//        
+//        
+//        [queryTeams getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//            if (!error) {
+//                
+//                NSLog(@"queryTeams worked");
+//                self.MyTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kTeam]];
+//                //self.MyTeamScore.text = [object objectForKey:kTeam];
+//
+//                
+//            }
+//            else
+//            {
+//                NSLog(@"queryTeams did not work");
+//            }
+//            
+//        }];
     
-    [retrieveTeamates findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-       // NSLog(@"%@", objects);
+    //WORKING
+    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+    
+    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+    
+    [query2 getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)  {
+        //PFObject *firstObject = [((PFObject*)[objects firstObject]) objectForKey:kTeams];
         if (!error) {
-            teamScores = [[NSArray alloc] initWithArray:objects];
+            
+        
+        PFObject *firstObject = [object objectForKey:kTeam];
+        [query whereKey:@"objectId" equalTo:firstObject.objectId];
+        
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            
+            if(!error)
+            {
+            NSLog(@"query worked");
+            self.MyTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kTeams]];
+            }
+            else
+            {
+                NSLog(@"query did not work");
+            }
+        }];
+         
+        }
+        else{
+            self.MyTeamScore.text = @"NO TEAM";
         }
         
+         
+         
+         
+   
     }];
     
-      
+    
+//        if(!error)
+//        {
+//  
+//        //[query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//
+//        self.MyTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kTeams]];
+//            
+//        //}];
+//         
+//        }
+//        }
+//    }];
+//    
+    
     
 }
 
@@ -470,6 +594,27 @@ static NSString *kImageKey = @"imageKey";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void) receiveTeamNotification:(NSNotification *) notification
+{
+    //reload view if a player has joined a team
+    
+    if ([[notification name] isEqualToString:@"JoinedTeam"])
+    {
+        //Retrieve from Parse
+        [self performSelector:@selector(retrieveFromParse)];
+        [self.view setNeedsDisplay];
+        
+        NSLog(@"Received Joined Team Notification on home screen");
+        ;
+    }
+    else if ([[notification name] isEqualToString:@"LeftTeam"])
+    {
+        //Retrieve from Parse
+        [self performSelector:@selector(retrieveFromParse)];
+        [self.view setNeedsDisplay];
+        NSLog(@"Received Leave Team Notification on home screen");
+    }
 }
 
 @end

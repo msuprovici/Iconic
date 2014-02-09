@@ -101,12 +101,18 @@ NSString *const kActivityOpenGraphIDKey    = @"fbOpenGraphID";
 
 #pragma mark - Team Class
 //Class key
-NSString *const kTeamClass = @"TeamPlayers";
+NSString *const kTeamPlayersClass = @"TeamPlayers";
 
 //Field keys
 NSString *const kTeamate = @"playerpointer";
 NSString *const kTeam = @"team";
 
+
+#pragma mark - Teams Class
+//Class key
+NSString *const kTeamTeamsClass = @"TeamName";
+//Field keys
+NSString *const kTeams = @"teams";
 
 #pragma mark - Cached Activity Attributes
 // keys

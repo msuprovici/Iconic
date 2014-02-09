@@ -158,7 +158,7 @@
     
     
 //    //cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//    PFQuery *query = [PFQuery queryWithClassName:kTeamClass];
+//    PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
 //    //[query whereKey:kTeamate equalTo:[PFUser currentUser]];
 //    [query whereKey:kTeam equalTo:object];
 //    
@@ -227,12 +227,10 @@
     
     // Configure the cell
     cell.teamName.text = [object objectForKey:self.textKey];
-    //cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
-    //cell.imageView.file = [object objectForKey:self.imageKey];
     
-
-    //cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    PFQuery *query = [PFQuery queryWithClassName:kTeamClass];
+    //query the team players class to determine if the player is on a team
+    //if the player is on a team show a checkmark accessory for the cell
+    PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
     //[query whereKey:kTeamate equalTo:[PFUser currentUser]];
     [query whereKey:kTeam equalTo:object];
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;

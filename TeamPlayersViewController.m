@@ -46,7 +46,7 @@
         // Customize the table
         
         // The className to query on
-        self.parseClassName = kTeamClass;
+        self.parseClassName = kTeamPlayersClass;
         
         
         // The key of the PFObject to display in the label of the default cell style
@@ -439,7 +439,7 @@
     {
         [self.delegate didSelectJoinTeam:self team:self.team];
 
-        PFQuery *query = [PFQuery queryWithClassName:kTeamClass];
+        PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
         [query whereKey:kTeamate equalTo:[PFUser currentUser]];
          query.cachePolicy = kPFCachePolicyCacheThenNetwork;
         
@@ -485,7 +485,7 @@
 
 -(void)joinTeamButtonState
 {
-    PFQuery *query = [PFQuery queryWithClassName:kTeamClass];
+    PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
     [query whereKey:kTeamate equalTo:[PFUser currentUser]];
     //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
