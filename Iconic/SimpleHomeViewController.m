@@ -141,19 +141,21 @@ static NSString *kImageKey = @"imageKey";
     
     // cell.MyTeamScore.text = [NSString stringWithFormat:@"MyTeam %@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score from Parse
     
-    self.MyTeamScore.text = @"MyTeam"; //hardcoded for demo
+    //self.MyTeamScore.text = @"MyTeam"; //set in retrieveFromParse
+    self.vsTeamName.textColor = PNBlue;
     self.MyTeamScore.textColor = PNBlue;
     self.MyTeamScore.font = [UIFont boldSystemFontOfSize:15];
-    self.MyTeamScore.textAlignment = NSTextAlignmentLeft;
+    //self.MyTeamScore.textAlignment = NSTextAlignmentLeft; //Set in story board
     
     
     
     //cell.VSTeamScore.text = [NSString stringWithFormat:@"Opponent %@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score from Parse
     
-    self.VSTeamScore.text = @"VsTeam"; //hardcoded for demo
+   // self.VSTeamScore.text = @"VsTeam"; //set in retrieveFromParse
+    self.vsTeamName.textColor = PNFreshGreen;
     self.VSTeamScore.textColor = PNFreshGreen;
     self.VSTeamScore.font = [UIFont boldSystemFontOfSize:15];
-    self.VSTeamScore.textAlignment = NSTextAlignmentLeft;
+    //self.VSTeamScore.textAlignment = NSTextAlignmentLeft; //Set in story board
     
     PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, 280, 220)];
     [lineChart setXLabels:@[@"S",@"M",@"T",@"W",@"T", @"F", @"S"]];
@@ -375,7 +377,15 @@ static NSString *kImageKey = @"imageKey";
             if(!error)
             {
             NSLog(@"query worked");
-            self.MyTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kTeams]];
+            self.MyTeamName.text = [NSString stringWithFormat:@"%@",[object objectForKey:kTeams]];
+            self.MyTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:@"score"]];
+                self.MyTeamName.textColor = PNBlue;
+                self.MyTeamScore.textColor = PNBlue;
+                
+            self.vsTeamName.text = @"VS Team";
+            self.VSTeamScore.text = @"1200";
+                self.vsTeamName.textColor = PNFreshGreen;
+                self.VSTeamScore.textColor = PNFreshGreen;
             }
             else
             {
@@ -385,7 +395,11 @@ static NSString *kImageKey = @"imageKey";
          
         }
         else{
-            self.MyTeamScore.text = @"NO TEAM";
+            //Hardcoded for testing
+            self.MyTeamName.text = @"NO TEAM";
+            self.MyTeamScore.text = @"";
+            
+            
         }
         
          

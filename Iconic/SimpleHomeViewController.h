@@ -36,7 +36,9 @@
 //Team Chart labels
 
 
+@property (strong, nonatomic) IBOutlet UILabel *MyTeamName;
 
+@property (strong, nonatomic) IBOutlet UILabel *vsTeamName;
 
 @property (weak, nonatomic) IBOutlet UILabel *MyTeamScore;
 
