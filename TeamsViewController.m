@@ -231,7 +231,7 @@
     //query the team players class to determine if the player is on a team
     //if the player is on a team show a checkmark accessory for the cell
     PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
-    //[query whereKey:kTeamate equalTo:[PFUser currentUser]];
+    [query whereKey:kTeamate equalTo:[PFUser currentUser]];
     [query whereKey:kTeam equalTo:object];
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     

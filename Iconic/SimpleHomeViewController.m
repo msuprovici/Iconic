@@ -358,19 +358,21 @@ static NSString *kImageKey = @"imageKey";
 //            
 //        }];
     
-    //WORKING
+    //Query Team Class
     PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
     
+    //Query Teamates Class
     PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+    
     [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
     
     [query2 getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)  {
-        //PFObject *firstObject = [((PFObject*)[objects firstObject]) objectForKey:kTeams];
+       
         if (!error) {
             
         
         PFObject *firstObject = [object objectForKey:kTeam];
-        [query whereKey:@"objectId" equalTo:firstObject.objectId];
+        //[query whereKey:@"objectId" equalTo:firstObject.objectId];
         
         [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             
@@ -390,6 +392,10 @@ static NSString *kImageKey = @"imageKey";
             else
             {
                 NSLog(@"query did not work");
+                //Hardcoded for testing
+                self.MyTeamName.text = @"NO TEAM";
+                self.MyTeamScore.text = @"";
+
             }
         }];
          

@@ -487,6 +487,7 @@
 {
     PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
     [query whereKey:kTeamate equalTo:[PFUser currentUser]];
+    //[query includeKey:kTeam];
     //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
     
@@ -519,10 +520,20 @@
                  else
                  {
                      
-                     //disable the join button
-                     if (self.joinTeam.selected == NO) {
-                         [self.joinTeam setEnabled:NO];
-                         [self.tableView reloadData];
+                     PFObject *playerObject = [object objectForKey:kTeamate];
+                     PFObject *teamObject = [object objectForKey:kTeam];
+                     
+                     if (playerObject != [PFUser currentUser] && teamObject == self.team) {
+                         [self.joinTeam setEnabled:YES];
+                     }
+                     else
+                     {
+                     
+                         //disable the join button
+                         if (self.joinTeam.selected == NO) {
+                             [self.joinTeam setEnabled:NO];
+                             [self.tableView reloadData];
+                         }
                      }
                      
                  }
