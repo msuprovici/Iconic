@@ -8,16 +8,17 @@
 
 #import "LeaguesViewController.h"
 #import <Parse/Parse.h>
+#import "TeamsViewController.h"
 
 #import "Constants.h"
 #import "PNChart.h"
 
 @interface LeaguesViewController ()
 
-@property NSMutableArray *leaguesArray; //scheduledMatchups
+@property NSMutableArray *leaguesArray;
 
-@property (nonatomic, retain) NSMutableDictionary *leagues; //matchups
-@property (nonatomic, retain) NSMutableDictionary *categories; //round
+@property (nonatomic, retain) NSMutableDictionary *leagues;
+@property (nonatomic, retain) NSMutableDictionary *categories;
 
 
 
@@ -50,12 +51,15 @@
         // Customize the table
         
         // The className to query on
-        self.parseClassName = @"leagues";
+        
+        self.parseClassName = kTeamTeamsClass;
+
+        //self.parseClassName = @"leagues";
         //self.parseClassName = @"matchups";
         
         // The key of the PFObject to display in the label of the default cell style
         //self.textKey = @"name";
-        self.textKey = @"leagues";
+       self.textKey = kLeagues;
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
@@ -121,27 +125,52 @@
     NSInteger section = 0;
     NSInteger rowIndex = 0;
     for (PFObject *object in self.objects) {
-        NSString *teamMatchup = [NSString stringWithFormat:@"%@",[object objectForKey:@"categories"]];
-        NSMutableArray *objectsInSection = [self.leagues objectForKey:teamMatchup];
+        NSString *league = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagueCategories]];
+        NSMutableArray *objectsInSection = [self.leagues objectForKey:league];
         if (!objectsInSection) {
             objectsInSection = [NSMutableArray array];
             
-            // this is the first time we see this teamMatchup - increment the section index
-            [self.categories setObject:teamMatchup forKey:[NSNumber numberWithInt:section++]];
+            // this is the first time we see this leagues section - increment the section index
+            [self.categories setObject:league forKey:[NSNumber numberWithInt:section++]];
         }
         
         [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
-        [self.leagues setObject:objectsInSection forKey:teamMatchup];
-    }
+        [self.leagues setObject:objectsInSection forKey:league];
+//        
+//        PFObject *leagueName = [self.leagues objectForKey:kLeagues];
+//        
+//        if (object == leagueName) // Are they the same?
+//        {
+//            [self.leagues setObject:objectsInSection forKey:league];
+//        }
+        
+//        // Now we check if we already had this wall post
+//        
+//        for (PFObject *leagueNames in self.leagues) // Loop through all the wall posts we have
+//        {
+//            PFObject * myLeagueName = [leagueNames objectForKey:kLeagues];
+//            
+//            if (object == leagueNames && leagueName == myLeagueName) // Are they the same?
+//            {
+//                [self.leagues setObject:objectsInSection forKey:league];
+//            }
+//        }
+        
+           }
     
     [self.tableView reloadData];
 }
+
 
 
 // Override to customize what kind of query to perform on the class. The default is to query for
 // all objects ordered by createdAt descending.
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+   
+    
+    
+    
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     // If Pull To Refresh is enabled, query against the network by default.
     if (self.pullToRefreshEnabled) {
@@ -165,7 +194,10 @@
     return [self.categories objectForKey:[NSNumber numberWithInt:section]];
 }
 
-
+// We will use the section indeces as keys to look up which category is represented by a section.
+- (NSString *)theLeagues:(NSInteger)section {
+    return [self.leagues objectForKey:[NSNumber numberWithInt:section]];
+}
 
 
  // Override to customize the look of a cell representing an object. The default is to display
@@ -179,8 +211,23 @@
  cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
  }
  
+     
+//     //compare the league name column
+//     PFObject *leagueName = [object objectForKey:kLeagues];
+//     PFObject *leagueCategory = [object objectForKey:kLeagueCategories];
+//     
+//     if (<#condition#>) {
+//         <#statements#>
+//     }
+     
  // Configure the cell
- cell.textLabel.text = [object objectForKey:self.textKey];
+     
+         cell.textLabel.text = [object objectForKey:self.textKey];
+         //cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+         //cell.imageView.file = [object objectForKey:self.imageKey];
+         
+     
+ //cell.textLabel.text = [object objectForKey:self.textKey];
  //cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
  //cell.imageView.file = [object objectForKey:self.imageKey];
  
@@ -214,9 +261,9 @@
 
 // Get the array of indeces for that section. This lets us pick the correct PFObject from self.objects
 - (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *teamMatchups = [self categories:indexPath.section];
-    
-    NSArray *rowIndecesInSection = [self.leagues objectForKey:teamMatchups];
+    NSString *leagues = [self categories:indexPath.section];
+   
+    NSArray *rowIndecesInSection = [self.leagues objectForKey:leagues];
     
     NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
     return [self.objects objectAtIndex:[rowIndex intValue]];
@@ -309,27 +356,27 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-
-    PFObject *selectedObject = [self objectAtIndexPath:indexPath];
-
-
-
-//create selection here
-
-//code de-selects cell after selection
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-//find the corresponding item scheduledMatchups
-//    ScheduleGenerator *tappedItem = [self.scheduledMatchups objectAtIndex:indexPath.row];
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 //
-//    //toggle the compeltion state of the tapped item
-//    tappedItem.selected = !tappedItem.selected;
+//    PFObject *selectedObject = [self objectAtIndexPath:indexPath];
 //
-    //tell the table view to reload the row whose data you just updated
-  [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-}
+//
+//
+////create selection here
+//
+////code de-selects cell after selection
+//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+////find the corresponding item scheduledMatchups
+////    ScheduleGenerator *tappedItem = [self.scheduledMatchups objectAtIndex:indexPath.row];
+////
+////    //toggle the compeltion state of the tapped item
+////    tappedItem.selected = !tappedItem.selected;
+////
+//    //tell the table view to reload the row whose data you just updated
+//  [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//}
 
 /*
  // Override to support conditional editing of the table view.
@@ -381,6 +428,24 @@
  }
  
  */
+
+#pragma mark - Navigation
+
+//pass the league to the leagues view controller
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"league"]) {
+        
+        
+        NSIndexPath *hitIndex = [self.tableView indexPathForSelectedRow];
+        
+        PFObject *league = [self.objects objectAtIndex:hitIndex.row];
+        
+        
+        [segue.destinationViewController initWithLeague:league];
+        
+    }
+}
+
 
 
 

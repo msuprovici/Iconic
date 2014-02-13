@@ -372,7 +372,7 @@ static NSString *kImageKey = @"imageKey";
             
         
         PFObject *firstObject = [object objectForKey:kTeam];
-        //[query whereKey:@"objectId" equalTo:firstObject.objectId];
+        [query whereKey:@"objectId" equalTo:firstObject.objectId];
         
         [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             

@@ -485,58 +485,125 @@
 
 -(void)joinTeamButtonState
 {
-    PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
-    [query whereKey:kTeamate equalTo:[PFUser currentUser]];
-    //[query includeKey:kTeam];
-    //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+     PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
+     [query whereKey:kTeamate equalTo:[PFUser currentUser]];
     
+     PFQuery *leagueQuery = [PFQuery queryWithClassName:kTeamTeamsClass];
     
+     PFObject * selectedLeague = [self.team objectForKey:kLeagues];
+    
+     [leagueQuery whereKey:kLeagues notEqualTo:selectedLeague];
+     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+     leagueQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+     [query whereKey:kTeam doesNotMatchQuery:leagueQuery];
      [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
          
+         PFObject *teamObject = [object objectForKey:kTeam];
+         PFObject *playerObject = [object objectForKey:kTeamate];
          
          //if the player is not on a team at all enable the join button
-         if (error) {
-             [self.joinTeam setEnabled:YES];
-             [self.joinTeam setSelected:NO];
+         if (!error) {
+             {
+                 
+                 [query whereKey:kTeam equalTo:self.team];
+                 query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+                 
+                 NSLog(@"query returned result");
+                 
+                [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                     if (!error) {
+                         
+                         //the player is on this team in this league so toggle button so they can leave the team
+                         [self.joinTeam setEnabled:YES];
+                         [self.joinTeam setSelected:YES];
+                         NSLog(@"query 1 error");
+                         
+                     }
+                     
+                    
+                     else
+                     {
+                         NSLog(@"query 1a error");
+
+                         
+                         if (playerObject != [PFUser currentUser] && teamObject != self.team) {
+                             
+                             //disable the join button
+                             if (self.league != selectedLeague) {
+                                 //player is on another team in this league
+                                 NSLog(@"query 1: user on a team in this league");
+                                 
+                                 [self.joinTeam setEnabled:NO];
+                                 [self.tableView reloadData];
+                                 }
+                                 else
+                                 {
+                                     
+                                     NSLog(@"query 1:user not on a team in this league");
+                                     
+                                     [self.joinTeam setEnabled:YES];
+                                 }
+
+                             
+                             //[self.joinTeam setEnabled:YES];
+                             
+
+                             
+                             }
+                             
+                             else if (playerObject == [PFUser currentUser] && teamObject == self.team) {
+                                 [self.joinTeam setEnabled:NO];
+                                 
+                                 NSLog(@"query 1c error");
+                                 
+                             }
+                             
+                             else
+                             {
+                                 
+                                 //disable the join button
+                                 if (self.joinTeam.selected == YES && teamObject != self.team) {
+                                     
+                                     NSLog(@"query 1d error");
+                                     
+                                     [self.joinTeam setEnabled:NO];
+                                     [self.tableView reloadData];
+                             }
+                         }
+                         
+                     }
+                 }];
+                 
+             }
+             
          }
          else
          {
-             //find out if the team is the same as the selected team
-             //if the player is on a team but NOT on the selected team disable the join button
-             //this prevents the player from being on more then 1 team at a time
              
              [query whereKey:kTeam equalTo:self.team];
-             query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-             
+
              [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                 if (!error) {
-                     
-                     [self.joinTeam setEnabled:YES];
-                     [self.joinTeam setSelected:YES];
-                     
-                 }
                  
+                if(!error)
+//                {
+//                    
+//                    if ([PFUser currentUser] == playerObject) {
+//                   
+//                    NSLog(@"team object is the same");
+//                    [self.joinTeam setEnabled:YES];
+//                    [self.joinTeam setSelected:YES];
+//                    }
+//                }
+//                else{
+                    NSLog(@"player not on a team");
+                    [self.joinTeam setEnabled:YES];
+                    [self.joinTeam setSelected:NO];
+
+                    
+             //   }
+   
                  
-                 else
-                 {
-                     
-                     PFObject *playerObject = [object objectForKey:kTeamate];
-                     PFObject *teamObject = [object objectForKey:kTeam];
-                     
-                     if (playerObject != [PFUser currentUser] && teamObject == self.team) {
-                         [self.joinTeam setEnabled:YES];
-                     }
-                     else
-                     {
-                     
-                         //disable the join button
-                         if (self.joinTeam.selected == NO) {
-                             [self.joinTeam setEnabled:NO];
-                             [self.tableView reloadData];
-                         }
-                     }
-                     
-                 }
              }];
 
          }

@@ -27,8 +27,11 @@
 
 @property (nonatomic, strong) PFObject *team;
 
+@property (nonatomic, strong) PFObject *league;
+
 -(void)initWithTeam:(PFObject*)aTeam;
 
+-(void)initWithLeague:(PFObject *)aLeague;
 
 
 

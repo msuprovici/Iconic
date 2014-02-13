@@ -12,4 +12,8 @@
 
 @interface TeamsViewController : PFQueryTableViewController<TeamsViewControllerDelegate>
 
+@property (nonatomic, strong) PFObject *league;
+
+-(void)initWithLeague:(PFObject*)aLeague;
+
 @end

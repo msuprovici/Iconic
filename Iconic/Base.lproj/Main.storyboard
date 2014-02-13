@@ -1172,7 +1172,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Quu-w8-KMQ" kind="push" identifier="teams" id="hkU-Qn-mtb"/>
+                                    <segue destination="Quu-w8-KMQ" kind="push" identifier="league" id="hkU-Qn-mtb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

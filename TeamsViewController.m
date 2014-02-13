@@ -18,14 +18,14 @@
 @property NSMutableArray *leaguesArray;
 
 @property (nonatomic, retain) NSMutableDictionary *teams;
-@property (nonatomic, retain) NSMutableDictionary *categories;
+//@property (nonatomic, retain) NSMutableDictionary *categories;
 
 @end
 
 @implementation TeamsViewController
 
 @synthesize teams = _teams;
-@synthesize categories = _categories;
+//@synthesize categories = _categories;
 
 
 /*- (id)initWithStyle:(UITableViewStyle)style
@@ -58,12 +58,12 @@
         // Customize the table
         
         // The className to query on
-        self.parseClassName = @"TeamName";
+        self.parseClassName = kTeamTeamsClass;
         
         
         // The key of the PFObject to display in the label of the default cell style
         
-        self.textKey = @"teams";
+        self.textKey = kTeams;
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
@@ -79,7 +79,7 @@
         
         //dictionaries for teams & categories
         self.teams = [NSMutableDictionary dictionary];
-        self.categories = [NSMutableDictionary dictionary];
+       // self.categories = [NSMutableDictionary dictionary];
         
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"JoinedTeam" object:nil];
@@ -95,12 +95,19 @@
     return self;
 }
 
+//get the league passed from the leagues view controller
+-(void)initWithLeague:(PFObject *)aLeague
+{
+    self.league = aLeague;
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     
-    self.leaguesArray = [[NSMutableArray alloc] init];
+    //self.leaguesArray = [[NSMutableArray alloc] init];
     
     //TeamsViewController.teamsViewControllerDelegate = self;
     
@@ -131,63 +138,72 @@
 //Since every categories is represented as a PFObject in self.objects, we are storing the index of their PFObject in sections
 //sorting our objects into the sections dictionary
 
-- (void)objectsDidLoad:(NSError *)error {
-    [super objectsDidLoad:error];
-    
-    // This method is called every time objects are loaded from Parse via the PFQuery
-    
-    [self.teams removeAllObjects];
-    [self.categories removeAllObjects];
-    
-    NSInteger section = 0;
-    NSInteger rowIndex = 0;
-    for (PFObject *object in self.objects) {
-        NSString *Teams = [NSString stringWithFormat:@"%@",[object objectForKey:@"categories"]];
-        NSMutableArray *objectsInSection = [self.teams objectForKey:Teams];
-        if (!objectsInSection) {
-            objectsInSection = [NSMutableArray array];
-            
-            // this is the first time we see this Teams - increment the section index
-            [self.categories setObject:Teams forKey:[NSNumber numberWithInt:section++]];
-        }
-        
-        [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
-        [self.teams setObject:objectsInSection forKey:Teams];
-    }
-    
-    
-    
-//    //cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//    PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
-//    //[query whereKey:kTeamate equalTo:[PFUser currentUser]];
-//    [query whereKey:kTeam equalTo:object];
+//- (void)objectsDidLoad:(NSError *)error {
+//    [super objectsDidLoad:error];
 //    
-//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//        if (!error) {
+//    // This method is called every time objects are loaded from Parse via the PFQuery
+//    
+//    [self.teams removeAllObjects];
+//    [self.categories removeAllObjects];
+//    
+//    NSInteger section = 0;
+//    NSInteger rowIndex = 0;
+//    for (PFObject *object in self.objects) {
+//        NSString *Teams = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagues]];
+//        NSMutableArray *objectsInSection = [self.teams objectForKey:Teams];
+//        if (!objectsInSection) {
+//            objectsInSection = [NSMutableArray array];
 //            
-//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//            
-//        }
-//        else
-//        {
-//            [self.tableView reloadData];
-//            
-//            //[self.tableView reloadRowsAtIndexPaths:self.objects withRowAnimation:UITableViewRowAnimationNone];
+//            // this is the first time we see this Teams - increment the section index
+//            //[self.categories setObject:Teams forKey:[NSNumber numberWithInt:section++]];
 //        }
 //        
-//    }];
-
-    
-    
-    [self.tableView reloadData];
-    
-}
-
+//        [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
+//        [self.teams setObject:objectsInSection forKey:Teams];
+//    }
+//    
+//    
+//    
+////    //cell.accessoryType = UITableViewCellAccessoryCheckmark;
+////    PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
+////    //[query whereKey:kTeamate equalTo:[PFUser currentUser]];
+////    [query whereKey:kTeam equalTo:object];
+////    
+////    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+////        if (!error) {
+////            
+////            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+////            
+////        }
+////        else
+////        {
+////            [self.tableView reloadData];
+////            
+////            //[self.tableView reloadRowsAtIndexPaths:self.objects withRowAnimation:UITableViewRowAnimationNone];
+////        }
+////        
+////    }];
+//
+//    
+//    
+//    [self.tableView reloadData];
+//    
+//}
+//
 
 // Override to customize what kind of query to perform on the class. The default is to query for
 // all objects ordered by createdAt descending.
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    
+    //compare the league name column
+    PFObject *leagueName = [self.league objectForKey:kLeagues];
+    //PFObject *leagueCategory = [self.league objectForKey:kLeagueCategories];
+    [query whereKey:kLeagues equalTo:leagueName];
+    //[query whereKey:kLeagueCategories equalTo:leagueCategory];
+    
+    
+    
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     // If Pull To Refresh is enabled, query against the network by default.
     if (self.pullToRefreshEnabled) {
@@ -201,15 +217,15 @@
     }
     
     // Order by Teams type
-    [query orderByAscending:@"categories"];
+   // [query orderByAscending:@"categories"];
     return query;
 }
 
 
 // We will use the section indeces as keys to look up which categories is represented by a section.
-- (NSString *)categories:(NSInteger)section {
-    return [self.categories objectForKey:[NSNumber numberWithInt:section]];
-}
+//- (NSString *)categories:(NSInteger)section {
+//    return [self.categories objectForKey:[NSNumber numberWithInt:section]];
+//}
 
 
 
@@ -259,37 +275,37 @@
 }
 
 //Create custom header for teams view
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return HeaderHeight;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return HeaderHeight;
+//}
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    
-    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    sectionHeader.backgroundColor = HeaderColor;
-    sectionHeader.textAlignment = HeaderAlignment;
-    sectionHeader.font = HeaderFont;
-    sectionHeader.textColor = HeaderTextColor;
-    
-    
-   sectionHeader.text =[self categories:section];
-    
-    return sectionHeader;
-    
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    
+//    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+//    sectionHeader.backgroundColor = HeaderColor;
+//    sectionHeader.textAlignment = HeaderAlignment;
+//    sectionHeader.font = HeaderFont;
+//    sectionHeader.textColor = HeaderTextColor;
+//    
+//    
+//   sectionHeader.text =[self categories:section];
+//    
+//    return sectionHeader;
+//    
+//}
 
 
 // Get the array of indeces for that section. This lets us pick the correct PFObject from self.objects
-- (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *Teams = [self categories:indexPath.section];
-    
-    NSArray *rowIndecesInSection = [self.teams objectForKey:Teams];
-    
-    NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
-    return [self.objects objectAtIndex:[rowIndex intValue]];
-}
+//- (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
+//    NSString *Teams = [self categories:indexPath.section];
+//    
+//    NSArray *rowIndecesInSection = [self.teams objectForKey:Teams];
+//    
+//    NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
+//    return [self.objects objectAtIndex:[rowIndex intValue]];
+//}
 
 
 /*
@@ -314,27 +330,27 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return self.teams.allKeys.count;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//#warning Potentially incomplete method implementation.
+//    // Return the number of sections.
+//    return self.teams.allKeys.count;
+//}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)league
-{
-    
-    // Return the number of rows in the section.
-    //return 0;
-    
-    //return the # of teams in the array
-    
-    NSString *categoryType = [self categories:league];
-    NSArray *rowIndecesInSection = [self.teams objectForKey:categoryType];
-    return rowIndecesInSection.count;
-    
-    
-}
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)league
+//{
+//    
+//    // Return the number of rows in the section.
+//    //return 0;
+//    
+//    //return the # of teams in the array
+//    
+//    NSString *categoryType = [self categories:league];
+//    NSArray *rowIndecesInSection = [self.teams objectForKey:categoryType];
+//    return rowIndecesInSection.count;
+//    
+//    
+//}
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 //    NSString *categoryType = [self categories:section];
@@ -421,6 +437,8 @@
         PFObject *team = [self.objects objectAtIndex:hitIndex.row];
         
         [segue.destinationViewController initWithTeam:team];
+        
+        //[segue.destinationViewController initWithTeam:self.league];
         
     }
 }
