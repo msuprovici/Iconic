@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C0FBDE318AD4BC900A0A122 /* LeagueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0FBDE218AD4BC900A0A122 /* LeagueCell.m */; };
 		5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */; };
 		5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */; };
 		5C2C1CC7185E9040006722D2 /* reveal-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C2C1CC6185E9040006722D2 /* reveal-icon@2x.png */; };
@@ -139,6 +140,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5C0FBDE118AD4BC900A0A122 /* LeagueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeagueCell.h; sourceTree = "<group>"; };
+		5C0FBDE218AD4BC900A0A122 /* LeagueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeagueCell.m; sourceTree = "<group>"; };
 		5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileContentController.h; sourceTree = "<group>"; };
@@ -489,6 +492,8 @@
 			children = (
 				5C328BF9186002D300E0E985 /* LeaguesViewController.h */,
 				5C328BFA186002D300E0E985 /* LeaguesViewController.m */,
+				5C0FBDE118AD4BC900A0A122 /* LeagueCell.h */,
+				5C0FBDE218AD4BC900A0A122 /* LeagueCell.m */,
 			);
 			name = Leagues;
 			path = ..;
@@ -1075,6 +1080,7 @@
 				5C2EA5291851472000B21C52 /* HomeViewController.m in Sources */,
 				5CA3D19B1831DF51006C7932 /* AppDelegate.m in Sources */,
 				5C5399F61860D2FB006676FA /* DACircularProgressView.m in Sources */,
+				5C0FBDE318AD4BC900A0A122 /* LeagueCell.m in Sources */,
 				5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */,
 				5C328BF8185F773300E0E985 /* VSCell.m in Sources */,
 				5C966BB8187D0F480022AF0F /* PNCircleChart.m in Sources */,

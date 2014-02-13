@@ -9,6 +9,7 @@
 #import "LeaguesViewController.h"
 #import <Parse/Parse.h>
 #import "TeamsViewController.h"
+#import "LeagueCell.h"
 
 #import "Constants.h"
 #import "PNChart.h"
@@ -206,23 +207,26 @@
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
  static NSString *CellIdentifier = @"leaguesCell";
  
- PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+ LeagueCell *cell = (LeagueCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
  if (cell == nil) {
- cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+ cell = [[LeagueCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
  }
  
      
 //     //compare the league name column
-//     PFObject *leagueName = [object objectForKey:kLeagues];
+//     NSString *leagueName = [object objectForKey:kLeagues];
 //     PFObject *leagueCategory = [object objectForKey:kLeagueCategories];
 //     
-//     if (<#condition#>) {
-//         <#statements#>
-//     }
+//     NSString *receivedLeagueName = [self.objects objectAtIndex:cell.tag];;
+//     
+//     
+//     if (leagueName == receivedLeagueName) {
+         cell.leagueName.text =[object objectForKey:self.textKey];
+     
      
  // Configure the cell
-     
-         cell.textLabel.text = [object objectForKey:self.textKey];
+         //cell.leagueName.text =[object objectForKey:self.textKey];
+         //cell.textLabel.text = [object objectForKey:self.textKey];
          //cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
          //cell.imageView.file = [object objectForKey:self.imageKey];
          
@@ -307,11 +311,19 @@
     
     //return the # of leagues in the array
     
-    NSString *roundType = [self categories:league];
-    NSArray *rowIndecesInSection = [self.leagues objectForKey:roundType];
-    return rowIndecesInSection.count;
+    NSString *leagueType = [self categories:league];
+    NSArray *rowIndecesInSection = [self.leagues objectForKey:leagueType];
     
-    //return [self.scheduledMatchups count];
+   //ensures that we don't have duplicates of the same team in the same category
+    
+    if (!leagueType) {
+        return 1;
+    }
+    else
+    {
+    return rowIndecesInSection.count;
+    }
+
 }
 //
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
