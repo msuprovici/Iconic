@@ -196,13 +196,11 @@
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
     
-    //compare the league name column
-    PFObject *leagueName = [self.league objectForKey:kLeagues];
-    //PFObject *leagueCategory = [self.league objectForKey:kLeagueCategories];
-    [query whereKey:kLeagues equalTo:leagueName];
-    //[query whereKey:kLeagueCategories equalTo:leagueCategory];
+     //compare the league name to the league name recived from the previous controller
+    PFObject * receivedLeagues = [self.league objectForKey:kLeagues];
     
-    
+    [query whereKey:kLeagues equalTo:receivedLeagues];
+   
     
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     // If Pull To Refresh is enabled, query against the network by default.

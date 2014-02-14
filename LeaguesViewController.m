@@ -447,13 +447,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"league"]) {
         
-        
         NSIndexPath *hitIndex = [self.tableView indexPathForSelectedRow];
+        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:hitIndex.row inSection:hitIndex.section];
         
-        PFObject *league = [self.objects objectAtIndex:hitIndex.row];
         
-        
-        [segue.destinationViewController initWithLeague:league];
+         //to pass the correct object we need to use the objectAtIndexPath method
+        [segue.destinationViewController initWithLeague:[self objectAtIndexPath:newIndexPath]];
         
     }
 }
