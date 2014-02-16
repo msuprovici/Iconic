@@ -53,9 +53,9 @@
         
         // The className to query on
         
-        self.parseClassName = kTeamTeamsClass;
+        //self.parseClassName = kTeamTeamsClass;
 
-        //self.parseClassName = @"leagues";
+        self.parseClassName = kLeagueClass;
         //self.parseClassName = @"matchups";
         
         // The key of the PFObject to display in the label of the default cell style
@@ -137,6 +137,19 @@
         
         [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
         [self.leagues setObject:objectsInSection forKey:league];
+        
+        
+//        NSInteger count = [objectsInSection count];
+//        for (NSInteger index = (count - 1); index >= 0; index--) {
+//            objectsInSection *p = objectsInSection[index];
+//            if ([objectsInSection isEqualToString:@"NFL"]) {
+//                [objectsInSection removeObjectAtIndex:index];
+//            }
+//        }
+//        
+//        
+        
+        
 //        
 //        PFObject *leagueName = [self.leagues objectForKey:kLeagues];
 //        
@@ -167,10 +180,7 @@
 // Override to customize what kind of query to perform on the class. The default is to query for
 // all objects ordered by createdAt descending.
 - (PFQuery *)queryForTable {
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-   
-    
-    
+   PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
     
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     // If Pull To Refresh is enabled, query against the network by default.

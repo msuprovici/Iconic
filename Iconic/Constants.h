@@ -116,8 +116,15 @@ NSString *const kTeamTeamsClass;
 
 //Field keys
 NSString *const kTeams;
-NSString *const kLeagueCategories;
 NSString *const kLeagues;
+
+#pragma mark - Leage Class
+//Class key
+NSString *const kLeagueClass;
+
+//Field keys
+NSString *const kLeagueCategories;
+//using kLeagues for league filed
 
 
 #pragma mark - Cached Activity Attributes

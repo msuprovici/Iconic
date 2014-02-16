@@ -113,8 +113,16 @@ NSString *const kTeam = @"team";
 NSString *const kTeamTeamsClass = @"TeamName";
 //Field keys
 NSString *const kTeams = @"teams";
-NSString *const kLeagueCategories = @"categories";
+
 NSString *const kLeagues = @"league";
+
+#pragma mark - Leage Class
+//Class key
+NSString *const kLeagueClass = @"league";
+
+//Field keys
+NSString *const kLeagueCategories = @"categories";
+//using kLeagues for league filed
 
 #pragma mark - Cached Activity Attributes
 // keys
