@@ -42,7 +42,7 @@
     
     //timer label
     MZTimerLabel *timer = [[MZTimerLabel alloc] initWithLabel:_timerLabel andTimerType:MZTimerLabelTypeTimer];
-    //[timer setCountDownTime:15]; //** Or you can use [timer setCountDownToDate:aDate];
+    [timer setCountDownTime:15]; //** Or you can use [timer setCountDownToDate:aDate];
     
     
     //hardcoded a date 7 days from today for testing
@@ -50,9 +50,25 @@
     int daysToAdd = 7;
     NSDate *newDate = [now dateByAddingTimeInterval:60*60*24*daysToAdd];
     
-    [timer setCountDownToDate:newDate];
+    //[timer setCountDownToDate:newDate];
     timer.delegate = self;
     [timer start];
+    
+    //block to do something once the timer is done
+    //we are resetting the timer when it's done
+   
+//        [timer startWithEndingBlock:^(NSTimeInterval countTime) {
+//            
+//            NSString *msg = [NSString stringWithFormat:@"Game finished!\nTime counted: %i seconds",(int)countTime];
+//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" message:msg delegate:nil cancelButtonTitle:@"Awesome!" otherButtonTitles:nil];
+//            [alertView show];
+//            
+//            [timer start];
+//            
+//            
+//        }];
+    
+
 
     
     
