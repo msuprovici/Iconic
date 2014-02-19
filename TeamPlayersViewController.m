@@ -411,10 +411,21 @@
     {
         [self.delegate didSelectJoinTeam:self team:self.team];
        
-        
+        //save a pointer to the current logged in user
         [loggedInUser setObject:[PFUser currentUser] forKey:kTeamate];
         
+        //convert the current user's object ID into a string and save to new colum so that we can do a comparrison querry later
+        NSString * userPointerObject = [NSString stringWithFormat:@"%@",[PFUser currentUser].objectId];
+        [loggedInUser setObject:userPointerObject forKey:kUserObjectIdString];
+        
+        
+        //save a pointer to the team selected by the user
         [loggedInUser setObject:self.team forKey:kTeam];
+        
+        //convert the team's object ID into a string and save to new colum so that we can do a comparrison querry later
+        NSString * teamPointerObject = [NSString stringWithFormat:@"%@",self.team.objectId];
+        [loggedInUser setObject:teamPointerObject forKey:kTeamObjectIdString];
+        
         
         [loggedInUser saveEventually:^(BOOL succeeded, NSError *error) {
             

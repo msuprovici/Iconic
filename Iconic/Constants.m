@@ -106,7 +106,8 @@ NSString *const kTeamPlayersClass = @"TeamPlayers";
 //Field keys
 NSString *const kTeamate = @"playerpointer";
 NSString *const kTeam = @"team";
-
+NSString *const kTeamObjectIdString = @"teamObjectIdString";
+NSString *const kUserObjectIdString = @"playerObjectIdString";
 
 #pragma mark - Teams Class
 //Class key
@@ -115,6 +116,8 @@ NSString *const kTeamTeamsClass = @"TeamName";
 NSString *const kTeams = @"teams";
 
 NSString *const kLeagues = @"league";
+
+NSString *const kScore = @"score";
 
 #pragma mark - Leage Class
 //Class key

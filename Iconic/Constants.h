@@ -109,6 +109,8 @@ NSString *const kTeamPlayersClass;
 //Field keys
 NSString *const kTeamate;
 NSString *const kTeam;
+NSString *const kTeamObjectIdString;
+NSString *const kUserObjectIdString;
 
 #pragma mark - Teams Class
 //Class key
@@ -117,6 +119,7 @@ NSString *const kTeamTeamsClass;
 //Field keys
 NSString *const kTeams;
 NSString *const kLeagues;
+NSString *const kScore;
 
 #pragma mark - Leage Class
 //Class key

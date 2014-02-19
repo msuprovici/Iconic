@@ -366,19 +366,41 @@ static NSString *kImageKey = @"imageKey";
     
     [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
     
-    [query2 getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)  {
-       
+   [query2 getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)  {
+      //  [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    
+        
+        
+      
+        
         if (!error) {
             
-        
+       // for (PFObject *object in objects){
+            
+            
         PFObject *firstObject = [object objectForKey:kTeam];
         [query whereKey:@"objectId" equalTo:firstObject.objectId];
         
         [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             
+        //[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            
+            
+          //  for (PFObject *object in objects){
+            
+            
             if(!error)
             {
-            NSLog(@"query worked");
+//                //add the player's points to the team
+//                NSNumber *newPoints = [self calculatePoints:450];//hardcoded value for steps here
+//                [object incrementKey:kScore byAmount:newPoints];
+//                [object saveInBackground];
+
+           
+                
+                //update the home screen
+                
+            NSLog(@"team class query worked");
             self.MyTeamName.text = [NSString stringWithFormat:@"%@",[object objectForKey:kTeams]];
             self.MyTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:@"score"]];
                 self.MyTeamName.textColor = PNBlue;
@@ -397,7 +419,14 @@ static NSString *kImageKey = @"imageKey";
                 self.MyTeamScore.text = @"";
 
             }
+                
+                
+           // }
         }];
+            
+       // }
+            
+        
          
         }
         else{
@@ -410,9 +439,10 @@ static NSString *kImageKey = @"imageKey";
         
          
          
-         
+        
    
     }];
+    
     
     
 //        if(!error)
@@ -476,18 +506,11 @@ static NSString *kImageKey = @"imageKey";
 {
     
     //test points value here
+    //will need points
     NSNumber *newPoints = [self calculatePoints:450];
   
     
-// New inplementation bellow
-//    //Query special 'User' class in parse -> need to use PFUser
-//    PFQuery *query = [PFUser query];
-//    PFUser* currentUser = [PFUser currentUser];
-//    
-//    //creating query for current loggedin user
-//    //[query whereKey:kUsername equalTo:[PFUser currentUser]];// Error: no results matched the query
-//    //creating a points object for loggedin user
-//    PFObject *points = [PFUser currentUser];
+// Save points to ativity class
     
     PFObject *activity = [PFObject objectWithClassName:kActivityClassKey];
     [activity setObject:[PFUser currentUser] forKey:kActivityUserKey];
@@ -511,6 +534,65 @@ static NSString *kImageKey = @"imageKey";
         }
         
     }];
+    
+    //increment the player's points
+    PFObject *playerPoints = [PFUser currentUser];
+    [playerPoints incrementKey:kPlayerPoints byAmount:newPoints];
+    [playerPoints saveInBackground];
+    
+    
+    //increment team's points by
+    
+    //Query Team Class
+    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+    
+    //Query Teamates Class
+    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+    
+   [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+    
+    
+   [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
+    
+   [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        
+        
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %d objects", objects.count);
+            for (PFObject *object in objects)
+            
+            {
+                  NSLog(@"%@", object.objectId);
+
+                
+                if (!error) {
+                NSNumber *newPoints = [self calculatePoints:450];//hardcoded value for steps here
+                [object incrementKey:kScore byAmount:newPoints];
+                [object saveInBackground];
+                }
+                  else
+                  {
+                      NSLog(@"error in inner query");
+                  }
+            }
+            
+        }
+       else
+       {
+           NSLog(@"error");
+       }
+        
+        
+        
+        
+    }];
+
+    
+    
+    
+    
 //    //if it's the current user update points
 //    if (currentUser) {
 //        
