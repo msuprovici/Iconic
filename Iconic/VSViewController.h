@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DACircularProgressView.h"
 #import "PNChart.h"
+#import "MZTimerLabel.h"
 
-@interface VSViewController : UIViewController
+@interface VSViewController : UIViewController<MZTimerLabelDelegate>
 
 
 
@@ -18,5 +19,6 @@
 
 @property (strong, nonatomic) IBOutlet DACircularProgressView *circleProgressView;
 
+@property (strong, nonatomic) IBOutlet MZTimerLabel *timerLabel;
 
 @end

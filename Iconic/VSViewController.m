@@ -40,6 +40,22 @@
 //    [self.view addSubview:self.progressView];
     
     
+    //timer label
+    MZTimerLabel *timer = [[MZTimerLabel alloc] initWithLabel:_timerLabel andTimerType:MZTimerLabelTypeTimer];
+    //[timer setCountDownTime:15]; //** Or you can use [timer setCountDownToDate:aDate];
+    
+    
+    //hardcoded a date 7 days from today for testing
+    NSDate *now = [NSDate date];
+    int daysToAdd = 7;
+    NSDate *newDate = [now dateByAddingTimeInterval:60*60*24*daysToAdd];
+    
+    [timer setCountDownToDate:newDate];
+    timer.delegate = self;
+    [timer start];
+
+    
+    
     
     self.circleProgressView.trackTintColor = PNGrey;
     self.circleProgressView.progressTintColor = PNBlue;
@@ -80,6 +96,20 @@
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(progressChange) userInfo:nil repeats:NO];
     
 }
+
+//method to show days
+
+- (NSString*)timerLabel:(MZTimerLabel *)timerLabel customTextToDisplayAtTime:(NSTimeInterval)time
+{
+
+        int second = (int)time  % 60;
+        int minute = ((int)time / 60) % 60;
+        int hours = ((int)time / 7200 )% 60;
+        int days = (((int)time / 3600) / 24)% 60;
+    
+        return [NSString stringWithFormat:@"%02dd : %02dh : %02dm : %02ds", days,hours,minute,second];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

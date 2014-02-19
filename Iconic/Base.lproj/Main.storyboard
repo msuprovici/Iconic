@@ -370,10 +370,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 days 11:38:23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lKe-oR-Ur1">
-                                <rect key="frame" x="90" y="74" width="140" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lKe-oR-Ur1" customClass="MZTimerLabel">
+                                <rect key="frame" x="38" y="64" width="246" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -383,6 +383,7 @@
                     <navigationItem key="navigationItem" title="VS" id="DUF-43-G8a"/>
                     <connections>
                         <outlet property="circleProgressView" destination="Vyb-w8-c3v" id="dlg-DG-sQg"/>
+                        <outlet property="timerLabel" destination="lKe-oR-Ur1" id="3AV-lJ-pxM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggb-Yb-C8A" userLabel="First Responder" sceneMemberID="firstResponder"/>

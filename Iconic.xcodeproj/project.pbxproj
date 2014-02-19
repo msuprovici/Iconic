@@ -76,6 +76,7 @@
 		5C966BBB187D0F480022AF0F /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C966BAF187D0F480022AF0F /* PNLineChartData.m */; };
 		5C966BBC187D0F480022AF0F /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C966BB1187D0F480022AF0F /* PNLineChartDataItem.m */; };
 		5C966BBD187D0F480022AF0F /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C966BB4187D0F480022AF0F /* UICountingLabel.m */; };
+		5CA19A2018B51F6D0023C940 /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA19A1F18B51F6D0023C940 /* MZTimerLabel.m */; };
 		5CA3D18B1831DF51006C7932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18A1831DF51006C7932 /* Foundation.framework */; };
 		5CA3D18D1831DF51006C7932 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */; };
 		5CA3D18F1831DF51006C7932 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D18E1831DF51006C7932 /* UIKit.framework */; };
@@ -263,6 +264,8 @@
 		5C966BB1187D0F480022AF0F /* PNLineChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartDataItem.m; sourceTree = "<group>"; };
 		5C966BB3187D0F480022AF0F /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		5C966BB4187D0F480022AF0F /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
+		5CA19A1E18B51F6D0023C940 /* MZTimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
+		5CA19A1F18B51F6D0023C940 /* MZTimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
 		5CA3D1871831DF51006C7932 /* Iconic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Iconic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CA3D18A1831DF51006C7932 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -529,6 +532,7 @@
 		5C4EF986186D01FF000E0E59 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				5CA19A1D18B51F6D0023C940 /* MZTimerLabel */,
 				5C78DA6E1899B64A00CBA29B /* Reachability */,
 				5C78DA6A1899B62100CBA29B /* MBProgressHUD */,
 				5C8BB5C8188616CB00E89ADF /* TTTTImeIntervalFormatter */,
@@ -662,6 +666,15 @@
 				5C966BB4187D0F480022AF0F /* UICountingLabel.m */,
 			);
 			path = ThirdPart;
+			sourceTree = "<group>";
+		};
+		5CA19A1D18B51F6D0023C940 /* MZTimerLabel */ = {
+			isa = PBXGroup;
+			children = (
+				5CA19A1E18B51F6D0023C940 /* MZTimerLabel.h */,
+				5CA19A1F18B51F6D0023C940 /* MZTimerLabel.m */,
+			);
+			path = MZTimerLabel;
 			sourceTree = "<group>";
 		};
 		5CA3D17E1831DF51006C7932 = {
@@ -1034,6 +1047,7 @@
 				5CD93828187B5047006CE08B /* MZFormSheetSegue.m in Sources */,
 				5C966BBD187D0F480022AF0F /* UICountingLabel.m in Sources */,
 				5CD93826187B5047006CE08B /* MZFormSheetBackgroundWindow.m in Sources */,
+				5CA19A2018B51F6D0023C940 /* MZTimerLabel.m in Sources */,
 				5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */,
 				5C78DA561899678400CBA29B /* FindFriendsCell.m in Sources */,
 				5C48B8961880CFAA00A09A1C /* SimpleHomeViewController.m in Sources */,

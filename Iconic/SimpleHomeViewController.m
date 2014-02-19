@@ -75,10 +75,7 @@ static NSString *kImageKey = @"imageKey";
 {
     [super viewDidLoad];
     
-    
-    
 
-    
     
     //show player name header
     [self playerNameHeader];
