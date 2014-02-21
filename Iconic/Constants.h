@@ -101,6 +101,9 @@ extern NSString *const kActivityKey;
 extern NSString *const kActivityUserKey;
 extern NSString *const kActivityOpenGraphIDKey;
 
+#pragma mark - Timer Class
+//Class key
+NSString *const kTimerClass;
 
 #pragma mark - Team Players Class
 //Class key

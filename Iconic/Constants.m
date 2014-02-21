@@ -99,6 +99,11 @@ NSString *const kActivityKey         = @"activity";
 NSString *const kActivityUserKey            = @"user";
 NSString *const kActivityOpenGraphIDKey    = @"fbOpenGraphID";
 
+#pragma mark - Timer Class
+//Class key
+NSString *const kTimerClass = @"Timer";
+
+
 #pragma mark - Team Class
 //Class key
 NSString *const kTeamPlayersClass = @"TeamPlayers";

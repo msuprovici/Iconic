@@ -7,6 +7,8 @@
 //
 
 #import "VSViewController.h"
+#import <Parse/Parse.h>
+#import "Constants.h"
 
 @interface VSViewController ()
 
@@ -42,17 +44,92 @@
     
     //timer label
     MZTimerLabel *timer = [[MZTimerLabel alloc] initWithLabel:_timerLabel andTimerType:MZTimerLabelTypeTimer];
-    [timer setCountDownTime:15]; //** Or you can use [timer setCountDownToDate:aDate];
+        // [timer setCountDownTime:15]; //** Or you can use [timer setCountDownToDate:aDate];
     
     
-    //hardcoded a date 7 days from today for testing
-    NSDate *now = [NSDate date];
-    int daysToAdd = 7;
-    NSDate *newDate = [now dateByAddingTimeInterval:60*60*24*daysToAdd];
+    //get date & time for parse
     
-    //[timer setCountDownToDate:newDate];
-    timer.delegate = self;
-    [timer start];
+    PFQuery *query = [PFQuery queryWithClassName:kTimerClass];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+ 
+    [query getObjectInBackgroundWithId:@"FZm9YjkgEb" block:^(PFObject *object, NSError *error) {
+        
+        
+       
+        if (!error) {
+           
+            //Get timeStamp from the parse timer object
+            //timer object rests itself at 12:00am on Sunday
+            
+            NSDate * timeStamp = [object updatedAt];
+            
+            //add 7 days to the time stamp
+            int daysToAdd = 7;
+            NSDate *newDate = [timeStamp dateByAddingTimeInterval:60*60*24*daysToAdd];
+            
+
+            //Set timer
+            [timer setCountDownToDate:newDate];
+            timer.delegate = self;
+            [timer start];
+        }
+        
+        else
+        {
+            
+            //if no network connection countdown to Sunday
+            
+            NSDate *today = [[NSDate alloc] init];
+            NSCalendar *gregorian = [[NSCalendar alloc]
+                                     initWithCalendarIdentifier:NSGregorianCalendar];
+            
+            // Get the weekday component of the current date
+            NSDateComponents *weekdayComponents = [gregorian components:NSWeekdayCalendarUnit
+                                                               fromDate:today];
+            
+            /*
+             Create a date components to represent the number of days to subtract from the current date.
+             The weekday value for Sunday in the Gregorian calendar is 1, so subtract 1 from the number of days to subtract from the date in question.  (If today is Sunday, subtract 0 days.)
+             */
+            NSDateComponents *componentsToSubtract = [[NSDateComponents alloc] init];
+            [componentsToSubtract setDay: 0 - ([weekdayComponents weekday] - 1)];
+            
+            NSDate *beginningOfWeek = [gregorian dateByAddingComponents:componentsToSubtract
+                                                                 toDate:today options:0];
+            
+            /*
+             Optional step:
+             beginningOfWeek now has the same hour, minute, and second as the original date (today).
+             To normalize to midnight, extract the year, month, and day components and create a new date from those components.
+             */
+            NSDateComponents *components =
+            [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit |
+                                   NSDayCalendarUnit) fromDate: beginningOfWeek];
+            beginningOfWeek = [gregorian dateFromComponents:components];
+            
+            
+          
+            
+            //Set timer
+            [timer setCountDownToDate:beginningOfWeek];
+            timer.delegate = self;
+            [timer start];
+        }
+        
+        
+    }];
+    
+  
+    
+    
+//    //hardcoded a date 7 days from today for testing
+//    NSDate *now = [NSDate date];
+//    int daysToAdd = 7;
+//    NSDate *newDate = [now dateByAddingTimeInterval:60*60*24*daysToAdd];
+//
+//    [timer setCountDownToDate:newDate];
+//    timer.delegate = self;
+//    [timer start];
     
     //block to do something once the timer is done
     //we are resetting the timer when it's done

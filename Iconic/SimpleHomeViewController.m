@@ -357,10 +357,10 @@ static NSString *kImageKey = @"imageKey";
     
     //Query Team Class
     PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
-    
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     //Query Teamates Class
     PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
-    
+    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
     
    [query2 getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)  {
@@ -545,6 +545,8 @@ static NSString *kImageKey = @"imageKey";
     
     //Query Teamates Class
     PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
     

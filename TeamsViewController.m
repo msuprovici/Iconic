@@ -195,7 +195,7 @@
 // all objects ordered by createdAt descending.
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
      //compare the league name to the league name recived from the previous controller
     PFObject * receivedLeagues = [self.league objectForKey:kLeagues];
     

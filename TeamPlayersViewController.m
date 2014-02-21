@@ -499,7 +499,9 @@
      PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
      [query whereKey:kTeamate equalTo:[PFUser currentUser]];
     
+    
      PFQuery *leagueQuery = [PFQuery queryWithClassName:kTeamTeamsClass];
+     
     
      PFObject * selectedLeague = [self.team objectForKey:kLeagues];
     
