@@ -399,7 +399,7 @@ static NSString *kImageKey = @"imageKey";
                 
             NSLog(@"team class query worked");
             self.MyTeamName.text = [NSString stringWithFormat:@"%@",[object objectForKey:kTeams]];
-            self.MyTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:@"score"]];
+            self.MyTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kScore]];
                 self.MyTeamName.textColor = PNBlue;
                 self.MyTeamScore.textColor = PNBlue;
                 
@@ -534,7 +534,13 @@ static NSString *kImageKey = @"imageKey";
     
     //increment the player's points
     PFObject *playerPoints = [PFUser currentUser];
+    
+    //increment the player's TOTAL lifetime points
     [playerPoints incrementKey:kPlayerPoints byAmount:newPoints];
+    
+    //increment the player's today's points
+    [playerPoints incrementKey:kPlayerPointsToday byAmount:newPoints];
+    
     [playerPoints saveInBackground];
     
     
@@ -567,8 +573,13 @@ static NSString *kImageKey = @"imageKey";
 
                 
                 if (!error) {
-                NSNumber *newPoints = [self calculatePoints:450];//hardcoded value for steps here
+                
+                    //increment the team's TOTAL points
                 [object incrementKey:kScore byAmount:newPoints];
+                    
+                    //increment the team's points for today
+                 [object incrementKey:kScoreToday byAmount:newPoints];
+                    
                 [object saveInBackground];
                 }
                   else

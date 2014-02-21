@@ -36,6 +36,8 @@ extern NSString *const kUsername;
 extern NSString *const kProfilePicture;
 extern NSString *const kPlayerTitle;
 extern NSString *const kPlayerPoints;
+extern NSString *const kPlayerPointsToday;
+extern NSString *const kPlayerPointsWeek;
 extern NSString *const kPlayerXP;
 extern NSString *const kPlayerSteps;
 
@@ -123,6 +125,8 @@ NSString *const kTeamTeamsClass;
 NSString *const kTeams;
 NSString *const kLeagues;
 NSString *const kScore;
+NSString *const kScoreToday;
+NSString *const kScoreWeek;
 
 #pragma mark - Leage Class
 //Class key

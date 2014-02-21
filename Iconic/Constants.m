@@ -34,6 +34,8 @@ NSString *const kUsername = @"username";
 NSString *const kProfilePicture = @"photo";
 NSString *const kPlayerTitle = @"Title";
 NSString *const kPlayerPoints = @"points";
+NSString *const kPlayerPointsToday = @"pointstoday";
+NSString *const kPlayerPointsWeek = @"pointsweek"; //array of kPlayerPointsToday
 NSString *const kPlayerXP = @"xp";
 NSString *const kPlayerSteps = @"steps";
 
@@ -123,6 +125,9 @@ NSString *const kTeams = @"teams";
 NSString *const kLeagues = @"league";
 
 NSString *const kScore = @"score";
+
+NSString *const kScoreToday = @"scoretoday";
+NSString *const kScoreWeek = @"scoreweek"; //array of kScoreToday
 
 #pragma mark - Leage Class
 //Class key
