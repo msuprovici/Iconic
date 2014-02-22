@@ -107,6 +107,12 @@
 
 -(void)countFrom:(float)startValue to:(float)endValue withDuration:(NSTimeInterval)duration
 {
+    if(duration == 0.0){
+        // No animation
+        [self setTextValue:endValue];
+        [self runCompletionBlock];
+        return;
+    }
     
     self.easingRate = 3.0f;
     self.startingValue = startValue;
@@ -158,7 +164,20 @@
     float value =  self.startingValue +  (updateVal * (self.destinationValue - self.startingValue));
     
     
-    if(self.formatBlock != nil)
+    [self setTextValue:value];
+    
+    if(self.progress == self.totalTime)
+    {
+        [self runCompletionBlock];
+    }
+}
+
+- (void)setTextValue:(float)value
+{
+    if (self.attributedFormatBlock != nil) {
+        self.attributedText = self.attributedFormatBlock(value);
+    }
+    else if(self.formatBlock != nil)
     {
         self.text = self.formatBlock(value);
     }
@@ -174,8 +193,11 @@
             self.text = [NSString stringWithFormat:self.format,value];
         }
     }
+}
 
-	if(self.progress == self.totalTime && self.completionBlock != nil)
+- (void)runCompletionBlock
+{
+	if(self.completionBlock != nil)
 	{
 		self.completionBlock();
 		self.completionBlock = nil;

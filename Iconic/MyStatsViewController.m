@@ -54,6 +54,9 @@
     
 
     
+    
+    
+    
     //Cycle through label string
     for (int i = 0; i <= pointslabelNumber; i++) {
         
@@ -186,13 +189,45 @@
             
             self.viewTitle.text = @"Points";
             
-            PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
-            [barChart setXLabels:@[@"Mon",@"Tue",@"Wed",@"Thu",@"Fri", @"Sat",@"Sun"]];
-            [barChart setYValues:@[@1,  @10, @2, @6, @3, @15, @5]];
+            
+            PFQuery *query = [PFUser query];
+            //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+            
+            [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+               PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
+            
+            //list of days of the week
+            NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
+            
+            
+            // Line Chart No.1
+            
+            //get daily score data from Parse
+           // NSArray * playerPoints = [object objectForKey:kPlayerPointsWeek];
+                
+               // NSArray * playerPoints = [object objectForKey:kPlayerPointsWeek];
+                
+                NSArray * playerPoints = @[@800, @9000, @100];//<-hardcoded because the above does not work
+                
+            //create a subarray that has the range of days played based on the amout of objects in data01Array
+            NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [playerPoints count])];
+            
+            //set the labels
+            [barChart setXLabels:daysPlayed];
+            
+            [barChart setYValues:playerPoints];
+                
             [barChart setStrokeColor:PNLightBlue];
             [barChart strokeChart];
             
-            [self.stepsBarChart addSubview:barChart];
+            [self.stepsBarChart addSubview:barChart]; 
+            }];
+            
+           
+
+            
+            
+           
 
             
         }

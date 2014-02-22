@@ -197,7 +197,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="U7e-ci-fmc" customClass="PNLineChart">
-                                <rect key="frame" x="20" y="290" width="280" height="220"/>
+                                <rect key="frame" x="31" y="296" width="260" height="219"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
