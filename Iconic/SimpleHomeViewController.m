@@ -81,7 +81,7 @@ static NSString *kImageKey = @"imageKey";
     [self playerNameHeader];
     
     //Uncomment to test points and activity views
-    //[self savePoints];
+   // [self savePoints];
     
     //Page control for MyStatsView
     NSUInteger numberPages = self.contentList.count;
@@ -543,7 +543,7 @@ static NSString *kImageKey = @"imageKey";
     
     //test points value here
     //will need points
-    NSNumber *newPoints = [self calculatePoints:325];
+    NSNumber *newPoints = [self calculatePoints:108];
   
     
 // Save points to ativity class

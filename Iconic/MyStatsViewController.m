@@ -59,7 +59,9 @@
     
     //Cycle through label string
     for (int i = 0; i <= pointslabelNumber; i++) {
-        
+        PFQuery* query = [PFUser query];
+        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        PFUser* currentUser = [PFUser currentUser];
         
 
         
@@ -67,9 +69,7 @@
             if (pointslabelNumber == 0) {
                
             // This is to generate thumbnail a player's thumbnail, name & title
-            PFQuery* query = [PFUser query];
-            query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-            PFUser* currentUser = [PFUser currentUser];
+            
             
             if (currentUser) {
                 //Get all player stats from Parse
@@ -78,7 +78,7 @@
                     
                     //self.viewTitle.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerTitle]] ;
                     
-                    self.pointsValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerPoints]];
+                    self.pointsValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerPointsToday]];
                     
                     self.xpValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerXP]];
                     
@@ -190,38 +190,35 @@
             self.viewTitle.text = @"Points";
             
             
-            PFQuery *query = [PFUser query];
-            //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-            
-            [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-               PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
+            //create bar chart to display days
+            PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
             
             //list of days of the week
             NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
             
             
-            // Line Chart No.1
+                
+            //getting points arary from server
+            NSArray * playerPoints = [currentUser objectForKey:kPlayerPointsWeek];
+                
             
-            //get daily score data from Parse
-           // NSArray * playerPoints = [object objectForKey:kPlayerPointsWeek];
-                
-               // NSArray * playerPoints = [object objectForKey:kPlayerPointsWeek];
-                
-                NSArray * playerPoints = @[@800, @9000, @100];//<-hardcoded because the above does not work
-                
-            //create a subarray that has the range of days played based on the amout of objects in data01Array
+            //create a subarray that has the range of days played based on the amout of objects in playerPoints
             NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [playerPoints count])];
             
             //set the labels
             [barChart setXLabels:daysPlayed];
             
             [barChart setYValues:playerPoints];
-                
+            
+            //sets the maximum value of the label.  so if the player has a goal of say 10k points/day then we would use this.
+            //[barChart setYLabels:@[@500]];
+            
+            
             [barChart setStrokeColor:PNLightBlue];
             [barChart strokeChart];
             
             [self.stepsBarChart addSubview:barChart]; 
-            }];
+            //}];
             
            
 
