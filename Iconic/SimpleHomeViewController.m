@@ -81,7 +81,7 @@ static NSString *kImageKey = @"imageKey";
     [self playerNameHeader];
     
     //Uncomment to test points and activity views
-   // [self savePoints];
+   //[self savePoints];
     
     //Page control for MyStatsView
     NSUInteger numberPages = self.contentList.count;
@@ -387,40 +387,50 @@ static NSString *kImageKey = @"imageKey";
                 self.VSTeamScore.font = [UIFont boldSystemFontOfSize:15];
                 //self.VSTeamScore.textAlignment = NSTextAlignmentLeft; //Set in story board
                 
+                
+                
+                
+                //Team Chart
+                
                 PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, 260, 200)];
                 
                 //list of days of the week
                 NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
                 
                 
-                // Line Chart No.1
+                // Line Chart for my team
+   
+                //get the daily score data from the days before, if any
+                NSMutableArray * myTeamScores = [object objectForKey:kScoreWeek];
                 
-                //get daily score data from Parse
-                NSArray * data01Array = [object objectForKey:kScoreWeek];
-                //NSArray * data01Array = @[@100, @200, @300, @300];
-                //create a subarray that has the range of days played based on the amout of objects in data01Array
-                NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [data01Array count])];
+                //we add today's most uptodate data to the array
+                [myTeamScores addObject:[object objectForKey:kScoreToday]];
+                
+                //create a subarray that has the range of days played based on the amout of objects in myTeamScores
+                NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [myTeamScores count])];
                 
                 //set the labels
-               // [lineChart setXLabels:@[@"1", @"2", @"3", @"4"]];
-                
-                [lineChart setXLabels:daysPlayed];
+                 [lineChart setXLabels:daysPlayed];
                 
                 
                 PNLineChartData *data01 = [PNLineChartData new];
                 data01.color = PNBlue;
                 data01.itemCount = lineChart.xLabels.count;
                 data01.getData = ^(NSUInteger index) {
-                    CGFloat yValue = [[data01Array objectAtIndex:index] floatValue]/100;// <- devided points value by 100 because PNChart does not support large Y values
+                    CGFloat yValue = [[myTeamScores objectAtIndex:index] floatValue]/100;// <- devided points value by 100 because PNChart does not support large Y values
                     return [PNLineChartDataItem dataItemWithY:yValue];
                 };
+                
+                
                 // Line Chart No.2
                 
                 //hardcoded values for opposing team
                 //TO DO: add opposing team data here
                 NSArray * dummydataArray = @[@20.1, @180.1, @26.4, @202.2, @126.2, @167.2, @276.2];
-                //create a subarray that has the range of days played based on the amout of objects in data01Array
-               NSArray *data02Array = [dummydataArray subarrayWithRange: NSMakeRange(0, [data01Array count])];
+                //create a subarray that has the range of days played based on the amout of objects in myTeamScores
+               NSArray *data02Array = [dummydataArray subarrayWithRange: NSMakeRange(0, [myTeamScores count])];
+                
+                
                 //NSArray *data02Array = @[@10, @20, @30, @40];
                 PNLineChartData *data02 = [PNLineChartData new];
                 data02.color = PNFreshGreen;

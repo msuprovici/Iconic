@@ -60,7 +60,7 @@
     //Cycle through label string
     for (int i = 0; i <= pointslabelNumber; i++) {
         PFQuery* query = [PFUser query];
-        query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+        //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
         PFUser* currentUser = [PFUser currentUser];
         
 
@@ -198,9 +198,18 @@
             
             
                 
-            //getting points arary from server
-            NSArray * playerPoints = [currentUser objectForKey:kPlayerPointsWeek];
-                
+            //getting historical daily points arary from server
+            NSMutableArray * playerPoints = [currentUser objectForKey:kPlayerPointsWeek];
+            
+            //we add todays most uptodate data to the array
+            [playerPoints addObject:[currentUser valueForKey:kPlayerPointsToday]];
+            
+            
+//            int indexValue = [playerPoints indexOfObject:playerPoints.lastObject];
+//                
+//            
+//            [playerPoints replaceObjectAtIndex:indexValue withObject:[currentUser valueForKey:kPlayerPointsToday]];
+            
             
             //create a subarray that has the range of days played based on the amout of objects in playerPoints
             NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [playerPoints count])];
