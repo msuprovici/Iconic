@@ -25,6 +25,7 @@
 		5C328BFB186002D300E0E985 /* LeaguesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C328BFA186002D300E0E985 /* LeaguesViewController.m */; };
 		5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C328BFE18601ADF00E0E985 /* TeamsViewController.m */; };
 		5C349E9D18602ED600325A29 /* TeamPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */; };
+		5C47815E18C0EE5F002E6C3F /* VSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C47815D18C0EE5F002E6C3F /* VSTableViewController.m */; };
 		5C48B8961880CFAA00A09A1C /* SimpleHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48B8951880CFAA00A09A1C /* SimpleHomeViewController.m */; };
 		5C48B8A21880F7AB00A09A1C /* UIImage+Additional.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48B8A11880F7AB00A09A1C /* UIImage+Additional.m */; };
 		5C48B8BB1880F89F00A09A1C /* UIImage+RoundedCornerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48B8B51880F89F00A09A1C /* UIImage+RoundedCornerAdditions.m */; };
@@ -174,6 +175,8 @@
 		5C328BFE18601ADF00E0E985 /* TeamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamsViewController.m; sourceTree = "<group>"; };
 		5C349E9B18602ED600325A29 /* TeamPlayersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamPlayersViewController.h; sourceTree = "<group>"; };
 		5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamPlayersViewController.m; sourceTree = "<group>"; };
+		5C47815C18C0EE5F002E6C3F /* VSTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSTableViewController.h; sourceTree = "<group>"; };
+		5C47815D18C0EE5F002E6C3F /* VSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSTableViewController.m; sourceTree = "<group>"; };
 		5C48B8941880CFAA00A09A1C /* SimpleHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHomeViewController.h; sourceTree = "<group>"; };
 		5C48B8951880CFAA00A09A1C /* SimpleHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHomeViewController.m; sourceTree = "<group>"; };
 		5C48B8A01880F7AB00A09A1C /* UIImage+Additional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additional.h"; sourceTree = "<group>"; };
@@ -477,6 +480,8 @@
 			children = (
 				5C328BF3185F70C100E0E985 /* VSViewController.h */,
 				5C328BF4185F70C100E0E985 /* VSViewController.m */,
+				5C47815C18C0EE5F002E6C3F /* VSTableViewController.h */,
+				5C47815D18C0EE5F002E6C3F /* VSTableViewController.m */,
 			);
 			name = VS;
 			sourceTree = "<group>";
@@ -1065,6 +1070,7 @@
 				5C328BFB186002D300E0E985 /* LeaguesViewController.m in Sources */,
 				5C48B8BC1880F89F00A09A1C /* UIImage+AlphaAdditions.m in Sources */,
 				5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */,
+				5C47815E18C0EE5F002E6C3F /* VSTableViewController.m in Sources */,
 				5C8BB5CB1886256400E89ADF /* TTTTimeIntervalFormatter.m in Sources */,
 				5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */,
 				5C539A1318679F3A006676FA /* PlayerTeamsViewController.m in Sources */,

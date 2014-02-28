@@ -115,7 +115,7 @@
     //This approach takes place in the background but I can not yet display it in a cell
     //Get data schedule data from parse based on Number of Teams input bellow
 //    [PFCloud callFunctionInBackground:@"tournament2"
-//                       withParameters:@{@"NumberOfTeams":@"8"}
+//                       withParameters:@{@"NumberOfTeams":@"2"}
 //                                block:^(NSString *result, NSError *error) {
 //                                    if (!error) {
 //                                        // show matchups

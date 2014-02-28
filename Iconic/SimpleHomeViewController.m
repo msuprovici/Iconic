@@ -76,6 +76,24 @@ static NSString *kImageKey = @"imageKey";
     [super viewDidLoad];
     
 
+    //test tournament function
+    
+//    [PFCloud callFunctionInBackground:@"tournament2"
+//                       withParameters:@{@"NumberOfTeams":@"4"}
+//                                block:^(NSString *result, NSError *error) {
+//                                    if (!error) {
+//                                        // show matchups
+//                                        
+//                                        /*ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
+//                                         item1.itemName = [NSString stringWithFormat: @"%@", result
+//                                         [self.scheduledMatchups addObject:item1];*/
+//                                        
+//                                        
+//                                        NSLog(@"%@", result);
+//                                    }
+//                                }];
+    
+ 
     
     //show player name header
     [self playerNameHeader];
