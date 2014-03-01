@@ -103,6 +103,7 @@
 		5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */; };
 		5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D1E61832F9D1006C7932 /* LogInViewController.m */; };
 		5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */; };
+		5CA7BC4A18C1A59500DBBC7D /* VSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7BC4918C1A59500DBBC7D /* VSTableViewCell.m */; };
 		5CB75DF71889A0630047BC47 /* PlayerCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF61889A0630047BC47 /* PlayerCommentCell.m */; };
 		5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF91889CCB60047BC47 /* ActivityDeatailsHeaderCell.m */; };
 		5CB75DFD1889F65C0047BC47 /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DFC1889F65C0047BC47 /* ProfileImageView.m */; };
@@ -299,6 +300,8 @@
 		5CA3D1E51832F9D1006C7932 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ../LogInViewController.h; sourceTree = "<group>"; };
 		5CA3D1E61832F9D1006C7932 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ../LogInViewController.m; sourceTree = "<group>"; };
 		5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		5CA7BC4818C1A59500DBBC7D /* VSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSTableViewCell.h; sourceTree = "<group>"; };
+		5CA7BC4918C1A59500DBBC7D /* VSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSTableViewCell.m; sourceTree = "<group>"; };
 		5CB75DF51889A0630047BC47 /* PlayerCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCommentCell.h; sourceTree = "<group>"; };
 		5CB75DF61889A0630047BC47 /* PlayerCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCommentCell.m; sourceTree = "<group>"; };
 		5CB75DF81889CCB60047BC47 /* ActivityDeatailsHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDeatailsHeaderCell.h; sourceTree = "<group>"; };
@@ -482,6 +485,8 @@
 				5C328BF4185F70C100E0E985 /* VSViewController.m */,
 				5C47815C18C0EE5F002E6C3F /* VSTableViewController.h */,
 				5C47815D18C0EE5F002E6C3F /* VSTableViewController.m */,
+				5CA7BC4818C1A59500DBBC7D /* VSTableViewCell.h */,
+				5CA7BC4918C1A59500DBBC7D /* VSTableViewCell.m */,
 			);
 			name = VS;
 			sourceTree = "<group>";
@@ -1097,6 +1102,7 @@
 				5C2C1CCC185E9142006722D2 /* SWRevealViewController.m in Sources */,
 				5C48B8A21880F7AB00A09A1C /* UIImage+Additional.m in Sources */,
 				5CA19A3518B83E290023C940 /* PNBarChart.m in Sources */,
+				5CA7BC4A18C1A59500DBBC7D /* VSTableViewCell.m in Sources */,
 				5C2EA5291851472000B21C52 /* HomeViewController.m in Sources */,
 				5CA3D19B1831DF51006C7932 /* AppDelegate.m in Sources */,
 				5CA19A3418B83E290023C940 /* PNBar.m in Sources */,

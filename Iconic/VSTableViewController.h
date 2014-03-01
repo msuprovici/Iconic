@@ -65,4 +65,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *vsTeamSunday;
 
 
+//My Teamates Cell
+
+
+
 @end

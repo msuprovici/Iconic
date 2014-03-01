@@ -9,7 +9,7 @@
 #import "VSTableViewController.h"
 #import "Constants.h"
 #import "Parse/Parse.h"
-
+#import "VSTableViewCell.h"
 @interface VSTableViewController ()
 
 @property (strong, nonatomic) NSTimer *timer;
@@ -43,7 +43,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 25;
+        self.objectsPerPage = 10;
     }
     return self;
 }
@@ -285,48 +285,59 @@
     // This method is called every time objects are loaded from Parse via the PFQuery
 }
 
-/*
+
  // Override to customize what kind of query to perform on the class. The default is to query for
  // all objects ordered by createdAt descending.
  - (PFQuery *)queryForTable {
- PFQuery *query = [PFQuery queryWithClassName:self.className];
- 
- // If Pull To Refresh is enabled, query against the network by default.
- if (self.pullToRefreshEnabled) {
- query.cachePolicy = kPFCachePolicyNetworkOnly;
- }
- 
- // If no objects are loaded in memory, we look to the cache first to fill the table
- // and then subsequently do a query against the network.
- if (self.objects.count == 0) {
- query.cachePolicy = kPFCachePolicyCacheThenNetwork;
- }
- 
- [query orderByDescending:@"createdAt"];
- 
- return query;
- }
- */
+     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+     [query whereKey:kTeam equalTo:self.receivedTeam];
+     
+     [query includeKey:kTeamate];
+     
+     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+     
+     
+     
+     // If Pull To Refresh is enabled, query against the network by default.
+     if (self.pullToRefreshEnabled) {
+         query.cachePolicy = kPFCachePolicyNetworkOnly;
+     }
+     
+     // If no objects are loaded in memory, we look to the cache first to fill the table
+     // and then subsequently do a query against the network.
+     if (self.objects.count == 0) {
+         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+     }
+     
+     // Order by categories type
+     [query orderByDescending:@"createdAt"];
+     return query;
 
-/*
+ }
+
+
+
  // Override to customize the look of a cell representing an object. The default is to display
  // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
  // and the imageView being the imageKey in the object.
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
- static NSString *CellIdentifier = @"Cell";
- 
- PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
- if (cell == nil) {
- cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
- }
- 
- // Configure the cell
- cell.textLabel.text = [object objectForKey:self.textKey];
- cell.imageView.file = [object objectForKey:self.imageKey];
- 
- return cell;
- }
- */
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+    static NSString *CellIdentifier = @"myTeamates";
+    
+    VSTableViewCell *cell = (VSTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[VSTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
+    }
+    
+    // Configure the cell
+    
+    [cell setUser:[object objectForKey:kTeamate]];
+    
+    
+    
+    return cell;
+}
+
 
 /*
  // Override if you need to change the ordering of objects in the table.
