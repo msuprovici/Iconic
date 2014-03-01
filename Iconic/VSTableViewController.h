@@ -12,6 +12,11 @@
 
 @interface VSTableViewController : PFQueryTableViewController <MZTimerLabelDelegate>
 
+@property (nonatomic, strong) PFObject *receivedTeam;
+
+-(void)initWithReceivedTeam:(PFObject*)aReceivedTeam;
+
+
 
 @property (strong, nonatomic) IBOutlet MZTimerLabel *timerLabel;
 

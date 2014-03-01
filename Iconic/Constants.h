@@ -123,6 +123,7 @@ NSString *const kTeamTeamsClass;
 
 //Field keys
 NSString *const kTeams;
+NSString *const kTeamsAbr;
 NSString *const kLeagues;
 NSString *const kScore;
 NSString *const kScoreToday;

@@ -738,11 +738,11 @@
 		5CA3D1901831DF51006C7932 /* Iconic */ = {
 			isa = PBXGroup;
 			children = (
+				5CA3D19C1831DF51006C7932 /* Main.storyboard */,
 				5CA3D1991831DF51006C7932 /* AppDelegate.h */,
 				5CA3D19A1831DF51006C7932 /* AppDelegate.m */,
 				5C2EA5421851641500B21C52 /* ContentController.h */,
 				5C2EA5431851641500B21C52 /* ContentController.m */,
-				5CA3D19C1831DF51006C7932 /* Main.storyboard */,
 				5C4EF980186CA7BD000E0E59 /* Constants.h */,
 				5C4EF981186CA7BD000E0E59 /* Constants.m */,
 				5C4EF983186CBC15000E0E59 /* Utility.h */,

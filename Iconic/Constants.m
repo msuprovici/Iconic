@@ -122,6 +122,8 @@ NSString *const kTeamTeamsClass = @"TeamName";
 //Field keys
 NSString *const kTeams = @"teams";
 
+NSString *const kTeamsAbr = @"abriviatedName";
+
 NSString *const kLeagues = @"league";
 
 NSString *const kScore = @"score";

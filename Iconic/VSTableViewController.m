@@ -14,9 +14,13 @@
 
 @property (strong, nonatomic) NSTimer *timer;
 
+
+
 @end
 
 @implementation VSTableViewController
+
+@synthesize timer = _timer;
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
      self = [super initWithCoder:aDecoder];
@@ -44,6 +48,14 @@
     return self;
 }
 
+//get the players team passed from the leagues view controller
+-(void)initWithReceivedTeam:(PFObject *)aReceivedTeam
+{
+    self.receivedTeam = aReceivedTeam;
+    
+}
+
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -56,6 +68,76 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    //populate labels
+    
+    //my team name
+    self.myTeamName.text = [NSString stringWithFormat:@"%@",[self.receivedTeam objectForKey:kTeams]];
+    
+    //my team score
+    self.myTeamScore.text = [NSString stringWithFormat:@"%@",[self.receivedTeam objectForKey:kScore]];
+    
+    //my team name abriviated
+    self.myTeam.text = [NSString stringWithFormat:@"%@",[self.receivedTeam objectForKey:kTeamsAbr]];
+    
+    //populate days of the week labels
+    
+    //get the daily score data from the days before, if any
+    NSMutableArray * myTeamScores = [self.receivedTeam objectForKey:kScoreWeek];
+    
+    //we add today's most uptodate data to the array
+    [myTeamScores addObject:[self.receivedTeam objectForKey:kScoreToday]];
+    
+    //we add values to ensure the array is never empty through index 6
+    [myTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+    
+    //we add each day's score to the appropriate label
+    self.myTeamMonday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:0]];
+    self.myTeamTuesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:1]];
+    self.myTeamWednesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:2]];
+    self.myTeamThursday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:3]];
+    self.myTeamFriday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:4]];
+    self.myTeamSaturday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:5]];
+    self.myTeamSunday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:6]];
+    
+    
+
+    
+    
+    //vs team score
+    //hardcoded untill matchups are done
+    
+    //self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[self.receivedTeam objectForKey:kScore]];
+    self.vsTeamScore.text = @"10000";
+    
+    //vs team name abriviated
+    //self.vsTeam.text = [NSString stringWithFormat:@"%@",[self.receivedTeam objectForKey:kTeamsAbr]];
+    self.vsTeam.text = @"BRU";
+    
+    //populate days of the week labels
+    
+    //get the daily score data from the days before, if any
+    //NSMutableArray * vsTeamScores = [self.receivedTeam objectForKey:kScoreWeek];
+    NSArray* vsTeamScores = @[@100, @120, @200, @5, @355, @43, @999, @1000];
+    //we add today's most uptodate data to the array
+    [myTeamScores addObject:[self.receivedTeam objectForKey:kScoreToday]];
+    
+    //we add values to ensure the array is never empty through index 6
+    [myTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+    
+    //we add each day's score to the appropriate label
+    self.vsTeamMonday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:0]];
+    self.vsTeamTuesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:1]];
+    self.vsTeamWednesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:2]];
+    self.vsTeamThursday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:3]];
+    self.vsTeamFriday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:4]];
+    self.vsTeamSaturday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:5]];
+    self.vsTeamSunday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:6]];
+
+    
+   
+    //populate timer
     
     MZTimerLabel *timer = [[MZTimerLabel alloc] initWithLabel:_timerLabel andTimerType:MZTimerLabelTypeTimer];
     // [timer setCountDownTime:15]; //** Or you can use [timer setCountDownToDate:aDate];
@@ -146,6 +228,20 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+//method to show days in timer label
+
+- (NSString*)timerLabel:(MZTimerLabel *)timerLabel customTextToDisplayAtTime:(NSTimeInterval)time
+{
+    
+    int second = (int)time  % 60;
+    int minute = ((int)time / 60) % 60;
+    int hours = ((int)time / 7200 )% 60;
+    int days = (((int)time / 3600) / 24)% 60;
+    
+    return [NSString stringWithFormat:@"%02dd : %02dh : %02dm : %02ds", days,hours,minute,second];
+}
+
 
 - (void)viewDidUnload {
     [super viewDidUnload];
@@ -292,6 +388,10 @@
  return YES;
  }
  */
+
+
+
+
 
 #pragma mark - UITableViewDelegate
 

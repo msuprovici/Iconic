@@ -9,6 +9,7 @@
 #import "SimpleHomeViewController.h"
 #import "MyStatsViewController.h"
 #import "ContentController.h"
+#import "VSTableViewController.h"
 
 #import "Cache.h"
 
@@ -31,7 +32,7 @@ static NSString *kImageKey = @"imageKey";
 @property (nonatomic, strong) IBOutlet ContentController * contentController;
 @property (nonatomic, strong) PFObject * activityObject;
 
-
+@property (nonatomic, strong) PFObject * myteamObject;
 
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 
@@ -49,6 +50,7 @@ static NSString *kImageKey = @"imageKey";
 
 @synthesize activityPostBackgroundTaskId;
 @synthesize activityObject;
+@synthesize myteamObject;
 
 
 //Notifications NOT working
@@ -70,6 +72,7 @@ static NSString *kImageKey = @"imageKey";
 //
 //    return self;
 //}
+
 
 - (void)viewDidLoad
 {
@@ -333,8 +336,10 @@ static NSString *kImageKey = @"imageKey";
    [query2 getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)  {
       //  [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
     
-        
-        
+       
+       //adding ojbec to myteamObject
+       //[self.myteamObject setObject:object forKey:kTeams];
+      
       
         
         if (!error) {
@@ -355,6 +360,12 @@ static NSString *kImageKey = @"imageKey";
             
             if(!error)
             {
+                
+                //set the value  of myTeamObject so that we can pass object to VSTableViewController
+                self.myteamObject = object;
+                
+                
+                
                 //update the home screen
                 
             NSLog(@"team class query worked");
@@ -795,5 +806,22 @@ static NSString *kImageKey = @"imageKey";
         NSLog(@"Received Leave Team Notification on home screen");
     }
 }
+
+
+#pragma mark - Navigation
+
+//pass the team to the teammates view controller
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"vs"]) {
+        
+        //Find the row the button was selected from
+        
+        [segue.destinationViewController initWithReceivedTeam:self.myteamObject];
+        
+       
+        
+    }
+}
+
 
 @end
