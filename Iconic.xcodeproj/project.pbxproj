@@ -166,8 +166,8 @@
 		5C2EA545185164BE00B21C52 /* MyStatsContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStatsContentController.h; sourceTree = "<group>"; };
 		5C2EA546185164BE00B21C52 /* MyStatsContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyStatsContentController.m; sourceTree = "<group>"; };
 		5C2EA54818516B0E00B21C52 /* content_mystats.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = content_mystats.plist; sourceTree = "<group>"; };
-		5C328BF3185F70C100E0E985 /* VSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSViewController.h; sourceTree = "<group>"; };
-		5C328BF4185F70C100E0E985 /* VSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSViewController.m; sourceTree = "<group>"; };
+		5C328BF3185F70C100E0E985 /* VSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSViewController.h; path = Iconic/VSViewController.h; sourceTree = "<group>"; };
+		5C328BF4185F70C100E0E985 /* VSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSViewController.m; path = Iconic/VSViewController.m; sourceTree = "<group>"; };
 		5C328BF6185F773300E0E985 /* VSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCell.h; sourceTree = "<group>"; };
 		5C328BF7185F773300E0E985 /* VSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCell.m; sourceTree = "<group>"; };
 		5C328BF9186002D300E0E985 /* LeaguesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaguesViewController.h; sourceTree = "<group>"; };
@@ -434,6 +434,8 @@
 		5C2C1CD0185E98C8006722D2 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				5C328BF3185F70C100E0E985 /* VSViewController.h */,
+				5C328BF4185F70C100E0E985 /* VSViewController.m */,
 				5C2C1CCD185E98A3006722D2 /* MenuViewController.h */,
 				5C2C1CCE185E98A3006722D2 /* MenuViewController.m */,
 			);
@@ -481,8 +483,6 @@
 		5C2EA52C1851476B00B21C52 /* VS */ = {
 			isa = PBXGroup;
 			children = (
-				5C328BF3185F70C100E0E985 /* VSViewController.h */,
-				5C328BF4185F70C100E0E985 /* VSViewController.m */,
 				5C47815C18C0EE5F002E6C3F /* VSTableViewController.h */,
 				5C47815D18C0EE5F002E6C3F /* VSTableViewController.m */,
 				5CA7BC4818C1A59500DBBC7D /* VSTableViewCell.h */,

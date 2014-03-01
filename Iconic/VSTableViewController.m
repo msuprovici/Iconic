@@ -236,7 +236,7 @@
     
     int second = (int)time  % 60;
     int minute = ((int)time / 60) % 60;
-    int hours = ((int)time / 7200 )% 60;
+    int hours = ((int)time / 3600 )% 24;
     int days = (((int)time / 3600) / 24)% 60;
     
     return [NSString stringWithFormat:@"%02dd : %02dh : %02dm : %02ds", days,hours,minute,second];
