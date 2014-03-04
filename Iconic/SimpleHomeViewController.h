@@ -52,5 +52,9 @@
 
 @property (strong, nonatomic) IBOutlet PNLineChart *teamMatchChart;
 
+@property (strong, nonatomic) IBOutlet UIButton *scrollTeamsRight;
+
+@property (strong, nonatomic) IBOutlet UIButton *scrollTeamsLeft;
+
 
 @end

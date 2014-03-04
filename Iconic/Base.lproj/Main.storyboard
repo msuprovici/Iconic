@@ -197,7 +197,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="U7e-ci-fmc" customClass="PNLineChart">
-                                <rect key="frame" x="31" y="296" width="260" height="219"/>
+                                <rect key="frame" x="31" y="315" width="260" height="219"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -283,6 +283,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1G1-gp-6sX" userLabel="Button - Scroll Teams Right">
+                                <rect key="frame" x="263" y="269" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Right">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scrollTeamsRight:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="sNY-Vm-98b"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nOP-U7-SyU" userLabel="Button - Scroll Teams Left">
+                                <rect key="frame" x="20" y="267" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Left">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scrollTeamsLeft:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="hnE-yb-AOG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -296,6 +316,8 @@
                         <outlet property="pageControl" destination="pp4-bC-Hv9" id="YR2-LS-lqO"/>
                         <outlet property="playerName" destination="uXx-N8-ZNb" id="nDB-XD-jOK"/>
                         <outlet property="playerPhoto" destination="nvP-Ak-eUZ" id="Oos-3i-cPo"/>
+                        <outlet property="scrollTeamsLeft" destination="nOP-U7-SyU" id="Fui-jW-oxH"/>
+                        <outlet property="scrollTeamsRight" destination="1G1-gp-6sX" id="Eqh-3s-GNC"/>
                         <outlet property="scrollView" destination="83S-Gt-Rep" id="f3n-ah-bHJ"/>
                         <outlet property="teamMatchChart" destination="U7e-ci-fmc" id="HG3-wD-t4A"/>
                         <outlet property="vsTeamName" destination="2jy-wi-QQ1" id="NuL-Xm-XMs"/>
