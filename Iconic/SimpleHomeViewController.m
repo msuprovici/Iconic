@@ -168,8 +168,8 @@ static NSString *kImageKey = @"imageKey";
 [self performSelector:@selector(retrieveFromParse)];
     
     
-    [self.scrollTeamsLeft setEnabled:FALSE];
-    [self.scrollTeamsRight setEnabled:TRUE];
+//    [self.scrollTeamsLeft setEnabled:FALSE];
+//    [self.scrollTeamsRight setEnabled:TRUE];
 
 }
 
@@ -329,7 +329,17 @@ static NSString *kImageKey = @"imageKey";
 
             if(!error)
             {
+                //check to see if the player is on a team
+                if(objects.count > 0)
+                {
+                    
                 NSLog(@"team class query worked");
+                    
+                    
+                    //making sure these items are visible in case they were reset when the player left all teams
+                    self.teamMatchChart.hidden = NO;
+                    self.vsTeamName.hidden = NO;
+                    self.VSTeamScore.hidden = NO;
                 
                 //convert NSArray to myTeamDataArray
                 self.myTeamData = [self createMutableArray:objects];
@@ -339,12 +349,8 @@ static NSString *kImageKey = @"imageKey";
                 self.myteamObjectatIndex = [self.myTeamData objectAtIndex:myFirstTeamIndex];
                 
                 //Update team chart & data
-                //[self setTeamScore:self.myteamObjectatIndex];
-                
-                
-                //[self updateTeamChart:self.myteamObjectatIndex];
-                
-                
+                    
+                //show first team (index 0)
                 [self updateTeamChart:0];
                 
                 [self.scrollTeamsLeft setEnabled:FALSE];
@@ -376,9 +382,6 @@ static NSString *kImageKey = @"imageKey";
                 
                 for (int i = 0; i < self.myTeamData.count; i++) {
                     
-                 
-                    
-                      
                     
                     //create objects for
                     PFObject *myWeekleyTeamScores = [objects objectAtIndex:i];
@@ -387,9 +390,7 @@ static NSString *kImageKey = @"imageKey";
                     self.myTeamScores = [myWeekleyTeamScores objectForKey:kScoreWeek];
                     
                     //we add today's most uptodate data to the array
-                    //[self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
-                    
-                   
+                    [self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
                     
                     //add objects to array of teamScores(array) objects so that we don't have to download again
                     [self.arrayOfTeamScores addObject:self.myTeamScores];
@@ -400,7 +401,22 @@ static NSString *kImageKey = @"imageKey";
                 }
                
         
+            }
+                else
+                {
+                    
+                    //if the player is not on a team...
+                    self.MyTeamName.text = @"NO TEAM";
+                    self.MyTeamScore.text = @"";
+                    self.scrollTeamsRight.hidden = YES ;
+                    self.scrollTeamsLeft.hidden = YES ;
+                    self.teamMatchChart.hidden = YES;
+                    self.vsTeamName.hidden = YES;
+                    self.VSTeamScore.hidden = YES;
+                    
+                }
                 
+        
            
                 
             }
@@ -411,7 +427,7 @@ static NSString *kImageKey = @"imageKey";
                 self.MyTeamName.text = @"NO TEAM";
                 self.MyTeamScore.text = @"";
                 
-                [self.arrayOfTeamScores addObject:self.myTeamScores];
+                
                 
 //                x = 0;
 //                [self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
