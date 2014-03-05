@@ -18,7 +18,9 @@
     NSArray *teamScores;
     
     
+    
 }
+
 
 
 @property (nonatomic, strong) NSArray *contentList;

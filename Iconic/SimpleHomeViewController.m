@@ -41,6 +41,13 @@ static NSString *kImageKey = @"imageKey";
 
 @property (strong, nonatomic) NSMutableArray * myTeamScores;
 
+@property (strong, nonatomic) NSMutableArray * numberOfTeamScores;
+
+@property (strong, nonatomic) NSMutableArray * arrayOfTeamScores;
+
+@property (nonatomic, assign) int x;
+
+@property (nonatomic, assign) BOOL firstRun;
 
 
 
@@ -60,7 +67,8 @@ static NSString *kImageKey = @"imageKey";
 @synthesize activityObject;
 @synthesize myteamObject;
 @synthesize myteamObjectatIndex;
-
+@synthesize firstRun;
+@synthesize x;
 
 //Notifications NOT working
 
@@ -145,9 +153,8 @@ static NSString *kImageKey = @"imageKey";
     //[self loadScrollViewWithPage:1];
     [self.view addSubview:self.pageControl];
     
-
     
-    //set team scores
+[self performSelector:@selector(retrieveFromParse)];
     
     
 
@@ -161,7 +168,9 @@ static NSString *kImageKey = @"imageKey";
     
     //[self receiveTestNotification:(NSNotification *)];
     //Retrieve from Parse
-    [self performSelector:@selector(retrieveFromParse)];
+    //[self performSelector:@selector(retrieveFromParse)];
+    //[self performSelector:@selector(retrieveFromParse)];
+
     }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -295,7 +304,12 @@ static NSString *kImageKey = @"imageKey";
                 self.myteamObjectatIndex = [self.myTeamData objectAtIndex:myFirstTeamIndex];
                 
                 //Update team chart & data
-                [self updateTeamChart:self.myteamObjectatIndex];
+                //[self setTeamScore:self.myteamObjectatIndex];
+                
+                
+                //[self updateTeamChart:self.myteamObjectatIndex];
+                
+                [self updateTeamChart:0];
                 [self.scrollTeamsLeft setEnabled:FALSE];
                 
                 
@@ -314,13 +328,44 @@ static NSString *kImageKey = @"imageKey";
                     
                 }
                 
+                for (PFObject * object in objects)
+                {
+                    self.numberOfTeamScores = [object objectForKey:kScoreWeek];
+                    //we are storing the mumber of teams in the array so that we can use it to calculate the number of daysPlayed
+                    x = self.numberOfTeamScores.count;
+                }
                 
-                 for (PFObject *object in objects)
-                 {
-                     
-                      NSLog(@"1st query object: %@", object.objectId);
-                     
-                 }
+                
+                self.arrayOfTeamScores = [[NSMutableArray alloc] init];
+                
+                for (int i = 0; i < self.myTeamData.count; i++) {
+                    
+                 
+                    
+                      
+                    
+                    //create objects for
+                    PFObject *myWeekleyTeamScores = [objects objectAtIndex:i];
+                    
+                    //get my weekleyTeamScores(array) objects
+                    self.myTeamScores = [myWeekleyTeamScores objectForKey:kScoreWeek];
+                    
+                    //we add today's most uptodate data to the array
+                    //[self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
+                    
+                   
+                    
+                    //add objects to array of teamScores(array) objects so that we don't have to download again
+                    [self.arrayOfTeamScores addObject:self.myTeamScores];
+                    
+                    //[self.arrayOfTeamScores replaceObjectAtIndex:i withObject:self.myTeamScores];
+                        
+                    
+                }
+               
+        
+                
+           
                 
             }
             else
@@ -357,9 +402,12 @@ static NSString *kImageKey = @"imageKey";
     
         if (myTeamIndex <= self.myTeamData.count-1) {
            
-            self.myteamObjectatIndex = [self.myTeamData objectAtIndex:myTeamIndex+=1];;
+           
             
-            [self updateTeamChart:self.myteamObjectatIndex];
+             //we are no sending the index of the object to team chart rather then the whole object
+            int incrementTeamIndex = myTeamIndex += 1;
+            
+            [self updateTeamChart:incrementTeamIndex];
             
             if (myTeamIndex == self.myTeamData.count-1 )
             {
@@ -392,9 +440,15 @@ static NSString *kImageKey = @"imageKey";
     {
         [self.scrollTeamsRight setEnabled:TRUE];
         
-        self.myteamObjectatIndex = [self.myTeamData objectAtIndex:myTeamIndex-=1];
+        //self.myteamObjectatIndex = [self.myTeamData objectAtIndex:myTeamIndex-=1];
         
-        [self updateTeamChart:self.myteamObjectatIndex];
+        
+        //we are no sending the index of the object to team chart rather then the whole object
+        int decrementTeamIndex = myTeamIndex -= 1;
+        
+        [self updateTeamChart:decrementTeamIndex];
+        
+        
         
         if (myTeamIndex == myFirstTeamIndex) {
             
@@ -407,12 +461,29 @@ static NSString *kImageKey = @"imageKey";
 
 }
 
-
-
 #pragma mark update Team Chart
 
--(void)updateTeamChart:(PFObject *)object
+-(void)setTeamScore:(PFObject *)object
 {
+    // self.myteamObject = object;
+    //get the daily score data from the days before, if any
+    self.myTeamScores = [object objectForKey:kScoreWeek];
+    
+    
+    //we add today's most uptodate data to the array
+    [self.myTeamScores addObject:[object objectForKey:kScoreToday]];
+    
+    
+}
+
+
+
+//-(void)updateTeamChart:(PFObject *)object
+
+-(void)updateTeamChart:(int)index
+{
+    
+    PFObject * object = [self.myTeamData objectAtIndex:index];
     
     //set the value  of myTeamObject so that we can pass object to VSTableViewController
     self.myteamObject = object;
@@ -475,18 +546,20 @@ static NSString *kImageKey = @"imageKey";
     
     
     // Line Chart for my team
-    
-    //get the daily score data from the days before, if any
-    self.myTeamScores = [object objectForKey:kScoreWeek];
-    
-    
-    //we add today's most uptodate data to the array
-    [self.myTeamScores addObject:[object objectForKey:kScoreToday]];
-    
 
+    //set the index eagual to that of my team objects
+    int i = index;
+    
+    //create a new array that gets the object from array of team scores
+    //each object in arrayOfTeamScores is an array
+    NSMutableArray *getWeekleyTeamScores = [self.arrayOfTeamScores objectAtIndex:i];
+    
     
     //create a subarray that has the range of days played based on the amout of objects in myTeamScores
-    NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [self.myTeamScores count])];
+    
+    //using 'x' where we store the number of weekley team scores to determine the days.
+    NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, x)];
+    // NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [numberOfTeams count])]; //<-approach continues to add #s to the array eventually surppasing number of days, causing a crash
     
     //set the labels
     [lineChart setXLabels:daysPlayed];
@@ -497,7 +570,7 @@ static NSString *kImageKey = @"imageKey";
     data01.color = PNBlue;
     data01.itemCount = lineChart.xLabels.count;
     data01.getData = ^(NSUInteger index) {
-        CGFloat yValue = [[self.myTeamScores objectAtIndex:index] floatValue]/100;// <- devided points value by 100 because PNChart does not support large Y values
+        CGFloat yValue = [[getWeekleyTeamScores objectAtIndex:index] floatValue]/100;// <- devided points value by 100 because PNChart does not support large Y values
         return [PNLineChartDataItem dataItemWithY:yValue];
     };
     
@@ -508,7 +581,10 @@ static NSString *kImageKey = @"imageKey";
     //TO DO: add opposing team data here
     NSArray * dummydataArray = @[@20.1, @180.1, @26.4, @202.2, @126.2, @167.2, @276.2];
     //create a subarray that has the range of days played based on the amout of objects in myTeamScores
-    NSArray *data02Array = [dummydataArray subarrayWithRange: NSMakeRange(0, [self.myTeamScores count])];
+
+    //using 'x' where we store the number of weekley team scores to determine the days.
+    NSArray *data02Array = [dummydataArray subarrayWithRange: NSMakeRange(0, x)];
+    //NSArray *data02Array = [dummydataArray subarrayWithRange: NSMakeRange(0, [numberOfTeams count])];
     
     
     //NSArray *data02Array = @[@10, @20, @30, @40];
@@ -521,6 +597,8 @@ static NSString *kImageKey = @"imageKey";
     };
     
     lineChart.chartData = @[data01, data02];
+    
+    
     [lineChart strokeChart];
     [self.teamMatchChart addSubview:lineChart];
     [self.view addSubview:self.yChartLabel];
@@ -825,6 +903,8 @@ static NSString *kImageKey = @"imageKey";
         
     }
 }
+
+
 
 
 @end
