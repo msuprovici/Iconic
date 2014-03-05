@@ -47,7 +47,7 @@ static NSString *kImageKey = @"imageKey";
 
 @property (nonatomic, assign) int x;
 
-@property (nonatomic, assign) BOOL firstRun;
+@property (nonatomic, assign) BOOL receivedNotification;
 
 
 
@@ -67,7 +67,7 @@ static NSString *kImageKey = @"imageKey";
 @synthesize activityObject;
 @synthesize myteamObject;
 @synthesize myteamObjectatIndex;
-@synthesize firstRun;
+//@synthesize receivedNotification;
 @synthesize x;
 
 //Notifications NOT working
@@ -95,6 +95,17 @@ static NSString *kImageKey = @"imageKey";
 {
     [super viewDidLoad];
     
+    [self setReceivedNotification:NO];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTeamNotification:)
+                                                 name:@"JoinedTeam"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTeamNotification:)
+                                                 name:@"LeftTeam"
+                                               object:nil];
 
     //test tournament function
     
@@ -157,15 +168,39 @@ static NSString *kImageKey = @"imageKey";
 [self performSelector:@selector(retrieveFromParse)];
     
     
+    [self.scrollTeamsLeft setEnabled:FALSE];
+    [self.scrollTeamsRight setEnabled:TRUE];
 
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES ];
-   
+//    
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"JoinedTeam" object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LeftTeam" object:nil];
+
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(receiveTeamNotification:)
+//                                                 name:@"JoinedTeam"
+//                                               object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(receiveTeamNotification:)
+//                                                 name:@"LeftTeam"
+//                                               object:nil];
+
     
     
+    if (self.receivedNotification == YES) {
+        [self retrieveFromParse];
+         [self setReceivedNotification:NO];
+    }
+    
+    
+    
+    //[self.view setNeedsDisplay];
     //[self receiveTestNotification:(NSNotification *)];
     //Retrieve from Parse
     //[self performSelector:@selector(retrieveFromParse)];
@@ -309,10 +344,11 @@ static NSString *kImageKey = @"imageKey";
                 
                 //[self updateTeamChart:self.myteamObjectatIndex];
                 
+                
                 [self updateTeamChart:0];
+                
                 [self.scrollTeamsLeft setEnabled:FALSE];
-                
-                
+                [self.scrollTeamsRight setEnabled:TRUE];
                 
                 
                 if(self.myTeamData.count <= 1)
@@ -374,6 +410,12 @@ static NSString *kImageKey = @"imageKey";
                 //Hardcoded for testing
                 self.MyTeamName.text = @"NO TEAM";
                 self.MyTeamScore.text = @"";
+                
+                [self.arrayOfTeamScores addObject:self.myTeamScores];
+                
+//                x = 0;
+//                [self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
+//                [self.arrayOfTeamScores addObject:self.myTeamScores];
 
             }
                 
@@ -873,7 +915,9 @@ static NSString *kImageKey = @"imageKey";
     if ([[notification name] isEqualToString:@"JoinedTeam"])
     {
         //Retrieve from Parse
-        [self performSelector:@selector(retrieveFromParse)];
+        [self retrieveFromParse];
+       //[self performSelector:@selector(retrieveFromParse)];
+        [self setReceivedNotification:YES];
         [self.view setNeedsDisplay];
         
         NSLog(@"Received Joined Team Notification on home screen");
@@ -882,8 +926,12 @@ static NSString *kImageKey = @"imageKey";
     else if ([[notification name] isEqualToString:@"LeftTeam"])
     {
         //Retrieve from Parse
-        [self performSelector:@selector(retrieveFromParse)];
-        [self.view setNeedsDisplay];
+        //[self performSelector:@selector(retrieveFromParse)];
+        [self retrieveFromParse];
+        
+       [self.view setNeedsDisplay];
+        [self setReceivedNotification:YES];
+        //self.receivedNotification = TRUE;
         NSLog(@"Received Leave Team Notification on home screen");
     }
 }
