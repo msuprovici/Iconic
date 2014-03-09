@@ -45,6 +45,8 @@ static NSString *kImageKey = @"imageKey";
 
 @property (strong, nonatomic) NSMutableArray * arrayOfTeamScores;
 
+@property (strong, nonatomic) NSArray * myTeamNames;
+
 @property (nonatomic, assign) int x;
 
 @property (nonatomic, assign) BOOL receivedNotification;
@@ -109,22 +111,6 @@ static NSString *kImageKey = @"imageKey";
 
     //test tournament function
     
-//    [PFCloud callFunctionInBackground:@"tournament2"
-//                       withParameters:@{@"NumberOfTeams":@"4"}
-//                                block:^(NSString *result, NSError *error) {
-//                                    if (!error) {
-//                                        // show matchups
-//                                        
-//                                        /*ScheduleGenerator *item1 = [[ScheduleGenerator alloc] init];
-//                                         item1.itemName = [NSString stringWithFormat: @"%@", result
-//                                         [self.scheduledMatchups addObject:item1];*/
-//                                        
-//                                        
-//                                        NSLog(@"%@", result);
-//                                    }
-//                                }];
-    
- 
     
     //show player name header
     [self playerNameHeader];
@@ -343,6 +329,8 @@ static NSString *kImageKey = @"imageKey";
                 
                 //convert NSArray to myTeamDataArray
                 self.myTeamData = [self createMutableArray:objects];
+                 
+            
                 
                 //get the 1st Object in the array
                 int myFirstTeamIndex = [self.myTeamData indexOfObject:self.myTeamData.firstObject];
@@ -437,7 +425,73 @@ static NSString *kImageKey = @"imageKey";
                 
         
         }];
+    
+    //Query Team Class to see if the player's current team is the HOME team
+    PFQuery *queryTeamMatchupsClass = [PFQuery queryWithClassName:kTeamMatchupClass];
+ 
+    
+    [queryTeamMatchupsClass whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+    [queryTeamMatchupsClass includeKey:kHomeTeam];
+    [queryTeamMatchupsClass includeKey:kAwayTeam];
+    [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        
+        
+        if(!error)
+        {
+            NSLog(@"number of objects received: %d", objects.count);
             
+            for (PFObject *object in objects)
+            {
+                
+                NSString * round = [object objectForKey:kRound];
+                //find the away team
+                PFObject *awayTeamPointer =[object objectForKey:kAwayTeam];
+                
+                
+                //need to use a dynamic variable for the current round here
+                //hardcoeded round '3' for testing
+                if ([round  isEqual: @"3"])
+                {
+                        //use the object that the class is pointing to in order to set the oposite team's name & score
+                        self.vsTeamName.text = [awayTeamPointer objectForKey:kTeams];
+                        self.VSTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeamPointer objectForKey:kScore]];
+                    
+                }
+                
+                
+            }
+        }
+        
+    }];
+    
+    
+    //parse forces us to make to calls here
+    //need a better apprach then reapting the same calls twice
+    
+    //Query Team Class to see if the player's current team is the AWAY team
+    PFQuery *queryawayTeamMatchupsClass = [PFQuery queryWithClassName:kTeamMatchupClass];
+    
+    
+    [queryawayTeamMatchupsClass whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+    //[queryTeamMatchupsClass whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+    
+    [queryawayTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        
+        
+        if(!error)
+        {
+            NSLog(@"number of objects received: %d", objects.count);
+            
+            for (int i = 0; i < objects.count; i++) {
+                
+            }
+        }
+        
+    }];
+
+    
     
 }
 
@@ -554,8 +608,8 @@ static NSString *kImageKey = @"imageKey";
     self.MyTeamName.textColor = PNBlue;
     self.MyTeamScore.textColor = PNBlue;
     
-    self.vsTeamName.text = @"VS Team";
-    self.VSTeamScore.text = @"1200";
+//    self.vsTeamName.text = @"VS Team";
+//    self.VSTeamScore.text = @"1200";
     self.vsTeamName.textColor = PNFreshGreen;
     self.VSTeamScore.textColor = PNFreshGreen;
     

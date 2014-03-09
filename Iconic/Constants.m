@@ -131,6 +131,23 @@ NSString *const kScore = @"score";
 NSString *const kScoreToday = @"scoretoday";
 NSString *const kScoreWeek = @"scoreweek"; //array of kScoreToday
 
+
+#pragma mark - Team Matchups Class
+
+//Class key
+NSString *const kTeamMatchupClass = @"TeamMatchups";
+
+//Field keys
+NSString *const kHomeTeam = @"hometeam";//pointer to object in Teams class
+NSString *const kHomeTeamName = @"hometeamname";
+NSString *const kHomeTeamNumber = @"hometeamNumber";
+
+NSString *const kAwayTeam = @"awayteam";//pointer to object in Teams class
+NSString *const kAwayTeamName = @"awayteamname";
+NSString *const kAwayTeamNumber = @"awayteamNumber";
+
+NSString *const kRound = @"round";
+
 #pragma mark - Leage Class
 //Class key
 NSString *const kLeagueClass = @"league";

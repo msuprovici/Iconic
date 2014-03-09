@@ -129,6 +129,21 @@ NSString *const kScore;
 NSString *const kScoreToday;
 NSString *const kScoreWeek;
 
+#pragma mark - Team Matchups Class
+
+//Class key
+NSString *const kTeamMatchupClass;
+
+//Field keys
+NSString *const kHomeTeam;
+NSString *const kHomeTeamName;
+NSString *const kHomeTeamNumber;
+NSString *const kAwayTeam;
+NSString *const kAwayTeamName;
+NSString *const kAwayTeamNumber;
+NSString *const kRound;
+
+
 #pragma mark - Leage Class
 //Class key
 NSString *const kLeagueClass;
