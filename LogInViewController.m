@@ -130,6 +130,7 @@
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
     NSLog(@"Failed to log in...");
+    [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
 }
 
 // Sent to the delegate when the log in screen is dismissed.
