@@ -12,6 +12,7 @@
 #import "VSTableViewController.h"
 
 #import "Cache.h"
+#import "Constants.h"
 
 #import "Constants.h"
 #import "PNChart.h"
@@ -20,6 +21,8 @@
 
 #import "UIImage+RoundedCornerAdditions.h"
 #import "UIImage+ResizeAdditions.h"
+
+#import <CoreMotion/CoreMotion.h>
 
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
@@ -74,6 +77,13 @@ static NSString *kImageKey = @"imageKey";
 
 @property (nonatomic, assign) UIBackgroundTaskIdentifier activityPostBackgroundTaskId;
 
+
+
+//step counting
+
+@property (nonatomic, strong) CMStepCounter *cmStepCounter;
+@property (nonatomic, strong) NSOperationQueue *operationQueue;
+
 @end
 
 
@@ -107,6 +117,15 @@ static NSString *kImageKey = @"imageKey";
 //    return self;
 //}
 
+
+//- (NSOperationQueue *)operationQueue
+//{
+//    if (_operationQueue == nil)
+//    {
+//        _operationQueue = [NSOperationQueue new];
+//    }
+//    return _operationQueue;
+//}
 
 - (void)viewDidLoad
 {
@@ -165,9 +184,16 @@ static NSString *kImageKey = @"imageKey";
     //[self loadScrollViewWithPage:1];
     [self.view addSubview:self.pageControl];
     
+ 
     
+    //retrived team data from parse and populate chart
     [self performSelector:@selector(retrieveFromParse)];
     
+    //increment points
+    [self incrementPlayerPoints];
+  
+    
+
     
     
 //    
@@ -196,7 +222,42 @@ static NSString *kImageKey = @"imageKey";
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES ];
-//    
+    
+    //Page control for MyStatsView
+    NSUInteger numberPages = self.contentList.count;
+    
+    // view controllers are created lazily
+    // in the meantime, load the array with placeholders which will be replaced on demand
+    NSMutableArray *controllers = [[NSMutableArray alloc] init];
+    for (NSUInteger i = 0; i < numberPages; i++)
+    {
+		[controllers addObject:[NSNull null]];
+    }
+    self.viewControllers = controllers;
+    
+    // a page is the width of the scroll view
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.contentSize =
+    CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.scrollsToTop = NO;
+    self.scrollView.delegate = self;
+    
+    self.pageControl.numberOfPages = numberPages;
+    self.pageControl.currentPage = 0;
+    
+    // pages are created on demand
+    // load the visible page
+    // load the page on either side to avoid flashes when the user starts scrolling
+    //
+    [self loadScrollViewWithPage:0];
+    //[self loadScrollViewWithPage:1];
+    [self.view addSubview:self.pageControl];
+    
+    
+//    [self loadSteps];
+//
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"JoinedTeam" object:nil];
 //    
 //    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LeftTeam" object:nil];
@@ -947,211 +1008,7 @@ static NSString *kImageKey = @"imageKey";
 
 
 
-#pragma mark points & xp calculations
 
-
-
--(void)savePoints
-{
-    
-    //test points value here
-    //will need points
-    NSNumber *newPoints = [self calculatePoints:108];
-  
-    
-// Save points to ativity class
-    
-    PFObject *activity = [PFObject objectWithClassName:kActivityClassKey];
-    [activity setObject:[PFUser currentUser] forKey:kActivityUserKey];
-    [activity setObject:newPoints forKey:kActivityKey];
-    
-    // Activity is public, but may only be modified by the user
-          PFACL *activityACL = [PFACL ACLWithUser:[PFUser currentUser]];
-          [activityACL setPublicReadAccess:YES];
-          activity.ACL = activityACL;
-
-    
-    [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-          //  NSLog(@"Points uploaded");
-            [[Cache sharedCache] setAttributesForActivity:activity likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
-
-        }
-        
-        else {
-            NSLog(@"Points failed to save: %@", error);
-        }
-        
-    }];
-    
-    //increment the player's points
-    PFObject *playerPoints = [PFUser currentUser];
-    
-    //increment the player's TOTAL lifetime points
-    [playerPoints incrementKey:kPlayerPoints byAmount:newPoints];
-    
-    //increment the player's today's points
-    [playerPoints incrementKey:kPlayerPointsToday byAmount:newPoints];
-    
-    [playerPoints saveInBackground];
-    
-    
-    //increment team's points by
-    
-    //Query Team Class
-    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
-    
-    //Query Teamates Class
-    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
-    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    
-   [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
-    
-    
-   [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
-    
-   [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        
-        
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu objects", (unsigned long)objects.count);
-            for (PFObject *object in objects)
-            
-            {
-                  NSLog(@"%@", object.objectId);
-
-                
-                if (!error) {
-                
-                    //increment the team's TOTAL points
-                [object incrementKey:kScore byAmount:newPoints];
-                    
-                    //increment the team's points for today
-                 [object incrementKey:kScoreToday byAmount:newPoints];
-                    
-                [object saveInBackground];
-                }
-                  else
-                  {
-                      NSLog(@"error in inner query");
-                  }
-            }
-            
-        }
-       else
-       {
-           NSLog(@"error");
-       }
-        
-        
-        
-        
-    }];
-
-    
-    
-    
-    
-//    //if it's the current user update points
-//    if (currentUser) {
-//        
-//        
-//        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
-//         {
-//             //To Do: create method for generating by amount increase in points & when to reset. 100 value is currently hardcoded.
-//             [points incrementKey:kPlayerPoints byAmount:[self calculatePoints:100]];
-//             
-//             [points saveInBackground];
-//             
-//             
-//             
-//             
-//             //[points saveEventually];
-//             //[points refresh]; //<- long running operation on the main thread
-//             
-//         }];
-//        
-//    }
-//    
-//    //if it's a new user create a new points object
-//    else
-//    {
-//        
-//        PFObject *points = [PFUser currentUser];
-//        
-//        [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
-//        points[kPlayerPoints]= [self calculatePoints:150];//<- hardcoded for now
-//        
-//        // Activity is public, but may only be modified by the user
-//        PFACL *activityACL = [PFACL ACLWithUser:[PFUser currentUser]];
-//        [activityACL setPublicReadAccess:YES];
-//        points.ACL = activityACL;
-//        
-//        // Request a background execution task to allow us to finish uploading the points even if the app is backgrounded
-//        self.activityPostBackgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-//            [[UIApplication sharedApplication] endBackgroundTask:self.activityPostBackgroundTaskId];
-//        }];
-//
-//        // save
-//        [points saveInBackground];
-//        
-////        [points saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-////            if (succeeded) {
-////                NSLog(@"Activity uploaded");
-////                
-////                [[Cache sharedCache] setAttributesForActivity:points likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
-////                
-////                // userInfo might contain any caption which might have been posted by the uploader
-////                if (userInfo) {
-////                    NSString *commentText = [userInfo objectForKey:kEditActivityViewControllerUserInfoCommentKey];
-////                    
-////                    if (commentText && commentText.length != 0) {
-////                        // create and save photo caption
-////                        PFObject *comment = [PFObject objectWithClassName:kPlayerActionClassKey];
-////                        [comment setObject:kPlayerActionTypeComment forKey:kPlayerActionTypeKey];
-////                        [comment setObject:points forKey:kActivityClassKey];
-////                        [comment setObject:[PFUser currentUser] forKey:kPlayerActionFromUserKey];
-////                        [comment setObject:[PFUser currentUser] forKey:kPlayerActionToUserKey];
-////                        [comment setObject:commentText forKey:kPlayerActionContentKey];
-////                        
-////                        PFACL *ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-////                        [ACL setPublicReadAccess:YES];
-////                        comment.ACL = ACL;
-////                        
-////                        [comment saveEventually];
-////                        [[Cache sharedCache] incrementCommentCountForActivity:points];
-////                    }
-////                }
-////                
-////                [[NSNotificationCenter defaultCenter] postNotificationName:PAPTabBarControllerDidFinishEditingPhotoNotification object:points];
-////            } else {
-////                NSLog(@"Photo failed to save: %@", error);
-////                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't post your photo" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Dismiss", nil];
-////                [alert show];
-////            }
-////            [[UIApplication sharedApplication] endBackgroundTask:self.activityPostBackgroundTaskId];
-////        }];
-//
-//
-//    }
-//    
-//    
-    
-}
-
--(NSNumber*)calculatePoints:(float)steps
-{
-    
-    //alogrithm for generating points from steps: yourPoints = ((0.85^( ln(steps) /ln (2)))/time)*steps*constantValue
-    
-    //Converting float to NSNumber
-    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50)];//rounded up to the largest following integer using ceiling function
-    
-    return points;
-}
 
 
 - (void)didReceiveMemoryWarning
@@ -1213,6 +1070,148 @@ static NSString *kImageKey = @"imageKey";
        
         
     }
+}
+
+#pragma mark - points & xp calculations
+
+
+-(void)incrementPlayerPoints
+{
+    self.stepCounter = [[CMStepCounter alloc] init];
+    NSDate *now = [NSDate date];
+    //NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
+    
+    NSDate *from = [self beginningOfDay:[NSDate date]];
+    
+    //find the number of steps I have take today
+    [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
+
+        //convert steps to points
+        NSNumber *myPoints = [self calculatePoints:numberOfSteps];
+
+        PFObject *playerPoints = [PFUser currentUser];
+        
+        PFQuery *query = [PFUser query];
+        [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            
+            if(!error)
+            {
+                //retrieve the number of points in the database
+                NSNumber* retrievedPoints = [object objectForKey:kPlayerPointsToday];
+                
+                //convert nsnumbers to an ints so we can do math
+                int retrievedPointsValue = [retrievedPoints intValue];
+                //NSLog(@"retrievedPointsValue: %d", retrievedPointsValue);
+                
+                int myPointsValue = [myPoints intValue];
+                //NSLog(@"myPointsValue: %d", myPointsValue);
+                
+                //get delta between my current points and what is stored in the database
+                int pointsDeltaValue = myPointsValue - retrievedPointsValue;
+                //NSLog(@"pointsDeltaValue: %d", pointsDeltaValue);
+                
+                //convert delta back to nsnumber
+                NSNumber* pointsDelta = [NSNumber numberWithInt:pointsDeltaValue];
+                
+                
+                //increment myPoints
+                [playerPoints incrementKey:kPlayerPointsToday byAmount:pointsDelta];
+                [playerPoints incrementKey:kPlayerPoints byAmount:pointsDelta];
+                
+
+                //save points
+                [playerPoints saveInBackground];
+                
+                //increment the points for all my teams
+                [self incrementMyTeamsPoints:pointsDelta];
+    
+            }
+
+        }];
+
+    }];
+    
+}
+
+-(void)incrementMyTeamsPoints:(NSNumber*)delta
+{
+
+    //Query Team Class
+    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+    
+    //Query Teamates Class
+    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+//    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+    
+    //Query where the current user is a teamate
+    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+
+        if (!error) {
+            // The find succeeded.
+            //NSLog(@"Successfully retrieved my %lu teams", (unsigned long)objects.count);
+            for (PFObject *object in objects)
+                
+            {
+                //NSLog(@"%@", object.objectId);
+                
+                
+                if (!error) {
+                    
+                    //increment the team's TOTAL points
+                    [object incrementKey:kScore byAmount:delta];
+                    
+                    //increment the team's points for today
+                    [object incrementKey:kScoreToday byAmount:delta];
+                    
+                    [object saveInBackground];
+                }
+                else
+                {
+                    NSLog(@"error in inner query");
+                }
+            }
+            
+        }
+        else
+        {
+            NSLog(@"error");
+        }
+
+    }];
+
+}
+
+
+//find the beginning of the day
+-(NSDate *)beginningOfDay:(NSDate *)date
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:( NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit ) fromDate:date];
+    
+    [components setHour:0];
+    [components setMinute:0];
+    [components setSecond:0];
+    
+    return [cal dateFromComponents:components];
+    
+}
+
+-(NSNumber*)calculatePoints:(float)steps
+{
+    
+    //alogrithm for generating points from steps: yourPoints = ((0.85^( ln(steps) /ln (2)))/time)*steps*constantValue
+    
+    //Converting float to NSNumber
+    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50)];//rounded up to the largest following integer using ceiling function
+    
+    return points;
 }
 
 

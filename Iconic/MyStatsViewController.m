@@ -9,9 +9,11 @@
 #import "MyStatsViewController.h"
 #import  <Parse/Parse.h>
 #import "Constants.h"
+#import "Cache.h"
 
 #import "UIImage+RoundedCornerAdditions.h"
 #import "UIImage+ResizeAdditions.h"
+#import <CoreMotion/CoreMotion.h>
 
 @interface MyStatsViewController ()
 {
@@ -52,7 +54,7 @@
     
     [super viewDidLoad];
     
-
+    [self getPlayerSteps];
     
     
     
@@ -78,7 +80,7 @@
                     
                     //self.viewTitle.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerTitle]] ;
                     
-                    self.pointsValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerPointsToday]];
+//                    self.pointsValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerPointsToday]];
                     
                     self.xpValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerXP]];
                     
@@ -105,6 +107,7 @@
             }
 
         self.stepsImage.hidden = YES;
+        self.stepsCountingLabel.hidden = YES;
         self.viewTitle.hidden = YES;
         self.statsImage.hidden = YES;
         self.xpLabel.text = @"Level";
@@ -128,6 +131,8 @@
             if (pointslabelNumber == 1) {
                 
                 self.viewTitle.hidden = YES;
+                 self.stepsCountingLabel.hidden = NO;
+                self.xpValue.hidden = YES;
 
 //            self.viewTitle.text = @"Today";
             self.xpLabel.text = @"Steps"; //[NSString stringWithFormat:@"XP", myArray[i]];
@@ -168,6 +173,7 @@
             
             self.pointsImage.hidden = YES;
             self.stepsImage.hidden = YES;
+            self.stepsCountingLabel.hidden = YES;
             self.timeActiveLabel.hidden = YES;
             self.pointsLabel.hidden = true;
             self.xpLabel.hidden = true;
@@ -247,6 +253,13 @@
     }
 //retrive table view data from parse
 
+
+
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    [self getPlayerSteps];
+//}
+
 - (void)progressChange
 {
     
@@ -271,6 +284,170 @@
     
 }
 
+//- (void)updateStepLabel
+//{
+//    NSInteger numberOfSteps = [[NSUserDefaults standardUserDefaults] integerForKey:STEPS_KEY];
+//    // doing %li and (long) so that we're safe for 64-bit
+//    //MyStatsViewController *controller = [MyStatsViewController alloc];
+//    self.stepsCountingLabel.text = [NSString stringWithFormat:@"%li", (long)numberOfSteps];
+//}
+
+// this method sets up the steps counter
+//- (void)loadSteps
+//{
+////    // the if statement checks whether the device supports step counting (ie whether it has an M7 chip)
+////    if ([CMStepCounter isStepCountingAvailable]) {
+////        // the step counter needs a queue, so let's make one
+////        NSOperationQueue *queue = [NSOperationQueue new];
+////        // call it something appropriate
+////        queue.name = @"Step Counter Queue";
+////        // now to create the actual step counter
+////        CMStepCounter *stepCounter = [CMStepCounter new];
+////        // this is where the brunt of the action happens
+////        [stepCounter startStepCountingUpdatesToQueue:queue updateOn:1 withHandler:^(NSInteger numberOfSteps, NSDate *timestamp, NSError *error) {
+////            // save the numberOfSteps value to standardUserDefaults, and then update the step label
+////            [[NSUserDefaults standardUserDefaults] setInteger:numberOfSteps forKey:STEPS_KEY];
+////            [self updateStepLabel];
+////        }];
+////    }
+//    
+////    NSDate *now = [NSDate date];
+////    
+////    // Array to hold step values
+////    _stepsArray = [[NSMutableArray alloc] initWithCapacity:7];
+////    
+////    // Check if step counting is avaliable
+////    if ([CMStepCounter isStepCountingAvailable]) {
+////        // Init step counter
+////        self.cmStepCounter = [[CMStepCounter alloc] init];
+////        // Tweak this value as you need (you can also parametrize it)
+////        NSInteger daysBack = 6;
+////        for (NSInteger day = daysBack; day > 0; day--) {
+////            NSDate *fromDate = [now dateByAddingTimeInterval: -day * 24 * 60 * 60];
+////            NSDate *toDate = [fromDate dateByAddingTimeInterval:24 * 60 * 60];
+////            
+////            [self.cmStepCounter queryStepCountStartingFrom:fromDate to:toDate     toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error) {
+////                if (!error) {
+////                    NSLog(@"queryStepCount returned %ld steps", (long)numberOfSteps);
+////                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+////                        [_stepsArray addObject:@(numberOfSteps)];
+////                        
+////                        if ( day == 1) { // Just reached the last element, do what you want with the data
+////                            NSLog(@"_stepsArray filled with data: %@", _stepsArray);
+////                            // [self updateMyUI];
+////                        }
+////                    }];
+////                } else {
+////                    NSLog(@"Error occured: %@", error.localizedDescription);
+////                }
+////            }];
+////        }
+////    } else {
+////        NSLog(@"device not supported");
+////    }
+//    self.stepCounter = [[CMStepCounter alloc] init];
+//    NSDate *now = [NSDate date];
+//    NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
+//    
+//    [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
+//                                         
+//       self.stepsCountingLabel.text = [@(numberOfSteps) stringValue];
+//       
+//    
+//    
+//    }];
+//    
+//    
+//}
+
+
+//calculate a player's steps
+-(void)getPlayerSteps
+{
+    self.stepCounter = [[CMStepCounter alloc] init];
+    NSDate *now = [NSDate date];
+    //NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
+    
+    NSDate *from = [self beginningOfDay:[NSDate date]];
+    
+    [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
+        
+        
+        
+        self.stepsCountingLabel.text = [@(numberOfSteps) stringValue];
+        
+        NSNumber *myPoints = [self calculatePoints:numberOfSteps];
+        
+        self.pointsValue.text = [NSString stringWithFormat:@"%@",myPoints] ;
+        
+        //increment the player's points
+        PFObject *playerPoints = [PFUser currentUser];
+        
+        //increment the player's TOTAL lifetime points
+//        [playerPoints incrementKey:kPlayerPoints byAmount:myPoints];
+        //[playerPoints setObject:myPoints forKey:kPlayerPoints];
+        //increment the player's today's points
+//        [playerPoints incrementKey:kPlayerPointsToday byAmount:myPoints];
+        //[playerPoints setObject:myPoints forKey:kPlayerPointsToday];
+        
+        //[playerPoints saveInBackground];
+        
+        
+        
+        
+        
+//        PFQuery *query = [PFUser query];
+//        
+//        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//            
+//            if(!error)
+//            {
+//            
+//            NSNumber* retrievedPoints = [object objectForKey:kPlayerPointsToday];
+//            
+//            int retrievedPointsValue = [retrievedPoints intValue];
+//             NSLog(@"retrievedPointsValue: %d", retrievedPointsValue);
+//            
+//            int myPointsValue = [myPoints intValue];
+//            NSLog(@"myPointsValue: %d", myPointsValue);
+//                
+//            int pointsDeltaValue = myPointsValue - retrievedPointsValue;
+//             NSLog(@"pointsDeltaValue: %d", pointsDeltaValue);
+//            
+//            NSNumber* pointsDelta = [NSNumber numberWithInt:pointsDeltaValue];
+//            
+//            [playerPoints incrementKey:kPlayerPointsToday byAmount:pointsDelta];
+//            
+//            [playerPoints saveInBackground];
+//            }
+//            
+//            
+//            
+//        }];
+
+
+        
+        
+        
+    }];
+
+}
+
+
+
+//find the beginning of the day
+-(NSDate *)beginningOfDay:(NSDate *)date
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:( NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit ) fromDate:date];
+    
+    [components setHour:0];
+    [components setMinute:0];
+    [components setSecond:0];
+    
+    return [cal dateFromComponents:components];
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -278,65 +455,116 @@
     // Dispose of any resources that can be recreated.
 }
 
-//-(void)retrievePlayerStats
-//{
-//    PFUser *user = [PFUser currentUser];
-//    
-//    
-//    PFQuery *query = [PFUser query];
-//    //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//    //query.cachePolicy = kPFCachePolicyNetworkOnly;
-//
-//     PFObject *playerStats = [PFUser currentUser];
-//    [query includeKey:kUser];
-//    [query includeKey:KUsername];
-//    [query includeKey:kPlayerPoints];
-//    [query includeKey:kPlayerXP];
-//    [[PFUser currentUser] refresh];
-//    [query whereKey:kUser equalTo:user];
-//    
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-//     {
-//         if(!error)
-//         {
-//             for (PFObject *object in objects) {
-//                 //retrieve player stats from server
-//                 NSString *playerName = playerStats[KUsername];
-//                 PFFile *profilePicture = playerStats[kProfilePicture];
-//                 NSString *points = [NSString stringWithFormat:@"%@",[[PFUser currentUser]valueForKey:kPlayerPoints]];
-//                 NSString *xp = [NSString stringWithFormat:@"%@",[[PFUser currentUser]valueForKey:kPlayerPoints]];
-//                 
-//                 
-//                 
-//                 int steps = [[playerStats objectForKey:kPlayerSteps]intValue];//TO DO: retrieve steps from M7
-//                 NSString *playerTitle = playerStats[KPlayerTitle];
-//                 
-//                 //Download & display player photo from parse server
-//                 PFImageView *playerProfilePicture = [[PFImageView alloc] init];
-//                 playerProfilePicture.image = [UIImage imageNamed:@"empty_avatar.png"];//placeholder iamge
-//                 playerProfilePicture.file = (PFFile *)profilePicture;
-//                 [playerProfilePicture loadInBackground];
-//                 
-//                 
-//                 //         controller.statsImage.image = [UIImage imageNamed:[numberItem valueForKey:kImageKey]];
-//                 //         controller.viewTitle.text = [numberItem valueForKey:kNameKey];
-//                 
-//                 self.playerName.text = playerName;
-//                 self.playerPhoto = playerProfilePicture;
-//                 self.viewTitle.text = playerTitle;
-//                 self.xpValue.text = xp;
-//                 self.pointsValue.text = points;
-//
-//             }
-//         }
-//         else
-//         {
-//             NSLog(@"did not retrive user stats");
-//             
-//                  }
-//     }];
-//    
-//}
-//
+-(void)savePoints
+{
+    
+    //test points value here
+    //will need points
+    NSNumber *newPoints = [self calculatePoints:108];
+    
+    
+    // Save points to ativity class
+    
+    PFObject *activity = [PFObject objectWithClassName:kActivityClassKey];
+    [activity setObject:[PFUser currentUser] forKey:kActivityUserKey];
+    [activity setObject:newPoints forKey:kActivityKey];
+    
+    // Activity is public, but may only be modified by the user
+    PFACL *activityACL = [PFACL ACLWithUser:[PFUser currentUser]];
+    [activityACL setPublicReadAccess:YES];
+    activity.ACL = activityACL;
+    
+    
+    [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            //  NSLog(@"Points uploaded");
+            [[Cache sharedCache] setAttributesForActivity:activity likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
+            
+        }
+        
+        else {
+            NSLog(@"Points failed to save: %@", error);
+        }
+        
+    }];
+    
+    //increment the player's points
+    PFObject *playerPoints = [PFUser currentUser];
+    
+    //increment the player's TOTAL lifetime points
+    [playerPoints incrementKey:kPlayerPoints byAmount:newPoints];
+    
+    //increment the player's today's points
+    [playerPoints incrementKey:kPlayerPointsToday byAmount:newPoints];
+    
+    [playerPoints saveInBackground];
+    
+    
+    //increment team's points by
+    
+    //Query Team Class
+    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+    
+    //Query Teamates Class
+    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+    
+    
+    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        
+        
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu objects", (unsigned long)objects.count);
+            for (PFObject *object in objects)
+                
+            {
+                NSLog(@"%@", object.objectId);
+                
+                
+                if (!error) {
+                    
+                    //increment the team's TOTAL points
+                    [object incrementKey:kScore byAmount:newPoints];
+                    
+                    //increment the team's points for today
+                    [object incrementKey:kScoreToday byAmount:newPoints];
+                    
+                    [object saveInBackground];
+                }
+                else
+                {
+                    NSLog(@"error in inner query");
+                }
+            }
+            
+        }
+        else
+        {
+            NSLog(@"error");
+        }
+        
+        
+        
+        
+    }];
+}
+
+-(NSNumber*)calculatePoints:(float)steps
+{
+    
+    //alogrithm for generating points from steps: yourPoints = ((0.85^( ln(steps) /ln (2)))/time)*steps*constantValue
+    
+    //Converting float to NSNumber
+    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50)];//rounded up to the largest following integer using ceiling function
+    
+    return points;
+}
 
 @end

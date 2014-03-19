@@ -19,6 +19,9 @@ NSString *const kUserDefaultsActivityFeedViewControllerLastRefreshKey    = @"com
 NSString *const kUserDefaultsCacheFacebookFriendsKey                     = @"com.stickyplay.Iconic.userDefaults.cache.facebookFriends";
 
 
+//step counting
+NSString *const STEPS_KEY = @"steps";
+
 #pragma mark - Launch URLs
 
 NSString *const kLaunchURLHostLoadActivity = @"camera";// <- define

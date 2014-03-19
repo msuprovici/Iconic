@@ -126,6 +126,7 @@
 		5CD93835187B551D006CE08B /* CustomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD93834187B551D006CE08B /* CustomTransition.m */; };
 		5CD93838187B5627006CE08B /* DialogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD93837187B5627006CE08B /* DialogViewController.m */; };
 		5CD9383A187B814F006CE08B /* achievment_test.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD93839187B814F006CE08B /* achievment_test.png */; };
+		5CE57DE718D8C2F0006C9F31 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE57DE618D8C2F0006C9F31 /* CoreMotion.framework */; };
 		5CEC3BDE18A2A86200C444FA /* TeamPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC3BDD18A2A86200C444FA /* TeamPlayerCell.m */; };
 		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
 		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
@@ -342,6 +343,7 @@
 		5CD93836187B5627006CE08B /* DialogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialogViewController.h; sourceTree = "<group>"; };
 		5CD93837187B5627006CE08B /* DialogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogViewController.m; sourceTree = "<group>"; };
 		5CD93839187B814F006CE08B /* achievment_test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = achievment_test.png; sourceTree = "<group>"; };
+		5CE57DE618D8C2F0006C9F31 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		5CEC3BDC18A2A86200C444FA /* TeamPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamPlayerCell.h; sourceTree = "<group>"; };
 		5CEC3BDD18A2A86200C444FA /* TeamPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamPlayerCell.m; sourceTree = "<group>"; };
 		5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CE57DE718D8C2F0006C9F31 /* CoreMotion.framework in Frameworks */,
 				5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */,
 				5C78DA66189997CA00CBA29B /* libsqlite3.dylib in Frameworks */,
 				5C78DA641899979800CBA29B /* Accounts.framework in Frameworks */,
@@ -728,6 +731,7 @@
 		5CA3D1891831DF51006C7932 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5CE57DE618D8C2F0006C9F31 /* CoreMotion.framework */,
 				5C78DA65189997C900CBA29B /* libsqlite3.dylib */,
 				5C78DA631899979800CBA29B /* Accounts.framework */,
 				5C78DA611899974D00CBA29B /* AVFoundation.framework */,

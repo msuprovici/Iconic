@@ -27,6 +27,8 @@ extern NSString *const kLaunchURLHostLoadActivity;
 
 #pragma mark - Player Physical Activity Points
 
+//step counting
+extern NSString *const STEPS_KEY;
 
 //test class
 extern NSString *const kPhysicalActivityClass;

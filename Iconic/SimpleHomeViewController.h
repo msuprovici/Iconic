@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <QuartzCore/QuartzCore.h>
 #import "PNChart.h"
+#import <CoreMotion/CoreMotion.h>
 
 @interface SimpleHomeViewController : UIViewController <UIScrollViewDelegate>
 
@@ -27,6 +28,8 @@
 
 
 
+//step counter
+@property (nonatomic, strong) CMStepCounter *stepCounter;
 
 
 
