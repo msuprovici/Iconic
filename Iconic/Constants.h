@@ -41,6 +41,7 @@ extern NSString *const kPlayerPoints;
 extern NSString *const kPlayerPointsToday;
 extern NSString *const kPlayerPointsWeek;
 extern NSString *const kPlayerXP;
+extern NSString *const kPlayerPointsToNextLevel;
 extern NSString *const kPlayerSteps;
 
 #pragma mark - NSNotification

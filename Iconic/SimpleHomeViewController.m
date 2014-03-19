@@ -1114,6 +1114,7 @@ static NSString *kImageKey = @"imageKey";
             {
                 //retrieve the number of points in the database
                 NSNumber* retrievedPoints = [object objectForKey:kPlayerPointsToday];
+                NSNumber* lifetimePoints = [object objectForKey:kPlayerPoints];
                 
                 //convert nsnumbers to an ints so we can do math
                 int retrievedPointsValue = [retrievedPoints intValue];
@@ -1127,12 +1128,41 @@ static NSString *kImageKey = @"imageKey";
 //                NSLog(@"pointsDeltaValue: %d", pointsDeltaValue);
                 
                 //convert delta back to nsnumber
+               
                 NSNumber* pointsDelta = [NSNumber numberWithInt:pointsDeltaValue];
+                
+                
+                
+                //calculate level
+                float retrievedLevelValue = [lifetimePoints floatValue];
+                NSNumber *myLevel = [self calculateLevel:retrievedLevelValue];
+                
+                
+                //calculate points to reach next level
+                
+                //get the total points necessary to go from one level to the next
+                float myLevelValue = [myLevel floatValue];
+                NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
+                
+                int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
+                NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
+                
+                 //subtract the player's points from the current #
+                int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - retrievedLevelValue;
+                
+                NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
+                
+               
                 
                 
                 //increment myPoints
                 [playerPoints incrementKey:kPlayerPointsToday byAmount:pointsDelta];
                 [playerPoints incrementKey:kPlayerPoints byAmount:pointsDelta];
+                
+                //set player's level
+                [playerPoints setObject:myLevel forKey:kPlayerXP];
+                //save #points needed to reach the next level
+                [playerPoints setObject:myPointsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
                 
 
                 //save points
@@ -1251,6 +1281,27 @@ static NSString *kImageKey = @"imageKey";
     //Converting float to NSNumber
     NSNumber * points = [NSNumber numberWithFloat: ceil((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50)];//rounded up to the largest following integer using ceiling function
     
+    return points;
+}
+
+
+-(NSNumber*)calculateLevel:(float)points
+{
+    
+    //scale = 3
+    //hardcoded for now - will need to send this number down from the server
+    NSNumber * level = [NSNumber numberWithFloat: ceil((pow((points/1000), (1/3))))];//rounded up to the largest following integer using ceiling function
+    
+    return level;
+}
+
+-(NSNumber*)calculatePointsToReachNextLevel:(float)level
+{
+    
+    //scale = 3
+    //hardcoded for now - will need to send this number down from the server
+    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(level+1, 3)*1000))]; //rounded up to the largest following integer using ceiling function
+
     return points;
 }
 

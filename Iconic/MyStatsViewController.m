@@ -62,6 +62,7 @@
     //Cycle through label string
     for (int i = 0; i <= pointslabelNumber; i++) {
         PFQuery* query = [PFUser query];
+        [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
         //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
         PFUser* currentUser = [PFUser currentUser];
         
@@ -74,32 +75,31 @@
             
             
             if (currentUser) {
-                //Get all player stats from Parse
-                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                   // self.playerName.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kUsername]] ;
-                    
-                    //self.viewTitle.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerTitle]] ;
-                    
-//                    self.pointsValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerPointsToday]];
+                
+                [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                     
                     self.xpValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerXP]];
                     
-//                    //Player photo
-//                    //using PFImageView
-//                    self.playerPhoto.file = [currentUser objectForKey:kProfilePicture];
-//                    
-//                    PFImageView *photo = [[PFImageView alloc] init];
-//                    
-//                    photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
-//                    photo.file = (PFFile *)self.playerPhoto.file;
-//                    photo.image = [photo.image thumbnailImage:280 transparentBorder:0 cornerRadius:10 interpolationQuality:kCGInterpolationHigh];
-//                    [photo loadInBackground];
-//                    
-//                    //turn photo to circle
-//                    CALayer *imageLayer = self.playerPhoto.layer;
-//                    [imageLayer setCornerRadius:self.playerPhoto.frame.size.width/2];
-//                    [imageLayer setBorderWidth:0];
-//                    [imageLayer setMasksToBounds:YES];
+                    //Get my lifetime points
+                     NSNumber* myLifetimePoints = [object objectForKey:kPlayerPoints];
+                   // NSLog(@"myLifetimePoints: %@", myLifetimePoints);
+                     float myPointsValue = [myLifetimePoints floatValue];
+                    
+                    //get total points need to reach next level
+                     NSNumber* myPointsToNextLevel = [object objectForKey:kPlayerPointsToNextLevel];
+                     float myPointsToNextLevelValue = [myPointsToNextLevel floatValue];
+                    
+                    float totalPointsToNextLevelValue = (myPointsToNextLevelValue + myPointsValue);
+                    //NSLog(@"totalPointsToNextLevelValue: %f", totalPointsToNextLevelValue);
+                    
+                    //calculate the % complete to next level
+                    float myProgress = myPointsValue/totalPointsToNextLevelValue;
+                    //NSLog(@"myPointsValue: %f", myProgress);
+                    
+                    //animate the progress dial
+                    [self progressDialChange:myProgress];
+
+                    
                
                 }];
                 
@@ -260,7 +260,7 @@
 //    [self getPlayerSteps];
 //}
 
-- (void)progressChange
+- (void)progressDialChange:(float)ratio
 {
     
     NSArray *progressViews = @[self.xpProgressDial, self.stepsProgressDial ];
@@ -268,7 +268,7 @@
         
         //this is where we will compute the score ratio and display it to the user
         //simple equation:  myteam score / opponent score
-        CGFloat progress = .60;
+        float progress = ratio;
         [progressView setProgress:progress animated:YES];
         
         if (progressView.progress >= 1.0f && [self.timer isValid]) {
@@ -280,7 +280,7 @@
 
 - (void)startAnimation
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(progressChange) userInfo:nil repeats:NO];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(progressDialChange:) userInfo:nil repeats:NO];
     
 }
 
@@ -455,106 +455,106 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)savePoints
-{
-    
-    //test points value here
-    //will need points
-    NSNumber *newPoints = [self calculatePoints:108];
-    
-    
-    // Save points to ativity class
-    
-    PFObject *activity = [PFObject objectWithClassName:kActivityClassKey];
-    [activity setObject:[PFUser currentUser] forKey:kActivityUserKey];
-    [activity setObject:newPoints forKey:kActivityKey];
-    
-    // Activity is public, but may only be modified by the user
-    PFACL *activityACL = [PFACL ACLWithUser:[PFUser currentUser]];
-    [activityACL setPublicReadAccess:YES];
-    activity.ACL = activityACL;
-    
-    
-    [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            //  NSLog(@"Points uploaded");
-            [[Cache sharedCache] setAttributesForActivity:activity likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
-            
-        }
-        
-        else {
-            NSLog(@"Points failed to save: %@", error);
-        }
-        
-    }];
-    
-    //increment the player's points
-    PFObject *playerPoints = [PFUser currentUser];
-    
-    //increment the player's TOTAL lifetime points
-    [playerPoints incrementKey:kPlayerPoints byAmount:newPoints];
-    
-    //increment the player's today's points
-    [playerPoints incrementKey:kPlayerPointsToday byAmount:newPoints];
-    
-    [playerPoints saveInBackground];
-    
-    
-    //increment team's points by
-    
-    //Query Team Class
-    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
-    
-    //Query Teamates Class
-    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
-    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    
-    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
-    
-    
-    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        
-        
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu objects", (unsigned long)objects.count);
-            for (PFObject *object in objects)
-                
-            {
-                NSLog(@"%@", object.objectId);
-                
-                
-                if (!error) {
-                    
-                    //increment the team's TOTAL points
-                    [object incrementKey:kScore byAmount:newPoints];
-                    
-                    //increment the team's points for today
-                    [object incrementKey:kScoreToday byAmount:newPoints];
-                    
-                    [object saveInBackground];
-                }
-                else
-                {
-                    NSLog(@"error in inner query");
-                }
-            }
-            
-        }
-        else
-        {
-            NSLog(@"error");
-        }
-        
-        
-        
-        
-    }];
-}
+//-(void)savePoints
+//{
+//    
+//    //test points value here
+//    //will need points
+//    NSNumber *newPoints = [self calculatePoints:108];
+//    
+//    
+//    // Save points to ativity class
+//    
+//    PFObject *activity = [PFObject objectWithClassName:kActivityClassKey];
+//    [activity setObject:[PFUser currentUser] forKey:kActivityUserKey];
+//    [activity setObject:newPoints forKey:kActivityKey];
+//    
+//    // Activity is public, but may only be modified by the user
+//    PFACL *activityACL = [PFACL ACLWithUser:[PFUser currentUser]];
+//    [activityACL setPublicReadAccess:YES];
+//    activity.ACL = activityACL;
+//    
+//    
+//    [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (succeeded) {
+//            //  NSLog(@"Points uploaded");
+//            [[Cache sharedCache] setAttributesForActivity:activity likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
+//            
+//        }
+//        
+//        else {
+//            NSLog(@"Points failed to save: %@", error);
+//        }
+//        
+//    }];
+//    
+//    //increment the player's points
+//    PFObject *playerPoints = [PFUser currentUser];
+//    
+//    //increment the player's TOTAL lifetime points
+//    [playerPoints incrementKey:kPlayerPoints byAmount:newPoints];
+//    
+//    //increment the player's today's points
+//    [playerPoints incrementKey:kPlayerPointsToday byAmount:newPoints];
+//    
+//    [playerPoints saveInBackground];
+//    
+//    
+//    //increment team's points by
+//    
+//    //Query Team Class
+//    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+//    
+//    //Query Teamates Class
+//    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+//    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    
+//    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+//    
+//    
+//    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
+//    
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        
+//        
+//        
+//        if (!error) {
+//            // The find succeeded.
+//            NSLog(@"Successfully retrieved %lu objects", (unsigned long)objects.count);
+//            for (PFObject *object in objects)
+//                
+//            {
+//                NSLog(@"%@", object.objectId);
+//                
+//                
+//                if (!error) {
+//                    
+//                    //increment the team's TOTAL points
+//                    [object incrementKey:kScore byAmount:newPoints];
+//                    
+//                    //increment the team's points for today
+//                    [object incrementKey:kScoreToday byAmount:newPoints];
+//                    
+//                    [object saveInBackground];
+//                }
+//                else
+//                {
+//                    NSLog(@"error in inner query");
+//                }
+//            }
+//            
+//        }
+//        else
+//        {
+//            NSLog(@"error");
+//        }
+//        
+//        
+//        
+//        
+//    }];
+//}
 
 -(NSNumber*)calculatePoints:(float)steps
 {

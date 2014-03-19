@@ -40,6 +40,7 @@ NSString *const kPlayerPoints = @"points";
 NSString *const kPlayerPointsToday = @"pointstoday";
 NSString *const kPlayerPointsWeek = @"pointsweek"; //array of kPlayerPointsToday
 NSString *const kPlayerXP = @"xp";
+NSString *const kPlayerPointsToNextLevel = @"pointsToNextLevel";
 NSString *const kPlayerSteps = @"steps";
 
 #pragma mark - NSNotification
