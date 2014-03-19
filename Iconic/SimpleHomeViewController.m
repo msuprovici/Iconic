@@ -190,7 +190,7 @@ static NSString *kImageKey = @"imageKey";
     [self performSelector:@selector(retrieveFromParse)];
     
     //increment points
-    [self incrementPlayerPoints];
+   [self incrementPlayerPoints];
   
     
 
@@ -1078,10 +1078,25 @@ static NSString *kImageKey = @"imageKey";
 -(void)incrementPlayerPoints
 {
     self.stepCounter = [[CMStepCounter alloc] init];
-    NSDate *now = [NSDate date];
+    //NSDate *now = [NSDate date];
     //NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
     
-    NSDate *from = [self beginningOfDay:[NSDate date]];
+    //find today's date
+    NSDate* sourceDate = [NSDate date];
+    
+    //convert to my local time zone
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
+    
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
+    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
+    
+    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
+  
+    NSDate *now = myDate;
+
+    NSDate *from = [self beginningOfDay];
     
     //find the number of steps I have take today
     [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
@@ -1102,14 +1117,14 @@ static NSString *kImageKey = @"imageKey";
                 
                 //convert nsnumbers to an ints so we can do math
                 int retrievedPointsValue = [retrievedPoints intValue];
-                //NSLog(@"retrievedPointsValue: %d", retrievedPointsValue);
+//                NSLog(@"retrievedPointsValue: %d", retrievedPointsValue);
                 
                 int myPointsValue = [myPoints intValue];
-                //NSLog(@"myPointsValue: %d", myPointsValue);
+//                NSLog(@"myPointsValue: %d", myPointsValue);
                 
                 //get delta between my current points and what is stored in the database
                 int pointsDeltaValue = myPointsValue - retrievedPointsValue;
-                //NSLog(@"pointsDeltaValue: %d", pointsDeltaValue);
+//                NSLog(@"pointsDeltaValue: %d", pointsDeltaValue);
                 
                 //convert delta back to nsnumber
                 NSNumber* pointsDelta = [NSNumber numberWithInt:pointsDeltaValue];
@@ -1190,18 +1205,43 @@ static NSString *kImageKey = @"imageKey";
 
 
 //find the beginning of the day
--(NSDate *)beginningOfDay:(NSDate *)date
+-(NSDate *)beginningOfDay
 {
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:( NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit ) fromDate:date];
     
+    //find the beginning of the day
+    //nsdate always returns GMT
+    NSDate *now = [NSDate date];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
     [components setHour:0];
     [components setMinute:0];
     [components setSecond:0];
     
-    return [cal dateFromComponents:components];
     
+    //NSLog(@"Local Time Zone %@",[[NSTimeZone localTimeZone] name]);
+    
+    //     NSLog(@"Calendar date: %@",[cal dateFromComponents:components]);
+    
+    //convert GMT to my local time
+    NSDate* sourceDate = [cal dateFromComponents:components];
+    
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
+    
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
+    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
+    
+    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
+    
+    
+    //    NSLog(@"Converted date: %@",myDate);
+    //    NSLog(@"Source date: %@",myDate);
+    
+    
+    return myDate;
 }
+
 
 -(NSNumber*)calculatePoints:(float)steps
 {

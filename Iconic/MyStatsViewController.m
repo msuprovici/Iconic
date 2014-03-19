@@ -365,11 +365,35 @@
 -(void)getPlayerSteps
 {
     self.stepCounter = [[CMStepCounter alloc] init];
-    NSDate *now = [NSDate date];
+   // NSDate *now = [NSDate date];
     //NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
     
-    NSDate *from = [self beginningOfDay:[NSDate date]];
     
+    
+    
+    //find today's date
+    NSDate* sourceDate = [NSDate date];
+    
+    //convert to my local time zone
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
+    
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
+    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
+    
+    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
+    
+    
+    
+    //NSDate *from = [self beginningOfDay:[NSDate date]];
+    NSDate *now = myDate;
+    NSDate *from = [self beginningOfDay];
+    
+    
+//    NSLog(@"time now: %@",now);
+//    NSLog(@"time from: %@",from);
+
     [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
         
         
@@ -380,54 +404,6 @@
         
         self.pointsValue.text = [NSString stringWithFormat:@"%@",myPoints] ;
         
-        //increment the player's points
-        PFObject *playerPoints = [PFUser currentUser];
-        
-        //increment the player's TOTAL lifetime points
-//        [playerPoints incrementKey:kPlayerPoints byAmount:myPoints];
-        //[playerPoints setObject:myPoints forKey:kPlayerPoints];
-        //increment the player's today's points
-//        [playerPoints incrementKey:kPlayerPointsToday byAmount:myPoints];
-        //[playerPoints setObject:myPoints forKey:kPlayerPointsToday];
-        
-        //[playerPoints saveInBackground];
-        
-        
-        
-        
-        
-//        PFQuery *query = [PFUser query];
-//        
-//        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//            
-//            if(!error)
-//            {
-//            
-//            NSNumber* retrievedPoints = [object objectForKey:kPlayerPointsToday];
-//            
-//            int retrievedPointsValue = [retrievedPoints intValue];
-//             NSLog(@"retrievedPointsValue: %d", retrievedPointsValue);
-//            
-//            int myPointsValue = [myPoints intValue];
-//            NSLog(@"myPointsValue: %d", myPointsValue);
-//                
-//            int pointsDeltaValue = myPointsValue - retrievedPointsValue;
-//             NSLog(@"pointsDeltaValue: %d", pointsDeltaValue);
-//            
-//            NSNumber* pointsDelta = [NSNumber numberWithInt:pointsDeltaValue];
-//            
-//            [playerPoints incrementKey:kPlayerPointsToday byAmount:pointsDelta];
-//            
-//            [playerPoints saveInBackground];
-//            }
-//            
-//            
-//            
-//        }];
-
-
-        
-        
         
     }];
 
@@ -436,17 +412,41 @@
 
 
 //find the beginning of the day
--(NSDate *)beginningOfDay:(NSDate *)date
+-(NSDate *)beginningOfDay
 {
+
+    //find the beginning of the day
+    //nsdate always returns GMT
+    NSDate *now = [NSDate date];
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:( NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit ) fromDate:date];
-    
+    NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
     [components setHour:0];
     [components setMinute:0];
     [components setSecond:0];
     
-    return [cal dateFromComponents:components];
     
+    //NSLog(@"Local Time Zone %@",[[NSTimeZone localTimeZone] name]);
+    
+//     NSLog(@"Calendar date: %@",[cal dateFromComponents:components]);
+    
+    //convert GMT to my local time
+    NSDate* sourceDate = [cal dateFromComponents:components];
+    
+    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
+    
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
+    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
+    
+    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
+    
+    
+//    NSLog(@"Converted date: %@",myDate);
+//    NSLog(@"Source date: %@",myDate);
+   
+    //return [cal dateFromComponents:components];
+    return myDate;
 }
 
 - (void)didReceiveMemoryWarning
