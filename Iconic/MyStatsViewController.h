@@ -36,6 +36,9 @@
 //step counter
 @property (nonatomic, strong) CMStepCounter *stepCounter;
 
+//step counter
+@property (nonatomic, strong) CMMotionActivityManager *myActivityData;
+
 //progres dial
 @property (strong, nonatomic) DACircularProgressView *xpProgressView;
 @property (strong, nonatomic) IBOutlet DACircularProgressView *xpProgressDial;

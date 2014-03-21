@@ -1078,23 +1078,23 @@ static NSString *kImageKey = @"imageKey";
 -(void)incrementPlayerPoints
 {
     self.stepCounter = [[CMStepCounter alloc] init];
-    //NSDate *now = [NSDate date];
-    //NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
-    
-    //find today's date
-    NSDate* sourceDate = [NSDate date];
-    
-    //convert to my local time zone
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
-    
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
-    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
-    
-    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
-  
-    NSDate *now = myDate;
+    NSDate *now = [NSDate date];
+//    //NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
+//    
+//    //find today's date
+//    NSDate* sourceDate = [NSDate date];
+//    
+//    //convert to my local time zone
+//    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+//    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
+//    
+//    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+//    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
+//    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
+//    
+//    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
+//  
+//    NSDate *now = myDate;
 
     NSDate *from = [self beginningOfDay];
     
@@ -1145,7 +1145,7 @@ static NSString *kImageKey = @"imageKey";
                 NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
                 
                 int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
-                NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
+                //NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
                 
                  //subtract the player's points from the current #
                 int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - retrievedLevelValue;
@@ -1253,23 +1253,24 @@ static NSString *kImageKey = @"imageKey";
     //     NSLog(@"Calendar date: %@",[cal dateFromComponents:components]);
     
     //convert GMT to my local time
-    NSDate* sourceDate = [cal dateFromComponents:components];
-    
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
-    
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
-    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
-    
-    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
-    
-    
-    //    NSLog(@"Converted date: %@",myDate);
-    //    NSLog(@"Source date: %@",myDate);
-    
-    
-    return myDate;
+//    NSDate* sourceDate = [cal dateFromComponents:components];
+//    
+//    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+//    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
+//    
+//    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+//    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
+//    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
+//    
+//    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
+//    
+//    
+//        NSLog(@"Converted date: %@",myDate);
+//        NSLog(@"Source date: %@",myDate);
+//    
+//    
+//    return myDate;
+    return [cal dateFromComponents:components];
 }
 
 

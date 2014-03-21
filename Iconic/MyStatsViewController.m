@@ -365,8 +365,8 @@
 -(void)getPlayerSteps
 {
     self.stepCounter = [[CMStepCounter alloc] init];
-   // NSDate *now = [NSDate date];
-    //NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
+    NSDate *now = [NSDate date];
+//    NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
     
     
     
@@ -387,16 +387,17 @@
     
     
     //NSDate *from = [self beginningOfDay:[NSDate date]];
-    NSDate *now = myDate;
+//    NSDate *now = myDate;
     NSDate *from = [self beginningOfDay];
     
     
-//    NSLog(@"time now: %@",now);
-//    NSLog(@"time from: %@",from);
+    NSLog(@"time now: %@",now);
+    NSLog(@"time from: %@",from);
 
     [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
         
-        
+        NSLog(@"numberOfSteps: %ld",(long)numberOfSteps);
+
         
         self.stepsCountingLabel.text = [@(numberOfSteps) stringValue];
         
@@ -406,6 +407,108 @@
         
         
     }];
+    
+    
+    //use this to calculate how long the person spent driving, walking, running, stationary
+//    CMMotionActivityManager *motionActivityManagerQuery = [[CMMotionActivityManager alloc] init];
+//    
+//    
+//    [motionActivityManagerQuery queryActivityStartingFromDate:from toDate:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSArray *activities, NSError *error) {
+//        
+//        
+//        for(CMMotionActivity *motionActivity in activities){
+//            
+//            if(motionActivity.walking)
+//            {
+//           // NSTimeInterval walking = [now timeIntervalSinceDate:motionActivity.startDate];
+//                NSTimeInterval walking = [motionActivity.startDate timeIntervalSinceDate:from];
+//                
+//                NSLog(@"walking %f", walking/60);
+//            }
+//            
+//            if(motionActivity.stationary)
+//            {
+//                //NSTimeInterval stationary = [now timeIntervalSinceDate:motionActivity.startDate];
+//                NSTimeInterval stationary = [motionActivity.startDate timeIntervalSinceDate:from];
+//                
+//                NSLog(@"stationary %f", stationary/60);
+//            }
+//            
+//            if(motionActivity.running)
+//            {
+////                NSTimeInterval running = [now timeIntervalSinceDate:motionActivity.startDate];
+//                NSTimeInterval running = [motionActivity.startDate timeIntervalSinceDate:from];
+//                
+//                NSLog(@"running %f", running/60);
+//            }
+//            
+//            
+//            if(motionActivity.unknown)
+//            {
+//                //                NSTimeInterval running = [now timeIntervalSinceDate:motionActivity.startDate];
+//                NSTimeInterval unknown = [motionActivity.startDate timeIntervalSinceDate:from];
+//                
+//                NSLog(@"unknown %f", unknown/60);
+//            }
+//            
+//            if(motionActivity.automotive)
+//            {
+//                //                NSTimeInterval running = [now timeIntervalSinceDate:motionActivity.startDate];
+//                NSTimeInterval automotive = [motionActivity.startDate timeIntervalSinceDate:from];
+//                
+//                NSLog(@"automotive %f", automotive/60);
+//            }
+//
+//
+//
+//
+////            
+////            NSLog(@"--------------------");
+////            
+////            // startDate
+////            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+////            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+////            NSString *startDateString = [dateFormatter stringFromDate:motionActivity.startDate];
+////            NSLog(@"startDate = %@", startDateString);
+////            
+////            // stationary
+////            NSLog(@"motionActivity.stationary = %@", motionActivity.stationary?@"YES":@"NO");
+////            
+////            // walking
+////            NSLog(@"motionActivity.walking = %@", motionActivity.walking?@"YES":@"NO");
+////            
+////            // running ．
+////            NSLog(@"motionActivity.running = %@", motionActivity.running?@"YES":@"NO");
+////            
+////            // automotive ．
+////            NSLog(@"motionActivity.automobile = %@", motionActivity.automotive?@"YES":@"NO");
+////            
+////            // unknown
+////            NSLog(@"motionActivity.unknown = %@", motionActivity.unknown?@"YES":@"NO");
+////            
+////            // confidence
+////            NSString *confidenceString = @"";
+////            switch (motionActivity.confidence) {
+////                case CMMotionActivityConfidenceLow:
+////                    confidenceString = @"CMMotionActivityConfidenceLow";
+////                    break;
+////                case CMMotionActivityConfidenceMedium:
+////                    confidenceString = @"CMMotionActivityConfidenceMedium";
+////                    break;
+////                case CMMotionActivityConfidenceHigh:
+////                    confidenceString = @"CMMotionActivityConfidenceHigh";
+////                    break;
+////                default:
+////                    confidenceString = @"???";
+////                    break;
+////            }
+////            NSLog(@"confidence = %@", confidenceString);
+//            
+//        }
+//    
+//     
+//        
+//    }];
 
 }
 
@@ -418,6 +521,8 @@
     //find the beginning of the day
     //nsdate always returns GMT
     NSDate *now = [NSDate date];
+    NSLog(@"now date: %@",now);
+    
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
     [components setHour:0];
@@ -430,23 +535,23 @@
 //     NSLog(@"Calendar date: %@",[cal dateFromComponents:components]);
     
     //convert GMT to my local time
-    NSDate* sourceDate = [cal dateFromComponents:components];
-    
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
-    
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
-    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
-    
-    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
+//    NSDate* sourceDate = [cal dateFromComponents:components];
+//    
+//    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+//    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
+//    
+//    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+//    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
+//    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
+//    
+//    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
     
     
 //    NSLog(@"Converted date: %@",myDate);
 //    NSLog(@"Source date: %@",myDate);
    
-    //return [cal dateFromComponents:components];
-    return myDate;
+    return [cal dateFromComponents:components];
+    //return myDate;
 }
 
 - (void)didReceiveMemoryWarning
