@@ -1291,8 +1291,13 @@ static NSString *kImageKey = @"imageKey";
     
     //scale = 3
     //hardcoded for now - will need to send this number down from the server
-    NSNumber * level = [NSNumber numberWithFloat: ceil((pow((points/1000), (1/3))))];//rounded up to the largest following integer using ceiling function
-    
+    //rounded up to the largest following integer using ceiling function
+    //had to add 1.0 so that the level is never 0
+    NSNumber * level = [NSNumber numberWithFloat: ceil((pow((points/1000), (1/1)))+1.0)];
+
+//    if(level == 0 || level == nil)
+//        return [NSNumber numberWithInteger:1];
+//    else
     return level;
 }
 
@@ -1301,7 +1306,7 @@ static NSString *kImageKey = @"imageKey";
     
     //scale = 3
     //hardcoded for now - will need to send this number down from the server
-    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(level+1, 3)*1000))]; //rounded up to the largest following integer using ceiling function
+    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(level+1, 3)*1000))+1]; //rounded up to the largest following integer using ceiling function
 
     return points;
 }

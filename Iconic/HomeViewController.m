@@ -549,54 +549,54 @@ static NSString *kImageKey = @"imageKey";
 
 
 
--(void)savePoints
-{
-    
-    
-    //Query special 'User' class in parse -> need to use PFUser
-    PFQuery *query = [PFUser query];
-    PFUser* currentUser = [PFUser currentUser];
-    
-    //creating query for current loggedin user
-    //[query whereKey:kUsername equalTo:[PFUser currentUser]];// Error: no results matched the query
-    //creating a points object for loggedin user
-    PFObject *points = [PFUser currentUser];
-
-    
-    //if it's the current user update points
-    if (currentUser) {
-        
-        
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
-        {
-            //To Do: create method for generating by amount increase in points & when to reset. 100 value is currently hardcoded.
-            [points incrementKey:kPlayerPoints byAmount:[self calculatePoints:100]];
-            
-            [points saveInBackground];
-            
-            //[points saveEventually];
-            //[points refresh]; //<- long running operation on the main thread
-            
-       }];
-
-    }
-    
-    //if it's a new user create a new points object
-    else
-    {
-   
-        PFObject *points = [PFUser currentUser];
-        
-        [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
-         points[kPlayerPoints]= [self calculatePoints:150];
-        [points saveInBackground];
-       //[points saveEventually];
-        //[points refresh]; //<- long running operation on the main thread
-    }
-    
-    
-
-}
+//-(void)savePoints
+//{
+//    
+//    
+//    //Query special 'User' class in parse -> need to use PFUser
+//    PFQuery *query = [PFUser query];
+//    PFUser* currentUser = [PFUser currentUser];
+//    
+//    //creating query for current loggedin user
+//    //[query whereKey:kUsername equalTo:[PFUser currentUser]];// Error: no results matched the query
+//    //creating a points object for loggedin user
+//    PFObject *points = [PFUser currentUser];
+//
+//    
+//    //if it's the current user update points
+//    if (currentUser) {
+//        
+//        
+//        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+//        {
+//            //To Do: create method for generating by amount increase in points & when to reset. 100 value is currently hardcoded.
+//            [points incrementKey:kPlayerPoints byAmount:[self calculatePoints:100]];
+//            
+//            [points saveInBackground];
+//            
+//            //[points saveEventually];
+//            //[points refresh]; //<- long running operation on the main thread
+//            
+//       }];
+//
+//    }
+//    
+//    //if it's a new user create a new points object
+//    else
+//    {
+//   
+//        PFObject *points = [PFUser currentUser];
+//        
+//        [points setObject:[PFUser currentUser] forKey:kPlayerPoints];
+//         points[kPlayerPoints]= [self calculatePoints:150];
+//        [points saveInBackground];
+//       //[points saveEventually];
+//        //[points refresh]; //<- long running operation on the main thread
+//    }
+//    
+//    
+//
+//}
 
 
 //-(void)retrievePlayerStats
