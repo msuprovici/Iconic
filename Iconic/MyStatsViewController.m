@@ -38,7 +38,7 @@
 {
     if (self = [super initWithNibName:@"MyStatsViewController" bundle:nil])
     {
-        pointslabelNumber = pointslabel;
+        pointslabelNumber = (int) pointslabel;
     }
     return self;
 }
@@ -78,23 +78,36 @@
                 
                 [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                     
-                    self.xpValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerXP]];
+//                    self.xpValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerXP]];
                     
                     //Get my lifetime points
                      NSNumber* myLifetimePoints = [object objectForKey:kPlayerPoints];
-                   // NSLog(@"myLifetimePoints: %@", myLifetimePoints);
+                   NSLog(@"myLifetimePoints: %@", myLifetimePoints);
                      float myPointsValue = [myLifetimePoints floatValue];
                     
-                    //get total points need to reach next level
-                     NSNumber* myPointsToNextLevel = [object objectForKey:kPlayerPointsToNextLevel];
-                     float myPointsToNextLevelValue = [myPointsToNextLevel floatValue];
                     
-                    float totalPointsToNextLevelValue = (myPointsToNextLevelValue + myPointsValue);
-                    //NSLog(@"totalPointsToNextLevelValue: %f", totalPointsToNextLevelValue);
+                    float retrievedLevelValue = [myLifetimePoints floatValue];
+                    NSNumber *myLevel = [self calculateLevel:retrievedLevelValue];
+                    float myLevelValue = [myLevel floatValue];
                     
-                    //calculate the % complete to next level
-                    float myProgress = myPointsValue/totalPointsToNextLevelValue;
-                    //NSLog(@"myPointsValue: %f", myProgress);
+                    //calculate total points to reach next level
+                    NSNumber *totalPointsForNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
+                    int myTotalPointsForNextLevelValue = [totalPointsForNextLevel intValue];
+//                    NSLog(@"myTotalPointsForNextLevelValue: %d", myTotalPointsForNextLevelValue);
+                    
+                    //calculate total points to reach current level
+                    NSNumber *totalPointsForCurrentLevel = [self calculatePointsToReachCurrentLevel:myLevelValue];
+                    int myTotalPointsForCurrentLevelValue = [totalPointsForCurrentLevel intValue];
+//                    NSLog(@"myTotalPointsForCurrentLevelValue: %d", myTotalPointsForCurrentLevelValue);
+                    
+
+                    //calculate % progress
+                    float myProgress = (myPointsValue - myTotalPointsForCurrentLevelValue)/(myTotalPointsForNextLevelValue - myTotalPointsForCurrentLevelValue);
+                    
+                    
+                    //set the right level
+                    self.xpValue.text = [NSString stringWithFormat:@"%@",myLevel];
+//                    NSLog(@"myPointsValue: %f", myProgress);
                     
                     //animate the progress dial
                     [self progressDialChange:myProgress];
@@ -661,15 +674,55 @@
 //    }];
 //}
 
+
+
+//subclass these methods to eliminate redundancy...
+
+
 -(NSNumber*)calculatePoints:(float)steps
 {
     
     //alogrithm for generating points from steps: yourPoints = ((0.85^( ln(steps) /ln (2)))/time)*steps*constantValue
-    
     //Converting float to NSNumber
     NSNumber * points = [NSNumber numberWithFloat: ceil((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50)];//rounded up to the largest following integer using ceiling function
     
     return points;
 }
+
+-(NSNumber*)calculateLevel:(float)points
+{
+    
+    //scale = 1
+    //hardcoded for now - will need to send this number down from the server
+    //had to add 1.0 to increment the level number so that the level is never 0
+    //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
+    NSNumber * level = [NSNumber numberWithFloat: floor((pow((points/1000), (1/1)))+1.0)];
+    
+       return level;
+}
+
+-(NSNumber*)calculatePointsToReachNextLevel:(float)level
+{
+    
+    //scale = 1
+    //hardcoded for now - will need to send this number down from the server
+    //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
+    NSNumber * points = [NSNumber numberWithFloat: floor((pow(level, 1)*1000))+1];
+    
+    return points;
+}
+
+-(NSNumber*)calculatePointsToReachCurrentLevel:(float)level
+{
+    
+    //scale = 1
+    //hardcoded for now - will need to send this number down from the server
+    //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
+    NSNumber * points = [NSNumber numberWithFloat: floor((pow(level-1, 1)*1000))+1];
+    
+    return points;
+}
+
+
 
 @end

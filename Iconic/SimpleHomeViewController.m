@@ -1136,20 +1136,23 @@ static NSString *kImageKey = @"imageKey";
                 //calculate level
                 float retrievedLevelValue = [lifetimePoints floatValue];
                 NSNumber *myLevel = [self calculateLevel:retrievedLevelValue];
-                
+                float myLevelValue = [myLevel floatValue];
                 
                 //calculate points to reach next level
                 
-                //get the total points necessary to go from one level to the next
-                float myLevelValue = [myLevel floatValue];
+                //get the total points necessary for next level
+                
                 NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
                 
                 int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
-                //NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
+//                NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
+//                 NSLog(@"retrievedLevelValue: %f", retrievedLevelValue);
                 
                  //subtract the player's points from the current #
                 int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - retrievedLevelValue;
+//                NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
                 
+                //calculate the # of points necessary to reach the next level
                 NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
                 
                
@@ -1289,11 +1292,15 @@ static NSString *kImageKey = @"imageKey";
 -(NSNumber*)calculateLevel:(float)points
 {
     
-    //scale = 3
+    //scale = 11
     //hardcoded for now - will need to send this number down from the server
     //rounded up to the largest following integer using ceiling function
     //had to add 1.0 so that the level is never 0
-    NSNumber * level = [NSNumber numberWithFloat: ceil((pow((points/1000), (1/1)))+1.0)];
+   // NSNumber * level = [NSNumber numberWithFloat: ceil((pow((points/1000), (1/1)))+1.0)];
+    
+    
+    //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
+    NSNumber * level = [NSNumber numberWithFloat: floor((pow((points/1000), (1/1)))+1.0)];
 
 //    if(level == 0 || level == nil)
 //        return [NSNumber numberWithInteger:1];
@@ -1304,10 +1311,14 @@ static NSString *kImageKey = @"imageKey";
 -(NSNumber*)calculatePointsToReachNextLevel:(float)level
 {
     
-    //scale = 3
+    //scale = 1
     //hardcoded for now - will need to send this number down from the server
-    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(level+1, 3)*1000))+1]; //rounded up to the largest following integer using ceiling function
-
+//    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(level, 1)*1000))+1]; //rounded up to the largest following integer using ceiling function
+    
+    
+ //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
+    NSNumber * points = [NSNumber numberWithFloat: floor((pow(level, 1)*1000))+1];
+    
     return points;
 }
 
