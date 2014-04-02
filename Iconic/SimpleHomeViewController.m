@@ -1155,21 +1155,35 @@ static NSString *kImageKey = @"imageKey";
                 //calculate the # of points necessary to reach the next level
                 NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
                 
-               
-                
+                //To update an existing object, you first need to retrieve it
                 
                 //increment myPoints
-                [playerPoints incrementKey:kPlayerPointsToday byAmount:pointsDelta];
-                [playerPoints incrementKey:kPlayerPoints byAmount:pointsDelta];
+                [object incrementKey:kPlayerPointsToday byAmount:pointsDelta];
+                [object incrementKey:kPlayerPoints byAmount:pointsDelta];
                 
                 //set player's level
-                [playerPoints setObject:myLevel forKey:kPlayerXP];
+                [object setObject:myLevel forKey:kPlayerXP];
                 //save #points needed to reach the next level
-                [playerPoints setObject:myPointsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
+                [object setObject:myPointsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
                 
-
+                
                 //save points
-                [playerPoints saveInBackground];
+                [object saveInBackground];
+
+                
+                
+//                //increment myPoints
+//                [playerPoints incrementKey:kPlayerPointsToday byAmount:pointsDelta];
+//                [playerPoints incrementKey:kPlayerPoints byAmount:pointsDelta];
+//                
+//                //set player's level
+//                [playerPoints setObject:myLevel forKey:kPlayerXP];
+//                //save #points needed to reach the next level
+//                [playerPoints setObject:myPointsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
+//                
+//
+//                //save points
+//                [playerPoints saveInBackground];
                 
                 //increment the points for all my teams
                 [self incrementMyTeamsPoints:pointsDelta];

@@ -496,13 +496,13 @@
 
 -(void)joinTeamButtonState
 {
+    
      PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
      [query whereKey:kTeamate equalTo:[PFUser currentUser]];
     
     
      PFQuery *leagueQuery = [PFQuery queryWithClassName:kTeamTeamsClass];
-     
-    
+
      PFObject * selectedLeague = [self.team objectForKey:kLeagues];
     
      [leagueQuery whereKey:kLeagues notEqualTo:selectedLeague];
@@ -533,13 +533,11 @@
                          NSLog(@"query 1 error");
                          
                      }
-                     
                     
                      else
                      {
                          NSLog(@"query 1a error");
 
-                         
                          if (playerObject != [PFUser currentUser] && teamObject != self.team) {
                              
                              //disable the join button
