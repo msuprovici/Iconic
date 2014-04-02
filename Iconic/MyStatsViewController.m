@@ -686,6 +686,11 @@
     //Converting float to NSNumber
     NSNumber * points = [NSNumber numberWithFloat: ceil((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50)];//rounded up to the largest following integer using ceiling function
     
+    //if player has 0 steps the algorithm above returns NAN - so we need to check first
+    if (points == [NSDecimalNumber notANumber])
+        return 0;
+    else
+    
     return points;
 }
 
