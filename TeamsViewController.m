@@ -82,9 +82,9 @@
        // self.categories = [NSMutableDictionary dictionary];
         
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"JoinedTeam" object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"LeftTeam" object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"JoinedTeam" object:nil];
+//        
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"LeftTeam" object:nil];
         
 
 
@@ -118,6 +118,11 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"JoinedTeam" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"LeftTeam" object:nil];
+
 }
 
 //method for loading table cells with leagues
@@ -247,7 +252,7 @@
     PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
     [query whereKey:kTeamate equalTo:[PFUser currentUser]];
     [query whereKey:kTeam equalTo:object];
-    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+   // query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         
@@ -497,17 +502,19 @@
 
        //comparing the objectId pushed in the NSNotificaiton to the objectId at indexpath
         if (team == teamCell ) {
+            
+            
             if (team) {
-            
-            
+                
                 //attempt to update the accessory - does not work
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
                 NSLog(@"Objects are equal");
-            
 
             [self.tableView reloadData];
+                
                 }
-            else{
+            else
+            {
                 NSLog(@"Object not found");
             }
 

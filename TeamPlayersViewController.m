@@ -424,6 +424,7 @@
         
         //convert the team's object ID into a string and save to new colum so that we can do a comparrison querry later
         NSString * teamPointerObject = [NSString stringWithFormat:@"%@",self.team.objectId];
+        
         [loggedInUser setObject:teamPointerObject forKey:kTeamObjectIdString];
         
         
@@ -449,6 +450,16 @@
     else if (self.joinTeam.selected == YES)
     {
         [self.delegate didSelectJoinTeam:self team:self.team];
+        
+        
+//        [loggedInUser deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            if (succeeded) {
+//                
+//                [self.joinTeam setSelected:NO];
+//                
+//                [self loadObjects];
+//            }
+
 
         PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
         [query whereKey:kTeamate equalTo:[PFUser currentUser]];

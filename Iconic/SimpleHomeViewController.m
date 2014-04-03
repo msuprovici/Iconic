@@ -1301,7 +1301,9 @@ static NSString *kImageKey = @"imageKey";
     
     //if player has 0 steps the algorithm above returns NAN - so we need to check first
     if (points == [NSDecimalNumber notANumber])
+        
         return 0;
+    
     else
     
     return points;
