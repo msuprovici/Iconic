@@ -75,7 +75,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 100;
+        self.objectsPerPage = 10;
         
         //dictionaries for teams & categories
         self.teams = [NSMutableDictionary dictionary];
@@ -256,17 +256,19 @@
     
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         
-        
+        TeamPlayersViewController *tappedCell = [[TeamPlayersViewController alloc]init];
         
         if (!error) {
             
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            
+            //flip off boolean for that cell
+            tappedCell.addTeam = YES;
                 }
         else if(error)
         {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            
+            //flip off boolean here
+            tappedCell.addTeam = NO;
         }
        
             }];

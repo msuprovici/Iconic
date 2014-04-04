@@ -463,13 +463,23 @@
 
         PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
         [query whereKey:kTeamate equalTo:[PFUser currentUser]];
+        
+
+        [query whereKey:kTeamObjectIdString equalTo:self.team.objectId];
          query.cachePolicy = kPFCachePolicyCacheThenNetwork;
         
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            if (!error) {
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 
-                //[object deleteEventually];
-                [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                
+            if (!error) {
+//                NSLog(@"number of teams: %lu", (unsigned long)objects.count);
+                
+                for (PFObject *object in objects)
+                {
+//                    NSLog(@"team object id: %@", object);
+//                    NSLog(@"self.team: %@", self.team);
+                    
+                    [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
                         
                         [self.joinTeam setSelected:NO];
@@ -477,6 +487,8 @@
                         [self loadObjects];
                     }
                     }];
+
+                }
           
                 
             }
@@ -503,6 +515,20 @@
 
     
 }
+
+
+//-(void)joinTeamButtonState
+//{
+//    if(self.addTeam == NO)
+//    {
+//        [self.joinTeam setEnabled:YES];
+//        [self.joinTeam setSelected:YES];
+//    }
+//    else{
+//        [self.joinTeam setEnabled:NO];
+//        [self.joinTeam setSelected:NO];
+//    }
+//}
 
 
 -(void)joinTeamButtonState

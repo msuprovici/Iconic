@@ -29,6 +29,8 @@
 
 @property (nonatomic, strong) PFObject *league;
 
+@property BOOL addTeam;
+
 -(void)initWithTeam:(PFObject*)aTeam;
 
 -(void)initWithLeague:(PFObject *)aLeague;
