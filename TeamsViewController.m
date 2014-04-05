@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import "PNChart.h"
 #import "Constants.h"
+#import "Team.h"
 
 @interface TeamsViewController ()
 
@@ -449,31 +450,31 @@
 }
 
 
-- (IBAction)unwindToTeams:(UIStoryboardSegue *)segue
-{
-//    TeamPlayersViewController *source = [segue sourceViewController];
-//    TeamCell * cell = [[TeamCell alloc]init];
+//- (IBAction)unwindToTeams:(UIStoryboardSegue *)segue
+//{
+////    TeamPlayersViewController *source = [segue sourceViewController];
+////    TeamCell * cell = [[TeamCell alloc]init];
+////    
+////    NSIndexPath *hitIndex = [self.tableView indexPathForCell:cell];
+////    
+////    PFObject *team = source.team;
+////   // cell.accessoryType = UITableViewCellAccessoryCheckmark;
+////    
+////    
+//////    if (hitIndex == team)
+//////    {
+//////        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//////    }
+//////    else {
+//////        cell.accessoryType = UITableViewCellAccessoryNone;
+//////    }
+////
 //    
-//    NSIndexPath *hitIndex = [self.tableView indexPathForCell:cell];
+//    TeamPlayersViewController * vc = [segue sourceViewController];
+//    vc.delegate = self;
 //    
-//    PFObject *team = source.team;
-//   // cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//    
-//    
-////    if (hitIndex == team)
-////    {
-////        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-////    }
-////    else {
-////        cell.accessoryType = UITableViewCellAccessoryNone;
-////    }
-//
-    
-    TeamPlayersViewController * vc = [segue sourceViewController];
-    vc.delegate = self;
-    
-    [self loadObjects];
-}
+//    [self loadObjects];
+//}
 
 
 //attempt to use a NSNotification to update cell accessoryType - does not work.
@@ -490,7 +491,7 @@
        //PFObject *pushedteams = [[teamInfo objectForKey:@"team"] object];
         
          NSString *team = [[teamInfo objectForKey:@"team"] objectId];
-        NSLog (@"Successfully received Joined Team notification! %@", team);
+//        NSLog (@"Successfully received Joined Team notification! %@", team);
         
         
         TeamCell *cell = [[TeamCell alloc]init];
@@ -510,21 +511,21 @@
                 
                 //attempt to update the accessory - does not work
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                NSLog(@"Objects are equal");
+//                NSLog(@"Objects are equal");
 
             [self.tableView reloadData];
                 
                 }
             else
             {
-                NSLog(@"Object not found");
+//                NSLog(@"Object not found");
             }
 
         }
         else
         {
             
-             NSLog(@"Objects are NOT equal");
+//             NSLog(@"Objects are NOT equal");
              cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
            
@@ -538,7 +539,7 @@
         // PFObject *team = [[teamInfo objectForKey:@"team"] object];
         
         NSString *team = [[teamInfo objectForKey:@"team"] objectId];
-        NSLog (@"Successfully received Left Team notification! %@", team);
+//        NSLog (@"Successfully received Left Team notification! %@", team);
         
         
         
@@ -582,12 +583,23 @@
 //attempt to use a delegate to update cell accessoryType - does not work.
 -(void)updateCells
 {
-    NSLog(@"This delegate works");
+    //NSLog(@"This delegate works");
 }
 
--(void)didSelectJoinTeam:(TeamPlayersViewController *)controller team:(NSObject *)team
+
+//*this delegate does not work*
+-(void)didSelectJoinTeam:(TeamPlayersViewController *)controller team:(Team *)team
 {
-    NSLog(@"This delegate works");
+    NSLog(@"TeamPlayersViewController delegate works");
+    
+    Team * selectedTeam = [[Team alloc]init];
+//    selectedTeam.teamName = [self.team objectForKey:kTeams];
+    if (selectedTeam.playerJoinedTeam == YES) {
+        NSLog(@"selectedTeam.playerJoinedTeam == YES");
+    }
+    else{
+        NSLog(@"selectedTeam.playerJoinedTeam == NO");
+    }
     
 }
 

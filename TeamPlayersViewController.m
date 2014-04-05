@@ -12,7 +12,7 @@
 #import "Constants.h"
 #import "TeamPlayerCell.h"
 #import "TeamCell.h"
-
+#import "Team.h"
 @interface TeamPlayersViewController ()
 
 @property NSMutableArray *leaguesArray;
@@ -404,12 +404,21 @@
 //        completionBlock(count > 0, error);
 //    }];
     
+    Team * selectedTeam = [[Team alloc]init];
+    selectedTeam.teamName = [self.team objectForKey:kTeam];
+    
+    [self.delegate didSelectJoinTeam:self team:selectedTeam];
+
     
     PFUser *loggedInUser = [PFUser objectWithClassName:self.parseClassName];
     
     if(self.joinTeam.selected == NO)
     {
-        [self.delegate didSelectJoinTeam:self team:self.team];
+        //filp boolean to the player joined team
+        selectedTeam.playerJoinedTeam = YES;
+        
+        
+//        [self.delegate didSelectJoinTeam:self team:self.team];
        
         //save a pointer to the current logged in user
         [loggedInUser setObject:[PFUser currentUser] forKey:kTeamate];
@@ -449,7 +458,7 @@
     }
     else if (self.joinTeam.selected == YES)
     {
-        [self.delegate didSelectJoinTeam:self team:self.team];
+//        [self.delegate didSelectJoinTeam:self team:self.team];
         
         
 //        [loggedInUser deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -460,7 +469,10 @@
 //                [self loadObjects];
 //            }
 
-
+        
+        //filp boolean to the player left team
+        selectedTeam.playerJoinedTeam = NO;
+        
         PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
         [query whereKey:kTeamate equalTo:[PFUser currentUser]];
         
@@ -559,7 +571,7 @@
                  [query whereKey:kTeam equalTo:self.team];
                  query.cachePolicy = kPFCachePolicyCacheThenNetwork;
                  
-                 NSLog(@"query returned result");
+//                 NSLog(@"query returned result");
                  
                 [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                      if (!error) {
@@ -567,20 +579,20 @@
                          //the player is on this team in this league so toggle button so they can leave the team
                          [self.joinTeam setEnabled:YES];
                          [self.joinTeam setSelected:YES];
-                         NSLog(@"query 1 error");
+//                         NSLog(@"query 1 error");
                          
                      }
                     
                      else
                      {
-                         NSLog(@"query 1a error");
+//                         NSLog(@"query 1a error");
 
                          if (playerObject != [PFUser currentUser] && teamObject != self.team) {
                              
                              //disable the join button
                              if (self.league != selectedLeague) {
                                  //player is on another team in this league
-                                 NSLog(@"query 1: user on a team in this league");
+//                                 NSLog(@"query 1: user on a team in this league");
                                  
                                  [self.joinTeam setEnabled:NO];
                                  [self.tableView reloadData];
@@ -588,7 +600,7 @@
                                  else
                                  {
                                      
-                                     NSLog(@"query 1:user not on a team in this league");
+//                                     NSLog(@"query 1:user not on a team in this league");
                                      
                                      [self.joinTeam setEnabled:YES];
                                  }
@@ -603,7 +615,7 @@
                              else if (playerObject == [PFUser currentUser] && teamObject == self.team) {
                                  [self.joinTeam setEnabled:NO];
                                  
-                                 NSLog(@"query 1c error");
+//                                 NSLog(@"query 1c error");
                                  
                              }
                              
@@ -613,7 +625,7 @@
                                  //disable the join button
                                  if (self.joinTeam.selected == YES && teamObject != self.team) {
                                      
-                                     NSLog(@"query 1d error");
+//                                     NSLog(@"query 1d error");
                                      
                                      [self.joinTeam setEnabled:NO];
                                      [self.tableView reloadData];
@@ -644,7 +656,7 @@
 //                    }
 //                }
 //                else{
-                    NSLog(@"player not on a team");
+//                    NSLog(@"player not on a team");
                     [self.joinTeam setEnabled:YES];
                     [self.joinTeam setSelected:NO];
 

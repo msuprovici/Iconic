@@ -50,6 +50,7 @@
 		5C539A1318679F3A006676FA /* PlayerTeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A1218679F3A006676FA /* PlayerTeamsViewController.m */; };
 		5C539A161867A2AC006676FA /* FollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A151867A2AC006676FA /* FollowCell.m */; };
 		5C6A6EE018A47BE40044269F /* TeamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A6EDF18A47BE40044269F /* TeamCell.m */; };
+		5C6CAAA918EFC58900E0CB26 /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6CAAA818EFC58900E0CB26 /* Team.m */; };
 		5C78DA4D189872BF00CBA29B /* activity_comment_icon_blue-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA49189872BF00CBA29B /* activity_comment_icon_blue-01.png */; };
 		5C78DA4E189872BF00CBA29B /* activity_comment_icon_green-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA4A189872BF00CBA29B /* activity_comment_icon_green-01.png */; };
 		5C78DA4F189872BF00CBA29B /* activity_speaker_icon_green-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA4B189872BF00CBA29B /* activity_speaker_icon_green-01.png */; };
@@ -225,6 +226,8 @@
 		5C539A151867A2AC006676FA /* FollowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowCell.m; sourceTree = "<group>"; };
 		5C6A6EDE18A47BE40044269F /* TeamCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamCell.h; sourceTree = "<group>"; };
 		5C6A6EDF18A47BE40044269F /* TeamCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCell.m; sourceTree = "<group>"; };
+		5C6CAAA718EFC58900E0CB26 /* Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		5C6CAAA818EFC58900E0CB26 /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		5C78DA49189872BF00CBA29B /* activity_comment_icon_blue-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_comment_icon_blue-01.png"; sourceTree = "<group>"; };
 		5C78DA4A189872BF00CBA29B /* activity_comment_icon_green-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_comment_icon_green-01.png"; sourceTree = "<group>"; };
 		5C78DA4B189872BF00CBA29B /* activity_speaker_icon_green-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_speaker_icon_green-01.png"; sourceTree = "<group>"; };
@@ -535,6 +538,8 @@
 			children = (
 				5C328BFD18601ADF00E0E985 /* TeamsViewController.h */,
 				5C328BFE18601ADF00E0E985 /* TeamsViewController.m */,
+				5C6CAAA718EFC58900E0CB26 /* Team.h */,
+				5C6CAAA818EFC58900E0CB26 /* Team.m */,
 				5C6A6EDE18A47BE40044269F /* TeamCell.h */,
 				5C6A6EDF18A47BE40044269F /* TeamCell.m */,
 				5C349E9B18602ED600325A29 /* TeamPlayersViewController.h */,
@@ -1095,6 +1100,7 @@
 				5CD93830187B510E006CE08B /* MZAppearance.m in Sources */,
 				5CA19A3A18B83E290023C940 /* PNLineChartData.m in Sources */,
 				5C2C1CD3185EADF2006722D2 /* ActivityViewController.m in Sources */,
+				5C6CAAA918EFC58900E0CB26 /* Team.m in Sources */,
 				5C8B047A189CAF8E000AD0DF /* TabBarViewController.m in Sources */,
 				5C328BFB186002D300E0E985 /* LeaguesViewController.m in Sources */,
 				5C48B8BC1880F89F00A09A1C /* UIImage+AlphaAdditions.m in Sources */,

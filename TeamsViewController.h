@@ -10,7 +10,8 @@
 #import <Parse/Parse.h>
 #import "TeamPlayersViewController.h"
 
-@interface TeamsViewController : PFQueryTableViewController<TeamsViewControllerDelegate>
+
+@interface TeamsViewController : PFQueryTableViewController<TeamPlayersViewControllerDelegate>
 
 @property (nonatomic, strong) PFObject *league;
 

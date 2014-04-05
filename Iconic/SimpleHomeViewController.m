@@ -419,7 +419,7 @@ static NSString *kImageKey = @"imageKey";
                 if(objects.count > 0)
                 {
                     
-                NSLog(@"team class query worked");
+//                NSLog(@"team class query worked");
                     
                     
                     //making sure these items are visible in case they were reset when the player left all teams
@@ -516,7 +516,7 @@ static NSString *kImageKey = @"imageKey";
             }
             else
             {
-                NSLog(@"query did not work");
+//                NSLog(@"query did not work");
                 //Hardcoded for testing
                 self.MyTeamName.text = @"NO TEAM";
                 self.MyTeamScore.text = @"";
@@ -556,7 +556,7 @@ static NSString *kImageKey = @"imageKey";
             
             if(objects.count > 0)
             {
-            NSLog(@"number of objects received: %lu", (unsigned long)objects.count);
+//            NSLog(@"number of objects received: %lu", (unsigned long)objects.count);
             
 
             
@@ -681,7 +681,7 @@ static NSString *kImageKey = @"imageKey";
     
     
     
-    NSLog(@"index of myteamObjectRight: %d", myTeamIndex);
+//    NSLog(@"index of myteamObjectRight: %d", myTeamIndex);
     
     if (myTeamIndex <= self.myTeamData.count-1) {
         
@@ -744,7 +744,7 @@ static NSString *kImageKey = @"imageKey";
     //find the index of myTeamObject - see comments above in scrollTeamsRight
     int myTeamIndex = (int)[self.myTeamData indexOfObject:self.myNewTeamObject];
     int myFirstTeamIndex = (int)[self.myTeamData indexOfObject:self.myTeamData.firstObject];
-    NSLog(@"index of myteamObjectLeft: %d", myTeamIndex);
+//    NSLog(@"index of myteamObjectLeft: %d", myTeamIndex);
     
     
     if (myTeamIndex <= self.myTeamData.count-1 )
@@ -1034,7 +1034,7 @@ static NSString *kImageKey = @"imageKey";
         [self setReceivedNotification:YES];
         [self.view setNeedsDisplay];
         
-        NSLog(@"Received Joined Team Notification on home screen");
+//        NSLog(@"Received Joined Team Notification on home screen");
         ;
     }
     else if ([[notification name] isEqualToString:@"LeftTeam"])
@@ -1052,7 +1052,7 @@ static NSString *kImageKey = @"imageKey";
        [self.view setNeedsDisplay];
         [self setReceivedNotification:YES];
         //self.receivedNotification = TRUE;
-        NSLog(@"Received Leave Team Notification on home screen");
+//        NSLog(@"Received Leave Team Notification on home screen");
     }
 }
 
@@ -1236,14 +1236,14 @@ static NSString *kImageKey = @"imageKey";
                 }
                 else
                 {
-                    NSLog(@"error in inner query");
+//                    NSLog(@"error in inner query");
                 }
             }
             
         }
         else
         {
-            NSLog(@"error");
+//            NSLog(@"error");
         }
 
     }];

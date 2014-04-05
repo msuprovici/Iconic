@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "Team.h"
 
 @class TeamPlayersViewController;
-@protocol TeamsViewControllerDelegate<NSObject>
+@protocol TeamPlayersViewControllerDelegate<NSObject>
 @optional;
 
--(void) didSelectJoinTeam:(TeamPlayersViewController *)controller team:(NSObject *)team;
+-(void) didSelectJoinTeam:(TeamPlayersViewController *)controller team:(Team *)team;
 
 @end
 
@@ -21,7 +22,7 @@
 
 @interface TeamPlayersViewController : PFQueryTableViewController
 
-@property (nonatomic, assign) id <TeamsViewControllerDelegate> delegate;
+@property (nonatomic, assign) id <TeamPlayersViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) IBOutlet UIButton *joinTeam;
 
