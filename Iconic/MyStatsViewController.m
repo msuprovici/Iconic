@@ -22,6 +22,7 @@
 }
 
 @property (strong, nonatomic) NSTimer *timer;
+@property  float myProgress;
 
 @end
 
@@ -31,6 +32,7 @@
 @synthesize xpProgressView = _xpProgressView;
 @synthesize xpProgressDial = _xpProgressDial;
 @synthesize timer = _timer;
+@synthesize myProgress = _myProgress;
 
 
 
@@ -74,9 +76,12 @@
             // This is to generate thumbnail a player's thumbnail, name & title
             
             
-            if (currentUser) {
+//            if (currentUser) {
                 
                 [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                    
+                    if(!error)
+                    {
                     
 //                    self.xpValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerXP]];
                     
@@ -102,7 +107,7 @@
                     
 
                     //calculate % progress
-                    float myProgress = (myPointsValue - myTotalPointsForCurrentLevelValue)/(myTotalPointsForNextLevelValue - myTotalPointsForCurrentLevelValue);
+                     self.myProgress = (myPointsValue - myTotalPointsForCurrentLevelValue)/(myTotalPointsForNextLevelValue - myTotalPointsForCurrentLevelValue);
                     
                     
                     //set the right level
@@ -110,15 +115,22 @@
 //                    NSLog(@"myPointsValue: %f", myProgress);
                     
                     //animate the progress dial
-                    [self progressDialChange:myProgress];
+//                    [self progressDialChange:myProgress];
+//                        [self progressDialChange:myProgress];
+                    }
+                    else
+                    {
+                        NSLog(@"e");
+                    }
+                    
 
                     
                
                 }];
                 
                 
-            }
-
+//            }
+                [self progressDialChange];
         self.stepsImage.hidden = YES;
         self.stepsCountingLabel.hidden = YES;
         self.viewTitle.hidden = YES;
@@ -273,27 +285,34 @@
 //    [self getPlayerSteps];
 //}
 
-- (void)progressDialChange:(float)ratio
+//- (void)progressDialChange:(float)ratio
+- (void)progressDialChange
 {
     
     NSArray *progressViews = @[self.xpProgressDial, self.stepsProgressDial ];
     for (DACircularProgressView *progressView in progressViews) {
         
-        //this is where we will compute the score ratio and display it to the user
-        //simple equation:  myteam score / opponent score
-        float progress = ratio;
-        [progressView setProgress:progress animated:YES];
+        [progressView setProgress:self.myProgress animated:YES];
         
-        if (progressView.progress >= 1.0f && [self.timer isValid]) {
-            [progressView setProgress:0.f animated:YES];
-        }
+//        float progress = ratio;
+        
+//        float progress = .25;
+//      [progressView setProgress:progress animated:YES];
+        
+//        if (progressView.progress >= 0.0f && [self.timer isValid]) {
+//            [progressView setProgress:0.f animated:YES];
+        
+//        if (progressView.progress >= 0.0f ) {
+//            [progressView setProgress:progress animated:YES];
+//        }
     }
 }
 
 
 - (void)startAnimation
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(progressDialChange:) userInfo:nil repeats:NO];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(progressDialChange:) userInfo:nil repeats:NO];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(progressDialChange) userInfo:nil repeats:NO];
     
 }
 
