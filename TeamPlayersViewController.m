@@ -555,8 +555,8 @@
      PFObject * selectedLeague = [self.team objectForKey:kLeagues];
     
      [leagueQuery whereKey:kLeagues notEqualTo:selectedLeague];
-     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-     leagueQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//     leagueQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
      [query whereKey:kTeam doesNotMatchQuery:leagueQuery];
      [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -569,7 +569,7 @@
              {
                  
                  [query whereKey:kTeam equalTo:self.team];
-                 query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//                 query.cachePolicy = kPFCachePolicyCacheThenNetwork;
                  
 //                 NSLog(@"query returned result");
                  
@@ -659,6 +659,8 @@
 //                    NSLog(@"player not on a team");
                     [self.joinTeam setEnabled:YES];
                     [self.joinTeam setSelected:NO];
+                 
+                    
 
                     
              //   }

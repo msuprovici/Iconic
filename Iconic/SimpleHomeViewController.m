@@ -142,6 +142,12 @@ static NSString *kImageKey = @"imageKey";
                                              selector:@selector(receiveTeamNotification:)
                                                  name:@"LeftTeam"
                                                object:nil];
+    
+    
+    //refreshes the app when it enters foreground
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshHomeView)
+                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
 
     //test tournament function
     
@@ -149,48 +155,51 @@ static NSString *kImageKey = @"imageKey";
     //show player name header
     [self playerNameHeader];
     
+    
+    //load my stats
+    [self refreshHomeView];
+    
     //Uncomment to test points and activity views
    //[self savePoints];
     
-    //Page control for MyStatsView
-    NSUInteger numberPages = self.contentList.count;
+//    //Page control for MyStatsView
+//    NSUInteger numberPages = self.contentList.count;
+//    
+//    // view controllers are created lazily
+//    // in the meantime, load the array with placeholders which will be replaced on demand
+//    NSMutableArray *controllers = [[NSMutableArray alloc] init];
+//    for (NSUInteger i = 0; i < numberPages; i++)
+//    {
+//		[controllers addObject:[NSNull null]];
+//    }
+//    self.viewControllers = controllers;
+//    
+//    // a page is the width of the scroll view
+//    self.scrollView.pagingEnabled = YES;
+//    self.scrollView.contentSize =
+//    CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
+//    self.scrollView.showsHorizontalScrollIndicator = NO;
+//    self.scrollView.showsVerticalScrollIndicator = NO;
+//    self.scrollView.scrollsToTop = NO;
+//    self.scrollView.delegate = self;
+//    
+//    self.pageControl.numberOfPages = numberPages;
+//    self.pageControl.currentPage = 0;
+//    
+//    // pages are created on demand
+//    // load the visible page
+//    // load the page on either side to avoid flashes when the user starts scrolling
+//    //
+//    [self loadScrollViewWithPage:0];
+//    //[self loadScrollViewWithPage:1];
+//    [self.view addSubview:self.pageControl];
+   
     
-    // view controllers are created lazily
-    // in the meantime, load the array with placeholders which will be replaced on demand
-    NSMutableArray *controllers = [[NSMutableArray alloc] init];
-    for (NSUInteger i = 0; i < numberPages; i++)
-    {
-		[controllers addObject:[NSNull null]];
-    }
-    self.viewControllers = controllers;
-    
-    // a page is the width of the scroll view
-    self.scrollView.pagingEnabled = YES;
-    self.scrollView.contentSize =
-    CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    self.scrollView.scrollsToTop = NO;
-    self.scrollView.delegate = self;
-    
-    self.pageControl.numberOfPages = numberPages;
-    self.pageControl.currentPage = 0;
-    
-    // pages are created on demand
-    // load the visible page
-    // load the page on either side to avoid flashes when the user starts scrolling
-    //
-    [self loadScrollViewWithPage:0];
-    //[self loadScrollViewWithPage:1];
-    [self.view addSubview:self.pageControl];
-    
- 
-    
-    //retrived team data from parse and populate chart
-    [self performSelector:@selector(retrieveFromParse)];
-    
-    //increment points
-   [self incrementPlayerPoints];
+//    //retrived team data from parse and populate chart
+//    [self performSelector:@selector(retrieveFromParse)];
+//    
+//    //increment points
+//   [self incrementPlayerPoints];
   
     
 
@@ -223,37 +232,37 @@ static NSString *kImageKey = @"imageKey";
 {
     [super viewDidAppear:YES ];
     
-    //Page control for MyStatsView
-    NSUInteger numberPages = self.contentList.count;
-    
-    // view controllers are created lazily
-    // in the meantime, load the array with placeholders which will be replaced on demand
-    NSMutableArray *controllers = [[NSMutableArray alloc] init];
-    for (NSUInteger i = 0; i < numberPages; i++)
-    {
-		[controllers addObject:[NSNull null]];
-    }
-    self.viewControllers = controllers;
-    
-    // a page is the width of the scroll view
-    self.scrollView.pagingEnabled = YES;
-    self.scrollView.contentSize =
-    CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    self.scrollView.scrollsToTop = NO;
-    self.scrollView.delegate = self;
-    
-    self.pageControl.numberOfPages = numberPages;
-    self.pageControl.currentPage = 0;
-    
-    // pages are created on demand
-    // load the visible page
-    // load the page on either side to avoid flashes when the user starts scrolling
-    //
-    [self loadScrollViewWithPage:0];
-    //[self loadScrollViewWithPage:1];
-    [self.view addSubview:self.pageControl];
+//    //Page control for MyStatsView
+//    NSUInteger numberPages = self.contentList.count;
+//    
+//    // view controllers are created lazily
+//    // in the meantime, load the array with placeholders which will be replaced on demand
+//    NSMutableArray *controllers = [[NSMutableArray alloc] init];
+//    for (NSUInteger i = 0; i < numberPages; i++)
+//    {
+//		[controllers addObject:[NSNull null]];
+//    }
+//    self.viewControllers = controllers;
+//    
+//    // a page is the width of the scroll view
+//    self.scrollView.pagingEnabled = YES;
+//    self.scrollView.contentSize =
+//    CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
+//    self.scrollView.showsHorizontalScrollIndicator = NO;
+//    self.scrollView.showsVerticalScrollIndicator = NO;
+//    self.scrollView.scrollsToTop = NO;
+//    self.scrollView.delegate = self;
+//    
+//    self.pageControl.numberOfPages = numberPages;
+//    self.pageControl.currentPage = 0;
+//    
+//    // pages are created on demand
+//    // load the visible page
+//    // load the page on either side to avoid flashes when the user starts scrolling
+//    //
+//    [self loadScrollViewWithPage:0];
+//    //[self loadScrollViewWithPage:1];
+//    [self.view addSubview:self.pageControl];
     
     
 //    [self loadSteps];
@@ -293,6 +302,50 @@ static NSString *kImageKey = @"imageKey";
     //[self performSelector:@selector(retrieveFromParse)];
 
     }
+
+
+-(void)refreshHomeView
+{
+    //Page control for MyStatsView
+    NSUInteger numberPages = self.contentList.count;
+    
+    // view controllers are created lazily
+    // in the meantime, load the array with placeholders which will be replaced on demand
+    NSMutableArray *controllers = [[NSMutableArray alloc] init];
+    for (NSUInteger i = 0; i < numberPages; i++)
+    {
+		[controllers addObject:[NSNull null]];
+    }
+    self.viewControllers = controllers;
+    
+    // a page is the width of the scroll view
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.contentSize =
+    CGSizeMake(CGRectGetWidth(self.scrollView.frame) * numberPages, CGRectGetHeight(self.scrollView.frame));
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.scrollsToTop = NO;
+    self.scrollView.delegate = self;
+    
+    self.pageControl.numberOfPages = numberPages;
+    self.pageControl.currentPage = 0;
+    
+    // pages are created on demand
+    // load the visible page
+    // load the page on either side to avoid flashes when the user starts scrolling
+    //
+    [self loadScrollViewWithPage:0];
+    //[self loadScrollViewWithPage:1];
+    [self.view addSubview:self.pageControl];
+    
+    
+    [self performSelector:@selector(retrieveFromParse)];
+    
+    //increment points
+    [self incrementPlayerPoints];
+
+
+}
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
@@ -1168,7 +1221,8 @@ static NSString *kImageKey = @"imageKey";
                 
                 
                 //save points
-                [object saveInBackground];
+                //[object saveInBackground];
+                [object saveEventually];//<-from Parse forums: "saveEventually should not trigger multiple-writer issues, but "inBackground" methods can"
 
                 
                 
@@ -1187,6 +1241,7 @@ static NSString *kImageKey = @"imageKey";
                 
                 //increment the points for all my teams
                 [self incrementMyTeamsPoints:pointsDelta];
+              
     
             }
 
