@@ -11,6 +11,7 @@
 #import "ContentController.h"
 #import "VSTableViewController.h"
 
+
 #import "Cache.h"
 #import "Constants.h"
 
@@ -23,6 +24,7 @@
 #import "UIImage+ResizeAdditions.h"
 
 #import <CoreMotion/CoreMotion.h>
+#include <math.h>
 
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
@@ -80,9 +82,11 @@ static NSString *kImageKey = @"imageKey";
 
 
 //step counting
-
 @property (nonatomic, strong) CMStepCounter *cmStepCounter;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
+
+//convert steps to points and store here
+@property NSNumber* myPoints;
 
 @end
 
@@ -96,6 +100,7 @@ static NSString *kImageKey = @"imageKey";
 @synthesize myteamObjectatIndex;
 //@synthesize receivedNotification;
 @synthesize x;
+@synthesize myPoints;
 
 //Notifications NOT working
 
@@ -1155,7 +1160,15 @@ static NSString *kImageKey = @"imageKey";
     [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
 
         //convert steps to points
-        NSNumber *myPoints = [self calculatePoints:numberOfSteps];
+        //check for NAN values
+        if(numberOfSteps == 0)
+        {
+            self.myPoints = 0;
+        }
+        else
+        {
+        self.myPoints = [self calculatePoints:numberOfSteps];
+        }
 
         PFObject *playerPoints = [PFUser currentUser];
         
@@ -1173,7 +1186,7 @@ static NSString *kImageKey = @"imageKey";
                 int retrievedPointsValue = [retrievedPoints intValue];
 //                NSLog(@"retrievedPointsValue: %d", retrievedPointsValue);
                 
-                int myPointsValue = [myPoints intValue];
+                int myPointsValue = [self.myPoints intValue];
 //                NSLog(@"myPointsValue: %d", myPointsValue);
                 
                 //get delta between my current points and what is stored in the database
@@ -1354,14 +1367,7 @@ static NSString *kImageKey = @"imageKey";
     //Converting float to NSNumber
     NSNumber * points = [NSNumber numberWithFloat: ceil((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50)];//rounded up to the largest following integer using ceiling function
     
-    //if player has 0 steps the algorithm above returns NAN - so we need to check first
-    if (points == [NSDecimalNumber notANumber])
-        
-        return 0;
-    
-    else
-    
-    return points;
+      return points;
 }
 
 
