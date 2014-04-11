@@ -78,56 +78,98 @@
             
             
 //            if (currentUser) {
+                NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
+                int myLifetimePoints = (int)[myRetrievedPoints integerForKey:@"MyTotalPoints"];
+//                NSLog(@"myLifetimePoints: %d", myLifetimePoints);
                 
-                [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                    
-                    if(!error)
-                    {
-                    
-//                    self.xpValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerXP]];
-                    
-                    //Get my lifetime points
-                     NSNumber* myLifetimePoints = [object objectForKey:kPlayerPoints];
-                   NSLog(@"myLifetimePoints: %@", myLifetimePoints);
-                     float myPointsValue = [myLifetimePoints floatValue];
-                    
-                    
-                    float retrievedLevelValue = [myLifetimePoints floatValue];
-                    NSNumber *myLevel = [self calculateLevel:retrievedLevelValue];
-                    float myLevelValue = [myLevel floatValue];
-                    
-                    //calculate total points to reach next level
-                    NSNumber *totalPointsForNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
-                    int myTotalPointsForNextLevelValue = [totalPointsForNextLevel intValue];
-//                    NSLog(@"myTotalPointsForNextLevelValue: %d", myTotalPointsForNextLevelValue);
-                    
-                    //calculate total points to reach current level
-                    NSNumber *totalPointsForCurrentLevel = [self calculatePointsToReachCurrentLevel:myLevelValue];
-                    int myTotalPointsForCurrentLevelValue = [totalPointsForCurrentLevel intValue];
-//                    NSLog(@"myTotalPointsForCurrentLevelValue: %d", myTotalPointsForCurrentLevelValue);
-                    
-
-                    //calculate % progress
-                     self.myProgress = (myPointsValue - myTotalPointsForCurrentLevelValue)/(myTotalPointsForNextLevelValue - myTotalPointsForCurrentLevelValue);
-                    
-                    
-                    //set the right level
-                    self.xpValue.text = [NSString stringWithFormat:@"%@",myLevel];
-//                    NSLog(@"myPointsValue: %f", myProgress);
-                    
-                    //animate the progress dial
-//                    [self progressDialChange:myProgress];
-//                        [self progressDialChange:myProgress];
-                    }
-                    else
-                    {
-                        NSLog(@"e");
-                    }
-                    
-
-                    
+                NSNumber *myLevel = [self calculateLevel:myLifetimePoints];
+//                NSLog(@"myLevel: %@", myLevel);
+                
+                float myLevelValue = [myLevel floatValue];
+//                NSLog(@"myLevelValue: %f", myLevelValue);
+                
+                //calculate total points to reach next level
+                NSNumber *totalPointsForNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
+                int myTotalPointsForNextLevelValue = [totalPointsForNextLevel intValue];
+                
+//                NSLog(@"myTotalPointsForNextLevelValue: %d", myTotalPointsForNextLevelValue);
+                
+                //calculate total points to reach current level
+                NSNumber *totalPointsForCurrentLevel = [self calculatePointsToReachCurrentLevel:myLevelValue];
+                
+                int myTotalPointsForCurrentLevelValue = [totalPointsForCurrentLevel intValue];
+                
+//                NSLog(@"myTotalPointsForCurrentLevelValue: %d", myTotalPointsForCurrentLevelValue);
+                
+                
+                //calculate % progress
+                
+                
+                float myLevelProgress = (myLifetimePoints - myTotalPointsForCurrentLevelValue);
+//                NSLog(@"myLevelProgress: %f", myLevelProgress);
+                
+                float myTotalPointsToNextLevel = (myTotalPointsForNextLevelValue - myTotalPointsForCurrentLevelValue);
+//                NSLog(@"myTotalPointsToNextLevel: %f", myTotalPointsToNextLevel);
+                
+                
+                float myProgressPercent = myLevelProgress/myTotalPointsToNextLevel;
+                self.myProgress = myProgressPercent;
+//                NSLog(@"myRatio: %f", myProgressPercent);
                
-                }];
+                
+                //set the right level
+                self.xpValue.text = [NSString stringWithFormat:@"%@",myLevel];
+
+                
+//                [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//                    
+//                    if(!error)
+//                    {
+//                    
+////                    self.xpValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerXP]];
+//                    
+//                    //Get my lifetime points
+//                     NSNumber* myLifetimePoints = [object objectForKey:kPlayerPoints];
+//                   NSLog(@"myLifetimePoints: %@", myLifetimePoints);
+//                     float myPointsValue = [myLifetimePoints floatValue];
+//                    
+//                    
+//                    float retrievedLevelValue = [myLifetimePoints floatValue];
+//                    NSNumber *myLevel = [self calculateLevel:retrievedLevelValue];
+//                    float myLevelValue = [myLevel floatValue];
+//                    
+//                    //calculate total points to reach next level
+//                    NSNumber *totalPointsForNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
+//                    int myTotalPointsForNextLevelValue = [totalPointsForNextLevel intValue];
+////                    NSLog(@"myTotalPointsForNextLevelValue: %d", myTotalPointsForNextLevelValue);
+//                    
+//                    //calculate total points to reach current level
+//                    NSNumber *totalPointsForCurrentLevel = [self calculatePointsToReachCurrentLevel:myLevelValue];
+//                    int myTotalPointsForCurrentLevelValue = [totalPointsForCurrentLevel intValue];
+////                    NSLog(@"myTotalPointsForCurrentLevelValue: %d", myTotalPointsForCurrentLevelValue);
+//                    
+//
+//                    //calculate % progress
+//                     self.myProgress = (myPointsValue - myTotalPointsForCurrentLevelValue)/(myTotalPointsForNextLevelValue - myTotalPointsForCurrentLevelValue);
+////
+//                    
+//                    //set the right level
+//                    self.xpValue.text = [NSString stringWithFormat:@"%@",myLevel];
+////                    NSLog(@"myPointsValue: %f", myProgress);
+//                    
+//                    //animate the progress dial
+////                    [self progressDialChange:myProgress];
+////                        [self progressDialChange:myProgress];
+//                    }
+//                    else
+//                    {
+//                        NSLog(@"e");
+//                    }
+//                    
+//
+//                    
+//               
+//                }];
                 
                 
 //            }
@@ -148,7 +190,7 @@
             self.xpProgressDial.progressTintColor = PNBlue;
             
                 
-            [self startAnimation];
+//            [self startAnimation];
             }
         }
         if (i == 1)
@@ -188,7 +230,7 @@
             self.pointsImage.hidden = YES;
                
             
-            [self startAnimation];
+//            [self startAnimation];
             }
 
         }
@@ -301,7 +343,8 @@
 //      [progressView setProgress:progress animated:YES];
         
 //        if (progressView.progress >= 0.0f && [self.timer isValid]) {
-//            [progressView setProgress:0.f animated:YES];
+//            [progressView setProgress:self.myProgress animated:YES];
+//        }
         
 //        if (progressView.progress >= 0.0f ) {
 //            [progressView setProgress:progress animated:YES];
@@ -310,12 +353,12 @@
 }
 
 
-- (void)startAnimation
-{
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(progressDialChange:) userInfo:nil repeats:NO];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(progressDialChange) userInfo:nil repeats:NO];
-    
-}
+//-(void)startAnimation
+//{
+////    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(progressDialChange:) userInfo:nil repeats:NO];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(progressDialChange) userInfo:nil repeats:NO];
+//    NSLog(@"startAnimation");
+//}
 
 //- (void)updateStepLabel
 //{
@@ -424,12 +467,12 @@
     NSDate *from = [self beginningOfDay];
     
     
-    NSLog(@"time now: %@",now);
-    NSLog(@"time from: %@",from);
+//    NSLog(@"time now: %@",now);
+//    NSLog(@"time from: %@",from);
 
     [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
         
-        NSLog(@"numberOfSteps: %ld",(long)numberOfSteps);
+//        NSLog(@"numberOfSteps: %ld",(long)numberOfSteps);
 
         
         self.stepsCountingLabel.text = [@(numberOfSteps) stringValue];
@@ -563,7 +606,7 @@
     //find the beginning of the day
     //nsdate always returns GMT
     NSDate *now = [NSDate date];
-    NSLog(@"now date: %@",now);
+//    NSLog(@"now date: %@",now);
     
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
@@ -715,7 +758,7 @@
     //Converting float to NSNumber
     NSNumber * points = [NSNumber numberWithFloat: ceil((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50)];//rounded up to the largest following integer using ceiling function
     
-        
+    
     return points;
 }
 
