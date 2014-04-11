@@ -452,6 +452,8 @@ static NSString *kImageKey = @"imageKey";
     [self gotoPage:YES];    // YES = animate
 }
 
+
+
 #pragma mark Parse Methods
 
 //retrive table view data from parse
@@ -561,7 +563,7 @@ static NSString *kImageKey = @"imageKey";
                 {
                     
                     //if the player is not on a team...
-                    self.MyTeamName.text = @"NO TEAM";
+                    self.MyTeamName.text = @"No Team";
                     self.MyTeamScore.text = @"";
                     self.scrollTeamsRight.hidden = YES ;
                     self.scrollTeamsLeft.hidden = YES ;
@@ -703,7 +705,6 @@ static NSString *kImageKey = @"imageKey";
 //                    NSLog(@"awayTeamPointers: %lu", (unsigned long)self.awayTeamPointers.count);
 //                    NSLog(@"homeTeamPointers: %lu", (unsigned long)self.arrayOfawayTeamScores.count);
 
-                    
 
                     }
                     
@@ -1033,7 +1034,7 @@ static NSString *kImageKey = @"imageKey";
     
 }
 
-#pragma page control UI
+#pragma mark page control UI
 
 -(void) playerNameHeader
 {
@@ -1079,6 +1080,9 @@ static NSString *kImageKey = @"imageKey";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark NSNotifications methods
+
 - (void) receiveTeamNotification:(NSNotification *) notification
 {
     //reload view if a player has joined a team
@@ -1178,40 +1182,22 @@ static NSString *kImageKey = @"imageKey";
         self.myPoints = [self calculatePoints:numberOfSteps];
         }
         
-        
-        
-        
-        
+
         
         //set the player's total points in memory
         NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
-//        [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:@"TotalPoints"];
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-      //  [self.myPoints addObserver:self.myPoints forKeyPath:@"TotalPoints" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-        
-        //[myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:@"TotalPoints"];
-        //[self.myPoints setValue:self.myPoints  forKey:@"TotalPoints"];
-
         
         [[NSUserDefaults standardUserDefaults] synchronize];
-//        [self setValue:[NSNumber numberWithInt:22] forKey:@"ownedClowCards"];
-      //  [self.myPoints removeObserver:self.myPoints forKeyPath:@"TotalPoints"];
         
-        
-
-        //to prevent null values
+        //to prevent null values check if # of steps is 0
         if(numberOfSteps == 0)
         {
             [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:@"TodayPoints"];
             [[NSUserDefaults standardUserDefaults] synchronize];
-
         }
         
         else
-            
         {
-            
         int myStoredPoints = (int)[myRetrievedPoints integerForKey:@"TodayPoints"];
         int myMostRecentPointsValue = [self.myPoints intValue];
         int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
@@ -1273,14 +1259,14 @@ static NSString *kImageKey = @"imageKey";
 //               
 //                NSNumber* pointsDelta = [NSNumber numberWithInt:pointsDeltaValue];
                 
-                
-                
+
                 //calculate level
 //                float retrievedLevelValue = [lifetimePoints floatValue];
+                
+                
+                
                 NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
                 float myLevelValue = [myLevel floatValue];
-                
-                //calculate points to reach next level
                 
                 //get the total points necessary for next level
                 
@@ -1337,12 +1323,12 @@ static NSString *kImageKey = @"imageKey";
 //                //save points
 //                [playerPoints saveInBackground];
                 
+                
+                
                 //increment the points for all my teams
                [self incrementMyTeamsPoints:myNSPointsDeltaValue];
-            
     
             }
-            
             
 
         }];
@@ -1353,27 +1339,7 @@ static NSString *kImageKey = @"imageKey";
     
 }
 
-//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-//{
-//     NSLog(@"observeValueForKeyPath is called");
-//    if([keyPath isEqualToString:@"TotalPoints"])
-//    {
-//        NSLog(@"keyPath = TotalPoints");
-//              
-//        int oldC = (int)[change objectForKey:NSKeyValueChangeNewKey];
-//        int newC = (int)[change objectForKey:NSKeyValueChangeOldKey];
-//        
-//        NSLog(@"oldC: %d", oldC);
-//        NSLog(@"newC: %d", newC);
-////        if(oldC < newC)
-////        {
-////            //[self hasLostClowCard];
-////        }else
-////        {
-////            //[self hasGainedClowCard];
-////        }
-//    }
-//}
+
 
 -(void)incrementMyTeamsPoints:(NSNumber*)delta
 {
@@ -1430,45 +1396,6 @@ static NSString *kImageKey = @"imageKey";
 }
 
 
-//find the beginning of the day
--(NSDate *)beginningOfDay
-{
-    
-    //find the beginning of the day
-    //nsdate always returns GMT
-    NSDate *now = [NSDate date];
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
-    [components setHour:0];
-    [components setMinute:0];
-    [components setSecond:0];
-    
-    
-    //NSLog(@"Local Time Zone %@",[[NSTimeZone localTimeZone] name]);
-    
-    //     NSLog(@"Calendar date: %@",[cal dateFromComponents:components]);
-    
-    //convert GMT to my local time
-//    NSDate* sourceDate = [cal dateFromComponents:components];
-//    
-//    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-//    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
-//    
-//    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-//    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
-//    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
-//    
-//    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
-//    
-//    
-//        NSLog(@"Converted date: %@",myDate);
-//        NSLog(@"Source date: %@",myDate);
-//    
-//    
-//    return myDate;
-    return [cal dateFromComponents:components];
-}
-
 
 -(NSNumber*)calculatePoints:(float)steps
 {
@@ -1515,6 +1442,47 @@ static NSString *kImageKey = @"imageKey";
     return points;
 }
 
+#pragma mark NSDate & Time
+//find the beginning of the day
+-(NSDate *)beginningOfDay
+{
+    
+    //find the beginning of the day
+    //nsdate always returns GMT
+    NSDate *now = [NSDate date];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
+    
+    [components setHour:0];
+    [components setMinute:0];
+    [components setSecond:0];
+    
+    return [cal dateFromComponents:components];
+    
+    //NSLog(@"Local Time Zone %@",[[NSTimeZone localTimeZone] name]);
+    
+    //     NSLog(@"Calendar date: %@",[cal dateFromComponents:components]);
+    
+    //convert GMT to my local time
+    //    NSDate* sourceDate = [cal dateFromComponents:components];
+    //
+    //    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    //    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
+    //
+    //    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+    //    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
+    //    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
+    //
+    //    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
+    //
+    //
+    //        NSLog(@"Converted date: %@",myDate);
+    //        NSLog(@"Source date: %@",myDate);
+    //
+    //
+    //    return myDate;
+   
+}
 
 
 
