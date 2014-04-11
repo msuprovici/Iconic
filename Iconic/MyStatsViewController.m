@@ -337,6 +337,8 @@
         
         [progressView setProgress:self.myProgress animated:YES];
         
+        
+        
 //        float progress = ratio;
         
 //        float progress = .25;

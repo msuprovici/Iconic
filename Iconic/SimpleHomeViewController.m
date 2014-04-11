@@ -631,8 +631,10 @@ static NSString *kImageKey = @"imageKey";
                 
                 self.arrayOfhomeTeamScores = [[NSMutableArray alloc] init];
                 self.arrayOfawayTeamScores = [[NSMutableArray alloc] init];
+                
                 self.awayTeamPointers = [[NSMutableArray alloc] init];
                 self.homeTeamPointers = [[NSMutableArray alloc] init];
+                
                 //self.myMatchups = [[NSMutableArray alloc] init];
                 
                 //the round is hardcoded for now, need to make this dynamic based on the torunatment's status
@@ -1195,16 +1197,28 @@ static NSString *kImageKey = @"imageKey";
         [[NSUserDefaults standardUserDefaults] synchronize];
 //        [self setValue:[NSNumber numberWithInt:22] forKey:@"ownedClowCards"];
       //  [self.myPoints removeObserver:self.myPoints forKeyPath:@"TotalPoints"];
+        
+        
 
+        //to prevent null values
+        if(numberOfSteps == 0)
+        {
+            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:@"TodayPoints"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+
+        }
         
-        
+        else
+            
+        {
+            
         int myStoredPoints = (int)[myRetrievedPoints integerForKey:@"TodayPoints"];
         int myMostRecentPointsValue = [self.myPoints intValue];
         int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
         
-//        NSLog(@"myStoredPoints: %d", myStoredPoints);
-//        NSLog(@"myMostRecentPointsValue: %d", myMostRecentPointsValue);
-//        NSLog(@"myPointsDeltaValue: %d", myPointsDeltaValue);
+        NSLog(@"myStoredPoints: %d", myStoredPoints);
+        NSLog(@"myMostRecentPointsValue: %d", myMostRecentPointsValue);
+        NSLog(@"myPointsDeltaValue: %d", myPointsDeltaValue);
         
         
         [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:@"TodayPoints"];
@@ -1218,9 +1232,11 @@ static NSString *kImageKey = @"imageKey";
         
         int myTotalPoints = (int)[myRetrievedPoints integerForKey:@"MyTotalPoints"];
         int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
+//        int myTotalPoints = 244;
+//        int myNewTotalPoints = 244;
         
-//        NSLog(@"myTotalPoints: %d", myTotalPoints);
-//        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
+        NSLog(@"myTotalPoints: %d", myTotalPoints);
+        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
         
         [myRetrievedPoints setInteger:myNewTotalPoints  forKey:@"MyTotalPoints"];
         
@@ -1322,12 +1338,16 @@ static NSString *kImageKey = @"imageKey";
 //                [playerPoints saveInBackground];
                 
                 //increment the points for all my teams
-                [self incrementMyTeamsPoints:myNSPointsDeltaValue];
-              
+               [self incrementMyTeamsPoints:myNSPointsDeltaValue];
+            
     
             }
+            
+            
 
         }];
+            
+        }
 
     }];
     
