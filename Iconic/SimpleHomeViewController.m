@@ -89,6 +89,9 @@ static NSString *kImageKey = @"imageKey";
 //convert steps to points and store here
 @property NSNumber* myPoints;
 
+//days left in the week
+@property int daysLeft;
+
 @end
 
 
@@ -164,6 +167,9 @@ static NSString *kImageKey = @"imageKey";
     
     //load my stats
     [self refreshHomeView];
+    
+    //calculate days left in the week
+    [self calculateDaysLeftinTheWeek];
     
     //Uncomment to test points and activity views
    //[self savePoints];
@@ -620,9 +626,17 @@ static NSString *kImageKey = @"imageKey";
             if(objects.count > 0)
             {
 //            NSLog(@"number of objects received: %lu", (unsigned long)objects.count);
-            
-
-            
+                
+                
+                
+                //this approach does not work because self.homeTeamScores is empty until we reach the loop bellow...
+                
+//                int newdaysLeft = (int)[self.daysLeft intValue];
+//                 NSLog(@"homeTeamScores count: %d", (int)self.homeTeamScores.count);
+//                NSLog(@"daysLeft: %d", (int)daysLeft);
+                
+                
+                
             for (int i = 0; i < objects.count; i++) {
                 
                 PFObject *myMatchupObject = [objects objectAtIndex:i];
@@ -638,22 +652,21 @@ static NSString *kImageKey = @"imageKey";
                 self.homeTeamPointers = [[NSMutableArray alloc] init];
                 
                 //self.myMatchups = [[NSMutableArray alloc] init];
+                //int daysLeft = (int)(7 - self.homeTeamScores.count);
+                
+               
                 
                 //the round is hardcoded for now, need to make this dynamic based on the torunatment's status
                 if ([round  isEqual: @"1"])
                 {
-                    
-                    
-                    
+                   
                     for (int i = 0; i < objects.count; i++) {
-                        
-                        
+                       
                         PFObject *myMatchupObject = [objects objectAtIndex:i];
+//                        NSLog(@"objects count: %lu", (unsigned long)objects.count);
                         
                         //add all objects to a array so that we can send the correct one to the next view controller
                         self.myMatchups = objects;
-                        
-                        
                         
                         //acces away & home team pointers in parse
                         PFObject* awayTeamPointer = [myMatchupObject objectForKey:kAwayTeam];
@@ -663,17 +676,39 @@ static NSString *kImageKey = @"imageKey";
                         [self.awayTeamPointers addObject:awayTeamPointer];
                         [self.homeTeamPointers addObject:homeTeamPointer];
                         
+                        /* TO DO:  must move the code bellow out of this for loop */
                         
+                        //creating an array to add toays scores and 0 values to the tail end of the downloaded socores
+                        //this way there will always be 7 objects in the array even if we have not played for 7 days
+                        //ex: if we played for 3/7 days, insert 0 for index 3 - 6 (day 4 - 7)
                         
+                         //create array and include today's most recent data
+//                         NSMutableArray *homeEndObjects = [[NSMutableArray alloc]initWithObjects:[homeTeamPointer objectForKey:kScoreToday], nil ];
                         
+                        //create an empty array
+//                        NSMutableArray *endObjects = [[NSMutableArray alloc]initWithObjects: nil ];
+//                         NSLog(@"endObjects: %lu", (unsigned long)endObjects.count);
+//                        //add 0s to the tail end of this array for the days that have not been played yet
+//                        int zero = 0;
+//                        NSNumber *zeroWrapped = [NSNumber numberWithInt:zero];
+//                        
+//
+//                        //instead of 2 create a variable for # of days left in the week
+//                        for (int z = 0; z < self.daysLeft; z++)
+//                        {
+//                            [endObjects addObject:zeroWrapped];
+//                            NSLog(@"endObjects after inserting 0s: %lu", (unsigned long)endObjects.count);
+//                        }
+                    
                         
                     //Home Team Scores
                     //get homeTeamScores(array) objects
                     self.homeTeamScores = [homeTeamPointer objectForKey:kScoreWeek];
                     
                     //we add today's most uptodate data to the array
+                    //[myArray addObjectsFromArray:otherArray];
                     [self.homeTeamScores addObject:[homeTeamPointer objectForKey:kScoreToday]];
-                    
+//                    [self.homeTeamScores addObjectsFromArray:endObjects];
                     
                     //add objects to array of teamScores(array) objects so that we don't have to download again
                     [self.arrayOfhomeTeamScores addObject:self.homeTeamScores];
@@ -681,12 +716,14 @@ static NSString *kImageKey = @"imageKey";
                     
                     //Away Team Scores
                     //get awayTeamScores(array) objects
+                    
                     self.awayTeamScores = [awayTeamPointer objectForKey:kScoreWeek];
+                        
                     
                     //we add today's most uptodate data to the array
                     [self.awayTeamScores addObject:[awayTeamPointer objectForKey:kScoreToday]];
                     
-                    
+                     
                     //add objects to array of teamScores(array) objects so that we don't have to download again
                     [self.arrayOfawayTeamScores addObject:self.awayTeamScores];
                     
@@ -1025,11 +1062,6 @@ static NSString *kImageKey = @"imageKey";
     [self.view addSubview:self.VSTeamScore];
     
     
-    
-    
-    
-    
-    
 
     
 }
@@ -1202,9 +1234,9 @@ static NSString *kImageKey = @"imageKey";
         int myMostRecentPointsValue = [self.myPoints intValue];
         int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
         
-        NSLog(@"myStoredPoints: %d", myStoredPoints);
-        NSLog(@"myMostRecentPointsValue: %d", myMostRecentPointsValue);
-        NSLog(@"myPointsDeltaValue: %d", myPointsDeltaValue);
+//        NSLog(@"myStoredPoints: %d", myStoredPoints);
+//        NSLog(@"myMostRecentPointsValue: %d", myMostRecentPointsValue);
+//        NSLog(@"myPointsDeltaValue: %d", myPointsDeltaValue);
         
         
         [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:@"TodayPoints"];
@@ -1221,8 +1253,8 @@ static NSString *kImageKey = @"imageKey";
 //        int myTotalPoints = 244;
 //        int myNewTotalPoints = 244;
         
-        NSLog(@"myTotalPoints: %d", myTotalPoints);
-        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
+//        NSLog(@"myTotalPoints: %d", myTotalPoints);
+//        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
         
         [myRetrievedPoints setInteger:myNewTotalPoints  forKey:@"MyTotalPoints"];
         
@@ -1482,6 +1514,49 @@ static NSString *kImageKey = @"imageKey";
     //
     //    return myDate;
    
+}
+
+-(void)calculateDaysLeftinTheWeek
+{
+    //get Sunday in the current week
+    NSDate *today = [[NSDate alloc] init];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    // Get the weekday component of the current date
+    NSDateComponents *weekdayComponents = [gregorian components:NSWeekdayCalendarUnit fromDate:today];
+    
+    /*
+     Create a date components to represent the number of days to subtract from the current date.
+     The weekday value for Sunday in the Gregorian calendar is 1, so subtract 1 from the number of days to subtract from the date in question.  (If today is Sunday, subtract 0 days.)
+     */
+    NSDateComponents *componentsToSubtract = [[NSDateComponents alloc] init];
+//    [componentsToSubtract setDay: 0 - ([weekdayComponents weekday] - 1)];
+    
+    //calculate beginning of next week
+    /* !This approach might not work on daylight savigs! */
+    [componentsToSubtract setDay: 8 - ([weekdayComponents weekday] - 1)];
+    
+    
+    NSDate *beginningOfNextWeek = [gregorian dateByAddingComponents:componentsToSubtract toDate:today options:0];
+    
+    /*
+     Optional step:
+     beginningOfNextWeek now has the same hour, minute, and second as the original date (today).
+     To normalize to midnight, extract the year, month, and day components and create a new date from those components.
+     */
+    NSDateComponents *components = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate: beginningOfNextWeek];
+    beginningOfNextWeek = [gregorian dateFromComponents:components];
+    
+    
+    //get the difference between the 2 dates
+    
+    NSUInteger unitFlags = NSMonthCalendarUnit | NSDayCalendarUnit;
+    
+    NSDateComponents *newComponents = [gregorian components:unitFlags fromDate:today toDate:beginningOfNextWeek options:0];
+//    NSInteger months = [newComponents month];
+    self.daysLeft = (int)[newComponents day];
+    
+    NSLog(@"days left in the week: %d", (int)self.daysLeft);
 }
 
 
