@@ -186,8 +186,8 @@
             self.stepsProgressDial.hidden = true;
 
             
-            self.xpProgressDial.trackTintColor = PNGrey;
-            self.xpProgressDial.progressTintColor = PNBlue;
+            self.xpProgressDial.trackTintColor = PNLightGrey;
+            self.xpProgressDial.progressTintColor = PNWeiboColor;
             
                 
 //            [self startAnimation];
@@ -297,7 +297,8 @@
             //[barChart setYLabels:@[@500]];
             
             
-            [barChart setStrokeColor:PNLightBlue];
+            [barChart setStrokeColor:PNWeiboColor];
+            [barChart setBarBackgroundColor:PNWhite];
             [barChart strokeChart];
             
             [self.stepsBarChart addSubview:barChart]; 
@@ -313,7 +314,7 @@
         }
         
         self.xpProgressDial.thicknessRatio = .25f;
-        self.xpProgressDial.roundedCorners = YES;
+        self.xpProgressDial.roundedCorners = NO;
 //        self.stepsProgressDial.thicknessRatio = .25f;
 //        self.stepsProgressDial.roundedCorners = YES;
         

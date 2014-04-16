@@ -135,10 +135,31 @@ static NSString *kImageKey = @"imageKey";
 //    }
 //    return _operationQueue;
 //}
+//
+//- (id)initWithCoder:(NSCoder *)aDecoder
+//{
+//    self = [super initWithCoder:aDecoder];
+//    if (self)
+//    {
+//        //load my stats
+//        [self refreshHomeView];
+//    }
+//    return self;
+//}
+-(id)init
+{
+    
+    
+    [self refreshHomeView];
+    
+    return self;
+
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     [self setReceivedNotification:NO];
     
@@ -153,11 +174,17 @@ static NSString *kImageKey = @"imageKey";
                                                object:nil];
     
     
+    //refreshes the app when app is first launched
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshHomeView)
+                                                 name:UIApplicationDidFinishLaunchingNotification object:nil];
+
+    
     //refreshes the app when it enters foreground
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refreshHomeView)
                                                  name:UIApplicationWillEnterForegroundNotification object:nil];
-
+    
     //test tournament function
     
     
@@ -166,6 +193,9 @@ static NSString *kImageKey = @"imageKey";
     
     
     //load my stats
+    //show first team (index 0)
+    [self updateTeamChart:0];
+
     [self refreshHomeView];
     
     //calculate days left in the week
@@ -353,10 +383,13 @@ static NSString *kImageKey = @"imageKey";
     [self.view addSubview:self.pageControl];
     
     
-    [self performSelector:@selector(retrieveFromParse)];
+  
     
     //increment points
     [self incrementPlayerPoints];
+    
+    [self retrieveFromParse];
+
 
 
 }
@@ -510,8 +543,8 @@ static NSString *kImageKey = @"imageKey";
                 
                 //Update team chart & data
                     
-                //show first team (index 0)
-                [self updateTeamChart:0];
+//                //show first team (index 0)
+//                [self updateTeamChart:0];
                 
                 [self.scrollTeamsLeft setEnabled:FALSE];
                 [self.scrollTeamsRight setEnabled:TRUE];
@@ -562,8 +595,10 @@ static NSString *kImageKey = @"imageKey";
 //
 //                    
 //                }
-               
-        
+                    //show first team (index 0)
+//                    [self updateTeamChart:0];
+
+        [self updateTeamChart:0];
             }
                 else
                 {
@@ -616,6 +651,10 @@ static NSString *kImageKey = @"imageKey";
     [queryTeamMatchupsClass includeKey:kHomeTeam];
     [queryTeamMatchupsClass includeKey:kAwayTeam];
     
+    
+    queryAwayTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    queryHomeTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
     [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         
@@ -623,6 +662,7 @@ static NSString *kImageKey = @"imageKey";
         if(!error)
         {
             
+
             if(objects.count > 0)
             {
 //            NSLog(@"number of objects received: %lu", (unsigned long)objects.count);
@@ -742,24 +782,28 @@ static NSString *kImageKey = @"imageKey";
 //                    NSLog(@"awayTeamPointers: %lu", (unsigned long)self.awayTeamPointers.count);
 //                    NSLog(@"homeTeamPointers: %lu", (unsigned long)self.arrayOfawayTeamScores.count);
 
-
+                        
                     }
                     
                 }
-                
+       
+
             }
 
+                
         }
+         
+        
+            
+
         }
         else
         {
             self.vsTeamName.text = @"NO TEAM";
         }
-        
+       
+
     }];
-    
-
-
     
     
 }
@@ -929,6 +973,13 @@ static NSString *kImageKey = @"imageKey";
    
     //set home(MyTeamName) and away (vsTeamName) teams attributes
     //MyTeamName does not always equal the home team
+    NSString * homeTeamName = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
+    NSString * awayTeamName = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kTeams]];
+    
+    NSNumber *homeTeamScore = [NSNumber numberWithInt:[[homeTeam objectForKey:kScore]intValue]];
+//    int myHomeTeamScore = [NSNumber numberWithInt:(int)[homeTeamScore intValue]];
+    NSNumber *awayTeamScore = [NSNumber numberWithInt:[[awayTeam objectForKey:kScore]intValue]];;
+//    int myAomeTeamScore = [awayTeamScore intValue];
     
     self.MyTeamName.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
     self.MyTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kScore]];
@@ -937,8 +988,8 @@ static NSString *kImageKey = @"imageKey";
     
     self.vsTeamName.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kTeams]];
     self.VSTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kScore]];
-    self.vsTeamName.textColor = PNFreshGreen;
-    self.VSTeamScore.textColor = PNFreshGreen;
+    self.vsTeamName.textColor = PNGreen;
+    self.VSTeamScore.textColor = PNGreen;
  
     //update the home screen
     
@@ -950,21 +1001,21 @@ static NSString *kImageKey = @"imageKey";
 //    
 ////    self.vsTeamName.text = @"VS Team";
 ////    self.VSTeamScore.text = @"1200";
-//    self.vsTeamName.textColor = PNFreshGreen;
-//    self.VSTeamScore.textColor = PNFreshGreen;
+//    self.vsTeamName.textColor = PNGreen;
+//    self.VSTeamScore.textColor = PNGreen;
     
     //For LineChart
     
-    //Static Labels
-    //self.yChartLabel.text = @"Points";
-    self.yChartLabel.textColor = PNDeepGrey;
-    self.yChartLabel.font = [UIFont systemFontOfSize:11];
-    self.yChartLabel.textAlignment = NSTextAlignmentLeft;
-    
-    //self.xChartLabel.text = @"Day";
-    self.xChartLabel.textColor = PNDeepGrey;
-    self.xChartLabel.font = [UIFont systemFontOfSize:11];
-    self.xChartLabel.textAlignment = NSTextAlignmentCenter;
+//    //Static Labels
+//    //self.yChartLabel.text = @"Points";
+//    self.yChartLabel.textColor = PNDeepGrey;
+//    self.yChartLabel.font = [UIFont systemFontOfSize:11];
+//    self.yChartLabel.textAlignment = NSTextAlignmentLeft;
+//    
+//    //self.xChartLabel.text = @"Day";
+//    self.xChartLabel.textColor = PNDeepGrey;
+//    self.xChartLabel.font = [UIFont systemFontOfSize:11];
+//    self.xChartLabel.textAlignment = NSTextAlignmentCenter;
     
     //Dynamic Labels
     // PFObject *tempObject = [vsTeamsArray objectAtIndex:indexPath.row]; //Get team score from Parse
@@ -974,7 +1025,7 @@ static NSString *kImageKey = @"imageKey";
     //self.MyTeamScore.text = @"MyTeam"; //set in retrieveFromParse
     self.vsTeamName.textColor = PNBlue;
     self.MyTeamScore.textColor = PNBlue;
-    self.MyTeamScore.font = [UIFont boldSystemFontOfSize:15];
+    //self.MyTeamScore.font = [UIFont boldSystemFontOfSize:15];
     //self.MyTeamScore.textAlignment = NSTextAlignmentLeft; //Set in story board
     
     
@@ -982,87 +1033,127 @@ static NSString *kImageKey = @"imageKey";
     //cell.VSTeamScore.text = [NSString stringWithFormat:@"Opponent %@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score from Parse
     
     // self.VSTeamScore.text = @"VsTeam"; //set in retrieveFromParse
-    self.vsTeamName.textColor = PNFreshGreen;
-    self.VSTeamScore.textColor = PNFreshGreen;
-    self.VSTeamScore.font = [UIFont boldSystemFontOfSize:15];
+    self.vsTeamName.textColor = PNGreen;
+    self.VSTeamScore.textColor = PNGreen;
+    //self.VSTeamScore.font = [UIFont boldSystemFontOfSize:15];
     //self.VSTeamScore.textAlignment = NSTextAlignmentLeft; //Set in story board
     
     
     
-    //Team Chart
+//    //Team Chart
+//    
+//    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, 260, 200)];
+//    
+//    //list of days of the week
+//    NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
+//    
+//    
+//    // Line Chart for my team
+//
+//    //set the index eagual to that of my team objects
+//    int i = index;
+//    
+//    //create a new array that gets the object from array of team scores
+//    //each object in arrayOfTeamScores is an array
+//    //NSMutableArray *getWeekleyTeamScores = [self.arrayOfTeamScores objectAtIndex:i];
+//    
+//    NSMutableArray *getWeekleyTeamScores = [self.arrayOfhomeTeamScores objectAtIndex:i];
+//
+//    //create a subarray that has the range of days played based on the amout of objects in myTeamScores
+//    
+//    //using 'x' where we store the number of weekley team scores to determine the days.
+//    NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, x)];
+//    // NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [numberOfTeams count])]; //<-approach continues to add #s to the array eventually surppasing number of days, causing a crash
+//    
+//    //set the labels
+//    [lineChart setXLabels:daysPlayed];
+//    
+//    
+//    
+//    PNLineChartData *data01 = [PNLineChartData new];
+//    data01.color = PNBlue;
+//    data01.itemCount = lineChart.xLabels.count;
+//    data01.getData = ^(NSUInteger index) {
+//        CGFloat yValue = [[getWeekleyTeamScores objectAtIndex:index] floatValue]/100;// <- devided points value by 100 because PNChart does not support large Y values
+//        return [PNLineChartDataItem dataItemWithY:yValue];
+//    };
+//    
+//    
+//    // Line Chart No.2
+//    
+//    //hardcoded values for opposing team
+//    //TO DO: add opposing team data here
+//   //NSArray * dummydataArray = @[@20.1, @180.1, @26.4, @202.2, @126.2, @167.2, @276.2];
+//    //create a subarray that has the range of days played based on the amout of objects in myTeamScores
+//
+//    //using 'x' where we store the number of weekley team scores to determine the days.
+//    //NSArray *data02Array = [dummydataArray subarrayWithRange: NSMakeRange(0, x)];
+//    //NSArray *data02Array = [dummydataArray subarrayWithRange: NSMakeRange(0, [numberOfTeams count])];
+//     //NSMutableArray *getvsWeekleyTeamScores = [self.arrayOfvsTeamScores objectAtIndex:i];
+//    
+//    NSMutableArray *getvsWeekleyTeamScores = [self.arrayOfawayTeamScores objectAtIndex:i];
+//    
+//    //NSArray *data02Array = @[@10, @20, @30, @40];
+//    PNLineChartData *data02 = [PNLineChartData new];
+//    data02.color = PNGreen;
+//    data02.itemCount = lineChart.xLabels.count;
+//    data02.getData = ^(NSUInteger index) {
+//        CGFloat yValue = [[getvsWeekleyTeamScores objectAtIndex:index] floatValue]/100; // <- devided points value by 100 because PNChart does not support large Y values
+//        return [PNLineChartDataItem dataItemWithY:yValue];
+//    };
+//    
+//    lineChart.chartData = @[data01, data02];
+//    
+//    
+//    [lineChart strokeChart];
+//    [self.teamMatchChart addSubview:lineChart];
+//    [self.view addSubview:self.yChartLabel];
+//    [self.view addSubview:self.xChartLabel];
+//    [self.view addSubview:self.MyTeamScore];
+//    [self.view addSubview:self.VSTeamScore];
     
-    PNLineChart * lineChart = [[PNLineChart alloc] initWithFrame:CGRectMake(0, 0, 260, 200)];
+    
+    //create bar chart to display days
+    PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 248)];
+    
+    //    PNBarChart * barChart = [[PNBarChart alloc] init];
     
     //list of days of the week
-    NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
+    NSArray * teamsNamesArray = @[homeTeamName, awayTeamName];
     
     
-    // Line Chart for my team
-
-    //set the index eagual to that of my team objects
-    int i = index;
     
-    //create a new array that gets the object from array of team scores
-    //each object in arrayOfTeamScores is an array
-    //NSMutableArray *getWeekleyTeamScores = [self.arrayOfTeamScores objectAtIndex:i];
+    //getting historical daily points arary from server
+    //    NSMutableArray * playerPoints = [currentUser objectForKey:kPlayerPointsWeek];
+     NSArray * teamPoints = @[homeTeamScore, awayTeamScore];
+//    NSArray * teamPoints = @[@100, @40];
+    //we add todays most uptodate data to the array
+    //    [playerPoints addObject:[currentUser valueForKey:kPlayerPointsToday]];
     
-    NSMutableArray *getWeekleyTeamScores = [self.arrayOfhomeTeamScores objectAtIndex:i];
-
-    //create a subarray that has the range of days played based on the amout of objects in myTeamScores
     
-    //using 'x' where we store the number of weekley team scores to determine the days.
-    NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, x)];
-    // NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [numberOfTeams count])]; //<-approach continues to add #s to the array eventually surppasing number of days, causing a crash
+    //            int indexValue = [playerPoints indexOfObject:playerPoints.lastObject];
+    //
+    //
+    //            [playerPoints replaceObjectAtIndex:indexValue withObject:[currentUser valueForKey:kPlayerPointsToday]];
+    
+    
+    //    //create a subarray that has the range of days played based on the amout of objects in playerPoints
+    //    NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [playerPoints count])];
     
     //set the labels
-    [lineChart setXLabels:daysPlayed];
+//    [barChart setXLabels:teamsNamesArray];
     
+    [barChart setYValues:teamPoints];
     
+    //sets the maximum value of the label.  so if the player has a goal of say 10k points/day then we would use this.
+    //[barChart setYLabels:@[@500]];
     
-    PNLineChartData *data01 = [PNLineChartData new];
-    data01.color = PNBlue;
-    data01.itemCount = lineChart.xLabels.count;
-    data01.getData = ^(NSUInteger index) {
-        CGFloat yValue = [[getWeekleyTeamScores objectAtIndex:index] floatValue]/100;// <- devided points value by 100 because PNChart does not support large Y values
-        return [PNLineChartDataItem dataItemWithY:yValue];
-    };
+    [barChart setStrokeColors:@[PNLightBlue, PNGreen]];
+    [barChart setBarBackgroundColor:PNWhite];
+    //    [barChart setStrokeColor:PNLightBlue];
+    [barChart strokeChart];
     
-    
-    // Line Chart No.2
-    
-    //hardcoded values for opposing team
-    //TO DO: add opposing team data here
-   //NSArray * dummydataArray = @[@20.1, @180.1, @26.4, @202.2, @126.2, @167.2, @276.2];
-    //create a subarray that has the range of days played based on the amout of objects in myTeamScores
-
-    //using 'x' where we store the number of weekley team scores to determine the days.
-    //NSArray *data02Array = [dummydataArray subarrayWithRange: NSMakeRange(0, x)];
-    //NSArray *data02Array = [dummydataArray subarrayWithRange: NSMakeRange(0, [numberOfTeams count])];
-     //NSMutableArray *getvsWeekleyTeamScores = [self.arrayOfvsTeamScores objectAtIndex:i];
-    
-    NSMutableArray *getvsWeekleyTeamScores = [self.arrayOfawayTeamScores objectAtIndex:i];
-    
-    //NSArray *data02Array = @[@10, @20, @30, @40];
-    PNLineChartData *data02 = [PNLineChartData new];
-    data02.color = PNFreshGreen;
-    data02.itemCount = lineChart.xLabels.count;
-    data02.getData = ^(NSUInteger index) {
-        CGFloat yValue = [[getvsWeekleyTeamScores objectAtIndex:index] floatValue]/100; // <- devided points value by 100 because PNChart does not support large Y values
-        return [PNLineChartDataItem dataItemWithY:yValue];
-    };
-    
-    lineChart.chartData = @[data01, data02];
-    
-    
-    [lineChart strokeChart];
-    [self.teamMatchChart addSubview:lineChart];
-    [self.view addSubview:self.yChartLabel];
-    [self.view addSubview:self.xChartLabel];
-    [self.view addSubview:self.MyTeamScore];
-    [self.view addSubview:self.VSTeamScore];
-    
-    
-
+    [self.teamBarChart addSubview:barChart];
     
 }
 

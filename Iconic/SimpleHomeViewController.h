@@ -38,7 +38,12 @@
 @property (strong, nonatomic) IBOutlet PFImageView *playerPhoto;
 
 
-//Team Chart labels
+//Team Bar Chart
+
+@property (strong, nonatomic) IBOutlet PNBarChart *teamBarChart;
+ 
+
+//Team Line Chart labels
 
 
 @property (strong, nonatomic) IBOutlet UILabel *MyTeamName;
