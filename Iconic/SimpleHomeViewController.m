@@ -747,7 +747,7 @@ static NSString *kImageKey = @"imageKey";
                     
                     //we add today's most uptodate data to the array
                     //[myArray addObjectsFromArray:otherArray];
-                    [self.homeTeamScores addObject:[homeTeamPointer objectForKey:kScoreToday]];
+//                    [self.homeTeamScores addObject:[homeTeamPointer objectForKey:kScoreToday]];
 //                    [self.homeTeamScores addObjectsFromArray:endObjects];
                     
                     //add objects to array of teamScores(array) objects so that we don't have to download again
@@ -761,7 +761,7 @@ static NSString *kImageKey = @"imageKey";
                         
                     
                     //we add today's most uptodate data to the array
-                    [self.awayTeamScores addObject:[awayTeamPointer objectForKey:kScoreToday]];
+//                    [self.awayTeamScores addObject:[awayTeamPointer objectForKey:kScoreToday]];
                     
                      
                     //add objects to array of teamScores(array) objects so that we don't have to download again

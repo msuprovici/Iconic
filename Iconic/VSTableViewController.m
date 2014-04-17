@@ -73,7 +73,9 @@
     //populate labels
     
     PFObject *homeTeam = [self.receivedTeam objectForKey:kHomeTeam];
+//    NSLog(@"homeTeam: %@", homeTeam);
     PFObject *awayTeam = [self.receivedTeam objectForKey:kAwayTeam];
+//    NSLog(@"awayTeam: %@", awayTeam);
     
     //my team name
     //self.myTeamName.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
@@ -141,10 +143,10 @@
     NSMutableArray * vsTeamScores = [awayTeam objectForKey:kScoreWeek];
     
     //we add today's most uptodate data to the array
-    [myTeamScores addObject:[awayTeam objectForKey:kScoreToday]];
+    [vsTeamScores addObject:[awayTeam objectForKey:kScoreToday]];
     
     //we add values to ensure the array is never empty through index 6
-    [myTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+    [vsTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
 
     
     
