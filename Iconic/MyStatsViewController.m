@@ -312,8 +312,16 @@
             self.xpValue.hidden = true;
             self.stepsProgressDial.hidden = true;
             self.xpProgressDial.hidden = true;
+             
                 
+            //show segmented control
             self.segmentedControl.hidden = NO;
+            
+            //change font and size
+            NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Light" size:20],NSFontAttributeName,  nil];
+            [self.segmentedControl setTitleTextAttributes:textAttributes forState:UIControlStateNormal];
+                
+            
                 
             }
             
