@@ -531,7 +531,7 @@ static NSString *kImageKey = @"imageKey";
         
         NSUserDefaults *myRetrievedStats = [NSUserDefaults standardUserDefaults];
         
-        [myRetrievedStats setObject:playerPoints forKey:@"MyWeekleyPoints"];
+        [myRetrievedStats setObject:playerPoints forKey:kMyPointsWeekArray];
         
         [[NSUserDefaults standardUserDefaults] synchronize];
         
@@ -1359,13 +1359,13 @@ static NSString *kImageKey = @"imageKey";
         //to prevent null values check if # of steps is 0
         if(numberOfSteps == 0)
         {
-            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:@"TodayPoints"];
+            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyPointsToday];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
         
         else
         {
-        int myStoredPoints = (int)[myRetrievedPoints integerForKey:@"TodayPoints"];
+        int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyPointsToday];
         int myMostRecentPointsValue = [self.myPoints intValue];
         int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
         
@@ -1374,7 +1374,7 @@ static NSString *kImageKey = @"imageKey";
 //        NSLog(@"myPointsDeltaValue: %d", myPointsDeltaValue);
         
         
-        [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:@"TodayPoints"];
+        [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyPointsToday];
         
         
         //increment a player's total # of points
@@ -1383,7 +1383,7 @@ static NSString *kImageKey = @"imageKey";
         //for 1st time users get 7 days worth of data & set here
         //for returning users retrieve a user's total points & set here
         
-        int myTotalPoints = (int)[myRetrievedPoints integerForKey:@"MyTotalPoints"];
+        int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyPointsTotal];
         int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
 //        int myTotalPoints = 244;
 //        int myNewTotalPoints = 244;
@@ -1391,7 +1391,7 @@ static NSString *kImageKey = @"imageKey";
 //        NSLog(@"myTotalPoints: %d", myTotalPoints);
 //        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
         
-        [myRetrievedPoints setInteger:myNewTotalPoints  forKey:@"MyTotalPoints"];
+        [myRetrievedPoints setInteger:myNewTotalPoints  forKey:kMyPointsTotal];
         
         [[NSUserDefaults standardUserDefaults] synchronize];
         

@@ -18,9 +18,18 @@
 NSString *const kUserDefaultsActivityFeedViewControllerLastRefreshKey    = @"com.stickyplay.Iconic.userDefaults.activityFeedViewController.lastRefresh";
 NSString *const kUserDefaultsCacheFacebookFriendsKey                     = @"com.stickyplay.Iconic.userDefaults.cache.facebookFriends";
 
+#pragma mark - My Stats (NSUserDefaults)
+//points
+NSString *const kMyPointsToday = @"TodayPoints";
+NSString *const kMyPointsTotal = @"MyTotalPoints";
+NSString *const kMyPointsWeekArray = @"MyWeekleyPoints";
+
 
 //step counting
 NSString *const STEPS_KEY = @"steps";
+
+
+
 
 #pragma mark - Launch URLs
 

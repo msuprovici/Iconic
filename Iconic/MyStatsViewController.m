@@ -127,7 +127,7 @@
             
 //            if (currentUser) {
                 NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
-                int myLifetimePoints = (int)[myRetrievedPoints integerForKey:@"MyTotalPoints"];
+                int myLifetimePoints = (int)[myRetrievedPoints integerForKey:kMyPointsTotal];
 //                NSLog(@"myLifetimePoints: %d", myLifetimePoints);
                 
                 NSNumber *myLevel = [self calculateLevel:myLifetimePoints];
@@ -367,7 +367,7 @@
             NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
             
             NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
-            NSMutableArray *myWeekleyPointsArray = [myWeekleyPoints objectForKey:@"MyWeekleyPoints"];
+            NSMutableArray *myWeekleyPointsArray = [myWeekleyPoints objectForKey:kMyPointsWeekArray];
 
             NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [myWeekleyPointsArray count])];
 

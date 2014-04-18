@@ -25,7 +25,13 @@ extern NSString *const kUserDefaultsCacheFacebookFriendsKey;
 
 extern NSString *const kLaunchURLHostLoadActivity;
 
-#pragma mark - Player Physical Activity Points
+#pragma mark - My Stats (NSUserDefaults)
+//points
+extern NSString *const kMyPointsToday;
+extern NSString *const kMyPointsTotal;
+extern NSString *const kMyPointsWeekArray;
+
+
 
 //step counting
 extern NSString *const STEPS_KEY;
