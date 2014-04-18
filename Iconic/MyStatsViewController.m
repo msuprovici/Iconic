@@ -27,6 +27,10 @@
 @property  NSNumber *myPoints;
 //@property SimpleHomeViewController * simpleHomeViewController;
 @property  BOOL didInitialize;
+@property  BOOL pointsOrSteps;
+@property PNBarChart * barChart;
+@property NSMutableArray *myWeekleyPointsArray;
+@property NSMutableArray *myWeekleyStepsArray;
 
 @end
 
@@ -96,6 +100,7 @@
     
     [self getPlayerSteps];
     
+    self.pointsOrSteps = YES;
    
     
 //     PFQuery* query = [PFUser query];
@@ -228,6 +233,7 @@
         self.statsImage.hidden = YES;
         self.xpLabel.text = @"Level";
         self.pointsLabel.text = @"Points";
+        self.segmentedControl.hidden = YES;
                 
             //self.timeActiveLabel.hidden = YES;
                 
@@ -276,6 +282,7 @@
             
             self.xpValue.text = @"2349";
             self.pointsImage.hidden = YES;
+            self.segmentedControl.hidden = YES;
                
             
 //            [self startAnimation];
@@ -303,9 +310,10 @@
             self.pointsValue.hidden = true;
             
             self.xpValue.hidden = true;
-                self.stepsProgressDial.hidden = true;
-                self.xpProgressDial.hidden = true;
+            self.stepsProgressDial.hidden = true;
+            self.xpProgressDial.hidden = true;
                 
+            self.segmentedControl.hidden = NO;
                 
             }
             
@@ -359,36 +367,51 @@
             
             
             //create bar chart to display days
-            PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
+//            PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
            
-            
+             self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
             
             //list of days of the week
             NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
             
             NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
             
-            NSMutableArray *myWeekleyPointsArray = [myWeekleyPoints objectForKey:kMyPointsWeekArray];
+            self.myWeekleyPointsArray = [myWeekleyPoints objectForKey:kMyPointsWeekArray];
             
-            NSMutableArray *myWeekleyStepsArray = [myWeekleyPoints objectForKey:kMyStepsWeekArray];
+            self.myWeekleyStepsArray = [myWeekleyPoints objectForKey:kMyStepsWeekArray];
 
-            NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [myWeekleyPointsArray count])];
+            NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [self.myWeekleyPointsArray count])];
 
             
             //set the labels
 //            [barChart setXLabels:daysPlayed];
-            [barChart setXLabels:daysPlayed];
-            [barChart setYValues:myWeekleyPointsArray];
+            
+//            [self.barChart setXLabels:daysPlayed];
+//            if(self.pointsOrSteps == YES)
+//            {
+//                
+//                NSLog(@"points pressed");
+//            [self.barChart setYValues:self.myWeekleyPointsArray];
+////            [self.barChart strokeChart];
+//            }
+//            else
+//            {
+//                NSLog(@"steps pressed");
+//                [self.barChart setYValues:self.myWeekleyStepsArray];
+////                [self.barChart strokeChart];
+//            }
             
             //sets the maximum value of the label.  so if the player has a goal of say 10k points/day then we would use this.
             //[barChart setYLabels:@[@500]];
             
+            [self.barChart setYValues:self.myWeekleyPointsArray];
+            [self.barChart strokeChart];
             
-            [barChart setStrokeColor:PNWeiboColor];
-            [barChart setBarBackgroundColor:PNWhite];
-            [barChart strokeChart];
+            [self.barChart setStrokeColor:PNWeiboColor];
+            [self.barChart setBarBackgroundColor:PNWhite];
+            [self.barChart strokeChart];
             
-            [self.stepsBarChart addSubview:barChart];
+            [self.stepsBarChart addSubview:self.barChart];
 
             
         }
@@ -881,4 +904,25 @@
 
 
 
+- (IBAction)segmentValueChanged:(UISegmentedControl *)sender {
+    switch (sender.selectedSegmentIndex) {
+            //Points
+        case 0:
+//            self.pointsOrSteps= YES;
+            [self.barChart setYValues:self.myWeekleyPointsArray];
+            [self.barChart strokeChart];
+            NSLog(@"segmented control points pressed");
+            break;
+        case 1:
+//            self.pointsOrSteps= NO;
+            [self.barChart setYValues:self.myWeekleyStepsArray];
+            [self.barChart strokeChart];
+            NSLog(@"segmented control steps pressed");
+            break;
+            
+        default:
+            break;
+    }
+    
+}
 @end

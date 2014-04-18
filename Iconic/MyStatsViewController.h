@@ -31,6 +31,11 @@
 @property (nonatomic, strong) IBOutlet UILabel *viewTitle;
 @property (nonatomic, strong) IBOutlet UIImageView *statsImage;
 
+//Segmented control
+
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+- (IBAction)segmentValueChanged:(id)sender;
+
 //page control
 
 //step counter

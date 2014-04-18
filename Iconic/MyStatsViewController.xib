@@ -9,6 +9,7 @@
                 <outlet property="pointsImage" destination="ODG-Hl-uej" id="M5Q-9f-1tA"/>
                 <outlet property="pointsLabel" destination="Cgd-iW-EVt" id="FhX-Ml-YF7"/>
                 <outlet property="pointsValue" destination="R4v-Xa-L3V" id="3tv-Lo-nkG"/>
+                <outlet property="segmentedControl" destination="Bph-FL-Doz" id="L05-aT-rCU"/>
                 <outlet property="statsImage" destination="K28-Fd-8YS" id="FMk-21-HaE"/>
                 <outlet property="stepsBarChart" destination="9EY-LR-iiP" id="JTT-jA-9LW"/>
                 <outlet property="stepsCountingLabel" destination="NzW-hd-zlS" id="YiC-gZ-OrA"/>
@@ -92,11 +93,22 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyo-od-Lv7">
-                    <rect key="frame" x="93" y="21" width="134" height="21"/>
+                    <rect key="frame" x="7" y="36" width="134" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Bph-FL-Doz">
+                    <rect key="frame" x="99" y="9" width="123" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="Points"/>
+                        <segment title="Steps"/>
+                    </segments>
+                    <connections>
+                        <action selector="segmentValueChanged:" destination="-1" eventType="valueChanged" id="eRL-ub-xiz"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

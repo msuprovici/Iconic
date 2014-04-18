@@ -218,6 +218,14 @@
                                         <rect key="frame" x="0.0" y="302" width="62" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="REz-Q5-Sge">
+                                        <rect key="frame" x="99" y="2" width="123" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="First"/>
+                                            <segment title="Second"/>
+                                        </segments>
+                                    </segmentedControl>
                                 </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="iLB-wQ-v5S" id="1Zg-NI-Bmh"/>
@@ -248,11 +256,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_avatar.png" id="nvP-Ak-eUZ" customClass="PFImageView">
-                                <rect key="frame" x="114" y="72" width="30" height="30"/>
+                                <rect key="frame" x="6" y="72" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uXx-N8-ZNb" userLabel="myName">
-                                <rect key="frame" x="152" y="75" width="77" height="20"/>
+                                <rect key="frame" x="44" y="75" width="77" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
