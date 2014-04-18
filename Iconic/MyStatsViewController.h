@@ -31,12 +31,21 @@
 @property (nonatomic, strong) IBOutlet UILabel *viewTitle;
 @property (nonatomic, strong) IBOutlet UIImageView *statsImage;
 
+@property (strong, nonatomic) IBOutlet UILabel *highValue;
+
+@property (strong, nonatomic) IBOutlet UILabel *mediumValue;
+
+@property (strong, nonatomic) IBOutlet UILabel *sevenDaysAgoDay;
+@property (strong, nonatomic) IBOutlet UILabel *todayDay;
+
 //Segmented control
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 - (IBAction)segmentValueChanged:(id)sender;
 
 //page control
+
+
 
 //step counter
 @property (nonatomic, strong) CMStepCounter *stepCounter;

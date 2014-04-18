@@ -196,7 +196,10 @@ static NSString *kImageKey = @"imageKey";
     
     
     //show player name header
-    [self playerNameHeader];
+    //[self playerNameHeader];
+    self.playerPhoto.hidden = YES;
+    
+    
     
     [PFQuery clearAllCachedResults];
     //load my stats
@@ -206,7 +209,6 @@ static NSString *kImageKey = @"imageKey";
     
 
     [self refreshHomeView];
-    
     //calculate days left in the week
     [self calculateDaysLeftinTheWeek];
     

@@ -31,6 +31,7 @@
 @property PNBarChart * barChart;
 @property NSMutableArray *myWeekleyPointsArray;
 @property NSMutableArray *myWeekleyStepsArray;
+@property NSNumber *maxValueInArray;
 
 @end
 
@@ -233,7 +234,13 @@
         self.statsImage.hidden = YES;
         self.xpLabel.text = @"Level";
         self.pointsLabel.text = @"Points";
+                
+        //barchart
         self.segmentedControl.hidden = YES;
+        self.highValue.hidden = YES;
+        self.mediumValue.hidden = YES;
+        self.sevenDaysAgoDay.hidden = YES;
+        self.todayDay.hidden = YES;
                 
             //self.timeActiveLabel.hidden = YES;
                 
@@ -282,7 +289,14 @@
             
             self.xpValue.text = @"2349";
             self.pointsImage.hidden = YES;
-            self.segmentedControl.hidden = YES;
+            
+                
+                //barchart
+                self.segmentedControl.hidden = YES;
+                self.highValue.hidden = YES;
+                self.mediumValue.hidden = YES;
+                self.sevenDaysAgoDay.hidden = YES;
+                self.todayDay.hidden = YES;
                
             
 //            [self startAnimation];
@@ -314,8 +328,13 @@
             self.xpProgressDial.hidden = true;
              
                 
-            //show segmented control
+             //Bar chart
             self.segmentedControl.hidden = NO;
+          
+            self.mediumValue.hidden = NO;
+            self.sevenDaysAgoDay.hidden = NO;
+            self.todayDay.hidden = NO;
+    
             
             //change font and size
             NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Light" size:20],NSFontAttributeName,  nil];
@@ -327,8 +346,7 @@
             
             self.viewTitle.text = @"Points";
             
-            
-
+           
             
             
                 
@@ -377,7 +395,7 @@
             //create bar chart to display days
 //            PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
            
-             self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
+             self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20, 0, 300, 170)];
             
             //list of days of the week
             NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
@@ -420,6 +438,15 @@
             [self.barChart strokeChart];
             
             [self.stepsBarChart addSubview:self.barChart];
+            
+            
+            //set Y labels for chart
+            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyPointsArray valueForKeyPath:@"@max.self"]];
+            
+            NSNumber *max = [self.myWeekleyPointsArray valueForKeyPath:@"@max.self"];
+            int midValue = [max intValue];
+            
+            self.mediumValue.text = [NSString stringWithFormat:@"%d",midValue/2];
 
             
         }
@@ -916,18 +943,43 @@
     switch (sender.selectedSegmentIndex) {
             //Points
         case 0:
-//            self.pointsOrSteps= YES;
+
+        {
+            NSLog(@"Max value %@", [self.myWeekleyPointsArray valueForKeyPath:@"@max.doubleValue"]);
+            
+            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyPointsArray valueForKeyPath:@"@max.self"]];
+            
+            NSNumber *max = [self.myWeekleyPointsArray valueForKeyPath:@"@max.self"];
+            int midValue = [max intValue];
+            
+            self.mediumValue.text = [NSString stringWithFormat:@"%d",midValue/2];
+            
+            
             [self.barChart setYValues:self.myWeekleyPointsArray];
             [self.barChart strokeChart];
             NSLog(@"segmented control points pressed");
+            
             break;
+        }
         case 1:
+        {
 //            self.pointsOrSteps= NO;
+            NSLog(@"Max value %@", [self.myWeekleyStepsArray valueForKeyPath:@"@max.doubleValue"]);
+            
+            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyStepsArray valueForKeyPath:@"@max.self"]];
+            
+            NSNumber *maxSteps = [self.myWeekleyStepsArray valueForKeyPath:@"@max.self"];
+            int midStepsValue = [maxSteps intValue];
+            
+            self.mediumValue.text = [NSString stringWithFormat:@"%d",midStepsValue/2];
+            
+            
+                       
             [self.barChart setYValues:self.myWeekleyStepsArray];
             [self.barChart strokeChart];
             NSLog(@"segmented control steps pressed");
             break;
-            
+        }
         default:
             break;
     }
