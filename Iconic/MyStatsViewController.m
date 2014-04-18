@@ -344,9 +344,56 @@
                 
             }
             
-            self.viewTitle.text = @"Points";
+            //Set up 7 day bar chart
             
-           
+            self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20, 0, 310, 170)];
+            
+            NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
+            
+            self.myWeekleyPointsArray = [myWeekleyPoints objectForKey:kMyPointsWeekArray];
+            
+            self.myWeekleyStepsArray = [myWeekleyPoints objectForKey:kMyStepsWeekArray];
+            
+            [self.barChart setYValues:self.myWeekleyPointsArray];
+            [self.barChart strokeChart];
+            
+            [self.barChart setStrokeColor:PNWeiboColor];
+            [self.barChart setBarBackgroundColor:PNWhite];
+            [self.barChart strokeChart];
+            
+            [self.stepsBarChart addSubview:self.barChart];
+            
+            
+            //set Y labels for chart
+            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyPointsArray valueForKeyPath:@"@max.self"]];
+            
+            NSNumber *max = [self.myWeekleyPointsArray valueForKeyPath:@"@max.self"];
+            int midValue = [max intValue];
+            
+            self.mediumValue.text = [NSString stringWithFormat:@"%d",midValue/2];
+            
+            //set X labels for chart
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            //use abbreviated date, ie: "Fri"
+            [dateFormatter setDateFormat:@"EEE"];
+            
+            //set label to today's date
+            self.todayDay.text = [dateFormatter stringFromDate:[NSDate date]];
+            //NSLog(@"%@", [dateFormatter stringFromDate:[NSDate date]]);
+            
+            //find tomorrow (equivalent to end of day 7 days ago)
+            NSDateComponents* deltaComps = [[NSDateComponents alloc] init];
+            [deltaComps setDay:1];
+            NSDate* tomorrow = [[NSCalendar currentCalendar] dateByAddingComponents:deltaComps toDate:[NSDate date] options:0];
+            
+            //NSLog(@"%@", [dateFormatter stringFromDate:tomorrow]);
+            self.sevenDaysAgoDay.text = [dateFormatter stringFromDate:tomorrow];
+            
+        }
+        
+        self.xpProgressDial.thicknessRatio = .25f;
+        self.xpProgressDial.roundedCorners = NO;
+
             
             
                 
@@ -395,18 +442,8 @@
             //create bar chart to display days
 //            PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
            
-             self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20, 0, 300, 170)];
-            
-            //list of days of the week
-            NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
-            
-            NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
-            
-            self.myWeekleyPointsArray = [myWeekleyPoints objectForKey:kMyPointsWeekArray];
-            
-            self.myWeekleyStepsArray = [myWeekleyPoints objectForKey:kMyStepsWeekArray];
 
-            NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [self.myWeekleyPointsArray count])];
+//            NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [self.myWeekleyPointsArray count])];
 
             
             //set the labels
@@ -430,42 +467,53 @@
             //sets the maximum value of the label.  so if the player has a goal of say 10k points/day then we would use this.
             //[barChart setYLabels:@[@500]];
             
-            [self.barChart setYValues:self.myWeekleyPointsArray];
-            [self.barChart strokeChart];
-            
-            [self.barChart setStrokeColor:PNWeiboColor];
-            [self.barChart setBarBackgroundColor:PNWhite];
-            [self.barChart strokeChart];
-            
-            [self.stepsBarChart addSubview:self.barChart];
-            
-            
-            //set Y labels for chart
-            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyPointsArray valueForKeyPath:@"@max.self"]];
-            
-            NSNumber *max = [self.myWeekleyPointsArray valueForKeyPath:@"@max.self"];
-            int midValue = [max intValue];
-            
-            self.mediumValue.text = [NSString stringWithFormat:@"%d",midValue/2];
-
-            
-        }
-        
-        self.xpProgressDial.thicknessRatio = .25f;
-        self.xpProgressDial.roundedCorners = NO;
+//            [self.barChart setYValues:self.myWeekleyPointsArray];
+//            [self.barChart strokeChart];
+//            
+//            [self.barChart setStrokeColor:PNWeiboColor];
+//            [self.barChart setBarBackgroundColor:PNWhite];
+//            [self.barChart strokeChart];
+//            
+//            [self.stepsBarChart addSubview:self.barChart];
+//            
+//            
+//            //set Y labels for chart
+//            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyPointsArray valueForKeyPath:@"@max.self"]];
+//            
+//            NSNumber *max = [self.myWeekleyPointsArray valueForKeyPath:@"@max.self"];
+//            int midValue = [max intValue];
+//            
+//            self.mediumValue.text = [NSString stringWithFormat:@"%d",midValue/2];
+//            
+//            //set X labels for chart
+//            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//            //use abbreviated date, ie: "Fri"
+//            [dateFormatter setDateFormat:@"EEE"];
+//            
+//            //set label to today's date
+//            
+//            self.todayDay.text = [dateFormatter stringFromDate:[NSDate date]];
+////            NSLog(@"%@", [dateFormatter stringFromDate:[NSDate date]]);
+//            
+//            //find tomorrow (equivalent to end of day 7 days ago)
+//            NSDateComponents* deltaComps = [[NSDateComponents alloc] init];
+//            [deltaComps setDay:1];
+//            NSDate* tomorrow = [[NSCalendar currentCalendar] dateByAddingComponents:deltaComps toDate:[NSDate date] options:0];
+//            
+////            NSLog(@"%@", [dateFormatter stringFromDate:tomorrow]);
+//            self.sevenDaysAgoDay.text = [dateFormatter stringFromDate:tomorrow];
+//            
+//        }
+//        
+//        self.xpProgressDial.thicknessRatio = .25f;
+//        self.xpProgressDial.roundedCorners = NO;
 //        self.stepsProgressDial.thicknessRatio = .25f;
 //        self.stepsProgressDial.roundedCorners = YES;
         
     }
     }
-//retrive table view data from parse
 
 
-
-//-(void)viewDidAppear:(BOOL)animated
-//{
-//    [self getPlayerSteps];
-//}
 
 //- (void)progressDialChange:(float)ratio
 - (void)progressDialChange
@@ -945,39 +993,43 @@
         case 0:
 
         {
-            NSLog(@"Max value %@", [self.myWeekleyPointsArray valueForKeyPath:@"@max.doubleValue"]);
+            //points chart
             
+            //find max value in the array and insert it into the high value on for the y-axis
             self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyPointsArray valueForKeyPath:@"@max.self"]];
             
             NSNumber *max = [self.myWeekleyPointsArray valueForKeyPath:@"@max.self"];
             int midValue = [max intValue];
             
+            //find mid value in the array and insert it into the high value on for the y-axis
             self.mediumValue.text = [NSString stringWithFormat:@"%d",midValue/2];
             
             
             [self.barChart setYValues:self.myWeekleyPointsArray];
             [self.barChart strokeChart];
-            NSLog(@"segmented control points pressed");
+//            NSLog(@"segmented control points pressed");
             
             break;
         }
         case 1:
         {
-//            self.pointsOrSteps= NO;
-            NSLog(@"Max value %@", [self.myWeekleyStepsArray valueForKeyPath:@"@max.doubleValue"]);
+            //steps chart
             
+            //find max value in the array and insert it into the high value on for the y-axis
             self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyStepsArray valueForKeyPath:@"@max.self"]];
             
             NSNumber *maxSteps = [self.myWeekleyStepsArray valueForKeyPath:@"@max.self"];
             int midStepsValue = [maxSteps intValue];
             
+            
+            //find mid value in the array and insert it into the high value on for the y-axis
             self.mediumValue.text = [NSString stringWithFormat:@"%d",midStepsValue/2];
             
             
-                       
             [self.barChart setYValues:self.myWeekleyStepsArray];
             [self.barChart strokeChart];
-            NSLog(@"segmented control steps pressed");
+//            NSLog(@"segmented control steps pressed");
+            
             break;
         }
         default:
