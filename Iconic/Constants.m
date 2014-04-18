@@ -27,7 +27,7 @@ NSString *const kMyPointsWeekArray = @"MyWeekleyPoints";
 
 //step counting
 NSString *const STEPS_KEY = @"steps";
-
+NSString *const kMyStepsWeekArray = @"MyWeekleySteps";
 
 
 
@@ -47,7 +47,8 @@ NSString *const kProfilePicture = @"photo";
 NSString *const kPlayerTitle = @"Title";
 NSString *const kPlayerPoints = @"points";
 NSString *const kPlayerPointsToday = @"pointstoday";
-NSString *const kPlayerPointsWeek = @"pointsweek"; //array of kPlayerPointsToday
+NSString *const kPlayerPointsWeek = @"pointsweek"; //array of points for past 7 days
+NSString *const kPlayerStepsWeek = @"stepsweek"; //array of steps for past 7 days
 NSString *const kPlayerXP = @"xp";
 NSString *const kPlayerPointsToNextLevel = @"pointsToNextLevel";
 NSString *const kPlayerSteps = @"steps";

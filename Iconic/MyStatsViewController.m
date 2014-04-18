@@ -367,14 +367,17 @@
             NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
             
             NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
+            
             NSMutableArray *myWeekleyPointsArray = [myWeekleyPoints objectForKey:kMyPointsWeekArray];
+            
+            NSMutableArray *myWeekleyStepsArray = [myWeekleyPoints objectForKey:kMyStepsWeekArray];
 
             NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [myWeekleyPointsArray count])];
 
             
             //set the labels
+//            [barChart setXLabels:daysPlayed];
             [barChart setXLabels:daysPlayed];
-            
             [barChart setYValues:myWeekleyPointsArray];
             
             //sets the maximum value of the label.  so if the player has a goal of say 10k points/day then we would use this.

@@ -86,6 +86,9 @@ static NSString *kImageKey = @"imageKey";
 @property (nonatomic, strong) CMStepCounter *cmStepCounter;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 
+@property (nonatomic, strong) NSMutableArray *stepsArray;
+@property (nonatomic, strong) NSMutableArray *myWeeleyPointsArray;
+
 //convert steps to points and store here
 @property NSNumber* myPoints;
 
@@ -178,6 +181,10 @@ static NSString *kImageKey = @"imageKey";
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refreshHomeView)
                                                  name:UIApplicationDidFinishLaunchingNotification object:nil];
+    //add past 7 days steps to an array
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(findPastWeekleySteps)
+                                                 name:UIApplicationDidFinishLaunchingNotification object:nil];
 
     
     //refreshes the app when it enters foreground
@@ -203,8 +210,8 @@ static NSString *kImageKey = @"imageKey";
     //calculate days left in the week
     [self calculateDaysLeftinTheWeek];
     
-
-    
+    //calcualte weekely steps and add them to an array
+    //[self findPastWeekleySteps];
 
     
     //Uncomment to test points and activity views
@@ -394,12 +401,12 @@ static NSString *kImageKey = @"imageKey";
     //increment points
     [self incrementPlayerPoints];
     
-    //parse methods to retrieve data
-    [self getmyStats];
+    
+//    [self findPastWeekleySteps];
     
     [self retrieveFromParse];
 
-
+    
 
 }
 
@@ -511,33 +518,6 @@ static NSString *kImageKey = @"imageKey";
 
 
 #pragma mark Parse Methods
--(void)getmyStats
-{
-    PFQuery* query = [PFUser query];
-    
-    [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
-    
-    
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        //        PFUser* currentUser = [PFUser currentUser];
-        
-        //getting historical daily points arary from server
-        NSMutableArray * playerPoints = [object objectForKey:kPlayerPointsWeek];
-        //        NSLog(@"playerPoints: %@", _playerPoints);
-        
-        //we add todays most uptodate data to the array
-        [playerPoints addObject:[object objectForKey:kPlayerPointsToday]];
-        //        NSLog(@"playerPoints2: %@", _playerPoints);
-        
-        NSUserDefaults *myRetrievedStats = [NSUserDefaults standardUserDefaults];
-        
-        [myRetrievedStats setObject:playerPoints forKey:kMyPointsWeekArray];
-        
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        
-    }];
-}
 
 //retrive table view data from parse
 - (void) retrieveFromParse {
@@ -1304,6 +1284,93 @@ static NSString *kImageKey = @"imageKey";
        
         
     }
+}
+
+
+#pragma mark Step Counting
+
+- (NSOperationQueue *)operationQueue {
+    if (_operationQueue == nil) {
+        _operationQueue = [NSOperationQueue new];
+    }
+    return _operationQueue;
+}
+
+-(void)findPastWeekleySteps {
+    // Get now date
+    NSDate *now = [NSDate date];
+    
+    // Array to hold step values
+    _stepsArray = [[NSMutableArray alloc] initWithCapacity:7];
+    
+    // Check if step counting is avaliable
+    if ([CMStepCounter isStepCountingAvailable]) {
+        // Init step counter
+        self.cmStepCounter = [[CMStepCounter alloc] init];
+        // Tweak this value as you need (you can also parametrize it)
+        NSInteger daysBack = 7;
+        for (NSInteger day = daysBack; day > 0; day--) {
+            NSDate *fromDate = [now dateByAddingTimeInterval: -day * 24 * 60 * 60];
+            NSDate *toDate = [fromDate dateByAddingTimeInterval:24 * 60 * 60];
+            
+            [self.cmStepCounter queryStepCountStartingFrom:fromDate to:toDate     toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error) {
+                if (!error) {
+                    NSLog(@"queryStepCount returned %ld steps", (long)numberOfSteps);
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [_stepsArray addObject:@(numberOfSteps)];
+                        
+                        
+                        if ( day == 1) { // Just reached the last element, we can now do what we want with the data
+                            NSLog(@"_stepsArray filled with data: %@", _stepsArray);
+                            
+                            
+                            //add the past 7 days worth of steps to NSuserdefualuts
+                           
+                            NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
+                            [myStats setObject:_stepsArray forKey:kMyStepsWeekArray];
+                            
+                            
+                            //convert the past 7 days worth of steps to points
+                            NSMutableArray * myWeekleyPoints = [[NSMutableArray alloc]initWithCapacity:7];
+                            
+                            for (int i = 0; i < _stepsArray.count; i++)
+                            {
+                                float daysSteps = [[_stepsArray objectAtIndex:i]floatValue] ;
+                                [myWeekleyPoints addObject:[self calculatePoints:daysSteps]];
+                                
+                            }
+                            
+                            NSLog(@"myWeekleyPoints: %@", myWeekleyPoints);
+                            
+                            //save to NSUserDefaults
+                            [myStats setObject:myWeekleyPoints forKey:kMyPointsWeekArray];
+                            
+                            [[NSUserDefaults standardUserDefaults] synchronize];
+                            
+                            
+                            //save the past 7 days worth of steps & points to Parse
+                            PFObject *playerStats = [PFUser currentUser];
+                            [playerStats setObject:_stepsArray forKey:kPlayerStepsWeek];
+                            [playerStats setObject:myWeekleyPoints forKey:kPlayerPointsWeek];
+                            [playerStats saveEventually];
+
+                        }
+                        
+                    }];
+                
+                    
+                } else {
+                    NSLog(@"Error occured: %@", error.localizedDescription);
+                }
+            }];
+            
+        }
+    } else {
+        NSLog(@"device not supported");
+    }
+    
+    
+    
 }
 
 #pragma mark - points & xp calculations
