@@ -191,15 +191,21 @@ static NSString *kImageKey = @"imageKey";
     //show player name header
     [self playerNameHeader];
     
-    
+    [PFQuery clearAllCachedResults];
     //load my stats
     //show first team (index 0)
     [self updateTeamChart:0];
+    
+    
 
     [self refreshHomeView];
     
     //calculate days left in the week
     [self calculateDaysLeftinTheWeek];
+    
+
+    
+
     
     //Uncomment to test points and activity views
    //[self savePoints];
@@ -388,6 +394,9 @@ static NSString *kImageKey = @"imageKey";
     //increment points
     [self incrementPlayerPoints];
     
+    //parse methods to retrieve data
+    [self getmyStats];
+    
     [self retrieveFromParse];
 
 
@@ -425,17 +434,24 @@ static NSString *kImageKey = @"imageKey";
 
 - (void)loadScrollViewWithPage:(NSUInteger)page
 {
+    
+    
     if (page >= self.contentList.count)
         return;
     
     // replace the placeholder if necessary
     MyStatsViewController *controller = [self.viewControllers objectAtIndex:page];
+    
     if ((NSNull *)controller == [NSNull null])
     {
         controller = [[MyStatsViewController alloc] initWithPointsLabelNumber:page];
         [self.viewControllers replaceObjectAtIndex:page withObject:controller];
+        
     }
     
+    
+    
+
     // add the controller's view to the scroll view
     if (controller.view.superview == nil)
     {
@@ -445,6 +461,7 @@ static NSString *kImageKey = @"imageKey";
         frame.origin.x = CGRectGetWidth(frame) * page;
         frame.origin.y = 0;
         controller.view.frame = frame;
+        
         
         [self addChildViewController:controller];
         [self.scrollView addSubview:controller.view];
@@ -494,6 +511,33 @@ static NSString *kImageKey = @"imageKey";
 
 
 #pragma mark Parse Methods
+-(void)getmyStats
+{
+    PFQuery* query = [PFUser query];
+    
+    [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+    
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        //        PFUser* currentUser = [PFUser currentUser];
+        
+        //getting historical daily points arary from server
+        NSMutableArray * playerPoints = [object objectForKey:kPlayerPointsWeek];
+        //        NSLog(@"playerPoints: %@", _playerPoints);
+        
+        //we add todays most uptodate data to the array
+        [playerPoints addObject:[object objectForKey:kPlayerPointsToday]];
+        //        NSLog(@"playerPoints2: %@", _playerPoints);
+        
+        NSUserDefaults *myRetrievedStats = [NSUserDefaults standardUserDefaults];
+        
+        [myRetrievedStats setObject:playerPoints forKey:@"MyWeekleyPoints"];
+        
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        
+    }];
+}
 
 //retrive table view data from parse
 - (void) retrieveFromParse {

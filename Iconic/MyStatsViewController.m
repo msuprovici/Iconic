@@ -10,6 +10,7 @@
 #import  <Parse/Parse.h>
 #import "Constants.h"
 #import "Cache.h"
+#import "SimpleHomeViewController.h"
 
 #import "UIImage+RoundedCornerAdditions.h"
 #import "UIImage+ResizeAdditions.h"
@@ -24,6 +25,8 @@
 @property (strong, nonatomic) NSTimer *timer;
 @property  float myProgress;
 @property  NSNumber *myPoints;
+//@property SimpleHomeViewController * simpleHomeViewController;
+@property  BOOL didInitialize;
 
 @end
 
@@ -34,18 +37,50 @@
 @synthesize xpProgressDial = _xpProgressDial;
 @synthesize timer = _timer;
 @synthesize myProgress = _myProgress;
+//@synthesize simpleHomeViewController = _simpleHomeViewController;
 
-
+//-(id)init
+//{
+//    _simpleHomeViewController = [[SimpleHomeViewController alloc]init];
+//    return self;
+//}
 
 - (id)initWithPointsLabelNumber:(NSUInteger)pointslabel
 {
+    
     if (self = [super initWithNibName:@"MyStatsViewController" bundle:nil])
     {
         pointslabelNumber = (int) pointslabel;
+        _didInitialize = NO;
+        
+        
     }
+   
     return self;
 }
 
+//- (id) init {
+//    self = [super init];
+//    //Basic empty init...
+//    _simpleHomeViewController = [[SimpleHomeViewController alloc]init];
+//    return self;
+//}
+
+
+//+ (void)initialize {
+//    
+//    if(self)
+//    {
+//    _simpleHomeViewController = [[SimpleHomeViewController alloc]init];
+//    }
+//
+//    
+//}
+
+//static dispatch_once_t once;
+//dispatch_once(&once, ^ {
+//    // Code to run once
+//});
 
 - (void)viewDidLoad
 {
@@ -57,17 +92,30 @@
     
     [super viewDidLoad];
     
+    
+    
     [self getPlayerSteps];
     
+   
     
+//     PFQuery* query = [PFUser query];
+//        [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+//        //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//        PFUser* currentUser = [PFUser currentUser];
+//    //getting historical daily points arary from server
+//    NSMutableArray * playerPoints = [currentUser objectForKey:kPlayerPointsWeek];
+//    NSLog(@"playerPoints: %@", playerPoints);
     
+//    //we add todays most uptodate data to the array
+//    [playerPoints addObject:[currentUser objectForKey:kPlayerPointsToday]];
+//    NSLog(@"playerPoints2: %@", playerPoints);
+//    SimpleHomeViewController * simpleHomeViewController; //=[[SimpleHomeViewController alloc]init];
+//    static BOOL didInitialize = NO;
+   
     
     //Cycle through label string
     for (int i = 0; i <= pointslabelNumber; i++) {
-        PFQuery* query = [PFUser query];
-        [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
-        //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-        PFUser* currentUser = [PFUser currentUser];
+       
         
 
         
@@ -264,34 +312,70 @@
             self.viewTitle.text = @"Points";
             
             
-            //create bar chart to display days
-            PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
-            
-            //list of days of the week
-            NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
+
             
             
                 
-            //getting historical daily points arary from server
-            NSMutableArray * playerPoints = [currentUser objectForKey:kPlayerPointsWeek];
-            
-            //we add todays most uptodate data to the array
-            [playerPoints addObject:[currentUser valueForKey:kPlayerPointsToday]];
+           //getting historical daily points arary from server
+//            NSMutableArray * playerPoints = [currentUser objectForKey:kPlayerPointsWeek];
+//            
+//            //we add todays most uptodate data to the array
+//            [playerPoints addObject:[currentUser valueForKey:kPlayerPointsToday]];
             
             
 //            int indexValue = [playerPoints indexOfObject:playerPoints.lastObject];
 //                
 //            
 //            [playerPoints replaceObjectAtIndex:indexValue withObject:[currentUser valueForKey:kPlayerPointsToday]];
+//            if (_didInitialize == YES)
+//            {
+//                return;
+//            }
+//            else{
+//                _didInitialize = YES;
+//                /* initialize my stuff */
+//                
+//                _simpleHomeViewController = [[SimpleHomeViewController alloc]init];
+//            }
+
             
             
-            //create a subarray that has the range of days played based on the amout of objects in playerPoints
-            NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [playerPoints count])];
+            
+//            //set the labels
+//            [barChart setXLabels:daysPlayed];
+//            
+//            [barChart setYValues:simpleHomeViewController.playerPoints];
+//            
+//            //sets the maximum value of the label.  so if the player has a goal of say 10k points/day then we would use this.
+//            //[barChart setYLabels:@[@500]];
+//            
+//            
+//            [barChart setStrokeColor:PNWeiboColor];
+//            [barChart setBarBackgroundColor:PNWhite];
+//            [barChart strokeChart];
+//            
+//            [self.stepsBarChart addSubview:barChart];
+            //}];
+            
+            
+            //create bar chart to display days
+            PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
+           
+            
+            
+            //list of days of the week
+            NSArray * daysArray = @[@"S",@"M",@"T",@"W",@"T", @"F", @"S"];
+            
+            NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
+            NSMutableArray *myWeekleyPointsArray = [myWeekleyPoints objectForKey:@"MyWeekleyPoints"];
+
+            NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [myWeekleyPointsArray count])];
+
             
             //set the labels
             [barChart setXLabels:daysPlayed];
             
-            [barChart setYValues:playerPoints];
+            [barChart setYValues:myWeekleyPointsArray];
             
             //sets the maximum value of the label.  so if the player has a goal of say 10k points/day then we would use this.
             //[barChart setYLabels:@[@500]];
@@ -301,14 +385,7 @@
             [barChart setBarBackgroundColor:PNWhite];
             [barChart strokeChart];
             
-            [self.stepsBarChart addSubview:barChart]; 
-            //}];
-            
-           
-
-            
-            
-           
+            [self.stepsBarChart addSubview:barChart];
 
             
         }

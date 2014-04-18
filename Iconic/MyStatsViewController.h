@@ -51,4 +51,5 @@
 
 @property (strong, nonatomic) IBOutlet PNBarChart *stepsBarChart;
 
+
 @end
