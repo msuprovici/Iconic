@@ -317,7 +317,6 @@
             
             self.pointsImage.hidden = YES;
             self.stepsImage.hidden = YES;
-            self.stepsCountingLabel.hidden = YES;
                 
 //            self.timeActiveLabel.hidden = NO;
 //            NSInteger numberOfSteps = [[NSUserDefaults standardUserDefaults] integerForKey:STEPS_KEY];
@@ -330,9 +329,9 @@
             self.xpValue.hidden = true;
             self.playerName.hidden = true;
             self.playerPhoto.hidden = true;
-            
-            //self.viewTitle.hidden = true;
-            
+            self.stepsSubTitle.hidden = true;
+            self.stepsCountingLabel.hidden = YES;
+
             self.pointsValue.hidden = true;
             
             self.xpValue.hidden = true;

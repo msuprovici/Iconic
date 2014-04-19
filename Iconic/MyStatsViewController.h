@@ -22,7 +22,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *timeActiveLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *stepsImage;
 @property (strong, nonatomic) IBOutlet UIImageView *pointsImage;
-@property (weak, nonatomic) IBOutlet UILabel *stepsCountingLabel;  
+@property (weak, nonatomic) IBOutlet UILabel *stepsCountingLabel;
+@property (strong, nonatomic) IBOutlet UILabel *stepsSubTitle;
+
 @property (weak, nonatomic) IBOutlet PFImageView *playerPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *playerName;
 
