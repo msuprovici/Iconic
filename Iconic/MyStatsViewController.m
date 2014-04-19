@@ -227,9 +227,16 @@
                 
                 
 //            }
-                [self progressDialChange];
-        self.stepsImage.hidden = YES;
-        self.stepsCountingLabel.hidden = YES;
+                
+                
+        [self progressDialChange];
+                
+                
+        NSInteger numberOfSteps = [[NSUserDefaults standardUserDefaults] integerForKey:STEPS_KEY];
+        self.stepsCountingLabel.text = [NSString stringWithFormat:@"%li", (long)numberOfSteps];
+        self.stepsCountingLabel.hidden = NO;
+                
+                
         self.viewTitle.hidden = YES;
         self.statsImage.hidden = YES;
         self.xpLabel.text = @"Level";
@@ -254,64 +261,69 @@
 //            [self startAnimation];
             }
         }
+//        if (i == 1)
+//        {
+//
+//            if (pointslabelNumber == 1) {
+//                
+//                self.viewTitle.hidden = YES;
+//                 self.stepsCountingLabel.hidden = NO;
+//                self.xpValue.hidden = YES;
+//
+////            self.viewTitle.text = @"Today";
+//            self.xpLabel.text = @"Steps"; //[NSString stringWithFormat:@"XP", myArray[i]];
+//            self.pointsLabel.text = @"Active";
+//        
+//            //self.xpLabel.hidden = YES;
+//            //self.pointsLabel.hidden = YES;
+//                
+//
+//            
+//            self.stepsProgressDial.trackTintColor = PNGrey;
+//            self.stepsProgressDial.progressTintColor = PNDarkBlue;
+//                
+//            self.xpProgressDial.hidden = YES;
+//            
+////            self.xpProgressDial.trackTintColor = PNGrey;
+////            self.xpProgressDial.progressTintColor = PNMauve;
+////            
+//            self.stepsProgressDial.thicknessRatio = 1.0f;
+//            
+//                        
+//            self.timeActiveLabel.text = @"60%";
+//           // self.pointsValue.hidden = YES;
+//            
+//            
+//            self.xpValue.text = @"2349";
+//            self.pointsImage.hidden = YES;
+//            
+//                
+//                //barchart
+//                self.segmentedControl.hidden = YES;
+//                self.highValue.hidden = YES;
+//                self.mediumValue.hidden = YES;
+//                self.sevenDaysAgoDay.hidden = YES;
+//                self.todayDay.hidden = YES;
+//               
+//            
+////            [self startAnimation];
+//            }
+//
+//        }
         if (i == 1)
         {
-
+            
             if (pointslabelNumber == 1) {
-                
-                self.viewTitle.hidden = YES;
-                 self.stepsCountingLabel.hidden = NO;
-                self.xpValue.hidden = YES;
-
-//            self.viewTitle.text = @"Today";
-            self.xpLabel.text = @"Steps"; //[NSString stringWithFormat:@"XP", myArray[i]];
-            self.pointsLabel.text = @"Active";
-        
-            //self.xpLabel.hidden = YES;
-            //self.pointsLabel.hidden = YES;
-                
-
-            
-            self.stepsProgressDial.trackTintColor = PNGrey;
-            self.stepsProgressDial.progressTintColor = PNDarkBlue;
-                
-            self.xpProgressDial.hidden = YES;
-            
-//            self.xpProgressDial.trackTintColor = PNGrey;
-//            self.xpProgressDial.progressTintColor = PNMauve;
-//            
-            self.stepsProgressDial.thicknessRatio = 1.0f;
-            
-                        
-            self.timeActiveLabel.text = @"60%";
-           // self.pointsValue.hidden = YES;
-            
-            
-            self.xpValue.text = @"2349";
-            self.pointsImage.hidden = YES;
-            
-                
-                //barchart
-                self.segmentedControl.hidden = YES;
-                self.highValue.hidden = YES;
-                self.mediumValue.hidden = YES;
-                self.sevenDaysAgoDay.hidden = YES;
-                self.todayDay.hidden = YES;
-               
-            
-//            [self startAnimation];
-            }
-
-        }
-        if (i == 2)
-        {
-            
-            if (pointslabelNumber == 2) {
             
             self.pointsImage.hidden = YES;
             self.stepsImage.hidden = YES;
             self.stepsCountingLabel.hidden = YES;
-            self.timeActiveLabel.hidden = YES;
+                
+//            self.timeActiveLabel.hidden = NO;
+//            NSInteger numberOfSteps = [[NSUserDefaults standardUserDefaults] integerForKey:STEPS_KEY];
+//            self.timeActiveLabel.text = [NSString stringWithFormat:@"%li", (long)numberOfSteps];
+                
+                
             self.pointsLabel.hidden = true;
             self.xpLabel.hidden = true;
             self.pointsValue.hidden = true;
@@ -519,7 +531,7 @@
 - (void)progressDialChange
 {
     
-    NSArray *progressViews = @[self.xpProgressDial, self.stepsProgressDial ];
+    NSArray *progressViews = @[self.xpProgressDial];
     for (DACircularProgressView *progressView in progressViews) {
         
         [progressView setProgress:self.myProgress animated:YES];

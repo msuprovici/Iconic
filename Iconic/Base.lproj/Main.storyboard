@@ -200,8 +200,8 @@
                                     <outletCollection property="gestureRecognizers" destination="fj8-2r-qXt" appends="YES" id="T7R-ZJ-SlX"/>
                                 </connections>
                             </view>
-                            <pageControl opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="3" id="pp4-bC-Hv9">
-                                <rect key="frame" x="124" y="240" width="71" height="37"/>
+                            <pageControl opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="2" id="pp4-bC-Hv9">
+                                <rect key="frame" x="146" y="240" width="29" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="pageIndicatorTintColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>

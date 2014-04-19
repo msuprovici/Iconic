@@ -84,6 +84,7 @@ static NSString *kImageKey = @"imageKey";
 
 //step counting
 @property (nonatomic, strong) CMStepCounter *cmStepCounter;
+@property (nonatomic, strong) CMMotionActivityManager *motionActivity;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 
 @property (nonatomic, strong) NSMutableArray *stepsArray;
@@ -212,6 +213,7 @@ static NSString *kImageKey = @"imageKey";
     //calculate days left in the week
     [self calculateDaysLeftinTheWeek];
     
+    [self getMotionData];
     //calcualte weekely steps and add them to an array
     //[self findPastWeekleySteps];
 
@@ -364,8 +366,8 @@ static NSString *kImageKey = @"imageKey";
 -(void)refreshHomeView
 {
     //Page control for MyStatsView
-    NSUInteger numberPages = self.contentList.count;
-    
+//    NSUInteger numberPages = self.contentList.count;
+    NSUInteger numberPages = 2;
     // view controllers are created lazily
     // in the meantime, load the array with placeholders which will be replaced on demand
     NSMutableArray *controllers = [[NSMutableArray alloc] init];
@@ -420,7 +422,10 @@ static NSString *kImageKey = @"imageKey";
         [view removeFromSuperview];
     }
     
-    NSUInteger numPages = self.contentList.count;
+//    NSUInteger numPages = self.contentList.count;
+    
+    
+    NSUInteger numPages = 2;
     
     // adjust the contentSize (larger or smaller) depending on the orientation
     self.scrollView.contentSize =
@@ -1317,7 +1322,7 @@ static NSString *kImageKey = @"imageKey";
             
             [self.cmStepCounter queryStepCountStartingFrom:fromDate to:toDate     toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error) {
                 if (!error) {
-                    NSLog(@"queryStepCount returned %ld steps", (long)numberOfSteps);
+//                    NSLog(@"queryStepCount returned %ld steps", (long)numberOfSteps);
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                         [_stepsArray addObject:@(numberOfSteps)];
                         
@@ -1375,6 +1380,25 @@ static NSString *kImageKey = @"imageKey";
     
 }
 
+#pragma mark Motion Activity
+
+-(void)getMotionData {
+    self.motionActivity = [[CMMotionActivityManager alloc] init];
+    
+    NSLog(@"activities called");
+    
+    NSDate *now = [NSDate date];
+//    NSDate *from = [self beginningOfDay];
+    NSDate *from = [self beginningOfDay];
+   
+    [self.motionActivity queryActivityStartingFromDate:from toDate:now toQueue:self.operationQueue withHandler:^(NSArray *activities, NSError *error) {
+        NSLog(@"activities array: %@", activities);
+        
+        NSLog(@"activities array count: %lu", (unsigned long)activities.count);
+    }];
+
+
+}
 #pragma mark - points & xp calculations
 
 
