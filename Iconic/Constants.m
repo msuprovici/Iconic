@@ -23,6 +23,7 @@ NSString *const kUserDefaultsCacheFacebookFriendsKey                     = @"com
 NSString *const kMyPointsToday = @"TodayPoints";
 NSString *const kMyPointsTotal = @"MyTotalPoints";
 NSString *const kMyPointsWeekArray = @"MyWeekleyPoints";
+NSString *const kMyMostRecentPointsBeforeSaving = @"theMostRecentPointsBeforeSaving";
 
 
 //step counting

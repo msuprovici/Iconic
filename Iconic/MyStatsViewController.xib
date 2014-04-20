@@ -9,14 +9,13 @@
                 <outlet property="highValue" destination="Zlh-zy-yJr" id="rAZ-JT-uxx"/>
                 <outlet property="mediumValue" destination="GEz-12-wF7" id="dAC-Bt-Pfr"/>
                 <outlet property="pointsLabel" destination="Cgd-iW-EVt" id="FhX-Ml-YF7"/>
-                <outlet property="pointsValue" destination="R4v-Xa-L3V" id="3tv-Lo-nkG"/>
+                <outlet property="pointsValue" destination="R4v-Xa-L3V" id="0vu-9l-VcR"/>
                 <outlet property="segmentedControl" destination="Bph-FL-Doz" id="L05-aT-rCU"/>
                 <outlet property="sevenDaysAgoDay" destination="PUN-Wn-4dn" id="f0p-dr-Jws"/>
                 <outlet property="statsImage" destination="K28-Fd-8YS" id="FMk-21-HaE"/>
                 <outlet property="stepsBarChart" destination="9EY-LR-iiP" id="JTT-jA-9LW"/>
                 <outlet property="stepsCountingLabel" destination="POS-qa-l3R" id="Lem-dC-YgD"/>
                 <outlet property="stepsSubTitle" destination="R2f-kM-COt" id="DWj-sf-tst"/>
-                <outlet property="timeActiveLabel" destination="R4v-Xa-L3V" id="7gJ-su-PeB"/>
                 <outlet property="todayDay" destination="hLG-xZ-CVt" id="odd-6g-SjV"/>
                 <outlet property="view" destination="1" id="3"/>
                 <outlet property="xpLabel" destination="unA-Ui-0wy" id="CqY-ff-ykv"/>
@@ -83,10 +82,10 @@
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4v-Xa-L3V" userLabel="Label - PointsValue">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4v-Xa-L3V" userLabel="Label - PointsValue" customClass="UICountingLabel">
                     <rect key="frame" x="0.0" y="4" width="320" height="97"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="125"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="120"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2f-kM-COt">

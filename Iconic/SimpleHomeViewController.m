@@ -1458,6 +1458,13 @@ static NSString *kImageKey = @"imageKey";
         
         else
         {
+        
+        //saving most recent points before doing calcualtions to increment total lifetime points
+        //we are going to use this value to start the couter in the counting label in MyStatsViewController
+        [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyMostRecentPointsBeforeSaving];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            
         int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyPointsToday];
         int myMostRecentPointsValue = [self.myPoints intValue];
         int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;

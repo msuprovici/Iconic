@@ -681,11 +681,29 @@
         if (numberOfSteps == 0) {
             self.myPoints = 0;
             self.pointsValue.text = [NSString stringWithFormat:@"%d",0] ;
+            
         }
         else
         {
         self.myPoints = [self calculatePoints:numberOfSteps];
-        self.pointsValue.text = [NSString stringWithFormat:@"%@",self.myPoints] ;
+//        self.pointsValue.text = [NSString stringWithFormat:@"%@",self.myPoints] ;
+//        [self.pointsValue countFrom:0 to:[self.myPoints intValue]];
+//        [self.pointsValue countFrom:0 to:100];
+            
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            formatter.numberStyle = kCFNumberFormatterDecimalStyle;
+            self.pointsValue.formatBlock = ^NSString* (float value)
+            {
+                NSString* formatted = [formatter stringFromNumber:@((int)value)];
+                return [NSString stringWithFormat:@"%@",formatted];
+            };
+
+            NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
+            int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyMostRecentPointsBeforeSaving];
+            
+            [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:2];
+            
+            
         }
         
         

@@ -11,13 +11,19 @@
 #import <Parse/Parse.h>
 #import "PNChart.h"
 #import <CoreMotion/CoreMotion.h>
+#import "UICountingLabel.h"
+
 @interface MyStatsViewController : UIViewController
 
 {
      NSArray *ProfileInfo;
 }
 @property (weak, nonatomic) IBOutlet UILabel *xpValue;
-@property (weak, nonatomic) IBOutlet UILabel *pointsValue;
+//@property (weak, nonatomic) IBOutlet UILabel *pointsValue;
+@property (strong, nonatomic) IBOutlet UICountingLabel *pointsValue;
+
+
+
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timeActiveLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *stepsImage;
