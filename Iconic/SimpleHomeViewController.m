@@ -92,6 +92,7 @@ static NSString *kImageKey = @"imageKey";
 
 //convert steps to points and store here
 @property NSNumber* myPoints;
+@property NSInteger* mySteps;
 
 //days left in the week
 @property int daysLeft;
@@ -109,6 +110,7 @@ static NSString *kImageKey = @"imageKey";
 //@synthesize receivedNotification;
 @synthesize x;
 @synthesize myPoints;
+@synthesize mySteps;
 
 //Notifications NOT working
 
@@ -150,15 +152,15 @@ static NSString *kImageKey = @"imageKey";
 //    }
 //    return self;
 //}
--(id)init
-{
-    
-    
-    [self refreshHomeView];
-    
-    return self;
-
-}
+//-(id)init
+//{
+//    
+//    
+//    [self refreshHomeView];
+//    
+//    return self;
+//
+//}
 
 - (void)viewDidLoad
 {
@@ -179,9 +181,9 @@ static NSString *kImageKey = @"imageKey";
     
     
     //refreshes the app when app is first launched
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(refreshHomeView)
-                                                 name:UIApplicationDidFinishLaunchingNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(refreshHomeView)
+//                                                 name:UIApplicationDidFinishLaunchingNotification object:nil];
     //add past 7 days steps to an array
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(findPastWeekleySteps)
@@ -1435,11 +1437,13 @@ static NSString *kImageKey = @"imageKey";
         if(numberOfSteps == 0)
         {
             self.myPoints = 0;
+            self.mySteps = 0;
             
         }
         else
         {
         self.myPoints = [self calculatePoints:numberOfSteps];
+        self.mySteps = &(numberOfSteps);
         }
         
 
@@ -1453,6 +1457,7 @@ static NSString *kImageKey = @"imageKey";
         if(numberOfSteps == 0)
         {
             [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyPointsToday];
+            [myRetrievedPoints setInteger:*(self.mySteps) forKey:@"NumberOfStepsBeforeSaving"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
         
@@ -1462,6 +1467,9 @@ static NSString *kImageKey = @"imageKey";
         //saving most recent points before doing calcualtions to increment total lifetime points
         //we are going to use this value to start the couter in the counting label in MyStatsViewController
         [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyMostRecentPointsBeforeSaving];
+        
+        [myRetrievedPoints setInteger:*(self.mySteps) forKey:kMyMostRecentStepsBeforeSaving];
+            
         [[NSUserDefaults standardUserDefaults] synchronize];
             
             

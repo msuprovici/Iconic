@@ -675,12 +675,13 @@
 //        NSLog(@"numberOfSteps: %ld",(long)numberOfSteps);
 
         
-        self.stepsCountingLabel.text = [@(numberOfSteps) stringValue];
+//        self.stepsCountingLabel.text = [@(numberOfSteps) stringValue];
         
         //prevent NAN values
         if (numberOfSteps == 0) {
             self.myPoints = 0;
             self.pointsValue.text = [NSString stringWithFormat:@"%d",0] ;
+            self.stepsValue.text = [@(numberOfSteps) stringValue];
             
         }
         else
@@ -691,7 +692,7 @@
 //        [self.pointsValue countFrom:0 to:100];
             
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-            formatter.numberStyle = kCFNumberFormatterDecimalStyle;
+            formatter.numberStyle = kCFNumberFormatterNoStyle;
             self.pointsValue.formatBlock = ^NSString* (float value)
             {
                 NSString* formatted = [formatter stringFromNumber:@((int)value)];
@@ -702,6 +703,16 @@
             int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyMostRecentPointsBeforeSaving];
             
             [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:2];
+            
+            
+            self.stepsValue.formatBlock = ^NSString* (float value)
+            {
+                NSString* formatted = [formatter stringFromNumber:@((int)value)];
+                return [NSString stringWithFormat:@"%@",formatted];
+            };
+            
+            int myStoredSteps = (int)[myRetrievedPoints integerForKey:kMyMostRecentStepsBeforeSaving];
+            [self.stepsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:2];
             
             
         }

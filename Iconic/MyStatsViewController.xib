@@ -14,8 +14,8 @@
                 <outlet property="sevenDaysAgoDay" destination="PUN-Wn-4dn" id="f0p-dr-Jws"/>
                 <outlet property="statsImage" destination="K28-Fd-8YS" id="FMk-21-HaE"/>
                 <outlet property="stepsBarChart" destination="9EY-LR-iiP" id="JTT-jA-9LW"/>
-                <outlet property="stepsCountingLabel" destination="POS-qa-l3R" id="Lem-dC-YgD"/>
                 <outlet property="stepsSubTitle" destination="R2f-kM-COt" id="DWj-sf-tst"/>
+                <outlet property="stepsValue" destination="POS-qa-l3R" id="ZVs-vQ-O1O"/>
                 <outlet property="todayDay" destination="hLG-xZ-CVt" id="odd-6g-SjV"/>
                 <outlet property="view" destination="1" id="3"/>
                 <outlet property="xpLabel" destination="unA-Ui-0wy" id="CqY-ff-ykv"/>
@@ -94,7 +94,7 @@
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps Count" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POS-qa-l3R">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steps Count" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POS-qa-l3R" customClass="UICountingLabel">
                     <rect key="frame" x="4" y="125" width="132" height="41"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="45"/>

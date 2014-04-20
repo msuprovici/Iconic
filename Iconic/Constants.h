@@ -31,6 +31,7 @@ extern NSString *const kMyPointsToday;
 extern NSString *const kMyPointsTotal;
 extern NSString *const kMyPointsWeekArray;
 extern NSString *const kMyMostRecentPointsBeforeSaving;
+NSString *const kMyMostRecentStepsBeforeSaving;
 
 
 
