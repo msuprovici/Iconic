@@ -1457,7 +1457,7 @@ static NSString *kImageKey = @"imageKey";
         if(numberOfSteps == 0)
         {
             [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyPointsToday];
-            [myRetrievedPoints setInteger:*(self.mySteps) forKey:@"NumberOfStepsBeforeSaving"];
+            //[myRetrievedPoints setInteger:*(self.mySteps) forKey:@"NumberOfStepsBeforeSaving"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
         

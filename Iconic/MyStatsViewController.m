@@ -232,9 +232,9 @@
         [self progressDialChange];
                 
                 
-        NSInteger numberOfSteps = [[NSUserDefaults standardUserDefaults] integerForKey:STEPS_KEY];
-        self.stepsCountingLabel.text = [NSString stringWithFormat:@"%li", (long)numberOfSteps];
-        self.stepsCountingLabel.hidden = NO;
+//        NSInteger numberOfSteps = [[NSUserDefaults standardUserDefaults] integerForKey:STEPS_KEY];
+//        self.stepsCountingLabel.text = [NSString stringWithFormat:@"%li", (long)numberOfSteps];
+//        self.stepsCountingLabel.hidden = NO;
                 
                 
         self.viewTitle.hidden = YES;
@@ -333,6 +333,7 @@
             self.stepsCountingLabel.hidden = YES;
 
             self.pointsValue.hidden = true;
+                self.stepsValue.hidden = true;
             
             self.xpValue.hidden = true;
             self.stepsProgressDial.hidden = true;
@@ -357,7 +358,7 @@
             
             //Set up 7 day bar chart
             
-            self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(20, 0, 310, 170)];
+            self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(28, 0, 300, 170)];
             
             NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
             
