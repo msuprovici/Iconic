@@ -1457,7 +1457,8 @@ static NSString *kImageKey = @"imageKey";
         if(numberOfSteps == 0)
         {
             [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyPointsToday];
-            //[myRetrievedPoints setInteger:*(self.mySteps) forKey:@"NumberOfStepsBeforeSaving"];
+//            [myRetrievedPoints setInteger:*(self.mySteps) forKey:kMyMostRecentStepsBeforeSaving];
+            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentStepsBeforeSaving];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
         
@@ -1492,6 +1493,11 @@ static NSString *kImageKey = @"imageKey";
         //for returning users retrieve a user's total points & set here
         
         int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyPointsTotal];
+            
+        //Save total points before saving so that we can use conuting label to increment level in MyStatsViewController
+        [myRetrievedPoints setInteger:myTotalPoints  forKey:kMyMostRecentTotalPointsBeforeSaving];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+            
         int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
 //        int myTotalPoints = 244;
 //        int myNewTotalPoints = 244;

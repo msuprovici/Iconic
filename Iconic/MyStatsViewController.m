@@ -128,16 +128,18 @@
         if (i == 0) {
             if (pointslabelNumber == 0) {
                
-            // This is to generate thumbnail a player's thumbnail, name & title
-            
-            
-//            if (currentUser) {
+                
+                
                 NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
+                
+                //find my curent level
                 int myLifetimePoints = (int)[myRetrievedPoints integerForKey:kMyPointsTotal];
 //                NSLog(@"myLifetimePoints: %d", myLifetimePoints);
+//                NSLog(@"myLevel: %@", myLevel);
                 
                 NSNumber *myLevel = [self calculateLevel:myLifetimePoints];
-//                NSLog(@"myLevel: %@", myLevel);
+                
+
                 
                 float myLevelValue = [myLevel floatValue];
 //                NSLog(@"myLevelValue: %f", myLevelValue);
@@ -170,9 +172,26 @@
                 self.myProgress = myProgressPercent;
 //                NSLog(@"myRatio: %f", myProgressPercent);
                
+                //counting label text reformating
+                NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+                formatter.numberStyle = kCFNumberFormatterNoStyle;
+                self.xpValue.formatBlock = ^NSString* (float value)
+                {
+                    NSString* formatted = [formatter stringFromNumber:@((int)value)];
+                    return [NSString stringWithFormat:@"%@",formatted];
+                };
+
                 
-                //set the right level
-                self.xpValue.text = [NSString stringWithFormat:@"%@",myLevel];
+                //using counting label to increment level
+                //use previously stored value to determine the previous level
+                int myPreviousLifetimePoints = (int)[myRetrievedPoints integerForKey:kMyMostRecentTotalPointsBeforeSaving];
+                
+                NSNumber *myPreviousLevel = [self calculateLevel:myPreviousLifetimePoints];
+                //count up the level number
+                [self.xpValue  countFrom:[myPreviousLevel intValue] to:[myLevel intValue] withDuration:2];
+                
+//                //set the right level
+//                self.xpValue.text = [NSString stringWithFormat:@"%@",myLevel];
 
                 
 //                [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {

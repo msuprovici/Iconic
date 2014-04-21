@@ -18,7 +18,10 @@
 {
      NSArray *ProfileInfo;
 }
-@property (weak, nonatomic) IBOutlet UILabel *xpValue;
+//@property (weak, nonatomic) IBOutlet UILabel *xpValue;
+@property (strong, nonatomic) IBOutlet UICountingLabel *xpValue;
+
+
 //@property (weak, nonatomic) IBOutlet UILabel *pointsValue;
 @property (strong, nonatomic) IBOutlet UICountingLabel *pointsValue;
 @property (strong, nonatomic) IBOutlet UICountingLabel *stepsValue;
