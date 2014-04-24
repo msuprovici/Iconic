@@ -16,6 +16,8 @@
 #import "Utility.h"
 #import "Reachability.h"
 #import "MBProgressHUD.h"
+#import "SimpleHomeViewController.h"
+#import "CalculatePoints.h"
 
 
 
@@ -43,6 +45,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    //perform background fetch
+    [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    
     [Parse setApplicationId:@"LiLukyOROzCPxkNIvG9SD6nPMFdZsFNxzYsB06LT"
                   clientKey:@"NWnu7sQiFf9t3vyruSWQ8CqepFjKQh7IAZr8b3WA"];
     
@@ -134,6 +140,86 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark background fetch
+
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    
+    // Call or write any code necessary to get new data, process it and update the UI.
+
+    
+    
+    
+    
+//    SimpleHomeViewController *simpleHomeViewController = (SimpleHomeViewController*) [[[UIApplication sharedApplication] keyWindow] rootViewController];
+//    SimpleHomeViewController *simpleHomeViewController = (SimpleHomeViewController*) [[SimpleHomeViewController alloc]init];
+//    [simpleHomeViewController incrementPlayerPoints];
+    
+//    dispatch_sync(dispatch_get_main_queue(), ^{
+//        [simpleHomeViewController incrementPlayerPoints];
+//
+//    });
+    
+//    SimpleHomeViewController *simpleHomeViewController = [[SimpleHomeViewController alloc]init];
+//    [simpleHomeViewController incrementPlayerPoints];
+//    [simpleHomeViewController refreshHomeView];
+    
+    NSDate *fetchStart = [NSDate date];
+    
+   CalculatePoints *calculatePoints = [[CalculatePoints alloc]init];
+    
+//    [calculatePoints fetchNewDataWithCompletionHandler:^(UIBackgroundFetchResult result) {
+//        completionHandler(result);
+    
+        NSDate *fetchEnd = [NSDate date];
+        NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
+        NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
+        
+        [calculatePoints incrementPlayerPoints];
+        
+//    }];
+//    CalculatePoints *calculatePoints = [[CalculatePoints alloc]init];
+//    [calculatePoints incrementPlayerPoints];
+    
+//    NSNumber *testNumber = [NSNumber numberWithInt:400];
+//    
+//    PFObject *playerPoints = [PFUser currentUser];
+//    [playerPoints setObject:testNumber forKey:kPlayerPointsToday];
+//    
+//    [playerPoints saveInBackground];
+//    
+    
+    completionHandler(UIBackgroundFetchResultNewData);
+    
+//    PFQuery *query = [PFUser query];
+//    [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//        
+//        if(!error)
+//        {
+//            completionHandler(UIBackgroundFetchResultNewData);
+
+    
+    
+    
+    NSLog(@"Background fetch intialized");
+    
+    
+    // The logic for informing iOS about the fetch results in plain language:
+//    if (/** NEW DATA EXISTS AND WAS SUCCESSFULLY PROCESSED **/) {
+//        completionHandler(UIBackgroundFetchResultNewData);
+//    }
+//    
+//    if (/** NO NEW DATA EXISTS **/) {
+//        completionHandler(UIBackgroundFetchResultNoData);
+//    }
+//    
+//    if (/** ANY ERROR OCCURS **/) {
+//        completionHandler(UIBackgroundFetchResultFailed);
+//    }
+}
+
+#pragma mark background log out
+
 - (void)logOut {
     // clear cache
     [[Cache sharedCache] clear];
@@ -163,6 +249,7 @@
 }
 
 
+#pragma mark facebook
 
 - (void)facebookRequestDidLoad:(id)result {
     // This method is called twice - once for the user's /me profile, and a second time when obtaining their friends. We will try and handle both scenarios in a single method.

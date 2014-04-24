@@ -30,6 +30,12 @@ extern NSString *const kLaunchURLHostLoadActivity;
 extern NSString *const kMyPointsToday;
 extern NSString *const kMyPointsTotal;
 extern NSString *const kMyPointsWeekArray;
+
+extern NSString *const kMyFetchedPointsToday;
+extern NSString *const kMyFetchedPointsTotal;
+extern NSString *const kMyMostRecentFetchedPointsBeforeSaving;
+//extern NSString *const kMyFetchedPointsWeekArray;
+
 extern NSString *const kMyMostRecentPointsBeforeSaving;
 extern NSString *const kMyMostRecentStepsBeforeSaving;
 extern NSString *const kMyMostRecentTotalPointsBeforeSaving;

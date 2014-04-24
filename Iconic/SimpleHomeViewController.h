@@ -67,7 +67,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *scrollTeamsLeft;
 
 
+//methods
 
+-(void)incrementPlayerPoints;
+-(void)incrementMyTeamsPoints:(NSNumber*)delta;
+-(void)refreshHomeView;
 
 
 

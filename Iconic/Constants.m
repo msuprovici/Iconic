@@ -23,6 +23,14 @@ NSString *const kUserDefaultsCacheFacebookFriendsKey                     = @"com
 NSString *const kMyPointsToday = @"TodayPoints";
 NSString *const kMyPointsTotal = @"MyTotalPoints";
 NSString *const kMyPointsWeekArray = @"MyWeekleyPoints";
+
+NSString *const kMyFetchedPointsToday = @"TodayFetchedPoints";
+NSString *const kMyFetchedPointsTotal = @"MyTotalFetchedPoints";
+
+NSString *const kMyMostRecentFetchedPointsBeforeSaving = @"theMostRecentFetchedPointsBeforeSaving";
+
+//NSString *const kMyFetchedPointsWeekArray = @"MyWeekleyFetchedPoints";
+
 NSString *const kMyMostRecentPointsBeforeSaving = @"theMostRecentPointsBeforeSaving";
 NSString *const kMyMostRecentStepsBeforeSaving = @"NumberOfStepsBeforeSaving";
 NSString *const kMyMostRecentTotalPointsBeforeSaving = @"MyTotalPointsBeforeSaving";

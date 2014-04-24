@@ -215,7 +215,7 @@ static NSString *kImageKey = @"imageKey";
     //calculate days left in the week
     [self calculateDaysLeftinTheWeek];
     
-    [self getMotionData];
+//    [self getMotionData];
     //calcualte weekely steps and add them to an array
     //[self findPastWeekleySteps];
 
@@ -1406,8 +1406,12 @@ static NSString *kImageKey = @"imageKey";
 
 -(void)incrementPlayerPoints
 {
+    
+    NSLog(@"incrementPlayerPoints just got called");
+          
     self.stepCounter = [[CMStepCounter alloc] init];
     NSDate *now = [NSDate date];
+    
 //    //NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
 //    
 //    //find today's date
@@ -1474,16 +1478,25 @@ static NSString *kImageKey = @"imageKey";
         [[NSUserDefaults standardUserDefaults] synchronize];
             
             
-        int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyPointsToday];
+//        int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyPointsToday];
+            
+        //using my fetched points for background fetch  so that we are always synchronized
+        int myStoredFetchedPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsToday];
+            
         int myMostRecentPointsValue = [self.myPoints intValue];
-        int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
+            
+//        int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
+            
+          int myPointsDeltaValue = myMostRecentPointsValue - myStoredFetchedPoints;
         
-//        NSLog(@"myStoredPoints: %d", myStoredPoints);
+//        NSLog(@"myStoredPoints: %d", myStoredFetchedPoints);
 //        NSLog(@"myMostRecentPointsValue: %d", myMostRecentPointsValue);
 //        NSLog(@"myPointsDeltaValue: %d", myPointsDeltaValue);
         
         
         [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyPointsToday];
+            
+        [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
         
         
         //increment a player's total # of points
@@ -1514,6 +1527,32 @@ static NSString *kImageKey = @"imageKey";
         [playerPoints setObject:self.myPoints forKey:kPlayerPointsToday];
         [playerPoints saveEventually];
         
+            
+            
+            NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
+            float myLevelValue = [myLevel floatValue];
+            
+            //get the total points necessary for next level
+            
+            NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
+            
+            int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
+            //                NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
+            //                 NSLog(@"retrievedLevelValue: %f", retrievedLevelValue);
+            
+            //subtract the player's points from the current #
+            //                int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - retrievedLevelValue;
+            
+            int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - myNewTotalPoints;
+            //              NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
+            
+            //calculate the # of points necessary to reach the next level
+            NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
+            
+            //convert delta to NSNumber so we can increment later
+            NSNumber* myNSPointsDeltaValue = [NSNumber numberWithInt:myPointsDeltaValue];
+            
+            
         
         PFQuery *query = [PFUser query];
         [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
@@ -1545,29 +1584,29 @@ static NSString *kImageKey = @"imageKey";
 //                float retrievedLevelValue = [lifetimePoints floatValue];
                 
                 
-                
-                NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
-                float myLevelValue = [myLevel floatValue];
-                
-                //get the total points necessary for next level
-                
-                NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
-                
-                int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
-//                NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
-//                 NSLog(@"retrievedLevelValue: %f", retrievedLevelValue);
-                
-                 //subtract the player's points from the current #
-//                int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - retrievedLevelValue;
-                
-                 int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - myNewTotalPoints;
-//              NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
-                
-                //calculate the # of points necessary to reach the next level
-                NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
-                
-                //convert delta to NSNumber so we can increment later
-                 NSNumber* myNSPointsDeltaValue = [NSNumber numberWithInt:myPointsDeltaValue];
+//                
+//                NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
+//                float myLevelValue = [myLevel floatValue];
+//                
+//                //get the total points necessary for next level
+//                
+//                NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
+//                
+//                int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
+////                NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
+////                 NSLog(@"retrievedLevelValue: %f", retrievedLevelValue);
+//                
+//                 //subtract the player's points from the current #
+////                int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - retrievedLevelValue;
+//                
+//                 int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - myNewTotalPoints;
+////              NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
+//                
+//                //calculate the # of points necessary to reach the next level
+//                NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
+//                
+//                //convert delta to NSNumber so we can increment later
+//                 NSNumber* myNSPointsDeltaValue = [NSNumber numberWithInt:myPointsDeltaValue];
                 
                 //To update an existing object, you first need to retrieve it
                 
