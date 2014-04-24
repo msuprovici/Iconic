@@ -104,21 +104,6 @@
     self.pointsOrSteps = YES;
    
     
-//     PFQuery* query = [PFUser query];
-//        [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
-//        //query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//        PFUser* currentUser = [PFUser currentUser];
-//    //getting historical daily points arary from server
-//    NSMutableArray * playerPoints = [currentUser objectForKey:kPlayerPointsWeek];
-//    NSLog(@"playerPoints: %@", playerPoints);
-    
-//    //we add todays most uptodate data to the array
-//    [playerPoints addObject:[currentUser objectForKey:kPlayerPointsToday]];
-//    NSLog(@"playerPoints2: %@", playerPoints);
-//    SimpleHomeViewController * simpleHomeViewController; //=[[SimpleHomeViewController alloc]init];
-//    static BOOL didInitialize = NO;
-   
-    
     //Cycle through label string
     for (int i = 0; i <= pointslabelNumber; i++) {
        
@@ -190,63 +175,6 @@
                 //count up the level number
                 [self.xpValue  countFrom:[myPreviousLevel intValue] to:[myLevel intValue] withDuration:2];
                 
-//                //set the right level
-//                self.xpValue.text = [NSString stringWithFormat:@"%@",myLevel];
-
-                
-//                [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//                    
-//                    if(!error)
-//                    {
-//                    
-////                    self.xpValue.text = [NSString stringWithFormat:@"%@",[currentUser valueForKey:kPlayerXP]];
-//                    
-//                    //Get my lifetime points
-//                     NSNumber* myLifetimePoints = [object objectForKey:kPlayerPoints];
-//                   NSLog(@"myLifetimePoints: %@", myLifetimePoints);
-//                     float myPointsValue = [myLifetimePoints floatValue];
-//                    
-//                    
-//                    float retrievedLevelValue = [myLifetimePoints floatValue];
-//                    NSNumber *myLevel = [self calculateLevel:retrievedLevelValue];
-//                    float myLevelValue = [myLevel floatValue];
-//                    
-//                    //calculate total points to reach next level
-//                    NSNumber *totalPointsForNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
-//                    int myTotalPointsForNextLevelValue = [totalPointsForNextLevel intValue];
-////                    NSLog(@"myTotalPointsForNextLevelValue: %d", myTotalPointsForNextLevelValue);
-//                    
-//                    //calculate total points to reach current level
-//                    NSNumber *totalPointsForCurrentLevel = [self calculatePointsToReachCurrentLevel:myLevelValue];
-//                    int myTotalPointsForCurrentLevelValue = [totalPointsForCurrentLevel intValue];
-////                    NSLog(@"myTotalPointsForCurrentLevelValue: %d", myTotalPointsForCurrentLevelValue);
-//                    
-//
-//                    //calculate % progress
-//                     self.myProgress = (myPointsValue - myTotalPointsForCurrentLevelValue)/(myTotalPointsForNextLevelValue - myTotalPointsForCurrentLevelValue);
-////
-//                    
-//                    //set the right level
-//                    self.xpValue.text = [NSString stringWithFormat:@"%@",myLevel];
-////                    NSLog(@"myPointsValue: %f", myProgress);
-//                    
-//                    //animate the progress dial
-////                    [self progressDialChange:myProgress];
-////                        [self progressDialChange:myProgress];
-//                    }
-//                    else
-//                    {
-//                        NSLog(@"e");
-//                    }
-//                    
-//
-//                    
-//               
-//                }];
-                
-                
-//            }
-                
                 
         [self progressDialChange];
                 
@@ -280,55 +208,7 @@
 //            [self startAnimation];
             }
         }
-//        if (i == 1)
-//        {
-//
-//            if (pointslabelNumber == 1) {
-//                
-//                self.viewTitle.hidden = YES;
-//                 self.stepsCountingLabel.hidden = NO;
-//                self.xpValue.hidden = YES;
-//
-////            self.viewTitle.text = @"Today";
-//            self.xpLabel.text = @"Steps"; //[NSString stringWithFormat:@"XP", myArray[i]];
-//            self.pointsLabel.text = @"Active";
-//        
-//            //self.xpLabel.hidden = YES;
-//            //self.pointsLabel.hidden = YES;
-//                
-//
-//            
-//            self.stepsProgressDial.trackTintColor = PNGrey;
-//            self.stepsProgressDial.progressTintColor = PNDarkBlue;
-//                
-//            self.xpProgressDial.hidden = YES;
-//            
-////            self.xpProgressDial.trackTintColor = PNGrey;
-////            self.xpProgressDial.progressTintColor = PNMauve;
-////            
-//            self.stepsProgressDial.thicknessRatio = 1.0f;
-//            
-//                        
-//            self.timeActiveLabel.text = @"60%";
-//           // self.pointsValue.hidden = YES;
-//            
-//            
-//            self.xpValue.text = @"2349";
-//            self.pointsImage.hidden = YES;
-//            
-//                
-//                //barchart
-//                self.segmentedControl.hidden = YES;
-//                self.highValue.hidden = YES;
-//                self.mediumValue.hidden = YES;
-//                self.sevenDaysAgoDay.hidden = YES;
-//                self.todayDay.hidden = YES;
-//               
-//            
-////            [self startAnimation];
-//            }
-//
-//        }
+        
         if (i == 1)
         {
             
@@ -426,120 +306,6 @@
         self.xpProgressDial.roundedCorners = NO;
 
             
-            
-                
-           //getting historical daily points arary from server
-//            NSMutableArray * playerPoints = [currentUser objectForKey:kPlayerPointsWeek];
-//            
-//            //we add todays most uptodate data to the array
-//            [playerPoints addObject:[currentUser valueForKey:kPlayerPointsToday]];
-            
-            
-//            int indexValue = [playerPoints indexOfObject:playerPoints.lastObject];
-//                
-//            
-//            [playerPoints replaceObjectAtIndex:indexValue withObject:[currentUser valueForKey:kPlayerPointsToday]];
-//            if (_didInitialize == YES)
-//            {
-//                return;
-//            }
-//            else{
-//                _didInitialize = YES;
-//                /* initialize my stuff */
-//                
-//                _simpleHomeViewController = [[SimpleHomeViewController alloc]init];
-//            }
-
-            
-            
-            
-//            //set the labels
-//            [barChart setXLabels:daysPlayed];
-//            
-//            [barChart setYValues:simpleHomeViewController.playerPoints];
-//            
-//            //sets the maximum value of the label.  so if the player has a goal of say 10k points/day then we would use this.
-//            //[barChart setYLabels:@[@500]];
-//            
-//            
-//            [barChart setStrokeColor:PNWeiboColor];
-//            [barChart setBarBackgroundColor:PNWhite];
-//            [barChart strokeChart];
-//            
-//            [self.stepsBarChart addSubview:barChart];
-            //}];
-            
-            
-            //create bar chart to display days
-//            PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 170)];
-           
-
-//            NSArray *daysPlayed = [daysArray subarrayWithRange: NSMakeRange(0, [self.myWeekleyPointsArray count])];
-
-            
-            //set the labels
-//            [barChart setXLabels:daysPlayed];
-            
-//            [self.barChart setXLabels:daysPlayed];
-//            if(self.pointsOrSteps == YES)
-//            {
-//                
-//                NSLog(@"points pressed");
-//            [self.barChart setYValues:self.myWeekleyPointsArray];
-////            [self.barChart strokeChart];
-//            }
-//            else
-//            {
-//                NSLog(@"steps pressed");
-//                [self.barChart setYValues:self.myWeekleyStepsArray];
-////                [self.barChart strokeChart];
-//            }
-            
-            //sets the maximum value of the label.  so if the player has a goal of say 10k points/day then we would use this.
-            //[barChart setYLabels:@[@500]];
-            
-//            [self.barChart setYValues:self.myWeekleyPointsArray];
-//            [self.barChart strokeChart];
-//            
-//            [self.barChart setStrokeColor:PNWeiboColor];
-//            [self.barChart setBarBackgroundColor:PNWhite];
-//            [self.barChart strokeChart];
-//            
-//            [self.stepsBarChart addSubview:self.barChart];
-//            
-//            
-//            //set Y labels for chart
-//            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyPointsArray valueForKeyPath:@"@max.self"]];
-//            
-//            NSNumber *max = [self.myWeekleyPointsArray valueForKeyPath:@"@max.self"];
-//            int midValue = [max intValue];
-//            
-//            self.mediumValue.text = [NSString stringWithFormat:@"%d",midValue/2];
-//            
-//            //set X labels for chart
-//            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//            //use abbreviated date, ie: "Fri"
-//            [dateFormatter setDateFormat:@"EEE"];
-//            
-//            //set label to today's date
-//            
-//            self.todayDay.text = [dateFormatter stringFromDate:[NSDate date]];
-////            NSLog(@"%@", [dateFormatter stringFromDate:[NSDate date]]);
-//            
-//            //find tomorrow (equivalent to end of day 7 days ago)
-//            NSDateComponents* deltaComps = [[NSDateComponents alloc] init];
-//            [deltaComps setDay:1];
-//            NSDate* tomorrow = [[NSCalendar currentCalendar] dateByAddingComponents:deltaComps toDate:[NSDate date] options:0];
-//            
-////            NSLog(@"%@", [dateFormatter stringFromDate:tomorrow]);
-//            self.sevenDaysAgoDay.text = [dateFormatter stringFromDate:tomorrow];
-//            
-//        }
-//        
-//        self.xpProgressDial.thicknessRatio = .25f;
-//        self.xpProgressDial.roundedCorners = NO;
-//        self.stepsProgressDial.thicknessRatio = .25f;
-//        self.stepsProgressDial.roundedCorners = YES;
         
     }
     }
@@ -557,18 +323,6 @@
         
         
         
-//        float progress = ratio;
-        
-//        float progress = .25;
-//      [progressView setProgress:progress animated:YES];
-        
-//        if (progressView.progress >= 0.0f && [self.timer isValid]) {
-//            [progressView setProgress:self.myProgress animated:YES];
-//        }
-        
-//        if (progressView.progress >= 0.0f ) {
-//            [progressView setProgress:progress animated:YES];
-//        }
     }
 }
 
@@ -578,82 +332,6 @@
 ////    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(progressDialChange:) userInfo:nil repeats:NO];
 //    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(progressDialChange) userInfo:nil repeats:NO];
 //    NSLog(@"startAnimation");
-//}
-
-//- (void)updateStepLabel
-//{
-//    NSInteger numberOfSteps = [[NSUserDefaults standardUserDefaults] integerForKey:STEPS_KEY];
-//    // doing %li and (long) so that we're safe for 64-bit
-//    //MyStatsViewController *controller = [MyStatsViewController alloc];
-//    self.stepsCountingLabel.text = [NSString stringWithFormat:@"%li", (long)numberOfSteps];
-//}
-
-// this method sets up the steps counter
-//- (void)loadSteps
-//{
-////    // the if statement checks whether the device supports step counting (ie whether it has an M7 chip)
-////    if ([CMStepCounter isStepCountingAvailable]) {
-////        // the step counter needs a queue, so let's make one
-////        NSOperationQueue *queue = [NSOperationQueue new];
-////        // call it something appropriate
-////        queue.name = @"Step Counter Queue";
-////        // now to create the actual step counter
-////        CMStepCounter *stepCounter = [CMStepCounter new];
-////        // this is where the brunt of the action happens
-////        [stepCounter startStepCountingUpdatesToQueue:queue updateOn:1 withHandler:^(NSInteger numberOfSteps, NSDate *timestamp, NSError *error) {
-////            // save the numberOfSteps value to standardUserDefaults, and then update the step label
-////            [[NSUserDefaults standardUserDefaults] setInteger:numberOfSteps forKey:STEPS_KEY];
-////            [self updateStepLabel];
-////        }];
-////    }
-//    
-////    NSDate *now = [NSDate date];
-////    
-////    // Array to hold step values
-////    _stepsArray = [[NSMutableArray alloc] initWithCapacity:7];
-////    
-////    // Check if step counting is avaliable
-////    if ([CMStepCounter isStepCountingAvailable]) {
-////        // Init step counter
-////        self.cmStepCounter = [[CMStepCounter alloc] init];
-////        // Tweak this value as you need (you can also parametrize it)
-////        NSInteger daysBack = 6;
-////        for (NSInteger day = daysBack; day > 0; day--) {
-////            NSDate *fromDate = [now dateByAddingTimeInterval: -day * 24 * 60 * 60];
-////            NSDate *toDate = [fromDate dateByAddingTimeInterval:24 * 60 * 60];
-////            
-////            [self.cmStepCounter queryStepCountStartingFrom:fromDate to:toDate     toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error) {
-////                if (!error) {
-////                    NSLog(@"queryStepCount returned %ld steps", (long)numberOfSteps);
-////                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-////                        [_stepsArray addObject:@(numberOfSteps)];
-////                        
-////                        if ( day == 1) { // Just reached the last element, do what you want with the data
-////                            NSLog(@"_stepsArray filled with data: %@", _stepsArray);
-////                            // [self updateMyUI];
-////                        }
-////                    }];
-////                } else {
-////                    NSLog(@"Error occured: %@", error.localizedDescription);
-////                }
-////            }];
-////        }
-////    } else {
-////        NSLog(@"device not supported");
-////    }
-//    self.stepCounter = [[CMStepCounter alloc] init];
-//    NSDate *now = [NSDate date];
-//    NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
-//    
-//    [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
-//                                         
-//       self.stepsCountingLabel.text = [@(numberOfSteps) stringValue];
-//       
-//    
-//    
-//    }];
-//    
-//    
 //}
 
 

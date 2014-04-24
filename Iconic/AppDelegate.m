@@ -146,23 +146,6 @@
     
     // Call or write any code necessary to get new data, process it and update the UI.
 
-    
-    
-    
-    
-//    SimpleHomeViewController *simpleHomeViewController = (SimpleHomeViewController*) [[[UIApplication sharedApplication] keyWindow] rootViewController];
-//    SimpleHomeViewController *simpleHomeViewController = (SimpleHomeViewController*) [[SimpleHomeViewController alloc]init];
-//    [simpleHomeViewController incrementPlayerPoints];
-    
-//    dispatch_sync(dispatch_get_main_queue(), ^{
-//        [simpleHomeViewController incrementPlayerPoints];
-//
-//    });
-    
-//    SimpleHomeViewController *simpleHomeViewController = [[SimpleHomeViewController alloc]init];
-//    [simpleHomeViewController incrementPlayerPoints];
-//    [simpleHomeViewController refreshHomeView];
-    
     NSDate *fetchStart = [NSDate date];
     
    CalculatePoints *calculatePoints = [[CalculatePoints alloc]init];
@@ -177,33 +160,12 @@
         [calculatePoints incrementPlayerPoints];
         
 //    }];
-//    CalculatePoints *calculatePoints = [[CalculatePoints alloc]init];
-//    [calculatePoints incrementPlayerPoints];
-    
-//    NSNumber *testNumber = [NSNumber numberWithInt:400];
-//    
-//    PFObject *playerPoints = [PFUser currentUser];
-//    [playerPoints setObject:testNumber forKey:kPlayerPointsToday];
-//    
-//    [playerPoints saveInBackground];
-//    
     
     completionHandler(UIBackgroundFetchResultNewData);
-    
-//    PFQuery *query = [PFUser query];
-//    [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
-//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//        
-//        if(!error)
-//        {
-//            completionHandler(UIBackgroundFetchResultNewData);
 
     
-    
-    
     NSLog(@"Background fetch intialized");
-    
-    
+
     // The logic for informing iOS about the fetch results in plain language:
 //    if (/** NEW DATA EXISTS AND WAS SUCCESSFULLY PROCESSED **/) {
 //        completionHandler(UIBackgroundFetchResultNewData);

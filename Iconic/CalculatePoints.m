@@ -42,13 +42,13 @@
         if(numberOfSteps == 0)
         {
             self.myPoints = 0;
-            self.mySteps = 0;
+
             
         }
         else
         {
             self.myPoints = [self calculatePoints:numberOfSteps];
-            self.mySteps = &(numberOfSteps);
+
         }
         
         
