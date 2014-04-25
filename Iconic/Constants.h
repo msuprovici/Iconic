@@ -40,6 +40,16 @@ extern NSString *const kMyMostRecentPointsBeforeSaving;
 extern NSString *const kMyMostRecentStepsBeforeSaving;
 extern NSString *const kMyMostRecentTotalPointsBeforeSaving;
 
+//team arrays
+extern NSString *const kMyTeamDataArray;
+extern NSString *const kMyMatchupsArray;
+extern NSString *const kArrayOfAwayTeamPointers;
+extern NSString *const kArrayOfHomeTeamPointers;
+extern NSString *const kArrayOfHomeTeamScores;
+extern NSString *const kArrayOfAwayTeamScores;
+extern NSString *const kArrayOfAwayTeamNames;
+extern NSString *const kArrayOfHomeTeamNames;
+
 
 
 //step counting

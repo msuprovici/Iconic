@@ -20,6 +20,262 @@
 //we use this class to calculate fetched points
 
 
+#pragma mark Parse methods
+
+- (void) retrieveFromParse {
+    
+    //set the player's teams in memory
+    NSUserDefaults *myRetrievedTeams = [NSUserDefaults standardUserDefaults];
+
+    
+    //Query Team Class
+    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+    
+    //Query Teamates Class
+    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+    
+    
+    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        
+        if(!error)
+        {
+            //check to see if the player is on a team
+            if(objects.count > 0)
+            {
+                
+                //                NSLog(@"team class query worked");
+                
+                
+                
+                //convert NSArray to myTeamDataArray
+                self.myTeamData = [self createMutableArray:objects];
+                
+                
+                 NSArray *myTeamDataArray = [self.myTeamData copy];
+                
+                //save to NSUserdefaults
+                //[myRetrievedTeams setObject:myTeamDataArray  forKey:kMyTeamDataArray];
+                
+                
+                
+
+            }
+            else
+            {
+                
+                
+            }
+            
+            
+            
+            
+        }
+        else
+        {
+            
+        }
+        
+        
+    }];
+    
+    //Query Team Class to see if the player's current team is the HOME team
+    PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+    
+    
+    
+    PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+    
+    
+    PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
+    
+    [queryTeamMatchupsClass includeKey:kHomeTeam];
+    [queryTeamMatchupsClass includeKey:kAwayTeam];
+    
+    
+    queryAwayTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    queryHomeTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        
+        
+        if(!error)
+        {
+            
+            
+            if(objects.count > 0)
+            {
+                
+                for (int i = 0; i < objects.count; i++) {
+                    
+                    PFObject *myMatchupObject = [objects objectAtIndex:i];
+                    
+                    
+                    NSString * round = [myMatchupObject objectForKey:kRound];
+                    
+                    
+                    self.arrayOfhomeTeamScores = [[NSMutableArray alloc] init];
+                    self.arrayOfawayTeamScores = [[NSMutableArray alloc] init];
+                    
+                    self.arrayOfhomeTeamNames = [[NSMutableArray alloc] init];
+                    self.arrayOfawayTeamNames = [[NSMutableArray alloc] init];
+                    
+                    self.awayTeamPointers = [[NSMutableArray alloc] init];
+                    self.homeTeamPointers = [[NSMutableArray alloc] init];
+                    
+                    //self.myMatchups = [[NSMutableArray alloc] init];
+                   
+
+                    
+                    //the round is hardcoded for now, need to make this dynamic based on the torunatment's status
+                    if ([round  isEqual: @"1"])
+                    {
+                        
+                        for (int i = 0; i < objects.count; i++) {
+                            
+                            PFObject *myMatchupObject = [objects objectAtIndex:i];
+                            //NSLog(@"objects count: %lu", (unsigned long)objects.count);
+                            
+                            //add all objects to a array so that we can send the correct one to the next view controller
+                            self.myMatchups = objects;
+ 
+                            
+                            //acces away & home team pointers in parse
+                            PFObject* awayTeamPointer = [myMatchupObject objectForKey:kAwayTeam];
+                            PFObject* homeTeamPointer = [myMatchupObject objectForKey:kHomeTeam];
+                            
+                            //add pointers to an array & save to NSUserDefaults
+                            [self.awayTeamPointers addObject:awayTeamPointer];
+                            [self.homeTeamPointers addObject:homeTeamPointer];
+                            
+                            
+                            //Home Team Scores
+                            
+                            NSString * homeTeamName = [homeTeamPointer objectForKey:kTeams];
+                            NSNumber * homeTeamTotalScore = [homeTeamPointer objectForKey:kScore];
+                            
+                            //add objects to array of teamScores(array) objects so that we don't have to download again
+                            [self.arrayOfhomeTeamScores addObject:homeTeamTotalScore];
+                            
+                            
+                            
+                            //add objects to array of teamScores(array) objects so that we don't have to download again
+                            [self.arrayOfhomeTeamNames addObject:homeTeamName];
+                            
+                            
+                            
+                            //save to NSUserdefaults
+                            [myRetrievedTeams setObject:self.arrayOfhomeTeamScores  forKey:kArrayOfHomeTeamScores];
+                            [myRetrievedTeams setObject:self.arrayOfhomeTeamNames  forKey:kArrayOfHomeTeamNames];
+                            
+                            
+                            
+                            //Away Team Scores
+                            //get awayTeamScores(array) objects
+                            
+                            NSString * awayTeamName = [awayTeamPointer objectForKey:kTeams];
+                            NSNumber * awayTeamTotalScore = [awayTeamPointer objectForKey:kScore];
+                            
+                            
+                            
+                            //add objects to array of teamScores(array) objects so that we don't have to download again
+                            [self.arrayOfawayTeamScores addObject:awayTeamTotalScore];
+                            
+                            
+                            
+                            //add objects to array of teamScores(array) objects so that we don't have to download again
+                            [self.arrayOfawayTeamNames addObject:awayTeamName];
+                            
+                            
+                            
+                            //save to NSUserdefaults
+                            [myRetrievedTeams setObject:self.arrayOfawayTeamScores  forKey:kArrayOfAwayTeamScores];
+                            [myRetrievedTeams setObject:self.arrayOfawayTeamNames  forKey:kArrayOfAwayTeamNames];
+                            
+                            //logs
+//                             NSLog(@"awayTeamPointer: %@", awayTeamPointer);
+//                            NSLog(@"homeTeamPointer: %@", homeTeamPointer);
+//                            
+//                            NSLog(@"awayTeamName: %@", awayTeamName);
+//                            NSLog(@"homeTeamName: %@", homeTeamName);
+//                            
+//                            NSLog(@"awayTeamTotalScore: %@", awayTeamTotalScore);
+//                            NSLog(@"homeTeamTotalScore: %@", homeTeamTotalScore);
+//                            
+//                            NSLog(@"self.arrayOfhomeTeamScores: %@", self.arrayOfhomeTeamScores);
+//                             NSLog(@"self.arrayOfawayTeamScores: %@", self.arrayOfawayTeamScores);
+//                            
+//                            NSLog(@"self.arrayOfhomeTeamNames: %@", self.arrayOfhomeTeamNames);
+//                            NSLog(@"self.arrayOfawayTeamNames: %@", self.arrayOfawayTeamNames);
+                            
+                            //self.arrayOfhomeTeamScores
+                            
+//                            NSLog(@"awayTeamScoresArray: %@", awayTeamScoresArray);
+//                             NSLog(@"homeTeamScoresArray: %@", homeTeamScoresArray);
+//                            NSLog(@"awayTeamNamesArray: %@", awayTeamNamesArray);
+//                            NSLog(@"homeTeamNamesArray: %@", homeTeamNamesArray);
+                            
+                            
+                            
+                            //                    //home team
+                            //                    NSLog(@"homeTeamScores: %lu", (unsigned long)self.homeTeamScores.count);
+                            //                    NSLog(@"arrayOfhomeTeamScores: %lu", (unsigned long)self.arrayOfhomeTeamScores.count);
+                            //                    
+                            //                    //away team
+                            //                    NSLog(@"awayTeamScores: %lu", (unsigned long)self.awayTeamScores.count);
+                            //                    NSLog(@"arrayOfawayTeamScores: %lu", (unsigned long)self.arrayOfawayTeamScores.count);
+                            //                        
+                            //                    //pointers
+                            //                    NSLog(@"awayTeamPointers: %lu", (unsigned long)self.awayTeamPointers.count);
+                            //                    NSLog(@"homeTeamPointers: %lu", (unsigned long)self.arrayOfawayTeamScores.count);
+                            
+                            
+                        }
+                        
+                    }
+                    
+                    
+                }
+                
+                
+            }
+            
+            
+            
+            
+        }
+        else
+        {
+            
+        }
+        
+        
+    }];
+    
+    
+    //synchronize everything
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
+
+- (NSMutableArray *)createMutableArray:(NSArray *)array
+{
+    return [NSMutableArray arrayWithArray:array];
+}
+
+
+#pragma mark points calcuations
+
 -(void)incrementPlayerPoints
 {
     
@@ -64,6 +320,14 @@
             [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
 
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            
+            //save the player's points for today to the server
+            PFObject *playerPoints = [PFUser currentUser];
+            NSNumber *myPointsConverted = [NSNumber numberWithInt:0];
+            [playerPoints setObject:myPointsConverted forKey:kPlayerPointsToday];
+            [playerPoints save];
+
         }
         
         else

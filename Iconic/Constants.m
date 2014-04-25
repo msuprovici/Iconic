@@ -35,6 +35,16 @@ NSString *const kMyMostRecentPointsBeforeSaving = @"theMostRecentPointsBeforeSav
 NSString *const kMyMostRecentStepsBeforeSaving = @"NumberOfStepsBeforeSaving";
 NSString *const kMyMostRecentTotalPointsBeforeSaving = @"MyTotalPointsBeforeSaving";
 
+//arrays
+NSString *const kMyTeamDataArray = @"myTeamDataArray";
+NSString *const kMyMatchupsArray = @"myMatchupsArray";
+NSString *const kArrayOfAwayTeamPointers = @"arrayOfAwayTeamPointers";
+NSString *const kArrayOfHomeTeamPointers = @"arrayOfHomeTeamPointers";
+NSString *const kArrayOfHomeTeamScores = @"arrayOfHomeTeamScores";
+NSString *const kArrayOfAwayTeamScores = @"arrayOfAwayTeamScores";
+NSString *const kArrayOfAwayTeamNames = @"arrayOfAwayTeamNames";
+NSString *const kArrayOfHomeTeamNames = @"arrayOfHomeTeamNames";
+
 
 //step counting
 NSString *const STEPS_KEY = @"steps";

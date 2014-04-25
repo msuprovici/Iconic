@@ -158,6 +158,7 @@
         NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
         
         [calculatePoints incrementPlayerPoints];
+        [calculatePoints retrieveFromParse];
         
 //    }];
     

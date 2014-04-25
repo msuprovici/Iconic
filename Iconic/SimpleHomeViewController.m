@@ -10,6 +10,7 @@
 #import "MyStatsViewController.h"
 #import "ContentController.h"
 #import "VSTableViewController.h"
+#import "CalculatePoints.h"
 #import <Foundation/Foundation.h>
 
 
@@ -211,9 +212,12 @@ static NSString *kImageKey = @"imageKey";
     
     
 
-    [self refreshHomeView];
+   [self refreshHomeView];
     //calculate days left in the week
     [self calculateDaysLeftinTheWeek];
+    
+    
+    
     
 //    [self getMotionData];
     //calcualte weekely steps and add them to an array
@@ -402,7 +406,8 @@ static NSString *kImageKey = @"imageKey";
     [self.view addSubview:self.pageControl];
     
     
-  
+    CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
+    [calculatePoints retrieveFromParse];
     
     //increment points
     [self incrementPlayerPoints];
@@ -994,6 +999,8 @@ static NSString *kImageKey = @"imageKey";
 
 -(void)updateTeamChart:(int)index
 {
+    
+    //To Do: Retrieve _myMatchups, _myTeamData, _homeTeamPointers, _awayTeamPointers from NSUserdefualts
     self.myteamObject = [self.myMatchups objectAtIndex:index];
     
     self.myNewTeamObject = [self.myTeamData objectAtIndex:index];
@@ -1006,21 +1013,49 @@ static NSString *kImageKey = @"imageKey";
    
     //set home(MyTeamName) and away (vsTeamName) teams attributes
     //MyTeamName does not always equal the home team
-    NSString * homeTeamName = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
-    NSString * awayTeamName = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kTeams]];
+//    NSString * homeTeamName = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
+//    NSString * awayTeamName = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kTeams]];
+//    
+//    NSNumber *homeTeamScore = [NSNumber numberWithInt:[[homeTeam objectForKey:kScore]intValue]];
+////    int myHomeTeamScore = [NSNumber numberWithInt:(int)[homeTeamScore intValue]];
+//    NSNumber *awayTeamScore = [NSNumber numberWithInt:[[awayTeam objectForKey:kScore]intValue]];;
+////    int myAomeTeamScore = [awayTeamScore intValue];
     
-    NSNumber *homeTeamScore = [NSNumber numberWithInt:[[homeTeam objectForKey:kScore]intValue]];
-//    int myHomeTeamScore = [NSNumber numberWithInt:(int)[homeTeamScore intValue]];
-    NSNumber *awayTeamScore = [NSNumber numberWithInt:[[awayTeam objectForKey:kScore]intValue]];;
-//    int myAomeTeamScore = [awayTeamScore intValue];
     
-    self.MyTeamName.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
-    self.MyTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kScore]];
+    
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    
+    NSArray *homeTeamScores = [RetrievedTeams objectForKey:kArrayOfHomeTeamScores];
+    NSArray *awayTeamScores = [RetrievedTeams objectForKey:kArrayOfAwayTeamScores];
+    
+    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
+    NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
+    
+//    NSLog(@"homeTeamNames retrieved: %@", homeTeamNames);
+//    
+//    NSLog(@"awayTeamNames retrieved: %@", awayTeamNames);
+    
+    
+    NSString * homeTeamName = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
+    self.MyTeamName.text = homeTeamName;
+    
+    NSString * awayTeamName = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
+    self.vsTeamName.text = awayTeamName;
+    
+    NSString * homeTeamScore = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
+    self.MyTeamScore.text = homeTeamScore;
+    
+    NSString * awayTeamScore = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:index]];
+    self.VSTeamScore.text = awayTeamScore;
+    
+    
+//    self.MyTeamName.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
+//    self.MyTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kScore]];
     self.MyTeamName.textColor = PNBlue;
     self.MyTeamScore.textColor = PNBlue;
     
-    self.vsTeamName.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kTeams]];
-    self.VSTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kScore]];
+//    self.vsTeamName.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kTeams]];
+//    self.VSTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kScore]];
     self.vsTeamName.textColor = PNGreen;
     self.VSTeamScore.textColor = PNGreen;
  
@@ -1464,6 +1499,12 @@ static NSString *kImageKey = @"imageKey";
 //            [myRetrievedPoints setInteger:*(self.mySteps) forKey:kMyMostRecentStepsBeforeSaving];
             [myRetrievedPoints setInteger:0 forKey:kMyMostRecentStepsBeforeSaving];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            //save the player's points for today to the server
+            PFObject *playerPoints = [PFUser currentUser];
+            NSNumber *myPointsConverted = [NSNumber numberWithInt:0];
+            [playerPoints setObject:myPointsConverted forKey:kPlayerPointsToday];
+            [playerPoints saveEventually];
         }
         
         else

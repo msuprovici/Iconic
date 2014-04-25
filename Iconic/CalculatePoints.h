@@ -21,6 +21,26 @@
 @property (nonatomic, strong) NSMutableArray *myWeeleyPointsArray;
 @property (nonatomic, strong) CMStepCounter *stepCounter;
 
+//arrays
+@property (strong, nonatomic) NSMutableArray *myTeamData;
+@property (strong, nonatomic) NSMutableArray * arrayOfhomeTeamScores;
+@property (strong, nonatomic) NSMutableArray * arrayOfawayTeamScores;
+@property (strong, nonatomic) NSMutableArray * arrayOfhomeTeamNames;
+@property (strong, nonatomic) NSMutableArray * arrayOfawayTeamNames;
+
+@property (strong, nonatomic) NSMutableArray * homeTeamPointers;
+@property (strong, nonatomic) NSMutableArray * awayTeamPointers;
+@property (strong, nonatomic) NSArray * myMatchups;
+@property (strong, nonatomic) NSMutableArray * homeTeamScores;
+@property (strong, nonatomic) NSMutableArray * awayTeamScores;
+@property (strong, nonatomic) NSString * homeTeamNames;
+@property (strong, nonatomic) NSString * awayTeamNames;
+@property (strong, nonatomic) NSNumber * homeTeamTotalScore;
+@property (strong, nonatomic) NSNumber * awayTeamTotalScore;
+
+
+
+
 
 //convert steps to points and store here
 @property NSNumber* myPoints;
@@ -29,8 +49,11 @@
 //days left in the week
 @property int daysLeft;
 
+
 //methods
 -(void)incrementPlayerPoints;
+
+- (void) retrieveFromParse;
 
 
 @end
