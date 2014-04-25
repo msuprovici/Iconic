@@ -205,11 +205,13 @@ static NSString *kImageKey = @"imageKey";
     
     
     
-    [PFQuery clearAllCachedResults];
-    //load my stats
-    //show first team (index 0)
-    [self updateTeamChart:0];
+//    [PFQuery clearAllCachedResults];
     
+    //load my teams
+    //show first team (index 0)
+//    [self updateTeamChart:0];
+//    [self.scrollTeamsLeft setEnabled:FALSE];
+//    [self.scrollTeamsRight setEnabled:TRUE];
     
 
    [self refreshHomeView];
@@ -416,7 +418,12 @@ static NSString *kImageKey = @"imageKey";
 //    [self findPastWeekleySteps];
     
     [self retrieveFromParse];
-
+    
+    //load my teams
+    //show first team (index 0)
+    [self updateTeamChart:0];
+    [self.scrollTeamsLeft setEnabled:FALSE];
+    [self.scrollTeamsRight setEnabled:TRUE];
     
 
 }
@@ -536,6 +543,7 @@ static NSString *kImageKey = @"imageKey";
 //retrive table view data from parse
 - (void) retrieveFromParse {
     
+    //this query identifies what teams the player is on
     
     //Query Team Class
     PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
@@ -550,129 +558,130 @@ static NSString *kImageKey = @"imageKey";
     
     [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
     
-
-            if(!error)
-            {
-                //check to see if the player is on a team
-                if(objects.count > 0)
-                {
-                    
-//                NSLog(@"team class query worked");
-                    
-                    
-                    //making sure these items are visible in case they were reset when the player left all teams
-                    self.teamMatchChart.hidden = NO;
-                    self.vsTeamName.hidden = NO;
-                    self.VSTeamScore.hidden = NO;
-                
-                //convert NSArray to myTeamDataArray
-                self.myTeamData = [self createMutableArray:objects];
-                 
-            
-                
-                //get the 1st Object in the array
-//                int myFirstTeamIndex = [self.myTeamData indexOfObject:self.myTeamData.firstObject];
-//                self.myteamObjectatIndex = [self.myTeamData objectAtIndex:myFirstTeamIndex];
-                    
-//                    int myFirstTeamIndex = [self.myMatchups indexOfObject:self.myMatchups.firstObject];
-//                    self.myteamObjectatIndex = [self.myMatchups objectAtIndex:myFirstTeamIndex];
-                
-                //Update team chart & data
-                    
-//                //show first team (index 0)
-//                [self updateTeamChart:0];
-                
-                [self.scrollTeamsLeft setEnabled:FALSE];
-                [self.scrollTeamsRight setEnabled:TRUE];
-                
-                
-                if(self.myMatchups.count <= 1)
-                {
-                    self.scrollTeamsRight.hidden = YES ;
-                    self.scrollTeamsLeft.hidden = YES ;
-                    
-                }
-                else
-                {
-                    self.scrollTeamsRight.hidden = NO ;
-                    self.scrollTeamsLeft.hidden = NO ;
-                    
-                }
-                
-                for (PFObject * object in objects)
-                {
-                    self.numberOfTeamScores = [object objectForKey:kScoreWeek];
-                    //we are storing the mumber of teams in the array so that we can use it to calculate the number of daysPlayed
-                    x = self.numberOfTeamScores.count+1;
-                }
-                
-                
-//                self.arrayOfTeamScores = [[NSMutableArray alloc] init];
-//                
-//                for (int i = 0; i < self.myTeamData.count; i++) {
-//                    
-//                    
-//                    //create objects for
-//                    PFObject *myWeekleyTeamScores = [objects objectAtIndex:i];
-//                    
-//                    //get my weekleyTeamScores(array) objects
-//                    self.myTeamScores = [myWeekleyTeamScores objectForKey:kScoreWeek];
-//                    
-//                    //we add today's most uptodate data to the array
-//                    [self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
-//                    
-//                    
-//                    //add objects to array of teamScores(array) objects so that we don't have to download again
-//                    [self.arrayOfTeamScores addObject:self.myTeamScores];
-//                    
-//                    //[self.arrayOfTeamScores replaceObjectAtIndex:i withObject:self.myTeamScores];
-//                    NSLog(@"array of MY teamScores: %lu", (unsigned long)self.arrayOfTeamScores.count);
-//                    NSLog(@"MYteamScores: %lu", (unsigned long)self.myTeamScores.count);
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//    
 //
+//            if(!error)
+//            {
+//                //check to see if the player is on a team
+//                if(objects.count > 0)
+//                {
+//                    
+////                NSLog(@"team class query worked");
+//                    
+//                    
+//                    //making sure these items are visible in case they were reset when the player left all teams
+//                    self.teamMatchChart.hidden = NO;
+//                    self.vsTeamName.hidden = NO;
+//                    self.VSTeamScore.hidden = NO;
+//                
+//                //convert NSArray to myTeamDataArray
+//                self.myTeamData = [self createMutableArray:objects];
+//                 
+//            
+//                
+//                //get the 1st Object in the array
+////                int myFirstTeamIndex = [self.myTeamData indexOfObject:self.myTeamData.firstObject];
+////                self.myteamObjectatIndex = [self.myTeamData objectAtIndex:myFirstTeamIndex];
+//                    
+////                    int myFirstTeamIndex = [self.myMatchups indexOfObject:self.myMatchups.firstObject];
+////                    self.myteamObjectatIndex = [self.myMatchups objectAtIndex:myFirstTeamIndex];
+//                
+//                //Update team chart & data
+//                    
+////                //show first team (index 0)
+////                [self updateTeamChart:0];
+//                
+//                [self.scrollTeamsLeft setEnabled:FALSE];
+//                [self.scrollTeamsRight setEnabled:TRUE];
+//                
+////                
+////                if(self.myMatchups.count <= 1)
+////                {
+////                    self.scrollTeamsRight.hidden = YES ;
+////                    self.scrollTeamsLeft.hidden = YES ;
+////                    
+////                }
+////                else
+////                {
+////                    self.scrollTeamsRight.hidden = NO ;
+////                    self.scrollTeamsLeft.hidden = NO ;
+////                    
+////                }
+//                
+////                for (PFObject * object in objects)
+////                {
+////                    self.numberOfTeamScores = [object objectForKey:kScoreWeek];
+////                    //we are storing the mumber of teams in the array so that we can use it to calculate the number of daysPlayed
+////                    x = self.numberOfTeamScores.count+1;
+////                }
+//                
+//                
+////                self.arrayOfTeamScores = [[NSMutableArray alloc] init];
+////                
+////                for (int i = 0; i < self.myTeamData.count; i++) {
+////                    
+////                    
+////                    //create objects for
+////                    PFObject *myWeekleyTeamScores = [objects objectAtIndex:i];
+////                    
+////                    //get my weekleyTeamScores(array) objects
+////                    self.myTeamScores = [myWeekleyTeamScores objectForKey:kScoreWeek];
+////                    
+////                    //we add today's most uptodate data to the array
+////                    [self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
+////                    
+////                    
+////                    //add objects to array of teamScores(array) objects so that we don't have to download again
+////                    [self.arrayOfTeamScores addObject:self.myTeamScores];
+////                    
+////                    //[self.arrayOfTeamScores replaceObjectAtIndex:i withObject:self.myTeamScores];
+////                    NSLog(@"array of MY teamScores: %lu", (unsigned long)self.arrayOfTeamScores.count);
+////                    NSLog(@"MYteamScores: %lu", (unsigned long)self.myTeamScores.count);
+////
+////                    
+////                }
+//                    //show first team (index 0)
+////                    [self updateTeamChart:0];
+//
+////        [self updateTeamChart:0];
+//            }
+//                else
+//                {
+//                    
+//                    //if the player is not on a team...
+//                    self.MyTeamName.text = @"No Team";
+//                    self.MyTeamScore.text = @"";
+//                    self.scrollTeamsRight.hidden = YES ;
+//                    self.scrollTeamsLeft.hidden = YES ;
+//                    self.teamMatchChart.hidden = YES;
+//                    self.vsTeamName.hidden = YES;
+//                    self.VSTeamScore.hidden = YES;
 //                    
 //                }
-                    //show first team (index 0)
-//                    [self updateTeamChart:0];
-
-        [self updateTeamChart:0];
-            }
-                else
-                {
-                    
-                    //if the player is not on a team...
-                    self.MyTeamName.text = @"No Team";
-                    self.MyTeamScore.text = @"";
-                    self.scrollTeamsRight.hidden = YES ;
-                    self.scrollTeamsLeft.hidden = YES ;
-                    self.teamMatchChart.hidden = YES;
-                    self.vsTeamName.hidden = YES;
-                    self.VSTeamScore.hidden = YES;
-                    
-                }
-                
-        
-           
-                
-            }
-            else
-            {
-//                NSLog(@"query did not work");
-                //Hardcoded for testing
-                self.MyTeamName.text = @"NO TEAM";
-                self.MyTeamScore.text = @"";
-                
-                
-                
-//                x = 0;
-//                [self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
-//                [self.arrayOfTeamScores addObject:self.myTeamScores];
-
-            }
-                
-        
-        }];
+//                
+//        
+//           
+//                
+//            }
+//            else
+//            {
+////                NSLog(@"query did not work");
+//                //Hardcoded for testing
+//                self.MyTeamName.text = @"NO TEAM";
+//                self.MyTeamScore.text = @"";
+//                
+//                
+//                
+////                x = 0;
+////                [self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
+////                [self.arrayOfTeamScores addObject:self.myTeamScores];
+//
+//            }
+//                
+//        
+//        }];
     
     //Query Team Class to see if the player's current team is the HOME team
     PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
@@ -856,23 +865,27 @@ static NSString *kImageKey = @"imageKey";
 //scroll through team data
 - (IBAction)scrollTeamsRight:(id)sender {
     
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
+    
     //find the index of myNewTeamObject - we are using data (myTeamData array) received from 'query'
     //*!* using data (myMatchups) from queryTeamMatchupsClass leaks objects. it can't find myteamObject after adding/removing teams using the logic bellow
-    int myTeamIndex = (int)[self.myTeamData indexOfObject:self.myNewTeamObject];
-    int myFirstTeamIndex = (int)[self.myTeamData indexOfObject:self.myTeamData.firstObject];
-    
+//    int myTeamIndex = (int)[self.myTeamData indexOfObject:self.myNewTeamObject];
+//    int myFirstTeamIndex = (int)[self.myTeamData indexOfObject:self.myTeamData.firstObject];
+    int myTeamIndex = (int)[homeTeamNames indexOfObject:self.myNewTeamObject];
+    int myFirstTeamIndex = (int)[homeTeamNames indexOfObject:homeTeamNames.firstObject];
     
     
     
 //    NSLog(@"index of myteamObjectRight: %d", myTeamIndex);
     
-    if (myTeamIndex <= self.myTeamData.count-1) {
+    if (myTeamIndex <= homeTeamNames.count-1) {
         
         int incrementTeamIndex = myTeamIndex += 1;
         
         [self updateTeamChart:incrementTeamIndex];
         
-        if (myTeamIndex == self.myTeamData.count-1 )
+        if (myTeamIndex == homeTeamNames.count-1 )
         {
             
             [self.scrollTeamsRight setEnabled:FALSE];
@@ -923,14 +936,16 @@ static NSString *kImageKey = @"imageKey";
 
 - (IBAction)scrollTeamsLeft:(id)sender {
     
+     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
     
     //find the index of myTeamObject - see comments above in scrollTeamsRight
-    int myTeamIndex = (int)[self.myTeamData indexOfObject:self.myNewTeamObject];
-    int myFirstTeamIndex = (int)[self.myTeamData indexOfObject:self.myTeamData.firstObject];
+    int myTeamIndex = (int)[homeTeamNames indexOfObject:self.myNewTeamObject];
+    int myFirstTeamIndex = (int)[homeTeamNames indexOfObject:homeTeamNames.firstObject];
 //    NSLog(@"index of myteamObjectLeft: %d", myTeamIndex);
     
     
-    if (myTeamIndex <= self.myTeamData.count-1 )
+    if (myTeamIndex <= homeTeamNames.count-1 )
     {
         [self.scrollTeamsRight setEnabled:TRUE];
         
@@ -1001,9 +1016,13 @@ static NSString *kImageKey = @"imageKey";
 {
     
     //To Do: Retrieve _myMatchups, _myTeamData, _homeTeamPointers, _awayTeamPointers from NSUserdefualts
+    //make this happen via index number rather then an object
+    //use index number for (IBAction)scrollTeams
+    
+    
     self.myteamObject = [self.myMatchups objectAtIndex:index];
     
-    self.myNewTeamObject = [self.myTeamData objectAtIndex:index];
+//    self.myNewTeamObject = [self.myTeamData objectAtIndex:index];
 
     
     //get home and away teams
@@ -1031,6 +1050,8 @@ static NSString *kImageKey = @"imageKey";
     NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
     NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
     
+    
+    self.myNewTeamObject = [homeTeamNames objectAtIndex:index];
 //    NSLog(@"homeTeamNames retrieved: %@", homeTeamNames);
 //    
 //    NSLog(@"awayTeamNames retrieved: %@", awayTeamNames);
@@ -1091,8 +1112,8 @@ static NSString *kImageKey = @"imageKey";
     // cell.MyTeamScore.text = [NSString stringWithFormat:@"MyTeam %@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score from Parse
     
     //self.MyTeamScore.text = @"MyTeam"; //set in retrieveFromParse
-    self.vsTeamName.textColor = PNBlue;
-    self.MyTeamScore.textColor = PNBlue;
+//    self.vsTeamName.textColor = PNBlue;
+//    self.MyTeamScore.textColor = PNBlue;
     //self.MyTeamScore.font = [UIFont boldSystemFontOfSize:15];
     //self.MyTeamScore.textAlignment = NSTextAlignmentLeft; //Set in story board
     
@@ -1101,8 +1122,8 @@ static NSString *kImageKey = @"imageKey";
     //cell.VSTeamScore.text = [NSString stringWithFormat:@"Opponent %@",[tempObject objectForKey:@"MyTeamScore"]]; //Team Score from Parse
     
     // self.VSTeamScore.text = @"VsTeam"; //set in retrieveFromParse
-    self.vsTeamName.textColor = PNGreen;
-    self.VSTeamScore.textColor = PNGreen;
+//    self.vsTeamName.textColor = PNGreen;
+//    self.VSTeamScore.textColor = PNGreen;
     //self.VSTeamScore.font = [UIFont boldSystemFontOfSize:15];
     //self.VSTeamScore.textAlignment = NSTextAlignmentLeft; //Set in story board
     
