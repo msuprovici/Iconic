@@ -318,8 +318,8 @@
     
     //Query Teamates Class
     PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
-    query2.cachePolicy = kPFCachePolicyNetworkElseCache;
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
     [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
     
@@ -496,12 +496,6 @@
 //     NSLog(@"home team in table %@", self.homeTeam);
 //     NSLog(@"away team in table %@", self.awayTeam);
      
-     
-     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-     [query includeKey:kTeam];
-     [query includeKey:kTeamate];
-     
-     
      //Query Team Class - query that mathches team names sent in segue
      PFQuery *homeTeamsClass = [PFQuery queryWithClassName:kTeamTeamsClass];
      [homeTeamsClass whereKey:kTeams equalTo:self.homeTeam];
@@ -515,13 +509,17 @@
      PFQuery *retrievedTeams = [PFQuery orQueryWithSubqueries:@[homeTeamsClass,awayTeamsClass]];
 
      
-     //Query Teamates Class (query to find what team the player is on)
+     //Query Teamates Class (query to find what the team the player is on)
      PFQuery *playersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
      [playersClass whereKey:kTeamate equalTo:[PFUser currentUser]];
      [retrievedTeams whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:playersClass];
 
      
      //finally get the players that are on that team
+     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+     [query includeKey:kTeam];
+     [query includeKey:kTeamate];
+     
      [query whereKey:kTeam matchesKey:@"objectId" inQuery:retrievedTeams];
      
      

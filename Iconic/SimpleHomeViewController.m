@@ -75,9 +75,9 @@ static NSString *kImageKey = @"imageKey";
 
 @property (nonatomic, assign) BOOL downloadedMatchupsObject;
 
+//idex of the team displayed on the home screen controller
 @property (nonatomic, assign) int matchupsIndex;
-@property (nonatomic, assign) NSString *passHomeTeam;
-@property (nonatomic, assign) NSString *passAwayTeam;
+
 
 
 
@@ -431,7 +431,7 @@ static NSString *kImageKey = @"imageKey";
     
 //    [self findPastWeekleySteps];
     
-    [self retrieveFromParse];
+//    [self retrieveFromParse];
     
     //load my teams
     //show first team (index 0)
@@ -1071,8 +1071,8 @@ static NSString *kImageKey = @"imageKey";
 
     
     //get home and away teams
-    PFObject * homeTeam = [self.homeTeamPointers objectAtIndex:index];
-    PFObject * awayTeam = [self.awayTeamPointers objectAtIndex:index];
+//    PFObject * homeTeam = [self.homeTeamPointers objectAtIndex:index];
+//    PFObject * awayTeam = [self.awayTeamPointers objectAtIndex:index];
     
    
     //set home(MyTeamName) and away (vsTeamName) teams attributes
@@ -1108,12 +1108,12 @@ static NSString *kImageKey = @"imageKey";
     NSString * homeTeamName = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
     self.MyTeamName.text = homeTeamName;
     
-    self.passHomeTeam = homeTeamName;
+    
     
     NSString * awayTeamName = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
     self.vsTeamName.text = awayTeamName;
     
-    self.passAwayTeam = awayTeamName;
+    
     
     NSString * homeTeamScore = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
     self.MyTeamScore.text = homeTeamScore;
@@ -1400,29 +1400,6 @@ static NSString *kImageKey = @"imageKey";
 }
 
 
-#pragma mark - Navigation
-
-//pass the team to the teammates view controller
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    VSTableViewController *transferViewController = segue.destinationViewController;
-    
-    if ([segue.identifier isEqualToString:@"vs"]) {
-        
-//        NSLog(@"Segue index sent: %d", self.matchupsIndex);
-        
-        [segue.destinationViewController initWithReceivedTeam:self.matchupsIndex];
-        
-        transferViewController.homeTeam = self.passHomeTeam;
-        transferViewController.awayTeam = self.passAwayTeam;
-        //Find the row the button was selected from
-        
-//        [segue.destinationViewController initWithReceivedTeam:self.myteamObject];
-        
-       //self.matchupsIndex
-        
-    }
-}
 
 
 #pragma mark Step Counting
@@ -1980,6 +1957,37 @@ static NSString *kImageKey = @"imageKey";
     self.daysLeft = (int)[newComponents day];
     
 //    NSLog(@"days left in the week: %d", (int)self.daysLeft);
+}
+
+#pragma mark - Navigation
+
+//pass the team to the teammates view controller
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    VSTableViewController *transferViewController = segue.destinationViewController;
+    
+     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
+    NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
+    
+    if ([segue.identifier isEqualToString:@"vs"]) {
+        
+        //        NSLog(@"Segue index sent: %d", self.matchupsIndex);
+        
+        [segue.destinationViewController initWithReceivedTeam:self.matchupsIndex];
+        
+        transferViewController.homeTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:self.matchupsIndex]];
+        transferViewController.awayTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:self.matchupsIndex]];
+        
+//        transferViewController.homeTeam = self.passHomeTeam;
+//        transferViewController.awayTeam = self.passAwayTeam;
+        //Find the row the button was selected from
+        
+        //        [segue.destinationViewController initWithReceivedTeam:self.myteamObject];
+        
+        //self.matchupsIndex
+        
+    }
 }
 
 
