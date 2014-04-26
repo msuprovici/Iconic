@@ -14,8 +14,14 @@
 
 @property (nonatomic, strong) PFObject *receivedTeam;
 
--(void)initWithReceivedTeam:(PFObject*)aReceivedTeam;
+//-(void)initWithReceivedTeam:(PFObject*)aReceivedTeam;
 
+@property (nonatomic, assign) int matchupsIndex;
+
+-(void)initWithReceivedTeam:(int)matchupsIndex;
+
+@property (nonatomic, assign) NSString *homeTeam;
+@property (nonatomic, assign) NSString *awayTeam;
 
 
 @property (strong, nonatomic) IBOutlet MZTimerLabel *timerLabel;

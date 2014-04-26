@@ -11,7 +11,7 @@
 #import <Parse/Parse.h>
 #import <CoreMotion/CoreMotion.h>
 #include <math.h>
-
+#import "SimpleHomeViewController.h"
 
 
 @implementation CalculatePoints
@@ -52,7 +52,9 @@
                 
                 //                NSLog(@"team class query worked");
                 
-                
+//                SimpleHomeViewController *simpleViewController = [[SimpleHomeViewController alloc]init];
+//                [simpleViewController updateTeamChart:0];
+
                 
                 //convert NSArray to myTeamDataArray
                 self.myTeamData = [self createMutableArray:objects];
@@ -147,7 +149,9 @@
                             
                             //add all objects to a array so that we can send the correct one to the next view controller
                             self.myMatchups = objects;
- 
+                            
+//                            SimpleHomeViewController *simpleViewController = [[SimpleHomeViewController alloc]init];
+//                            simpleViewController.myMatchups = objects;
                             
                             //acces away & home team pointers in parse
                             PFObject* awayTeamPointer = [myMatchupObject objectForKey:kAwayTeam];
@@ -263,6 +267,7 @@
     
     
     //synchronize everything
+    [myRetrievedTeams synchronize];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
@@ -312,13 +317,16 @@
         //set the player's total points in memory
         NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
         
+        [myRetrievedPoints synchronize];
+        
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         //to prevent null values check if # of steps is 0
         if(numberOfSteps == 0)
         {
             [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
-
+            
+            [myRetrievedPoints synchronize];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             
@@ -336,7 +344,7 @@
          
             [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyMostRecentFetchedPointsBeforeSaving];
             
-            
+            [myRetrievedPoints synchronize];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             
@@ -355,7 +363,7 @@
             //increment a player's total # of points
             
             int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsTotal];
-            
+              [myRetrievedPoints synchronize];
              [[NSUserDefaults standardUserDefaults] synchronize];
             
             int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
@@ -365,7 +373,7 @@
 //                    NSLog(@"myFetchedNewTotalPoints: %d", myNewTotalPoints);
             
             [myRetrievedPoints setInteger:myNewTotalPoints  forKey:kMyFetchedPointsTotal];
-            
+            [myRetrievedPoints synchronize];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
             //save the player's points for today to the server

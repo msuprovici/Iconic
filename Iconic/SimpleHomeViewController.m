@@ -60,7 +60,7 @@ static NSString *kImageKey = @"imageKey";
 
 
 //@property (strong, nonatomic) NSMutableArray * myMatchups;
-@property (strong, nonatomic) NSArray * myMatchups;
+//@property (strong, nonatomic) NSArray * myMatchups;
 @property (strong, nonatomic) NSMutableArray * homeTeamPointers;
 @property (strong, nonatomic) NSMutableArray * awayTeamPointers;
 @property (strong, nonatomic) NSMutableArray * homeTeamScores;
@@ -72,6 +72,12 @@ static NSString *kImageKey = @"imageKey";
 @property (nonatomic, assign) NSUInteger x;
 
 @property (nonatomic, assign) BOOL receivedNotification;
+
+@property (nonatomic, assign) BOOL downloadedMatchupsObject;
+
+@property (nonatomic, assign) int matchupsIndex;
+@property (nonatomic, assign) NSString *passHomeTeam;
+@property (nonatomic, assign) NSString *passAwayTeam;
 
 
 
@@ -203,7 +209,7 @@ static NSString *kImageKey = @"imageKey";
     //[self playerNameHeader];
     self.playerPhoto.hidden = YES;
     
-    
+    [self refreshHomeView];
     
 //    [PFQuery clearAllCachedResults];
     
@@ -213,8 +219,7 @@ static NSString *kImageKey = @"imageKey";
 //    [self.scrollTeamsLeft setEnabled:FALSE];
 //    [self.scrollTeamsRight setEnabled:TRUE];
     
-
-   [self refreshHomeView];
+//     [self refreshHomeView];
     //calculate days left in the week
     [self calculateDaysLeftinTheWeek];
     
@@ -299,7 +304,16 @@ static NSString *kImageKey = @"imageKey";
 {
     [super viewDidAppear:YES ];
     
-//    //Page control for MyStatsView
+    // If we received joined/leave team notification update team charts
+    if (self.receivedNotification == YES) {
+        
+//        [self updateTeamChart:0];
+        [self refreshHomeView];
+       self.receivedNotification = NO;
+    }
+    
+    //[self updateTeamChart:0];
+    //    //Page control for MyStatsView
 //    NSUInteger numberPages = self.contentList.count;
 //    
 //    // view controllers are created lazily
@@ -425,6 +439,8 @@ static NSString *kImageKey = @"imageKey";
     [self.scrollTeamsLeft setEnabled:FALSE];
     [self.scrollTeamsRight setEnabled:TRUE];
     
+    
+    [self.view setNeedsDisplay];
 
 }
 
@@ -550,8 +566,8 @@ static NSString *kImageKey = @"imageKey";
     
     //Query Teamates Class
     PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
-    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    query2.cachePolicy = kPFCachePolicyNetworkElseCache;
     
     [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
     
@@ -699,8 +715,8 @@ static NSString *kImageKey = @"imageKey";
     [queryTeamMatchupsClass includeKey:kAwayTeam];
     
     
-    queryAwayTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    queryHomeTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    queryAwayTeamMatchups.cachePolicy = kPFCachePolicyNetworkElseCache;
+    queryHomeTeamMatchups.cachePolicy = kPFCachePolicyNetworkElseCache;
     
     [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
@@ -708,7 +724,9 @@ static NSString *kImageKey = @"imageKey";
         
         if(!error)
         {
+           
             
+        
 
             if(objects.count > 0)
             {
@@ -722,6 +740,10 @@ static NSString *kImageKey = @"imageKey";
 //                 NSLog(@"homeTeamScores count: %d", (int)self.homeTeamScores.count);
 //                NSLog(@"daysLeft: %d", (int)daysLeft);
                 
+                
+                
+                //confirmation that we downloaded the matchup object
+                self.downloadedMatchupsObject = YES;
                 
                 
             for (int i = 0; i < objects.count; i++) {
@@ -738,7 +760,7 @@ static NSString *kImageKey = @"imageKey";
                 self.awayTeamPointers = [[NSMutableArray alloc] init];
                 self.homeTeamPointers = [[NSMutableArray alloc] init];
                 
-                //self.myMatchups = [[NSMutableArray alloc] init];
+//                self.myMatchups = [[NSMutableArray alloc] init];
                 //int daysLeft = (int)(7 - self.homeTeamScores.count);
                 
                
@@ -752,9 +774,20 @@ static NSString *kImageKey = @"imageKey";
                         PFObject *myMatchupObject = [objects objectAtIndex:i];
 //                        NSLog(@"objects count: %lu", (unsigned long)objects.count);
                         
+                        
+                        
+                        
+                        
                         //add all objects to a array so that we can send the correct one to the next view controller
                         self.myMatchups = objects;
+//                        NSLog(@"self.mymatchups: %@", self.myMatchups);
                         
+                        
+                        
+                        
+                        
+                        
+//                        [self updateTeamChart:0];
                         //acces away & home team pointers in parse
                         PFObject* awayTeamPointer = [myMatchupObject objectForKey:kAwayTeam];
                         PFObject* homeTeamPointer = [myMatchupObject objectForKey:kHomeTeam];
@@ -832,11 +865,15 @@ static NSString *kImageKey = @"imageKey";
                         
                     }
                     
+                    
+                    //Had to update this here instead of view did load because it was updating to fast
+//                    [self updateTeamChart:0];
+                    
                 }
-       
+                [self.view setNeedsDisplay];
 
             }
-
+                
                 
         }
          
@@ -875,7 +912,8 @@ static NSString *kImageKey = @"imageKey";
     int myTeamIndex = (int)[homeTeamNames indexOfObject:self.myNewTeamObject];
     int myFirstTeamIndex = (int)[homeTeamNames indexOfObject:homeTeamNames.firstObject];
     
-    
+   
+   
     
 //    NSLog(@"index of myteamObjectRight: %d", myTeamIndex);
     
@@ -944,6 +982,8 @@ static NSString *kImageKey = @"imageKey";
     int myFirstTeamIndex = (int)[homeTeamNames indexOfObject:homeTeamNames.firstObject];
 //    NSLog(@"index of myteamObjectLeft: %d", myTeamIndex);
     
+   
+//     NSLog(@"index of myteamObjectLeft: %d", self.matchupsIndex);
     
     if (myTeamIndex <= homeTeamNames.count-1 )
     {
@@ -952,6 +992,7 @@ static NSString *kImageKey = @"imageKey";
         int decrementTeamIndex = myTeamIndex -= 1;
         
         [self updateTeamChart:decrementTeamIndex];
+        
         
         
         
@@ -1020,8 +1061,12 @@ static NSString *kImageKey = @"imageKey";
     //use index number for (IBAction)scrollTeams
     
     
-    self.myteamObject = [self.myMatchups objectAtIndex:index];
     
+        self.myteamObject = [self.myMatchups objectAtIndex:index];
+//        NSLog(@"object at index: %@",self.myteamObject);
+    
+    
+
 //    self.myNewTeamObject = [self.myTeamData objectAtIndex:index];
 
     
@@ -1052,6 +1097,9 @@ static NSString *kImageKey = @"imageKey";
     
     
     self.myNewTeamObject = [homeTeamNames objectAtIndex:index];
+    self.matchupsIndex = index;
+
+//    NSLog(@"matchupsIndex %d", self.matchupsIndex);
 //    NSLog(@"homeTeamNames retrieved: %@", homeTeamNames);
 //    
 //    NSLog(@"awayTeamNames retrieved: %@", awayTeamNames);
@@ -1060,8 +1108,12 @@ static NSString *kImageKey = @"imageKey";
     NSString * homeTeamName = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
     self.MyTeamName.text = homeTeamName;
     
+    self.passHomeTeam = homeTeamName;
+    
     NSString * awayTeamName = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
     self.vsTeamName.text = awayTeamName;
+    
+    self.passAwayTeam = awayTeamName;
     
     NSString * homeTeamScore = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
     self.MyTeamScore.text = homeTeamScore;
@@ -1301,18 +1353,25 @@ static NSString *kImageKey = @"imageKey";
     
     if ([[notification name] isEqualToString:@"JoinedTeam"])
     {
+        
         //Retrieve from Parse
-        [self retrieveFromParse];
+//        [self retrieveFromParse];
+//        CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
+//        [calculatePoints retrieveFromParse];
+        
+        
+        [self refreshHomeView];
+        
         
         //using a timer in case parse did not receive all the data
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(retrieveFromParse) userInfo:nil repeats:NO];
-        
-        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:3.0f]];
-        [self setReceivedNotification:NO];
+//        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(refreshHomeView) userInfo:nil repeats:NO];
+//        
+//        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:3.0f]];
+//        [self setReceivedNotification:NO];
        //[self performSelector:@selector(retrieveFromParse)];
-        [self setReceivedNotification:YES];
-        [self.view setNeedsDisplay];
         
+        [self.view setNeedsDisplay];
+        [self setReceivedNotification:YES];
 //        NSLog(@"Received Joined Team Notification on home screen");
         ;
     }
@@ -1320,13 +1379,18 @@ static NSString *kImageKey = @"imageKey";
     {
         //Retrieve from Parse
         //[self performSelector:@selector(retrieveFromParse)];
-        [self retrieveFromParse];
+//        [self retrieveFromParse];
+        
+        
+        [self refreshHomeView];
+        
+        
         
         //using a timer in case parse did not receive all the data
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(retrieveFromParse) userInfo:nil repeats:NO];
-        
-        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:3.0f]];
-        [self setReceivedNotification:NO];
+//        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(refreshHomeView) userInfo:nil repeats:NO];
+//        
+//        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:3.0f]];
+//        [self setReceivedNotification:NO];
         
        [self.view setNeedsDisplay];
         [self setReceivedNotification:YES];
@@ -1340,13 +1404,22 @@ static NSString *kImageKey = @"imageKey";
 
 //pass the team to the teammates view controller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    VSTableViewController *transferViewController = segue.destinationViewController;
+    
     if ([segue.identifier isEqualToString:@"vs"]) {
         
+//        NSLog(@"Segue index sent: %d", self.matchupsIndex);
+        
+        [segue.destinationViewController initWithReceivedTeam:self.matchupsIndex];
+        
+        transferViewController.homeTeam = self.passHomeTeam;
+        transferViewController.awayTeam = self.passAwayTeam;
         //Find the row the button was selected from
         
-        [segue.destinationViewController initWithReceivedTeam:self.myteamObject];
+//        [segue.destinationViewController initWithReceivedTeam:self.myteamObject];
         
-       
+       //self.matchupsIndex
         
     }
 }
@@ -1386,7 +1459,7 @@ static NSString *kImageKey = @"imageKey";
                         
                         
                         if ( day == 1) { // Just reached the last element, we can now do what we want with the data
-                            NSLog(@"_stepsArray filled with data: %@", _stepsArray);
+//                            NSLog(@"_stepsArray filled with data: %@", _stepsArray);
                             
                             
                             //add the past 7 days worth of steps to NSuserdefualuts
@@ -1405,7 +1478,7 @@ static NSString *kImageKey = @"imageKey";
                                 
                             }
                             
-                            NSLog(@"myWeekleyPoints: %@", myWeekleyPoints);
+//                            NSLog(@"myWeekleyPoints: %@", myWeekleyPoints);
                             
                             //save to NSUserDefaults
                             [myStats setObject:myWeekleyPoints forKey:kMyPointsWeekArray];
@@ -1443,16 +1516,16 @@ static NSString *kImageKey = @"imageKey";
 -(void)getMotionData {
     self.motionActivity = [[CMMotionActivityManager alloc] init];
     
-    NSLog(@"activities called");
+//    NSLog(@"activities called");
     
     NSDate *now = [NSDate date];
 //    NSDate *from = [self beginningOfDay];
     NSDate *from = [self beginningOfDay];
    
     [self.motionActivity queryActivityStartingFromDate:from toDate:now toQueue:self.operationQueue withHandler:^(NSArray *activities, NSError *error) {
-        NSLog(@"activities array: %@", activities);
-        
-        NSLog(@"activities array count: %lu", (unsigned long)activities.count);
+//        NSLog(@"activities array: %@", activities);
+//        
+//        NSLog(@"activities array count: %lu", (unsigned long)activities.count);
     }];
 
 
@@ -1463,8 +1536,8 @@ static NSString *kImageKey = @"imageKey";
 -(void)incrementPlayerPoints
 {
     
-    NSLog(@"incrementPlayerPoints just got called");
-          
+//    NSLog(@"incrementPlayerPoints just got called");
+    
     self.stepCounter = [[CMStepCounter alloc] init];
     NSDate *now = [NSDate date];
     
@@ -1906,7 +1979,7 @@ static NSString *kImageKey = @"imageKey";
 //    NSInteger months = [newComponents month];
     self.daysLeft = (int)[newComponents day];
     
-    NSLog(@"days left in the week: %d", (int)self.daysLeft);
+//    NSLog(@"days left in the week: %d", (int)self.daysLeft);
 }
 
 

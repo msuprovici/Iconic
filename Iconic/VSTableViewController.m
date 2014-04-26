@@ -13,6 +13,7 @@
 @interface VSTableViewController ()
 
 @property (strong, nonatomic) NSTimer *timer;
+@property NSArray * teamMatchups;
 
 
 
@@ -26,6 +27,7 @@
      self = [super initWithCoder:aDecoder];
     if (self) {
         // Custom the table
+        [self downloadTeam];
         
         // The className to query on
         self.parseClassName = kTeamPlayersClass;
@@ -49,11 +51,20 @@
 }
 
 //get the players team passed from the leagues view controller
--(void)initWithReceivedTeam:(PFObject *)aReceivedTeam
+//-(void)initWithReceivedTeam:(PFObject *)aReceivedTeam
+//{
+//    self.receivedTeam = aReceivedTeam;
+//    
+//}
+
+
+-(void)initWithReceivedTeam:(int)matchupsIndex
 {
-    self.receivedTeam = aReceivedTeam;
+    self.matchupsIndex = matchupsIndex;
+//    NSLog(@"Segue index received: %d", self.matchupsIndex);
     
 }
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -69,97 +80,101 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    NSLog(@"home team in viewDidLoad %@", self.homeTeam);
+//    NSLog(@"away team in viewDidLoad%@", self.awayTeam);
     
-    //populate labels
+//    [self downloadTeam];
     
-    PFObject *homeTeam = [self.receivedTeam objectForKey:kHomeTeam];
-//    NSLog(@"homeTeam: %@", homeTeam);
-    PFObject *awayTeam = [self.receivedTeam objectForKey:kAwayTeam];
-//    NSLog(@"awayTeam: %@", awayTeam);
-    
-    //my team name
-    //self.myTeamName.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
-    
-    //my team score
-    self.myTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kScore]];
-    
-    //my team name abriviated
-    self.myTeam.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeamsAbr]];
-    
-    //populate days of the week labels
-    
-    //get the daily score data from the days before, if any
-    NSMutableArray * myTeamScores = [homeTeam objectForKey:kScoreWeek];
-    
-    //we add today's most uptodate data to the array
-    [myTeamScores addObject:[homeTeam objectForKey:kScoreToday]];
-    
-    //we add values to ensure the array is never empty through index 6
-    [myTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
-    
-    //we add each day's score to the appropriate label
-    self.myTeamMonday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:0]];
-    self.myTeamTuesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:1]];
-    self.myTeamWednesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:2]];
-    self.myTeamThursday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:3]];
-    self.myTeamFriday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:4]];
-    self.myTeamSaturday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:5]];
-    self.myTeamSunday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:6]];
-    
-    
-
-    
-    
-    //vs team score
-//    //hardcoded untill matchups are done
+//    //populate labels
 //    
-//    self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kScore]];
+//    PFObject *homeTeam = [self.receivedTeam objectForKey:kHomeTeam];
+////    NSLog(@"homeTeam: %@", homeTeam);
+//    PFObject *awayTeam = [self.receivedTeam objectForKey:kAwayTeam];
+////    NSLog(@"awayTeam: %@", awayTeam);
 //    
+//    //my team name
+//    //self.myTeamName.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
 //    
-//    //vs team name abriviated
-//    //self.vsTeam.text = [NSString stringWithFormat:@"%@",[self.receivedTeam objectForKey:kTeamsAbr]];
-//    self.vsTeam.text = @"BRU";
+//    //my team score
+//    self.myTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kScore]];
+//    
+//    //my team name abriviated
+//    self.myTeam.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeamsAbr]];
 //    
 //    //populate days of the week labels
 //    
 //    //get the daily score data from the days before, if any
-//    //NSMutableArray * vsTeamScores = [self.receivedTeam objectForKey:kScoreWeek];
-//    NSArray* vsTeamScores = @[@100, @120, @200, @5, @355, @43, @999, @1000];
+//    NSMutableArray * myTeamScores = [homeTeam objectForKey:kScoreWeek];
+//    
 //    //we add today's most uptodate data to the array
-//    [myTeamScores addObject:[self.receivedTeam objectForKey:kScoreToday]];
+//    [myTeamScores addObject:[homeTeam objectForKey:kScoreToday]];
 //    
 //    //we add values to ensure the array is never empty through index 6
 //    [myTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
-    
-        //my team score
-    self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kScore]];
-    
-    //my team name abriviated
-    self.vsTeam.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kTeamsAbr]];
-    
-    //populate days of the week labels
-    
-    //get the daily score data from the days before, if any
-    NSMutableArray * vsTeamScores = [awayTeam objectForKey:kScoreWeek];
-    
-    //we add today's most uptodate data to the array
-    [vsTeamScores addObject:[awayTeam objectForKey:kScoreToday]];
-    
-    //we add values to ensure the array is never empty through index 6
-    [vsTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
-
-    
-    
-    //we add each day's score to the appropriate label
-    self.vsTeamMonday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:0]];
-    self.vsTeamTuesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:1]];
-    self.vsTeamWednesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:2]];
-    self.vsTeamThursday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:3]];
-    self.vsTeamFriday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:4]];
-    self.vsTeamSaturday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:5]];
-    self.vsTeamSunday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:6]];
-
-    
+//    
+//    //we add each day's score to the appropriate label
+//    self.myTeamMonday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:0]];
+//    self.myTeamTuesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:1]];
+//    self.myTeamWednesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:2]];
+//    self.myTeamThursday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:3]];
+//    self.myTeamFriday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:4]];
+//    self.myTeamSaturday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:5]];
+//    self.myTeamSunday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:6]];
+//    
+//    
+//
+//    
+//    
+//    //vs team score
+////    //hardcoded untill matchups are done
+////    
+////    self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kScore]];
+////    
+////    
+////    //vs team name abriviated
+////    //self.vsTeam.text = [NSString stringWithFormat:@"%@",[self.receivedTeam objectForKey:kTeamsAbr]];
+////    self.vsTeam.text = @"BRU";
+////    
+////    //populate days of the week labels
+////    
+////    //get the daily score data from the days before, if any
+////    //NSMutableArray * vsTeamScores = [self.receivedTeam objectForKey:kScoreWeek];
+////    NSArray* vsTeamScores = @[@100, @120, @200, @5, @355, @43, @999, @1000];
+////    //we add today's most uptodate data to the array
+////    [myTeamScores addObject:[self.receivedTeam objectForKey:kScoreToday]];
+////    
+////    //we add values to ensure the array is never empty through index 6
+////    [myTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+//    
+//        //my team score
+//    self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kScore]];
+//    
+//    //my team name abriviated
+//    self.vsTeam.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kTeamsAbr]];
+//    
+//    //populate days of the week labels
+//    
+//    //get the daily score data from the days before, if any
+//    NSMutableArray * vsTeamScores = [awayTeam objectForKey:kScoreWeek];
+//    
+//    //we add today's most uptodate data to the array
+//    [vsTeamScores addObject:[awayTeam objectForKey:kScoreToday]];
+//    
+//    //we add values to ensure the array is never empty through index 6
+//    [vsTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+//
+//    
+//    
+//    //we add each day's score to the appropriate label
+//    self.vsTeamMonday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:0]];
+//    self.vsTeamTuesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:1]];
+//    self.vsTeamWednesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:2]];
+//    self.vsTeamThursday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:3]];
+//    self.vsTeamFriday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:4]];
+//    self.vsTeamSaturday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:5]];
+//    self.vsTeamSunday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:6]];
+//
+//    
    
     //populate timer
     
@@ -294,6 +309,162 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - get teams
+
+-(void)downloadTeam
+{
+    //Query Team Class
+    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+    
+    //Query Teamates Class
+    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    query2.cachePolicy = kPFCachePolicyNetworkElseCache;
+    
+    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+    
+    
+    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
+    
+    
+    
+    //Query Team Class to see if the player's current team is the HOME team
+    PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+    
+    
+    
+    PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+    
+    
+    PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
+    
+    [queryTeamMatchupsClass includeKey:kHomeTeam];
+    [queryTeamMatchupsClass includeKey:kAwayTeam];
+    
+    
+    queryAwayTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    queryHomeTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        
+        
+        if(!error)
+        {
+            
+            
+            
+            
+            if(objects.count > 0)
+            {
+             
+                
+                
+                for (int i = 0; i < objects.count; i++) {
+                    
+                    PFObject *myMatchupObject = [objects objectAtIndex:i];
+                    
+                    
+                    NSString * round = [myMatchupObject objectForKey:kRound];
+                    
+                    if ([round  isEqual: @"1"])
+                    {
+                        self.teamMatchups = objects;
+//                        NSLog(@"self.teamMatchups: %@", self.teamMatchups);
+                        self.receivedTeam = [self.teamMatchups objectAtIndex:self.matchupsIndex];
+                        
+//                        NSLog(@"self.receivedTeam: %@", self.receivedTeam);
+                        
+                        
+                        
+                        //populate labels
+                        
+                        PFObject *homeTeam = [self.receivedTeam objectForKey:kHomeTeam];
+                        //    NSLog(@"homeTeam: %@", homeTeam);
+                        PFObject *awayTeam = [self.receivedTeam objectForKey:kAwayTeam];
+                        //    NSLog(@"awayTeam: %@", awayTeam);
+                        
+                        //my team name
+                        //self.myTeamName.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
+                        
+                        //my team score
+                        self.myTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kScore]];
+                        
+                        //my team name abriviated
+                        self.myTeam.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeamsAbr]];
+                        
+                        //populate days of the week labels
+                        
+                        //get the daily score data from the days before, if any
+                        NSMutableArray * myTeamScores = [homeTeam objectForKey:kScoreWeek];
+                        
+                        //we add today's most uptodate data to the array
+                        [myTeamScores addObject:[homeTeam objectForKey:kScoreToday]];
+                        
+                        //we add values to ensure the array is never empty through index 6
+                        [myTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+                        
+                        //we add each day's score to the appropriate label
+                        self.myTeamMonday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:0]];
+                        self.myTeamTuesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:1]];
+                        self.myTeamWednesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:2]];
+                        self.myTeamThursday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:3]];
+                        self.myTeamFriday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:4]];
+                        self.myTeamSaturday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:5]];
+                        self.myTeamSunday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:6]];
+                       
+                        
+                        //my team score
+                        self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kScore]];
+                        
+                        //my team name abriviated
+                        self.vsTeam.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kTeamsAbr]];
+                        
+                        //populate days of the week labels
+                        
+                        //get the daily score data from the days before, if any
+                        NSMutableArray * vsTeamScores = [awayTeam objectForKey:kScoreWeek];
+                        
+                        //we add today's most uptodate data to the array
+                        [vsTeamScores addObject:[awayTeam objectForKey:kScoreToday]];
+                        
+                        //we add values to ensure the array is never empty through index 6
+                        [vsTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+                        
+                        
+                        
+                        //we add each day's score to the appropriate label
+                        self.vsTeamMonday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:0]];
+                        self.vsTeamTuesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:1]];
+                        self.vsTeamWednesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:2]];
+                        self.vsTeamThursday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:3]];
+                        self.vsTeamFriday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:4]];
+                        self.vsTeamSaturday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:5]];
+                        self.vsTeamSunday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:6]];
+
+
+                        
+                     }
+
+                }
+ 
+            }
+
+        }
+        
+        
+    }];
+    
+    
+    
+    
+
+
+    
+
+}
 
 #pragma mark - PFQueryTableViewController
 
@@ -313,20 +484,28 @@
  // Override to customize what kind of query to perform on the class. The default is to query for
  // all objects ordered by createdAt descending.
  - (PFQuery *)queryForTable {
+     
 //     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
 //     [query whereKey:kTeam equalTo:self.receivedTeam];
 //     
 //     [query includeKey:kTeamate];
 //     
 //     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+     NSLog(@"home team in table %@", self.homeTeam);
+     NSLog(@"away team in table %@", self.awayTeam);
      
+     //try to receive array of team names from previous view controller rather then the object
      
      PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:self.parseClassName];
-     [queryHomeTeamMatchups whereKey:kTeam equalTo:[self.receivedTeam objectForKey:kHomeTeam]];
-     
+     [queryHomeTeamMatchups whereKey:kTeam equalTo:self.homeTeam];
+//     [queryHomeTeamMatchups whereKey:kTeam equalTo:[self.receivedTeam objectForKey:kHomeTeam]];
+//      NSLog(@"kHomeTeam: %@", [self.receivedTeam objectForKey:kHomeTeam]);
      
      PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:self.parseClassName];
-     [queryAwayTeamMatchups whereKey:kTeam equalTo:[self.receivedTeam objectForKey:kAwayTeam]];
+     [queryHomeTeamMatchups whereKey:kTeam equalTo:self.awayTeam];
+     
+//     [queryAwayTeamMatchups whereKey:kTeam equalTo:[self.receivedTeam objectForKey:kAwayTeam]];
+//     NSLog(@"kAwayTeam: %@", [self.receivedTeam objectForKey:kAwayTeam]);
      
      //get both team objects (home & away)
      PFQuery *query = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];

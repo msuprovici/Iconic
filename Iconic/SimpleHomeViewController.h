@@ -67,11 +67,15 @@
 @property (strong, nonatomic) IBOutlet UIButton *scrollTeamsLeft;
 
 
+
+//array
+@property (strong, nonatomic) NSArray * myMatchups;
 //methods
 
 -(void)incrementPlayerPoints;
 -(void)incrementMyTeamsPoints:(NSNumber*)delta;
 -(void)refreshHomeView;
+-(void)updateTeamChart:(int)index;
 
 
 

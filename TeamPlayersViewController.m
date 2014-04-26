@@ -13,6 +13,10 @@
 #import "TeamPlayerCell.h"
 #import "TeamCell.h"
 #import "Team.h"
+#import "CalculatePoints.h"
+#import "SimpleHomeViewController.h"
+
+
 @interface TeamPlayersViewController ()
 
 @property NSMutableArray *leaguesArray;
@@ -443,7 +447,11 @@
                  [self.joinTeam setSelected:YES];
                 
                 [self loadObjects];
+                CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
+                [calculatePoints retrieveFromParse];
                 
+                SimpleHomeViewController * simpleHomeViewController = [[SimpleHomeViewController alloc] init];
+                [simpleHomeViewController refreshHomeView];
                
             }
         }];
@@ -497,6 +505,13 @@
                         [self.joinTeam setSelected:NO];
                         
                         [self loadObjects];
+                        
+                        CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
+                        [calculatePoints retrieveFromParse];
+                        
+                        SimpleHomeViewController * simpleHomeViewController = [[SimpleHomeViewController alloc] init];
+                        [simpleHomeViewController refreshHomeView];
+
                     }
                     }];
 
