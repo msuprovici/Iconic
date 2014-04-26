@@ -491,42 +491,38 @@
 //     [query includeKey:kTeamate];
 //     
 //     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-     NSLog(@"home team in table %@", self.homeTeam);
-     NSLog(@"away team in table %@", self.awayTeam);
      
-     //try to receive array of team names from previous view controller rather then the object
      
-     PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:self.parseClassName];
-     [queryHomeTeamMatchups whereKey:kTeam equalTo:self.homeTeam];
-//     [queryHomeTeamMatchups whereKey:kTeam equalTo:[self.receivedTeam objectForKey:kHomeTeam]];
-//      NSLog(@"kHomeTeam: %@", [self.receivedTeam objectForKey:kHomeTeam]);
+//     NSLog(@"home team in table %@", self.homeTeam);
+//     NSLog(@"away team in table %@", self.awayTeam);
      
-     PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:self.parseClassName];
-     [queryHomeTeamMatchups whereKey:kTeam equalTo:self.awayTeam];
      
-//     [queryAwayTeamMatchups whereKey:kTeam equalTo:[self.receivedTeam objectForKey:kAwayTeam]];
-//     NSLog(@"kAwayTeam: %@", [self.receivedTeam objectForKey:kAwayTeam]);
-     
-     //get both team objects (home & away)
-     PFQuery *query = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
+     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
      [query includeKey:kTeam];
      [query includeKey:kTeamate];
      
      
-     //Query Team Class
-     PFQuery *teamClass = [PFQuery queryWithClassName:kTeamTeamsClass];
+     //Query Team Class - query that mathches team names sent in segue
+     PFQuery *homeTeamsClass = [PFQuery queryWithClassName:kTeamTeamsClass];
+     [homeTeamsClass whereKey:kTeams equalTo:self.homeTeam];
      
-     //Query Teamates Class (querying again to find the teams the player is currently on)
-     PFQuery *playerClass = [PFQuery queryWithClassName:kTeamPlayersClass];
-     teamClass.cachePolicy = kPFCachePolicyCacheThenNetwork;
-     playerClass.cachePolicy = kPFCachePolicyCacheThenNetwork;
      
-     [playerClass whereKey:kTeamate equalTo:[PFUser currentUser]];
+     PFQuery *awayTeamsClass = [PFQuery queryWithClassName:kTeamTeamsClass];
+     [awayTeamsClass whereKey:kTeams equalTo:self.awayTeam];
      
-     [teamClass whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:playerClass];
      
-     //out of the teams we got in query, get the team that matches the player's team
-     [query whereKey:kTeam matchesKey:@"objectId" inQuery:teamClass];
+     //query either home or away teams
+     PFQuery *retrievedTeams = [PFQuery orQueryWithSubqueries:@[homeTeamsClass,awayTeamsClass]];
+
+     
+     //Query Teamates Class (query to find what team the player is on)
+     PFQuery *playersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
+     [playersClass whereKey:kTeamate equalTo:[PFUser currentUser]];
+     [retrievedTeams whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:playersClass];
+
+     
+     //finally get the players that are on that team
+     [query whereKey:kTeam matchesKey:@"objectId" inQuery:retrievedTeams];
      
      
      
