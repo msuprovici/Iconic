@@ -308,7 +308,10 @@ static NSString *kImageKey = @"imageKey";
     if (self.receivedNotification == YES) {
         
 //        [self updateTeamChart:0];
-        [self refreshHomeView];
+//        [self refreshHomeView];
+        
+        [self showChart];
+        
        self.receivedNotification = NO;
     }
     
@@ -424,10 +427,11 @@ static NSString *kImageKey = @"imageKey";
     
     CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
     [calculatePoints retrieveFromParse];
+
     
     //increment points
     [self incrementPlayerPoints];
-    
+    [self showChart];
     
 //    [self findPastWeekleySteps];
     
@@ -435,12 +439,144 @@ static NSString *kImageKey = @"imageKey";
     
     //load my teams
     //show first team (index 0)
-    [self updateTeamChart:0];
-    [self.scrollTeamsLeft setEnabled:FALSE];
-    [self.scrollTeamsRight setEnabled:TRUE];
+    
+//    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+//    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
+//    NSLog(@"homeTeamNames.count: %lu", (unsigned long)homeTeamNames.count);
+//    
+//    if(homeTeamNames.count-1 >0 )
+//    {
+//    
+//    [self updateTeamChart:0];
+//    [self.scrollTeamsLeft setEnabled:FALSE];
+//    [self.scrollTeamsRight setEnabled:TRUE];
+//        
+//    //disable join team button
+//    [self.joinTeamButton setEnabled:FALSE];
+//    self.joinTeamButton.hidden = YES;
+//        
+//        //hide navigation buttons
+//        self.scrollTeamsRight.hidden = NO ;
+//        self.scrollTeamsLeft.hidden = NO ;
+//        
+//        //hide chart
+//        self.teamBarChart.hidden = NO;
+//        
+//        //hide labels
+//        self.MyTeamName.hidden = NO;
+//        self.MyTeamScore.hidden = NO;
+//        self.vsTeamName.hidden = NO;
+//        self.VSTeamScore.hidden = NO;
+//    
+//        
+//    }
+//    else
+//    {
+//        //enable join team button
+//        [self.joinTeamButton setEnabled:TRUE];
+//        self.joinTeamButton.hidden = NO;
+//        
+//        //hide navigation buttons
+//        self.scrollTeamsRight.hidden = YES ;
+//        self.scrollTeamsLeft.hidden = YES ;
+//        
+//        //hide chart
+//        self.teamBarChart.hidden = YES;
+//        
+//        //hide labels
+//        self.MyTeamName.hidden = YES;
+//        self.MyTeamScore.hidden = YES;
+//        self.vsTeamName.hidden = YES;
+//        self.VSTeamScore.hidden = YES;
+//        
+//    }
+    
     
     
     [self.view setNeedsDisplay];
+
+}
+
+-(void)showChart
+{
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+  
+    
+    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+    //NSLog(@"homeTeamNames.count: %lu", (unsigned long)homeTeamNames.count);
+    
+    //need to do something different then homeTeamNames.count because it aways returns 1 even if it's empty
+    //need to come up with a condition if there is only one team
+    if(numberOfTeams > 1 )
+    {
+        
+        [self updateTeamChart:0];
+        [self.scrollTeamsLeft setEnabled:FALSE];
+        [self.scrollTeamsRight setEnabled:TRUE];
+        
+        //disable join team button
+        [self.joinTeamButton setEnabled:FALSE];
+        self.joinTeamButton.hidden = YES;
+        
+        //show navigation buttons
+        self.scrollTeamsRight.hidden = NO ;
+        self.scrollTeamsLeft.hidden = NO ;
+        
+        //show chart
+        self.teamBarChart.hidden = NO;
+        
+        //show labels
+        self.MyTeamName.hidden = NO;
+        self.MyTeamScore.hidden = NO;
+        self.vsTeamName.hidden = NO;
+        self.VSTeamScore.hidden = NO;
+        
+        
+    }
+    else if(numberOfTeams == 1 )
+    {
+        [self updateTeamChart:0];
+        
+        
+        //disable join team button
+        [self.joinTeamButton setEnabled:FALSE];
+        self.joinTeamButton.hidden = YES;
+        
+        
+        //hide navigation buttons
+        self.scrollTeamsRight.hidden = YES ;
+        self.scrollTeamsLeft.hidden = YES ;
+        
+        //show chart
+        self.teamBarChart.hidden = NO;
+        
+        //show labels
+        self.MyTeamName.hidden = NO;
+        self.MyTeamScore.hidden = NO;
+        self.vsTeamName.hidden = NO;
+        self.VSTeamScore.hidden = NO;
+    }
+    
+    else
+    {
+        //enable join team button
+        [self.joinTeamButton setEnabled:TRUE];
+        self.joinTeamButton.hidden = NO;
+        
+        //hide navigation buttons
+        self.scrollTeamsRight.hidden = YES ;
+        self.scrollTeamsLeft.hidden = YES ;
+        
+        //hide chart
+        self.teamBarChart.hidden = YES;
+        
+        //hide labels
+        self.MyTeamName.hidden = YES;
+        self.MyTeamScore.hidden = YES;
+        self.vsTeamName.hidden = YES;
+        self.VSTeamScore.hidden = YES;
+        
+    }
 
 }
 
@@ -1298,6 +1434,16 @@ static NSString *kImageKey = @"imageKey";
     
 }
 
+
+
+-(void)noTeam
+{
+    
+    
+    
+}
+
+
 #pragma mark page control UI
 
 -(void) playerNameHeader
@@ -1360,7 +1506,7 @@ static NSString *kImageKey = @"imageKey";
 //        [calculatePoints retrieveFromParse];
         
         
-        [self refreshHomeView];
+//        [self refreshHomeView];
         
         
         //using a timer in case parse did not receive all the data
@@ -1382,7 +1528,7 @@ static NSString *kImageKey = @"imageKey";
 //        [self retrieveFromParse];
         
         
-        [self refreshHomeView];
+//        [self refreshHomeView];
         
         
         
@@ -1992,4 +2138,11 @@ static NSString *kImageKey = @"imageKey";
 
 
 
+- (IBAction)joinTeam:(id)sender {
+    
+    //when selecting the join team button switch to leagues view controller
+    
+    self.tabBarController.selectedViewController
+    = [self.tabBarController.viewControllers objectAtIndex:2];
+}
 @end

@@ -50,6 +50,9 @@ extern NSString *const kArrayOfAwayTeamScores;
 extern NSString *const kArrayOfAwayTeamNames;
 extern NSString *const kArrayOfHomeTeamNames;
 
+//nuber of teams
+extern NSString *const kNumberOfTeams;
+
 
 
 //step counting

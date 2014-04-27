@@ -450,8 +450,15 @@
                 CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
                 [calculatePoints retrieveFromParse];
                 
-                SimpleHomeViewController * simpleHomeViewController = [[SimpleHomeViewController alloc] init];
-                [simpleHomeViewController refreshHomeView];
+                NSUserDefaults *Teams = [NSUserDefaults standardUserDefaults];
+                NSArray *homeTeamNames = [Teams objectForKey:kArrayOfHomeTeamScores];
+                
+                
+                
+                NSLog(@"homeTeamNames.count: %lu", (unsigned long)homeTeamNames.count);
+                
+//                SimpleHomeViewController * simpleHomeViewController = [[SimpleHomeViewController alloc] init];
+//                [simpleHomeViewController refreshHomeView];
                
             }
         }];
@@ -508,17 +515,27 @@
                         
                         CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
                         [calculatePoints retrieveFromParse];
-                        
-                        SimpleHomeViewController * simpleHomeViewController = [[SimpleHomeViewController alloc] init];
-                        [simpleHomeViewController refreshHomeView];
+//                        
+//                        SimpleHomeViewController * simpleHomeViewController = [[SimpleHomeViewController alloc] init];
+//                        [simpleHomeViewController refreshHomeView];
 
                     }
+                        else
+                        {
+                            
+                            
+                            
+                        }
                     }];
 
                 }
           
                 
             }
+                else
+                {
+                    
+                }
             
              NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
             [teamInfo setObject:self.team forKey:@"team"];

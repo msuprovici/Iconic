@@ -46,6 +46,14 @@
         
         if(!error)
         {
+//            NSLog(@"the number of teams I am on: %lu", (unsigned long)objects.count);
+            
+            //count the number of teams teh player is on
+            //we use this number in simple viewcontroller to determine state
+            NSUserDefaults *Teams = [NSUserDefaults standardUserDefaults];
+            [Teams setInteger:objects.count forKey:kNumberOfTeams];
+            [Teams synchronize];
+            
             //check to see if the player is on a team
             if(objects.count > 0)
             {
@@ -60,7 +68,7 @@
                 self.myTeamData = [self createMutableArray:objects];
                 
                 
-                 NSArray *myTeamDataArray = [self.myTeamData copy];
+//                 NSArray *myTeamDataArray = [self.myTeamData copy];
                 
                 //save to NSUserdefaults
                 //[myRetrievedTeams setObject:myTeamDataArray  forKey:kMyTeamDataArray];
@@ -71,7 +79,14 @@
             }
             else
             {
+//                NSLog(@"the number of teams I am on is 0");
                 
+                //player is not on a team so set number of teams to 0
+                //we use this number in simple viewcontroller to determine state
+                NSUserDefaults *Teams = [NSUserDefaults standardUserDefaults];
+                [Teams setInteger:0 forKey:kNumberOfTeams];
+                [Teams synchronize];
+
                 
             }
             
@@ -145,7 +160,18 @@
                         for (int i = 0; i < objects.count; i++) {
                             
                             PFObject *myMatchupObject = [objects objectAtIndex:i];
-                            //NSLog(@"objects count: %lu", (unsigned long)objects.count);
+//                            NSLog(@"objects count: %lu", (unsigned long)objects.count);
+                            
+                            if (objects.count >= 1) {
+//                                NSLog(@"objects > 1: %lu", (unsigned long)objects.count);
+                            }
+                            else
+                            {
+//                                NSLog(@"objects == 0");
+                            }
+                            
+                            
+                            
                             
                             //add all objects to a array so that we can send the correct one to the next view controller
                             self.myMatchups = objects;
@@ -259,7 +285,7 @@
         }
         else
         {
-            
+          
         }
         
         

@@ -68,6 +68,12 @@
 
 
 
+@property (strong, nonatomic) IBOutlet UIButton *joinTeamButton;
+
+- (IBAction)joinTeam:(id)sender;
+
+
+
 //array
 @property (strong, nonatomic) NSArray * myMatchups;
 //methods

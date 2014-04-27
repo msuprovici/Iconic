@@ -45,6 +45,8 @@ NSString *const kArrayOfAwayTeamScores = @"arrayOfAwayTeamScores";
 NSString *const kArrayOfAwayTeamNames = @"arrayOfAwayTeamNames";
 NSString *const kArrayOfHomeTeamNames = @"arrayOfHomeTeamNames";
 
+//nuber of teams
+NSString *const kNumberOfTeams = @"numberOfTeams";
 
 //step counting
 NSString *const STEPS_KEY = @"steps";
