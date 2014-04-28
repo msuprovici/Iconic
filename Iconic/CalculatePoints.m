@@ -307,10 +307,11 @@
 
 #pragma mark points calcuations
 
--(void)incrementPlayerPoints
+
+-(void)incrementPlayerPointsInBackground
 {
     
-//    NSLog(@"incrementPlayerPoints in calcualte points just got called");
+    //    NSLog(@"incrementPlayerPoints in calcualte points just got called");
     
     self.stepCounter = [[CMStepCounter alloc] init];
     NSDate *now = [NSDate date];
@@ -329,13 +330,14 @@
         if(numberOfSteps == 0)
         {
             self.myPoints = 0;
-
+            
             
         }
         else
         {
             self.myPoints = [self calculatePoints:numberOfSteps];
-
+            self.mySteps = &(numberOfSteps);
+            
         }
         
         
@@ -360,27 +362,24 @@
             PFObject *playerPoints = [PFUser currentUser];
             NSNumber *myPointsConverted = [NSNumber numberWithInt:0];
             [playerPoints setObject:myPointsConverted forKey:kPlayerPointsToday];
-            [playerPoints save];
-
+            //            [playerPoints save];
+            [playerPoints saveInBackground];
+            
         }
         
         else
         {
             
-         
-            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyMostRecentFetchedPointsBeforeSaving];
-            
-            [myRetrievedPoints synchronize];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+
             
             
             int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsToday];
             int myMostRecentPointsValue = [self.myPoints intValue];
             int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
             
-//                    NSLog(@"myFetchedStoredPoints: %d", myStoredPoints);
-//                    NSLog(@"myFetchedMostRecentPointsValue: %d", myMostRecentPointsValue);
-//                    NSLog(@"myFetchedPointsDeltaValue: %d", myPointsDeltaValue);
+//                                NSLog(@"myFetchedStoredPoints: %d", myStoredPoints);
+//                                NSLog(@"myFetchedMostRecentPointsValue: %d", myMostRecentPointsValue);
+//                                NSLog(@"myFetchedPointsDeltaValue: %d", myPointsDeltaValue);
             
             
             [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
@@ -389,14 +388,14 @@
             //increment a player's total # of points
             
             int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsTotal];
-              [myRetrievedPoints synchronize];
-             [[NSUserDefaults standardUserDefaults] synchronize];
+            [myRetrievedPoints synchronize];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             
             int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
-
             
-//                    NSLog(@"myFetchedTotalPoints: %d", myTotalPoints);
-//                    NSLog(@"myFetchedNewTotalPoints: %d", myNewTotalPoints);
+            
+            //                    NSLog(@"myFetchedTotalPoints: %d", myTotalPoints);
+            //                    NSLog(@"myFetchedNewTotalPoints: %d", myNewTotalPoints);
             
             [myRetrievedPoints setInteger:myNewTotalPoints  forKey:kMyFetchedPointsTotal];
             [myRetrievedPoints synchronize];
@@ -405,11 +404,11 @@
             //save the player's points for today to the server
             PFObject *playerPoints = [PFUser currentUser];
             [playerPoints setObject:self.myPoints forKey:kPlayerPointsToday];
-//            [playerPoints saveEventually];
-//            [playerPoints saveInBackground];
+            //            [playerPoints saveEventually];
+            //            [playerPoints saveInBackground];
             
-            [playerPoints save]; //<-must execute on main thread in background mode?  saveEventually & saveInBackground do not work
-            
+            //            [playerPoints save]; //<-must execute on main thread in background mode?  saveEventually & saveInBackground do not work
+            [playerPoints saveInBackground];
             
             NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
             float myLevelValue = [myLevel floatValue];
@@ -432,7 +431,7 @@
             
             
             //increment the points for all my teams
-            [self incrementMyTeamsPoints:myNSPointsDeltaValue];
+            [self incrementMyTeamsPointsInBackground:myNSPointsDeltaValue];
             
             
             PFQuery *query = [PFUser query];
@@ -444,7 +443,7 @@
                 
                 if(!error)
                 {
-               
+                    
                     [object incrementKey:kPlayerPoints byAmount:myNSPointsDeltaValue];
                     
                     
@@ -455,11 +454,20 @@
                     [object setObject:myPointsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
                     //save the player's points for today to the server
                     
-                     //save points
-                    [object save];
-
+                    //save points
+                    //                    [object save];
                     
-                                        
+                    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (succeeded) {
+//                            NSLog(@"Player stats save succeded");
+                        }
+                        else{
+//                            NSLog(@"Player stats save failed");
+                        }
+                    }];
+                    
+                    
+                    
                 }
                 
                 
@@ -473,7 +481,7 @@
 
 
 
--(void)incrementMyTeamsPoints:(NSNumber*)delta
+-(void)incrementMyTeamsPointsInBackground:(NSNumber*)delta
 {
     
     //Query Team Class
@@ -497,39 +505,43 @@
         
         if (!error) {
             // The find succeeded.
-//            NSLog(@"Successfully retrieved my %lu teams", (unsigned long)objects.count);
+            //            NSLog(@"Successfully retrieved my %lu teams", (unsigned long)objects.count);
             for (PFObject *object in objects)
                 
             {
                 //NSLog(@"%@", object.objectId);
                 
                 
-                if (!error) {
-                    
+                
                     //increment the team's TOTAL points
                     [object incrementKey:kScore byAmount:delta];
                     
                     //increment the team's points for today
                     [object incrementKey:kScoreToday byAmount:delta];
-                    [object save];
-//                    [object saveInBackground];
-//                    [object saveEventually];
-                }
-                else
-                {
-//                                        NSLog(@"error in inner query");
-                }
+                    //                    [object save];
+                    [object saveInBackground];
+                    //                    [object saveEventually];
+                
+                    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (succeeded) {
+//                            NSLog(@"Team stats succesfully saved");
+                        }
+                        else{
+//                            NSLog(@"Team stats failed to save");
+                        }
+                    }];
             }
             
         }
         else
         {
-//                        NSLog(@"error");
+            //  NSLog(@"error");
         }
         
     }];
     
 }
+
 
 
 

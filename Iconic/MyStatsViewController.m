@@ -399,6 +399,7 @@
 
             NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
             int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyMostRecentPointsBeforeSaving];
+            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
             
             [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:2];
             

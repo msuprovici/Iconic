@@ -157,15 +157,20 @@
         NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
         NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
         
-        [calculatePoints incrementPlayerPoints];
+        [calculatePoints incrementPlayerPointsInBackground];
         [calculatePoints retrieveFromParse];
         
 //    }];
-    
-    completionHandler(UIBackgroundFetchResultNewData);
-
-    
     NSLog(@"Background fetch intialized");
+    
+    //buying Parse 20 seconds to perform retrieve and save
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
+                   dispatch_get_main_queue(), ^{
+
+    completionHandler(UIBackgroundFetchResultNewData);
+    });
+    
+    
 
     // The logic for informing iOS about the fetch results in plain language:
 //    if (/** NEW DATA EXISTS AND WAS SUCCESSFULLY PROCESSED **/) {

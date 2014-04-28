@@ -207,7 +207,7 @@ static NSString *kImageKey = @"imageKey";
     
     //show player name header
     //[self playerNameHeader];
-    self.playerPhoto.hidden = YES;
+//    self.playerPhoto.hidden = YES;
     
     [self refreshHomeView];
     
@@ -386,7 +386,7 @@ static NSString *kImageKey = @"imageKey";
     //[self performSelector:@selector(retrieveFromParse)];
 
     }
-
+#pragma mark Refresh Home View
 
 -(void)refreshHomeView
 {
@@ -424,73 +424,14 @@ static NSString *kImageKey = @"imageKey";
     //[self loadScrollViewWithPage:1];
     [self.view addSubview:self.pageControl];
     
+    [self savePointsFromCurrentAppLaunch];
     
-    CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
-    [calculatePoints retrieveFromParse];
+    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+    [calculatePointsClass retrieveFromParse];
+    [calculatePointsClass incrementPlayerPointsInBackground];
+    
 
-    
-    //increment points
-    [self incrementPlayerPoints];
     [self showChart];
-    
-//    [self findPastWeekleySteps];
-    
-//    [self retrieveFromParse];
-    
-    //load my teams
-    //show first team (index 0)
-    
-//    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-//    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
-//    NSLog(@"homeTeamNames.count: %lu", (unsigned long)homeTeamNames.count);
-//    
-//    if(homeTeamNames.count-1 >0 )
-//    {
-//    
-//    [self updateTeamChart:0];
-//    [self.scrollTeamsLeft setEnabled:FALSE];
-//    [self.scrollTeamsRight setEnabled:TRUE];
-//        
-//    //disable join team button
-//    [self.joinTeamButton setEnabled:FALSE];
-//    self.joinTeamButton.hidden = YES;
-//        
-//        //hide navigation buttons
-//        self.scrollTeamsRight.hidden = NO ;
-//        self.scrollTeamsLeft.hidden = NO ;
-//        
-//        //hide chart
-//        self.teamBarChart.hidden = NO;
-//        
-//        //hide labels
-//        self.MyTeamName.hidden = NO;
-//        self.MyTeamScore.hidden = NO;
-//        self.vsTeamName.hidden = NO;
-//        self.VSTeamScore.hidden = NO;
-//    
-//        
-//    }
-//    else
-//    {
-//        //enable join team button
-//        [self.joinTeamButton setEnabled:TRUE];
-//        self.joinTeamButton.hidden = NO;
-//        
-//        //hide navigation buttons
-//        self.scrollTeamsRight.hidden = YES ;
-//        self.scrollTeamsLeft.hidden = YES ;
-//        
-//        //hide chart
-//        self.teamBarChart.hidden = YES;
-//        
-//        //hide labels
-//        self.MyTeamName.hidden = YES;
-//        self.MyTeamScore.hidden = YES;
-//        self.vsTeamName.hidden = YES;
-//        self.VSTeamScore.hidden = YES;
-//        
-//    }
-    
     
     
     [self.view setNeedsDisplay];
@@ -693,345 +634,345 @@ static NSString *kImageKey = @"imageKey";
 #pragma mark Parse Methods
 
 //retrive table view data from parse
-- (void) retrieveFromParse {
-    
-    //this query identifies what teams the player is on
-    
-    //Query Team Class
-    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
-    
-    //Query Teamates Class
-    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
-    query2.cachePolicy = kPFCachePolicyNetworkElseCache;
-    
-    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
-    
-    
-    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
-    
-    
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//- (void) retrieveFromParse {
 //    
-//
-//            if(!error)
-//            {
-//                //check to see if the player is on a team
-//                if(objects.count > 0)
-//                {
-//                    
-////                NSLog(@"team class query worked");
-//                    
-//                    
-//                    //making sure these items are visible in case they were reset when the player left all teams
-//                    self.teamMatchChart.hidden = NO;
-//                    self.vsTeamName.hidden = NO;
-//                    self.VSTeamScore.hidden = NO;
-//                
-//                //convert NSArray to myTeamDataArray
-//                self.myTeamData = [self createMutableArray:objects];
-//                 
-//            
-//                
-//                //get the 1st Object in the array
-////                int myFirstTeamIndex = [self.myTeamData indexOfObject:self.myTeamData.firstObject];
-////                self.myteamObjectatIndex = [self.myTeamData objectAtIndex:myFirstTeamIndex];
-//                    
-////                    int myFirstTeamIndex = [self.myMatchups indexOfObject:self.myMatchups.firstObject];
-////                    self.myteamObjectatIndex = [self.myMatchups objectAtIndex:myFirstTeamIndex];
-//                
-//                //Update team chart & data
-//                    
-////                //show first team (index 0)
-////                [self updateTeamChart:0];
-//                
-//                [self.scrollTeamsLeft setEnabled:FALSE];
-//                [self.scrollTeamsRight setEnabled:TRUE];
-//                
-////                
-////                if(self.myMatchups.count <= 1)
+//    //this query identifies what teams the player is on
+//    
+//    //Query Team Class
+//    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+//    
+//    //Query Teamates Class
+//    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+//    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+//    query2.cachePolicy = kPFCachePolicyNetworkElseCache;
+//    
+//    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+//    
+//    
+//    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
+//    
+//    
+////    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+////    
+////
+////            if(!error)
+////            {
+////                //check to see if the player is on a team
+////                if(objects.count > 0)
 ////                {
-////                    self.scrollTeamsRight.hidden = YES ;
-////                    self.scrollTeamsLeft.hidden = YES ;
 ////                    
-////                }
+//////                NSLog(@"team class query worked");
+////                    
+////                    
+////                    //making sure these items are visible in case they were reset when the player left all teams
+////                    self.teamMatchChart.hidden = NO;
+////                    self.vsTeamName.hidden = NO;
+////                    self.VSTeamScore.hidden = NO;
+////                
+////                //convert NSArray to myTeamDataArray
+////                self.myTeamData = [self createMutableArray:objects];
+////                 
+////            
+////                
+////                //get the 1st Object in the array
+//////                int myFirstTeamIndex = [self.myTeamData indexOfObject:self.myTeamData.firstObject];
+//////                self.myteamObjectatIndex = [self.myTeamData objectAtIndex:myFirstTeamIndex];
+////                    
+//////                    int myFirstTeamIndex = [self.myMatchups indexOfObject:self.myMatchups.firstObject];
+//////                    self.myteamObjectatIndex = [self.myMatchups objectAtIndex:myFirstTeamIndex];
+////                
+////                //Update team chart & data
+////                    
+//////                //show first team (index 0)
+//////                [self updateTeamChart:0];
+////                
+////                [self.scrollTeamsLeft setEnabled:FALSE];
+////                [self.scrollTeamsRight setEnabled:TRUE];
+////                
+//////                
+//////                if(self.myMatchups.count <= 1)
+//////                {
+//////                    self.scrollTeamsRight.hidden = YES ;
+//////                    self.scrollTeamsLeft.hidden = YES ;
+//////                    
+//////                }
+//////                else
+//////                {
+//////                    self.scrollTeamsRight.hidden = NO ;
+//////                    self.scrollTeamsLeft.hidden = NO ;
+//////                    
+//////                }
+////                
+//////                for (PFObject * object in objects)
+//////                {
+//////                    self.numberOfTeamScores = [object objectForKey:kScoreWeek];
+//////                    //we are storing the mumber of teams in the array so that we can use it to calculate the number of daysPlayed
+//////                    x = self.numberOfTeamScores.count+1;
+//////                }
+////                
+////                
+//////                self.arrayOfTeamScores = [[NSMutableArray alloc] init];
+//////                
+//////                for (int i = 0; i < self.myTeamData.count; i++) {
+//////                    
+//////                    
+//////                    //create objects for
+//////                    PFObject *myWeekleyTeamScores = [objects objectAtIndex:i];
+//////                    
+//////                    //get my weekleyTeamScores(array) objects
+//////                    self.myTeamScores = [myWeekleyTeamScores objectForKey:kScoreWeek];
+//////                    
+//////                    //we add today's most uptodate data to the array
+//////                    [self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
+//////                    
+//////                    
+//////                    //add objects to array of teamScores(array) objects so that we don't have to download again
+//////                    [self.arrayOfTeamScores addObject:self.myTeamScores];
+//////                    
+//////                    //[self.arrayOfTeamScores replaceObjectAtIndex:i withObject:self.myTeamScores];
+//////                    NSLog(@"array of MY teamScores: %lu", (unsigned long)self.arrayOfTeamScores.count);
+//////                    NSLog(@"MYteamScores: %lu", (unsigned long)self.myTeamScores.count);
+//////
+//////                    
+//////                }
+////                    //show first team (index 0)
+//////                    [self updateTeamChart:0];
+////
+//////        [self updateTeamChart:0];
+////            }
 ////                else
 ////                {
-////                    self.scrollTeamsRight.hidden = NO ;
-////                    self.scrollTeamsLeft.hidden = NO ;
+////                    
+////                    //if the player is not on a team...
+////                    self.MyTeamName.text = @"No Team";
+////                    self.MyTeamScore.text = @"";
+////                    self.scrollTeamsRight.hidden = YES ;
+////                    self.scrollTeamsLeft.hidden = YES ;
+////                    self.teamMatchChart.hidden = YES;
+////                    self.vsTeamName.hidden = YES;
+////                    self.VSTeamScore.hidden = YES;
 ////                    
 ////                }
-//                
-////                for (PFObject * object in objects)
-////                {
-////                    self.numberOfTeamScores = [object objectForKey:kScoreWeek];
-////                    //we are storing the mumber of teams in the array so that we can use it to calculate the number of daysPlayed
-////                    x = self.numberOfTeamScores.count+1;
-////                }
-//                
-//                
-////                self.arrayOfTeamScores = [[NSMutableArray alloc] init];
 ////                
-////                for (int i = 0; i < self.myTeamData.count; i++) {
-////                    
-////                    
-////                    //create objects for
-////                    PFObject *myWeekleyTeamScores = [objects objectAtIndex:i];
-////                    
-////                    //get my weekleyTeamScores(array) objects
-////                    self.myTeamScores = [myWeekleyTeamScores objectForKey:kScoreWeek];
-////                    
-////                    //we add today's most uptodate data to the array
-////                    [self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
-////                    
-////                    
-////                    //add objects to array of teamScores(array) objects so that we don't have to download again
-////                    [self.arrayOfTeamScores addObject:self.myTeamScores];
-////                    
-////                    //[self.arrayOfTeamScores replaceObjectAtIndex:i withObject:self.myTeamScores];
-////                    NSLog(@"array of MY teamScores: %lu", (unsigned long)self.arrayOfTeamScores.count);
-////                    NSLog(@"MYteamScores: %lu", (unsigned long)self.myTeamScores.count);
+////        
+////           
+////                
+////            }
+////            else
+////            {
+//////                NSLog(@"query did not work");
+////                //Hardcoded for testing
+////                self.MyTeamName.text = @"NO TEAM";
+////                self.MyTeamScore.text = @"";
+////                
+////                
+////                
+//////                x = 0;
+//////                [self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
+//////                [self.arrayOfTeamScores addObject:self.myTeamScores];
 ////
-////                    
-////                }
-//                    //show first team (index 0)
-////                    [self updateTeamChart:0];
+////            }
+////                
+////        
+////        }];
+//    
+//    //Query Team Class to see if the player's current team is the HOME team
+//    PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+//    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+//    
+//   
+//    
+//    PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+//    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+//  
+//    
+//    PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
+//    
+//    [queryTeamMatchupsClass includeKey:kHomeTeam];
+//    [queryTeamMatchupsClass includeKey:kAwayTeam];
+//    
+//    
+//    queryAwayTeamMatchups.cachePolicy = kPFCachePolicyNetworkElseCache;
+//    queryHomeTeamMatchups.cachePolicy = kPFCachePolicyNetworkElseCache;
+//    
+//    [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        
+//        
+//        
+//        if(!error)
+//        {
+//           
+//            
+//        
 //
-////        [self updateTeamChart:0];
-//            }
-//                else
+//            if(objects.count > 0)
+//            {
+////            NSLog(@"number of objects received: %lu", (unsigned long)objects.count);
+//                
+//                
+//                
+//                //this approach does not work because self.homeTeamScores is empty until we reach the loop bellow...
+//                
+////                int newdaysLeft = (int)[self.daysLeft intValue];
+////                 NSLog(@"homeTeamScores count: %d", (int)self.homeTeamScores.count);
+////                NSLog(@"daysLeft: %d", (int)daysLeft);
+//                
+//                
+//                
+//                //confirmation that we downloaded the matchup object
+//                self.downloadedMatchupsObject = YES;
+//                
+//                
+//            for (int i = 0; i < objects.count; i++) {
+//                
+//                PFObject *myMatchupObject = [objects objectAtIndex:i];
+//                
+//                
+//                NSString * round = [myMatchupObject objectForKey:kRound];
+//
+//                
+//                self.arrayOfhomeTeamScores = [[NSMutableArray alloc] init];
+//                self.arrayOfawayTeamScores = [[NSMutableArray alloc] init];
+//                
+//                self.awayTeamPointers = [[NSMutableArray alloc] init];
+//                self.homeTeamPointers = [[NSMutableArray alloc] init];
+//                
+////                self.myMatchups = [[NSMutableArray alloc] init];
+//                //int daysLeft = (int)(7 - self.homeTeamScores.count);
+//                
+//               
+//                
+//                //the round is hardcoded for now, need to make this dynamic based on the torunatment's status
+//                if ([round  isEqual: @"1"])
 //                {
+//                   
+//                    for (int i = 0; i < objects.count; i++) {
+//                       
+//                        PFObject *myMatchupObject = [objects objectAtIndex:i];
+////                        NSLog(@"objects count: %lu", (unsigned long)objects.count);
+//                        
+//                        
+//                        
+//                        
+//                        
+//                        //add all objects to a array so that we can send the correct one to the next view controller
+//                        self.myMatchups = objects;
+////                        NSLog(@"self.mymatchups: %@", self.myMatchups);
+//                        
+//                        
+//                        
+//                        
+//                        
+//                        
+////                        [self updateTeamChart:0];
+//                        //acces away & home team pointers in parse
+//                        PFObject* awayTeamPointer = [myMatchupObject objectForKey:kAwayTeam];
+//                        PFObject* homeTeamPointer = [myMatchupObject objectForKey:kHomeTeam];
+//                        
+//                        //add pointers to an array
+//                        [self.awayTeamPointers addObject:awayTeamPointer];
+//                        [self.homeTeamPointers addObject:homeTeamPointer];
+//                        
+//                        /* TO DO:  must move the code bellow out of this for loop */
+//                        
+//                        //creating an array to add toays scores and 0 values to the tail end of the downloaded socores
+//                        //this way there will always be 7 objects in the array even if we have not played for 7 days
+//                        //ex: if we played for 3/7 days, insert 0 for index 3 - 6 (day 4 - 7)
+//                        
+//                         //create array and include today's most recent data
+////                         NSMutableArray *homeEndObjects = [[NSMutableArray alloc]initWithObjects:[homeTeamPointer objectForKey:kScoreToday], nil ];
+//                        
+//                        //create an empty array
+////                        NSMutableArray *endObjects = [[NSMutableArray alloc]initWithObjects: nil ];
+////                         NSLog(@"endObjects: %lu", (unsigned long)endObjects.count);
+////                        //add 0s to the tail end of this array for the days that have not been played yet
+////                        int zero = 0;
+////                        NSNumber *zeroWrapped = [NSNumber numberWithInt:zero];
+////                        
+////
+////                        //instead of 2 create a variable for # of days left in the week
+////                        for (int z = 0; z < self.daysLeft; z++)
+////                        {
+////                            [endObjects addObject:zeroWrapped];
+////                            NSLog(@"endObjects after inserting 0s: %lu", (unsigned long)endObjects.count);
+////                        }
 //                    
-//                    //if the player is not on a team...
-//                    self.MyTeamName.text = @"No Team";
-//                    self.MyTeamScore.text = @"";
-//                    self.scrollTeamsRight.hidden = YES ;
-//                    self.scrollTeamsLeft.hidden = YES ;
-//                    self.teamMatchChart.hidden = YES;
-//                    self.vsTeamName.hidden = YES;
-//                    self.VSTeamScore.hidden = YES;
+//                        
+//                    //Home Team Scores
+//                    //get homeTeamScores(array) objects
+//                    self.homeTeamScores = [homeTeamPointer objectForKey:kScoreWeek];
+//                    
+//                    //we add today's most uptodate data to the array
+//                    //[myArray addObjectsFromArray:otherArray];
+////                    [self.homeTeamScores addObject:[homeTeamPointer objectForKey:kScoreToday]];
+////                    [self.homeTeamScores addObjectsFromArray:endObjects];
+//                    
+//                    //add objects to array of teamScores(array) objects so that we don't have to download again
+//                    [self.arrayOfhomeTeamScores addObject:self.homeTeamScores];
+//                    
+//                    
+//                    //Away Team Scores
+//                    //get awayTeamScores(array) objects
+//                    
+//                    self.awayTeamScores = [awayTeamPointer objectForKey:kScoreWeek];
+//                        
+//                    
+//                    //we add today's most uptodate data to the array
+////                    [self.awayTeamScores addObject:[awayTeamPointer objectForKey:kScoreToday]];
+//                    
+//                     
+//                    //add objects to array of teamScores(array) objects so that we don't have to download again
+//                    [self.arrayOfawayTeamScores addObject:self.awayTeamScores];
+//                    
+//                    
+//                    //logs
+//                    
+////                    //home team
+////                    NSLog(@"homeTeamScores: %lu", (unsigned long)self.homeTeamScores.count);
+////                    NSLog(@"arrayOfhomeTeamScores: %lu", (unsigned long)self.arrayOfhomeTeamScores.count);
+////                    
+////                    //away team
+////                    NSLog(@"awayTeamScores: %lu", (unsigned long)self.awayTeamScores.count);
+////                    NSLog(@"arrayOfawayTeamScores: %lu", (unsigned long)self.arrayOfawayTeamScores.count);
+////                        
+////                    //pointers
+////                    NSLog(@"awayTeamPointers: %lu", (unsigned long)self.awayTeamPointers.count);
+////                    NSLog(@"homeTeamPointers: %lu", (unsigned long)self.arrayOfawayTeamScores.count);
+//
+//                        
+//                    }
+//                    
+//                    
+//                    //Had to update this here instead of view did load because it was updating to fast
+////                    [self updateTeamChart:0];
 //                    
 //                }
-//                
-//        
-//           
-//                
-//            }
-//            else
-//            {
-////                NSLog(@"query did not work");
-//                //Hardcoded for testing
-//                self.MyTeamName.text = @"NO TEAM";
-//                self.MyTeamScore.text = @"";
-//                
-//                
-//                
-////                x = 0;
-////                [self.myTeamScores addObject:[myWeekleyTeamScores objectForKey:kScoreToday]];
-////                [self.arrayOfTeamScores addObject:self.myTeamScores];
+//                [self.view setNeedsDisplay];
 //
 //            }
 //                
+//                
+//        }
+//         
 //        
-//        }];
-    
-    //Query Team Class to see if the player's current team is the HOME team
-    PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
-    
-   
-    
-    PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
-  
-    
-    PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
-    
-    [queryTeamMatchupsClass includeKey:kHomeTeam];
-    [queryTeamMatchupsClass includeKey:kAwayTeam];
-    
-    
-    queryAwayTeamMatchups.cachePolicy = kPFCachePolicyNetworkElseCache;
-    queryHomeTeamMatchups.cachePolicy = kPFCachePolicyNetworkElseCache;
-    
-    [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        
-        
-        if(!error)
-        {
-           
-            
-        
-
-            if(objects.count > 0)
-            {
-//            NSLog(@"number of objects received: %lu", (unsigned long)objects.count);
-                
-                
-                
-                //this approach does not work because self.homeTeamScores is empty until we reach the loop bellow...
-                
-//                int newdaysLeft = (int)[self.daysLeft intValue];
-//                 NSLog(@"homeTeamScores count: %d", (int)self.homeTeamScores.count);
-//                NSLog(@"daysLeft: %d", (int)daysLeft);
-                
-                
-                
-                //confirmation that we downloaded the matchup object
-                self.downloadedMatchupsObject = YES;
-                
-                
-            for (int i = 0; i < objects.count; i++) {
-                
-                PFObject *myMatchupObject = [objects objectAtIndex:i];
-                
-                
-                NSString * round = [myMatchupObject objectForKey:kRound];
-
-                
-                self.arrayOfhomeTeamScores = [[NSMutableArray alloc] init];
-                self.arrayOfawayTeamScores = [[NSMutableArray alloc] init];
-                
-                self.awayTeamPointers = [[NSMutableArray alloc] init];
-                self.homeTeamPointers = [[NSMutableArray alloc] init];
-                
-//                self.myMatchups = [[NSMutableArray alloc] init];
-                //int daysLeft = (int)(7 - self.homeTeamScores.count);
-                
-               
-                
-                //the round is hardcoded for now, need to make this dynamic based on the torunatment's status
-                if ([round  isEqual: @"1"])
-                {
-                   
-                    for (int i = 0; i < objects.count; i++) {
-                       
-                        PFObject *myMatchupObject = [objects objectAtIndex:i];
-//                        NSLog(@"objects count: %lu", (unsigned long)objects.count);
-                        
-                        
-                        
-                        
-                        
-                        //add all objects to a array so that we can send the correct one to the next view controller
-                        self.myMatchups = objects;
-//                        NSLog(@"self.mymatchups: %@", self.myMatchups);
-                        
-                        
-                        
-                        
-                        
-                        
-//                        [self updateTeamChart:0];
-                        //acces away & home team pointers in parse
-                        PFObject* awayTeamPointer = [myMatchupObject objectForKey:kAwayTeam];
-                        PFObject* homeTeamPointer = [myMatchupObject objectForKey:kHomeTeam];
-                        
-                        //add pointers to an array
-                        [self.awayTeamPointers addObject:awayTeamPointer];
-                        [self.homeTeamPointers addObject:homeTeamPointer];
-                        
-                        /* TO DO:  must move the code bellow out of this for loop */
-                        
-                        //creating an array to add toays scores and 0 values to the tail end of the downloaded socores
-                        //this way there will always be 7 objects in the array even if we have not played for 7 days
-                        //ex: if we played for 3/7 days, insert 0 for index 3 - 6 (day 4 - 7)
-                        
-                         //create array and include today's most recent data
-//                         NSMutableArray *homeEndObjects = [[NSMutableArray alloc]initWithObjects:[homeTeamPointer objectForKey:kScoreToday], nil ];
-                        
-                        //create an empty array
-//                        NSMutableArray *endObjects = [[NSMutableArray alloc]initWithObjects: nil ];
-//                         NSLog(@"endObjects: %lu", (unsigned long)endObjects.count);
-//                        //add 0s to the tail end of this array for the days that have not been played yet
-//                        int zero = 0;
-//                        NSNumber *zeroWrapped = [NSNumber numberWithInt:zero];
-//                        
+//            
 //
-//                        //instead of 2 create a variable for # of days left in the week
-//                        for (int z = 0; z < self.daysLeft; z++)
-//                        {
-//                            [endObjects addObject:zeroWrapped];
-//                            NSLog(@"endObjects after inserting 0s: %lu", (unsigned long)endObjects.count);
-//                        }
-                    
-                        
-                    //Home Team Scores
-                    //get homeTeamScores(array) objects
-                    self.homeTeamScores = [homeTeamPointer objectForKey:kScoreWeek];
-                    
-                    //we add today's most uptodate data to the array
-                    //[myArray addObjectsFromArray:otherArray];
-//                    [self.homeTeamScores addObject:[homeTeamPointer objectForKey:kScoreToday]];
-//                    [self.homeTeamScores addObjectsFromArray:endObjects];
-                    
-                    //add objects to array of teamScores(array) objects so that we don't have to download again
-                    [self.arrayOfhomeTeamScores addObject:self.homeTeamScores];
-                    
-                    
-                    //Away Team Scores
-                    //get awayTeamScores(array) objects
-                    
-                    self.awayTeamScores = [awayTeamPointer objectForKey:kScoreWeek];
-                        
-                    
-                    //we add today's most uptodate data to the array
-//                    [self.awayTeamScores addObject:[awayTeamPointer objectForKey:kScoreToday]];
-                    
-                     
-                    //add objects to array of teamScores(array) objects so that we don't have to download again
-                    [self.arrayOfawayTeamScores addObject:self.awayTeamScores];
-                    
-                    
-                    //logs
-                    
-//                    //home team
-//                    NSLog(@"homeTeamScores: %lu", (unsigned long)self.homeTeamScores.count);
-//                    NSLog(@"arrayOfhomeTeamScores: %lu", (unsigned long)self.arrayOfhomeTeamScores.count);
-//                    
-//                    //away team
-//                    NSLog(@"awayTeamScores: %lu", (unsigned long)self.awayTeamScores.count);
-//                    NSLog(@"arrayOfawayTeamScores: %lu", (unsigned long)self.arrayOfawayTeamScores.count);
-//                        
-//                    //pointers
-//                    NSLog(@"awayTeamPointers: %lu", (unsigned long)self.awayTeamPointers.count);
-//                    NSLog(@"homeTeamPointers: %lu", (unsigned long)self.arrayOfawayTeamScores.count);
-
-                        
-                    }
-                    
-                    
-                    //Had to update this here instead of view did load because it was updating to fast
-//                    [self updateTeamChart:0];
-                    
-                }
-                [self.view setNeedsDisplay];
-
-            }
-                
-                
-        }
-         
-        
-            
-
-        }
-        else
-        {
-            self.vsTeamName.text = @"NO TEAM";
-        }
-       
-
-    }];
-    
-    
-}
-
-- (NSMutableArray *)createMutableArray:(NSArray *)array
-{
-    return [NSMutableArray arrayWithArray:array];
-}
+//        }
+//        else
+//        {
+//            self.vsTeamName.text = @"NO TEAM";
+//        }
+//       
+//
+//    }];
+//    
+//    
+//}
+//
+//- (NSMutableArray *)createMutableArray:(NSArray *)array
+//{
+//    return [NSMutableArray arrayWithArray:array];
+//}
 
 #pragma mark scroll teams buttons
 
@@ -1500,21 +1441,6 @@ static NSString *kImageKey = @"imageKey";
     if ([[notification name] isEqualToString:@"JoinedTeam"])
     {
         
-        //Retrieve from Parse
-//        [self retrieveFromParse];
-//        CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
-//        [calculatePoints retrieveFromParse];
-        
-        
-//        [self refreshHomeView];
-        
-        
-        //using a timer in case parse did not receive all the data
-//        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(refreshHomeView) userInfo:nil repeats:NO];
-//        
-//        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:3.0f]];
-//        [self setReceivedNotification:NO];
-       //[self performSelector:@selector(retrieveFromParse)];
         
         [self.view setNeedsDisplay];
         [self setReceivedNotification:YES];
@@ -1523,20 +1449,6 @@ static NSString *kImageKey = @"imageKey";
     }
     else if ([[notification name] isEqualToString:@"LeftTeam"])
     {
-        //Retrieve from Parse
-        //[self performSelector:@selector(retrieveFromParse)];
-//        [self retrieveFromParse];
-        
-        
-//        [self refreshHomeView];
-        
-        
-        
-        //using a timer in case parse did not receive all the data
-//        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(refreshHomeView) userInfo:nil repeats:NO];
-//        
-//        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:3.0f]];
-//        [self setReceivedNotification:NO];
         
        [self.view setNeedsDisplay];
         [self setReceivedNotification:YES];
@@ -1656,30 +1568,11 @@ static NSString *kImageKey = @"imageKey";
 #pragma mark - points & xp calculations
 
 
--(void)incrementPlayerPoints
+//Store the points and steps from current app launch so that we can use them as the starting values for counting labels
+-(void)savePointsFromCurrentAppLaunch
 {
-    
-//    NSLog(@"incrementPlayerPoints just got called");
-    
     self.stepCounter = [[CMStepCounter alloc] init];
     NSDate *now = [NSDate date];
-    
-//    //NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
-//    
-//    //find today's date
-//    NSDate* sourceDate = [NSDate date];
-//    
-//    //convert to my local time zone
-//    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-//    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
-//    
-//    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-//    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
-//    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
-//    
-//    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
-//  
-//    NSDate *now = myDate;
 
     NSDate *from = [self beginningOfDay];
     
@@ -1698,11 +1591,11 @@ static NSString *kImageKey = @"imageKey";
         }
         else
         {
-        self.myPoints = [self calculatePoints:numberOfSteps];
-        self.mySteps = &(numberOfSteps);
+            self.myPoints = [self calculatePoints:numberOfSteps];
+            self.mySteps = &(numberOfSteps);
         }
         
-
+        
         
         //set the player's total points in memory
         NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
@@ -1712,266 +1605,346 @@ static NSString *kImageKey = @"imageKey";
         //to prevent null values check if # of steps is 0
         if(numberOfSteps == 0)
         {
-            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyPointsToday];
-//            [myRetrievedPoints setInteger:*(self.mySteps) forKey:kMyMostRecentStepsBeforeSaving];
+            
+            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentPointsBeforeSaving];
             [myRetrievedPoints setInteger:0 forKey:kMyMostRecentStepsBeforeSaving];
+            
+            [myRetrievedPoints synchronize];
             [[NSUserDefaults standardUserDefaults] synchronize];
             
-            //save the player's points for today to the server
-            PFObject *playerPoints = [PFUser currentUser];
-            NSNumber *myPointsConverted = [NSNumber numberWithInt:0];
-            [playerPoints setObject:myPointsConverted forKey:kPlayerPointsToday];
-            [playerPoints saveEventually];
-        }
+                    }
         
         else
         {
-        
-        //saving most recent points before doing calcualtions to increment total lifetime points
-        //we are going to use this value to start the couter in the counting label in MyStatsViewController
-        [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyMostRecentPointsBeforeSaving];
-        
-        [myRetrievedPoints setInteger:*(self.mySteps) forKey:kMyMostRecentStepsBeforeSaving];
+               //we are going to use this value to start the couter in the counting label in MyStatsViewController
+            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyMostRecentPointsBeforeSaving];
+            //        NSLog(@"self.myPoints intValue: %d", [self.myPoints intValue]);
+            [myRetrievedPoints setInteger:*(self.mySteps) forKey:kMyMostRecentStepsBeforeSaving];
             
-        [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            
-//        int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyPointsToday];
-            
-        //using my fetched points for background fetch  so that we are always synchronized
-        int myStoredFetchedPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsToday];
-            
-        int myMostRecentPointsValue = [self.myPoints intValue];
-            
-//        int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
-            
-          int myPointsDeltaValue = myMostRecentPointsValue - myStoredFetchedPoints;
-        
-//        NSLog(@"myStoredPoints: %d", myStoredFetchedPoints);
-//        NSLog(@"myMostRecentPointsValue: %d", myMostRecentPointsValue);
-//        NSLog(@"myPointsDeltaValue: %d", myPointsDeltaValue);
-        
-        
-        [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyPointsToday];
-            
-        [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
-        
-        
-        //increment a player's total # of points
-        
-        //to do:
-        //for 1st time users get 7 days worth of data & set here
-        //for returning users retrieve a user's total points & set here
-        
-        int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyPointsTotal];
-            
-        //Save total points before saving so that we can use conuting label to increment level in MyStatsViewController
-        [myRetrievedPoints setInteger:myTotalPoints  forKey:kMyMostRecentTotalPointsBeforeSaving];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-            
-        int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
-//        int myTotalPoints = 244;
-//        int myNewTotalPoints = 244;
-        
-//        NSLog(@"myTotalPoints: %d", myTotalPoints);
-//        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
-        
-        [myRetrievedPoints setInteger:myNewTotalPoints  forKey:kMyPointsTotal];
-        
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        //save the player's points for today to the server
-        PFObject *playerPoints = [PFUser currentUser];
-        [playerPoints setObject:self.myPoints forKey:kPlayerPointsToday];
-        [playerPoints saveEventually];
-        
-            
-            
-            NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
-            float myLevelValue = [myLevel floatValue];
-            
-            //get the total points necessary for next level
-            
-            NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
-            
-            int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
-            //                NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
-            //                 NSLog(@"retrievedLevelValue: %f", retrievedLevelValue);
-            
-            //subtract the player's points from the current #
-            //                int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - retrievedLevelValue;
-            
-            int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - myNewTotalPoints;
-            //              NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
-            
-            //calculate the # of points necessary to reach the next level
-            NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
-            
-            //convert delta to NSNumber so we can increment later
-            NSNumber* myNSPointsDeltaValue = [NSNumber numberWithInt:myPointsDeltaValue];
-            
-            
-        
-        PFQuery *query = [PFUser query];
-        [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
-        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            
-            if(!error)
-            {
-                //retrieve the number of points in the database
-//                NSNumber* retrievedPoints = [object objectForKey:kPlayerPointsToday];
-//                NSNumber* lifetimePoints = [object objectForKey:kPlayerPoints];
-//                
-//                //convert nsnumbers to an ints so we can do math
-//                int retrievedPointsValue = [retrievedPoints intValue];
-////                NSLog(@"retrievedPointsValue: %d", retrievedPointsValue);
-//                
-//                int myPointsValue = [self.myPoints intValue];
-////                NSLog(@"myPointsValue: %d", myPointsValue);
-//                
-//                //get delta between my current points and what is stored in the database
-//                int pointsDeltaValue = myPointsValue - retrievedPointsValue;
-////                NSLog(@"pointsDeltaValue: %d", pointsDeltaValue);
-//                
-//                //convert delta back to nsnumber
-//               
-//                NSNumber* pointsDelta = [NSNumber numberWithInt:pointsDeltaValue];
-                
+            [myRetrievedPoints synchronize];
+        }
+    }];
 
-                //calculate level
-//                float retrievedLevelValue = [lifetimePoints floatValue];
-                
-                
-//                
-//                NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
-//                float myLevelValue = [myLevel floatValue];
-//                
-//                //get the total points necessary for next level
-//                
-//                NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
-//                
-//                int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
-////                NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
-////                 NSLog(@"retrievedLevelValue: %f", retrievedLevelValue);
-//                
-//                 //subtract the player's points from the current #
-////                int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - retrievedLevelValue;
-//                
-//                 int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - myNewTotalPoints;
-////              NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
-//                
-//                //calculate the # of points necessary to reach the next level
-//                NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
-//                
-//                //convert delta to NSNumber so we can increment later
-//                 NSNumber* myNSPointsDeltaValue = [NSNumber numberWithInt:myPointsDeltaValue];
-                
-                //To update an existing object, you first need to retrieve it
-                
-                //increment myPoints
-//                [object incrementKey:kPlayerPointsToday byAmount:pointsDelta];
-                
-                //[object incrementKey:kPlayerPointsToday byAmount:myNSPointsDeltaValue];
-                [object incrementKey:kPlayerPoints byAmount:myNSPointsDeltaValue];
-                
-                //set player's level
-                [object setObject:myLevel forKey:kPlayerXP];
-                //save #points needed to reach the next level
-                [object setObject:myPointsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
-                //save the player's points for today to the server
-               
-                
-                
-                //save points
-                //[object saveInBackground];
-                [object saveEventually];//<-from Parse forums: "saveEventually should not trigger multiple-writer issues, but "inBackground" methods can"
+}
 
-                
-                
-//                //increment myPoints
-//                [playerPoints incrementKey:kPlayerPointsToday byAmount:pointsDelta];
-//                [playerPoints incrementKey:kPlayerPoints byAmount:pointsDelta];
-//                
-//                //set player's level
-//                [playerPoints setObject:myLevel forKey:kPlayerXP];
-//                //save #points needed to reach the next level
-//                [playerPoints setObject:myPointsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
+
+
+//-(void)incrementPlayerPoints
+//{
+//    
+////    NSLog(@"incrementPlayerPoints just got called");
+//    
+//    self.stepCounter = [[CMStepCounter alloc] init];
+//    NSDate *now = [NSDate date];
+//    
+////    //NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
+////    
+////    //find today's date
+////    NSDate* sourceDate = [NSDate date];
+////    
+////    //convert to my local time zone
+////    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+////    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
+////    
+////    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
+////    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
+////    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
+////    
+////    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
+////  
+////    NSDate *now = myDate;
+//
+//    NSDate *from = [self beginningOfDay];
+//    
+//    //find the number of steps I have take today
+//    [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
+//        
+//        
+//        
+//        //convert steps to points
+//        //check for NAN values
+//        if(numberOfSteps == 0)
+//        {
+//            self.myPoints = 0;
+//            self.mySteps = 0;
+//            
+//        }
+//        else
+//        {
+//        self.myPoints = [self calculatePoints:numberOfSteps];
+//        self.mySteps = &(numberOfSteps);
+//        }
+//        
+//        
+//        
+//        //set the player's total points in memory
+//        NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
+//        
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        
+//        //to prevent null values check if # of steps is 0
+//        if(numberOfSteps == 0)
+//        {
+//            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyPointsToday];
+////            [myRetrievedPoints setInteger:*(self.mySteps) forKey:kMyMostRecentStepsBeforeSaving];
+//            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentStepsBeforeSaving];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//            
+//            //save the player's points for today to the server
+//            PFObject *playerPoints = [PFUser currentUser];
+//            NSNumber *myPointsConverted = [NSNumber numberWithInt:0];
+//            [playerPoints setObject:myPointsConverted forKey:kPlayerPointsToday];
+//            [playerPoints saveEventually];
+//        }
+//        
+//        else
+//        {
+//        
+//        //saving most recent points before doing calcualtions to increment total lifetime points
+//        //we are going to use this value to start the couter in the counting label in MyStatsViewController
+//        [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyMostRecentPointsBeforeSaving];
+////        NSLog(@"self.myPoints intValue: %d", [self.myPoints intValue]);
+//        [myRetrievedPoints setInteger:*(self.mySteps) forKey:kMyMostRecentStepsBeforeSaving];
+//            
+//        [myRetrievedPoints synchronize];
+//            
+//            
+////        int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyPointsToday];
+//            
+//        //using my fetched points for background fetch  so that we are always synchronized
+//        int myStoredFetchedPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsToday];
+//            
+//        int myMostRecentPointsValue = [self.myPoints intValue];
+//            
+////        int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
+//            
+//          int myPointsDeltaValue = myMostRecentPointsValue - myStoredFetchedPoints;
+//        
+////        NSLog(@"myStoredPoints: %d", myStoredFetchedPoints);
+////        NSLog(@"myMostRecentPointsValue: %d", myMostRecentPointsValue);
+////        NSLog(@"myPointsDeltaValue: %d", myPointsDeltaValue);
+//        
+//        
+//        [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyPointsToday];
+//            
+//        [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
+//        
+//        
+//        //increment a player's total # of points
+//        
+//        //to do:
+//        //for 1st time users get 7 days worth of data & set here
+//        //for returning users retrieve a user's total points & set here
+//        
+//        int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyPointsTotal];
+//            
+//        //Save total points before saving so that we can use conuting label to increment level in MyStatsViewController
+//        [myRetrievedPoints setInteger:myTotalPoints  forKey:kMyMostRecentTotalPointsBeforeSaving];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//            
+//        int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
+////        int myTotalPoints = 244;
+////        int myNewTotalPoints = 244;
+//        
+////        NSLog(@"myTotalPoints: %d", myTotalPoints);
+////        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
+//        
+//        [myRetrievedPoints setInteger:myNewTotalPoints  forKey:kMyPointsTotal];
+//        
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        
+//        //save the player's points for today to the server
+//        PFObject *playerPoints = [PFUser currentUser];
+//        [playerPoints setObject:self.myPoints forKey:kPlayerPointsToday];
+//        [playerPoints saveEventually];
+//        
+//            
+//            
+//            NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
+//            float myLevelValue = [myLevel floatValue];
+//            
+//            //get the total points necessary for next level
+//            
+//            NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
+//            
+//            int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
+//            //                NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
+//            //                 NSLog(@"retrievedLevelValue: %f", retrievedLevelValue);
+//            
+//            //subtract the player's points from the current #
+//            //                int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - retrievedLevelValue;
+//            
+//            int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - myNewTotalPoints;
+//            //              NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
+//            
+//            //calculate the # of points necessary to reach the next level
+//            NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
+//            
+//            //convert delta to NSNumber so we can increment later
+//            NSNumber* myNSPointsDeltaValue = [NSNumber numberWithInt:myPointsDeltaValue];
+//            
+//            
+//        
+//        PFQuery *query = [PFUser query];
+//        [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+//        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//            
+//            if(!error)
+//            {
+//                //retrieve the number of points in the database
+////                NSNumber* retrievedPoints = [object objectForKey:kPlayerPointsToday];
+////                NSNumber* lifetimePoints = [object objectForKey:kPlayerPoints];
+////                
+////                //convert nsnumbers to an ints so we can do math
+////                int retrievedPointsValue = [retrievedPoints intValue];
+//////                NSLog(@"retrievedPointsValue: %d", retrievedPointsValue);
+////                
+////                int myPointsValue = [self.myPoints intValue];
+//////                NSLog(@"myPointsValue: %d", myPointsValue);
+////                
+////                //get delta between my current points and what is stored in the database
+////                int pointsDeltaValue = myPointsValue - retrievedPointsValue;
+//////                NSLog(@"pointsDeltaValue: %d", pointsDeltaValue);
+////                
+////                //convert delta back to nsnumber
+////               
+////                NSNumber* pointsDelta = [NSNumber numberWithInt:pointsDeltaValue];
 //                
 //
+//                //calculate level
+////                float retrievedLevelValue = [lifetimePoints floatValue];
+//                
+//                
+////                
+////                NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
+////                float myLevelValue = [myLevel floatValue];
+////                
+////                //get the total points necessary for next level
+////                
+////                NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
+////                
+////                int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
+//////                NSLog(@"myTotalPointsToNextLevelValue: %d", myTotalPointsToNextLevelValue);
+//////                 NSLog(@"retrievedLevelValue: %f", retrievedLevelValue);
+////                
+////                 //subtract the player's points from the current #
+//////                int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - retrievedLevelValue;
+////                
+////                 int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - myNewTotalPoints;
+//////              NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
+////                
+////                //calculate the # of points necessary to reach the next level
+////                NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
+////                
+////                //convert delta to NSNumber so we can increment later
+////                 NSNumber* myNSPointsDeltaValue = [NSNumber numberWithInt:myPointsDeltaValue];
+//                
+//                //To update an existing object, you first need to retrieve it
+//                
+//                //increment myPoints
+////                [object incrementKey:kPlayerPointsToday byAmount:pointsDelta];
+//                
+//                //[object incrementKey:kPlayerPointsToday byAmount:myNSPointsDeltaValue];
+//                [object incrementKey:kPlayerPoints byAmount:myNSPointsDeltaValue];
+//                
+//                //set player's level
+//                [object setObject:myLevel forKey:kPlayerXP];
+//                //save #points needed to reach the next level
+//                [object setObject:myPointsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
+//                //save the player's points for today to the server
+//               
+//                
+//                
 //                //save points
-//                [playerPoints saveInBackground];
-                
-                
-                
-                //increment the points for all my teams
-               [self incrementMyTeamsPoints:myNSPointsDeltaValue];
-    
-            }
-            
+//                //[object saveInBackground];
+//                [object saveEventually];//<-from Parse forums: "saveEventually should not trigger multiple-writer issues, but "inBackground" methods can"
+//
+//                
+//                
+////                //increment myPoints
+////                [playerPoints incrementKey:kPlayerPointsToday byAmount:pointsDelta];
+////                [playerPoints incrementKey:kPlayerPoints byAmount:pointsDelta];
+////                
+////                //set player's level
+////                [playerPoints setObject:myLevel forKey:kPlayerXP];
+////                //save #points needed to reach the next level
+////                [playerPoints setObject:myPointsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
+////                
+////
+////                //save points
+////                [playerPoints saveInBackground];
+//                
+//                
+//                
+//                //increment the points for all my teams
+//               [self incrementMyTeamsPoints:myNSPointsDeltaValue];
+//    
+//            }
+//            
+//
+//        }];
+//            
+//        }
+//
+//    }];
+//    
+//}
 
-        }];
-            
-        }
-
-    }];
-    
-}
 
 
-
--(void)incrementMyTeamsPoints:(NSNumber*)delta
-{
-
-    //Query Team Class
-    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
-    
-    //Query Teamates Class
-    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
-//    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    
-    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
-    
-    //Query where the current user is a teamate
-    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-
-        if (!error) {
-            // The find succeeded.
-            //NSLog(@"Successfully retrieved my %lu teams", (unsigned long)objects.count);
-            for (PFObject *object in objects)
-                
-            {
-                //NSLog(@"%@", object.objectId);
-                
-                
-                if (!error) {
-                    
-                    //increment the team's TOTAL points
-                    [object incrementKey:kScore byAmount:delta];
-                    
-                    //increment the team's points for today
-                    [object incrementKey:kScoreToday byAmount:delta];
-                    
-                    [object saveEventually];
-                }
-                else
-                {
-//                    NSLog(@"error in inner query");
-                }
-            }
-            
-        }
-        else
-        {
-//            NSLog(@"error");
-        }
-
-    }];
-
-}
+//-(void)incrementMyTeamsPoints:(NSNumber*)delta
+//{
+//
+//    //Query Team Class
+//    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+//    
+//    //Query Teamates Class
+//    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+////    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+////    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    
+//    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+//    
+//    //Query where the current user is a teamate
+//    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
+//    
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        
+//
+//        if (!error) {
+//            // The find succeeded.
+//            //NSLog(@"Successfully retrieved my %lu teams", (unsigned long)objects.count);
+//            for (PFObject *object in objects)
+//                
+//            {
+//                //NSLog(@"%@", object.objectId);
+//                
+//                
+//                if (!error) {
+//                    
+//                    //increment the team's TOTAL points
+//                    [object incrementKey:kScore byAmount:delta];
+//                    
+//                    //increment the team's points for today
+//                    [object incrementKey:kScoreToday byAmount:delta];
+//                    
+//                    [object saveEventually];
+//                }
+//                else
+//                {
+////                    NSLog(@"error in inner query");
+//                }
+//            }
+//            
+//        }
+//        else
+//        {
+////            NSLog(@"error");
+//        }
+//
+//    }];
+//
+//}
 
 
 
@@ -1987,38 +1960,38 @@ static NSString *kImageKey = @"imageKey";
 }
 
 
--(NSNumber*)calculateLevel:(float)points
-{
-    
-    //scale = 11
-    //hardcoded for now - will need to send this number down from the server
-    //rounded up to the largest following integer using ceiling function
-    //had to add 1.0 so that the level is never 0
-   // NSNumber * level = [NSNumber numberWithFloat: ceil((pow((points/1000), (1/1)))+1.0)];
-    
-    
-    //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
-    NSNumber * level = [NSNumber numberWithFloat: floor((pow((points/1000), (1/1)))+1.0)];
+//-(NSNumber*)calculateLevel:(float)points
+//{
+//    
+//    //scale = 11
+//    //hardcoded for now - will need to send this number down from the server
+//    //rounded up to the largest following integer using ceiling function
+//    //had to add 1.0 so that the level is never 0
+//   // NSNumber * level = [NSNumber numberWithFloat: ceil((pow((points/1000), (1/1)))+1.0)];
+//    
+//    
+//    //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
+//    NSNumber * level = [NSNumber numberWithFloat: floor((pow((points/1000), (1/1)))+1.0)];
+//
+////    if(level == 0 || level == nil)
+////        return [NSNumber numberWithInteger:1];
+////    else
+//    return level;
+//}
 
-//    if(level == 0 || level == nil)
-//        return [NSNumber numberWithInteger:1];
-//    else
-    return level;
-}
-
--(NSNumber*)calculatePointsToReachNextLevel:(float)level
-{
-    
-    //scale = 1
-    //hardcoded for now - will need to send this number down from the server
-//    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(level, 1)*1000))+1]; //rounded up to the largest following integer using ceiling function
-    
-    
- //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
-    NSNumber * points = [NSNumber numberWithFloat: floor((pow(level, 1)*1000))+1];
-    
-    return points;
-}
+//-(NSNumber*)calculatePointsToReachNextLevel:(float)level
+//{
+//    
+//    //scale = 1
+//    //hardcoded for now - will need to send this number down from the server
+////    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(level, 1)*1000))+1]; //rounded up to the largest following integer using ceiling function
+//    
+//    
+// //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
+//    NSNumber * points = [NSNumber numberWithFloat: floor((pow(level, 1)*1000))+1];
+//    
+//    return points;
+//}
 
 #pragma mark NSDate & Time
 //find the beginning of the day

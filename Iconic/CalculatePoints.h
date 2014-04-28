@@ -51,7 +51,8 @@
 
 
 //methods
--(void)incrementPlayerPoints;
+
+-(void)incrementPlayerPointsInBackground;
 
 - (void) retrieveFromParse;
 
