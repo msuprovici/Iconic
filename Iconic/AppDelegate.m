@@ -112,7 +112,17 @@
     return [PFFacebookUtils handleOpenURL:url];
 }
 
+
+
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    
+    //reset push notification badge to 0 once the app has been opened
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        [currentInstallation saveEventually];
+    }
+    
     // Handle an interruption during the authorization flow, such as the user clicking the home button.
     [FBSession.activeSession handleDidBecomeActive];
 }

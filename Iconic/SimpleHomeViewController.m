@@ -130,7 +130,11 @@ static NSString *kImageKey = @"imageKey";
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refreshHomeView)
                                                  name:UIApplicationWillEnterForegroundNotification object:nil];
-     [self refreshHomeView];
+    
+    
+    [self refreshHomeView];
+    
+    
     
     
     
@@ -199,7 +203,6 @@ static NSString *kImageKey = @"imageKey";
     
 
     [self showChart];
-    
     
     [self.view setNeedsDisplay];
 
