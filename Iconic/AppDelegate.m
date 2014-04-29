@@ -202,6 +202,57 @@
 //    }
 }
 
+#pragma mark push notifications
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:newDeviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
+
+
+//silent push notification to retrieve points at the end of the day
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
+    
+//    if([userInfo[@"aps"][@"content-available"] intValue]== 1)
+    
+//    if([userInfo[@"content-available"] intValue]== 1) //it's the silent notification
+//    {
+    NSDate *fetchStart = [NSDate date];
+    
+    CalculatePoints *calculatePoints = [[CalculatePoints alloc]init];
+    
+    
+    NSDate *fetchEnd = [NSDate date];
+    NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
+    NSLog(@"Background Fetch From Push Duration: %f seconds", timeElapsed);
+    
+    //send and retrieve data from Parse
+    [calculatePoints incrementPlayerPointsInBackground];
+    [calculatePoints retrieveFromParse];
+    
+    NSLog(@"Background Fetch From Push intialized");
+    
+    //buying Parse 20 seconds to perform retrieve and save
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
+                   dispatch_get_main_queue(), ^{
+                       
+                       handler(UIBackgroundFetchResultNewData);
+                   });
+
+        
+        return;
+}
+
+
 #pragma mark background log out
 
 - (void)logOut {
@@ -233,20 +284,6 @@
 }
 
 
-#pragma mark push notifications
-
-- (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
-    // Store the deviceToken in the current installation and save it to Parse.
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:newDeviceToken];
-    [currentInstallation saveInBackground];
-}
-
-- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
-}
 
 
 #pragma mark facebook
