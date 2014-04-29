@@ -791,5 +791,53 @@
 //
 //    }];
 
+#pragma mark Local Notification
+-(void)scheduleDailySummaryLocalNotification
+{
+    NSDate *now = [NSDate date];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
+    
+    //set time for 10am
+    [components setHour:10];
+    [components setMinute:0];
+    [components setSecond:0];
+    
+    //Alert Body
+    NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
+   
+    //get 7 day steps and points array
+    NSArray *myWeekeleyPoints = [myStats objectForKey:kMyPointsWeekArray];
+    NSArray *myWeekeleySteps = [myStats objectForKey:kMyStepsWeekArray];
+    
+    //get yesterday's Points & Steps
+    NSString *yesterdayPoints = [myWeekeleyPoints objectAtIndex:5];
+    NSString *yesterdaySteps = [myWeekeleySteps objectAtIndex:5];
+
+    
+    //create local notification
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    
+    //set time
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.fireDate = [cal dateFromComponents:components];
+    
+    //repeate daily
+    localNotification.repeatInterval = NSDayCalendarUnit;
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    
+    //use yesterday's points and steps
+    localNotification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"You scored %@ points on %@ steps yesterday.", nil),
+                                   yesterdayPoints, yesterdaySteps];
+    
+    //used in UIAlert button or 'slide to unlock...' slider in place of unlock
+    localNotification.alertAction = @"Summary";
+
+    //increase badge number
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    //schedule the local notfication
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
 
 @end

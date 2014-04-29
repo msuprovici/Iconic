@@ -134,8 +134,12 @@ static NSString *kImageKey = @"imageKey";
     
     [self refreshHomeView];
     
-    
-    
+    //schedule local notification to show daily points & steps summary
+    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+    [calculatePointsClass scheduleDailySummaryLocalNotification];
+   
+//Use the line bellow to cancel local notficiations
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     
     

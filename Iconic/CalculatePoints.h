@@ -68,6 +68,8 @@
 
 -(NSNumber*)calculatePointsToReachCurrentLevel:(float)level;
 
+-(void)scheduleDailySummaryLocalNotification;
+
 
 
 
