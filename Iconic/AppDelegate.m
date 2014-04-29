@@ -64,6 +64,12 @@
     //Intitialize FB
     [PFFacebookUtils initializeFacebook];
     
+    // Register for push notifications
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeBadge |
+     UIRemoteNotificationTypeAlert |
+     UIRemoteNotificationTypeSound];
+    
     //If user is already logged in, skip the login screen and go to the main view
    if([PFUser currentUser]) {
         
@@ -214,6 +220,22 @@
 //    
 //    self.homeViewController = nil;
 //    self.activityViewController = nil;
+}
+
+
+#pragma mark push notifications
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:newDeviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
 }
 
 
