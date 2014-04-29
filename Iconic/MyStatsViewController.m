@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import "Cache.h"
 #import "SimpleHomeViewController.h"
+#import "CalculatePoints.h"
 
 #import "UIImage+RoundedCornerAdditions.h"
 #import "UIImage+ResizeAdditions.h"
@@ -64,35 +65,9 @@
     return self;
 }
 
-//- (id) init {
-//    self = [super init];
-//    //Basic empty init...
-//    _simpleHomeViewController = [[SimpleHomeViewController alloc]init];
-//    return self;
-//}
-
-
-//+ (void)initialize {
-//    
-//    if(self)
-//    {
-//    _simpleHomeViewController = [[SimpleHomeViewController alloc]init];
-//    }
-//
-//    
-//}
-
-//static dispatch_once_t once;
-//dispatch_once(&once, ^ {
-//    // Code to run once
-//});
 
 - (void)viewDidLoad
 {
-    
-    //    [self retrievePlayerStats];
-    
-
     
     
     [super viewDidLoad];
@@ -122,7 +97,8 @@
 //                NSLog(@"myLifetimePoints: %d", myLifetimePoints);
 //                NSLog(@"myLevel: %@", myLevel);
                 
-                NSNumber *myLevel = [self calculateLevel:myLifetimePoints];
+                CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+                NSNumber *myLevel = [calculatePointsClass calculateLevel:myLifetimePoints];
                 
 
                 
@@ -130,13 +106,13 @@
 //                NSLog(@"myLevelValue: %f", myLevelValue);
                 
                 //calculate total points to reach next level
-                NSNumber *totalPointsForNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
+                NSNumber *totalPointsForNextLevel = [calculatePointsClass calculatePointsToReachNextLevel:myLevelValue];
                 int myTotalPointsForNextLevelValue = [totalPointsForNextLevel intValue];
                 
 //                NSLog(@"myTotalPointsForNextLevelValue: %d", myTotalPointsForNextLevelValue);
                 
                 //calculate total points to reach current level
-                NSNumber *totalPointsForCurrentLevel = [self calculatePointsToReachCurrentLevel:myLevelValue];
+                NSNumber *totalPointsForCurrentLevel = [calculatePointsClass calculatePointsToReachCurrentLevel:myLevelValue];
                 
                 int myTotalPointsForCurrentLevelValue = [totalPointsForCurrentLevel intValue];
                 
@@ -171,7 +147,8 @@
                 //use previously stored value to determine the previous level
                 int myPreviousLifetimePoints = (int)[myRetrievedPoints integerForKey:kMyMostRecentTotalPointsBeforeSaving];
                 
-                NSNumber *myPreviousLevel = [self calculateLevel:myPreviousLifetimePoints];
+                
+                NSNumber *myPreviousLevel = [calculatePointsClass calculateLevel:myPreviousLifetimePoints];
                 //count up the level number
                 [self.xpValue  countFrom:[myPreviousLevel intValue] to:[myLevel intValue] withDuration:2];
                 
@@ -334,35 +311,15 @@
 //    NSLog(@"startAnimation");
 //}
 
+#pragma mark Today's steps & points
 
-//calculate a player's steps
 -(void)getPlayerSteps
 {
     self.stepCounter = [[CMStepCounter alloc] init];
     NSDate *now = [NSDate date];
-//    NSDate *from = [NSDate dateWithTimeInterval:-60*60*24 sinceDate:now];
-    
-    
-    
-    
-    //find today's date
-    NSDate* sourceDate = [NSDate date];
-    
-    //convert to my local time zone
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
-    
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
-    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
-    
-    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
-    
-    
-    
-    //NSDate *from = [self beginningOfDay:[NSDate date]];
-//    NSDate *now = myDate;
-    NSDate *from = [self beginningOfDay];
+
+    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+    NSDate *from = [calculatePointsClass beginningOfDay];
     
     
 //    NSLog(@"time now: %@",now);
@@ -370,10 +327,7 @@
 
     [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
         
-//        NSLog(@"numberOfSteps: %ld",(long)numberOfSteps);
 
-        
-//        self.stepsCountingLabel.text = [@(numberOfSteps) stringValue];
         
         //prevent NAN values
         if (numberOfSteps == 0) {
@@ -384,10 +338,10 @@
         }
         else
         {
-        self.myPoints = [self calculatePoints:numberOfSteps];
-//        self.pointsValue.text = [NSString stringWithFormat:@"%@",self.myPoints] ;
-//        [self.pointsValue countFrom:0 to:[self.myPoints intValue]];
-//        [self.pointsValue countFrom:0 to:100];
+            
+        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+        self.myPoints = [calculatePointsClass calculatePoints:numberOfSteps];
+
             
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             formatter.numberStyle = kCFNumberFormatterNoStyle;
@@ -399,7 +353,7 @@
 
             NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
             int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyMostRecentPointsBeforeSaving];
-            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
+//            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
             
             [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:2];
             
@@ -422,309 +376,15 @@
     }];
     
     
-    //use this to calculate how long the person spent driving, walking, running, stationary
-//    CMMotionActivityManager *motionActivityManagerQuery = [[CMMotionActivityManager alloc] init];
-//    
-//    
-//    [motionActivityManagerQuery queryActivityStartingFromDate:from toDate:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSArray *activities, NSError *error) {
-//        
-//        
-//        for(CMMotionActivity *motionActivity in activities){
-//            
-//            if(motionActivity.walking)
-//            {
-//           // NSTimeInterval walking = [now timeIntervalSinceDate:motionActivity.startDate];
-//                NSTimeInterval walking = [motionActivity.startDate timeIntervalSinceDate:from];
-//                
-//                NSLog(@"walking %f", walking/60);
-//            }
-//            
-//            if(motionActivity.stationary)
-//            {
-//                //NSTimeInterval stationary = [now timeIntervalSinceDate:motionActivity.startDate];
-//                NSTimeInterval stationary = [motionActivity.startDate timeIntervalSinceDate:from];
-//                
-//                NSLog(@"stationary %f", stationary/60);
-//            }
-//            
-//            if(motionActivity.running)
-//            {
-////                NSTimeInterval running = [now timeIntervalSinceDate:motionActivity.startDate];
-//                NSTimeInterval running = [motionActivity.startDate timeIntervalSinceDate:from];
-//                
-//                NSLog(@"running %f", running/60);
-//            }
-//            
-//            
-//            if(motionActivity.unknown)
-//            {
-//                //                NSTimeInterval running = [now timeIntervalSinceDate:motionActivity.startDate];
-//                NSTimeInterval unknown = [motionActivity.startDate timeIntervalSinceDate:from];
-//                
-//                NSLog(@"unknown %f", unknown/60);
-//            }
-//            
-//            if(motionActivity.automotive)
-//            {
-//                //                NSTimeInterval running = [now timeIntervalSinceDate:motionActivity.startDate];
-//                NSTimeInterval automotive = [motionActivity.startDate timeIntervalSinceDate:from];
-//                
-//                NSLog(@"automotive %f", automotive/60);
-//            }
-//
-//
-//
-//
-////            
-////            NSLog(@"--------------------");
-////            
-////            // startDate
-////            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-////            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-////            NSString *startDateString = [dateFormatter stringFromDate:motionActivity.startDate];
-////            NSLog(@"startDate = %@", startDateString);
-////            
-////            // stationary
-////            NSLog(@"motionActivity.stationary = %@", motionActivity.stationary?@"YES":@"NO");
-////            
-////            // walking
-////            NSLog(@"motionActivity.walking = %@", motionActivity.walking?@"YES":@"NO");
-////            
-////            // running ．
-////            NSLog(@"motionActivity.running = %@", motionActivity.running?@"YES":@"NO");
-////            
-////            // automotive ．
-////            NSLog(@"motionActivity.automobile = %@", motionActivity.automotive?@"YES":@"NO");
-////            
-////            // unknown
-////            NSLog(@"motionActivity.unknown = %@", motionActivity.unknown?@"YES":@"NO");
-////            
-////            // confidence
-////            NSString *confidenceString = @"";
-////            switch (motionActivity.confidence) {
-////                case CMMotionActivityConfidenceLow:
-////                    confidenceString = @"CMMotionActivityConfidenceLow";
-////                    break;
-////                case CMMotionActivityConfidenceMedium:
-////                    confidenceString = @"CMMotionActivityConfidenceMedium";
-////                    break;
-////                case CMMotionActivityConfidenceHigh:
-////                    confidenceString = @"CMMotionActivityConfidenceHigh";
-////                    break;
-////                default:
-////                    confidenceString = @"???";
-////                    break;
-////            }
-////            NSLog(@"confidence = %@", confidenceString);
-//            
-//        }
-//    
-//     
-//        
-//    }];
-
+ 
 }
 
 
 
-//find the beginning of the day
--(NSDate *)beginningOfDay
-{
-
-    //find the beginning of the day
-    //nsdate always returns GMT
-    NSDate *now = [NSDate date];
-//    NSLog(@"now date: %@",now);
-    
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
-    [components setHour:0];
-    [components setMinute:0];
-    [components setSecond:0];
-    
-    
-    //NSLog(@"Local Time Zone %@",[[NSTimeZone localTimeZone] name]);
-    
-//     NSLog(@"Calendar date: %@",[cal dateFromComponents:components]);
-    
-    //convert GMT to my local time
-//    NSDate* sourceDate = [cal dateFromComponents:components];
-//    
-//    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-//    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
-//    
-//    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-//    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
-//    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
-//    
-//    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
-    
-    
-//    NSLog(@"Converted date: %@",myDate);
-//    NSLog(@"Source date: %@",myDate);
-   
-    return [cal dateFromComponents:components];
-    //return myDate;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-//-(void)savePoints
-//{
-//    
-//    //test points value here
-//    //will need points
-//    NSNumber *newPoints = [self calculatePoints:108];
-//    
-//    
-//    // Save points to ativity class
-//    
-//    PFObject *activity = [PFObject objectWithClassName:kActivityClassKey];
-//    [activity setObject:[PFUser currentUser] forKey:kActivityUserKey];
-//    [activity setObject:newPoints forKey:kActivityKey];
-//    
-//    // Activity is public, but may only be modified by the user
-//    PFACL *activityACL = [PFACL ACLWithUser:[PFUser currentUser]];
-//    [activityACL setPublicReadAccess:YES];
-//    activity.ACL = activityACL;
-//    
-//    
-//    [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (succeeded) {
-//            //  NSLog(@"Points uploaded");
-//            [[Cache sharedCache] setAttributesForActivity:activity likers:[NSArray array] commenters:[NSArray array] likedByCurrentUser:NO];
-//            
-//        }
-//        
-//        else {
-//            NSLog(@"Points failed to save: %@", error);
-//        }
-//        
-//    }];
-//    
-//    //increment the player's points
-//    PFObject *playerPoints = [PFUser currentUser];
-//    
-//    //increment the player's TOTAL lifetime points
-//    [playerPoints incrementKey:kPlayerPoints byAmount:newPoints];
-//    
-//    //increment the player's today's points
-//    [playerPoints incrementKey:kPlayerPointsToday byAmount:newPoints];
-//    
-//    [playerPoints saveInBackground];
-//    
-//    
-//    //increment team's points by
-//    
-//    //Query Team Class
-//    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
-//    
-//    //Query Teamates Class
-//    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
-//    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//    
-//    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
-//    
-//    
-//    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
-//    
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        
-//        
-//        
-//        if (!error) {
-//            // The find succeeded.
-//            NSLog(@"Successfully retrieved %lu objects", (unsigned long)objects.count);
-//            for (PFObject *object in objects)
-//                
-//            {
-//                NSLog(@"%@", object.objectId);
-//                
-//                
-//                if (!error) {
-//                    
-//                    //increment the team's TOTAL points
-//                    [object incrementKey:kScore byAmount:newPoints];
-//                    
-//                    //increment the team's points for today
-//                    [object incrementKey:kScoreToday byAmount:newPoints];
-//                    
-//                    [object saveInBackground];
-//                }
-//                else
-//                {
-//                    NSLog(@"error in inner query");
-//                }
-//            }
-//            
-//        }
-//        else
-//        {
-//            NSLog(@"error");
-//        }
-//        
-//        
-//        
-//        
-//    }];
-//}
 
 
 
-//subclass these methods to eliminate redundancy...
-
-
--(NSNumber*)calculatePoints:(float)steps
-{
-    
-    //alogrithm for generating points from steps: yourPoints = ((0.85^( ln(steps) /ln (2)))/time)*steps*constantValue
-    //Converting float to NSNumber
-    NSNumber * points = [NSNumber numberWithFloat: ceil((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50)];//rounded up to the largest following integer using ceiling function
-    
-    
-    return points;
-}
-
--(NSNumber*)calculateLevel:(float)points
-{
-    
-    //scale = 1
-    //hardcoded for now - will need to send this number down from the server
-    //had to add 1.0 to increment the level number so that the level is never 0
-    //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
-    NSNumber * level = [NSNumber numberWithFloat: floor((pow((points/1000), (1/1)))+1.0)];
-    
-       return level;
-}
-
--(NSNumber*)calculatePointsToReachNextLevel:(float)level
-{
-    
-    //scale = 1
-    //hardcoded for now - will need to send this number down from the server
-    //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
-    NSNumber * points = [NSNumber numberWithFloat: floor((pow(level, 1)*1000))+1];
-    
-    return points;
-}
-
--(NSNumber*)calculatePointsToReachCurrentLevel:(float)level
-{
-    
-    //scale = 1
-    //hardcoded for now - will need to send this number down from the server
-    //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
-    NSNumber * points = [NSNumber numberWithFloat: floor((pow(level-1, 1)*1000))+1];
-    
-    return points;
-}
-
-
+#pragma mark 7 Day points & steps
 
 - (IBAction)segmentValueChanged:(UISegmentedControl *)sender {
     switch (sender.selectedSegmentIndex) {
@@ -776,4 +436,13 @@
     }
     
 }
+
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 @end

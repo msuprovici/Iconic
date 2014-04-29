@@ -56,5 +56,20 @@
 
 - (void) retrieveFromParse;
 
+-(NSNumber*)calculatePoints:(float)steps;
+
+-(NSNumber*)calculateLevel:(float)points;
+
+-(NSNumber*)calculatePointsToReachNextLevel:(float)level;
+
+-(NSDate *)beginningOfDay;
+
+-(void)calculateDaysLeftinTheWeek;
+
+-(NSNumber*)calculatePointsToReachCurrentLevel:(float)level;
+
+
+
+
 
 @end

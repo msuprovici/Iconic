@@ -35,7 +35,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *playerName;
 
-@property (strong, nonatomic) IBOutlet PFImageView *playerPhoto;
+
 
 
 //Team Bar Chart
@@ -58,9 +58,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *xChartLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *yChartLabel;
-
-@property (strong, nonatomic) IBOutlet PNLineChart *teamMatchChart;
 
 @property (strong, nonatomic) IBOutlet UIButton *scrollTeamsRight;
 
@@ -74,12 +71,9 @@
 
 
 
-//array
-@property (strong, nonatomic) NSArray * myMatchups;
-//methods
 
--(void)incrementPlayerPoints;
--(void)incrementMyTeamsPoints:(NSNumber*)delta;
+
+//methods
 -(void)refreshHomeView;
 -(void)updateTeamChart:(int)index;
 
