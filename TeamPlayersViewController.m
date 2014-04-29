@@ -96,6 +96,9 @@
     [self joinTeamButtonState];
     [self.tableView reloadData];
     
+    
+  
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -452,13 +455,26 @@
                 
                 NSUserDefaults *Teams = [NSUserDefaults standardUserDefaults];
                 NSArray *homeTeamNames = [Teams objectForKey:kArrayOfHomeTeamScores];
-                
-                
-                
                 NSLog(@"homeTeamNames.count: %lu", (unsigned long)homeTeamNames.count);
                 
 //                SimpleHomeViewController * simpleHomeViewController = [[SimpleHomeViewController alloc] init];
 //                [simpleHomeViewController refreshHomeView];
+                
+                //subscribe to team's push notification chanel
+                
+                //use team's name as a chanel to push to
+                NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
+                
+                [PFPush subscribeToChannelInBackground:pushChanelName block:^(BOOL succeeded, NSError *error) {
+                    
+                    if (!error) {
+//                        NSLog(@"subscribed to push chanel: %@", [self.team objectForKey:kTeams]);
+                    } else {
+//                        NSLog(@"Failed to subscribe to push chanel, Error: %@", error);
+                    }
+                    
+                }];
+                
                
             }
         }];
@@ -518,6 +534,22 @@
 //                        
 //                        SimpleHomeViewController * simpleHomeViewController = [[SimpleHomeViewController alloc] init];
 //                        [simpleHomeViewController refreshHomeView];
+                        
+                        
+                        //subscribe to team's push notification chanel
+                        
+                        //create a chanel to push
+                        NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
+                        
+                        [PFPush unsubscribeFromChannelInBackground: pushChanelName block:^(BOOL succeeded, NSError *error) {
+                            
+                            if (!error) {
+//                                NSLog(@"unsubscribed to push chanel: %@", [self.team objectForKey:kTeams]);
+                            } else {
+//                                NSLog(@"Failed to unsubscribe to push chanel, Error: %@", error);
+                            }
+                            
+                        }];
 
                     }
                         else
