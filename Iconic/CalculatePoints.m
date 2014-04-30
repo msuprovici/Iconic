@@ -352,6 +352,10 @@
         //to prevent null values check if # of steps is 0
         if(numberOfSteps == 0)
         {
+            
+            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentPointsBeforeSaving];
+            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentStepsBeforeSaving];
+            
             [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
             
             [myRetrievedPoints synchronize];
@@ -539,6 +543,128 @@
         }
         
     }];
+    
+}
+
+//7 days steps
+
+- (NSOperationQueue *)operationQueue {
+    if (_operationQueue == nil) {
+        _operationQueue = [NSOperationQueue new];
+    }
+    return _operationQueue;
+}
+
+-(void)findPastWeekleySteps {
+    // Get now date
+    NSDate *now = [NSDate date];
+    
+    // Array to hold step values
+    _stepsArray = [[NSMutableArray alloc] initWithCapacity:7];
+    
+    // Check if step counting is avaliable
+    if ([CMStepCounter isStepCountingAvailable]) {
+        // Init step counter
+        self.cmStepCounter = [[CMStepCounter alloc] init];
+        
+        
+        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+        NSDate *beginningOfDay = [calculatePointsClass beginningOfDay];
+        
+        // Tweak this value as you need (you can also parametrize it)
+        NSInteger daysBack = 6;
+        for (NSInteger day = daysBack; day > 0; day--) {
+            
+            
+            //            NSDate *fromDate = [now dateByAddingTimeInterval: -day * 24 * 60 * 60];
+            
+            //             NSDate *toDate = now;
+            
+            NSDate *fromDate = [beginningOfDay dateByAddingTimeInterval: -day * 24 * 60 * 60];
+            
+            NSDate *toDate = [fromDate dateByAddingTimeInterval:24 * 60 * 60];
+            
+            //find the last 6 days worth of steps
+            [self.cmStepCounter queryStepCountStartingFrom:fromDate to:toDate     toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error) {
+                if (!error) {
+                    //                    NSLog(@"queryStepCount returned %ld steps", (long)numberOfSteps);
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        [_stepsArray addObject:@(numberOfSteps)];
+                        
+                        
+                        if ( day == 1) { // Just reached the last element, we can now do what we want with the data
+                            //                            NSLog(@"_stepsArray filled with data: %@", _stepsArray);
+                            
+                            
+                            //find the points and steps for today
+                            [self.cmStepCounter queryStepCountStartingFrom:toDate to:now     toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error) {
+                                
+                                if(!error)
+                                {
+                                    [_stepsArray addObject:@(numberOfSteps)];
+                                    
+                                    //add the past 7 days worth of steps to NSuserdefualuts
+                                    
+                                    NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
+                                    [myStats setObject:_stepsArray forKey:kMyStepsWeekArray];
+                                    
+                                    
+                                    //convert the past 7 days worth of steps to points
+                                    NSMutableArray * myWeekleyPoints = [[NSMutableArray alloc]initWithCapacity:7];
+                                    
+                                    for (int i = 0; i < _stepsArray.count; i++)
+                                    {
+                                        float daysSteps = [[_stepsArray objectAtIndex:i]floatValue] ;
+                                        
+                                        CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+                                        [myWeekleyPoints addObject:[calculatePointsClass calculatePoints:daysSteps]];
+                                        
+                                    }
+                                    
+                                    NSLog(@"myWeekleyPoints: %@", myWeekleyPoints);
+                                    
+                                    //save to NSUserDefaults
+                                    [myStats setObject:myWeekleyPoints forKey:kMyPointsWeekArray];
+                                    
+                                    [[NSUserDefaults standardUserDefaults] synchronize];
+                                    
+                                    
+                                    //save the past 7 days worth of steps & points to Parse
+                                    PFObject *playerStats = [PFUser currentUser];
+                                    [playerStats setObject:_stepsArray forKey:kPlayerStepsWeek];
+                                    [playerStats setObject:myWeekleyPoints forKey:kPlayerPointsWeek];
+                                    [playerStats saveEventually];
+                                    
+                                }
+                                else {
+                                    NSLog(@"Today's step count Error occured: %@", error.localizedDescription);
+                                }
+                                
+                            }];
+                            
+                            
+                            
+                        }
+                        
+                    }];
+                    
+                    
+                } else {
+                    NSLog(@"Error occured: %@", error.localizedDescription);
+                }
+            }];
+            
+            
+            
+            
+            
+            
+        }
+    } else {
+        NSLog(@"device not supported");
+    }
+    
+    
     
 }
 
