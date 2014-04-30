@@ -30,6 +30,7 @@
 @property  BOOL didInitialize;
 @property  BOOL pointsOrSteps;
 @property PNBarChart * barChart;
+@property PNCircleChart * circleChart;
 @property NSMutableArray *myWeekleyPointsArray;
 @property NSMutableArray *myWeekleyStepsArray;
 @property NSNumber *maxValueInArray;
@@ -39,8 +40,7 @@
 @implementation MyStatsViewController
 
 
-@synthesize xpProgressView = _xpProgressView;
-@synthesize xpProgressDial = _xpProgressDial;
+
 @synthesize timer = _timer;
 @synthesize myProgress = _myProgress;
 //@synthesize simpleHomeViewController = _simpleHomeViewController;
@@ -130,6 +130,25 @@
                 
                 
                 float myProgressPercent = myLevelProgress/myTotalPointsToNextLevel;
+                
+
+                self.xpProgressDial.hidden = false;
+                
+                self.circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(0, 0, 55, 55) andTotal:[NSNumber numberWithInt:myTotalPointsToNextLevel] andCurrent:[NSNumber numberWithInt:myLevelProgress]];
+                
+                
+                
+                self.circleChart.backgroundColor = [UIColor clearColor];
+                self.circleChart.labelColor = [UIColor clearColor];
+                
+                [self.circleChart setStrokeColor:PNWeiboColor];
+                [self.circleChart setLineWidth:[NSNumber numberWithInt:7]];
+                [self.circleChart strokeChart];
+                
+                [self.xpProgressDial addSubview:self.circleChart];
+                
+                
+                
                 self.myProgress = myProgressPercent;
 //                NSLog(@"myRatio: %f", myProgressPercent);
                
@@ -153,7 +172,7 @@
                 [self.xpValue  countFrom:[myPreviousLevel intValue] to:[myLevel intValue] withDuration:2];
                 
                 
-        [self progressDialChange];
+    
                 
                 
 //        NSInteger numberOfSteps = [[NSUserDefaults standardUserDefaults] integerForKey:STEPS_KEY];
@@ -175,11 +194,11 @@
                 
             //self.timeActiveLabel.hidden = YES;
                 
-            self.stepsProgressDial.hidden = true;
+           
 
-            
-            self.xpProgressDial.trackTintColor = PNLightGrey;
-            self.xpProgressDial.progressTintColor = PNWeiboColor;
+//                self.xpProgressDial.hidden = true;
+                
+          
             
                 
 //            [self startAnimation];
@@ -212,9 +231,8 @@
                 self.stepsValue.hidden = true;
             
             self.xpValue.hidden = true;
-            self.stepsProgressDial.hidden = true;
             self.xpProgressDial.hidden = true;
-             
+                
                 
              //Bar chart
             self.segmentedControl.hidden = NO;
@@ -279,8 +297,7 @@
             
         }
         
-        self.xpProgressDial.thicknessRatio = .25f;
-        self.xpProgressDial.roundedCorners = NO;
+       
 
             
         
@@ -290,18 +307,18 @@
 
 
 //- (void)progressDialChange:(float)ratio
-- (void)progressDialChange
-{
-    
-    NSArray *progressViews = @[self.xpProgressDial];
-    for (DACircularProgressView *progressView in progressViews) {
-        
-        [progressView setProgress:self.myProgress animated:YES];
-        
-        
-        
-    }
-}
+//- (void)progressDialChange
+//{
+//    
+//    NSArray *progressViews = @[self.xpProgressDial];
+//    for (DACircularProgressView *progressView in progressViews) {
+//        
+//        [progressView setProgress:self.myProgress animated:YES];
+//        
+//        
+//        
+//    }
+//}
 
 
 //-(void)startAnimation

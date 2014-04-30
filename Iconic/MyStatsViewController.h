@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DACircularProgressView.h"
+//#import "DACircularProgressView.h"
 #import <Parse/Parse.h>
 #import "PNChart.h"
+
 #import <CoreMotion/CoreMotion.h>
 #import "UICountingLabel.h"
 
@@ -66,11 +67,16 @@
 @property (nonatomic, strong) CMMotionActivityManager *myActivityData;
 
 //progres dial
-@property (strong, nonatomic) DACircularProgressView *xpProgressView;
-@property (strong, nonatomic) IBOutlet DACircularProgressView *xpProgressDial;
 
-@property (strong, nonatomic) DACircularProgressView *stepsProgressView;
-@property (strong, nonatomic) IBOutlet DACircularProgressView *stepsProgressDial;
+@property (strong, nonatomic) IBOutlet PNCircleChart *xpProgressDial;
+
+
+
+//@property (strong, nonatomic) DACircularProgressView *xpProgressView;
+//
+//
+//@property (strong, nonatomic) DACircularProgressView *stepsProgressView;
+//@property (strong, nonatomic) IBOutlet DACircularProgressView *stepsProgressDial;
 - (id)initWithPointsLabelNumber:(NSUInteger)pointslabel;
 
 //bar chart
