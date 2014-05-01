@@ -377,7 +377,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
                                     [self.autoFollowTimer invalidate];
                                 }
                                 
-                                self.autoFollowTimer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(autoFollowTimerFired:) userInfo:nil repeats:NO];
+//                                self.autoFollowTimer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(autoFollowTimerFired:) userInfo:nil repeats:NO];
                             }];
                         }];
                     }];
