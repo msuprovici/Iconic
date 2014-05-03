@@ -16,9 +16,10 @@
 
 //-(void)initWithReceivedTeam:(PFObject*)aReceivedTeam;
 
+-(void)initWithReceivedTeam:(int)matchupsIndex;
 @property (nonatomic, assign) int matchupsIndex;
 
--(void)initWithReceivedTeam:(int)matchupsIndex;
+
 
 @property (nonatomic, assign) NSString *homeTeam;
 @property (nonatomic, assign) NSString *awayTeam;
@@ -73,6 +74,9 @@
 
 //My Teamates Cell
 
+//
+
+@property (nonatomic,retain) NSArray * teamMatchups;
 
 
 @end

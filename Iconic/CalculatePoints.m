@@ -12,12 +12,126 @@
 #import <CoreMotion/CoreMotion.h>
 #include <math.h>
 #import "SimpleHomeViewController.h"
+#import "VSTableViewController.h"
 
 
 @implementation CalculatePoints
 
 
 //we use this class to calculate fetched points
+
+//
+//@synthesize teamMatchups;
+//
+//
+//+ (id)sharedManager {
+//    static CalculatePoints *sharedMyManager = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        sharedMyManager = [[self alloc] init];
+//
+//        
+//    });
+//    return sharedMyManager;
+//}
+//
+//- (id)init {
+//    if (self = [super init]) {
+//        
+//        
+//        
+//        
+//        //Query Team Class
+//        PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+//        
+//        //Query Team Class to see if the player's current team is the HOME team
+//        PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+//        [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+//        
+//        
+//        
+//        PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+//        [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+//        
+//        
+//        PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
+//        
+//        [queryTeamMatchupsClass includeKey:kHomeTeam];
+//        [queryTeamMatchupsClass includeKey:kAwayTeam];
+//        
+//        
+//        queryAwayTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//        queryHomeTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//        
+//        [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//            
+//            
+//            
+//            if(!error)
+//            {
+//                
+//                
+//                if(objects.count > 0)
+//                {
+//                    
+//                    for (int i = 0; i < objects.count; i++) {
+//                        
+//                        PFObject *myMatchupObject = [objects objectAtIndex:i];
+//                        
+//                        
+//                        NSString * round = [myMatchupObject objectForKey:kRound];
+//                        
+//                        
+//                        //the round is hardcoded for now, need to make this dynamic based on the torunatment's status
+//                        if ([round  isEqual: @"1"])
+//                        {
+//                            
+//                            
+////                            VSTableViewController * vsTableViewController = [[VSTableViewController alloc]init];
+////                            vsTableViewController.teamMatchups = objects;
+//                            teamMatchups = [[NSArray alloc] init];
+//                            teamMatchups = objects;
+//                            
+//                        }
+//                    }
+//                    
+//                }
+//                
+//            }
+//        }];
+//
+//    }
+//    return self;
+//}
+//
+//- (void)dealloc {
+//    // Should never be called, but just here for clarity really.
+//}
+//
+//static CalculatePoints *sharedSingleton;
+//
+//+ (void)initialize
+//{
+//    static BOOL initialized = NO;
+//    if(!initialized)
+//    {
+//        initialized = YES;
+//        sharedSingleton = [[CalculatePoints alloc] init];
+//        
+//        
+//    }
+//}
+//
+////+(CalculatePoints *)singleton {
+////    static dispatch_once_t pred;
+////
+////    static CalculatePoints *shared = nil;
+////    dispatch_once(&pred, ^{
+////        shared = [[CalculatePoints alloc] init];
+////        shared.teamMatchups = [[NSArray alloc]init];
+////    });
+////    return shared;
+////}
 
 
 #pragma mark Parse methods
@@ -133,8 +247,7 @@
             {
                 
                 for (int i = 0; i < objects.count; i++) {
-                    
-                    PFObject *myMatchupObject = [objects objectAtIndex:i];
+                                        PFObject *myMatchupObject = [objects objectAtIndex:i];
                     
                     
                     NSString * round = [myMatchupObject objectForKey:kRound];
@@ -149,18 +262,28 @@
                     self.awayTeamPointers = [[NSMutableArray alloc] init];
                     self.homeTeamPointers = [[NSMutableArray alloc] init];
                     
+                    
+                    self.arrayOfWeekleyHomeTeamScores = [[NSMutableArray alloc] init];
+                    self.arrayOfWeekleyAwayTeamScores = [[NSMutableArray alloc] init];
                     //self.myMatchups = [[NSMutableArray alloc] init];
                    
 
-                    
                     //the round is hardcoded for now, need to make this dynamic based on the torunatment's status
                     if ([round  isEqual: @"1"])
                     {
                         
+                        
+//                       VSTableViewController * vsTableViewController = [[VSTableViewController alloc]init];
+//                        vsTableViewController.teamMatchups = objects;
+//                        
+//                        self.teamMatchups = objects;
+//                        
+//                        NSLog(@"vsTableViewController.teamMatchups: %@", vsTableViewController.teamMatchups);
+                        
                         for (int i = 0; i < objects.count; i++) {
                             
                             PFObject *myMatchupObject = [objects objectAtIndex:i];
-//                            NSLog(@"objects count: %lu", (unsigned long)objects.count);
+                            NSLog(@"objects count: %lu", (unsigned long)objects.count);
                             
                             if (objects.count >= 1) {
 //                                NSLog(@"objects > 1: %lu", (unsigned long)objects.count);
@@ -169,9 +292,6 @@
                             {
 //                                NSLog(@"objects == 0");
                             }
-                            
-                            
-                            
                             
                             //add all objects to a array so that we can send the correct one to the next view controller
                             self.myMatchups = objects;
@@ -193,20 +313,33 @@
                             NSString * homeTeamName = [homeTeamPointer objectForKey:kTeams];
                             NSNumber * homeTeamTotalScore = [homeTeamPointer objectForKey:kScore];
                             
+                            
                             //add objects to array of teamScores(array) objects so that we don't have to download again
                             [self.arrayOfhomeTeamScores addObject:homeTeamTotalScore];
-                            
-                            
                             
                             //add objects to array of teamScores(array) objects so that we don't have to download again
                             [self.arrayOfhomeTeamNames addObject:homeTeamName];
                             
+                            //aray of arays of daily scores
+                            NSMutableArray * arrayOfWeekleyHomeScores = [homeTeamPointer objectForKey: kScoreWeek];
+//                            NSLog(@"initial arrayOfWeekleyScores in calculate points: %@", arrayOfWeekleyHomeScores);
                             
+                            
+                            NSNumber * todaysTotalScore = [homeTeamPointer objectForKey:kScoreToday];
+//                            NSLog(@"todaysTotalScore in calculate points: %@", todaysTotalScore);
+                           
+                            [arrayOfWeekleyHomeScores addObject:todaysTotalScore];
+//                            NSLog(@"after adding to arrayOfWeekleyScores in calculate points: %@", arrayOfWeekleyHomeScores);
+                            
+                            [self.arrayOfWeekleyHomeTeamScores addObject:arrayOfWeekleyHomeScores];
+                                NSLog(@"self.arrayOfWeekleyHomeTeamScores: %@", self.arrayOfWeekleyHomeTeamScores);
+                           
                             
                             //save to NSUserdefaults
                             [myRetrievedTeams setObject:self.arrayOfhomeTeamScores  forKey:kArrayOfHomeTeamScores];
                             [myRetrievedTeams setObject:self.arrayOfhomeTeamNames  forKey:kArrayOfHomeTeamNames];
-                            
+                            [myRetrievedTeams setObject:self.arrayOfWeekleyHomeTeamScores  forKey:@"ArrayOfWeekleyHomeTeamScores"];
+//                            NSLog(@"array of weekley arrays in calculate points: %@", self.arrayOfWeekleyHomeTeamScores);
                             
                             
                             //Away Team Scores
@@ -225,12 +358,27 @@
                             //add objects to array of teamScores(array) objects so that we don't have to download again
                             [self.arrayOfawayTeamNames addObject:awayTeamName];
                             
+                           
+                            NSMutableArray * arrayOfAwayWeekleyScores = [awayTeamPointer objectForKey: kScoreWeek];
+                            NSLog(@"initial arrayOfAwayWeekleyScores in calculate points: %@", arrayOfAwayWeekleyScores);
+                            
+                            
+                            NSNumber * todaysTotalAwayScore = [awayTeamPointer objectForKey:kScoreToday];
+                            NSLog(@"todaysTotalAwayScore in calculate points: %@", todaysTotalScore);
+                            
+                            [arrayOfAwayWeekleyScores addObject:todaysTotalAwayScore];
+                            NSLog(@"after adding to arrayOfAwayWeekleyScores in calculate points: %@", arrayOfAwayWeekleyScores);
+                            
+                            [self.arrayOfWeekleyAwayTeamScores addObject:arrayOfAwayWeekleyScores];
+                            NSLog(@"self.arrayOfWeekleyHomeTeamScores: %@", self.arrayOfWeekleyAwayTeamScores);
+
+                           
                             
                             
                             //save to NSUserdefaults
                             [myRetrievedTeams setObject:self.arrayOfawayTeamScores  forKey:kArrayOfAwayTeamScores];
                             [myRetrievedTeams setObject:self.arrayOfawayTeamNames  forKey:kArrayOfAwayTeamNames];
-                            
+                            [myRetrievedTeams setObject:self.arrayOfWeekleyAwayTeamScores  forKey:@"ArrayOfWeekleyAwayTeamScores"];
                             //logs
 //                             NSLog(@"awayTeamPointer: %@", awayTeamPointer);
 //                            NSLog(@"homeTeamPointer: %@", homeTeamPointer);
@@ -415,7 +563,12 @@
             [playerPoints saveInBackground];
             
             NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
+            
+            //save to NSuserdefaults
+            [myRetrievedPoints setInteger:[myLevel intValue]  forKey:@"myLevel"];
+            
             float myLevelValue = [myLevel floatValue];
+            [myRetrievedPoints synchronize];
             
             //get the total points necessary for next level
             
@@ -425,7 +578,7 @@
             
             
             int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - myNewTotalPoints;
-            //              NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
+//                          NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
             
             //calculate the # of points necessary to reach the next level
             NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
@@ -495,8 +648,8 @@
     PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
     
     //force the queries to be network only
-    query.cachePolicy = kPFCachePolicyNetworkOnly;
-    query2.cachePolicy = kPFCachePolicyNetworkOnly;
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
     
     [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
@@ -510,31 +663,36 @@
         if (!error) {
             // The find succeeded.
             //            NSLog(@"Successfully retrieved my %lu teams", (unsigned long)objects.count);
-            for (PFObject *object in objects)
-                
-            {
+//            for (PFObject *object in objects)
+//                
+//            {
                 //NSLog(@"%@", object.objectId);
                 
                 
-                
+               for( int i = 0; i < objects.count; i++)
+               {
+                   PFObject *myTeams = [objects objectAtIndex:i];
                     //increment the team's TOTAL points
-                    [object incrementKey:kScore byAmount:delta];
+                    [myTeams incrementKey:kScore byAmount:delta];
                     
                     //increment the team's points for today
-                    [object incrementKey:kScoreToday byAmount:delta];
+                    [myTeams incrementKey:kScoreToday byAmount:delta];
+                NSLog(@"delta %@", delta);
                     //                    [object save];
-                    [object saveInBackground];
+//                    [object saveInBackground];
                     //                    [object saveEventually];
                 
-                    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    [myTeams saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         if (succeeded) {
-//                            NSLog(@"Team stats succesfully saved");
+                            NSLog(@"Team stats succesfully saved");
                         }
                         else{
 //                            NSLog(@"Team stats failed to save");
                         }
                     }];
-            }
+                   
+               }
+//            }
             
         }
         else
@@ -595,6 +753,32 @@
                         if ( day == 1) { // Just reached the last element, we can now do what we want with the data
                             //                            NSLog(@"_stepsArray filled with data: %@", _stepsArray);
                             
+                            //convert the past 7 days worth of steps to points
+                            NSMutableArray * myWeekleyPoints = [[NSMutableArray alloc]initWithCapacity:7];
+                            
+                            for (int i = 0; i < _stepsArray.count; i++)
+                            {
+                                float daysSteps = [[_stepsArray objectAtIndex:i]floatValue] ;
+                                
+                                CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+//                                if (numberOfSteps == 0)
+                                
+                                //prevent null values
+                                //if 0 steps, insert 0 for the object at index
+                                
+                                  if([_stepsArray objectAtIndex:i] == 0)
+                                {
+                                    
+                                    [myWeekleyPoints insertObject:[NSNumber numberWithInt:0] atIndex:i];
+                                }
+                                else
+                                {
+                                    [myWeekleyPoints insertObject:[calculatePointsClass calculatePoints:daysSteps] atIndex:i];
+                                    
+                                    //[myWeekleyPoints addObject:[calculatePointsClass calculatePoints:daysSteps]];
+                                }
+                            }
+
                             
                             //find the points and steps for today
                             [self.cmStepCounter queryStepCountStartingFrom:toDate to:now     toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error) {
@@ -609,19 +793,25 @@
                                     [myStats setObject:_stepsArray forKey:kMyStepsWeekArray];
                                     
                                     
-                                    //convert the past 7 days worth of steps to points
-                                    NSMutableArray * myWeekleyPoints = [[NSMutableArray alloc]initWithCapacity:7];
+//                                    //convert the past 7 days worth of steps to points
+//                                    NSMutableArray * myWeekleyPoints = [[NSMutableArray alloc]initWithCapacity:7];
+//                                    
+//                                    for (int i = 0; i < _stepsArray.count; i++)
+//                                    {
+//                                        float daysSteps = [[_stepsArray objectAtIndex:i]floatValue] ;
+//                                        
+//                                        CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
                                     
-                                    for (int i = 0; i < _stepsArray.count; i++)
-                                    {
-                                        float daysSteps = [[_stepsArray objectAtIndex:i]floatValue] ;
-                                        
-                                        CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-                                        [myWeekleyPoints addObject:[calculatePointsClass calculatePoints:daysSteps]];
-                                        
+                                    if (numberOfSteps == 0) {
+                                        [myWeekleyPoints addObject:[NSNumber numberWithInt:0]];
                                     }
+                                    else
+                                    {
+                                        [myWeekleyPoints addObject:[calculatePointsClass calculatePoints:numberOfSteps]];
+                                    }
+//                                    }
                                     
-                                    NSLog(@"myWeekleyPoints: %@", myWeekleyPoints);
+//                                    NSLog(@"myWeekleyPoints: %@", myWeekleyPoints);
                                     
                                     //save to NSUserDefaults
                                     [myStats setObject:myWeekleyPoints forKey:kMyPointsWeekArray];

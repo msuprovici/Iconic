@@ -100,7 +100,8 @@ static NSString *kImageKey = @"imageKey";
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    
+        [super viewDidLoad];
     
     //schedule local notification to show daily points & steps summary
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
@@ -705,7 +706,7 @@ static NSString *kImageKey = @"imageKey";
         
         transferViewController.homeTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:self.matchupsIndex]];
         transferViewController.awayTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:self.matchupsIndex]];
-        
+        transferViewController.matchupsIndex = self.matchupsIndex;
         
     }
 }

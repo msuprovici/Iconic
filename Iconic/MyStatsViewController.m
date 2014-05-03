@@ -93,7 +93,7 @@
                 NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
                 
                 //find my curent level
-                int myLifetimePoints = (int)[myRetrievedPoints integerForKey:kMyPointsTotal];
+                int myLifetimePoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsTotal];
 //                NSLog(@"myLifetimePoints: %d", myLifetimePoints);
 //                NSLog(@"myLevel: %@", myLevel);
                 
@@ -123,7 +123,7 @@
                 
                 
                 float myLevelProgress = (myLifetimePoints - myTotalPointsForCurrentLevelValue);
-//                NSLog(@"myLevelProgress: %f", myLevelProgress);
+//               NSLog(@"myLevelProgress: %f", myLevelProgress);
                 
                 float myTotalPointsToNextLevel = (myTotalPointsForNextLevelValue - myTotalPointsForCurrentLevelValue);
 //                NSLog(@"myTotalPointsToNextLevel: %f", myTotalPointsToNextLevel);

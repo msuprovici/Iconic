@@ -24,6 +24,8 @@
 //arrays
 @property (strong, nonatomic) NSMutableArray *myTeamData;
 @property (strong, nonatomic) NSMutableArray * arrayOfhomeTeamScores;
+@property (strong, nonatomic) NSMutableArray * arrayOfWeekleyHomeTeamScores;//array of arrays
+@property (strong, nonatomic) NSMutableArray * arrayOfWeekleyAwayTeamScores;//array of arrays
 @property (strong, nonatomic) NSMutableArray * arrayOfawayTeamScores;
 @property (strong, nonatomic) NSMutableArray * arrayOfhomeTeamNames;
 @property (strong, nonatomic) NSMutableArray * arrayOfawayTeamNames;
@@ -40,7 +42,10 @@
 
 
 
+@property (nonatomic, retain) NSArray *teamMatchups;
 
+
++ (id)sharedManager;
 
 //convert steps to points and store here
 @property NSNumber* myPoints;
