@@ -45,6 +45,10 @@ NSString *const kArrayOfHomeTeamScores = @"arrayOfHomeTeamScores";
 NSString *const kArrayOfAwayTeamScores = @"arrayOfAwayTeamScores";
 NSString *const kArrayOfAwayTeamNames = @"arrayOfAwayTeamNames";
 NSString *const kArrayOfHomeTeamNames = @"arrayOfHomeTeamNames";
+NSString *const kArrayOfTodayHomeTeamScores = @"ArrayOfTodayHomeTeamScores";
+NSString *const kArrayOfTodayAwayTeamScores = @"ArrayOfTodayAwayTeamScores";
+NSString *const kArrayOfWeekleyHomeTeamScores = @"ArrayOfWeekleyHomeTeamScores";
+NSString *const kArrayOfWeekleyAwayTeamScores = @"ArrayOfWeekleyAwayTeamScores";
 
 //nuber of teams
 NSString *const kNumberOfTeams = @"numberOfTeams";

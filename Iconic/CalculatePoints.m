@@ -265,6 +265,11 @@
                     
                     self.arrayOfWeekleyHomeTeamScores = [[NSMutableArray alloc] init];
                     self.arrayOfWeekleyAwayTeamScores = [[NSMutableArray alloc] init];
+                    
+                    
+                    self.arrayOfTodayHomeTeamScores = [[NSMutableArray alloc] init];
+                    self.arrayOfTodayAwayTeamScores = [[NSMutableArray alloc] init];
+                    
                     //self.myMatchups = [[NSMutableArray alloc] init];
                    
 
@@ -325,25 +330,30 @@
 //                            NSLog(@"initial arrayOfWeekleyScores in calculate points: %@", arrayOfWeekleyHomeScores);
                             
                             
+                            
+                            //add all the home team scores for TODAY to an array
                             NSNumber * todaysTotalScore = [homeTeamPointer objectForKey:kScoreToday];
 //                            NSLog(@"todaysTotalScore in calculate points: %@", todaysTotalScore);
-                           
-                            [arrayOfWeekleyHomeScores addObject:todaysTotalScore];
-//                            NSLog(@"after adding to arrayOfWeekleyScores in calculate points: %@", arrayOfWeekleyHomeScores);
+                            [self.arrayOfTodayHomeTeamScores addObject:todaysTotalScore];
                             
+                            
+                            
+                            
+                            //array of arrays: add the arrays of weekeley home scores to an array
                             [self.arrayOfWeekleyHomeTeamScores addObject:arrayOfWeekleyHomeScores];
-                                NSLog(@"self.arrayOfWeekleyHomeTeamScores: %@", self.arrayOfWeekleyHomeTeamScores);
+//                                NSLog(@"arrayOfTodayHomeTeamScores CP %@", self.arrayOfTodayHomeTeamScores);
                            
                             
                             //save to NSUserdefaults
+                            [myRetrievedTeams setObject:self.arrayOfTodayHomeTeamScores  forKey:kArrayOfTodayHomeTeamScores];
                             [myRetrievedTeams setObject:self.arrayOfhomeTeamScores  forKey:kArrayOfHomeTeamScores];
                             [myRetrievedTeams setObject:self.arrayOfhomeTeamNames  forKey:kArrayOfHomeTeamNames];
-                            [myRetrievedTeams setObject:self.arrayOfWeekleyHomeTeamScores  forKey:@"ArrayOfWeekleyHomeTeamScores"];
+                            [myRetrievedTeams setObject:self.arrayOfWeekleyHomeTeamScores  forKey:kArrayOfWeekleyHomeTeamScores];
 //                            NSLog(@"array of weekley arrays in calculate points: %@", self.arrayOfWeekleyHomeTeamScores);
                             
                             
                             //Away Team Scores
-                            //get awayTeamScores(array) objects
+                            //get awayTeamScores(array)
                             
                             NSString * awayTeamName = [awayTeamPointer objectForKey:kTeams];
                             NSNumber * awayTeamTotalScore = [awayTeamPointer objectForKey:kScore];
@@ -354,31 +364,32 @@
                             [self.arrayOfawayTeamScores addObject:awayTeamTotalScore];
                             
                             
-                            
                             //add objects to array of teamScores(array) objects so that we don't have to download again
                             [self.arrayOfawayTeamNames addObject:awayTeamName];
                             
-                           
+                           //array of everyday scores for the week
                             NSMutableArray * arrayOfAwayWeekleyScores = [awayTeamPointer objectForKey: kScoreWeek];
-                            NSLog(@"initial arrayOfAwayWeekleyScores in calculate points: %@", arrayOfAwayWeekleyScores);
+//                            NSLog(@"initial arrayOfAwayWeekleyScores in calculate points: %@", arrayOfAwayWeekleyScores);
                             
-                            
+                            //add all the away team scores for TODAY to an array
                             NSNumber * todaysTotalAwayScore = [awayTeamPointer objectForKey:kScoreToday];
-                            NSLog(@"todaysTotalAwayScore in calculate points: %@", todaysTotalScore);
                             
-                            [arrayOfAwayWeekleyScores addObject:todaysTotalAwayScore];
-                            NSLog(@"after adding to arrayOfAwayWeekleyScores in calculate points: %@", arrayOfAwayWeekleyScores);
+                            [self.arrayOfTodayAwayTeamScores addObject:todaysTotalAwayScore];
+//                             NSLog(@"arrayOfTodayAwayTeamScores CP %@", self.arrayOfTodayAwayTeamScores);
                             
+
+                            //create an array of arrays of weekley teams scores
                             [self.arrayOfWeekleyAwayTeamScores addObject:arrayOfAwayWeekleyScores];
-                            NSLog(@"self.arrayOfWeekleyHomeTeamScores: %@", self.arrayOfWeekleyAwayTeamScores);
+//                            NSLog(@"self.arrayOfWeekleyHomeTeamScores: %@", self.arrayOfWeekleyAwayTeamScores);
 
                            
                             
                             
                             //save to NSUserdefaults
+                            [myRetrievedTeams setObject:self.arrayOfTodayAwayTeamScores  forKey:kArrayOfTodayAwayTeamScores];
                             [myRetrievedTeams setObject:self.arrayOfawayTeamScores  forKey:kArrayOfAwayTeamScores];
                             [myRetrievedTeams setObject:self.arrayOfawayTeamNames  forKey:kArrayOfAwayTeamNames];
-                            [myRetrievedTeams setObject:self.arrayOfWeekleyAwayTeamScores  forKey:@"ArrayOfWeekleyAwayTeamScores"];
+                            [myRetrievedTeams setObject:self.arrayOfWeekleyAwayTeamScores  forKey:kArrayOfWeekleyAwayTeamScores];
                             //logs
 //                             NSLog(@"awayTeamPointer: %@", awayTeamPointer);
 //                            NSLog(@"homeTeamPointer: %@", homeTeamPointer);
@@ -1114,6 +1125,9 @@
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
     
+    //sechedule for tomorrow
+    components.day = 1;
+    
     //set time for 10am
     [components setHour:10];
     [components setMinute:0];
@@ -1136,15 +1150,18 @@
     
     //set time
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.fireDate = [cal dateFromComponents:components];
+    localNotification.fireDate = [cal dateByAddingComponents:components toDate:now options:0];
+//    localNotification.fireDate = [cal dateFromComponents:components];
     
     //repeate daily
-    localNotification.repeatInterval = NSDayCalendarUnit;
+    localNotification.repeatInterval = NSCalendarUnitDay;
     localNotification.soundName = UILocalNotificationDefaultSoundName;
     
     //use yesterday's points and steps
     localNotification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"You scored %@ points on %@ steps yesterday.", nil),
                                    yesterdayPoints, yesterdaySteps];
+    
+    
     
     //used in UIAlert button or 'slide to unlock...' slider in place of unlock
     localNotification.alertAction = @"Summary";

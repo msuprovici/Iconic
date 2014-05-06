@@ -236,9 +236,13 @@
     NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
     NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
     
-    NSArray *arrayOfWeekleyTeamScoresArrays = [RetrievedTeams objectForKey:@"ArrayOfWeekleyHomeTeamScores"];
-    NSArray *arrayOfWeekleyAwayTeamScoresArrays = [RetrievedTeams objectForKey:@"ArrayOfWeekleyAwayTeamScores"];
+    NSArray *arrayOfWeekleyTeamScoresArrays = [RetrievedTeams objectForKey:kArrayOfWeekleyHomeTeamScores];
+    NSArray *arrayOfWeekleyAwayTeamScoresArrays = [RetrievedTeams objectForKey:kArrayOfWeekleyAwayTeamScores];
     
+    NSArray *arrayOfTodayHomeTeamScores = [RetrievedTeams objectForKey:kArrayOfTodayHomeTeamScores];
+//    NSLog(@"arrayOfTodayHomeTeamScores VS: %@", arrayOfTodayHomeTeamScores);
+    NSArray *arrayOfTodayAwayTeamScores = [RetrievedTeams objectForKey:kArrayOfTodayAwayTeamScores];
+//     NSLog(@"arrayOfTodayAwayTeamScores VS: %@", arrayOfTodayAwayTeamScores);
      NSLog(@"arrayOfWeekleyTeamScoresArrays: %@", arrayOfWeekleyTeamScoresArrays);
     
 //    self.receivedTeam = [self.teamMatchups objectAtIndex:self.matchupsIndex];
@@ -278,23 +282,25 @@
 //    //we add today's most uptodate data to the array
 //    [myTeamScores addObject:[homeTeam objectForKey:kScoreToday]];
     
-    
+    //create an array for the daily scores for the week
     //have to make mutableCopy because values returned from NSUserDefaults are immutable
-
-    NSMutableArray * myTeamScores = [[arrayOfWeekleyTeamScoresArrays objectAtIndex:index]mutableCopy];
+    NSMutableArray * homeTeamWeekleyScores = [[arrayOfWeekleyTeamScoresArrays objectAtIndex:index]mutableCopy];
     
+    //add the updated score for today to the array
+    NSNumber *todaysHomeTeamScore = [arrayOfTodayHomeTeamScores objectAtIndex:index];
+    [homeTeamWeekleyScores addObject:todaysHomeTeamScore];
     
     //we add values to ensure the array is never empty through index 6
-    [myTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+    [homeTeamWeekleyScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
     
     //we add each day's score to the appropriate label
-    self.myTeamMonday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:0]];
-    self.myTeamTuesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:1]];
-    self.myTeamWednesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:2]];
-    self.myTeamThursday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:3]];
-    self.myTeamFriday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:4]];
-    self.myTeamSaturday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:5]];
-    self.myTeamSunday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:6]];
+    self.myTeamMonday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:0]];
+    self.myTeamTuesday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:1]];
+    self.myTeamWednesday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:2]];
+    self.myTeamThursday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:3]];
+    self.myTeamFriday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:4]];
+    self.myTeamSaturday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:5]];
+    self.myTeamSunday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:6]];
     
     
     //home team score
@@ -321,19 +327,25 @@
 //    [vsTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
     
     //have to make mutableCopy because values returned from NSUserDefaults are immutable
-    NSMutableArray * vsTeamScores = [[arrayOfWeekleyAwayTeamScoresArrays objectAtIndex:index]mutableCopy];
+    //add the updated score for today to the array
+    NSMutableArray * awayTeamWeekleyScores = [[arrayOfWeekleyAwayTeamScoresArrays objectAtIndex:index]mutableCopy];
+    
+    //add the updated score for today to the array
+    NSNumber *todaysAwayTeamScore = [arrayOfTodayAwayTeamScores objectAtIndex:index];
+    [awayTeamWeekleyScores addObject:todaysAwayTeamScore];
+    
     
     //we add values to ensure the array is never empty through index 6
-    [vsTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+    [awayTeamWeekleyScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
     
     //we add each day's score to the appropriate label
-    self.vsTeamMonday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:0]];
-    self.vsTeamTuesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:1]];
-    self.vsTeamWednesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:2]];
-    self.vsTeamThursday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:3]];
-    self.vsTeamFriday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:4]];
-    self.vsTeamSaturday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:5]];
-    self.vsTeamSunday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:6]];
+    self.vsTeamMonday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:0]];
+    self.vsTeamTuesday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:1]];
+    self.vsTeamWednesday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:2]];
+    self.vsTeamThursday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:3]];
+    self.vsTeamFriday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:4]];
+    self.vsTeamSaturday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:5]];
+    self.vsTeamSunday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:6]];
 
     
 //    //Query Team Class

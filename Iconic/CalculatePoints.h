@@ -40,6 +40,8 @@
 @property (strong, nonatomic) NSNumber * homeTeamTotalScore;
 @property (strong, nonatomic) NSNumber * awayTeamTotalScore;
 
+@property (strong, nonatomic) NSMutableArray * arrayOfTodayHomeTeamScores;
+@property (strong, nonatomic) NSMutableArray * arrayOfTodayAwayTeamScores;
 
 
 @property (nonatomic, retain) NSArray *teamMatchups;
