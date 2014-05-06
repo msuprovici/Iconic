@@ -243,7 +243,7 @@
 //    NSLog(@"arrayOfTodayHomeTeamScores VS: %@", arrayOfTodayHomeTeamScores);
     NSArray *arrayOfTodayAwayTeamScores = [RetrievedTeams objectForKey:kArrayOfTodayAwayTeamScores];
 //     NSLog(@"arrayOfTodayAwayTeamScores VS: %@", arrayOfTodayAwayTeamScores);
-     NSLog(@"arrayOfWeekleyTeamScoresArrays: %@", arrayOfWeekleyTeamScoresArrays);
+//     NSLog(@"arrayOfWeekleyTeamScoresArrays: %@", arrayOfWeekleyTeamScoresArrays);
     
 //    self.receivedTeam = [self.teamMatchups objectAtIndex:self.matchupsIndex];
     //populate labels

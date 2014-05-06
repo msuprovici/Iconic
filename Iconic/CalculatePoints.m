@@ -216,7 +216,7 @@
         
     }];
     
-    //Query Team Class to see if the player's current team is the HOME team
+    //Query Team Classes, find the team matchups and save the team scores to memory
     PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
     [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
     
@@ -278,17 +278,10 @@
                     {
                         
                         
-//                       VSTableViewController * vsTableViewController = [[VSTableViewController alloc]init];
-//                        vsTableViewController.teamMatchups = objects;
-//                        
-//                        self.teamMatchups = objects;
-//                        
-//                        NSLog(@"vsTableViewController.teamMatchups: %@", vsTableViewController.teamMatchups);
-                        
                         for (int i = 0; i < objects.count; i++) {
                             
                             PFObject *myMatchupObject = [objects objectAtIndex:i];
-                            NSLog(@"objects count: %lu", (unsigned long)objects.count);
+//                            NSLog(@"objects count: %lu", (unsigned long)objects.count);
                             
                             if (objects.count >= 1) {
 //                                NSLog(@"objects > 1: %lu", (unsigned long)objects.count);
@@ -301,8 +294,6 @@
                             //add all objects to a array so that we can send the correct one to the next view controller
                             self.myMatchups = objects;
                             
-//                            SimpleHomeViewController *simpleViewController = [[SimpleHomeViewController alloc]init];
-//                            simpleViewController.myMatchups = objects;
                             
                             //acces away & home team pointers in parse
                             PFObject* awayTeamPointer = [myMatchupObject objectForKey:kAwayTeam];
@@ -602,6 +593,11 @@
             [self incrementMyTeamsPointsInBackground:myNSPointsDeltaValue];
             
             
+            
+            
+            
+            
+            
             PFQuery *query = [PFUser query];
             [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
             
@@ -659,9 +655,14 @@
     PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
     
     //force the queries to be network only
-    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
+    //had to set the cahce policy to kPFCachePolicyNetworkElseCache
+    //kPFCachePolicyCacheThenNetwork ran the query bellow 2x and dobled kScore & kScoreToday
+    
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    query2.cachePolicy = kPFCachePolicyNetworkElseCache;
     
     [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
     
@@ -679,7 +680,8 @@
 //            {
                 //NSLog(@"%@", object.objectId);
                 
-                
+            NSLog(@"objects count %lu", (unsigned long)objects.count);
+
                for( int i = 0; i < objects.count; i++)
                {
                    PFObject *myTeams = [objects objectAtIndex:i];
@@ -688,7 +690,7 @@
                     
                     //increment the team's points for today
                     [myTeams incrementKey:kScoreToday byAmount:delta];
-                NSLog(@"delta %@", delta);
+                NSLog(@"delta in query %@", delta);
                     //                    [object save];
 //                    [object saveInBackground];
                     //                    [object saveEventually];
