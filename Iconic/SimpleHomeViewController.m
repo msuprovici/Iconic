@@ -79,6 +79,7 @@ static NSString *kImageKey = @"imageKey";
 
 //convert steps to points and store here
 @property NSNumber* myPoints;
+@property NSNumber* myLevel;
 @property NSInteger* mySteps;
 
 
@@ -650,6 +651,7 @@ static NSString *kImageKey = @"imageKey";
             CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
             
             self.myPoints = [calculatePointsClass calculatePoints:numberOfSteps];
+            
             self.mySteps = &(numberOfSteps);
         }
         
@@ -658,8 +660,12 @@ static NSString *kImageKey = @"imageKey";
         //set the player's total points in memory
         NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
         
-        [[NSUserDefaults standardUserDefaults] synchronize];
+
         
+        [myRetrievedPoints synchronize];
+        
+//        NSLog(@"self.myLevel: %d", [self.myLevel intValue]);
+//        NSLog(@"self.myPoints intValue: %d", [self.myPoints intValue]);
         //to prevent null values check if # of steps is 0
         if(numberOfSteps == 0)
         {
@@ -681,6 +687,26 @@ static NSString *kImageKey = @"imageKey";
             
             [myRetrievedPoints synchronize];
         }
+        
+        
+        //set level
+        
+        //find out how many points were gained since the last time the points were synct
+        int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsToday];
+        int myMostRecentPointsValue = [self.myPoints intValue];
+        int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
+        
+        //calculate the current total points
+        int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsTotal];
+        int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
+        
+        //calculate current level
+        self.myLevel = [calculatePointsClass calculateLevel:myNewTotalPoints];
+        
+        //save the current level so that we can use it as a starting point for the level label counter
+        [myRetrievedPoints setInteger: [self.myLevel intValue] forKey:kMyLevelOnLastLaunch];
+        
+        [myRetrievedPoints synchronize];
     }];
 
 }
