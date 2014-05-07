@@ -184,7 +184,7 @@
     int hours = ((int)time / 3600 )% 24;
     int days = (((int)time / 3600) / 24)% 60;
     
-    return [NSString stringWithFormat:@"%02dd : %02dh : %02dm : %02ds", days,hours,minute,second];
+    return [NSString stringWithFormat:@"%01d %02d %02d %02d", days,hours,minute,second];
 }
 
 

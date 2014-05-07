@@ -545,7 +545,6 @@ static NSString *kImageKey = @"imageKey";
     
     
     
-    
     //find out what team the player is on and set that as a property so that we can send it to VS view controller
     NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
     
@@ -610,7 +609,7 @@ static NSString *kImageKey = @"imageKey";
     
     
     //create bar chart to display days
-    PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 248)];
+    PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 220)];
     
     //    PNBarChart * barChart = [[PNBarChart alloc] init];
     
@@ -622,7 +621,7 @@ static NSString *kImageKey = @"imageKey";
  
     
     [barChart setStrokeColors:@[PNWeiboColor, PNGreen]];
-    [barChart setBarBackgroundColor:PNWhite];
+    [barChart setBarBackgroundColor:[UIColor clearColor]];
     //    [barChart setStrokeColor:PNLightBlue];
     [barChart strokeChart];
     
