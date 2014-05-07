@@ -51,7 +51,9 @@ static NSString *kImageKey = @"imageKey";
 @property (strong, nonatomic) NSMutableArray * homeTeamScores;
 @property (strong, nonatomic) NSMutableArray * arrayOfhomeTeamScores;
 @property (strong, nonatomic) NSMutableArray * awayTeamScores;
-@property (strong, nonatomic) NSMutableArray * arrayOfawayTeamScores;
+
+
+@property (strong, nonatomic) NSArray * teamPoints;
 
 
 @property (nonatomic, assign) NSUInteger x;
@@ -518,28 +520,94 @@ static NSString *kImageKey = @"imageKey";
     
     //set team names
     NSString * homeTeamName = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
-    self.MyTeamName.text = homeTeamName;
+//    self.MyTeamName.text = homeTeamName;
     
     NSString * awayTeamName = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
-    self.vsTeamName.text = awayTeamName;
+//    self.vsTeamName.text = awayTeamName;
     
     
     //set score
     NSString * homeTeamScore = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
-    self.MyTeamScore.text = homeTeamScore;
+//    self.MyTeamScore.text = homeTeamScore;
     
     NSString * awayTeamScore = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:index]];
-    self.VSTeamScore.text = awayTeamScore;
+//    self.VSTeamScore.text = awayTeamScore;
     
     
     //set colors
-    self.MyTeamName.textColor = PNBlue;
-    self.MyTeamScore.textColor = PNBlue;
+    self.MyTeamName.textColor = PNWeiboColor;
+    self.MyTeamScore.textColor = PNWeiboColor;
     
 
     self.vsTeamName.textColor = PNGreen;
     self.VSTeamScore.textColor = PNGreen;
  
+    
+    
+    
+    
+    //find out what team the player is on and set that as a property so that we can send it to VS view controller
+    NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
+    
+    //    NSLog(@"# of teams I'm on: %lu",  (unsigned long)myTeamsNames.count);
+    //     for (int i = 0; i < myTeamsNames.count; i++) {
+    //        NSLog(@"myTeamsNames[index] %@",  myTeamsNames[index]);
+    //        NSLog(@"homeTeamName %@",  homeTeamName);
+    //        NSLog(@"awayTeamName %@",  awayTeamName);
+    
+    
+    
+    for (int i = 0; i < myTeamsNames.count; i++) {
+        {
+            //            NSLog(@"myTeamsNames[i] %@",  myTeamsNames[i]);
+            
+            //            if([myTeamsNames containsObject:homeTeamName] || [myTeamsNames containsObject:awayTeamName])
+            
+            
+            //ensure that my team is always on the left hand side of the chart
+            //if the object in my teams arrays is equal to the home team set it
+            if([myTeamsNames[i] isEqualToString: homeTeamName])
+            {
+                
+                
+                self.nameOfMyTeamString = homeTeamName;
+                //             NSLog(@"my Home Team Name: %@",  self.nameOfMyTeamString);
+                
+                
+                //set the right order for homeTeamScore
+                self.teamPoints = @[homeTeamScore, awayTeamScore];
+                
+                self.MyTeamName.text = homeTeamName;
+                 self.vsTeamName.text = awayTeamName;
+                self.MyTeamScore.text = homeTeamScore;
+                 self.VSTeamScore.text = awayTeamScore;
+                
+                
+            }
+            //if the object in my teams arrays is equal to the away team set it
+            
+            else if ([myTeamsNames[i] isEqualToString: awayTeamName])
+            {
+                self.nameOfMyTeamString = awayTeamName;
+                //                NSLog(@"my Away Team Name: %@",  self.nameOfMyTeamString);
+                
+                //ensure that my team is always on the left hand side of the chart - so in this case the away team is on the right
+                //reverse order for bargraph
+                self.teamPoints = @[awayTeamScore, homeTeamScore];
+                
+                //reverse the values of the labels
+                self.MyTeamName.text = awayTeamName;
+                self.vsTeamName.text = homeTeamName;
+                self.MyTeamScore.text = awayTeamScore;
+                self.VSTeamScore.text = homeTeamScore;
+                
+
+            }
+        }
+
+    
+    
+    
     
     //create bar chart to display days
     PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 248)];
@@ -548,12 +616,12 @@ static NSString *kImageKey = @"imageKey";
     
     
     
-     NSArray * teamPoints = @[homeTeamScore, awayTeamScore];
+//     NSArray * teamPoints = @[homeTeamScore, awayTeamScore];
     
-    [barChart setYValues:teamPoints];
+    [barChart setYValues:self.teamPoints];
  
     
-    [barChart setStrokeColors:@[PNLightBlue, PNGreen]];
+    [barChart setStrokeColors:@[PNWeiboColor, PNGreen]];
     [barChart setBarBackgroundColor:PNWhite];
     //    [barChart setStrokeColor:PNLightBlue];
     [barChart strokeChart];
@@ -561,41 +629,41 @@ static NSString *kImageKey = @"imageKey";
     [self.teamBarChart addSubview:barChart];
     
     
-    //find out what team the player is on and set that as a property so that we can send it to VS view controller
-    NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
-    
-//    NSLog(@"# of teams I'm on: %lu",  (unsigned long)myTeamsNames.count);
-//     for (int i = 0; i < myTeamsNames.count; i++) {
-//        NSLog(@"myTeamsNames[index] %@",  myTeamsNames[index]);
-//        NSLog(@"homeTeamName %@",  homeTeamName);
-//        NSLog(@"awayTeamName %@",  awayTeamName);
-    
-    
-    
-    for (int i = 0; i < myTeamsNames.count; i++) {
-        {
-//            NSLog(@"myTeamsNames[i] %@",  myTeamsNames[i]);
-            
-//            if([myTeamsNames containsObject:homeTeamName] || [myTeamsNames containsObject:awayTeamName])
-            
-            //if the object in my teams arrays is equal to the home team set it
-            if([myTeamsNames[i] isEqualToString: homeTeamName])
-            {
-
-             self.nameOfMyTeamString = myTeamsNames[i];
-                self.nameOfMyTeamString = homeTeamName;
-//             NSLog(@"my Home Team Name: %@",  self.nameOfMyTeamString);
-             
-         
-        }
-            //if the object in my teams arrays is equal to the away team set it
-
-            else if ([myTeamsNames[i] isEqualToString: awayTeamName])
-            {
-                self.nameOfMyTeamString = homeTeamName;
-//                NSLog(@"my Away Team Name: %@",  self.nameOfMyTeamString);
-            }
-    }
+//    //find out what team the player is on and set that as a property so that we can send it to VS view controller
+//    NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
+//    
+////    NSLog(@"# of teams I'm on: %lu",  (unsigned long)myTeamsNames.count);
+////     for (int i = 0; i < myTeamsNames.count; i++) {
+////        NSLog(@"myTeamsNames[index] %@",  myTeamsNames[index]);
+////        NSLog(@"homeTeamName %@",  homeTeamName);
+////        NSLog(@"awayTeamName %@",  awayTeamName);
+//    
+//    
+//    
+//    for (int i = 0; i < myTeamsNames.count; i++) {
+//        {
+////            NSLog(@"myTeamsNames[i] %@",  myTeamsNames[i]);
+//            
+////            if([myTeamsNames containsObject:homeTeamName] || [myTeamsNames containsObject:awayTeamName])
+//            
+//            //if the object in my teams arrays is equal to the home team set it
+//            if([myTeamsNames[i] isEqualToString: homeTeamName])
+//            {
+//
+//             self.nameOfMyTeamString = myTeamsNames[i];
+//                self.nameOfMyTeamString = homeTeamName;
+////             NSLog(@"my Home Team Name: %@",  self.nameOfMyTeamString);
+//             
+//         
+//        }
+//            //if the object in my teams arrays is equal to the away team set it
+//
+//            else if ([myTeamsNames[i] isEqualToString: awayTeamName])
+//            {
+//                self.nameOfMyTeamString = homeTeamName;
+////                NSLog(@"my Away Team Name: %@",  self.nameOfMyTeamString);
+//            }
+//    }
     
     
     }
