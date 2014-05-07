@@ -82,6 +82,10 @@ static NSString *kImageKey = @"imageKey";
 @property NSNumber* myLevel;
 @property NSInteger* mySteps;
 
+//my team name
+
+@property NSString* nameOfMyTeamString;
+
 
 @end
 
@@ -556,6 +560,47 @@ static NSString *kImageKey = @"imageKey";
     
     [self.teamBarChart addSubview:barChart];
     
+    
+    //find out what team the player is on and set that as a property so that we can send it to VS view controller
+    NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
+    
+//    NSLog(@"# of teams I'm on: %lu",  (unsigned long)myTeamsNames.count);
+//     for (int i = 0; i < myTeamsNames.count; i++) {
+//        NSLog(@"myTeamsNames[index] %@",  myTeamsNames[index]);
+//        NSLog(@"homeTeamName %@",  homeTeamName);
+//        NSLog(@"awayTeamName %@",  awayTeamName);
+    
+    
+    
+    for (int i = 0; i < myTeamsNames.count; i++) {
+        {
+//            NSLog(@"myTeamsNames[i] %@",  myTeamsNames[i]);
+            
+//            if([myTeamsNames containsObject:homeTeamName] || [myTeamsNames containsObject:awayTeamName])
+            
+            //if the object in my teams arrays is equal to the home team set it
+            if([myTeamsNames[i] isEqualToString: homeTeamName])
+            {
+
+             self.nameOfMyTeamString = myTeamsNames[i];
+                self.nameOfMyTeamString = homeTeamName;
+//             NSLog(@"my Home Team Name: %@",  self.nameOfMyTeamString);
+             
+         
+        }
+            //if the object in my teams arrays is equal to the away team set it
+
+            else if ([myTeamsNames[i] isEqualToString: awayTeamName])
+            {
+                self.nameOfMyTeamString = homeTeamName;
+//                NSLog(@"my Away Team Name: %@",  self.nameOfMyTeamString);
+            }
+    }
+    
+    
+    }
+//     }
+    
 }
 
 
@@ -733,6 +778,9 @@ static NSString *kImageKey = @"imageKey";
         transferViewController.homeTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:self.matchupsIndex]];
         transferViewController.awayTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:self.matchupsIndex]];
         transferViewController.matchupsIndex = self.matchupsIndex;
+        
+        //send my team name to vs view controller
+        transferViewController.myTeamReceived = [NSString stringWithFormat:@"%@",self.nameOfMyTeamString];
         
     }
 }

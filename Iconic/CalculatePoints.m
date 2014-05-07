@@ -168,24 +168,53 @@
             [Teams setInteger:objects.count forKey:kNumberOfTeams];
             [Teams synchronize];
             
+            
+            
+            self.arrayOfMyTeamNames = [[NSMutableArray alloc] init];
+
+            
             //check to see if the player is on a team
             if(objects.count > 0)
             {
                 
                 //                NSLog(@"team class query worked");
                 
-//                SimpleHomeViewController *simpleViewController = [[SimpleHomeViewController alloc]init];
-//                [simpleViewController updateTeamChart:0];
 
                 
                 //convert NSArray to myTeamDataArray
                 self.myTeamData = [self createMutableArray:objects];
                 
                 
+                
+                
+//                 NSLog(@"my teams: %@",  self.myTeamData);
 //                 NSArray *myTeamDataArray = [self.myTeamData copy];
                 
-                //save to NSUserdefaults
-                //[myRetrievedTeams setObject:myTeamDataArray  forKey:kMyTeamDataArray];
+                
+                for (int i = 0; i < objects.count; i++) {
+                    
+                   
+                    
+                    
+                    PFObject *myTeamObject = objects[i];
+                    
+                    NSString * myTeamName = [myTeamObject objectForKey:kTeams];
+                    
+                    //create an array of my team names
+//                    [self.arrayOfMyTeamNames addObject:myTeamName];
+                    [self.arrayOfMyTeamNames insertObject:myTeamName atIndex:i];
+//                     NSLog(@"arrayOfMyTeamNames: %@",  self.arrayOfMyTeamNames);
+                    
+
+                    //save the array of my team names to nsuserdefaults
+                    [myRetrievedTeams setObject:self.arrayOfMyTeamNames  forKey:kArrayOfMyTeamsNames];
+                    [myRetrievedTeams synchronize];
+                        
+                   
+                    
+                };
+                
+             
                 
                 
                 
@@ -196,10 +225,12 @@
 //                NSLog(@"the number of teams I am on is 0");
                 
                 //player is not on a team so set number of teams to 0
-                //we use this number in simple viewcontroller to determine state
+                //we use this number in simpleviewcontroller to determine state
                 NSUserDefaults *Teams = [NSUserDefaults standardUserDefaults];
                 [Teams setInteger:0 forKey:kNumberOfTeams];
                 [Teams synchronize];
+                
+                
 
                 
             }
@@ -680,7 +711,7 @@
 //            {
                 //NSLog(@"%@", object.objectId);
                 
-            NSLog(@"objects count %lu", (unsigned long)objects.count);
+//            NSLog(@"objects count %lu", (unsigned long)objects.count);
 
                for( int i = 0; i < objects.count; i++)
                {
@@ -690,14 +721,14 @@
                     
                     //increment the team's points for today
                     [myTeams incrementKey:kScoreToday byAmount:delta];
-                NSLog(@"delta in query %@", delta);
+//                NSLog(@"delta in query %@", delta);
                     //                    [object save];
 //                    [object saveInBackground];
                     //                    [object saveEventually];
                 
                     [myTeams saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         if (succeeded) {
-                            NSLog(@"Team stats succesfully saved");
+//                            NSLog(@"Team stats succesfully saved");
                         }
                         else{
 //                            NSLog(@"Team stats failed to save");

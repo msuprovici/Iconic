@@ -78,5 +78,7 @@
 
 @property (nonatomic,retain) NSArray * teamMatchups;
 
+@property (nonatomic,retain) NSString * myTeamReceived;
+
 
 @end

@@ -55,6 +55,7 @@ extern NSString *const kArrayOfTodayHomeTeamScores;
 extern NSString *const kArrayOfTodayAwayTeamScores;
 extern NSString *const kArrayOfWeekleyHomeTeamScores;
 extern NSString *const kArrayOfWeekleyAwayTeamScores;
+extern NSString *const kArrayOfMyTeamsNames;
 
 //nuber of teams
 extern NSString *const kNumberOfTeams;

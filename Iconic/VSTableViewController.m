@@ -243,6 +243,12 @@
 //    NSLog(@"arrayOfTodayHomeTeamScores VS: %@", arrayOfTodayHomeTeamScores);
     NSArray *arrayOfTodayAwayTeamScores = [RetrievedTeams objectForKey:kArrayOfTodayAwayTeamScores];
 //     NSLog(@"arrayOfTodayAwayTeamScores VS: %@", arrayOfTodayAwayTeamScores);
+    
+    
+    NSArray *arrayOfMyTeamNames = [RetrievedTeams objectForKey:@"arrayOfMyTeamNames"];
+
+    
+    
 //     NSLog(@"arrayOfWeekleyTeamScoresArrays: %@", arrayOfWeekleyTeamScoresArrays);
     
 //    self.receivedTeam = [self.teamMatchups objectAtIndex:self.matchupsIndex];
@@ -254,7 +260,9 @@
 //    //    NSLog(@"awayTeam: %@", awayTeam);
     
     //my team name
-    //self.myTeamName.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
+    self.myTeamName.text = [NSString stringWithFormat:@"%@",[arrayOfMyTeamNames objectAtIndex:index]];
+    
+    self.myTeamName.text = self.myTeamReceived;
     
 //    self.myTeamScore.text = [homeTeamScores objectAtIndex:self.matchupsIndex];
 
