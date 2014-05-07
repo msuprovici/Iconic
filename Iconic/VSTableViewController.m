@@ -220,14 +220,7 @@
 -(void)loadTeams: (int)index
 {
     
-    
-//    self.receivedTeam = [self.teamMatchups objectAtIndex:self.matchupsIndex];
-    
-//    NSLog(@"self.receivedTeam: %@", self.receivedTeam);
-//    NSLog(@"self.teamMatchupss: %@", self.teamMatchups);
-//    CalculatePoints *sharedManager = [CalculatePoints sharedManager];
-//    NSLog(@"%@",sharedManager.teamMatchups);
-    
+    //retrieve data from the arrays in nsuserdefaults
     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
     
     NSArray *homeTeamScores = [RetrievedTeams objectForKey:kArrayOfHomeTeamScores];
@@ -244,27 +237,24 @@
     NSArray *arrayOfTodayAwayTeamScores = [RetrievedTeams objectForKey:kArrayOfTodayAwayTeamScores];
 //     NSLog(@"arrayOfTodayAwayTeamScores VS: %@", arrayOfTodayAwayTeamScores);
     
-    
-    NSArray *arrayOfMyTeamNames = [RetrievedTeams objectForKey:@"arrayOfMyTeamNames"];
+    NSArray *arrayOfMyTeamNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
 
     
     
-//     NSLog(@"arrayOfWeekleyTeamScoresArrays: %@", arrayOfWeekleyTeamScoresArrays);
     
-//    self.receivedTeam = [self.teamMatchups objectAtIndex:self.matchupsIndex];
-    //populate labels
-    
-//    PFObject *homeTeam = [self.receivedTeam objectForKey:kHomeTeam];
-//    //    NSLog(@"homeTeam: %@", homeTeam);
-//    PFObject *awayTeam = [self.receivedTeam objectForKey:kAwayTeam];
-//    //    NSLog(@"awayTeam: %@", awayTeam);
-    
-    //my team name
+    //set my team name
     self.myTeamName.text = [NSString stringWithFormat:@"%@",[arrayOfMyTeamNames objectAtIndex:index]];
     
     self.myTeamName.text = self.myTeamReceived;
     
-//    self.myTeamScore.text = [homeTeamScores objectAtIndex:self.matchupsIndex];
+    
+    
+    
+    
+    //ensure that my team is always displayed in the left hand side
+    //if my team is the home team set the data for the labels
+    if([self.myTeamReceived isEqualToString:[homeTeamNames objectAtIndex:index]])
+    {
 
     //home team score
     self.myTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
@@ -272,24 +262,6 @@
        //home team name
     self.myTeam.text = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
 
-    
-    
-//    //home team score
-//    self.myTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kScore]];
-//    
-//    //home team name
-//    self.myTeam.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeamsAbr]];
-    
-    
-    
-    //populate days of the week labels
-    
-//    //get the daily score data from the days before, if any
-//    NSMutableArray * myTeamScores = [homeTeam objectForKey:kScoreWeek];
-//    
-//    //we add today's most uptodate data to the array
-//    [myTeamScores addObject:[homeTeam objectForKey:kScoreToday]];
-    
     //create an array for the daily scores for the week
     //have to make mutableCopy because values returned from NSUserDefaults are immutable
     NSMutableArray * homeTeamWeekleyScores = [[arrayOfWeekleyTeamScoresArrays objectAtIndex:index]mutableCopy];
@@ -316,23 +288,7 @@
     
     //home team name
     self.vsTeam.text = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
-//    
-//    //my team score
-//    self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kScore]];
-//    
-//    //my team name abriviated
-//    self.vsTeam.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kTeamsAbr]];
-    
-    //populate days of the week labels
-    
-//    //get the daily score data from the days before, if any
-//    NSMutableArray * vsTeamScores = [awayTeam objectForKey:kScoreWeek];
-//    
-//    //we add today's most uptodate data to the array
-//    [vsTeamScores addObject:[awayTeam objectForKey:kScoreToday]];
-//    
-//    //we add values to ensure the array is never empty through index 6
-//    [vsTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+
     
     //have to make mutableCopy because values returned from NSUserDefaults are immutable
     //add the updated score for today to the array
@@ -355,156 +311,71 @@
     self.vsTeamSaturday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:5]];
     self.vsTeamSunday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:6]];
 
+    }
     
-//    //Query Team Class
-//    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
-//
-//    //Query Teamates Class
-//    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
-//    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//
-//    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
-//
-//
-//    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
-//
-//
-//
-//    //Query Team Class to see if the player's current team is the HOME team
-//    PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-//    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
-//
-//
-//
-//    PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-//    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
-//
-//
-//    PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
-//
-//    [queryTeamMatchupsClass includeKey:kHomeTeam];
-//    [queryTeamMatchupsClass includeKey:kAwayTeam];
-//
-//
-//    queryAwayTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//    queryHomeTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//    
-//    [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        
-//        
-//        
-//        if(!error)
-//        {
-//            
-//            
-//            
-//            
-//            if(objects.count > 0)
-//            {
-//             
-//                
-//                
-//                for (int i = 0; i < objects.count; i++) {
-//                    
-//                    PFObject *myMatchupObject = [objects objectAtIndex:i];
-//                    
-//                    
-//                    NSString * round = [myMatchupObject objectForKey:kRound];
-//                    
-//                    if ([round  isEqual: @"1"])
-//                    {
-//                        self.teamMatchups = objects;
-////                        NSLog(@"self.teamMatchups: %@", self.teamMatchups);
-//                        self.receivedTeam = [self.teamMatchups objectAtIndex:self.matchupsIndex];
-//                        
-////                        NSLog(@"self.receivedTeam: %@", self.receivedTeam);
-//                        
-//                        
-//                        
-//                        //populate labels
-//                        
-//                        PFObject *homeTeam = [self.receivedTeam objectForKey:kHomeTeam];
-//                        //    NSLog(@"homeTeam: %@", homeTeam);
-//                        PFObject *awayTeam = [self.receivedTeam objectForKey:kAwayTeam];
-//                        //    NSLog(@"awayTeam: %@", awayTeam);
-//                        
-//                        //my team name
-//                        //self.myTeamName.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeams]];
-//                        
-//                        //my team score
-//                        self.myTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kScore]];
-//                        
-//                        //my team name abriviated
-//                        self.myTeam.text = [NSString stringWithFormat:@"%@",[homeTeam objectForKey:kTeamsAbr]];
-//                        
-//                        //populate days of the week labels
-//                        
-//                        //get the daily score data from the days before, if any
-//                        NSMutableArray * myTeamScores = [homeTeam objectForKey:kScoreWeek];
-//                        
-//                        //we add today's most uptodate data to the array
-//                        [myTeamScores addObject:[homeTeam objectForKey:kScoreToday]];
-//                        
-//                        //we add values to ensure the array is never empty through index 6
-//                        [myTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
-//                        
-//                        //we add each day's score to the appropriate label
-//                        self.myTeamMonday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:0]];
-//                        self.myTeamTuesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:1]];
-//                        self.myTeamWednesday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:2]];
-//                        self.myTeamThursday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:3]];
-//                        self.myTeamFriday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:4]];
-//                        self.myTeamSaturday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:5]];
-//                        self.myTeamSunday.text = [NSString stringWithFormat:@"%@",[myTeamScores objectAtIndex:6]];
-//                       
-//                        
-//                        //my team score
-//                        self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kScore]];
-//                        
-//                        //my team name abriviated
-//                        self.vsTeam.text = [NSString stringWithFormat:@"%@",[awayTeam objectForKey:kTeamsAbr]];
-//                        
-//                        //populate days of the week labels
-//                        
-//                        //get the daily score data from the days before, if any
-//                        NSMutableArray * vsTeamScores = [awayTeam objectForKey:kScoreWeek];
-//                        
-//                        //we add today's most uptodate data to the array
-//                        [vsTeamScores addObject:[awayTeam objectForKey:kScoreToday]];
-//                        
-//                        //we add values to ensure the array is never empty through index 6
-//                        [vsTeamScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
-//                        
-//                        
-//                        
-//                        //we add each day's score to the appropriate label
-//                        self.vsTeamMonday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:0]];
-//                        self.vsTeamTuesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:1]];
-//                        self.vsTeamWednesday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:2]];
-//                        self.vsTeamThursday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:3]];
-//                        self.vsTeamFriday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:4]];
-//                        self.vsTeamSaturday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:5]];
-//                        self.vsTeamSunday.text = [NSString stringWithFormat:@"%@",[vsTeamScores objectAtIndex:6]];
-//
-//
-//                        
-//                     }
-//
-//                }
-// 
-//            }
-//
-//        }
-//        
-//        
-//    }];
-//    
-//    
-//    
-//    
-//
-
+    /*Reverse the data for the labels*/
+    //if my team is the away team REVERSE the data for the labels
+    else if([self.myTeamReceived isEqualToString: [awayTeamNames objectAtIndex:index]])
+    {
+        //home team score
+        self.myTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:index]];
+        
+        //home team name
+        self.myTeam.text = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
+        
+        
+        
+        
+        //create an array for the daily scores for the week
+        //have to make mutableCopy because values returned from NSUserDefaults are immutable
+        NSMutableArray * homeTeamWeekleyScores = [[arrayOfWeekleyAwayTeamScoresArrays objectAtIndex:index]mutableCopy];
+        
+        //add the updated score for today to the array
+        NSNumber *todaysHomeTeamScore = [arrayOfTodayHomeTeamScores objectAtIndex:index];
+        [homeTeamWeekleyScores addObject:todaysHomeTeamScore];
+        
+        //we add values to ensure the array is never empty through index 6
+        [homeTeamWeekleyScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+        
+        //we add each day's score to the appropriate label
+        self.myTeamMonday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:0]];
+        self.myTeamTuesday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:1]];
+        self.myTeamWednesday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:2]];
+        self.myTeamThursday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:3]];
+        self.myTeamFriday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:4]];
+        self.myTeamSaturday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:5]];
+        self.myTeamSunday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:6]];
+        
+        
+        //home team score
+        self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
+        
+        //home team name
+        self.vsTeam.text = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
+        
+        
+        //have to make mutableCopy because values returned from NSUserDefaults are immutable
+        //add the updated score for today to the array
+        NSMutableArray * awayTeamWeekleyScores = [[arrayOfWeekleyTeamScoresArrays objectAtIndex:index]mutableCopy];
+        
+        //add the updated score for today to the array
+        NSNumber *todaysAwayTeamScore = [arrayOfTodayHomeTeamScores objectAtIndex:index];
+        [awayTeamWeekleyScores addObject:todaysAwayTeamScore];
+        
+        
+        //we add values to ensure the array is never empty through index 6
+        [awayTeamWeekleyScores addObjectsFromArray:@[@"-", @"-", @"-", @"-", @"-", @"-", @"-"]];
+        
+        //we add each day's score to the appropriate label
+        self.vsTeamMonday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:0]];
+        self.vsTeamTuesday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:1]];
+        self.vsTeamWednesday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:2]];
+        self.vsTeamThursday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:3]];
+        self.vsTeamFriday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:4]];
+        self.vsTeamSaturday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:5]];
+        self.vsTeamSunday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:6]];
+        
+    }
     
 
 }
