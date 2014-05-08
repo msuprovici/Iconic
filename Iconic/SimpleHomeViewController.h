@@ -70,6 +70,8 @@
 
 @property (strong, nonatomic)NSMutableArray *teamMatchups;
 
+@property (strong, nonatomic) IBOutlet UILabel *deltaPoints;
+
 - (IBAction)joinTeam:(id)sender;
 
 

@@ -153,7 +153,6 @@ static NSString *kImageKey = @"imageKey";
     
     
     
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -218,9 +217,13 @@ static NSString *kImageKey = @"imageKey";
 
     [self showChart];
     
+    [self beginDeltaPointsAnimation];
+   
+    
     [self.view setNeedsDisplay];
 
 }
+
 
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -861,6 +864,73 @@ static NSString *kImageKey = @"imageKey";
     self.tabBarController.selectedViewController
     = [self.tabBarController.viewControllers objectAtIndex:2];
 }
+
+#pragma mark - Delta Label Animation
+
+-(void)beginDeltaPointsAnimation
+{
+    
+    self.deltaPoints.hidden = YES;
+    
+    //wait untill the countdown is almost finished to begin animation
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(animateDeltaPointsLabel) userInfo:nil repeats:NO];
+    
+    [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.5f]];
+}
+
+-(void)animateDeltaPointsLabel
+{
+    //show deltaPoints label
+    self.deltaPoints.hidden = NO;
+    
+    //animated label that shows the points the player contributed to his or her team(s)
+    self.deltaPoints.center = CGPointMake(150, 150);
+    float newX = 90.0f;
+    float newY = 280.0f;
+    
+    //animate the label so that it drops right on top of my team score
+    [UIView transitionWithView:self.deltaPoints
+                      duration:3.0f
+                       options:UIViewAnimationOptionCurveEaseInOut
+                    animations:^(void) {
+                        self.deltaPoints.center = CGPointMake(newX, newY);
+                        [self fadein];
+                    }
+                    completion:^(BOOL finished) {
+                        // Hide label
+                        self.deltaPoints.hidden = YES;
+                    }];
+    
+}
+
+// fade in delta label
+-(void) fadein
+{
+    self.deltaPoints.alpha = 0;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    
+    //don't forget to add delegate.....
+    [UIView setAnimationDelegate:self];
+    
+    [UIView setAnimationDuration:1];
+    self.deltaPoints.alpha = 1;
+    
+    //also call this before commit animations......
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+    [UIView commitAnimations];
+}
+
+
+
+-(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished    context:(void *)context
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:2.5];
+    self.deltaPoints.alpha = 0;
+    [UIView commitAnimations];
+}
+
 
 
 
