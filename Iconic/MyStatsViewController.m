@@ -371,6 +371,8 @@
             int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyMostRecentPointsBeforeSaving];
 //            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
             
+            NSLog(@"Delta in mystats: %d", [self.myPoints intValue] - myStoredPoints);
+            
             [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:2];
             
             

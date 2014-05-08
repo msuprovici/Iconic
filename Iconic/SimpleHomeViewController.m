@@ -83,6 +83,7 @@ static NSString *kImageKey = @"imageKey";
 @property NSNumber* myPoints;
 @property NSNumber* myLevel;
 @property NSInteger* mySteps;
+@property NSNumber* myPointsGained;
 
 //my team name
 
@@ -811,6 +812,10 @@ static NSString *kImageKey = @"imageKey";
         int myMostRecentPointsValue = [self.myPoints intValue];
         int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
         
+        NSLog(@"Delta in simplehomeviewcontroller: %d", myPointsDeltaValue);
+        
+        
+        
         //calculate the current total points
         int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsTotal];
         int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
@@ -822,6 +827,23 @@ static NSString *kImageKey = @"imageKey";
         [myRetrievedPoints setInteger: [self.myLevel intValue] forKey:kMyLevelOnLastLaunch];
         
         [myRetrievedPoints synchronize];
+        
+        
+        //populate the deltaValueLabel
+        if(myPointsDeltaValue > 0)
+        {
+            self.deltaPoints.text = [NSString stringWithFormat:@"+%d", myPointsDeltaValue];
+        }
+        else
+        {
+            
+            //comment out this line to test deltaLabel animations
+            self.deltaPoints.text = @"";
+            
+        }
+
+        
+        
     }];
 
 }
@@ -884,7 +906,7 @@ static NSString *kImageKey = @"imageKey";
     self.deltaPoints.hidden = NO;
     
     //animated label that shows the points the player contributed to his or her team(s)
-    self.deltaPoints.center = CGPointMake(150, 150);
+    self.deltaPoints.center = CGPointMake(160, 184);
     float newX = 90.0f;
     float newY = 280.0f;
     
