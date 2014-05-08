@@ -134,7 +134,7 @@
 
                 self.xpProgressDial.hidden = false;
                 
-                self.circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(0, 0, 55, 55) andTotal:[NSNumber numberWithInt:myTotalPointsToNextLevel] andCurrent:[NSNumber numberWithInt:myLevelProgress]];
+                self.circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(0, 0, 58, 58) andTotal:[NSNumber numberWithInt:myTotalPointsToNextLevel] andCurrent:[NSNumber numberWithInt:myLevelProgress]];
                 
                 
                 
@@ -142,7 +142,7 @@
                 self.circleChart.labelColor = [UIColor clearColor];
                 
                 [self.circleChart setStrokeColor:PNWeiboColor];
-                [self.circleChart setLineWidth:[NSNumber numberWithInt:7]];
+//                [self.circleChart setLineWidth:[NSNumber numberWithInt:7]];
                 [self.circleChart strokeChart];
                 
                 [self.xpProgressDial addSubview:self.circleChart];

@@ -70,11 +70,20 @@
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
     
+    
+    
+    
     //local notification
+    
+    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+    //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [calculatePointsClass scheduleDailySummaryLocalNotification];
+
+    
     // Handle launching from a notification
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     
-
+    
     
     if (locationNotification) {
         // Set icon badge number to zero

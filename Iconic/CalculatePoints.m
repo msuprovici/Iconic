@@ -1158,8 +1158,8 @@
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
     
-    //sechedule for tomorrow
-    components.day = 1;
+//    //sechedule for tomorrow
+//    components.day = 1;
     
     //set time for 10am
     [components setHour:10];
@@ -1183,8 +1183,8 @@
     
     //set time
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.fireDate = [cal dateByAddingComponents:components toDate:now options:0];
-//    localNotification.fireDate = [cal dateFromComponents:components];
+//    localNotification.fireDate = [cal dateByAddingComponents:components toDate:now options:0];
+   localNotification.fireDate = [cal dateFromComponents:components];
     
     //repeate daily
     localNotification.repeatInterval = NSCalendarUnitDay;
