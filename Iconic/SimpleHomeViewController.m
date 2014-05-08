@@ -539,8 +539,8 @@ static NSString *kImageKey = @"imageKey";
     self.MyTeamScore.textColor = PNWeiboColor;
     
 
-    self.vsTeamName.textColor = PNGreen;
-    self.VSTeamScore.textColor = PNGreen;
+    self.vsTeamName.textColor = PNDarkBlue;
+    self.VSTeamScore.textColor = PNDarkBlue;
  
     
     
@@ -620,7 +620,7 @@ static NSString *kImageKey = @"imageKey";
     [barChart setYValues:self.teamPoints];
  
     
-    [barChart setStrokeColors:@[PNWeiboColor, PNGreen]];
+    [barChart setStrokeColors:@[PNWeiboColor, PNDarkBlue]];
     [barChart setBarBackgroundColor:[UIColor clearColor]];
     //    [barChart setStrokeColor:PNLightBlue];
     [barChart strokeChart];

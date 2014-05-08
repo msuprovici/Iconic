@@ -11,6 +11,7 @@
 #import "Parse/Parse.h"
 #import "VSTableViewCell.h"
 #import "CalculatePoints.h"
+
 @interface VSTableViewController ()
 
 @property (strong, nonatomic) NSTimer *timer;
@@ -331,7 +332,7 @@
         NSMutableArray * homeTeamWeekleyScores = [[arrayOfWeekleyAwayTeamScoresArrays objectAtIndex:index]mutableCopy];
         
         //add the updated score for today to the array
-        NSNumber *todaysHomeTeamScore = [arrayOfTodayHomeTeamScores objectAtIndex:index];
+        NSNumber *todaysHomeTeamScore = [arrayOfTodayAwayTeamScores objectAtIndex:index];
         [homeTeamWeekleyScores addObject:todaysHomeTeamScore];
         
         //we add values to ensure the array is never empty through index 6
@@ -377,8 +378,14 @@
         
     }
     
+    
+    
+    
 
 }
+#pragma mark - draw grid methods
+
+
 
 #pragma mark - PFQueryTableViewController
 
