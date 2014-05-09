@@ -263,8 +263,8 @@
     [queryTeamMatchupsClass includeKey:kAwayTeam];
     
     
-    queryAwayTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    queryHomeTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    queryAwayTeamMatchups.cachePolicy = kPFCachePolicyNetworkElseCache;
+    queryHomeTeamMatchups.cachePolicy = kPFCachePolicyNetworkElseCache;
     
     [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
@@ -372,7 +372,8 @@
                             [myRetrievedTeams setObject:self.arrayOfhomeTeamNames  forKey:kArrayOfHomeTeamNames];
                             [myRetrievedTeams setObject:self.arrayOfWeekleyHomeTeamScores  forKey:kArrayOfWeekleyHomeTeamScores];
 //                            NSLog(@"array of weekley arrays in calculate points: %@", self.arrayOfWeekleyHomeTeamScores);
-                            
+                            [myRetrievedTeams synchronize];
+
                             
                             //Away Team Scores
                             //get awayTeamScores(array)
@@ -412,6 +413,9 @@
                             [myRetrievedTeams setObject:self.arrayOfawayTeamScores  forKey:kArrayOfAwayTeamScores];
                             [myRetrievedTeams setObject:self.arrayOfawayTeamNames  forKey:kArrayOfAwayTeamNames];
                             [myRetrievedTeams setObject:self.arrayOfWeekleyAwayTeamScores  forKey:kArrayOfWeekleyAwayTeamScores];
+                            
+                            [myRetrievedTeams synchronize];
+
                             //logs
 //                             NSLog(@"awayTeamPointer: %@", awayTeamPointer);
 //                            NSLog(@"homeTeamPointer: %@", homeTeamPointer);
@@ -474,8 +478,8 @@
     
     
     //synchronize everything
-    [myRetrievedTeams synchronize];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+//    [myRetrievedTeams synchronize];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 

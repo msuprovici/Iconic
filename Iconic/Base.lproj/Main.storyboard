@@ -292,8 +292,8 @@
                                     <action selector="scrollTeamsLeft:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="hnE-yb-AOG"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uGw-Ji-fNv" userLabel="myTeamScore">
-                                <rect key="frame" x="37" y="283" width="99" height="40"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uGw-Ji-fNv" userLabel="myTeamScore" customClass="UICountingLabel">
+                                <rect key="frame" x="12" y="283" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
@@ -301,7 +301,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RXG-16-KzV" userLabel="vsTeamScore">
-                                <rect key="frame" x="186" y="283" width="99" height="40"/>
+                                <rect key="frame" x="161" y="283" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
@@ -321,8 +321,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="MyTeamName" destination="MdT-V3-idy" id="bdc-Xu-dQ8"/>
-                        <outlet property="MyTeamScore" destination="uGw-Ji-fNv" id="VPD-h2-2WZ"/>
-                        <outlet property="VSTeamScore" destination="RXG-16-KzV" id="CvZ-Kw-PeJ"/>
+                        <outlet property="MyTeamScore" destination="uGw-Ji-fNv" id="aPj-EZ-0Sa"/>
+                        <outlet property="VSTeamScore" destination="RXG-16-KzV" id="ybi-rx-lm6"/>
                         <outlet property="contentController" destination="ze2-rn-IC6" id="X1i-6N-i6N"/>
                         <outlet property="deltaPoints" destination="Xcl-NE-OpV" id="7T1-Ov-oFj"/>
                         <outlet property="joinTeamButton" destination="3f8-Nq-Cu0" id="md8-RE-dfY"/>

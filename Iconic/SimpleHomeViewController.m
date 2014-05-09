@@ -90,6 +90,8 @@ static NSString *kImageKey = @"imageKey";
 @property NSString* nameOfMyTeamString;
 
 
+@property BOOL deltaPointsLabelIsAnimating;
+
 @end
 
 
@@ -144,9 +146,15 @@ static NSString *kImageKey = @"imageKey";
                                              selector:@selector(refreshHomeView)
                                                  name:UIApplicationWillEnterForegroundNotification object:nil];
     
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(showChart)
+//                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
+
+    
+    
     
     [self refreshHomeView];
-    
+    [self showChart];
    
    
 //Use the line bellow to cancel local notficiations
@@ -217,6 +225,7 @@ static NSString *kImageKey = @"imageKey";
     
 
     [self showChart];
+    
     
     [self beginDeltaPointsAnimation];
    
@@ -514,6 +523,8 @@ static NSString *kImageKey = @"imageKey";
     NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
     
     
+    int myPointsDelta = (int)[RetrievedTeams integerForKey:@"myPointsDelta"];
+    
     self.myNewTeamObject = [homeTeamNames objectAtIndex:index];
     self.matchupsIndex = index;
 
@@ -533,10 +544,13 @@ static NSString *kImageKey = @"imageKey";
     //set score
     NSString * homeTeamScore = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
 //    self.MyTeamScore.text = homeTeamScore;
+    int  homeTeamPoints = (int)[homeTeamScore integerValue];
+    
     
     NSString * awayTeamScore = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:index]];
 //    self.VSTeamScore.text = awayTeamScore;
-    
+    int  awayTeamPoints = (int)[awayTeamScore integerValue];
+
     
     //set colors
     self.MyTeamName.textColor = PNWeiboColor;
@@ -558,6 +572,17 @@ static NSString *kImageKey = @"imageKey";
     //        NSLog(@"homeTeamName %@",  homeTeamName);
     //        NSLog(@"awayTeamName %@",  awayTeamName);
     
+    
+    
+    //initialize couting label
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = kCFNumberFormatterNoStyle;
+    self.MyTeamScore.formatBlock = ^NSString* (float value)
+    {
+        NSString* formatted = [formatter stringFromNumber:@((int)value)];
+        return [NSString stringWithFormat:@"%@",formatted];
+    };
+
     
     
     for (int i = 0; i < myTeamsNames.count; i++) {
@@ -582,8 +607,52 @@ static NSString *kImageKey = @"imageKey";
                 
                 self.MyTeamName.text = homeTeamName;
                  self.vsTeamName.text = awayTeamName;
-                self.MyTeamScore.text = homeTeamScore;
-                 self.VSTeamScore.text = awayTeamScore;
+                
+                self.VSTeamScore.text = awayTeamScore;
+                
+//                self.MyTeamScore.text = homeTeamScore;
+                
+                NSLog(@"homeTeamScore: %@",  homeTeamScore);
+                NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
+                
+//                int pointsAfterPlayerScored = homeTeamPoints + myPointsDelta;
+                
+                int pointsBeforePlayerScored = homeTeamPoints - myPointsDelta;
+                
+//                self.MyTeamScore.text = [NSString stringWithFormat:@"%d",pointsBeforePlayerScored];
+                
+                
+                    if (myPointsDelta > 0) {
+                        
+                        if(self.deltaPointsLabelIsAnimating == YES)
+                        {
+//                            [self.MyTeamScore  countFrom:homeTeamPoints to:pointsAfterPlayerScored withDuration:2];
+                            [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:homeTeamPoints withDuration:1.5];
+                            self.deltaPointsLabelIsAnimating = NO;
+                        }
+                        else
+                        {
+                            self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
+                        }
+                        
+                        
+//                        [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:homeTeamPoints withDuration:2];
+                        
+                    }
+                    
+
+                else
+                {
+
+                    
+                    self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
+
+                }
+                    
+                    
+             
+                    
+                
                 
                 
             }
@@ -601,8 +670,36 @@ static NSString *kImageKey = @"imageKey";
                 //reverse the values of the labels
                 self.MyTeamName.text = awayTeamName;
                 self.vsTeamName.text = homeTeamName;
-                self.MyTeamScore.text = awayTeamScore;
+                
                 self.VSTeamScore.text = homeTeamScore;
+                
+//                self.MyTeamScore.text = awayTeamScore;
+                
+//                int pointsAfterPlayerScored = awayTeamPoints + myPointsDelta;
+                int pointsBeforePlayerScored = awayTeamPoints - myPointsDelta;
+                
+                if (myPointsDelta > 0)
+                {
+                        
+                            if(self.deltaPointsLabelIsAnimating == YES)
+                                {
+                                 
+                                [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:homeTeamPoints withDuration:1.5];
+                                self.deltaPointsLabelIsAnimating = NO;
+                                   
+                                }
+                    
+                            else
+                                {
+                                    self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
+                                }
+
+                }
+                else
+                {
+                    self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
+                    
+                }
                 
 
             }
@@ -812,7 +909,7 @@ static NSString *kImageKey = @"imageKey";
         int myMostRecentPointsValue = [self.myPoints intValue];
         int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
         
-        NSLog(@"Delta in simplehomeviewcontroller: %d", myPointsDeltaValue);
+//        NSLog(@"Delta in simplehomeviewcontroller: %d", myPointsDeltaValue);
         
         
         
@@ -829,19 +926,7 @@ static NSString *kImageKey = @"imageKey";
         [myRetrievedPoints synchronize];
         
         
-        //populate the deltaValueLabel
-        if(myPointsDeltaValue > 0)
-        {
-            self.deltaPoints.text = [NSString stringWithFormat:@"+%d", myPointsDeltaValue];
-        }
-        else
-        {
-            
-            //comment out this line to test deltaLabel animations
-            self.deltaPoints.text = @"";
-            
-        }
-
+        
         
         
     }];
@@ -898,12 +983,50 @@ static NSString *kImageKey = @"imageKey";
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(animateDeltaPointsLabel) userInfo:nil repeats:NO];
     
     [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.5f]];
+    
+    
+    
+//    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//        [calculatePointsClass retrieveFromParse];
+//        [calculatePointsClass incrementPlayerPointsInBackground];
+    
+    
+    
+    
+    
 }
 
 -(void)animateDeltaPointsLabel
 {
     //show deltaPoints label
     self.deltaPoints.hidden = NO;
+    
+    //populate the deltaValueLabel
+    NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
+    
+    int myPointsDelta = (int)[myRetrievedPoints integerForKey:@"myPointsDelta"];
+    
+    NSLog(@"Delta in simplehomeviewcontroller: %d", myPointsDelta);
+    
+    if(myPointsDelta > 0)
+    {
+        self.deltaPoints.text = [NSString stringWithFormat:@"+%d", myPointsDelta];
+        
+        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+        [calculatePointsClass retrieveFromParse];
+        [calculatePointsClass incrementPlayerPointsInBackground];
+
+        
+
+    }
+    else
+    {
+        
+        //comment out this line to test deltaLabel animations
+        self.deltaPoints.text = @"";
+        
+    }
+
     
     //animated label that shows the points the player contributed to his or her team(s)
     self.deltaPoints.center = CGPointMake(160, 184);
@@ -912,15 +1035,26 @@ static NSString *kImageKey = @"imageKey";
     
     //animate the label so that it drops right on top of my team score
     [UIView transitionWithView:self.deltaPoints
-                      duration:3.0f
+                      duration:2.0f
                        options:UIViewAnimationOptionCurveEaseInOut
                     animations:^(void) {
+                        
+                        self.deltaPointsLabelIsAnimating = YES;
+                        
                         self.deltaPoints.center = CGPointMake(newX, newY);
                         [self fadein];
                     }
                     completion:^(BOOL finished) {
                         // Hide label
                         self.deltaPoints.hidden = YES;
+                        if(myPointsDelta > 0)
+                        {
+                            
+                            [self showChart];
+                            
+                            
+                        
+                        }
                     }];
     
 }
@@ -948,7 +1082,7 @@ static NSString *kImageKey = @"imageKey";
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished    context:(void *)context
 {
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:2.5];
+    [UIView setAnimationDuration:1.5];
     self.deltaPoints.alpha = 0;
     [UIView commitAnimations];
 }

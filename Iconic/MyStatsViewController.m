@@ -134,7 +134,7 @@
 
                 self.xpProgressDial.hidden = false;
                 
-                self.circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(0, 0, 56, 56) andTotal:[NSNumber numberWithInt:myTotalPointsToNextLevel] andCurrent:[NSNumber numberWithInt:myLevelProgress]];
+                self.circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(0, 0, 57, 57) andTotal:[NSNumber numberWithInt:myTotalPointsToNextLevel] andCurrent:[NSNumber numberWithInt:myLevelProgress]];
                 
                 
                 
@@ -168,7 +168,7 @@
                 
                 
                 //count up the level number
-                [self.xpValue  countFrom: myPreviousLevel to:[myLevel intValue] withDuration:2];
+                [self.xpValue  countFrom: myPreviousLevel to:[myLevel intValue] withDuration:1];
                 
                 
     
@@ -371,9 +371,13 @@
             int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyMostRecentPointsBeforeSaving];
 //            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
             
-            NSLog(@"Delta in mystats: %d", [self.myPoints intValue] - myStoredPoints);
+            int myPointsGainedDelta = [self.myPoints intValue] - myStoredPoints;
+            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
+            [myRetrievedPoints setInteger:myPointsGainedDelta forKey:@"myPointsDelta"];
+            [myRetrievedPoints synchronize];
             
-            [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:2];
+            
+            [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:1.5];
             
             
             self.stepsValue.formatBlock = ^NSString* (float value)
@@ -383,7 +387,7 @@
             };
             
             int myStoredSteps = (int)[myRetrievedPoints integerForKey:kMyMostRecentStepsBeforeSaving];
-            [self.stepsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:2];
+            [self.stepsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
             
             
         }

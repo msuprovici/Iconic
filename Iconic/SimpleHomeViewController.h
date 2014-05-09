@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PNChart.h"
 #import <CoreMotion/CoreMotion.h>
+#import "UICountingLabel.h"
 
 @interface SimpleHomeViewController : UIViewController <UIScrollViewDelegate>
 
@@ -43,14 +44,15 @@
 @property (strong, nonatomic) IBOutlet PNBarChart *teamBarChart;
  
 
-//Team Line Chart labels
+
 
 
 @property (strong, nonatomic) IBOutlet UILabel *MyTeamName;
 
 @property (strong, nonatomic) IBOutlet UILabel *vsTeamName;
 
-@property (weak, nonatomic) IBOutlet UILabel *MyTeamScore;
+
+@property (strong, nonatomic) IBOutlet UICountingLabel *MyTeamScore;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *VSTeamScore;
