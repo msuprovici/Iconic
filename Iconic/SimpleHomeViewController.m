@@ -227,7 +227,15 @@ static NSString *kImageKey = @"imageKey";
     [self showChart];
     
     
-    [self beginDeltaPointsAnimation];
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    
+    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+    
+    if (numberOfTeams > 0) {
+        [self beginDeltaPointsAnimation];
+    }
+    
+//    [self beginDeltaPointsAnimation];
    
     
     [self.view setNeedsDisplay];
@@ -684,7 +692,7 @@ static NSString *kImageKey = @"imageKey";
                             if(self.deltaPointsLabelIsAnimating == YES)
                                 {
                                  
-                                [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:homeTeamPoints withDuration:1.5];
+                                [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:awayTeamPoints withDuration:1.5];
                                 self.deltaPointsLabelIsAnimating = NO;
                                    
                                 }
