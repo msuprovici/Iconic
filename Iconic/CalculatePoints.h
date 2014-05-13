@@ -58,6 +58,9 @@
 //days left in the week
 @property int daysLeft;
 
+//player joined their first team
+@property int myPointsDeltaValue;
+
 
 //methods
 
@@ -80,6 +83,8 @@
 -(void)scheduleDailySummaryLocalNotification;
 
 -(void)findPastWeekleySteps;
+
+
 
 
 

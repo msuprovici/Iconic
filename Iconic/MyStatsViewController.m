@@ -43,6 +43,7 @@
 
 @synthesize timer = _timer;
 @synthesize myProgress = _myProgress;
+@synthesize xpProgressDial = _xpProgressDial;
 //@synthesize simpleHomeViewController = _simpleHomeViewController;
 
 //-(id)init
@@ -123,33 +124,44 @@
                 
                 
                 float myLevelProgress = (myLifetimePoints - myTotalPointsForCurrentLevelValue);
-               NSLog(@"myLevelProgress: %f", myLevelProgress);
+//               NSLog(@"myLevelProgress: %f", myLevelProgress);
                 
                 float myTotalPointsToNextLevel = (myTotalPointsForNextLevelValue - myTotalPointsForCurrentLevelValue);
-                NSLog(@"myTotalPointsToNextLevel: %f", myTotalPointsToNextLevel);
+//                NSLog(@"myTotalPointsToNextLevel: %f", myTotalPointsToNextLevel);
                 
                 
                 float myProgressPercent = myLevelProgress/myTotalPointsToNextLevel;
+                 self.myProgress = myProgressPercent;
                 
-
+                
+                //DACircularChart
                 self.xpProgressDial.hidden = false;
+                [self progressDialChange];
                 
-                self.circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(0, 0, 57, 57) andTotal:[NSNumber numberWithInt:myTotalPointsToNextLevel] andCurrent:[NSNumber numberWithInt:myLevelProgress]];
+                self.xpProgressDial.trackTintColor = PNGrey;
+                self.xpProgressDial.progressTintColor = PNWeiboColor;
+                
+                self.xpProgressDial.thicknessRatio = .25f;
+                self.xpProgressDial.roundedCorners = NO;
+                
+                //PNCircleChart
+//                self.circleChart = [[PNCircleChart alloc] initWithFrame:CGRectMake(0, 0, 40, 40) andTotal:[NSNumber numberWithInt:myTotalPointsToNextLevel] andCurrent:[NSNumber numberWithInt:myLevelProgress]];
+//                
+//                
+//                
+//                self.circleChart.backgroundColor = [UIColor clearColor];
+//                self.circleChart.labelColor = [UIColor clearColor];
+//                
+//                [self.circleChart setStrokeColor:PNWeiboColor];
+//                [self.circleChart setLineWidth:[NSNumber numberWithInt:6.8]];
+//                [self.circleChart strokeChart];
+//                
+//                [self.xpProgressDial addSubview:self.circleChart];
                 
                 
                 
-                self.circleChart.backgroundColor = [UIColor clearColor];
-                self.circleChart.labelColor = [UIColor clearColor];
-                
-                [self.circleChart setStrokeColor:PNWeiboColor];
-                [self.circleChart setLineWidth:[NSNumber numberWithInt:6.8]];
-                [self.circleChart strokeChart];
-                
-                [self.xpProgressDial addSubview:self.circleChart];
                 
                 
-                
-                self.myProgress = myProgressPercent;
 //                NSLog(@"myRatio: %f", myProgressPercent);
                
                 //counting label text reformating
@@ -306,18 +318,18 @@
 
 
 //- (void)progressDialChange:(float)ratio
-//- (void)progressDialChange
-//{
-//    
-//    NSArray *progressViews = @[self.xpProgressDial];
-//    for (DACircularProgressView *progressView in progressViews) {
-//        
-//        [progressView setProgress:self.myProgress animated:YES];
-//        
-//        
-//        
-//    }
-//}
+- (void)progressDialChange
+{
+    
+    NSArray *progressViews = @[self.xpProgressDial];
+    for (DACircularProgressView *progressView in progressViews) {
+        
+        [progressView setProgress:self.myProgress animated:YES];
+        
+        
+        
+    }
+}
 
 
 //-(void)startAnimation
@@ -372,7 +384,7 @@
 //            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
             
             int myPointsGainedDelta = [self.myPoints intValue] - myStoredPoints;
-            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
+//            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
             [myRetrievedPoints setInteger:myPointsGainedDelta forKey:@"myPointsDelta"];
             [myRetrievedPoints synchronize];
             

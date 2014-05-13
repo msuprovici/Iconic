@@ -77,7 +77,7 @@
 - (IBAction)joinTeam:(id)sender;
 
 
-
+@property BOOL joinedTeamButtonPressed;
 
 
 //methods

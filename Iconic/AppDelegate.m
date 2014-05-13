@@ -76,7 +76,7 @@
     //local notification
     
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-    //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//       [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [calculatePointsClass scheduleDailySummaryLocalNotification];
 
     

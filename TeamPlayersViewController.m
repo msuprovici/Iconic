@@ -483,6 +483,25 @@
         
         NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
         [nc postNotificationName:@"JoinedTeam" object:self userInfo:teamInfo];
+        
+        NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+        
+        int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+        
+        
+        //send nsnotification if the player joined their first team
+        
+//        if (numberOfTeams == 0) {
+//            
+////            [nc postNotificationName:@"playerJoinedTheirFirstTeam" object:self userInfo:teamInfo];
+//            
+////            CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+////            calculatePointsClass.playerJoinedTheirFirstTeam = YES;
+//            
+//            [RetrievedTeams setBool:YES forKey:@"PlayerJointedFirstTeam"];
+//            
+//        }
+        
 
        
 

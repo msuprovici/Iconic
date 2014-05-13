@@ -92,6 +92,9 @@ static NSString *kImageKey = @"imageKey";
 
 @property BOOL deltaPointsLabelIsAnimating;
 
+
+
+
 @end
 
 
@@ -115,7 +118,7 @@ static NSString *kImageKey = @"imageKey";
     
     //schedule local notification to show daily points & steps summary
 //    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-////    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
     
     [self setReceivedNotification:NO];
@@ -176,7 +179,8 @@ static NSString *kImageKey = @"imageKey";
         
         [self showChart];
         
-       self.receivedNotification = NO;
+        
+        self.receivedNotification = NO;
     }
      }
 #pragma mark Refresh Home View
@@ -214,7 +218,7 @@ static NSString *kImageKey = @"imageKey";
     // load the page on either side to avoid flashes when the user starts scrolling
     //
     [self loadScrollViewWithPage:0];
-    //[self loadScrollViewWithPage:1];
+    [self loadScrollViewWithPage:1];
     [self.view addSubview:self.pageControl];
     
     [self savePointsFromCurrentAppLaunch];
@@ -620,8 +624,8 @@ static NSString *kImageKey = @"imageKey";
                 
 //                self.MyTeamScore.text = homeTeamScore;
                 
-                NSLog(@"homeTeamScore: %@",  homeTeamScore);
-                NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
+//                NSLog(@"homeTeamScore: %@",  homeTeamScore);
+//                NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
                 
 //                int pointsAfterPlayerScored = homeTeamPoints + myPointsDelta;
                 
@@ -796,7 +800,19 @@ static NSString *kImageKey = @"imageKey";
         [self.view setNeedsDisplay];
         [self setReceivedNotification:YES];
 //        NSLog(@"Received Joined Team Notification on home screen");
-        ;
+        
+//        if (self.joinedTeamButtonPressed  == YES) {
+        
+//        self.joinedTeamButtonPressed  = YES;
+//            NSLog(@"Player joined 1st team in simple");
+
+//            self.joinedTeamButtonPressed = NO;
+            //this is where you need to give the bonus and reload the view?
+            
+//        }
+
+        
+        
     }
     else if ([[notification name] isEqualToString:@"LeftTeam"])
     {
@@ -976,8 +992,21 @@ static NSString *kImageKey = @"imageKey";
     
     //when selecting the join team button switch to leagues view controller
     
-    self.tabBarController.selectedViewController
-    = [self.tabBarController.viewControllers objectAtIndex:2];
+    self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:2];
+    
+    self.joinedTeamButtonPressed = YES;
+    
+    
+    
+//    
+//    //send nsnotification if the player selected joinedTeamButton
+//    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+//    [nc postNotificationName:@"playerJoinedTheirFirstTeam" object:self];
+//    
+////    [nc postNotificationName:@"JoinedTeam" object:self userInfo:teamInfo];
+    
+    
+    
 }
 
 #pragma mark - Delta Label Animation
@@ -1002,6 +1031,7 @@ static NSString *kImageKey = @"imageKey";
     
     
     
+    
 }
 
 -(void)animateDeltaPointsLabel
@@ -1013,8 +1043,12 @@ static NSString *kImageKey = @"imageKey";
     NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
     
     int myPointsDelta = (int)[myRetrievedPoints integerForKey:@"myPointsDelta"];
+//    int  numberOfTeams = (int)[myRetrievedPoints integerForKey: kNumberOfTeams];
+
     
-    NSLog(@"Delta in simplehomeviewcontroller: %d", myPointsDelta);
+//    NSLog(@"Delta in simplehomeviewcontroller: %d", myPointsDelta);
+    
+    
     
     if(myPointsDelta > 0)
     {

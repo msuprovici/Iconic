@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "DACircularProgressView.h"
+#import "DACircularProgressView.h"
 #import <Parse/Parse.h>
 #import "PNChart.h"
 
@@ -68,7 +68,9 @@
 
 //progres dial
 
-@property (strong, nonatomic) IBOutlet PNCircleChart *xpProgressDial;
+//@property (strong, nonatomic) IBOutlet PNCircleChart *xpProgressDial;
+
+@property (strong, nonatomic) IBOutlet DACircularProgressView *xpProgressDial;
 
 
 
@@ -82,6 +84,9 @@
 //bar chart
 
 @property (strong, nonatomic) IBOutlet PNBarChart *stepsBarChart;
+
+
+
 
 
 @end
