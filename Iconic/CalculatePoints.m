@@ -1029,22 +1029,25 @@
                                 float daysSteps = [[_stepsArray objectAtIndex:i]floatValue] ;
                                 
                                 CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+                                
+                                [myWeekleyPoints insertObject:[calculatePointsClass calculatePoints:daysSteps] atIndex:i];
+                                
 //                                if (numberOfSteps == 0)
                                 
                                 //prevent null values
                                 //if 0 steps, insert 0 for the object at index
                                 
-                                  if([_stepsArray objectAtIndex:i] == 0)
-                                {
-                                    
-                                    [myWeekleyPoints insertObject:[NSNumber numberWithInt:0] atIndex:i];
-                                }
-                                else
-                                {
-                                    [myWeekleyPoints insertObject:[calculatePointsClass calculatePoints:daysSteps] atIndex:i];
-                                    
-                                    //[myWeekleyPoints addObject:[calculatePointsClass calculatePoints:daysSteps]];
-                                }
+//                                  if([_stepsArray objectAtIndex:i] == 0)
+//                                {
+//                                    
+//                                    [myWeekleyPoints insertObject:[NSNumber numberWithInt:0] atIndex:i];
+//                                }
+//                                else
+//                                {
+//                                    [myWeekleyPoints insertObject:[calculatePointsClass calculatePoints:daysSteps] atIndex:i];
+//                                    
+//                                    //[myWeekleyPoints addObject:[calculatePointsClass calculatePoints:daysSteps]];
+//                                }
                             }
 
                             
@@ -1132,17 +1135,21 @@
 -(NSNumber*)calculatePoints:(float)steps
 {
     
-    NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
-    
-    bool joinedFirstTeam = [myRetrievedPoints boolForKey:@"PlayerJointedFirstTeam"];
-
     
     //alogrithm for generating points from steps: yourPoints = ((0.85^( ln(steps) /ln (2)))/time)*steps*constantValue
     
     //Converting float to NSNumber
     NSNumber * points = [NSNumber numberWithFloat: ceil((pow(0.85, ((log(steps)/log(2))))/20) * steps * 50)];//rounded up to the largest following integer using ceiling function
     
-    return points;
+    if([points isEqualToNumber:[NSDecimalNumber notANumber]])
+    {
+        return [NSNumber numberWithInt:0];
+    }
+    else
+    {
+        return points;
+    }
+    
 }
 
 
@@ -1162,7 +1169,18 @@
     //    if(level == 0 || level == nil)
     //        return [NSNumber numberWithInteger:1];
     //    else
-    return level;
+    //    return level;
+    
+    if([level isEqualToNumber:[NSDecimalNumber notANumber]])
+    {
+        return [NSNumber numberWithInt:0];
+    }
+    else
+    {
+        return level;
+    }
+    
+    
 }
 
 -(NSNumber*)calculatePointsToReachNextLevel:(float)level
@@ -1176,7 +1194,17 @@
     //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
     NSNumber * points = [NSNumber numberWithFloat: floor((pow(level, 1)*1000))+1];
     
-    return points;
+    //    return points;
+    if([points isEqualToNumber:[NSDecimalNumber notANumber]])
+    {
+        return [NSNumber numberWithInt:0];
+    }
+    else
+    {
+        return points;
+    }
+    
+    
 }
 
 -(NSNumber*)calculatePointsToReachCurrentLevel:(float)level
@@ -1187,7 +1215,17 @@
     //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
     NSNumber * points = [NSNumber numberWithFloat: floor((pow(level-1, 1)*1000))+1];
     
-    return points;
+    //    return points;
+    
+    if([points isEqualToNumber:[NSDecimalNumber notANumber]])
+    {
+        return [NSNumber numberWithInt:0];
+    }
+    else
+    {
+        return points;
+    }
+    
 }
 
 
