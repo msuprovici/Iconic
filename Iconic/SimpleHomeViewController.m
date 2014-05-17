@@ -226,7 +226,7 @@ static NSString *kImageKey = @"imageKey";
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
     [calculatePointsClass retrieveFromParse];
     [calculatePointsClass incrementPlayerPointsInBackground];
-    
+    [calculatePointsClass migrateLeaguesToCoreData];
 
     [self showChart];
     

@@ -13,6 +13,7 @@
 #import "PNChart.h"
 #import "Constants.h"
 #import "Team.h"
+#import "AppDelegate.h"
 
 @interface TeamsViewController ()
 
@@ -124,6 +125,39 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"LeftTeam" object:nil];
 
+    
+    
+    
+//    // Fetch the devices from persistent data store
+//    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+//    NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
+//    
+////    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Team"];
+//    NSManagedObject *teamName = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+//    
+//    
+//    NSManagedObjectContext * context = [appDelegate managedObjectContext];
+//    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
+//    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+//    [request setEntity:entityDesc];
+//    
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)", @"Core Data Testing!!!"];
+//    [request setPredicate:pred];
+//    
+//    NSError *error;
+//    NSArray *fetchedTeamNames = [context executeFetchRequest:request error:&error];
+//    
+//    for (int i = 0; i < [fetchedTeamNames count]; i++) {
+//        NSManagedObject *teamNames = fetchedTeamNames[i];
+////        [managedObjectContext deleteObject:teamNames];
+//        [managedObjectContext save:&error];
+//    }
+//    
+//    
+//    
+//    NSLog(@"teamName %@", [NSString stringWithFormat:@"%@",[teamName valueForKeyPath:@"name"]]);
+    
 }
 
 //method for loading table cells with leagues
@@ -588,19 +622,30 @@
 
 
 //*this delegate does not work*
--(void)didSelectJoinTeam:(TeamPlayersViewController *)controller team:(Team *)team
+//-(void)didSelectJoinTeam:(TeamPlayersViewController *)controller team:(Team *)team
+//{
+//    NSLog(@"TeamPlayersViewController delegate works");
+//    
+//    Team * selectedTeam = [[Team alloc]init];
+////    selectedTeam.teamName = [self.team objectForKey:kTeams];
+//    if (selectedTeam.playerJoinedTeam == YES) {
+//        NSLog(@"selectedTeam.playerJoinedTeam == YES");
+//    }
+//    else{
+//        NSLog(@"selectedTeam.playerJoinedTeam == NO");
+//    }
+//    
+//}
+
+#pragma mark Core Data
+- (NSManagedObjectContext *)managedObjectContext
 {
-    NSLog(@"TeamPlayersViewController delegate works");
-    
-    Team * selectedTeam = [[Team alloc]init];
-//    selectedTeam.teamName = [self.team objectForKey:kTeams];
-    if (selectedTeam.playerJoinedTeam == YES) {
-        NSLog(@"selectedTeam.playerJoinedTeam == YES");
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
     }
-    else{
-        NSLog(@"selectedTeam.playerJoinedTeam == NO");
-    }
-    
+    return context;
 }
 
 

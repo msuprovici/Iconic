@@ -15,6 +15,7 @@
 #import "Team.h"
 #import "CalculatePoints.h"
 #import "SimpleHomeViewController.h"
+#import "AppDelegate.h"
 
 
 @interface TeamPlayersViewController ()
@@ -35,7 +36,7 @@
 @synthesize players = _players;
 //@synthesize categories = _categories;
 
-@synthesize delegate;
+//@synthesize delegate;
 
 
 
@@ -411,18 +412,38 @@
 //        completionBlock(count > 0, error);
 //    }];
     
-    Team * selectedTeam = [[Team alloc]init];
-    selectedTeam.teamName = [self.team objectForKey:kTeam];
+//    Team * selectedTeam = [[Team alloc]init];
+//    selectedTeam.teamName = [self.team objectForKey:kTeam];
     
-    [self.delegate didSelectJoinTeam:self team:selectedTeam];
+//    [self.delegate didSelectJoinTeam:self team:selectedTeam];
 
     
     PFUser *loggedInUser = [PFUser objectWithClassName:self.parseClassName];
     
     if(self.joinTeam.selected == NO)
     {
+        NSString *myTeamName = [self.team objectForKey:kTeam];
+        
+        //testing core data
+//        NSError *error;
+//        AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+//        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+////        NSManagedObjectContext *context = [self managedObjectContext];
+//        
+//        // Create a new managed object
+//        NSManagedObject *newTeam = [NSEntityDescription insertNewObjectForEntityForName:@"Team" inManagedObjectContext:context];
+//        //[newTeam setValue:myTeamName forKey:@"name"];
+//        [newTeam setValue:@"Core Data Testing!!!" forKey:@"name"];
+//        [context save:&error];
+//        
+//       error = nil;
+//        // Save the object to persistent store
+//        if (![context save:&error]) {
+//            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+//        }
+        
         //filp boolean to the player joined team
-        selectedTeam.playerJoinedTeam = YES;
+//        selectedTeam.playerJoinedTeam = YES;
         
         
 //        [self.delegate didSelectJoinTeam:self team:self.team];
@@ -464,29 +485,29 @@
                 
                 //use team's name as a chanel to push to
                 NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
-                
-                [PFPush subscribeToChannelInBackground:pushChanelName block:^(BOOL succeeded, NSError *error) {
-                    
-                    if (!error) {
-//                        NSLog(@"subscribed to push chanel: %@", [self.team objectForKey:kTeams]);
-                    } else {
-//                        NSLog(@"Failed to subscribe to push chanel, Error: %@", error);
-                    }
-                    
-                }];
+//                
+//                [PFPush subscribeToChannelInBackground:pushChanelName block:^(BOOL succeeded, NSError *error) {
+//                    
+//                    if (!error) {
+////                        NSLog(@"subscribed to push chanel: %@", [self.team objectForKey:kTeams]);
+//                    } else {
+////                        NSLog(@"Failed to subscribe to push chanel, Error: %@", error);
+//                    }
+//                    
+//                }];
                 
                
             }
         }];
-        NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
-        [teamInfo setObject:self.team forKey:@"team"];
-        
-        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-        [nc postNotificationName:@"JoinedTeam" object:self userInfo:teamInfo];
-        
-        NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-        
-        int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+//        NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
+//        [teamInfo setObject:self.team forKey:@"team"];
+//        
+//        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+//        [nc postNotificationName:@"JoinedTeam" object:self userInfo:teamInfo];
+//        
+//        NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+//        
+//        int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
         
         
         //send nsnotification if the player joined their first team
@@ -521,7 +542,7 @@
 
         
         //filp boolean to the player left team
-        selectedTeam.playerJoinedTeam = NO;
+//        selectedTeam.playerJoinedTeam = NO;
         
         PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
         [query whereKey:kTeamate equalTo:[PFUser currentUser]];
@@ -560,15 +581,15 @@
                         //create a chanel to push
                         NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
                         
-                        [PFPush unsubscribeFromChannelInBackground: pushChanelName block:^(BOOL succeeded, NSError *error) {
-                            
-                            if (!error) {
-//                                NSLog(@"unsubscribed to push chanel: %@", [self.team objectForKey:kTeams]);
-                            } else {
-//                                NSLog(@"Failed to unsubscribe to push chanel, Error: %@", error);
-                            }
-                            
-                        }];
+//                        [PFPush unsubscribeFromChannelInBackground: pushChanelName block:^(BOOL succeeded, NSError *error) {
+//                            
+//                            if (!error) {
+////                                NSLog(@"unsubscribed to push chanel: %@", [self.team objectForKey:kTeams]);
+//                            } else {
+////                                NSLog(@"Failed to unsubscribe to push chanel, Error: %@", error);
+//                            }
+//                            
+//                        }];
 
                     }
                         else
@@ -758,6 +779,20 @@
     
     
 }
+
+#pragma mark Core Data
+
+#pragma mark - Core Data
+
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
+
 
 
 

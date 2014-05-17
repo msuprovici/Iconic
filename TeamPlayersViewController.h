@@ -22,7 +22,7 @@
 
 @interface TeamPlayersViewController : PFQueryTableViewController
 
-@property (nonatomic, assign) id <TeamPlayersViewControllerDelegate> delegate;
+//@property (nonatomic, assign) id <TeamPlayersViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) IBOutlet UIButton *joinTeam;
 

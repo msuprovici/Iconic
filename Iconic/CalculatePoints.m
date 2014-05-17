@@ -13,7 +13,9 @@
 #include <math.h>
 #import "SimpleHomeViewController.h"
 #import "VSTableViewController.h"
-
+#import "League.h"
+#import "Team.h"
+#import "AppDelegate.h"
 
 @implementation CalculatePoints
 
@@ -1458,8 +1460,10 @@
     localNotification.soundName = UILocalNotificationDefaultSoundName;
     
     //use yesterday's points and steps
-    localNotification.alertBody = [NSString stringWithFormat:@"You scored %@ points on %@ steps yesterday.",
-                                   yesterdayPoints, yesterdaySteps];
+//    localNotification.alertBody = [NSString stringWithFormat:@"You scored %@ points on %@ steps yesterday.",
+//                                   yesterdayPoints, yesterdaySteps];
+    
+    localNotification.alertBody = @"testing notification";
     
 //    [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:self.matchupsIndex]];
     
@@ -1472,6 +1476,158 @@
     
     //schedule the local notfication
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+
+#pragma mark - Core Data
+
+-(void)migrateLeaguesToCoreData
+{
+    //query Teams class
+    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        //looping once so that we don't create duplicate object
+        for (int i = 0; i < 1; i++) {
+            
+//            NSCountedSet *leaguesWithCounts = [NSCountedSet setWithArray:[objects valueForKey:kLeagues]];
+//            NSMutableSet *uniqueLeague = [NSMutableSet set];
+//            for (id league in leaguesWithCounts)
+//                if ([[leaguesWithCounts countForObject:league] == 1])
+//                {
+//                    [uniqueLeague addObject:league];
+//                }
+//            NSPredicate *findUniqueLeagues = [NSPredicate predicateWithFormat:@"league IN %@", uniqueLeague];
+//            NSArray *songsWithUniqueArtists = [objects filteredArrayUsingPredicate:findUniqueArtists];
+            
+            
+            self.allLeaguesTeams = objects;
+            
+            self.uniqueLeagues = [objects valueForKeyPath:@"@distinctUnionOfObjects.league"];
+            
+//            NSLog(@"uniqueLeagues: %@", self.uniqueLeagues);
+            
+//           NSLog(@"allLeaguesTeams: %@", self.allLeaguesTeams);
+            
+            
+            
+            //add corresponding teams that match to core data
+            NSPredicate *uniqueLeague = [NSPredicate predicateWithFormat:@"league IN %@", self.uniqueLeagues];
+            NSArray *teamsWithUniqueleagues = [objects filteredArrayUsingPredicate:uniqueLeague];
+//            NSLog(@"teamsWithUniqueleagues: %@", teamsWithUniqueleagues);
+            
+            
+//            NSArray *filteredArray = [objects filteredArrayUsingPredicate:
+//                                      [NSPredicate predicateWithBlock:^(id object, NSDictionary *bindings) {
+//                return [object someMethod]; // if someMethod returns YES, the object is kept
+//            }]];
+            
+           
+//            for (int i = 1; i < self.uniqueLeagues.count; i++) {
+//                
+//                
+//                NSString *LeagueName = [NSString stringWithFormat:@"%@",self.uniqueLeagues[i]];
+//                NSLog(@"LeageName: %@", LeagueName);
+//                
+//                NSPredicate* predicate = [NSPredicate predicateWithFormat:LeagueName];
+//                NSArray* filteredData = [self.allLeaguesTeams filteredArrayUsingPredicate:predicate];
+//                
+//                
+//                for (int i = 1; i < filteredData.count; i++)
+//                {
+//                    NSString *TeamName = [NSString stringWithFormat:@"%@",[filteredData[i] valueForKeyPath:kTeams]];
+//                    
+//                    
+//                    NSLog(@"TeamName: %@", TeamName);
+//                    
+//                }
+//
+//            }
+            
+            
+            
+            
+            NSError *error;
+            AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+            NSManagedObjectContext *context = [appDelegate managedObjectContext];
+            
+            
+            for (int i = 0; i < self.uniqueLeagues.count; i++) {
+                
+                
+                
+                NSString *LeagueName = [NSString stringWithFormat:@"%@",self.uniqueLeagues[i]];
+                
+                
+                
+//
+//                
+//                
+//                [context save:&error];
+                //        NSPredicate* predicate = [NSPredicate predicateWithFormat:self.uniqueLeagues[i]];
+                //        NSArray* filteredData = [self.allLeaguesTeams filteredArrayUsingPredicate:predicate];
+                
+                
+                PFQuery *queryTeamsClassAgain = [PFQuery queryWithClassName:kTeamTeamsClass];
+              
+                [queryTeamsClassAgain whereKey:kLeagues equalTo:LeagueName];
+                [queryTeamsClassAgain findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                 
+                    NSMutableArray *teamsInLeague = [[NSMutableArray alloc]init];
+                    
+                   for(PFObject *myTeam in objects)
+                   {
+                       NSString *TeamName = [NSString stringWithFormat:@"%@",[myTeam objectForKey:kTeams]];
+//                       NSLog(@"League: %@",self.uniqueLeagues[i]);
+//                       NSLog(@"TeamName: %@", TeamName);
+                       
+                       [teamsInLeague addObject:TeamName];
+                       
+//                       NSSet* mySetWithUniqueItems= [NSSet setWithArray: TeamName];
+//                       [league setTeams:TeamName];
+                   }
+                    
+                    NSSet* teamsInLeagueSet= [NSSet setWithArray: teamsInLeague];
+                    NSLog(@"LeageName: %@", LeagueName);
+                    NSLog(@"teamsInLeagueSet: %@",teamsInLeagueSet);
+                    
+                    
+                    //add to Core Data
+//                    League *league = [NSEntityDescription insertNewObjectForEntityForName:@"League" inManagedObjectContext:context];
+//                    [league setLeague:LeagueName];
+//                    [league setTeams:teamsInLeagueSet];
+                    
+                    
+                }];
+                
+                //        for (int i = 1; i < filteredData.count; i++)
+                //        {
+                //            NSString *TeamName = [NSString stringWithFormat:@"%@",[filteredData[i] valueForKeyPath:kTeams]];
+                //
+                //
+                //            NSLog(@"TeamName: %@", TeamName);
+                //
+                //        }
+                
+                
+                
+                //add leagues name to core data
+                //        League *league = [NSEntityDescription insertNewObjectForEntityForName:@"League" inManagedObjectContext:context];
+                //        [league setLeague:self.uniqueLeagues[i]];
+                //        
+                //        
+                //        
+                //        [context save:&error];
+            }
+
+            
+            
+        }
+        
+    }];
+    
+
+    
+    
 }
 
 @end

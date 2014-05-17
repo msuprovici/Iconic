@@ -61,6 +61,10 @@
 //player joined their first team
 @property int myPointsDeltaValue;
 
+//unique leagues
+@property NSArray *uniqueLeagues;
+
+@property NSArray *allLeaguesTeams;
 
 //methods
 
@@ -84,7 +88,7 @@
 
 -(void)findPastWeekleySteps;
 
-
+-(void)migrateLeaguesToCoreData;
 
 
 
