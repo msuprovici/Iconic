@@ -13,6 +13,7 @@
 
 #import "Constants.h"
 #import "PNChart.h"
+#import "AppDelegate.h"
 
 @interface LeaguesViewController ()
 
@@ -244,6 +245,38 @@
  //cell.textLabel.text = [object objectForKey:self.textKey];
  //cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
  //cell.imageView.file = [object objectForKey:self.imageKey];
+     
+     
+     
+     //set check mark if the player is on a team
+     
+//     AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+//     NSManagedObjectContext * context = [appDelegate managedObjectContext];
+//     NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
+//     NSFetchRequest *request = [[NSFetchRequest alloc]init];
+//     [request setEntity:entityDesc];
+//     
+//     
+//     NSString *currentLeague = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagues]];
+//     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
+//     NSPredicate *pred = [NSPredicate predicateWithFormat:@"onteam = YES"];
+//     [request setPredicate:pred];
+//     NSError *error;
+//     
+//     NSArray *fetchedLeagues = [context executeFetchRequest:request error:&error];
+//         NSString *myLeagueName;
+//     
+//     for (NSManagedObject *myLeagueNames in fetchedLeagues) {
+//         
+//         myLeagueName = [NSString stringWithFormat:@"%@",[myLeagueNames valueForKeyPath:@"league"]];
+//         NSLog(@"myLeagueName %@", [NSString stringWithFormat:@"%@",myLeagueName]);
+//         
+//     }
+//     
+//     if ([myLeagueName isEqualToString: currentLeague]) {
+//         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//     }
+
  
  return cell;
  }
@@ -275,11 +308,14 @@
 
 // Get the array of indeces for that section. This lets us pick the correct PFObject from self.objects
 - (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
     NSString *leagues = [self categories:indexPath.section];
    
     NSArray *rowIndecesInSection = [self.leagues objectForKey:leagues];
     
     NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
+    
     return [self.objects objectAtIndex:[rowIndex intValue]];
 }
 

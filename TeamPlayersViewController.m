@@ -80,7 +80,7 @@
 {
     self.team = aTeam;
     self.selectedTeamName = [NSString stringWithFormat:@"%@",[self.team objectForKey:kTeams]];
-    NSLog(@"self.selectedTeamName: %@", self.selectedTeamName);
+//    NSLog(@"self.selectedTeamName: %@", self.selectedTeamName);
 }
 
 
@@ -102,44 +102,19 @@
 //    [self.joinTeam setSelected:YES];
   
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-//     if (self.joinTeam.selected == NO) {
-//         self.joinTeam.titleLabel.text = @"Join";
-//     }
-//    else if (self.joinTeam.selected == YES)
-//    {
-//        self.joinTeam.titleLabel.text = @"Leave";
-//        
-//    }
-    
+
     
     
    }
 
 //-(void) viewWillAppear:(BOOL)animated
 //{
-//    [self.joinTeam setTitle:@"Join" forState:UIControlStateNormal];
-//    [self.joinTeam setTitle:@"Leave" forState:UIControlStateSelected];
-//    
-//    [self joinTeamButtonState];
-//    [self.tableView reloadData];
+
 //}
 
 //-(void) viewDidAppear:(BOOL)animated
 //{
-//    [super viewDidAppear:animated];
-//    
-//    [self.joinTeam setTitle:@"Join" forState:UIControlStateNormal];
-//    [self.joinTeam setTitle:@"Leave" forState:UIControlStateSelected];
-//    
-//    [self joinTeamButtonState];
-//    [self.tableView reloadData];
-//    
+
 //}
 
 
@@ -450,7 +425,7 @@
                 
                 NSError *error;
                 NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-                NSArray *fetchedTeamNames = [[NSArray alloc] initWithObjects:sortDescriptor, nil];;
+                NSArray *fetchedTeamNames = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
                 [request setSortDescriptors:fetchedTeamNames];
                 
                 Team *team = [[context executeFetchRequest:request error:&error] objectAtIndex:0];
@@ -506,6 +481,12 @@
                
             }
         }];
+        
+        NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
+        [teamInfo setObject:self.team forKey:@"team"];
+        
+        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:@"JoinedTeam" object:self userInfo:teamInfo];
     }
     
     else if (self.joinTeam.selected == YES)
@@ -519,8 +500,8 @@
             
             NSString *teamNameAtIndex = [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"name"]];
             
-            NSLog(@"left team name %@", [NSString stringWithFormat:@"%@",teamNameAtIndex]);
-            NSLog(@"team left in league %@", [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"league"]]);
+//            NSLog(@"left team name %@", [NSString stringWithFormat:@"%@",teamNameAtIndex]);
+//            NSLog(@"team left in league %@", [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"league"]]);
             
             
             if([teamNameAtIndex isEqualToString:self.selectedTeamName])
@@ -687,7 +668,7 @@
     }
     
     
-    NSLog(@"selected league %@", leagueOfSelectedTeam);
+//    NSLog(@"selected league %@", leagueOfSelectedTeam);
     
     //find out if the player is on a team in leagueOfSelectedTeam
 

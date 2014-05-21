@@ -19,6 +19,8 @@
 
 @property NSMutableArray *leaguesArray;
 
+@property (nonatomic, assign) BOOL receivedJoinLeaveNotification;
+
 @property (nonatomic, retain) NSMutableDictionary *teams;
 //@property (nonatomic, retain) NSMutableDictionary *categories;
 
@@ -27,6 +29,7 @@
 @implementation TeamsViewController
 
 @synthesize teams = _teams;
+
 //@synthesize categories = _categories;
 
 
@@ -84,9 +87,9 @@
        // self.categories = [NSMutableDictionary dictionary];
         
         
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"JoinedTeam" object:nil];
-//        
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"LeftTeam" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"JoinedTeam" object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"LeftTeam" object:nil];
         
 
 
@@ -108,12 +111,12 @@
 {
     [super viewDidLoad];
     
-    
+    self.receivedJoinLeaveNotification = NO;
     //self.leaguesArray = [[NSMutableArray alloc] init];
     
     //TeamsViewController.teamsViewControllerDelegate = self;
     
-    [self loadInitialData];
+//    [self loadInitialData];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -121,85 +124,32 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"JoinedTeam" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"JoinedTeam" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"LeftTeam" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"LeftTeam" object:nil];
 
     
     
     
-//    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-//    NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
-//    
-//    
-//    NSFetchRequest *leagueFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"League"];
-//    
-//    NSFetchRequest *teamsFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"teams"];
-//    NSManagedObject *leagueName = [[managedObjectContext executeFetchRequest:leagueFetchRequest error:nil] mutableCopy];
-//    
-//    
-//    NSFetchRequest *teamFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Team"];
-//    NSManagedObject *teamName = [[managedObjectContext executeFetchRequest:teamFetchRequest error:nil] mutableCopy];
-//    
-//    
-//    NSManagedObjectContext * context = [appDelegate managedObjectContext];
-//    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
-//    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-//    [request setEntity:entityDesc];
-//    
-//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)", @"Core Data Testing!!!"];
-//    [request setPredicate:pred];
-//    
-//    NSError *error;
-//    NSArray *fetchedTeamNames = [context executeFetchRequest:request error:&error];
-//    
-//    for (int i = 0; i < [fetchedTeamNames count]; i++) {
-//        NSManagedObject *teamNames = fetchedTeamNames[i];
-////        [managedObjectContext deleteObject:teamNames];
-//        [managedObjectContext save:&error];
-//    }
-    
-    
-    
-    
-    // Fetch the devices from persistent data store
-    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-   
-     NSFetchRequest *leagueFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"League"];
-     NSFetchRequest *teamFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Team"];
-    NSManagedObjectContext * context = [appDelegate managedObjectContext];
-    NSError *error;
-    NSArray *fetchedTeamNames = [context executeFetchRequest:teamFetchRequest error:&error];
-    NSArray *fetchedLeagueNames = [context executeFetchRequest:leagueFetchRequest error:&error];
-    
-    
-    for (int i = 0; i < [fetchedTeamNames count]; i++) {
-        NSManagedObject *teamNames = fetchedTeamNames[i];
+}
 
-         NSLog(@"teamNames %@", [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"name"]]);
-        NSLog(@"teams in league %@", [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"league"]]);
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES ];
+    
+//     [self loadInitialData];
+//    [self.tableView reloadData];
+    
+    // If we received joined/leave team notification update team charts
+    if (self.receivedJoinLeaveNotification == YES) {
         
-//         NSLog(@"teamNames %@", teamNames);
-    }
-    
-    NSLog(@"fetchedLeague Names %lu", (unsigned long)[fetchedLeagueNames count]);
-    
-    for (int i = 0; i < [fetchedLeagueNames count]; i++) {
-        NSManagedObject *leagueNames = fetchedLeagueNames[i];
-        //        [managedObjectContext deleteObject:teamNames];
-        //        [managedObjectContext save:&error];
-        NSLog(@"leagueNames %@", [NSString stringWithFormat:@"%@",[leagueNames valueForKeyPath:@"league"]]);
-//        NSLog(@"teams in league %@", [NSString stringWithFormat:@"%@",[leagueNames valueForKeyPath:@"team"]]);
-//        NSLog(@"leagueNames %@", leagueNames);
-    }
 
-    
-    
-    
-   
-    
-//    NSLog(@"leagueNames %@", [NSString stringWithFormat:@"%@",[leagueName valueForKeyPath:@"league"]]);
-    
+//        [self.tableView reloadData];
+        
+        [self.tableView reloadData];
+        
+        self.receivedJoinLeaveNotification = NO;
+    }
 }
 
 //method for loading table cells with leagues
@@ -324,31 +274,43 @@
     // Configure the cell
     cell.teamName.text = [object objectForKey:self.textKey];
     
-    //query the team players class to determine if the player is on a team
-    //if the player is on a team show a checkmark accessory for the cell
-    PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
-    [query whereKey:kTeamate equalTo:[PFUser currentUser]];
-    [query whereKey:kTeam equalTo:object];
-   // query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    //set check mark if the player is on a team
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext * context = [appDelegate managedObjectContext];
+    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    [request setEntity:entityDesc];
+    
+    
+    NSString *currentLeague = [NSString stringWithFormat:@"%@",[self.league objectForKey:kLeagues]];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"onteam = YES AND league = %@", currentLeague];
+    [request setPredicate:pred];
+    NSError *error;
+    
+        NSArray *fetchedTeams = [context executeFetchRequest:request error:&error];
+        NSString *myTeamAtIndex = [NSString stringWithFormat:@"%@",[object objectForKey:kTeams]];
+//    NSLog(@"myTeamAtIndex %@", [NSString stringWithFormat:@"%@",myTeamAtIndex]);
+    
+        NSString *myTeamName;
+    
+        for (NSManagedObject *teamNames in fetchedTeams) {
         
-        TeamPlayersViewController *tappedCell = [[TeamPlayersViewController alloc]init];
+            myTeamName = [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"name"]];
+       //        NSLog(@"myTeamName %@", [NSString stringWithFormat:@"%@",myTeamName]);
         
-        if (!error) {
-            
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            //flip off boolean for that cell
-            tappedCell.addTeam = YES;
-                }
-        else if(error)
-        {
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            //flip off boolean here
-            tappedCell.addTeam = NO;
         }
-       
-            }];
+    
+            if ([myTeamName isEqualToString: myTeamAtIndex]) {
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+            else
+            {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+
     
     
     
@@ -555,98 +517,29 @@
 
 //attempt to use a NSNotification to update cell accessoryType - does not work.
 //using NSNotification to refresh view controller
-- (void) receiveTestNotification:(NSNotification *) notification
+- (void) receiveJoinOrLeaveTeam:(NSNotification *) notification
 {
-    // [notification name] should always be @"TestNotification"
-    // unless you use this method for observation of other notifications
-    // as well.
-    
-    if ([[notification name] isEqualToString:@"JoinedTeam"])
-    {
-        NSDictionary* teamInfo = notification.userInfo;
-       //PFObject *pushedteams = [[teamInfo objectForKey:@"team"] object];
-        
-         NSString *team = [[teamInfo objectForKey:@"team"] objectId];
-//        NSLog (@"Successfully received Joined Team notification! %@", team);
-        
-        
-        TeamCell *cell = [[TeamCell alloc]init];
-
-        NSIndexPath *hitIndex = [self.tableView indexPathForCell:cell];
-       // NSInteger rowOfTheCell = [hitIndex row];
-        
-        NSString *teamCell = [[self.objects objectAtIndex:hitIndex.row]objectId];
-        
-       // PFObject *teams = [self.objects objectAtIndex:hitIndex.row];
-
-       //comparing the objectId pushed in the NSNotificaiton to the objectId at indexpath
-        if (team == teamCell ) {
-            
-            
-            if (team) {
-                
-                //attempt to update the accessory - does not work
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//                NSLog(@"Objects are equal");
-
-            [self.tableView reloadData];
-                
-                }
-            else
-            {
-//                NSLog(@"Object not found");
-            }
-
-        }
-        else
+        if ([[notification name] isEqualToString:@"JoinedTeam"])
         {
             
-//             NSLog(@"Objects are NOT equal");
-             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
-           
+            self.receivedJoinLeaveNotification = YES;
             
+            
+        [self.tableView setNeedsDisplay];
+//        NSLog (@"Successfully received notification!");
         }
-//        }
-    }
-    else if ([[notification name] isEqualToString:@"LeftTeam"])
-    {
-        NSDictionary* teamInfo = notification.userInfo;
-        // PFObject *team = [[teamInfo objectForKey:@"team"] object];
-        
-        NSString *team = [[teamInfo objectForKey:@"team"] objectId];
-//        NSLog (@"Successfully received Left Team notification! %@", team);
-        
-        
-        
-        TeamCell *cell = [[TeamCell alloc]init];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        [self.view setNeedsDisplay];
-        
-        
-        
-        //using a timer in case parse did not receive all the data
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(followUsersTimerFired:) userInfo:nil repeats:NO];
-        
-        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0f]];
-        
-//        NSIndexPath *hitIndex = [self.tableView indexPathForCell:cell];
-//        
-//        NSString *teamCell = [[self.objects objectAtIndex:hitIndex.row]objectId];
-//        
-//        
-//        
-//        if (team == teamCell) {
-//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//            
-//        }
-//        else
-//        {
-//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//            
-//        }
-
-    }
+   
+        else if ([[notification name] isEqualToString:@"LeftTeam"])
+        {
+            
+            
+            self.receivedJoinLeaveNotification = YES;
+            
+            [self.tableView setNeedsDisplay];
+//            NSLog (@"Successfully received notification!");
+        }
+    
 }
 
 - (void)followUsersTimerFired:(NSTimer *)timer {
@@ -656,28 +549,6 @@
 
 
 
-//attempt to use a delegate to update cell accessoryType - does not work.
--(void)updateCells
-{
-    //NSLog(@"This delegate works");
-}
-
-
-//*this delegate does not work*
-//-(void)didSelectJoinTeam:(TeamPlayersViewController *)controller team:(Team *)team
-//{
-//    NSLog(@"TeamPlayersViewController delegate works");
-//    
-//    Team * selectedTeam = [[Team alloc]init];
-////    selectedTeam.teamName = [self.team objectForKey:kTeams];
-//    if (selectedTeam.playerJoinedTeam == YES) {
-//        NSLog(@"selectedTeam.playerJoinedTeam == YES");
-//    }
-//    else{
-//        NSLog(@"selectedTeam.playerJoinedTeam == NO");
-//    }
-//    
-//}
 
 #pragma mark Core Data
 - (NSManagedObjectContext *)managedObjectContext
