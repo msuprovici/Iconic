@@ -90,8 +90,8 @@
    
     
     [super viewDidLoad];
-    
-    
+  
+      
     [self.joinTeam setTitle:@"Join" forState:UIControlStateNormal];
     [self.joinTeam setTitle:@"Leave" forState:UIControlStateSelected];
     
@@ -398,6 +398,8 @@
     
     if(self.joinTeam.selected == NO)
     {
+        
+        
         [self.joinTeam setSelected:YES];
         
         //find out if the team name that = the stored team and filp the onteam flag to yes
@@ -477,11 +479,34 @@
                 NSArray *homeTeamNames = [Teams objectForKey:kArrayOfHomeTeamScores];
 //                NSLog(@"homeTeamNames.count: %lu", (unsigned long)homeTeamNames.count);
                 
+                //subscribe to the team's push notification chanel
+                NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
                 
+//                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+//                [currentInstallation addUniqueObject:@"Test" forKey:@"channels"];
+//                [currentInstallation saveEventually];
+                
+//                [PFPush subscribeToChannelInBackground: pushChanelName block:^(BOOL succeeded, NSError *error) {
+//                    
+//                    if (!error) {
+//                        //                                NSLog(@"unsubscribed to push chanel: %@", [self.team objectForKey:kTeams]);
+//                    } else {
+//                        //                                NSLog(@"Failed to unsubscribe to push chanel, Error: %@", error);
+//                    }
+//                    
+//                }];
+
                
             }
         }];
         
+        //subscribe to the team's push notificaiton channel
+        NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
+        [[PFInstallation currentInstallation] addUniqueObject:pushChanelName forKey:@"channels"];
+        [[PFInstallation currentInstallation] saveInBackground];
+
+        
+        //send nsnotificaiton to view controllers so they can update
         NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
         [teamInfo setObject:self.team forKey:@"team"];
         
@@ -489,8 +514,17 @@
         [nc postNotificationName:@"JoinedTeam" object:self userInfo:teamInfo];
     }
     
+    
+    
+    
+    
+    
+    
+    
     else if (self.joinTeam.selected == YES)
     {
+        
+      
 
         [self.joinTeam setSelected:NO];
         //find out if the team name that = the stored team and filp the onteam flag to no
@@ -531,8 +565,7 @@
                 
                 [context save:&error];
 
-                
-                
+
                 
 
             }
@@ -564,7 +597,8 @@
 //                    NSLog(@"self.team: %@", self.team);
                     
                     [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (succeeded) {
+                    if (succeeded)
+                        {
                         
 //                        [self.joinTeam setSelected:NO];
                         
@@ -572,34 +606,15 @@
                         
                         CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
                         [calculatePoints retrieveFromParse];
-//                        
-//                        SimpleHomeViewController * simpleHomeViewController = [[SimpleHomeViewController alloc] init];
-//                        [simpleHomeViewController refreshHomeView];
-                        
-                        
-                        //subscribe to team's push notification chanel
-                        
-                        //create a chanel to push
-                        NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
-                        
-//                        [PFPush unsubscribeFromChannelInBackground: pushChanelName block:^(BOOL succeeded, NSError *error) {
-//                            
-//                            if (!error) {
-////                                NSLog(@"unsubscribed to push chanel: %@", [self.team objectForKey:kTeams]);
-//                            } else {
-////                                NSLog(@"Failed to unsubscribe to push chanel, Error: %@", error);
-//                            }
-//                            
-//                        }];
 
-                    }
+                        }
                         else
                         {
                             
-                            
-                            
                         }
                     }];
+                    
+                   
 
                 }
           
@@ -609,21 +624,25 @@
                 {
                     
                 }
-            
+                
+                
+                
+                //unsubscribe to the team's push notification chanel
+                
+                NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
+                [[PFInstallation currentInstallation] removeObject:pushChanelName forKey:@"channels"];
+                [[PFInstallation currentInstallation] saveInBackground];
+                
+                
+   
+                
+            //send nsnotificaiton to view controllers so they can update
              NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
             [teamInfo setObject:self.team forKey:@"team"];
             
             NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
             [nc postNotificationName:@"LeftTeam" object:self userInfo:teamInfo];
             
-// this is not always a network problem, so we can't use a network alert - need a different approach
-//            else
-//            {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"The Internet conection appears to be offline" message: @"Please try again later" delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            
-//            [alert show];
-//    
-//        }
             }];
         
         
