@@ -1436,17 +1436,7 @@
     [components setSecond:0];
     
     //Alert Body
-    NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
-   
-    //get 7 day steps and points array
-    NSArray *myWeekeleyPoints = [myStats objectForKey:kMyPointsWeekArray];
-    NSArray *myWeekeleySteps = [myStats objectForKey:kMyStepsWeekArray];
-    
-    //get yesterday's Points & Steps
-    NSString *yesterdayPoints = [myWeekeleyPoints objectAtIndex:5];
-    NSString *yesterdaySteps = [myWeekeleySteps objectAtIndex:5];
 
-    
     //create local notification
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
     
@@ -1463,7 +1453,7 @@
 //    localNotification.alertBody = [NSString stringWithFormat:@"You scored %@ points on %@ steps yesterday.",
 //                                   yesterdayPoints, yesterdaySteps];
     
-    localNotification.alertBody = @"testing notification";
+    localNotification.alertBody = [self getYesterdaysPointsAndSteps];
     
 //    [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:self.matchupsIndex]];
     
@@ -1477,6 +1467,27 @@
     //schedule the local notfication
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
+
+
+-(NSString *)getYesterdaysPointsAndSteps
+{
+    
+    NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
+    
+    //get 7 day steps and points array
+    NSArray *myWeekeleyPoints = [myStats objectForKey:kMyPointsWeekArray];
+    NSArray *myWeekeleySteps = [myStats objectForKey:kMyStepsWeekArray];
+    
+    //get yesterday's Points & Steps
+    NSString *yesterdayPoints = [myWeekeleyPoints objectAtIndex:5];
+    NSString *yesterdaySteps = [myWeekeleySteps objectAtIndex:5];
+    
+    NSString *yesterdaysPointsAndSteps = [NSString stringWithFormat:@"You scored %@ points on %@ steps yesterday.", yesterdayPoints, yesterdaySteps];
+    
+    
+    return yesterdaysPointsAndSteps;
+}
+
 
 #pragma mark - Core Data
 
@@ -1712,10 +1723,10 @@
     
     for (NSManagedObject *managedObject in items) {
     	[context deleteObject:managedObject];
-    	NSLog(@"%@ object deleted",entityDescription);
+//    	NSLog(@"%@ object deleted",entityDescription);
     }
     if (![context save:&error]) {
-    	NSLog(@"Error deleting %@ - error:%@",entityDescription,error);
+//    	NSLog(@"Error deleting %@ - error:%@",entityDescription,error);
     }
     
 }
