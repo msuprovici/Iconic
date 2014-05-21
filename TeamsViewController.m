@@ -128,13 +128,18 @@
     
     
     
-//    // Fetch the devices from persistent data store
 //    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
 //    NSManagedObjectContext *managedObjectContext = [appDelegate managedObjectContext];
 //    
-////    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Team"];
-//    NSManagedObject *teamName = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+//    
+//    NSFetchRequest *leagueFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"League"];
+//    
+//    NSFetchRequest *teamsFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"teams"];
+//    NSManagedObject *leagueName = [[managedObjectContext executeFetchRequest:leagueFetchRequest error:nil] mutableCopy];
+//    
+//    
+//    NSFetchRequest *teamFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Team"];
+//    NSManagedObject *teamName = [[managedObjectContext executeFetchRequest:teamFetchRequest error:nil] mutableCopy];
 //    
 //    
 //    NSManagedObjectContext * context = [appDelegate managedObjectContext];
@@ -153,10 +158,47 @@
 ////        [managedObjectContext deleteObject:teamNames];
 //        [managedObjectContext save:&error];
 //    }
-//    
-//    
-//    
-//    NSLog(@"teamName %@", [NSString stringWithFormat:@"%@",[teamName valueForKeyPath:@"name"]]);
+    
+    
+    
+    
+    // Fetch the devices from persistent data store
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+   
+     NSFetchRequest *leagueFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"League"];
+     NSFetchRequest *teamFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Team"];
+    NSManagedObjectContext * context = [appDelegate managedObjectContext];
+    NSError *error;
+    NSArray *fetchedTeamNames = [context executeFetchRequest:teamFetchRequest error:&error];
+    NSArray *fetchedLeagueNames = [context executeFetchRequest:leagueFetchRequest error:&error];
+    
+    
+    for (int i = 0; i < [fetchedTeamNames count]; i++) {
+        NSManagedObject *teamNames = fetchedTeamNames[i];
+
+         NSLog(@"teamNames %@", [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"name"]]);
+        NSLog(@"teams in league %@", [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"league"]]);
+        
+//         NSLog(@"teamNames %@", teamNames);
+    }
+    
+    NSLog(@"fetchedLeague Names %lu", (unsigned long)[fetchedLeagueNames count]);
+    
+    for (int i = 0; i < [fetchedLeagueNames count]; i++) {
+        NSManagedObject *leagueNames = fetchedLeagueNames[i];
+        //        [managedObjectContext deleteObject:teamNames];
+        //        [managedObjectContext save:&error];
+        NSLog(@"leagueNames %@", [NSString stringWithFormat:@"%@",[leagueNames valueForKeyPath:@"league"]]);
+//        NSLog(@"teams in league %@", [NSString stringWithFormat:@"%@",[leagueNames valueForKeyPath:@"team"]]);
+//        NSLog(@"leagueNames %@", leagueNames);
+    }
+
+    
+    
+    
+   
+    
+//    NSLog(@"leagueNames %@", [NSString stringWithFormat:@"%@",[leagueName valueForKeyPath:@"league"]]);
     
 }
 

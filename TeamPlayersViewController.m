@@ -24,7 +24,7 @@
 
 @property (nonatomic, retain) NSMutableDictionary *players;
 //@property (nonatomic, retain) NSMutableDictionary *categories;
-
+@property NSString * selectedTeamName;
 
 
 @end
@@ -79,7 +79,8 @@
 -(void)initWithTeam:(PFObject *)aTeam
 {
     self.team = aTeam;
-    
+    self.selectedTeamName = [NSString stringWithFormat:@"%@",[self.team objectForKey:kTeams]];
+    NSLog(@"self.selectedTeamName: %@", self.selectedTeamName);
 }
 
 
@@ -97,7 +98,8 @@
     [self joinTeamButtonState];
     [self.tableView reloadData];
     
-    
+//    [self.joinTeam setEnabled:YES];
+//    [self.joinTeam setSelected:YES];
   
     
     // Uncomment the following line to preserve selection between presentations.
@@ -405,48 +407,70 @@
 
 - (IBAction)joinTeam:(id)sender {
     
-//    PFRelation *relation = [self relationforKey:@"myRelation"];
-//    PFQuery *query = [relation query];
-//    [query whereKey:@"objectId" equalTo:myObject.objectId];
-//    [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
-//        completionBlock(count > 0, error);
-//    }];
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     
-//    Team * selectedTeam = [[Team alloc]init];
-//    selectedTeam.teamName = [self.team objectForKey:kTeam];
+    NSFetchRequest *teamFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Team"];
+    NSManagedObjectContext * context = [appDelegate managedObjectContext];
     
-//    [self.delegate didSelectJoinTeam:self team:selectedTeam];
-
+    
+    
+    NSError *error;
+    NSArray *storedTeamNames = [context executeFetchRequest:teamFetchRequest error:&error];
+    
+//    Team *team = [NSEntityDescription insertNewObjectForEntityForName:@"Team" inManagedObjectContext:context];
     
     PFUser *loggedInUser = [PFUser objectWithClassName:self.parseClassName];
     
     if(self.joinTeam.selected == NO)
     {
-        NSString *myTeamName = [self.team objectForKey:kTeam];
+        [self.joinTeam setSelected:YES];
         
-        //testing core data
-//        NSError *error;
-//        AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-//        NSManagedObjectContext *context = [appDelegate managedObjectContext];
-////        NSManagedObjectContext *context = [self managedObjectContext];
-//        
-//        // Create a new managed object
-//        NSManagedObject *newTeam = [NSEntityDescription insertNewObjectForEntityForName:@"Team" inManagedObjectContext:context];
-//        //[newTeam setValue:myTeamName forKey:@"name"];
-//        [newTeam setValue:@"Core Data Testing!!!" forKey:@"name"];
-//        [context save:&error];
-//        
-//       error = nil;
-//        // Save the object to persistent store
-//        if (![context save:&error]) {
-//            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
-//        }
+        //find out if the team name that = the stored team and filp the onteam flag to yes
+        for (int i = 0; i < [storedTeamNames count]; i++) {
+            NSManagedObject *teamNames = storedTeamNames[i];
+            
+            NSString *teamNameAtIndex = [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"name"]];
+            
+//            NSLog(@"teamNames %@", [NSString stringWithFormat:@"%@",teamNameAtIndex]);
+//            NSLog(@"teams in league %@", [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"league"]]);
+            
+            if([teamNameAtIndex isEqualToString:self.selectedTeamName])
+            {
+               
+                
+                NSManagedObjectContext * context = [appDelegate managedObjectContext];
+                NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
+                NSFetchRequest *request = [[NSFetchRequest alloc]init];
+                [request setEntity:entityDesc];
+                
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)" , self.selectedTeamName];
+                [request setPredicate:pred];
+                
+                //if the player joined the team set the team's boolean to yes
+                
+                NSError *error;
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+                NSArray *fetchedTeamNames = [[NSArray alloc] initWithObjects:sortDescriptor, nil];;
+                [request setSortDescriptors:fetchedTeamNames];
+                
+                Team *team = [[context executeFetchRequest:request error:&error] objectAtIndex:0];
+
+                
+//                    NSLog(@"teamNameJoinedAtIndex %@", team.name);
+                
+                team.onteam = [NSNumber numberWithBool:YES];
+                [context save:&error];
+                    
+                    
+            }
+            
+        }
+
         
-        //filp boolean to the player joined team
-//        selectedTeam.playerJoinedTeam = YES;
         
         
-//        [self.delegate didSelectJoinTeam:self team:self.team];
+        
+        
        
         //save a pointer to the current logged in user
         [loggedInUser setObject:[PFUser currentUser] forKey:kTeamate];
@@ -468,7 +492,7 @@
         [loggedInUser saveEventually:^(BOOL succeeded, NSError *error) {
             
             if (succeeded) {
-                 [self.joinTeam setSelected:YES];
+//                 [self.joinTeam setSelected:YES];
                 
                 [self loadObjects];
                 CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
@@ -476,73 +500,69 @@
                 
                 NSUserDefaults *Teams = [NSUserDefaults standardUserDefaults];
                 NSArray *homeTeamNames = [Teams objectForKey:kArrayOfHomeTeamScores];
-                NSLog(@"homeTeamNames.count: %lu", (unsigned long)homeTeamNames.count);
+//                NSLog(@"homeTeamNames.count: %lu", (unsigned long)homeTeamNames.count);
                 
-//                SimpleHomeViewController * simpleHomeViewController = [[SimpleHomeViewController alloc] init];
-//                [simpleHomeViewController refreshHomeView];
-                
-                //subscribe to team's push notification chanel
-                
-                //use team's name as a chanel to push to
-                NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
-//                
-//                [PFPush subscribeToChannelInBackground:pushChanelName block:^(BOOL succeeded, NSError *error) {
-//                    
-//                    if (!error) {
-////                        NSLog(@"subscribed to push chanel: %@", [self.team objectForKey:kTeams]);
-//                    } else {
-////                        NSLog(@"Failed to subscribe to push chanel, Error: %@", error);
-//                    }
-//                    
-//                }];
                 
                
             }
         }];
-//        NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
-//        [teamInfo setObject:self.team forKey:@"team"];
-//        
-//        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-//        [nc postNotificationName:@"JoinedTeam" object:self userInfo:teamInfo];
-//        
-//        NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-//        
-//        int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
-        
-        
-        //send nsnotification if the player joined their first team
-        
-//        if (numberOfTeams == 0) {
-//            
-////            [nc postNotificationName:@"playerJoinedTheirFirstTeam" object:self userInfo:teamInfo];
-//            
-////            CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-////            calculatePointsClass.playerJoinedTheirFirstTeam = YES;
-//            
-//            [RetrievedTeams setBool:YES forKey:@"PlayerJointedFirstTeam"];
-//            
-//        }
-        
-
-       
-
     }
+    
     else if (self.joinTeam.selected == YES)
     {
-//        [self.delegate didSelectJoinTeam:self team:self.team];
-        
-        
-//        [loggedInUser deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            if (succeeded) {
-//                
-//                [self.joinTeam setSelected:NO];
-//                
-//                [self loadObjects];
-//            }
+
+        [self.joinTeam setSelected:NO];
+        //find out if the team name that = the stored team and filp the onteam flag to no
+        for (int i = 0; i < [storedTeamNames count]; i++) {
+            NSManagedObject *teamNames = storedTeamNames[i];
+            
+            
+            NSString *teamNameAtIndex = [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"name"]];
+            
+            NSLog(@"left team name %@", [NSString stringWithFormat:@"%@",teamNameAtIndex]);
+            NSLog(@"team left in league %@", [NSString stringWithFormat:@"%@",[teamNames valueForKeyPath:@"league"]]);
+            
+            
+            if([teamNameAtIndex isEqualToString:self.selectedTeamName])
+            {
+                //
+                NSManagedObjectContext * leftTeamContext = [appDelegate managedObjectContext];
+                NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:leftTeamContext];
+                NSFetchRequest *request = [[NSFetchRequest alloc]init];
+                [request setEntity:entityDesc];
+                
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)" , self.selectedTeamName];
+                [request setPredicate:pred];
+                
+                //left team: switch the team's boolean to no
+                NSError *error;
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+                NSArray *fetchedTeamNames = [[NSArray alloc] initWithObjects:sortDescriptor, nil];//ensure that the selected team comes up  1st
+                [request setSortDescriptors:fetchedTeamNames];
+                
+                
+                Team *team = [[context executeFetchRequest:request error:&error] objectAtIndex:0];
+                
+//                NSLog(@"teamNameJoinedAtIndex %@", team.name);
+                
+                team.onteam = [NSNumber numberWithBool:NO];
+                
+                
+                [context save:&error];
+
+                
+                
+                
+
+            }
+            
+            
+        }
 
         
-        //filp boolean to the player left team
-//        selectedTeam.playerJoinedTeam = NO;
+        
+        
+       //save team Parse
         
         PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
         [query whereKey:kTeamate equalTo:[PFUser currentUser]];
@@ -565,7 +585,7 @@
                     [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
                         
-                        [self.joinTeam setSelected:NO];
+//                        [self.joinTeam setSelected:NO];
                         
                         [self loadObjects];
                         
@@ -633,156 +653,123 @@
 }
 
 
-//-(void)joinTeamButtonState
-//{
-//    if(self.addTeam == NO)
-//    {
-//        [self.joinTeam setEnabled:YES];
-//        [self.joinTeam setSelected:YES];
-//    }
-//    else{
-//        [self.joinTeam setEnabled:NO];
-//        [self.joinTeam setSelected:NO];
-//    }
-//}
-
 
 -(void)joinTeamButtonState
 {
     
-     PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
-     [query whereKey:kTeamate equalTo:[PFUser currentUser]];
+    //find the league the selected team bellongs to
     
-    
-     PFQuery *leagueQuery = [PFQuery queryWithClassName:kTeamTeamsClass];
-
-     PFObject * selectedLeague = [self.team objectForKey:kLeagues];
-    
-     [leagueQuery whereKey:kLeagues notEqualTo:selectedLeague];
-//     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//     leagueQuery.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    
-     [query whereKey:kTeam doesNotMatchQuery:leagueQuery];
-     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-         
-         PFObject *teamObject = [object objectForKey:kTeam];
-         PFObject *playerObject = [object objectForKey:kTeamate];
-         
-         //if the player is not on a team at all enable the join button
-         if (!error) {
-             {
-                 
-                 [query whereKey:kTeam equalTo:self.team];
-//                 query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-                 
-//                 NSLog(@"query returned result");
-                 
-                [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                     if (!error) {
-                         
-                         //the player is on this team in this league so toggle button so they can leave the team
-                         [self.joinTeam setEnabled:YES];
-                         [self.joinTeam setSelected:YES];
-//                         NSLog(@"query 1 error");
-                         
-                     }
-                    
-                     else
-                     {
-//                         NSLog(@"query 1a error");
-
-                         if (playerObject != [PFUser currentUser] && teamObject != self.team) {
-                             
-                             //disable the join button
-                             if (self.league != selectedLeague) {
-                                 //player is on another team in this league
-//                                 NSLog(@"query 1: user on a team in this league");
-                                 
-                                 [self.joinTeam setEnabled:NO];
-                                 [self.tableView reloadData];
-                                 }
-                                 else
-                                 {
-                                     
-//                                     NSLog(@"query 1:user not on a team in this league");
-                                     
-                                     [self.joinTeam setEnabled:YES];
-                                 }
-
-                             
-                             //[self.joinTeam setEnabled:YES];
-                             
-
-                             
-                             }
-                             
-                             else if (playerObject == [PFUser currentUser] && teamObject == self.team) {
-                                 [self.joinTeam setEnabled:NO];
-                                 
-//                                 NSLog(@"query 1c error");
-                                 
-                             }
-                             
-                             else
-                             {
-                                 
-                                 //disable the join button
-                                 if (self.joinTeam.selected == YES && teamObject != self.team) {
-                                     
-//                                     NSLog(@"query 1d error");
-                                     
-                                     [self.joinTeam setEnabled:NO];
-                                     [self.tableView reloadData];
-                             }
-                         }
-                         
-                     }
-                 }];
-                 
-             }
-             
-         }
-         else
-         {
-             
-             [query whereKey:kTeam equalTo:self.team];
-
-             [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                 
-                if(!error)
-//                {
-//                    
-//                    if ([PFUser currentUser] == playerObject) {
-//                   
-//                    NSLog(@"team object is the same");
-//                    [self.joinTeam setEnabled:YES];
-//                    [self.joinTeam setSelected:YES];
-//                    }
-//                }
-//                else{
-//                    NSLog(@"player not on a team");
-                    [self.joinTeam setEnabled:YES];
-                    [self.joinTeam setSelected:NO];
-                 
-                    
-
-                    
-             //   }
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
    
-                 
-             }];
+    
+    NSManagedObjectContext * context = [appDelegate managedObjectContext];
+    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    [request setEntity:entityDesc];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)" , self.selectedTeamName];
+    [request setPredicate:pred];
+    
+    
+    
+    NSError *error;
+    NSArray *fetchedTeamNames = [context executeFetchRequest:request error:&error];
+    
+//    NSLog(@"# of fetchedTeamNames %lu", (unsigned long)fetchedTeamNames.count);
+//    NSLog(@"team %@", team);
+//    NSLog( team.onteam ? @"Yes" : @"No");
+    NSString *leagueOfSelectedTeam;
+    
+    
+    //find out the league the team that was selected belongs to
+    for (NSObject *savedTeam in fetchedTeamNames) {
+        leagueOfSelectedTeam = [NSString stringWithFormat:@"%@",[savedTeam valueForKeyPath:@"league"]];
+    }
+    
+    
+    NSLog(@"selected league %@", leagueOfSelectedTeam);
+    
+    //find out if the player is on a team in leagueOfSelectedTeam
 
-         }
-         
-         
-     }];
+    NSFetchRequest *isPlayerOnTeamInLeague = [[NSFetchRequest alloc]init];
+    [isPlayerOnTeamInLeague setEntity:entityDesc];
     
     
+    //determine if the player is on a team in this league
+    NSPredicate *inLeague = [NSPredicate predicateWithFormat:@"(league = %@)  AND (onteam = %@)", leagueOfSelectedTeam,[NSNumber numberWithBool:YES] ];
+
+    
+//     NSLog(@"inLeague %@", inLeague);
+    
+    [isPlayerOnTeamInLeague setPredicate:inLeague];
+    
+    
+    
+    NSArray *playerTeamsInLeague = [context executeFetchRequest:isPlayerOnTeamInLeague error:&error];
+    
+//    NSLog(@"selected league count %lu", (unsigned long)playerTeamsInLeague.count);
+    
+
+    //if the player is not on a team in this league
+    if (playerTeamsInLeague.count == 0) {
+        [self.joinTeam setEnabled:YES];
+        [self.joinTeam setSelected:NO];
+    }
+    
+    else
+    {
+        
+    
+        for (int i = 0; i < playerTeamsInLeague.count; i++) {
+        
+            //find the team the player is on in the league
+        
+            NSPredicate *playerOnTeam = [NSPredicate predicateWithFormat:@"(onteam = %@)", [NSNumber numberWithBool:YES]];
+//            NSLog(@"playerOnTeam %@", playerOnTeam);
+        
+            
+            NSArray *playerTeams = [playerTeamsInLeague filteredArrayUsingPredicate:playerOnTeam];
+//            NSLog(@"playerTeams %@", playerTeams);
+        
+            NSString *playersTeamName;
+            
+            for (NSObject *playerTeam in playerTeams) {
+                playersTeamName = [NSString stringWithFormat:@"%@",[playerTeam valueForKeyPath:@"name"]];
+//                NSLog(@"playersTeamName %@", playersTeamName);
+            }
+            
+            
+            
+            //if the players team is the slected team that enable leave team button state
+            if ([playersTeamName isEqualToString: self.selectedTeamName]) {
+                
+                [self.joinTeam setEnabled:YES];
+                [self.joinTeam setSelected:YES];
+            }
+            else if(playerTeams == 0)
+            {
+                [self.joinTeam setEnabled:YES];
+                [self.joinTeam setSelected:NO];
+            }
+            
+            //if the player is on a different team in this league team disable the button join team button
+            else
+            {
+                [self.joinTeam setEnabled:NO];
+                [self.joinTeam setSelected:NO];
+            }
+        
+            
+
+        
+        }
+    
+    
+    }
 }
 
 #pragma mark Core Data
 
-#pragma mark - Core Data
 
 - (NSManagedObjectContext *)managedObjectContext {
     NSManagedObjectContext *context = nil;
