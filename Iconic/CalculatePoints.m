@@ -1482,6 +1482,10 @@
 
 -(void)migrateLeaguesToCoreData
 {
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    
+    
     //query Teams class
     PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -1490,7 +1494,7 @@
     if(!error)
     {
        
-        AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+        
 
         
        //delete all the objects in core data and replace w/ new & updated objects from Parse server
@@ -1564,11 +1568,12 @@
                        team.name = TeamName;
                        team.league = LeagueName;
                        
-//                       if (team.onteam == nil) {
-////                           team.onteam = [NSNumber numberWithBool:YES];
-//                           [team setOnteam:[NSNumber numberWithBool:NO]];
-////                           NSLog(team.onteam ? @"Yes" : @"No");
-//                       }
+                       //if there is no bool value for on team set it to NO
+                       if (team.onteam == nil) {
+//                           team.onteam = [NSNumber numberWithBool:YES];
+                           [team setOnteam:[NSNumber numberWithBool:NO]];
+//                           NSLog(team.onteam ? @"Yes" : @"No");
+                       }
                        
                        [context save:&error];
                        
@@ -1591,8 +1596,9 @@
                 
                 
             }
-
             
+            //If a player is on a team, set the boolean values
+            [self onTeam];
             
         }
     
@@ -1602,10 +1608,94 @@
         
     }];
     
-
-    
     
 }
+
+
+
+-(void)onTeam
+{
+    
+    
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    
+    
+    //query Teams class
+    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+
+    
+    //Query Teamates Class
+    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+    
+    
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    query2.cachePolicy = kPFCachePolicyNetworkElseCache;
+    
+    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+    
+    //Query where the current user is a teamate
+    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        
+        if (!error) {
+            
+            
+            for (int i = 0; i < objects.count; i++) {
+                
+                
+//                for(PFObject *myTeam in objects)
+//            {
+                
+                
+                PFObject *myTeam = objects[i];
+                
+                NSString * myTeamName = [NSString stringWithFormat:@"%@",[myTeam objectForKey:kTeams]];
+                
+//                NSLog(@"myTeamName %@", myTeamName);
+                
+                NSManagedObjectContext * context = [appDelegate managedObjectContext];
+                NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
+                NSFetchRequest *request = [[NSFetchRequest alloc]init];
+                [request setEntity:entityDesc];
+                
+                //filter for my teams
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)" , myTeamName];
+                [request setPredicate:pred];
+                
+                //if the player joined the team set the team's boolean to yes
+                
+                NSError *error;
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+                NSArray *fetchedTeamNames = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+                [request setSortDescriptors:fetchedTeamNames];
+                
+                Team *team = [[context executeFetchRequest:request error:&error] objectAtIndex:0];
+                
+                
+                //                NSLog(@"teamNameJoinedAtIndex %@", team.name);
+                
+                //if I am on the team, filp boolean to yes
+                team.onteam = [NSNumber numberWithBool:YES];
+                [context save:&error];
+                
+                
+                
+                
+                
+                
+            }
+            
+            
+            
+        }
+        
+    }];
+
+}
+
 
 - (void) deleteAllObjects: (NSString *) entityDescription  {
     

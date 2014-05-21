@@ -250,26 +250,52 @@
      
      //set check mark if the player is on a team
      
-//     AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-//     NSManagedObjectContext * context = [appDelegate managedObjectContext];
-//     NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
-//     NSFetchRequest *request = [[NSFetchRequest alloc]init];
-//     [request setEntity:entityDesc];
-//     
-//     
+     AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+     NSManagedObjectContext * context = [appDelegate managedObjectContext];
+     NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
+     NSFetchRequest *request = [[NSFetchRequest alloc]init];
+     [request setEntity:entityDesc];
+     
+     
 //     NSString *currentLeague = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagues]];
 //     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
-//     NSPredicate *pred = [NSPredicate predicateWithFormat:@"onteam = YES"];
-//     [request setPredicate:pred];
-//     NSError *error;
+     NSPredicate *pred = [NSPredicate predicateWithFormat:@"onteam = YES"];
+     [request setPredicate:pred];
+     NSError *error;
+     
+     NSArray *fetchedLeagues = [context executeFetchRequest:request error:&error];
+         NSString *myLeagueName;
+     
+     
+     
+////     NSString *leagues = [object objectForKey:kLeagues];
+////     
+////     NSArray *rowIndecesInSection = [self.leagues objectForKey:leagues];
+////     
+////     NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
+////    
+////     
+////     NSIndexPath * path = [self.objects objectAtIndex:[rowIndex intValue]];
+//     NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:<#(CGPoint)#>];
+//
+//      NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:cell inSection:cell];
 //     
-//     NSArray *fetchedLeagues = [context executeFetchRequest:request error:&error];
-//         NSString *myLeagueName;
+//     PFObject *leagueAtIndex = [self objectAtIndexPath:];
+//     
+//     
+////     NSIndexPath *cellIndex = [self.tableView indexPathForCell:cell];
+////     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:path.row inSection:path.section];
+////     
+//     
+//     
+//     NSString *currentLeague = [NSString stringWithFormat:@"%@",[[self objectAtIndexPath:path] objectForKey:kLeagues]];
+//     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
+////     NSLog(@"self.objects %@", self.objects);
 //     
 //     for (NSManagedObject *myLeagueNames in fetchedLeagues) {
 //         
 //         myLeagueName = [NSString stringWithFormat:@"%@",[myLeagueNames valueForKeyPath:@"league"]];
-//         NSLog(@"myLeagueName %@", [NSString stringWithFormat:@"%@",myLeagueName]);
+////         NSLog(@"myLeagueName %@", [NSString stringWithFormat:@"%@",myLeagueName]);
 //         
 //     }
 //     
