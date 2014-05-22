@@ -392,7 +392,6 @@
     NSError *error;
     NSArray *storedTeamNames = [context executeFetchRequest:teamFetchRequest error:&error];
     
-//    Team *team = [NSEntityDescription insertNewObjectForEntityForName:@"Team" inManagedObjectContext:context];
     
     PFUser *loggedInUser = [PFUser objectWithClassName:self.parseClassName];
     
@@ -475,26 +474,6 @@
                 CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
                 [calculatePoints retrieveFromParse];
                 
-                NSUserDefaults *Teams = [NSUserDefaults standardUserDefaults];
-                NSArray *homeTeamNames = [Teams objectForKey:kArrayOfHomeTeamScores];
-//                NSLog(@"homeTeamNames.count: %lu", (unsigned long)homeTeamNames.count);
-                
-                //subscribe to the team's push notification chanel
-                NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
-                
-//                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-//                [currentInstallation addUniqueObject:@"Test" forKey:@"channels"];
-//                [currentInstallation saveEventually];
-                
-//                [PFPush subscribeToChannelInBackground: pushChanelName block:^(BOOL succeeded, NSError *error) {
-//                    
-//                    if (!error) {
-//                        //                                NSLog(@"unsubscribed to push chanel: %@", [self.team objectForKey:kTeams]);
-//                    } else {
-//                        //                                NSLog(@"Failed to unsubscribe to push chanel, Error: %@", error);
-//                    }
-//                    
-//                }];
 
                
             }

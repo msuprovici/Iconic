@@ -21,7 +21,9 @@
 
 @property (nonatomic, retain) NSMutableDictionary *leagues;
 @property (nonatomic, retain) NSMutableDictionary *categories;
-
+@property (nonatomic, assign) BOOL receivedJoinLeaveNotification;
+@property PFObject *leagueLeft;
+@property PFObject *leagueJoined;
 
 
 @end
@@ -89,7 +91,12 @@
      
     self.leaguesArray = [[NSMutableArray alloc] init];
     
-    [self loadInitialData];
+
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"JoinedTeam" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"LeftTeam" object:nil];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -98,10 +105,25 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-//method for loading table cells with leagues
-- (void)loadInitialData {
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES ];
     
+    
+    // If we received joined/leave team notification update team charts
+    if (self.receivedJoinLeaveNotification == YES) {
+        
+        
+        //        [self.tableView reloadData];
+        
+         NSLog(@"reload view was called");
+        
+        [self.tableView reloadData];
+        [self.view setNeedsDisplay];
+        self.receivedJoinLeaveNotification = NO;
     }
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -126,6 +148,8 @@
     
     NSInteger section = 0;
     NSInteger rowIndex = 0;
+    
+    
     for (PFObject *object in self.objects) {
         NSString *league = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagueCategories]];
         NSMutableArray *objectsInSection = [self.leagues objectForKey:league];
@@ -134,10 +158,17 @@
             
             // this is the first time we see this leagues section - increment the section index
             [self.categories setObject:league forKey:[NSNumber numberWithInt:section++]];
-        }
+            
+                  }
         
         [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
         [self.leagues setObject:objectsInSection forKey:league];
+        
+
+
+        
+        
+        
         
         
 //        NSInteger count = [objectsInSection count];
@@ -172,6 +203,8 @@
 //        }
         
            }
+    
+  
     
     [self.tableView reloadData];
 }
@@ -232,6 +265,7 @@
 //     
 //     
 //     if (leagueName == receivedLeagueName) {
+     
          cell.leagueName.text =[object objectForKey:self.textKey];
      
      
@@ -247,6 +281,7 @@
  //cell.imageView.file = [object objectForKey:self.imageKey];
      
      
+
      
      //set check mark if the player is on a team
      
@@ -257,51 +292,54 @@
      [request setEntity:entityDesc];
      
      
-//     NSString *currentLeague = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagues]];
-//     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
+     //     NSString *currentLeague = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagues]];
+     //     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
      NSPredicate *pred = [NSPredicate predicateWithFormat:@"onteam = YES"];
      [request setPredicate:pred];
+     //    NSError *error;
      NSError *error;
-     
      NSArray *fetchedLeagues = [context executeFetchRequest:request error:&error];
-         NSString *myLeagueName;
+     NSString *myLeagueName;
      
      
      
-////     NSString *leagues = [object objectForKey:kLeagues];
-////     
-////     NSArray *rowIndecesInSection = [self.leagues objectForKey:leagues];
-////     
-////     NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
-////    
-////     
-////     NSIndexPath * path = [self.objects objectAtIndex:[rowIndex intValue]];
-//     NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:<#(CGPoint)#>];
-//
-//      NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:cell inSection:cell];
-//     
-//     PFObject *leagueAtIndex = [self objectAtIndexPath:];
-//     
-//     
-////     NSIndexPath *cellIndex = [self.tableView indexPathForCell:cell];
-////     NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:path.row inSection:path.section];
-////     
-//     
-//     
-//     NSString *currentLeague = [NSString stringWithFormat:@"%@",[[self objectAtIndexPath:path] objectForKey:kLeagues]];
-//     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
-////     NSLog(@"self.objects %@", self.objects);
-//     
-//     for (NSManagedObject *myLeagueNames in fetchedLeagues) {
-//         
-//         myLeagueName = [NSString stringWithFormat:@"%@",[myLeagueNames valueForKeyPath:@"league"]];
-////         NSLog(@"myLeagueName %@", [NSString stringWithFormat:@"%@",myLeagueName]);
-//         
-//     }
-//     
-//     if ([myLeagueName isEqualToString: currentLeague]) {
-//         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//     }
+     NSString *leagueLeft = [NSString stringWithFormat:@"%@",[self.leagueLeft objectForKey:kLeagues]];
+//     NSString *leagueJoined = [NSString stringWithFormat:@"%@",[self.leagueJoined objectForKey:kLeagues]];
+     
+     
+     //     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
+     //     NSLog(@"self.objects %@", self.objects);
+     
+     if (fetchedLeagues.count == 0)
+     {
+//         NSLog(@"I am on no teams");
+         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+         
+     }
+     
+     for(int i = 0; i < fetchedLeagues.count; i++)
+     {
+     
+         
+         NSManagedObject *myLeagueNames = fetchedLeagues[i];
+         
+//         NSLog(@"cell.leagueName.text %@", [NSString stringWithFormat:@"%@",cell.leagueName.text]);
+         myLeagueName = [NSString stringWithFormat:@"%@",[myLeagueNames valueForKeyPath:kLeagues]];
+         
+         
+         if ([cell.leagueName.text isEqualToString: myLeagueName] )
+         {
+             cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//             NSLog(@"leagues are equal");
+         }
+         else if ([cell.leagueName.text isEqualToString: leagueLeft] )
+         {
+//              NSLog(@"left league");
+             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+         }
+         
+     }
+
 
  
  return cell;
@@ -512,6 +550,47 @@
  }
  
  */
+
+#pragma mark - Receive NSNotification
+
+//using NSNotification to refresh view controller
+- (void) receiveJoinOrLeaveTeam:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:@"JoinedTeam"])
+    {
+        NSDictionary* objectFromNotificaiton = notification.userInfo;
+        
+//        NSLog(@"%@ notification object", [NSString stringWithFormat:@"%@",[objectFromNotificaiton objectForKey:@"team"]]);
+        
+        self.leagueJoined = [objectFromNotificaiton objectForKey:@"team"];
+        self.leagueLeft = nil;
+        
+        self.receivedJoinLeaveNotification = YES;
+        
+        
+        [self.tableView setNeedsDisplay];
+//              NSLog (@"Successfully received notification!");
+    }
+    
+    else if ([[notification name] isEqualToString:@"LeftTeam"])
+    {
+        
+        NSDictionary* objectFromNotificaiton = notification.userInfo;
+        
+//        NSLog(@"%@ notification object", [NSString stringWithFormat:@"%@",[objectFromNotificaiton objectForKey:@"team"]]);
+        
+        self.leagueLeft = [objectFromNotificaiton objectForKey:@"team"];
+        self.leagueJoined = nil;
+        self.receivedJoinLeaveNotification = YES;
+        
+        [self.tableView setNeedsDisplay];
+//                  NSLog (@"Successfully received notification!");
+    }
+    
+}
+
+
+
 
 #pragma mark - Navigation
 

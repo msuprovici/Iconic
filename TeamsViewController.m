@@ -514,8 +514,8 @@
 //    [self loadObjects];
 //}
 
+#pragma mark - Receive NSNotification
 
-//attempt to use a NSNotification to update cell accessoryType - does not work.
 //using NSNotification to refresh view controller
 - (void) receiveJoinOrLeaveTeam:(NSNotification *) notification
 {
