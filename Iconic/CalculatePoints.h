@@ -90,7 +90,7 @@
 
 -(void)migrateLeaguesToCoreData;
 
-
+-(void)getYesterdaysPointsAndSteps;
 
 
 @end

@@ -480,7 +480,7 @@
         }];
         
         //subscribe to the team's push notificaiton channel
-        NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
+        NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeamsAbr]];
         [[PFInstallation currentInstallation] addUniqueObject:pushChanelName forKey:@"channels"];
         [[PFInstallation currentInstallation] saveInBackground];
 
@@ -608,7 +608,7 @@
                 
                 //unsubscribe to the team's push notification chanel
                 
-                NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
+                NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeamsAbr]];
                 [[PFInstallation currentInstallation] removeObject:pushChanelName forKey:@"channels"];
                 [[PFInstallation currentInstallation] saveInBackground];
                 

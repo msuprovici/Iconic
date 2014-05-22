@@ -84,8 +84,8 @@
     //local notification
     
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-//       [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    [calculatePointsClass scheduleDailySummaryLocalNotification];
+       [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//    [calculatePointsClass scheduleDailySummaryLocalNotification];
 
     
     // Handle launching from a notification
@@ -203,7 +203,8 @@
         
         [calculatePoints incrementPlayerPointsInBackground];
         [calculatePoints retrieveFromParse];
-        
+        [calculatePoints getYesterdaysPointsAndSteps];
+    
 //    }];
     NSLog(@"Background fetch intialized");
     
@@ -266,6 +267,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     //send and retrieve data from Parse
     [calculatePoints incrementPlayerPointsInBackground];
     [calculatePoints retrieveFromParse];
+    [calculatePoints getYesterdaysPointsAndSteps];
     
     NSLog(@"Background Fetch From Push intialized");
     
@@ -290,6 +292,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
                                                        delegate:self cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [alert show];
+    }
+    else if(state == UIApplicationStateInactive){
+        
     }
     
     

@@ -1440,6 +1440,10 @@
     //create local notification
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
     
+    
+    if (localNotification)
+    {
+        
     //set time
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
 //    localNotification.fireDate = [cal dateByAddingComponents:components toDate:now options:0];
@@ -1453,7 +1457,10 @@
 //    localNotification.alertBody = [NSString stringWithFormat:@"You scored %@ points on %@ steps yesterday.",
 //                                   yesterdayPoints, yesterdaySteps];
     
-    localNotification.alertBody = [self getYesterdaysPointsAndSteps];
+        
+         NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
+        
+    localNotification.alertBody = [myStats objectForKey:@"yesterdayPointsAndStepsNotificationText"];
     
 //    [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:self.matchupsIndex]];
     
@@ -1466,10 +1473,13 @@
     
     //schedule the local notfication
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+        
+    }
 }
 
 
--(NSString *)getYesterdaysPointsAndSteps
+-(void)getYesterdaysPointsAndSteps
 {
     
     NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
@@ -1484,9 +1494,10 @@
     
     NSString *yesterdaysPointsAndSteps = [NSString stringWithFormat:@"You scored %@ points on %@ steps yesterday.", yesterdayPoints, yesterdaySteps];
     
+    [myStats setObject:yesterdaysPointsAndSteps forKey:@"yesterdayPointsAndStepsNotificationText"];
+    [myStats synchronize];
     
-    return yesterdaysPointsAndSteps;
-}
+  }
 
 
 #pragma mark - Core Data

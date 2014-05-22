@@ -117,8 +117,8 @@ static NSString *kImageKey = @"imageKey";
         [super viewDidLoad];
     
     //schedule local notification to show daily points & steps summary
-//    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
     
     [self setReceivedNotification:NO];
