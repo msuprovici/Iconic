@@ -117,8 +117,8 @@ static NSString *kImageKey = @"imageKey";
         [super viewDidLoad];
     
     //schedule local notification to show daily points & steps summary
-    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
     
     [self setReceivedNotification:NO];
@@ -221,6 +221,8 @@ static NSString *kImageKey = @"imageKey";
     [self loadScrollViewWithPage:1];
     [self.view addSubview:self.pageControl];
     
+    //initialize all other methods
+    
     [self savePointsFromCurrentAppLaunch];
     
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
@@ -229,6 +231,9 @@ static NSString *kImageKey = @"imageKey";
     
 //    [calculatePointsClass migrateLeaguesToCoreData];
 
+    
+    [self findSevenDayStepsAndPoints];
+    
     [self showChart];
     
     

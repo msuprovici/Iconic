@@ -270,6 +270,7 @@
             self.myWeekleyPointsArray = [myWeekleyPoints objectForKey:kMyPointsWeekArray];
             
             self.myWeekleyStepsArray = [myWeekleyPoints objectForKey:kMyStepsWeekArray];
+            NSLog(@"my weekley steps %@", self.myWeekleyStepsArray);
             
             [self.barChart setYValues:self.myWeekleyPointsArray];
             [self.barChart strokeChart];

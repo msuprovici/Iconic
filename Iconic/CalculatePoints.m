@@ -1064,7 +1064,8 @@
                                     
                                     NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
                                     [myStats setObject:_stepsArray forKey:kMyStepsWeekArray];
-                                    
+                                    [myStats synchronize];
+//                                    NSLog(@"myWeekleySteps: %@", _stepsArray);
                                     
 //                                    //convert the past 7 days worth of steps to points
 //                                    NSMutableArray * myWeekleyPoints = [[NSMutableArray alloc]initWithCapacity:7];
@@ -1089,7 +1090,7 @@
                                     //save to NSUserDefaults
                                     [myStats setObject:myWeekleyPoints forKey:kMyPointsWeekArray];
                                     
-                                    [[NSUserDefaults standardUserDefaults] synchronize];
+                                    [myStats synchronize];
                                     
                                     
                                     //save the past 7 days worth of steps & points to Parse
