@@ -169,7 +169,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
 //        }
 //    }
     
-    return 60.0f;
+    return 55.0f;
 }
 
 
@@ -177,12 +177,12 @@ static TTTTimeIntervalFormatter *timeFormatter;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 100.0f;
+    return 65.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 40.0f;
+    return 55.0f;
 }
 
 

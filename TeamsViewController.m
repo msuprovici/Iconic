@@ -374,6 +374,20 @@
 
 #pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    return 65;
+}
+
+//dirty way to hide all other cells that do not contain data
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    
+    return view;
+}
+
+
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 //{
 //#warning Potentially incomplete method implementation.

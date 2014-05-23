@@ -11,11 +11,11 @@
 
 
 //table headers
-#define HeaderColor PNWhite
-#define HeaderTextColor PNDeepGrey
-#define HeaderHeight    20
+#define HeaderColor PNCleanGrey
+#define HeaderTextColor [UIColor blackColor]
+#define HeaderHeight    28
 #define HeaderAlignment  NSTextAlignmentCenter
-#define HeaderFont [UIFont boldSystemFontOfSize:17]
+#define HeaderFont [UIFont fontWithName:@"HelveticaNeue-Light" size:20]
 
 #pragma mark - NSUserDefaults
 extern NSString *const kUserDefaultsActivityFeedViewControllerLastRefreshKey;
