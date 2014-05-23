@@ -128,7 +128,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"LeftTeam" object:nil];
 
-    
+    UIColor *color = PNCloudWhite;
+    self.view.backgroundColor = color;
     
     
 }
@@ -384,9 +385,12 @@
 {
     UIView *view = [[UIView alloc] init];
     
+    UIColor *color = PNCloudWhite;
+
+    view.backgroundColor = color;
+    
     return view;
 }
-
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 //{

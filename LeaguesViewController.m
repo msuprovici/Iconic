@@ -97,6 +97,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"LeftTeam" object:nil];
 
+    UIColor *color = PNCloudWhite;
+    self.view.backgroundColor = color;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

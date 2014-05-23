@@ -11,6 +11,7 @@
 #import "Parse/Parse.h"
 #import "VSTableViewCell.h"
 #import "CalculatePoints.h"
+#import "PNColor.h"
 
 @interface VSTableViewController ()
 
@@ -47,7 +48,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 10;
+        self.objectsPerPage = 4;
     }
     return self;
 }
@@ -81,6 +82,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+//    UIColor *color = PNCloudWhite;
+//    self.view.backgroundColor = color;
     
    [self loadTeams:self.matchupsIndex];
     //populate timer
@@ -383,9 +388,6 @@
     
 
 }
-#pragma mark - draw grid methods
-
-
 
 #pragma mark - PFQueryTableViewController
 
@@ -514,6 +516,20 @@
  */
 
 #pragma mark - UITableViewDataSource
+
+//dirty way to hide all other cells that do not contain data
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    
+//    UIColor *color = PNCloudWhite;
+//    
+//    view.backgroundColor = color;
+    
+    
+    return view;
+}
+
 
 /*
  // Override to support conditional editing of the table view.

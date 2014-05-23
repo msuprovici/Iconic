@@ -102,6 +102,8 @@
 //    [self.joinTeam setSelected:YES];
   
     
+    UIColor *color = PNCloudWhite;
+    self.view.backgroundColor = color;
 
     
     
@@ -284,6 +286,11 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] init];
+    
+    UIColor *color = PNCloudWhite;
+    
+    view.backgroundColor = color;
+
     
     return view;
 }

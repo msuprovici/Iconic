@@ -72,7 +72,7 @@
     
     
     [super viewDidLoad];
-    
+  
     
     
     [self getPlayerSteps];
