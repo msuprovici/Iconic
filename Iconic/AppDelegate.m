@@ -106,6 +106,11 @@
         self.window.rootViewController = rootViewController;
     }
 
+    
+//    pageControl.hidden = YES;
+
+    
+    
    // [self customizeAppearance];
     
     // Override point for customization after application launch.

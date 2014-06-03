@@ -8,7 +8,7 @@
 
 #import "LogInViewController.h"
 #import <Parse/Parse.h>
-#import "TutorialViewController.h"
+
 
 @interface LogInViewController ()
 
@@ -16,51 +16,48 @@
 
 @implementation LogInViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [[self view] setBackgroundColor:[UIColor blackColor]];
+//    [[self view] setBackgroundColor:[UIColor blackColor]];
     
-    _modelArray = [NSMutableArray arrayWithObjects:[[TutorialScreens alloc] initWithImageName:@"tutorial1.png"], [[TutorialScreens alloc] initWithImageName:@"tutorial2.png"], [[TutorialScreens alloc] initWithImageName:@"tutorial3.png"], [[TutorialScreens alloc] initWithImageName:@"tutorial4.png"], nil];
+    // Create the data model
+    _pageTitles = @[@"Title 1", @"Title 2", @"Title 3"];
+    _pageSubTitles = @[@"Subtitle 1", @"Subtitle 2", @"Subtitle 3"];
+    _pageImages = @[@"Walkthrough1.png", @"Walkthrough2.png", @"Walkthrough3.png"];
     
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.backgroundColor = [UIColor whiteColor];
     
-    _pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
-                                                          navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                                                                        options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:0.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
+    // Create page view controller
+    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
+    self.pageViewController.dataSource = self;
     
-    _pageViewController.delegate = self;
-    _pageViewController.dataSource = self;
+    LogInPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    NSArray *viewControllers = @[startingViewController];
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
-    TutorialViewController *imageViewController = [[TutorialViewController alloc] init];
-    imageViewController.model = [_modelArray objectAtIndex:0];
-    NSArray *viewControllers = [NSArray arrayWithObject:imageViewController];
-    
-    [self.pageViewController setViewControllers:viewControllers
-                                      direction:UIPageViewControllerNavigationDirectionForward
-                                       animated:NO
-                                     completion:nil];
+    // Change the size of page view controller
+    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 80);
     
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
+    [self.pageViewController didMoveToParentViewController:self];
+
     
-    [_pageViewController didMoveToParentViewController:self];
-    
-    CGRect pageViewRect = self.view.bounds;
-    pageViewRect = [[UIScreen mainScreen] bounds];
-    self.pageViewController.view.frame = pageViewRect;
-    
-    self.view.gestureRecognizers = _pageViewController.gestureRecognizers;
-    [self.view sendSubviewToBack: _pageViewController.view];
+        
 
 }
 
@@ -71,9 +68,9 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
+//- (void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//}
 
 //Skip Login
 - (IBAction)skipLogin:(id)sender {
@@ -180,53 +177,75 @@
 }
 
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+
+#pragma mark - Page Control Methods
+
+
+- (IBAction)startWalkthrough:(id)sender {
+    LogInPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
+    NSArray *viewControllers = @[startingViewController];
+    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+}
+
+- (LogInPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
 {
-    TutorialViewController *contentVc = (TutorialViewController *)viewController;
-    
-    NSUInteger currentIndex = [_modelArray indexOfObject:[contentVc model]];
-    _vcIndex = currentIndex;
-    
-    if (currentIndex == 0)
-    {
+    if (([self.pageTitles count] == 0) || (index >= [self.pageTitles count])) {
         return nil;
     }
     
-    TutorialViewController *imageViewController = [[TutorialViewController alloc] init];
-    imageViewController.model = [_modelArray objectAtIndex:currentIndex - 1];
-    return imageViewController;
+    // Create a new view controller and pass suitable data.
+    LogInPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LogInPageContentViewController"];
+    pageContentViewController.imageFile = self.pageImages[index];
+    pageContentViewController.titleText = self.pageTitles[index];
+    pageContentViewController.subTitleText = self.pageSubTitles[index];
+    
+    pageContentViewController.pageIndex = index;
+    
+    return pageContentViewController;
+}
+
+#pragma mark - Page View Controller Data Source
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    NSUInteger index = ((LogInPageContentViewController*) viewController).pageIndex;
+    
+    if ((index == 0) || (index == NSNotFound)) {
+        return nil;
+    }
+
+    index--;
+    return [self viewControllerAtIndex:index];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    TutorialViewController *contentVc = (TutorialViewController *)viewController;
+    NSUInteger index = ((LogInPageContentViewController*) viewController).pageIndex;
     
-    NSUInteger currentIndex = [_modelArray indexOfObject:[contentVc model]];
-    _vcIndex = currentIndex;
-    //ImageModel *model = [_modelArray objectAtIndex:_vcIndex];
-    
-    if (currentIndex == _modelArray.count - 1)
-    {
+    if (index == NSNotFound) {
         return nil;
     }
-    
-    TutorialViewController *imageViewController = [[TutorialViewController alloc] init];
-    imageViewController.model = [_modelArray objectAtIndex:currentIndex + 1];
-    return imageViewController;
+
+    index++;
+    if (index == [self.pageTitles count]) {
+        return nil;
+    }
+    return [self viewControllerAtIndex:index];
 }
 
-#pragma mark -
-#pragma mark - UIPageViewControllerDataSource Method
 
+//these mehods show a page indicator
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-    return _modelArray.count;
+    return [self.pageTitles count];
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
 {
     return 0;
 }
+
+
 
 
 

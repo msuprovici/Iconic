@@ -53,6 +53,10 @@
 		5C539A161867A2AC006676FA /* FollowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C539A151867A2AC006676FA /* FollowCell.m */; };
 		5C5CBDD519253DB300C2C328 /* LeaguesTeamsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C5CBDD319253DB300C2C328 /* LeaguesTeamsModel.xcdatamodeld */; };
 		5C5CBDD71925484D00C2C328 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5CBDD61925484D00C2C328 /* CoreData.framework */; };
+		5C62BF9A19382F3300B67FEB /* LogInPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C62BF9919382F3300B67FEB /* LogInPageContentViewController.m */; };
+		5C62BFAC193D8DAB00B67FEB /* Walkthrough3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C62BFA9193D8DAB00B67FEB /* Walkthrough3.png */; };
+		5C62BFAD193D8DAB00B67FEB /* Walkthrough2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C62BFAA193D8DAB00B67FEB /* Walkthrough2.png */; };
+		5C62BFAE193D8DAB00B67FEB /* Walkthrough1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C62BFAB193D8DAB00B67FEB /* Walkthrough1.png */; };
 		5C6A6EE018A47BE40044269F /* TeamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A6EDF18A47BE40044269F /* TeamCell.m */; };
 		5C78DA4D189872BF00CBA29B /* activity_comment_icon_blue-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA49189872BF00CBA29B /* activity_comment_icon_blue-01.png */; };
 		5C78DA4E189872BF00CBA29B /* activity_comment_icon_green-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA4A189872BF00CBA29B /* activity_comment_icon_green-01.png */; };
@@ -135,12 +139,6 @@
 		5CEC3BDE18A2A86200C444FA /* TeamPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC3BDD18A2A86200C444FA /* TeamPlayerCell.m */; };
 		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
 		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
-		72CA13C61846DEC700B19D53 /* tutorial1.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CA13C31846DEC700B19D53 /* tutorial1.png */; };
-		72CA13C71846DEC700B19D53 /* tutorial2.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CA13C41846DEC700B19D53 /* tutorial2.png */; };
-		72CA13C81846DEC700B19D53 /* tutorial3.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CA13C51846DEC700B19D53 /* tutorial3.png */; };
-		72CA13CA1846DF2F00B19D53 /* tutorial4.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CA13C91846DF2F00B19D53 /* tutorial4.png */; };
-		72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F325251846D18F000B5D34 /* TutorialViewController.m */; };
-		72F325291846D25D000B5D34 /* TutorialScreens.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F325281846D25D000B5D34 /* TutorialScreens.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,6 +233,11 @@
 		5C539A151867A2AC006676FA /* FollowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowCell.m; sourceTree = "<group>"; };
 		5C5CBDD419253DB300C2C328 /* LeaguesTeamsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LeaguesTeamsModel.xcdatamodel; sourceTree = "<group>"; };
 		5C5CBDD61925484D00C2C328 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		5C62BF9819382F3300B67FEB /* LogInPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInPageContentViewController.h; sourceTree = "<group>"; };
+		5C62BF9919382F3300B67FEB /* LogInPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInPageContentViewController.m; sourceTree = "<group>"; };
+		5C62BFA9193D8DAB00B67FEB /* Walkthrough3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walkthrough3.png; sourceTree = "<group>"; };
+		5C62BFAA193D8DAB00B67FEB /* Walkthrough2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walkthrough2.png; sourceTree = "<group>"; };
+		5C62BFAB193D8DAB00B67FEB /* Walkthrough1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walkthrough1.png; sourceTree = "<group>"; };
 		5C6A6EDE18A47BE40044269F /* TeamCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamCell.h; sourceTree = "<group>"; };
 		5C6A6EDF18A47BE40044269F /* TeamCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCell.m; sourceTree = "<group>"; };
 		5C78DA49189872BF00CBA29B /* activity_comment_icon_blue-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_comment_icon_blue-01.png"; sourceTree = "<group>"; };
@@ -364,14 +367,6 @@
 		5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		5CFB1EB81834381C0026AEB4 /* ScheduleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleGenerator.h; sourceTree = "<group>"; };
 		5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleGenerator.m; sourceTree = "<group>"; };
-		72CA13C31846DEC700B19D53 /* tutorial1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial1.png; sourceTree = "<group>"; };
-		72CA13C41846DEC700B19D53 /* tutorial2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial2.png; sourceTree = "<group>"; };
-		72CA13C51846DEC700B19D53 /* tutorial3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial3.png; sourceTree = "<group>"; };
-		72CA13C91846DF2F00B19D53 /* tutorial4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial4.png; sourceTree = "<group>"; };
-		72F325241846D18F000B5D34 /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
-		72F325251846D18F000B5D34 /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
-		72F325271846D25D000B5D34 /* TutorialScreens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialScreens.h; sourceTree = "<group>"; };
-		72F325281846D25D000B5D34 /* TutorialScreens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialScreens.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -461,6 +456,9 @@
 				5C430F1D18D7A66300D932AA /* points_background_team_screen_iconic_red.png */,
 				5C430F1E18D7A66300D932AA /* points_background_team_screen_iconic.png */,
 				5C430F1F18D7A66300D932AA /* timer_background_iconic.png */,
+				5C62BFA9193D8DAB00B67FEB /* Walkthrough3.png */,
+				5C62BFAA193D8DAB00B67FEB /* Walkthrough2.png */,
+				5C62BFAB193D8DAB00B67FEB /* Walkthrough1.png */,
 			);
 			name = Resources;
 			path = Iconic;
@@ -541,6 +539,8 @@
 			children = (
 				5CA3D1E51832F9D1006C7932 /* LogInViewController.h */,
 				5CA3D1E61832F9D1006C7932 /* LogInViewController.m */,
+				5C62BF9819382F3300B67FEB /* LogInPageContentViewController.h */,
+				5C62BF9919382F3300B67FEB /* LogInPageContentViewController.m */,
 			);
 			name = LogIn;
 			sourceTree = "<group>";
@@ -736,7 +736,6 @@
 			isa = PBXGroup;
 			children = (
 				5CA3D1901831DF51006C7932 /* Iconic */,
-				72F3252A1846D477000B5D34 /* Tutorial Controllers */,
 				5C2C1CC8185E9051006722D2 /* Resources */,
 				5CA3D1B21831DF51006C7932 /* IconicTests */,
 				5CA3D1891831DF51006C7932 /* Frameworks */,
@@ -947,30 +946,6 @@
 			name = "Custom Dialog";
 			sourceTree = "<group>";
 		};
-		72CA13C21846DEAF00B19D53 /* Tutorial Slides */ = {
-			isa = PBXGroup;
-			children = (
-				72CA13C31846DEC700B19D53 /* tutorial1.png */,
-				72CA13C41846DEC700B19D53 /* tutorial2.png */,
-				72CA13C51846DEC700B19D53 /* tutorial3.png */,
-				72CA13C91846DF2F00B19D53 /* tutorial4.png */,
-			);
-			name = "Tutorial Slides";
-			sourceTree = "<group>";
-		};
-		72F3252A1846D477000B5D34 /* Tutorial Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				72F325241846D18F000B5D34 /* TutorialViewController.h */,
-				72F325251846D18F000B5D34 /* TutorialViewController.m */,
-				72F325271846D25D000B5D34 /* TutorialScreens.h */,
-				72F325281846D25D000B5D34 /* TutorialScreens.m */,
-				72CA13C21846DEAF00B19D53 /* Tutorial Slides */,
-			);
-			name = "Tutorial Controllers";
-			path = Iconic;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1055,16 +1030,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C62BFAE193D8DAB00B67FEB /* Walkthrough1.png in Resources */,
 				5C78DA4E189872BF00CBA29B /* activity_comment_icon_green-01.png in Resources */,
 				5C539A001863D9A1006676FA /* empty_avatar.png in Resources */,
 				5CA3D1A61831DF51006C7932 /* Images.xcassets in Resources */,
-				72CA13C61846DEC700B19D53 /* tutorial1.png in Resources */,
-				72CA13CA1846DF2F00B19D53 /* tutorial4.png in Resources */,
+				5C62BFAD193D8DAB00B67FEB /* Walkthrough2.png in Resources */,
 				5C5399FB1862432C006676FA /* bluesquare.jpeg in Resources */,
 				5C78DA4F189872BF00CBA29B /* activity_speaker_icon_green-01.png in Resources */,
 				5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */,
+				5C62BFAC193D8DAB00B67FEB /* Walkthrough3.png in Resources */,
 				5CA3D1951831DF51006C7932 /* InfoPlist.strings in Resources */,
-				72CA13C81846DEC700B19D53 /* tutorial3.png in Resources */,
 				5C430F2118D7A66300D932AA /* chart_background_iconic_3@2x.png in Resources */,
 				5C2C1CC7185E9040006722D2 /* reveal-icon@2x.png in Resources */,
 				5C430F2218D7A66300D932AA /* points_background_team_screen_iconic_red.png in Resources */,
@@ -1078,7 +1053,6 @@
 				5C78DA4D189872BF00CBA29B /* activity_comment_icon_blue-01.png in Resources */,
 				5CB75E07188DCC4D0047BC47 /* joinicon2-01.png in Resources */,
 				5C2EA53E1851516700B21C52 /* MyStatsViewController.xib in Resources */,
-				72CA13C71846DEC700B19D53 /* tutorial2.png in Resources */,
 				5CB75E05188DAE850047BC47 /* stepsicon-01.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1106,6 +1080,7 @@
 				5C539A0F18679A57006676FA /* FollowersViewController.m in Sources */,
 				5CD93829187B5047006CE08B /* MZTransition.m in Sources */,
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
+				5C62BF9A19382F3300B67FEB /* LogInPageContentViewController.m in Sources */,
 				5C4EF982186CA7BD000E0E59 /* Constants.m in Sources */,
 				5C539A0C18679A37006676FA /* FollowingViewController.m in Sources */,
 				5C2C1CCF185E98A3006722D2 /* MenuViewController.m in Sources */,
@@ -1124,7 +1099,6 @@
 				5C48B8961880CFAA00A09A1C /* SimpleHomeViewController.m in Sources */,
 				5C8BB5C418860F9700E89ADF /* ActivityHeaderCell.m in Sources */,
 				5CCB26D419085BA5002B6832 /* CalculatePoints.m in Sources */,
-				72F325261846D18F000B5D34 /* TutorialViewController.m in Sources */,
 				5C48B8BD1880F89F00A09A1C /* UIImage+ResizeAdditions.m in Sources */,
 				5C78DA531899676000CBA29B /* FindFriendsViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
@@ -1162,7 +1136,6 @@
 				5C78DA711899B91400CBA29B /* Reachability.m in Sources */,
 				5CD93838187B5627006CE08B /* DialogViewController.m in Sources */,
 				5C2EA53D1851516700B21C52 /* MyStatsViewController.m in Sources */,
-				72F325291846D25D000B5D34 /* TutorialScreens.m in Sources */,
 				5C2C1CCC185E9142006722D2 /* SWRevealViewController.m in Sources */,
 				5C48B8A21880F7AB00A09A1C /* UIImage+Additional.m in Sources */,
 				5CA19A3518B83E290023C940 /* PNBarChart.m in Sources */,
