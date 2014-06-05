@@ -10,53 +10,62 @@
 #import <Parse/Parse.h>
 
 
-@interface LogInViewController ()
+
+@interface LogInViewController ()<UIScrollViewDelegate>
+
+@property NSUInteger currentIndex;
+
 
 @end
 
 @implementation LogInViewController
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
+@synthesize scrollView;
+@synthesize pageControl;
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-//    [[self view] setBackgroundColor:[UIColor blackColor]];
+    self.currentIndex = 0;
+    
+    self.Login.hidden = YES;
+    self.SignUp.hidden = YES;
     
     // Create the data model
     _pageTitles = @[@"Title 1", @"Title 2", @"Title 3"];
     _pageSubTitles = @[@"Subtitle 1", @"Subtitle 2", @"Subtitle 3"];
     _pageImages = @[@"Walkthrough1.png", @"Walkthrough2.png", @"Walkthrough3.png"];
     
-    UIPageControl *pageControl = [UIPageControl appearance];
-    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-    pageControl.backgroundColor = [UIColor whiteColor];
-    
-    // Create page view controller
-    self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
-    self.pageViewController.dataSource = self;
-    
-    LogInPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers = @[startingViewController];
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    // Change the size of page view controller
-    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 80);
-    
-    [self addChildViewController:_pageViewController];
-    [self.view addSubview:_pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
+    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex: 0]];
+    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex: 0]];
+
 
     
+    for (int i = 0; i < [_pageImages count]; i++) {
+        //We'll create an imageView object in every 'page' of our scrollView.
+        CGRect frame;
+        frame.origin.x = self.scrollView.frame.size.width * i;
+        frame.origin.y = 0;
+        frame.size = self.scrollView.frame.size;
+        //set background image
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+        imageView.image = [UIImage imageNamed:[_pageImages objectAtIndex:i]];
+        
+      
+         [self.scrollView addSubview:imageView];
+        
+
+    
+    }
+    //Set the content size of our scrollview according to the total width of our imageView objects.
+    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [_pageImages count], scrollView.frame.size.height);
+    
+    
+    self.pageControl.currentPage = 0;
+    [self.view addSubview:self.pageControl];
+   
         
 
 }
@@ -182,69 +191,68 @@
 
 
 - (IBAction)startWalkthrough:(id)sender {
-    LogInPageContentViewController *startingViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers = @[startingViewController];
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
-}
-
-- (LogInPageContentViewController *)viewControllerAtIndex:(NSUInteger)index
-{
-    if (([self.pageTitles count] == 0) || (index >= [self.pageTitles count])) {
-        return nil;
+    
+     CGFloat pageWidth = self.scrollView.frame.size.width;
+    CGFloat pageHeight = self.scrollView.frame.size.height;
+    float newPosition = scrollView.contentOffset.x+pageWidth;
+    CGRect toVisible = CGRectMake(newPosition, 0, pageWidth, pageHeight);
+    [scrollView scrollRectToVisible:toVisible animated:YES];
+    
+    if (self.currentIndex < self.pageSubTitles.count -1 ) {
+        
+//          NSLog(@"CurrentIndex on Button Press  %lu", (unsigned long)self.currentIndex);
+        
+        self.currentIndex = self.currentIndex+1;
+        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
     }
     
-    // Create a new view controller and pass suitable data.
-    LogInPageContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"LogInPageContentViewController"];
-    pageContentViewController.imageFile = self.pageImages[index];
-    pageContentViewController.titleText = self.pageTitles[index];
-    pageContentViewController.subTitleText = self.pageSubTitles[index];
+    [self.pageControl setCurrentPage:self.currentIndex];
     
-    pageContentViewController.pageIndex = index;
-    
-    return pageContentViewController;
-}
-
-#pragma mark - Page View Controller Data Source
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
-{
-    NSUInteger index = ((LogInPageContentViewController*) viewController).pageIndex;
-    
-    if ((index == 0) || (index == NSNotFound)) {
-        return nil;
+    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex:self.currentIndex]];
+    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex:self.currentIndex]];
+   
+    if (self.currentIndex == 2) {
+        
+        [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
     }
 
-    index--;
-    return [self viewControllerAtIndex:index];
-}
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
-{
-    NSUInteger index = ((LogInPageContentViewController*) viewController).pageIndex;
     
-    if (index == NSNotFound) {
-        return nil;
+    
+    //show login options once the person selected the grant permission label
+    if([self.startWalkthroughButton.titleLabel.text  isEqualToString: @"Grant Motion Permission"])
+    {
+        self.Login.hidden = NO;
+        self.SignUp.hidden = NO;
+        self.startWalkthroughButton.hidden = YES;
+    }
+    
     }
 
-    index++;
-    if (index == [self.pageTitles count]) {
-        return nil;
+
+#pragma mark - UIScrollView Delegate
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)sender {
+    
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    uint page = sender.contentOffset.x / pageWidth;
+    
+    
+    self.currentIndex = page;
+    [self.pageControl setCurrentPage:page];
+    
+    if (page == 2) {
+        [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
     }
-    return [self viewControllerAtIndex:index];
+    
+    else{
+        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
+    }
+
+    
+    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex: page]];
+    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex: page]];
+    
+
 }
-
-
-//these mehods show a page indicator
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
-{
-    return [self.pageTitles count];
-}
-
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-{
-    return 0;
-}
-
 
 
 

@@ -12,14 +12,22 @@
 
 
 @interface LogInViewController :
-UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
-@property (nonatomic, strong) UIPageViewController *pageViewController;
+//@property (nonatomic, strong) UIPageViewController *pageViewController;
 
 - (IBAction)startWalkthrough:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *startWalkthroughButton;
 
+@property (strong, nonatomic) IBOutlet UIButton *Login;
+@property (strong, nonatomic) IBOutlet UIButton *SignUp;
 
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
+
+
+@property (strong, nonatomic) IBOutlet UILabel *mainTitle;
+@property (strong, nonatomic) IBOutlet UILabel *subTitle;
 
 @property (strong, nonatomic) NSArray *pageTitles;
 @property (strong, nonatomic) NSArray *pageSubTitles;
