@@ -11,12 +11,14 @@
 #import "CustomPFSignUpViewController.h"
 #import "CustomPFLoginViewController.h"
 #import "PNColor.h"
-
+#import <CoreMotion/CoreMotion.h>
 
 @interface LogInViewController ()<UIScrollViewDelegate>
 
 @property NSUInteger currentIndex;
 
+
+@property (nonatomic, strong) CMStepCounter *cmStepCounter;
 
 @end
 
@@ -151,7 +153,7 @@
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
-    NSLog(@"Failed to log in...");
+//    NSLog(@"Failed to log in...");
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
 }
 
@@ -193,12 +195,12 @@
 
 // Sent to the delegate when the sign up attempt fails.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
-    NSLog(@"Failed to sign up...");
+//    NSLog(@"Failed to sign up...");
 }
 
 // Sent to the delegate when the sign up screen is dismissed.
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
-    NSLog(@"User dismissed the signUpViewController");
+//    NSLog(@"User dismissed the signUpViewController");
 }
 
 
@@ -234,13 +236,30 @@
 
     
     
-    //show login options once the person selected the grant permission label
+    
     if([self.startWalkthroughButton.titleLabel.text  isEqualToString: @"Grant Motion Permission"])
     {
+        
+        //show login options once the person selected the grant permission label
         self.Login.hidden = NO;
         self.SignUp.hidden = NO;
         self.startWalkthroughButton.hidden = YES;
-    }
+        
+        
+        //initialize CMStepCounter to ask the user for permission
+        self.cmStepCounter = [[CMStepCounter alloc] init];
+        
+        if([CMStepCounter isStepCountingAvailable])
+        {
+            NSLog(@"CMStepCounter is Avaialble");
+        }
+        else{
+             NSLog(@"CMStepCounter is NOT Avaialble");
+        }
+        
+        
+        
+         }
     
     }
 
