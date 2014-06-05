@@ -18,6 +18,7 @@ UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 - (IBAction)startWalkthrough:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *startWalkthroughButton;
+- (IBAction)signUpAction:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIButton *Login;
 @property (strong, nonatomic) IBOutlet UIButton *SignUp;

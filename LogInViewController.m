@@ -8,7 +8,9 @@
 
 #import "LogInViewController.h"
 #import <Parse/Parse.h>
-
+#import "CustomPFSignUpViewController.h"
+#import "CustomPFLoginViewController.h"
+#import "PNColor.h"
 
 
 @interface LogInViewController ()<UIScrollViewDelegate>
@@ -81,6 +83,9 @@
 //    [super viewDidAppear:animated];
 //}
 
+
+#pragma mark - Parse Login & SignUps actions
+
 //Skip Login
 - (IBAction)skipLogin:(id)sender {
     
@@ -94,18 +99,15 @@
 - (IBAction)userLogin:(id)sender {
     
     // Create the log in view controller
-    PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+    CustomPFLogInViewController *logInViewController = [[CustomPFLogInViewController alloc] init];
     [logInViewController setDelegate:self]; // Set ourselves as the delegate
     
-    logInViewController.facebookPermissions = @[@"friends_about_me"];
-    logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsSignUpButton ;
+//    logInViewController.facebookPermissions = @[@"friends_about_me"];
+    logInViewController.fields = PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword  ;
+
+//    logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsSignUpButton ;
     
-    // Create the sign up view controller
-    PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
-    [signUpViewController setDelegate:self]; // Set ourselves as the delegate
     
-    // Assign our sign up controller to be displayed from the login controller
-    [logInViewController setSignUpController:signUpViewController];
     
     // Present the log in view controller
     [self presentViewController:logInViewController animated:YES completion:NULL];
@@ -113,7 +115,21 @@
 
     
 }
+- (IBAction)signUpAction:(id)sender {
+    
+    // Create the sign up view controller
+    CustomPFSignUpViewController *signUpViewController = [[CustomPFSignUpViewController alloc] init];
+    [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+    
+    signUpViewController.fields =  PFSignUpFieldsDefault   ;
+    
+    // Present the log in view controller
+    [self presentViewController:signUpViewController animated:YES completion:NULL];
 
+
+    
+    
+}
 #pragma mark - PFLogInViewControllerDelegate
 
 // Sent to the delegate to determine whether the log in request should be submitted to the server.
@@ -253,6 +269,7 @@
     
 
 }
+
 
 
 
