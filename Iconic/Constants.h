@@ -32,7 +32,9 @@ extern NSString *const kMyPointsTotal;
 extern NSString *const kMyPointsWeekArray;
 
 extern NSString *const kMyFetchedPointsToday;
+extern NSString *const kMyFetchedStepsToday;
 extern NSString *const kMyFetchedPointsTotal;
+extern NSString *const kMyFetchedStepsTotal;
 extern NSString *const kMyMostRecentFetchedPointsBeforeSaving;
 //extern NSString *const kMyFetchedPointsWeekArray;
 

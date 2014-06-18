@@ -541,7 +541,7 @@ static NSString *kImageKey = @"imageKey";
     NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
     
     
-    int myPointsDelta = (int)[RetrievedTeams integerForKey:@"myPointsDelta"];
+    int myStepsDelta = (int)[RetrievedTeams integerForKey:@"myStepsDelta"];
     
     self.myNewTeamObject = [homeTeamNames objectAtIndex:index];
     self.matchupsIndex = index;
@@ -633,14 +633,14 @@ static NSString *kImageKey = @"imageKey";
 //                NSLog(@"homeTeamScore: %@",  homeTeamScore);
 //                NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
                 
-//                int pointsAfterPlayerScored = homeTeamPoints + myPointsDelta;
+//                int pointsAfterPlayerScored = homeTeamPoints + myStepsDelta;
                 
-                int pointsBeforePlayerScored = homeTeamPoints - myPointsDelta;
+                int pointsBeforePlayerScored = homeTeamPoints - myStepsDelta;
                 
 //                self.MyTeamScore.text = [NSString stringWithFormat:@"%d",pointsBeforePlayerScored];
                 
                 
-                    if (myPointsDelta > 0) {
+                    if (myStepsDelta > 0) {
                         
                         if(self.deltaPointsLabelIsAnimating == YES)
                         {
@@ -693,10 +693,10 @@ static NSString *kImageKey = @"imageKey";
                 
 //                self.MyTeamScore.text = awayTeamScore;
                 
-//                int pointsAfterPlayerScored = awayTeamPoints + myPointsDelta;
-                int pointsBeforePlayerScored = awayTeamPoints - myPointsDelta;
+//                int pointsAfterPlayerScored = awayTeamPoints + myStepsDelta;
+                int pointsBeforePlayerScored = awayTeamPoints - myStepsDelta;
                 
-                if (myPointsDelta > 0)
+                if (myStepsDelta > 0)
                 {
                         
                             if(self.deltaPointsLabelIsAnimating == YES)
@@ -1048,17 +1048,17 @@ static NSString *kImageKey = @"imageKey";
     //populate the deltaValueLabel
     NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
     
-    int myPointsDelta = (int)[myRetrievedPoints integerForKey:@"myPointsDelta"];
+    int myStepsDelta = (int)[myRetrievedPoints integerForKey:@"myStepsDelta"];
 //    int  numberOfTeams = (int)[myRetrievedPoints integerForKey: kNumberOfTeams];
 
     
-//    NSLog(@"Delta in simplehomeviewcontroller: %d", myPointsDelta);
+//    NSLog(@"Delta in simplehomeviewcontroller: %d", myStepsDelta);
     
     
     
-    if(myPointsDelta > 0)
+    if(myStepsDelta > 0)
     {
-        self.deltaPoints.text = [NSString stringWithFormat:@"+%d", myPointsDelta];
+        self.deltaPoints.text = [NSString stringWithFormat:@"+%d", myStepsDelta];
         
         CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
         [calculatePointsClass retrieveFromParse];
@@ -1095,7 +1095,7 @@ static NSString *kImageKey = @"imageKey";
                     completion:^(BOOL finished) {
                         // Hide label
                         self.deltaPoints.hidden = YES;
-                        if(myPointsDelta > 0)
+                        if(myStepsDelta > 0)
                         {
                             
                             [self showChart];

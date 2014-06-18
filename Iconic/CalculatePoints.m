@@ -20,124 +20,6 @@
 @implementation CalculatePoints
 
 
-//we use this class to calculate fetched points
-
-//
-//@synthesize teamMatchups;
-//
-//
-//+ (id)sharedManager {
-//    static CalculatePoints *sharedMyManager = nil;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        sharedMyManager = [[self alloc] init];
-//
-//        
-//    });
-//    return sharedMyManager;
-//}
-//
-//- (id)init {
-//    if (self = [super init]) {
-//        
-//        
-//        
-//        
-//        //Query Team Class
-//        PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];core
-//        
-//        //Query Team Class to see if the player's current team is the HOME team
-//        PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-//        [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
-//        
-//        
-//        
-//        PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-//        [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
-//        
-//        
-//        PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
-//        
-//        [queryTeamMatchupsClass includeKey:kHomeTeam];
-//        [queryTeamMatchupsClass includeKey:kAwayTeam];
-//        
-//
-//        queryAwayTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//        queryHomeTeamMatchups.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//        
-//        [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//            
-//            
-//            
-//            if(!error)
-//            {
-//                
-//                
-//                if(objects.count > 0)
-//                {
-//                    
-//                    for (int i = 0; i < objects.count; i++) {
-//                        
-//                        PFObject *myMatchupObject = [objects objectAtIndex:i];
-//                        
-//                        
-//                        NSString * round = [myMatchupObject objectForKey:kRound];
-//                        
-//                        
-//                        //the round is hardcoded for now, need to make this dynamic based on the torunatment's status
-//                        if ([round  isEqual: @"1"])
-//                        {
-//                            
-//                            
-////                            VSTableViewController * vsTableViewController = [[VSTableViewController alloc]init];
-////                            vsTableViewController.teamMatchups = objects;
-//                            teamMatchups = [[NSArray alloc] init];
-//                            teamMatchups = objects;
-//                            
-//                        }
-//                    }
-//                    
-//                }
-//                
-//            }
-//        }];
-//
-//    }
-//    return self;
-//}
-//
-//- (void)dealloc {
-//    // Should never be called, but just here for clarity really.
-//}
-//
-//static CalculatePoints *sharedSingleton;
-//
-//+ (void)initialize
-//{
-//    static BOOL initialized = NO;
-//    if(!initialized)
-//    {
-//        initialized = YES;
-//        sharedSingleton = [[CalculatePoints alloc] init];
-//        
-//        
-//    }
-//}
-//
-////+(CalculatePoints *)singleton {
-////    static dispatch_once_t pred;
-////
-////    static CalculatePoints *shared = nil;
-////    dispatch_once(&pred, ^{
-////        shared = [[CalculatePoints alloc] init];
-////        shared.teamMatchups = [[NSArray alloc]init];
-////    });
-////    return shared;
-////}
-
-
-
-
 
 
 #pragma mark Parse methods
@@ -499,6 +381,8 @@
 #pragma mark points calcuations
 
 
+//we are replacing points with steps as per new design
+
 -(void)incrementPlayerPointsInBackground
 {
     
@@ -536,26 +420,26 @@
         //check for NAN values
         
         
-       
-        
-        if(numberOfSteps == 0)
-        {
-         
-            
-            self.myPoints = 0;
-                
-            
-        }
-        else
-        {
-         
-
-            self.myPoints = [self calculatePoints:numberOfSteps];
-          
-            
-            self.mySteps = &(numberOfSteps);
-            
-        }
+       self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
+//        NSLog(@"self.mySteps: %@", self.mySteps);
+//        if(numberOfSteps == 0)
+//        {
+//
+//            
+//            self.myPoints = 0;
+//                
+//            
+//        }
+//        else
+//        {
+//         
+//
+//            self.myPoints = [self calculatePoints:numberOfSteps];
+//          
+//            
+//            self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
+//            
+//        }
         
         
         
@@ -571,41 +455,12 @@
         {
             
             
-//            bool jointedFirstTeam = [myRetrievedPoints boolForKey:@"PlayerJointedFirstTeam"];
-//            NSLog(@"jointedFirstTeam # of steps = 0 %d" , jointedFirstTeam);
-//            if (jointedFirstTeam == YES) {
-//                
-////                NSLog(@"jointedFirstTeam # of steps = 0 %d" , jointedFirstTeam);
-//                
-//                [myRetrievedPoints setBool:NO forKey:@"PlayerJointedFirstTeam"];
-//                [myRetrievedPoints synchronize];
-//                
-//                //hardcoded 100 bonus points to the player for joining their 1st team
-//                [myRetrievedPoints setInteger:100 forKey:kMyMostRecentPointsBeforeSaving];
-//                [myRetrievedPoints setInteger:100 forKey:kMyMostRecentStepsBeforeSaving];
-//                
-//                [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
-//                
-//                [myRetrievedPoints synchronize];
-//                [[NSUserDefaults standardUserDefaults] synchronize];
-//                
-//                
-//                //save the player's points for today to the server
-//                PFObject *playerPoints = [PFUser currentUser];
-//                NSNumber *myPointsConverted = [NSNumber numberWithInt:100];
-//                [playerPoints setObject:myPointsConverted forKey:kPlayerPointsToday];
-//                //            [playerPoints save];
-//                [playerPoints saveInBackground];
-//                
-//            }
-//
-//            else
-//            {
             
-            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentPointsBeforeSaving];
+//            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentPointsBeforeSaving];
             [myRetrievedPoints setInteger:0 forKey:kMyMostRecentStepsBeforeSaving];
             
-            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
+//            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
+            [myRetrievedPoints setInteger:[self.mySteps intValue]   forKey:kMyFetchedStepsToday];
             
             [myRetrievedPoints synchronize];
             [[NSUserDefaults standardUserDefaults] synchronize];
@@ -623,124 +478,8 @@
         
         else
         {
-            [self incrementMyPoints];
+            [self incrementMySteps];
         }
-//        {
-//            
-//
-//            
-//            
-//            int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsToday];
-//            int myMostRecentPointsValue = [self.myPoints intValue];
-//            int self.myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
-//            
-////                                NSLog(@"myFetchedStoredPoints: %d", myStoredPoints);
-////                                NSLog(@"myFetchedMostRecentPointsValue: %d", myMostRecentPointsValue);
-////                                NSLog(@"myFetchedPointsDeltaValue: %d", self.myPointsDeltaValue);
-//            
-//            
-//            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
-//            
-//            
-//            //increment a player's total # of points
-//            
-//            int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsTotal];
-//            [myRetrievedPoints synchronize];
-//            [[NSUserDefaults standardUserDefaults] synchronize];
-//            
-//            int myNewTotalPoints = myTotalPoints + self.myPointsDeltaValue;
-//            
-//            
-//            //                    NSLog(@"myFetchedTotalPoints: %d", myTotalPoints);
-//            //                    NSLog(@"myFetchedNewTotalPoints: %d", myNewTotalPoints);
-//            
-//            [myRetrievedPoints setInteger:myNewTotalPoints  forKey:kMyFetchedPointsTotal];
-//            [myRetrievedPoints synchronize];
-//            [[NSUserDefaults standardUserDefaults] synchronize];
-//            
-//            //save the player's points for today to the server
-//            PFObject *playerPoints = [PFUser currentUser];
-//            [playerPoints setObject:self.myPoints forKey:kPlayerPointsToday];
-//            //            [playerPoints saveEventually];
-//            //            [playerPoints saveInBackground];
-//            
-//            //            [playerPoints save]; //<-must execute on main thread in background mode?  saveEventually & saveInBackground do not work
-//            [playerPoints saveInBackground];
-//            
-//            NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
-//            
-//            //save to NSuserdefaults
-//            [myRetrievedPoints setInteger:[myLevel intValue]  forKey:@"myLevel"];
-//            
-//            float myLevelValue = [myLevel floatValue];
-//            [myRetrievedPoints synchronize];
-//            
-//            //get the total points necessary for next level
-//            
-//            NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
-//            
-//            int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
-//            
-//            
-//            int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - myNewTotalPoints;
-////                          NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
-//            
-//            //calculate the # of points necessary to reach the next level
-//            NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
-//            
-//            //convert delta to NSNumber so we can increment later
-//            NSNumber* myNSPointsDeltaValue = [NSNumber numberWithInt:self.myPointsDeltaValue];
-//            
-//            
-//            //increment the points for all my teams
-//            [self incrementMyTeamsPointsInBackground:myNSPointsDeltaValue];
-//            
-//            
-//            
-//            
-//            
-//            
-//            
-//            PFQuery *query = [PFUser query];
-//            [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
-//            
-//            
-//            
-//            [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//                
-//                if(!error)
-//                {
-//                    
-//                    [object incrementKey:kPlayerPoints byAmount:myNSPointsDeltaValue];
-//                    
-//                    
-//                    //set player's level
-//                    [object setObject:myLevel forKey:kPlayerXP];
-//                    //save #points needed to reach the next level
-//                    
-//                    [object setObject:myPointsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
-//                    //save the player's points for today to the server
-//                    
-//                    //save points
-//                    //                    [object save];
-//                    
-//                    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                        if (succeeded) {
-////                            NSLog(@"Player stats save succeded");
-//                        }
-//                        else{
-////                            NSLog(@"Player stats save failed");
-//                        }
-//                    }];
-//                    
-//                    
-//                    
-//                }
-//                
-//                
-//            }];
-//            
-//        }
         
     }];
     
@@ -749,110 +488,84 @@
 
 
 
-//-(void)joinedMyFirstTeam:(NSNotification *) notification
-//{
-////    self.playerJoinedTheirFirstTeam = YES;
-//    
-//    
-//    if ([[notification name] isEqualToString:@"playerJoinedTheirFirstTeam"])
-//    {
-//    NSLog(@"I joined my first team");
-//        
-//    }
-//    
-//}
 
 
--(void)incrementMyPoints
+
+
+-(void)incrementMySteps
 {
     
-    //set the player's total points in memory
-    NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
+    //set the player's total steps in memory
+    NSUserDefaults *myRetrievedSteps = [NSUserDefaults standardUserDefaults];
 
     
     
-    int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsToday];
-    int myMostRecentPointsValue = [self.myPoints intValue];
-//    bool jointedFirstTeam = [myRetrievedPoints boolForKey:@"PlayerJointedFirstTeam"];
-//    
-//    NSLog(@"jointedFirstTeam = NO  %d" , jointedFirstTeam);
-//    
-//    if (jointedFirstTeam == YES) {
-//        
-//        NSLog(@"jointedFirstTeam = YES  %d" , jointedFirstTeam);
-//        [myRetrievedPoints setBool:NO forKey:@"PlayerJointedFirstTeam"];
-//        [myRetrievedPoints synchronize];
-//        
-//        //hardcoded 100 bonus points to the player for joining their 1st team
-//        self.myPointsDeltaValue = 100;
-//        [myRetrievedPoints setInteger:self.myPointsDeltaValue forKey:@"myPointsDelta"];
-//        [myRetrievedPoints synchronize];
-//    }
-//    else
-//    {
-    self.myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
+    int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsToday];
+    int myMostRecentStepsValue = [self.mySteps intValue];
+    
+
+    
+    self.myStepsDeltaValue = myMostRecentStepsValue - myStoredSteps;
     
     
-//                                    NSLog(@"myFetchedStoredPoints: %d", myStoredPoints);
-//                                    NSLog(@"myFetchedMostRecentPointsValue: %d", myMostRecentPointsValue);
-//                                    NSLog(@"myFetchedPointsDeltaValue: %d", self.myPointsDeltaValue);
+//                                    NSLog(@"myFetchedStoredSteps: %d", myStoredSteps);
+//                                    NSLog(@"myFetchedMostRecentStepsValue: %d", myMostRecentStepsValue);
+//                                    NSLog(@"myFetchedStepsDeltaValue: %d", self.myStepsDeltaValue);
     
     
-    [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
+    [myRetrievedSteps setInteger:[self.mySteps intValue] forKey:kMyFetchedStepsToday];
     
     
     //increment a player's total # of points
     
-    int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsTotal];
-    [myRetrievedPoints synchronize];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    int myTotalSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsTotal];
+    [myRetrievedSteps synchronize];
     
-    int myNewTotalPoints = myTotalPoints + self.myPointsDeltaValue;
+    
+    int myNewTotalSteps = myTotalSteps + self.myStepsDeltaValue;
     
 //    
 //                       NSLog(@"myFetchedTotalPoints: %d", myTotalPoints);
 //                        NSLog(@"myFetchedNewTotalPoints: %d", myNewTotalPoints);
     
-    [myRetrievedPoints setInteger:myNewTotalPoints  forKey:kMyFetchedPointsTotal];
-    [myRetrievedPoints synchronize];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
+    [myRetrievedSteps synchronize];
     
-    //save the player's points for today to the server
-    PFObject *playerPoints = [PFUser currentUser];
-    [playerPoints setObject:self.myPoints forKey:kPlayerPointsToday];
+    
+    //save the player's steps for today to the server
+    PFObject *playerSteps = [PFUser currentUser];
+    [playerSteps setObject:self.mySteps forKey:kPlayerPointsToday];
     //            [playerPoints saveEventually];
-    //            [playerPoints saveInBackground];
+  
+    [playerSteps saveInBackground];
     
-    //            [playerPoints save]; //<-must execute on main thread in background mode?  saveEventually & saveInBackground do not work
-    [playerPoints saveInBackground];
-    
-    NSNumber *myLevel = [self calculateLevel:myNewTotalPoints];
+    NSNumber *myLevel = [self calculateLevel:myNewTotalSteps];
     
     //save to NSuserdefaults
-    [myRetrievedPoints setInteger:[myLevel intValue]  forKey:@"myLevel"];
+    [myRetrievedSteps setInteger:[myLevel intValue]  forKey:@"myLevel"];
     
     float myLevelValue = [myLevel floatValue];
-    [myRetrievedPoints synchronize];
+    [myRetrievedSteps synchronize];
     
     //get the total points necessary for next level
     
-    NSNumber *totalPointsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
+    NSNumber *totalStepsToNextLevel = [self calculatePointsToReachNextLevel:myLevelValue];
     
-    int myTotalPointsToNextLevelValue = [totalPointsToNextLevel intValue];
+    int myTotalStepsToNextLevelValue = [totalStepsToNextLevel intValue];
     
     
-    int pointsToNextLevelDelta = myTotalPointsToNextLevelValue - myNewTotalPoints;
+    int stepsToNextLevelDelta = myTotalStepsToNextLevelValue - myNewTotalSteps;
     //                          NSLog(@"pointsToNextLevelDelta: %d", pointsToNextLevelDelta);
     
     //calculate the # of points necessary to reach the next level
-    NSNumber* myPointsToNextLevelDelta = [NSNumber numberWithInt:pointsToNextLevelDelta];
+    NSNumber* myStepsToNextLevelDelta = [NSNumber numberWithInt:stepsToNextLevelDelta];
     
     //convert delta to NSNumber so we can increment later
-    NSNumber* myNSPointsDeltaValue = [NSNumber numberWithInt:self.myPointsDeltaValue];
+    NSNumber* myNSStepsDeltaValue = [NSNumber numberWithInt:self.myStepsDeltaValue];
     
     
     //increment the points for all my teams
-    [self incrementMyTeamsPointsInBackground:myNSPointsDeltaValue];
+    [self incrementMyTeamsPointsInBackground:myNSStepsDeltaValue];
     
     
     
@@ -870,14 +583,14 @@
         if(!error)
         {
             
-            [object incrementKey:kPlayerPoints byAmount:myNSPointsDeltaValue];
+            [object incrementKey:kPlayerPoints byAmount:myNSStepsDeltaValue];
             
             
             //set player's level
             [object setObject:myLevel forKey:kPlayerXP];
             //save #points needed to reach the next level
             
-            [object setObject:myPointsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
+            [object setObject:myStepsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
             //save the player's points for today to the server
             
             //save points

@@ -25,7 +25,12 @@ NSString *const kMyPointsTotal = @"MyTotalPoints";
 NSString *const kMyPointsWeekArray = @"MyWeekleyPoints";
 
 NSString *const kMyFetchedPointsToday = @"TodayFetchedPoints";
+
+NSString *const kMyFetchedStepsToday = @"TodayFetchedSteps";
+
 NSString *const kMyFetchedPointsTotal = @"MyTotalFetchedPoints";
+
+NSString *const kMyFetchedStepsTotal = @"MyTotalFetchedSteps";
 
 NSString *const kMyMostRecentFetchedPointsBeforeSaving = @"theMostRecentFetchedPointsBeforeSaving";
 NSString *const kMyLevelOnLastLaunch = @"myLevelOnPreviousLaunch";

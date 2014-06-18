@@ -189,12 +189,16 @@
 //        NSInteger numberOfSteps = [[NSUserDefaults standardUserDefaults] integerForKey:STEPS_KEY];
 //        self.stepsCountingLabel.text = [NSString stringWithFormat:@"%li", (long)numberOfSteps];
 //        self.stepsCountingLabel.hidden = NO;
+               
+        //hide step count mini label as per new design
+        self.stepsValue.hidden = true;
+        self.stepsSubTitle.hidden = true;
                 
                 
         self.viewTitle.hidden = YES;
         self.statsImage.hidden = YES;
         self.xpLabel.text = @"Level";
-        self.pointsLabel.text = @"Points";
+        self.pointsLabel.text = @"Today's Steps";
                 
         //barchart
         self.segmentedControl.hidden = YES;
@@ -202,6 +206,12 @@
         self.mediumValue.hidden = YES;
         self.sevenDaysAgoDay.hidden = YES;
         self.todayDay.hidden = YES;
+           
+                
+        //hide level as per new design
+                self.xpValue.hidden = true;
+                self.xpProgressDial.hidden = true;
+                self.xpLabel.hidden = true;
                 
             //self.timeActiveLabel.hidden = YES;
                 
@@ -361,8 +371,10 @@
         //prevent NAN values
         if (numberOfSteps == 0) {
             self.myPoints = 0;
-            self.pointsValue.text = [NSString stringWithFormat:@"%d",0] ;
+//            self.pointsValue.text = [NSString stringWithFormat:@"%d",0] ;
             self.stepsValue.text = [@(numberOfSteps) stringValue];
+            
+            self.pointsValue.text = [@(numberOfSteps) stringValue];
             
         }
         else
@@ -380,17 +392,29 @@
                 return [NSString stringWithFormat:@"%@",formatted];
             };
 
-            NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
-            int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyMostRecentPointsBeforeSaving];
-//            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
+//            NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
+//            int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyMostRecentPointsBeforeSaving];
+////            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
+//            
+//            int myPointsGainedDelta = [self.myPoints intValue] - myStoredPoints;
+////            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
+//            [myRetrievedPoints setInteger:myPointsGainedDelta forKey:@"myPointsDelta"];
+//            [myRetrievedPoints synchronize];
             
-            int myPointsGainedDelta = [self.myPoints intValue] - myStoredPoints;
-//            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
-            [myRetrievedPoints setInteger:myPointsGainedDelta forKey:@"myPointsDelta"];
-            [myRetrievedPoints synchronize];
             
+            NSUserDefaults *myRetrievedSteps = [NSUserDefaults standardUserDefaults];
+            int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsBeforeSaving];
+            //            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
             
-            [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:1.5];
+            int myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
+            //            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
+            [myRetrievedSteps setInteger:myStepsGainedDelta forKey:@"myStepsDelta"];
+            [myRetrievedSteps synchronize];
+
+            
+//            [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:1.5];
+            
+           
             
             
             self.stepsValue.formatBlock = ^NSString* (float value)
@@ -399,9 +423,9 @@
                 return [NSString stringWithFormat:@"%@",formatted];
             };
             
-            int myStoredSteps = (int)[myRetrievedPoints integerForKey:kMyMostRecentStepsBeforeSaving];
+//            int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsBeforeSaving];
             [self.stepsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
-            
+            [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
             
         }
         

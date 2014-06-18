@@ -53,13 +53,14 @@
 
 //convert steps to points and store here
 @property NSNumber* myPoints;
-@property NSInteger* mySteps;
+@property NSNumber* mySteps;
 
 //days left in the week
 @property int daysLeft;
 
 //player joined their first team
 @property int myPointsDeltaValue;
+@property int myStepsDeltaValue;
 
 //unique leagues
 @property NSArray *uniqueLeagues;
