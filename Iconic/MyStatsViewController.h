@@ -51,6 +51,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *sevenDaysAgoDay;
 @property (strong, nonatomic) IBOutlet UILabel *todayDay;
 
+
+@property (strong, nonatomic) IBOutlet UILabel *sevenDaySteps;
+@property (strong, nonatomic) IBOutlet UILabel *todaysSteps;
+
 //Segmented control
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;

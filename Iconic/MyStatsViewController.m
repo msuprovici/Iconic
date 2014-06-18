@@ -213,6 +213,12 @@
                 self.xpProgressDial.hidden = true;
                 self.xpLabel.hidden = true;
                 
+                
+        //hide 7 day steps label
+                self.sevenDaySteps.hidden = true;
+                self.todaysSteps.hidden = false;
+                self.todaysSteps.text = @"Today's Steps";
+                
             //self.timeActiveLabel.hidden = YES;
                 
            
@@ -253,7 +259,13 @@
             
             self.xpValue.hidden = true;
             self.xpProgressDial.hidden = true;
+            
                 
+                //hide today's steps label
+                self.sevenDaySteps.hidden = false;
+                self.todaysSteps.hidden = true;
+                self.sevenDaySteps.text = @"7 Day Steps";
+    
                 
              //Bar chart
             self.segmentedControl.hidden = NO;
@@ -273,6 +285,10 @@
             
             //Set up 7 day bar chart
             
+            
+            
+            
+            
             self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(28, 0, 300, 170)];
             
             NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
@@ -282,8 +298,17 @@
             self.myWeekleyStepsArray = [myWeekleyPoints objectForKey:kMyStepsWeekArray];
             NSLog(@"my weekley steps %@", self.myWeekleyStepsArray);
             
-            [self.barChart setYValues:self.myWeekleyPointsArray];
-            [self.barChart strokeChart];
+            
+            
+            //steps chart
+            
+           
+            
+            
+            
+            
+            [self.barChart setYValues:self.myWeekleyStepsArray];
+            
             
             [self.barChart setStrokeColor:PNWeiboColor];
             [self.barChart setBarBackgroundColor:PNWhite];
@@ -291,14 +316,17 @@
             
             [self.stepsBarChart addSubview:self.barChart];
             
-            
+             //find max value in the array and insert it into the high value on for the y-axis
             //set Y labels for chart
-            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyPointsArray valueForKeyPath:@"@max.self"]];
+            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyStepsArray valueForKeyPath:@"@max.self"]];
             
-            NSNumber *max = [self.myWeekleyPointsArray valueForKeyPath:@"@max.self"];
-            int midValue = [max intValue];
+            NSNumber *maxSteps = [self.myWeekleyStepsArray valueForKeyPath:@"@max.self"];
+            int midStepsValue = [maxSteps intValue];
             
-            self.mediumValue.text = [NSString stringWithFormat:@"%d",midValue/2];
+            
+            //find mid value in the array and insert it into the high value on for the y-axis
+            self.mediumValue.text = [NSString stringWithFormat:@"%d",midStepsValue/2];
+           
             
             //set X labels for chart
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -452,6 +480,7 @@
 
         {
             //points chart
+            
             
             //find max value in the array and insert it into the high value on for the y-axis
             self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyPointsArray valueForKeyPath:@"@max.self"]];

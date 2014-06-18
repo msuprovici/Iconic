@@ -74,6 +74,9 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *deltaPoints;
 
+
+
+
 - (IBAction)joinTeam:(id)sender;
 
 
