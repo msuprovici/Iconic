@@ -30,7 +30,7 @@ NSString *const kMyFetchedStepsToday = @"TodayFetchedSteps";
 
 NSString *const kMyFetchedPointsTotal = @"MyTotalFetchedPoints";
 
-NSString *const kMyFetchedStepsTotal = @"MyTotalFetchedSteps";
+NSString *const kMyFetchedStepsTotal = @"MyTotalSteps";
 
 NSString *const kMyMostRecentFetchedPointsBeforeSaving = @"theMostRecentFetchedPointsBeforeSaving";
 NSString *const kMyLevelOnLastLaunch = @"myLevelOnPreviousLaunch";
@@ -55,6 +55,7 @@ NSString *const kArrayOfTodayAwayTeamScores = @"ArrayOfTodayAwayTeamScores";
 NSString *const kArrayOfWeekleyHomeTeamScores = @"ArrayOfWeekleyHomeTeamScores";
 NSString *const kArrayOfWeekleyAwayTeamScores = @"ArrayOfWeekleyAwayTeamScores";
 NSString *const kArrayOfMyTeamsNames = @"arrayOfMyTeamNames";
+NSString *const kArrayOfLeagueNames = @"ArrayOfLeagueNames";
 
 //nuber of teams
 NSString *const kNumberOfTeams = @"numberOfTeams";

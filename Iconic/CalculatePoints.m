@@ -189,6 +189,8 @@
                     self.arrayOfTodayHomeTeamScores = [[NSMutableArray alloc] init];
                     self.arrayOfTodayAwayTeamScores = [[NSMutableArray alloc] init];
                     
+                    
+                    NSMutableArray *leagueArray = [[NSMutableArray alloc]init];
                     //self.myMatchups = [[NSMutableArray alloc] init];
                    
 
@@ -227,6 +229,7 @@
                             
                             NSString * homeTeamName = [homeTeamPointer objectForKey:kTeams];
                             NSNumber * homeTeamTotalScore = [homeTeamPointer objectForKey:kScore];
+                           
                             
                             
                             //add objects to array of teamScores(array) objects so that we don't have to download again
@@ -252,13 +255,21 @@
                             //array of arrays: add the arrays of weekeley home scores to an array
                             [self.arrayOfWeekleyHomeTeamScores addObject:arrayOfWeekleyHomeScores];
 //                                NSLog(@"arrayOfTodayHomeTeamScores CP %@", self.arrayOfTodayHomeTeamScores);
-                           
+                            
+                            
+                            //create and array of leagues
+                             NSString * homeTeamLeague = [homeTeamPointer objectForKey:kLeagues];
+                            
+                            [leagueArray addObject:homeTeamLeague];
                             
                             //save to NSUserdefaults
                             [myRetrievedTeams setObject:self.arrayOfTodayHomeTeamScores  forKey:kArrayOfTodayHomeTeamScores];
                             [myRetrievedTeams setObject:self.arrayOfhomeTeamScores  forKey:kArrayOfHomeTeamScores];
                             [myRetrievedTeams setObject:self.arrayOfhomeTeamNames  forKey:kArrayOfHomeTeamNames];
                             [myRetrievedTeams setObject:self.arrayOfWeekleyHomeTeamScores  forKey:kArrayOfWeekleyHomeTeamScores];
+                            
+                            [myRetrievedTeams setObject:leagueArray  forKey:kArrayOfLeagueNames];
+                            
 //                            NSLog(@"array of weekley arrays in calculate points: %@", self.arrayOfWeekleyHomeTeamScores);
                             [myRetrievedTeams synchronize];
 
@@ -525,8 +536,8 @@
     int myNewTotalSteps = myTotalSteps + self.myStepsDeltaValue;
     
 //    
-//                       NSLog(@"myFetchedTotalPoints: %d", myTotalPoints);
-//                        NSLog(@"myFetchedNewTotalPoints: %d", myNewTotalPoints);
+                       NSLog(@"myFetchedTotalSteps: %d", myTotalSteps);
+                        NSLog(@"myFetchedNewTotalSteps: %d", myNewTotalSteps);
     
     [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
     [myRetrievedSteps synchronize];

@@ -82,7 +82,7 @@ static NSString *kImageKey = @"imageKey";
 //convert steps to points and store here
 @property NSNumber* myPoints;
 @property NSNumber* myLevel;
-@property NSInteger* mySteps;
+@property NSNumber* mySteps;
 @property NSNumber* myPointsGained;
 
 //my team name
@@ -503,6 +503,7 @@ static NSString *kImageKey = @"imageKey";
         self.MyTeamScore.hidden = NO;
         self.vsTeamName.hidden = NO;
         self.VSTeamScore.hidden = NO;
+        self.myLeagueName.hidden = NO;
     }
     
     else
@@ -523,6 +524,7 @@ static NSString *kImageKey = @"imageKey";
         self.MyTeamScore.hidden = YES;
         self.vsTeamName.hidden = YES;
         self.VSTeamScore.hidden = YES;
+        self.myLeagueName.hidden = YES;
         
     }
     
@@ -539,6 +541,8 @@ static NSString *kImageKey = @"imageKey";
     
     NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
     NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
+    
+    NSArray *arrayOfLeagueNames = [RetrievedTeams objectForKey:kArrayOfLeagueNames];
     
     
     int myStepsDelta = (int)[RetrievedTeams integerForKey:@"myStepsDelta"];
@@ -559,6 +563,9 @@ static NSString *kImageKey = @"imageKey";
 //    self.vsTeamName.text = awayTeamName;
     
     
+    //set league names
+    NSString * leagueName = [NSString stringWithFormat:@"%@",[arrayOfLeagueNames objectAtIndex:index]];
+    
     //set score
     NSString * homeTeamScore = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
 //    self.MyTeamScore.text = homeTeamScore;
@@ -577,6 +584,8 @@ static NSString *kImageKey = @"imageKey";
 
     self.vsTeamName.textColor = PNDarkBlue;
     self.VSTeamScore.textColor = PNDarkBlue;
+    
+    self.myLeagueName.textColor = PNBlue;
  
     
     
@@ -612,6 +621,9 @@ static NSString *kImageKey = @"imageKey";
             
             //ensure that my team is always on the left hand side of the chart
             //if the object in my teams arrays is equal to the home team set it
+            
+            self.myLeagueName.text = leagueName;
+            
             if([myTeamsNames[i] isEqualToString: homeTeamName])
             {
                 
@@ -880,23 +892,23 @@ static NSString *kImageKey = @"imageKey";
     [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
         
         
-        
+        self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
         //convert steps to points
         //check for NAN values
-        if(numberOfSteps == 0)
-        {
-            self.myPoints = 0;
-            self.mySteps = 0;
-            
-        }
-        else
-        {
-            CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-            
-            self.myPoints = [calculatePointsClass calculatePoints:numberOfSteps];
-            
-            self.mySteps = &(numberOfSteps);
-        }
+//        if(numberOfSteps == 0)
+//        {
+//            self.myPoints = 0;
+//            self.mySteps = 0;
+//            
+//        }
+//        else
+//        {
+//            CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+//            
+//            self.myPoints = [calculatePointsClass calculatePoints:numberOfSteps];
+//            
+//            self.mySteps = &(numberOfSteps);
+//        }
         
         
         
@@ -913,7 +925,7 @@ static NSString *kImageKey = @"imageKey";
         if(numberOfSteps == 0)
         {
             
-            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentPointsBeforeSaving];
+//            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentPointsBeforeSaving];
             [myRetrievedPoints setInteger:0 forKey:kMyMostRecentStepsBeforeSaving];
             
             [myRetrievedPoints synchronize];
@@ -924,9 +936,9 @@ static NSString *kImageKey = @"imageKey";
         else
         {
                //we are going to use this value to start the couter in the counting label in MyStatsViewController
-            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyMostRecentPointsBeforeSaving];
+//            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyMostRecentPointsBeforeSaving];
             //        NSLog(@"self.myPoints intValue: %d", [self.myPoints intValue]);
-            [myRetrievedPoints setInteger:*(self.mySteps) forKey:kMyMostRecentStepsBeforeSaving];
+            [myRetrievedPoints setInteger:[self.mySteps intValue] forKey:kMyMostRecentStepsBeforeSaving];
             
             [myRetrievedPoints synchronize];
         }
@@ -934,21 +946,23 @@ static NSString *kImageKey = @"imageKey";
         
         //set level
         
-        //find out how many points were gained since the last time the points were synct
-        int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsToday];
-        int myMostRecentPointsValue = [self.myPoints intValue];
+        //find out how many steps were gained since the last time the points were synct
+        int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedStepsToday];
+        int myMostRecentPointsValue = [self.mySteps intValue];
         int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
         
 //        NSLog(@"Delta in simplehomeviewcontroller: %d", myPointsDeltaValue);
         
         
         
-        //calculate the current total points
-        int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsTotal];
+        //calculate the current total steps
+        int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedStepsTotal];
         int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
-        
+        NSLog(@"myTotalPoints: %d", myTotalPoints);
+        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
         //calculate current level
         self.myLevel = [calculatePointsClass calculateLevel:myNewTotalPoints];
+        NSLog(@"self.myLevel: %@", self.myLevel);
         
         //save the current level so that we can use it as a starting point for the level label counter
         [myRetrievedPoints setInteger: [self.myLevel intValue] forKey:kMyLevelOnLastLaunch];

@@ -45,6 +45,7 @@
  
 
 
+@property (strong, nonatomic) IBOutlet UILabel *myLeagueName;
 
 
 @property (strong, nonatomic) IBOutlet UILabel *MyTeamName;

@@ -94,7 +94,7 @@
                 NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
                 
                 //find my curent level
-                int myLifetimePoints = (int)[myRetrievedPoints integerForKey:kMyFetchedPointsTotal];
+                int myLifetimePoints = (int)[myRetrievedPoints integerForKey:kMyFetchedStepsTotal];
 //                NSLog(@"myLifetimePoints: %d", myLifetimePoints);
 //                NSLog(@"myLevel: %@", myLevel);
                 
@@ -138,10 +138,10 @@
                 self.xpProgressDial.hidden = false;
                 [self progressDialChange];
                 
-                self.xpProgressDial.trackTintColor = PNGrey;
+                self.xpProgressDial.trackTintColor = PNLightGrey;
                 self.xpProgressDial.progressTintColor = PNWeiboColor;
                 
-                self.xpProgressDial.thicknessRatio = .25f;
+                self.xpProgressDial.thicknessRatio = .15f;
                 self.xpProgressDial.roundedCorners = NO;
                 
                 //PNCircleChart
@@ -197,7 +197,7 @@
                 
         self.viewTitle.hidden = YES;
         self.statsImage.hidden = YES;
-        self.xpLabel.text = @"Level";
+        self.xpLabel.text = @"XP";
         self.pointsLabel.text = @"Today's Steps";
                 
         //barchart
@@ -209,9 +209,9 @@
            
                 
         //hide level as per new design
-                self.xpValue.hidden = true;
-                self.xpProgressDial.hidden = true;
-                self.xpLabel.hidden = true;
+//                self.xpValue.hidden = true;
+//                self.xpProgressDial.hidden = true;
+//                self.xpLabel.hidden = true;
                 
                 
         //hide 7 day steps label
@@ -471,59 +471,59 @@
 
 
 
-#pragma mark 7 Day points & steps
-
-- (IBAction)segmentValueChanged:(UISegmentedControl *)sender {
-    switch (sender.selectedSegmentIndex) {
-            //Points
-        case 0:
-
-        {
-            //points chart
-            
-            
-            //find max value in the array and insert it into the high value on for the y-axis
-            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyPointsArray valueForKeyPath:@"@max.self"]];
-            
-            NSNumber *max = [self.myWeekleyPointsArray valueForKeyPath:@"@max.self"];
-            int midValue = [max intValue];
-            
-            //find mid value in the array and insert it into the high value on for the y-axis
-            self.mediumValue.text = [NSString stringWithFormat:@"%d",midValue/2];
-            
-            
-            [self.barChart setYValues:self.myWeekleyPointsArray];
-            [self.barChart strokeChart];
-//            NSLog(@"segmented control points pressed");
-            
-            break;
-        }
-        case 1:
-        {
-            //steps chart
-            
-            //find max value in the array and insert it into the high value on for the y-axis
-            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyStepsArray valueForKeyPath:@"@max.self"]];
-            
-            NSNumber *maxSteps = [self.myWeekleyStepsArray valueForKeyPath:@"@max.self"];
-            int midStepsValue = [maxSteps intValue];
-            
-            
-            //find mid value in the array and insert it into the high value on for the y-axis
-            self.mediumValue.text = [NSString stringWithFormat:@"%d",midStepsValue/2];
-            
-            
-            [self.barChart setYValues:self.myWeekleyStepsArray];
-            [self.barChart strokeChart];
-//            NSLog(@"segmented control steps pressed");
-            
-            break;
-        }
-        default:
-            break;
-    }
-    
-}
+//#pragma mark 7 Day points & steps
+//
+//- (IBAction)segmentValueChanged:(UISegmentedControl *)sender {
+//    switch (sender.selectedSegmentIndex) {
+//            //Points
+//        case 0:
+//
+//        {
+//            //points chart
+//            
+//            
+//            //find max value in the array and insert it into the high value on for the y-axis
+//            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyPointsArray valueForKeyPath:@"@max.self"]];
+//            
+//            NSNumber *max = [self.myWeekleyPointsArray valueForKeyPath:@"@max.self"];
+//            int midValue = [max intValue];
+//            
+//            //find mid value in the array and insert it into the high value on for the y-axis
+//            self.mediumValue.text = [NSString stringWithFormat:@"%d",midValue/2];
+//            
+//            
+//            [self.barChart setYValues:self.myWeekleyPointsArray];
+//            [self.barChart strokeChart];
+////            NSLog(@"segmented control points pressed");
+//            
+//            break;
+//        }
+//        case 1:
+//        {
+//            //steps chart
+//            
+//            //find max value in the array and insert it into the high value on for the y-axis
+//            self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyStepsArray valueForKeyPath:@"@max.self"]];
+//            
+//            NSNumber *maxSteps = [self.myWeekleyStepsArray valueForKeyPath:@"@max.self"];
+//            int midStepsValue = [maxSteps intValue];
+//            
+//            
+//            //find mid value in the array and insert it into the high value on for the y-axis
+//            self.mediumValue.text = [NSString stringWithFormat:@"%d",midStepsValue/2];
+//            
+//            
+//            [self.barChart setYValues:self.myWeekleyStepsArray];
+//            [self.barChart strokeChart];
+////            NSLog(@"segmented control steps pressed");
+//            
+//            break;
+//        }
+//        default:
+//            break;
+//    }
+//    
+//}
 
 
 
