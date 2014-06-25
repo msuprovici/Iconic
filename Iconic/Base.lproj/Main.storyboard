@@ -203,9 +203,6 @@
                                 <rect key="frame" x="0.0" y="287" width="320" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="fj8-2r-qXt" appends="YES" id="T7R-ZJ-SlX"/>
-                                </connections>
                             </view>
                             <pageControl opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="2" id="pp4-bC-Hv9">
                                 <rect key="frame" x="146" y="205" width="29" height="37"/>
@@ -270,26 +267,6 @@
                                     <action selector="joinTeam:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="AIe-Uf-cgV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1G1-gp-6sX" userLabel="Button - Scroll Teams Right">
-                                <rect key="frame" x="275" y="228" width="45" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <state key="normal" title="→"/>
-                                <connections>
-                                    <action selector="scrollTeamsRight:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="sNY-Vm-98b"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nOP-U7-SyU" userLabel="Button - Scroll Teams Left">
-                                <rect key="frame" x="1" y="228" width="45" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <state key="normal" title="←">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="scrollTeamsLeft:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="hnE-yb-AOG"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uGw-Ji-fNv" userLabel="myTeamScore" customClass="UICountingLabel">
                                 <rect key="frame" x="12" y="271" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -319,6 +296,32 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" id="TO8-pP-IMA">
+                                <rect key="frame" x="0.0" y="259" width="320" height="309"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1G1-gp-6sX" userLabel="Button - Scroll Teams Right">
+                                <rect key="frame" x="275" y="228" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <state key="normal" title="→"/>
+                                <connections>
+                                    <action selector="scrollTeamsRight:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="sNY-Vm-98b"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nOP-U7-SyU" userLabel="Button - Scroll Teams Left">
+                                <rect key="frame" x="1" y="228" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="←">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scrollTeamsLeft:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="hnE-yb-AOG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -327,6 +330,7 @@
                     <connections>
                         <outlet property="MyTeamName" destination="MdT-V3-idy" id="bdc-Xu-dQ8"/>
                         <outlet property="MyTeamScore" destination="uGw-Ji-fNv" id="aPj-EZ-0Sa"/>
+                        <outlet property="MyTeamsView" destination="TO8-pP-IMA" id="n1o-pW-Jn6"/>
                         <outlet property="VSTeamScore" destination="RXG-16-KzV" id="ybi-rx-lm6"/>
                         <outlet property="contentController" destination="ze2-rn-IC6" id="X1i-6N-i6N"/>
                         <outlet property="deltaPoints" destination="Xcl-NE-OpV" id="7T1-Ov-oFj"/>
@@ -348,13 +352,78 @@
                         <outlet property="homeViewController" destination="iLB-wQ-v5S" id="AgO-pZ-OCB"/>
                     </connections>
                 </customObject>
-                <tapGestureRecognizer id="fj8-2r-qXt">
+            </objects>
+            <point key="canvasLocation" x="1467" y="-1748"/>
+        </scene>
+        <!--My Teams View Controller-->
+        <scene sceneID="Ahg-va-eIE">
+            <objects>
+                <viewController storyboardIdentifier="MyTeamsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kgg-0h-Fs4" customClass="MyTeamsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="MyTeamsViewController" id="J5M-cj-ZTz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="9VG-wp-3FK" customClass="PNBarChart">
+                                <rect key="frame" x="0.0" y="39" width="320" height="220"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="zw8-ln-GdS" appends="YES" id="3ZB-0L-zvj"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyTeamScore" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5bt-XF-GVm" customClass="UICountingLabel">
+                                <rect key="frame" x="10" y="29" width="150" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="40"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VsTeamScore" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gbh-3R-nSI">
+                                <rect key="frame" x="168" y="29" width="150" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="40"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyTeamName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xob-zD-zZO">
+                                <rect key="frame" x="10" y="227" width="150" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VsTeamName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wJZ-jw-S4C">
+                                <rect key="frame" x="168" y="227" width="150" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lLL-f1-fjT">
+                                <rect key="frame" x="87" y="7" width="150" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
                     <connections>
-                        <segue destination="7jw-Rg-QgJ" kind="push" identifier="vs" id="x7v-9O-5oi"/>
+                        <outlet property="MyTeamName" destination="Xob-zD-zZO" id="lJc-01-QbQ"/>
+                        <outlet property="MyTeamScore" destination="5bt-XF-GVm" id="mDV-HC-5wM"/>
+                        <outlet property="VSTeamScore" destination="gbh-3R-nSI" id="tR8-7s-Qn5"/>
+                        <outlet property="myLeagueName" destination="lLL-f1-fjT" id="KIx-RA-3e5"/>
+                        <outlet property="teamBarChart" destination="9VG-wp-3FK" id="Zbr-an-sqP"/>
+                        <outlet property="view" destination="J5M-cj-ZTz" id="cRy-9M-i5d"/>
+                        <outlet property="vsTeamName" destination="wJZ-jw-S4C" id="HUH-wb-9Wr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ygq-j3-GRV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="zw8-ln-GdS">
+                    <connections>
+                        <segue destination="7jw-Rg-QgJ" kind="push" identifier="vs" id="L2u-xU-TsZ"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1467" y="-1748"/>
+            <point key="canvasLocation" x="1467" y="-1060"/>
         </scene>
         <!--VS View Controller-->
         <scene sceneID="BT7-sc-49v">
@@ -1569,7 +1638,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4oE-r9-rjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1420" y="-836"/>
+            <point key="canvasLocation" x="1467" y="-477"/>
         </scene>
         <!--Leagues View Controller - Leagues-->
         <scene sceneID="C8b-lU-tvu">

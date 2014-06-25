@@ -13,7 +13,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "UICountingLabel.h"
 
-@interface SimpleHomeViewController : UIViewController <UIScrollViewDelegate>
+@interface SimpleHomeViewController : UIViewController  <UIScrollViewDelegate, UIPageViewControllerDataSource>
 
 {
     
@@ -37,7 +37,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *playerName;
 
 
+//My Teams View
 
+@property (strong, nonatomic) IBOutlet UIView *MyTeamsView;
 
 //Team Bar Chart
 
@@ -75,6 +77,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *deltaPoints;
 
+@property (nonatomic, assign) NSUInteger myTeamsIndex;
 
 
 

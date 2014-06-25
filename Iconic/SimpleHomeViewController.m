@@ -10,6 +10,7 @@
 #import "MyStatsViewController.h"
 #import "ContentController.h"
 #import "VSTableViewController.h"
+#import "MyTeamsViewController.h"
 #import "CalculatePoints.h"
 #import <Foundation/Foundation.h>
 
@@ -45,6 +46,8 @@ static NSString *kImageKey = @"imageKey";
 
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 
+@property (nonatomic, strong) NSArray *myTeamsViewControllers;
+
 @property (strong, nonatomic) NSMutableArray *myTeamData;
 @property (strong, nonatomic) NSMutableArray * arrayOfTeamScores;
 @property (strong, nonatomic) NSMutableArray * vsTeamScores;
@@ -56,13 +59,14 @@ static NSString *kImageKey = @"imageKey";
 @property (strong, nonatomic) NSArray * teamPoints;
 
 
+
 @property (nonatomic, assign) NSUInteger x;
 
 @property (nonatomic, assign) BOOL receivedNotification;
 
 //idex of the team displayed on the home screen controller
 @property (nonatomic, assign) int matchupsIndex;
-
+@property (nonatomic, assign) NSUInteger myMatchupIndex;
 @property (strong, nonatomic) NSTimer *timer;
 
 //for background taks
@@ -92,6 +96,11 @@ static NSString *kImageKey = @"imageKey";
 
 @property BOOL deltaPointsLabelIsAnimating;
 
+
+
+//My Teams Page Controller
+
+@property (strong, nonatomic) UIPageViewController *myTeamsPageController;
 
 
 
@@ -162,6 +171,31 @@ static NSString *kImageKey = @"imageKey";
    
 //Use the line bellow to cancel local notficiations
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    
+    
+    
+//    self.myTeamsPageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+//    
+//    self.myTeamsPageController.dataSource = self;
+//    [[self.myTeamsPageController view] setFrame:[self.MyTeamsView  bounds]];
+//    
+//    MyTeamsViewController *initialViewController = [self viewControllerAtIndex:0];
+//    
+//    
+//    self.myTeamsViewControllers = [[NSArray alloc]init];
+//    self.myTeamsViewControllers = [NSArray arrayWithObject:initialViewController];
+//    
+//    [self.myTeamsPageController setViewControllers:self.myTeamsViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+//    
+////    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+////    
+////    [self.myTeamsPageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+//    
+//    [self addChildViewController:self.myTeamsPageController];
+//    [self.MyTeamsView  addSubview:[self.myTeamsPageController view]];
+//    [self.myTeamsPageController didMoveToParentViewController:self];
+
     
     
     
@@ -247,6 +281,27 @@ static NSString *kImageKey = @"imageKey";
     
 //    [self beginDeltaPointsAnimation];
    
+    self.myTeamsPageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    
+    self.myTeamsPageController.dataSource = self;
+    [[self.myTeamsPageController view] setFrame:[self.MyTeamsView  bounds]];
+    
+    MyTeamsViewController *initialViewController = [self viewControllerAtIndex:0];
+    
+    
+    self.myTeamsViewControllers = [[NSArray alloc]init];
+    self.myTeamsViewControllers = [NSArray arrayWithObject:initialViewController];
+    
+    [self.myTeamsPageController setViewControllers:self.myTeamsViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    //    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+    //
+    //    [self.myTeamsPageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    [self addChildViewController:self.myTeamsPageController];
+    [self.MyTeamsView  addSubview:[self.myTeamsPageController view]];
+    [self.myTeamsPageController didMoveToParentViewController:self];
+
     
     [self.view setNeedsDisplay];
 
@@ -977,34 +1032,137 @@ static NSString *kImageKey = @"imageKey";
 
 }
 
+#pragma mark - MyTeams Scroll View
 
+- (MyTeamsViewController *)viewControllerAtIndex:(NSUInteger)index {
+    
+    MyTeamsViewController *childViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MyTeamsViewController"];    childViewController.index = index;
+    NSLog(@"index in MyTeamsViewController method: %lu", (unsigned long)index);
 
-#pragma mark - Navigation
-
-//pass the team to the teammates view controller
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    VSTableViewController *transferViewController = segue.destinationViewController;
+    return childViewController;
     
-     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
-    NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
-    
-    if ([segue.identifier isEqualToString:@"vs"]) {
-        
-        //        NSLog(@"Segue index sent: %d", self.matchupsIndex);
-        
-        [segue.destinationViewController initWithReceivedTeam:self.matchupsIndex];
-        
-        transferViewController.homeTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:self.matchupsIndex]];
-        transferViewController.awayTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:self.matchupsIndex]];
-        transferViewController.matchupsIndex = self.matchupsIndex;
-        
-        //send my team name to vs view controller
-        transferViewController.myTeamReceived = [NSString stringWithFormat:@"%@",self.nameOfMyTeamString];
-        
-    }
 }
+
+- (NSUInteger)indexOfViewController:(MyTeamsViewController *)viewController
+{
+//    MyTeamsViewController *childViewController = [self.myTeamsPageController.viewControllers objectAtIndex:0];
+    
+    return [self.myTeamsViewControllers indexOfObject:viewController];
+}
+
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+{
+    // If the page did not turn
+    if (!completed)
+    {
+               return;
+    }
+    
+    // This is where you would know the page number changed and handle it appropriately
+    
+
+   
+}
+
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+    
+    NSUInteger index = [(MyTeamsViewController *)viewController index];
+    
+    if (index == 0) {
+        return nil;
+    }
+    
+    // Decrease the index by 1 to return
+    index--;
+    
+    NSLog(@"indexbefore: %lu", index);
+//    self.myMatchupIndex = index+1;
+    self.myMatchupIndex = [self indexOfViewController:[self viewControllerAtIndex:index]];
+    
+    return [self viewControllerAtIndex:index];
+    
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
+    
+    NSUInteger index = [(MyTeamsViewController *)viewController index];
+//    self.myMatchupIndex = index;
+    index++;
+//    self.myMatchupIndex = index-1;
+    if (index == 2) {
+        return nil;
+    }
+    NSLog(@"indexafter: %lu", index);
+    
+    return [self viewControllerAtIndex:index];
+    
+}
+
+
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
+    // The number of items reflected in the page indicator.
+    return 2;
+}
+
+- (NSInteger)presentationIndexForPageViewController:(MyTeamsViewController *)pageViewController {
+   
+   return 0;
+}
+
+
+
+//#pragma mark - Navigation
+//
+////pass the team to the teammates view controller
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    
+//    VSTableViewController *transferViewController = segue.destinationViewController;
+//    
+//     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+//    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
+//    NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
+//    
+//    if ([segue.identifier isEqualToString:@"vs"]) {
+//        
+//        //        NSLog(@"Segue index sent: %d", self.matchupsIndex);
+//        
+////        NSInteger currentIndex = _myTeamsPageController.currentIndex;
+//        
+////        MyTeamsViewController *viewController = [self.myTeamsPageController.viewControllers objectAtIndex:self.myMatchupIndex];
+////        NSUInteger retreivedIndex = [self.myTeamsViewControllers indexOfObject:viewController];
+////     
+//        
+//        
+////        NSUInteger retreivedIndex = [self indexOfViewController:currentViewController];
+//       
+////        NSLog(@"retreivedIndex: %lu", retreivedIndex);
+//        int myRetreivedIndex = (int)self.myTeamsIndex ;
+//        NSLog(@"myRetreivedIndex: %d", myRetreivedIndex);
+//        
+////        NSLog(@"myIndex: %lu", (unsigned long)self.myMatchupIndex);
+////        int myTeamsMatchupsIndex = (int)self.myMatchupIndex ;
+////         NSLog(@"myTeamsMatchupsIndex: %d", myTeamsMatchupsIndex);
+//        
+//        
+//        [segue.destinationViewController initWithReceivedTeam:myRetreivedIndex];
+//        
+//        transferViewController.homeTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:myRetreivedIndex]];
+//        transferViewController.awayTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:myRetreivedIndex]];
+//        transferViewController.matchupsIndex = myRetreivedIndex;
+//        
+////        [segue.destinationViewController initWithReceivedTeam:self.matchupsIndex];
+////        
+////        transferViewController.homeTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:self.matchupsIndex]];
+////        transferViewController.awayTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:self.matchupsIndex]];
+////        transferViewController.matchupsIndex = self.matchupsIndex;
+//        
+//        //send my team name to vs view controller
+//        transferViewController.myTeamReceived = [NSString stringWithFormat:@"%@",self.nameOfMyTeamString];
+//        
+//    }
+//}
 
 
 
