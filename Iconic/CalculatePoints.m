@@ -468,7 +468,7 @@
             
             
 //            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentPointsBeforeSaving];
-            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentStepsBeforeSaving];
+//            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentStepsBeforeSaving];
             
 //            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyFetchedPointsToday];
             [myRetrievedPoints setInteger:[self.mySteps intValue]   forKey:kMyFetchedStepsToday];
@@ -536,8 +536,8 @@
     int myNewTotalSteps = myTotalSteps + self.myStepsDeltaValue;
     
 //    
-                       NSLog(@"myFetchedTotalSteps: %d", myTotalSteps);
-                        NSLog(@"myFetchedNewTotalSteps: %d", myNewTotalSteps);
+//                       NSLog(@"myFetchedTotalSteps: %d", myTotalSteps);
+//                        NSLog(@"myFetchedNewTotalSteps: %d", myNewTotalSteps);
     
     [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
     [myRetrievedSteps synchronize];

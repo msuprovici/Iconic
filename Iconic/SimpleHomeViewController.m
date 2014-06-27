@@ -294,9 +294,6 @@ static NSString *kImageKey = @"imageKey";
     
     [self.myTeamsPageController setViewControllers:self.myTeamsViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
-    //    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-    //
-    //    [self.myTeamsPageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     [self addChildViewController:self.myTeamsPageController];
     [self.MyTeamsView  addSubview:[self.myTeamsPageController view]];
@@ -1013,11 +1010,11 @@ static NSString *kImageKey = @"imageKey";
         //calculate the current total steps
         int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedStepsTotal];
         int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
-        NSLog(@"myTotalPoints: %d", myTotalPoints);
-        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
+//        NSLog(@"myTotalPoints: %d", myTotalPoints);
+//        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
         //calculate current level
         self.myLevel = [calculatePointsClass calculateLevel:myNewTotalPoints];
-        NSLog(@"self.myLevel: %@", self.myLevel);
+//        NSLog(@"self.myLevel: %@", self.myLevel);
         
         //save the current level so that we can use it as a starting point for the level label counter
         [myRetrievedPoints setInteger: [self.myLevel intValue] forKey:kMyLevelOnLastLaunch];
@@ -1037,8 +1034,6 @@ static NSString *kImageKey = @"imageKey";
 - (MyTeamsViewController *)viewControllerAtIndex:(NSUInteger)index {
     
     MyTeamsViewController *childViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MyTeamsViewController"];    childViewController.index = index;
-    NSLog(@"index in MyTeamsViewController method: %lu", (unsigned long)index);
-
     
     return childViewController;
     
@@ -1077,9 +1072,7 @@ static NSString *kImageKey = @"imageKey";
     // Decrease the index by 1 to return
     index--;
     
-    NSLog(@"indexbefore: %lu", index);
-//    self.myMatchupIndex = index+1;
-    self.myMatchupIndex = [self indexOfViewController:[self viewControllerAtIndex:index]];
+  
     
     return [self viewControllerAtIndex:index];
     
@@ -1088,13 +1081,16 @@ static NSString *kImageKey = @"imageKey";
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
     NSUInteger index = [(MyTeamsViewController *)viewController index];
-//    self.myMatchupIndex = index;
+
     index++;
-//    self.myMatchupIndex = index-1;
-    if (index == 2) {
+    
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    NSArray *arrayOfLeagueNames = [RetrievedTeams objectForKey:kArrayOfLeagueNames];
+    
+    if (index == arrayOfLeagueNames.count) {
         return nil;
     }
-    NSLog(@"indexafter: %lu", index);
+  
     
     return [self viewControllerAtIndex:index];
     
@@ -1103,7 +1099,10 @@ static NSString *kImageKey = @"imageKey";
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
     // The number of items reflected in the page indicator.
-    return 2;
+    
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    NSArray *arrayOfLeagueNames = [RetrievedTeams objectForKey:kArrayOfLeagueNames];
+    return arrayOfLeagueNames.count;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(MyTeamsViewController *)pageViewController {
@@ -1260,6 +1259,7 @@ static NSString *kImageKey = @"imageKey";
                     animations:^(void) {
                         
                         self.deltaPointsLabelIsAnimating = YES;
+                  
                         
                         self.deltaPoints.center = CGPointMake(newX, newY);
                         [self fadein];

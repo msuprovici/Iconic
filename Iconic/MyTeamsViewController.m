@@ -12,6 +12,7 @@
 #import "PNColor.h"
 #import "SimpleHomeViewController.h"
 #import "VSTableViewController.h"
+#import "CalculatePoints.h"
 @interface MyTeamsViewController ()
 
 @end
@@ -34,13 +35,9 @@
     
     [self updateTeamChart:self.index];
     
-//     NSLog(@"self.index: %lu", (unsigned long)self.index);
-//    
-//    SimpleHomeViewController *simpleHomeViewController = [[SimpleHomeViewController alloc]init];
-//    
-//    simpleHomeViewController.myTeamsIndex = self.index;
-//    NSLog(@"simpleHomeViewController.myTeamsIndex: %lu", (unsigned long)simpleHomeViewController.myTeamsIndex);
 
+
+    
 }
 
 
@@ -59,9 +56,9 @@
     
     NSArray *arrayOfLeagueNames = [RetrievedTeams objectForKey:kArrayOfLeagueNames];
     
-    
-    int myStepsDelta = (int)[RetrievedTeams integerForKey:@"myStepsDelta"];
-    
+//    
+//    int myStepsGainedDelta = (int)[RetrievedTeams integerForKey:@"myStepsDelta"];
+//    NSLog(@"myStepsDelta: %d",  myStepsDelta);
     self.myNewTeamObject = [homeTeamNames objectAtIndex:index];
     self.matchupsIndex = index;
     
@@ -129,11 +126,33 @@
     
     
     
+    self.stepCounter = [[CMStepCounter alloc] init];
+    NSDate *now = [NSDate date];
+    
+    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+    NSDate *from = [calculatePointsClass beginningOfDay];
+    
+    
+    //    NSLog(@"time now: %@",now);
+    //    NSLog(@"time from: %@",from);
+    
+    [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
+        
+        
+        
+        NSUserDefaults *myRetrievedSteps = [NSUserDefaults standardUserDefaults];
+        
+        int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsAddToTeamBeforeSaving];
+        
+//        NSLog(@"My stored steps in MyTeamsViewController: %d", myStoredSteps);
+        
+        int myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
+//        NSLog(@"myStepsGainedDelta: %d", myStepsGainedDelta);
+    
     for (int i = 0; i < myTeamsNames.count; i++) {
         {
             //            NSLog(@"myTeamsNames[i] %@",  myTeamsNames[i]);
             
-            //            if([myTeamsNames containsObject:homeTeamName] || [myTeamsNames containsObject:awayTeamName])
             
             
             //ensure that my team is always on the left hand side of the chart
@@ -143,7 +162,6 @@
             
             if([myTeamsNames[i] isEqualToString: homeTeamName])
             {
-                
                 
                 self.nameOfMyTeamString = homeTeamName;
                 //             NSLog(@"my Home Team Name: %@",  self.nameOfMyTeamString);
@@ -157,50 +175,21 @@
                 
                 self.VSTeamScore.text = awayTeamScore;
                 
-                //                self.MyTeamScore.text = homeTeamScore;
-                
-                //                NSLog(@"homeTeamScore: %@",  homeTeamScore);
-                //                NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
-                
-                //                int pointsAfterPlayerScored = homeTeamPoints + myStepsDelta;
-                
-                int pointsBeforePlayerScored = homeTeamPoints - myStepsDelta;
-                
-                //                self.MyTeamScore.text = [NSString stringWithFormat:@"%d",pointsBeforePlayerScored];
-                
-                
-                if (myStepsDelta > 0) {
-                    
-                    if(self.deltaPointsLabelIsAnimating == YES)
-                    {
-                        //                            [self.MyTeamScore  countFrom:homeTeamPoints to:pointsAfterPlayerScored withDuration:2];
-                        [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:homeTeamPoints withDuration:1.5];
-                        self.deltaPointsLabelIsAnimating = NO;
-                    }
-                    else
-                    {
-                        self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
-                    }
-                    
-                    
-                    //                        [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:homeTeamPoints withDuration:2];
-                    
-                }
-                
-                
-                else
+                if (myStepsGainedDelta > 0)
                 {
                     
+                int pointsBeforePlayerScored = homeTeamPoints - myStepsGainedDelta;
                     
-                    self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
+                //                NSLog(@"pointsBeforePlayerScored: %d",  pointsBeforePlayerScored);
+                //                NSLog(@"awayTeamPoints: %d",  homeTeamPoints);
+                
+                [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:homeTeamPoints withDuration:1.5];
                     
                 }
-                
-                
-                
-                
-                
-                
+                else
+                {
+                    self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
+                }
                 
             }
             //if the object in my teams arrays is equal to the away team set it
@@ -220,38 +209,23 @@
                 
                 self.VSTeamScore.text = homeTeamScore;
                 
-                //                self.MyTeamScore.text = awayTeamScore;
+             
+                int pointsBeforePlayerScored = awayTeamPoints - myStepsGainedDelta;
+//                NSLog(@"awayTeamPoints: %d",  awayTeamPoints);
+//                
+//                 NSLog(@"pointsBeforePlayerScored1: %d",  pointsBeforePlayerScored);
                 
-                //                int pointsAfterPlayerScored = awayTeamPoints + myStepsDelta;
-                int pointsBeforePlayerScored = awayTeamPoints - myStepsDelta;
-                
-                if (myStepsDelta > 0)
-                {
-                    
-                    if(self.deltaPointsLabelIsAnimating == YES)
-                    {
-                        
-                        [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:awayTeamPoints withDuration:1.5];
-                        self.deltaPointsLabelIsAnimating = NO;
-                        
-                    }
-                    
-                    else
-                    {
-                        self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
-                    }
-                    
+                if (myStepsGainedDelta > 0) {
+                [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:awayTeamPoints withDuration:1.5];
                 }
-                else
-                {
+                else{
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
-                    
                 }
                 
                 
             }
         }
-        
+    
         
         
         
@@ -259,11 +233,7 @@
         //create bar chart to display days
         PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 220)];
         
-        //    PNBarChart * barChart = [[PNBarChart alloc] init];
-        
-        
-        
-        //     NSArray * teamPoints = @[homeTeamScore, awayTeamScore];
+       
         
         [barChart setYValues:self.teamPoints];
         
@@ -276,45 +246,13 @@
         [self.teamBarChart addSubview:barChart];
         
         
-        //    //find out what team the player is on and set that as a property so that we can send it to VS view controller
-        //    NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
-        //
-        ////    NSLog(@"# of teams I'm on: %lu",  (unsigned long)myTeamsNames.count);
-        ////     for (int i = 0; i < myTeamsNames.count; i++) {
-        ////        NSLog(@"myTeamsNames[index] %@",  myTeamsNames[index]);
-        ////        NSLog(@"homeTeamName %@",  homeTeamName);
-        ////        NSLog(@"awayTeamName %@",  awayTeamName);
-        //
-        //
-        //
-        //    for (int i = 0; i < myTeamsNames.count; i++) {
-        //        {
-        ////            NSLog(@"myTeamsNames[i] %@",  myTeamsNames[i]);
-        //
-        ////            if([myTeamsNames containsObject:homeTeamName] || [myTeamsNames containsObject:awayTeamName])
-        //
-        //            //if the object in my teams arrays is equal to the home team set it
-        //            if([myTeamsNames[i] isEqualToString: homeTeamName])
-        //            {
-        //
-        //             self.nameOfMyTeamString = myTeamsNames[i];
-        //                self.nameOfMyTeamString = homeTeamName;
-        ////             NSLog(@"my Home Team Name: %@",  self.nameOfMyTeamString);
-        //             
-        //         
-        //        }
-        //            //if the object in my teams arrays is equal to the away team set it
-        //
-        //            else if ([myTeamsNames[i] isEqualToString: awayTeamName])
-        //            {
-        //                self.nameOfMyTeamString = homeTeamName;
-        ////                NSLog(@"my Away Team Name: %@",  self.nameOfMyTeamString);
-        //            }
-        //    }
-        
-        
     }
-    //     }
+        
+        //save most recent step count to a different key because kMyMostRecentPointsBeforeSaving gets updated too fast in SimpleViewController
+        [myRetrievedSteps setInteger:numberOfSteps forKey:kMyMostRecentStepsAddToTeamBeforeSaving];
+        [myRetrievedSteps synchronize];
+
+        }];
     
 }
 
@@ -348,6 +286,7 @@
         
     }
 }
+
 
 
 

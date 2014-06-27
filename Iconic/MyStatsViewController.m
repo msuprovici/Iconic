@@ -296,7 +296,7 @@
             self.myWeekleyPointsArray = [myWeekleyPoints objectForKey:kMyPointsWeekArray];
             
             self.myWeekleyStepsArray = [myWeekleyPoints objectForKey:kMyStepsWeekArray];
-            NSLog(@"my weekley steps %@", self.myWeekleyStepsArray);
+//            NSLog(@"my weekley steps %@", self.myWeekleyStepsArray);
             
             
             

@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "PNChart.h"
 #import "UICountingLabel.h"
+#import <CoreMotion/CoreMotion.h>
 
 
 @interface MyTeamsViewController : UIViewController
@@ -19,6 +20,8 @@
 @property (nonatomic, strong) PFObject * myteamObjectatIndex;
 @property (nonatomic, assign) NSInteger matchupsIndex;
 
+//step counter
+@property (nonatomic, strong) CMStepCounter *stepCounter;
 
 
 @property (strong, nonatomic) NSMutableArray *myTeamData;

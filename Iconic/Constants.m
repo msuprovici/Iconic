@@ -40,7 +40,7 @@ NSString *const kMyLevelOnLastLaunch = @"myLevelOnPreviousLaunch";
 NSString *const kMyMostRecentPointsBeforeSaving = @"theMostRecentPointsBeforeSaving";
 NSString *const kMyMostRecentStepsBeforeSaving = @"NumberOfStepsBeforeSaving";
 NSString *const kMyMostRecentTotalPointsBeforeSaving = @"MyTotalPointsBeforeSaving";
-
+NSString *const kMyMostRecentStepsAddToTeamBeforeSaving = @"myStepsForTeam";
 //arrays
 NSString *const kMyTeamDataArray = @"myTeamDataArray";
 NSString *const kMyMatchupsArray = @"myMatchupsArray";

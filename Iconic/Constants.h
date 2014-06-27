@@ -41,6 +41,7 @@ extern NSString *const kMyMostRecentFetchedPointsBeforeSaving;
 extern NSString *const kMyMostRecentPointsBeforeSaving;
 extern NSString *const kMyMostRecentStepsBeforeSaving;
 extern NSString *const kMyMostRecentTotalPointsBeforeSaving;
+extern NSString *const kMyMostRecentStepsAddToTeamBeforeSaving;
 
 extern NSString *const kMyLevelOnLastLaunch;
 
