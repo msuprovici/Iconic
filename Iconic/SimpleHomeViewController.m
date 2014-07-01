@@ -1259,7 +1259,8 @@ static NSString *kImageKey = @"imageKey";
                     animations:^(void) {
                         
                         self.deltaPointsLabelIsAnimating = YES;
-                  
+                        
+                        
                         
                         self.deltaPoints.center = CGPointMake(newX, newY);
                         [self fadein];

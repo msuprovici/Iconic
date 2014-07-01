@@ -15,6 +15,9 @@
 #import "CalculatePoints.h"
 @interface MyTeamsViewController ()
 
+@property int myStepsGained;
+
+
 @end
 
 @implementation MyTeamsViewController
@@ -84,12 +87,12 @@
     NSString * homeTeamScore = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
     //    self.MyTeamScore.text = homeTeamScore;
     int  homeTeamPoints = (int)[homeTeamScore integerValue];
-    
+//     NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
     
     NSString * awayTeamScore = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:index]];
     //    self.VSTeamScore.text = awayTeamScore;
     int  awayTeamPoints = (int)[awayTeamScore integerValue];
-    
+//     NSLog(@"awayTeamPoints: %d",  awayTeamPoints);
     
     //set colors
     self.MyTeamName.textColor = PNWeiboColor;
@@ -148,7 +151,13 @@
         
         int myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
 //        NSLog(@"myStepsGainedDelta: %d", myStepsGainedDelta);
-    
+        self.myStepsGained = myStepsGainedDelta;
+        
+        
+//        if (index == 0) {
+         //this is where you need to add method for counting label
+       
+        
     for (int i = 0; i < myTeamsNames.count; i++) {
         {
             //            NSLog(@"myTeamsNames[i] %@",  myTeamsNames[i]);
@@ -159,6 +168,10 @@
             //if the object in my teams arrays is equal to the home team set it
             
             self.myLeagueName.text = leagueName;
+            
+            
+                
+            
             
             if([myTeamsNames[i] isEqualToString: homeTeamName])
             {
@@ -175,25 +188,39 @@
                 
                 self.VSTeamScore.text = awayTeamScore;
                 
-                if (myStepsGainedDelta > 0)
-                {
-                    
-                int pointsBeforePlayerScored = homeTeamPoints - myStepsGainedDelta;
-                    
-                //                NSLog(@"pointsBeforePlayerScored: %d",  pointsBeforePlayerScored);
-                //                NSLog(@"awayTeamPoints: %d",  homeTeamPoints);
                 
-                [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:homeTeamPoints withDuration:1.5];
+                self.myTeamPoints = homeTeamPoints;
+//                int pointsBeforePlayerScoredHome = homeTeamPoints - myStepsGainedDelta;
+//                int pointsAfterPlayerScoredHome = homeTeamPoints + myStepsGainedDelta;
+                
+//                                NSLog(@"pointsAferPlayerScored: %d",  pointsAfterPlayerScoredHome);
+//                               NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
+//                                NSLog(@"homeTeamPointsDelta: %d",  myStepsGainedDelta);
+                
+                 if (myStepsGainedDelta > 0)
+                {   
                     
+                    //show my team's steps before counting up the label bellow
+                    self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
+                    
+                    //if this is the 1st team at index, animate and count up my team score
+                    if (index == 0)
+                    {
+                    
+                        //wait for animateDeltaPointsLabel method to finsih in SimpleViewController
+                        //count up my team's score
+                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:2.0 ];
+                    }
+
                 }
                 else
                 {
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
                 }
-                
-            }
-            //if the object in my teams arrays is equal to the away team set it
             
+            }
+            
+            //if the object in my teams arrays is equal to the away team set it
             else if ([myTeamsNames[i] isEqualToString: awayTeamName])
             {
                 self.nameOfMyTeamString = awayTeamName;
@@ -209,14 +236,23 @@
                 
                 self.VSTeamScore.text = homeTeamScore;
                 
+                self.myTeamPoints = awayTeamPoints;
              
-                int pointsBeforePlayerScored = awayTeamPoints - myStepsGainedDelta;
-//                NSLog(@"awayTeamPoints: %d",  awayTeamPoints);
-//                
-//                 NSLog(@"pointsBeforePlayerScored1: %d",  pointsBeforePlayerScored);
+//                int pointsBeforePlayerScoredAway = awayTeamPoints - myStepsGainedDelta;
+////                NSLog(@"awayTeamPoints: %d",  awayTeamPoints);
+////                
+//                NSLog(@"pointsBeforePlayerScored1: %d",  pointsBeforePlayerScoredAway);
                 
                 if (myStepsGainedDelta > 0) {
-                [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:awayTeamPoints withDuration:1.5];
+                    
+                    self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
+                    
+                    //if this is the 1st team at index, animate and count up my team score
+                    if (index == 0) {
+                    //wait for animateDeltaPointsLabel method to finsih in SimpleViewController
+                    //count up my team's score
+                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:2.5 ];
+                    }
                 }
                 else{
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
@@ -226,7 +262,6 @@
             }
         }
     
-        
         
         
         
@@ -255,6 +290,83 @@
         }];
     
 }
+
+//add my steps to team's total and animate counting up
+-(void)updateTeamLabel
+{
+    
+    
+    int pointsAfterPlayerScored = self.myTeamPoints + self.myStepsGained;
+    [self.MyTeamScore  countFrom:self.myTeamPoints to:pointsAfterPlayerScored withDuration:1.5];
+    
+}
+
+
+
+//-(void)countUpTeamScore:(int)myStepsGainedDelta
+//{
+//    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+//    
+//    NSArray *homeTeamScores = [RetrievedTeams objectForKey:kArrayOfHomeTeamScores];
+//    NSArray *awayTeamScores = [RetrievedTeams objectForKey:kArrayOfAwayTeamScores];
+//    
+//    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
+//    NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
+//
+//    
+//    
+//    self.myLeagueName.text = leagueName;
+//    
+//    
+//    
+//    
+//    
+//    if([myTeamsNames[i] isEqualToString: homeTeamName])
+//    {
+//        
+//        self.nameOfMyTeamString = homeTeamName;
+//        //             NSLog(@"my Home Team Name: %@",  self.nameOfMyTeamString);
+//        
+//        
+//        //set the right order for homeTeamScore
+//        self.teamPoints = @[homeTeamScore, awayTeamScore];
+//        
+//        self.MyTeamName.text = homeTeamName;
+//        self.vsTeamName.text = awayTeamName;
+//        
+//        self.VSTeamScore.text = awayTeamScore;
+//        
+//        
+//        
+//        //                int pointsBeforePlayerScoredHome = homeTeamPoints - myStepsGainedDelta;
+//        int pointsAfterPlayerScoredHome = homeTeamPoints + myStepsGainedDelta;
+//        
+//        NSLog(@"pointsAferPlayerScored: %d",  pointsAfterPlayerScoredHome);
+//        //                               NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
+//        NSLog(@"homeTeamPointsDelta: %d",  myStepsGainedDelta);
+//        
+//        //                    double delayInSeconds = 2.0;
+//        //                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//        //                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        //                        //code to be executed on the main queue after delay
+//        //                        [self updateTeamLabel:homeTeamPoints];
+//        //                    });
+//        if (myStepsGainedDelta > 0)
+//        {
+//            
+//            [self.MyTeamScore  countFrom:homeTeamPoints to:pointsAfterPlayerScoredHome withDuration:1.5];
+//            
+//        }
+//        else
+//        {
+//            self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
+//        }
+//        
+//    }
+//    
+//}
+
+
 
 #pragma mark - Navigation
 

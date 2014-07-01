@@ -46,5 +46,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *VSTeamScore;
 
 @property (assign, nonatomic) NSInteger index;
+@property (assign, nonatomic) int myTeamPoints;
 
 @end
