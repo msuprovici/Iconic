@@ -99,9 +99,7 @@ static NSString *kImageKey = @"imageKey";
 
 
 
-//My Teams Page Controller
 
-@property (strong, nonatomic) UIPageViewController *myTeamsPageController;
 
 
 
@@ -170,8 +168,9 @@ static NSString *kImageKey = @"imageKey";
     pageControl.backgroundColor = [UIColor clearColor];
     
     [self refreshHomeView];
+    
 //    [self showChart];
-   
+    [self showMyTeamsView];
    
 //Use the line bellow to cancel local notficiations
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
@@ -212,11 +211,11 @@ static NSString *kImageKey = @"imageKey";
     // If we received joined/leave team notification update team charts
     if (self.receivedNotification == YES) {
         
-//        [self updateTeamChart:0];
-//        [self refreshHomeView];
         
-//        [self showChart];
+        //1st remove the my teams page controller subview then create it again - if we don't do this, it draw the teams view above the current one.
+        [[self.myTeamsPageController view] removeFromSuperview];
         
+        [self refreshHomeView];
         
         self.receivedNotification = NO;
     }
@@ -273,7 +272,8 @@ static NSString *kImageKey = @"imageKey";
     [self findSevenDayStepsAndPoints];
     
 //    [self showChart];
-    
+    [[self.myTeamsPageController view] removeFromSuperview];
+   [self showMyTeamsView];
     
     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
     
@@ -285,6 +285,7 @@ static NSString *kImageKey = @"imageKey";
     
 //    [self beginDeltaPointsAnimation];
    
+    
     self.myTeamsPageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
     self.myTeamsPageController.dataSource = self;
@@ -303,7 +304,8 @@ static NSString *kImageKey = @"imageKey";
     
     [self addChildViewController:self.myTeamsPageController];
     [self.MyTeamsView  addSubview:[self.myTeamsPageController view]];
-    [self.myTeamsPageController didMoveToParentViewController:self];
+    
+//    [self.myTeamsPageController didMoveToParentViewController:self];
     
 
     
@@ -427,82 +429,103 @@ static NSString *kImageKey = @"imageKey";
 
 
 
-#pragma mark scroll teams buttons
+//#pragma mark scroll teams buttons
+//
+////scroll through team data
+//- (IBAction)scrollTeamsRight:(id)sender {
+//    
+//    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+//    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
+//    
+//    int myTeamIndex = (int)[homeTeamNames indexOfObject:self.myNewTeamObject];
+//    int myFirstTeamIndex = (int)[homeTeamNames indexOfObject:homeTeamNames.firstObject];
+//    
+//   
+//   
+//    
+////    NSLog(@"index of myteamObjectRight: %d", myTeamIndex);
+//    
+//    if (myTeamIndex <= homeTeamNames.count-1) {
+//        
+//        int incrementTeamIndex = myTeamIndex += 1;
+//        
+//        [self updateTeamChart:incrementTeamIndex];
+//        
+//        if (myTeamIndex == homeTeamNames.count-1 )
+//        {
+//            
+//            [self.scrollTeamsRight setEnabled:FALSE];
+//            [self.scrollTeamsLeft setEnabled:TRUE];
+//            
+//        }
+//        if (myTeamIndex > myFirstTeamIndex) {
+//            
+//            [self.scrollTeamsLeft setEnabled:TRUE];
+//            
+//        }
+//    }
+//
+//}
+//
+//
+//
+//- (IBAction)scrollTeamsLeft:(id)sender {
+//    
+//     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+//    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
+//    
+//    //find the index of myTeamObject - see comments above in scrollTeamsRight
+//    int myTeamIndex = (int)[homeTeamNames indexOfObject:self.myNewTeamObject];
+//    int myFirstTeamIndex = (int)[homeTeamNames indexOfObject:homeTeamNames.firstObject];
+////    NSLog(@"index of myteamObjectLeft: %d", myTeamIndex);
+//    
+//   
+////     NSLog(@"index of myteamObjectLeft: %d", self.matchupsIndex);
+//    
+//    if (myTeamIndex <= homeTeamNames.count-1 )
+//    {
+//        [self.scrollTeamsRight setEnabled:TRUE];
+//        
+//        int decrementTeamIndex = myTeamIndex -= 1;
+//        
+//        [self updateTeamChart:decrementTeamIndex];
+//        
+//        
+//        
+//        
+//        if (myTeamIndex == myFirstTeamIndex) {
+//            
+//            [self.scrollTeamsLeft setEnabled:FALSE];
+//            [self.scrollTeamsRight setEnabled:TRUE];
+//            
+//        }
+//        
+//    }
+//
+//    
+//
+//}
 
-//scroll through team data
-- (IBAction)scrollTeamsRight:(id)sender {
-    
+-(void)showMyTeamsView
+{
     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
+    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
     
-    int myTeamIndex = (int)[homeTeamNames indexOfObject:self.myNewTeamObject];
-    int myFirstTeamIndex = (int)[homeTeamNames indexOfObject:homeTeamNames.firstObject];
-    
-   
-   
-    
-//    NSLog(@"index of myteamObjectRight: %d", myTeamIndex);
-    
-    if (myTeamIndex <= homeTeamNames.count-1) {
-        
-        int incrementTeamIndex = myTeamIndex += 1;
-        
-        [self updateTeamChart:incrementTeamIndex];
-        
-        if (myTeamIndex == homeTeamNames.count-1 )
-        {
-            
-            [self.scrollTeamsRight setEnabled:FALSE];
-            [self.scrollTeamsLeft setEnabled:TRUE];
-            
-        }
-        if (myTeamIndex > myFirstTeamIndex) {
-            
-            [self.scrollTeamsLeft setEnabled:TRUE];
-            
-        }
-    }
-
-}
-
-
-
-- (IBAction)scrollTeamsLeft:(id)sender {
-    
-     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
-    
-    //find the index of myTeamObject - see comments above in scrollTeamsRight
-    int myTeamIndex = (int)[homeTeamNames indexOfObject:self.myNewTeamObject];
-    int myFirstTeamIndex = (int)[homeTeamNames indexOfObject:homeTeamNames.firstObject];
-//    NSLog(@"index of myteamObjectLeft: %d", myTeamIndex);
-    
-   
-//     NSLog(@"index of myteamObjectLeft: %d", self.matchupsIndex);
-    
-    if (myTeamIndex <= homeTeamNames.count-1 )
+    if(numberOfTeams == 0)
     {
-        [self.scrollTeamsRight setEnabled:TRUE];
-        
-        int decrementTeamIndex = myTeamIndex -= 1;
-        
-        [self updateTeamChart:decrementTeamIndex];
-        
-        
-        
-        
-        if (myTeamIndex == myFirstTeamIndex) {
-            
-            [self.scrollTeamsLeft setEnabled:FALSE];
-            [self.scrollTeamsRight setEnabled:TRUE];
-            
-        }
+        self.MyTeamsView.hidden = YES;
+        [self.joinTeamButton setEnabled:TRUE];
+        self.joinTeamButton.hidden = NO;
         
     }
-
-    
-
+    else
+    {
+        self.MyTeamsView.hidden = NO;
+        [self.joinTeamButton setEnabled:FALSE];
+        self.joinTeamButton.hidden = YES;
+    }
 }
+
 
 //#pragma mark Team Chart
 //
@@ -1110,10 +1133,17 @@ static NSString *kImageKey = @"imageKey";
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
     // The number of items reflected in the page indicator.
-    
+
     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
     NSArray *arrayOfLeagueNames = [RetrievedTeams objectForKey:kArrayOfLeagueNames];
-    return arrayOfLeagueNames.count;
+    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+    
+    if (numberOfTeams > 1) {
+        return arrayOfLeagueNames.count;
+    }
+    else
+        return 0;
+    
 }
 
 - (NSInteger)presentationIndexForPageViewController:(MyTeamsViewController *)pageViewController {

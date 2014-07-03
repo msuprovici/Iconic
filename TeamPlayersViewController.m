@@ -414,7 +414,7 @@
     
     PFUser *loggedInUser = [PFUser objectWithClassName:self.parseClassName];
     
-    if(self.joinTeam.selected == NO)
+      if(self.joinTeam.selected == NO)
     {
         
         

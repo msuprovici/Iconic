@@ -79,7 +79,9 @@
 
 @property (nonatomic, assign) NSUInteger myTeamsIndex;
 
+//My Teams Page Controller
 
+@property (strong, nonatomic) UIPageViewController *myTeamsPageController;
 
 - (IBAction)joinTeam:(id)sender;
 
