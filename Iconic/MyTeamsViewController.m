@@ -87,12 +87,12 @@
     NSString * homeTeamScore = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
     //    self.MyTeamScore.text = homeTeamScore;
     int  homeTeamPoints = (int)[homeTeamScore integerValue];
-//     NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
+     NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
     
     NSString * awayTeamScore = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:index]];
     //    self.VSTeamScore.text = awayTeamScore;
     int  awayTeamPoints = (int)[awayTeamScore integerValue];
-//     NSLog(@"awayTeamPoints: %d",  awayTeamPoints);
+     NSLog(@"awayTeamPoints: %d",  awayTeamPoints);
     
     //set colors
     self.MyTeamName.textColor = PNWeiboColor;
@@ -203,14 +203,16 @@
                     //show my team's steps before counting up the label bellow
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
                     
-                    //if this is the 1st team at index, animate and count up my team score
-                    if (index == 0)
-                    {
+                     [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0];
                     
-                        //wait for animateDeltaPointsLabel method to finsih in SimpleViewController
-                        //count up my team's score
-                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:2.0 ];
-                    }
+//                    //if this is the 1st team at index, animate and count up my team score
+//                    if (index == 0)
+//                    {
+//                    
+//                        //wait for animateDeltaPointsLabel method to finsih in SimpleViewController
+//                        //count up my team's score
+//                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0 ];
+//                    }
 
                 }
                 else
@@ -247,12 +249,14 @@
                     
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
                     
+                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0];
+                    
                     //if this is the 1st team at index, animate and count up my team score
-                    if (index == 0) {
-                    //wait for animateDeltaPointsLabel method to finsih in SimpleViewController
-                    //count up my team's score
-                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:2.5 ];
-                    }
+//                    if (index == 0) {
+//                    //wait for animateDeltaPointsLabel method to finsih in SimpleViewController
+//                    //count up my team's score
+//                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0 ];
+//                    }
                 }
                 else{
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
@@ -284,6 +288,8 @@
     }
         
         //save most recent step count to a different key because kMyMostRecentPointsBeforeSaving gets updated too fast in SimpleViewController
+        NSLog(@"numberOfSteps before saving: %ld",  (long)numberOfSteps);
+
         [myRetrievedSteps setInteger:numberOfSteps forKey:kMyMostRecentStepsAddToTeamBeforeSaving];
         [myRetrievedSteps synchronize];
 
@@ -295,6 +301,8 @@
 -(void)updateTeamLabel
 {
     
+     NSLog(@"self.myTeamPoints in updateTeamLabel: %d",  self.myTeamPoints);
+    NSLog(@"self.myStepsGained in updateTeamLabel: %d",  self.myStepsGained);
     
     int pointsAfterPlayerScored = self.myTeamPoints + self.myStepsGained;
     [self.MyTeamScore  countFrom:self.myTeamPoints to:pointsAfterPlayerScored withDuration:1.5];

@@ -192,6 +192,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1G1-gp-6sX" userLabel="Button - Scroll Teams Right">
+                                <rect key="frame" x="275" y="228" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <state key="normal" title="→"/>
+                                <connections>
+                                    <action selector="scrollTeamsRight:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="sNY-Vm-98b"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nOP-U7-SyU" userLabel="Button - Scroll Teams Left">
+                                <rect key="frame" x="1" y="228" width="45" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="←">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scrollTeamsLeft:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="hnE-yb-AOG"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KnL-cw-aEM">
                                 <rect key="frame" x="1" y="233" width="319" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -205,7 +225,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <pageControl opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="2" id="pp4-bC-Hv9">
-                                <rect key="frame" x="146" y="205" width="29" height="37"/>
+                                <rect key="frame" x="146" y="207" width="29" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="pageIndicatorTintColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -283,66 +303,40 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xcl-NE-OpV" userLabel="deltaPointsLabel">
-                                <rect key="frame" x="86" y="174" width="148" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IQj-Mb-N1n">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IQj-Mb-N1n">
                                 <rect key="frame" x="70" y="240" width="181" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" id="TO8-pP-IMA">
-                                <rect key="frame" x="0.0" y="259" width="320" height="309"/>
+                            <view contentMode="scaleToFill" id="TO8-pP-IMA" userLabel="My Teams View">
+                                <rect key="frame" x="0.0" y="233" width="320" height="298"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1G1-gp-6sX" userLabel="Button - Scroll Teams Right">
-                                <rect key="frame" x="275" y="228" width="45" height="45"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xcl-NE-OpV" userLabel="deltaPointsLabel">
+                                <rect key="frame" x="86" y="174" width="148" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <state key="normal" title="→"/>
-                                <connections>
-                                    <action selector="scrollTeamsRight:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="sNY-Vm-98b"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nOP-U7-SyU" userLabel="Button - Scroll Teams Left">
-                                <rect key="frame" x="1" y="228" width="45" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <state key="normal" title="←">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="scrollTeamsLeft:" destination="iLB-wQ-v5S" eventType="touchUpInside" id="hnE-yb-AOG"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Iconic" id="yfo-eL-rfj"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="MyTeamName" destination="MdT-V3-idy" id="bdc-Xu-dQ8"/>
-                        <outlet property="MyTeamScore" destination="uGw-Ji-fNv" id="aPj-EZ-0Sa"/>
                         <outlet property="MyTeamsView" destination="TO8-pP-IMA" id="n1o-pW-Jn6"/>
-                        <outlet property="VSTeamScore" destination="RXG-16-KzV" id="ybi-rx-lm6"/>
                         <outlet property="contentController" destination="ze2-rn-IC6" id="X1i-6N-i6N"/>
                         <outlet property="deltaPoints" destination="Xcl-NE-OpV" id="7T1-Ov-oFj"/>
                         <outlet property="joinTeamButton" destination="3f8-Nq-Cu0" id="md8-RE-dfY"/>
-                        <outlet property="myLeagueName" destination="IQj-Mb-N1n" id="NRZ-4D-m2v"/>
                         <outlet property="pageControl" destination="pp4-bC-Hv9" id="YR2-LS-lqO"/>
                         <outlet property="playerName" destination="uXx-N8-ZNb" id="nDB-XD-jOK"/>
                         <outlet property="scrollTeamsLeft" destination="nOP-U7-SyU" id="Fui-jW-oxH"/>
                         <outlet property="scrollTeamsRight" destination="1G1-gp-6sX" id="Eqh-3s-GNC"/>
                         <outlet property="scrollView" destination="83S-Gt-Rep" id="f3n-ah-bHJ"/>
-                        <outlet property="teamBarChart" destination="aOp-og-P44" id="zPD-wp-gg4"/>
-                        <outlet property="vsTeamName" destination="2jy-wi-QQ1" id="NuL-Xm-XMs"/>
                         <outlet property="xChartLabel" destination="fWw-1Y-jm8" id="1f0-Do-Zf8"/>
                     </connections>
                 </viewController>
@@ -364,7 +358,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="9VG-wp-3FK" customClass="PNBarChart">
-                                <rect key="frame" x="0.0" y="39" width="320" height="220"/>
+                                <rect key="frame" x="0.0" y="48" width="320" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -373,38 +367,39 @@
                                 </connections>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyTeamScore" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5bt-XF-GVm" customClass="UICountingLabel">
-                                <rect key="frame" x="10" y="29" width="150" height="40"/>
+                                <rect key="frame" x="10" y="34" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="40"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VsTeamScore" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gbh-3R-nSI">
-                                <rect key="frame" x="168" y="29" width="150" height="40"/>
+                                <rect key="frame" x="168" y="34" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="40"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyTeamName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xob-zD-zZO">
-                                <rect key="frame" x="10" y="227" width="150" height="33"/>
+                                <rect key="frame" x="10" y="233" width="150" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VsTeamName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wJZ-jw-S4C">
-                                <rect key="frame" x="168" y="227" width="150" height="33"/>
+                                <rect key="frame" x="168" y="233" width="150" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lLL-f1-fjT">
-                                <rect key="frame" x="87" y="7" width="150" height="28"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="MyTeamName" destination="Xob-zD-zZO" id="lJc-01-QbQ"/>
