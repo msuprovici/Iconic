@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface AccountViewController : UITableViewController
+@interface AccountViewController : PFQueryTableViewController
 
 @property (strong, nonatomic) IBOutlet PFImageView *myProfilePhoto;
 
