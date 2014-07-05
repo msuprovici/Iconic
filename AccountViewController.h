@@ -11,4 +11,12 @@
 
 @interface AccountViewController : UITableViewController
 
+@property (strong, nonatomic) IBOutlet PFImageView *myProfilePhoto;
+
+@property (strong, nonatomic) IBOutlet UILabel *myUserName;
+
+@property (strong, nonatomic) IBOutlet UILabel *myAvgSteps;
+
+@property (strong, nonatomic) IBOutlet UILabel *myXP;
+
 @end

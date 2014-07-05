@@ -8,6 +8,7 @@
 
 #import "AccountViewController.h"
 #import "Constants.h"
+#import <Parse/Parse.h>
 
 @interface AccountViewController ()
 
@@ -28,9 +29,31 @@
 {
     [super viewDidLoad];
     
-    //set the title of the account the user's name
-    PFUser * username = [PFUser currentUser];
-    self.navigationItem.title = [NSString stringWithFormat:@"%@", [username objectForKey:kUserDisplayNameKey]];
+    //set the user's data
+    PFUser * user = [PFUser currentUser];
+    
+    self.myUserName.text = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
+    
+    self.myAvgSteps.text = [NSString stringWithFormat:@"%@ Lifetime Steps", [user objectForKey:kPlayerPoints]];
+    
+    self.myXP.text = [NSString stringWithFormat:@"XP %@", [user objectForKey:kPlayerXP]];
+    
+    self.navigationItem.title = @"Profile";
+    
+    // Set a placeholder image first
+    self.myProfilePhoto.image = [UIImage imageNamed:@"empty_avatar.png"];
+    PFFile *imageFile = [user objectForKey:kUserProfilePicSmallKey];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        // Now that the data is fetched, update the cell's image property.
+        self.myProfilePhoto.image = [UIImage imageWithData:data];
+    }];
+    
+    //turn photo to circle
+    CALayer *imageLayer = self.myProfilePhoto.layer;
+    [imageLayer setCornerRadius:self.myProfilePhoto.frame.size.width/2];
+    [imageLayer setBorderWidth:0];
+    [imageLayer setMasksToBounds:YES];
+
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
