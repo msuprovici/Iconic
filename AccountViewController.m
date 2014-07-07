@@ -9,6 +9,7 @@
 #import "AccountViewController.h"
 #import "Constants.h"
 #import "AccountMyTeamCell.h"
+#import "TeamPlayersViewController.h"
 #import <Parse/Parse.h>
 
 @interface AccountViewController ()
@@ -179,6 +180,28 @@
  return cell;
  }
  */
+
+#pragma mark - Navigation
+
+//pass the team to the teammates view controller
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"TeamSelectedAccountView"]) {
+        
+        //Find the row the button was selected from
+        //        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+        //        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+        
+        NSIndexPath *hitIndex = [self.tableView indexPathForSelectedRow];
+        
+        PFObject *team = [self.objects objectAtIndex:hitIndex.row];
+        
+        [segue.destinationViewController initWithTeam:team];
+        
+        //[segue.destinationViewController initWithTeam:self.league];
+        
+    }
+}
+
 
 #pragma mark - UITableViewDataSource
 
