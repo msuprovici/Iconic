@@ -8,6 +8,7 @@
 
 #import "AccountViewController.h"
 #import "Constants.h"
+#import "AccountMyTeamCell.h"
 #import <Parse/Parse.h>
 
 @interface AccountViewController ()
@@ -131,25 +132,27 @@
  }
 
 
-/*
+
  // Override to customize the look of a cell representing an object. The default is to display
  // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
  // and the imageView being the imageKey in the object.
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
- static NSString *CellIdentifier = @"Cell";
- 
- PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
- if (cell == nil) {
- cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
- }
- 
- // Configure the cell
- cell.textLabel.text = [object objectForKey:self.textKey];
- cell.imageView.file = [object objectForKey:self.imageKey];
+     static NSString *CellIdentifier = @"MyTeamCell";
+     
+   AccountMyTeamCell *cell = (AccountMyTeamCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+     if (cell == nil) {
+     cell = [[AccountMyTeamCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+     }
+     cell.myTeamLabel.text = [object objectForKey:self.textKey];
+     
+//
+// // Configure the cell
+// cell.textLabel.text = [object objectForKey:self.textKey];
+// cell.imageView.file = [object objectForKey:self.imageKey];
  
  return cell;
  }
- */
+
 
 /*
  // Override if you need to change the ordering of objects in the table.
