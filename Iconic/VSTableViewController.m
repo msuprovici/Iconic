@@ -12,6 +12,7 @@
 #import "VSTableViewCell.h"
 #import "CalculatePoints.h"
 #import "PNColor.h"
+#import "PlayerProfileViewController.h"
 
 @interface VSTableViewController ()
 
@@ -482,7 +483,7 @@
     
     [cell setUser:[object objectForKey:kTeamate]];
     
-    
+//     NSLog(@"VS view controller player %@", [object objectForKey:kTeamate]);
     
     
     return cell;
@@ -573,5 +574,28 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
+
+#pragma mark - Navigation
+
+//pass the player to the PlayerProfieViewController view controller
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PlayerSelectedVSPlayersView"]) {
+        
+        //Find the row the button was selected from
+        NSIndexPath *hitIndex = [self.tableView indexPathForSelectedRow];
+        
+        PFObject *playerPointer = [self.objects objectAtIndex:hitIndex.row];
+//        NSLog(@"playerPointer %@", playerPointer);
+        
+        PFObject *player = [playerPointer objectForKey:kTeamate];
+        
+        [segue.destinationViewController initWithPlayer:player];
+        
+        
+//        NSLog(@"VS view controller player %@", player);
+    }
+}
+
+
 
 @end

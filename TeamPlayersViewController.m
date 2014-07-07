@@ -16,6 +16,7 @@
 #import "CalculatePoints.h"
 #import "SimpleHomeViewController.h"
 #import "AppDelegate.h"
+#import "PlayerProfileViewController.h"
 
 
 @interface TeamPlayersViewController ()
@@ -321,6 +322,26 @@
 //    NSString *categoryType = [self categories:section];
 //    return categoryType;
 //}
+
+//pass the player to the PlayerProfieViewController view controller
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PlayerSelectedTeamPlayersView"]) {
+        
+        //Find the row the button was selected from
+        NSIndexPath *hitIndex = [self.tableView indexPathForSelectedRow];
+        
+        PFObject *playerPointer = [self.objects objectAtIndex:hitIndex.row];
+        
+        PFObject *player = [playerPointer objectForKey:kTeamate];
+        
+        [segue.destinationViewController initWithPlayer:player];
+        
+       
+//        NSLog(@"player %@", player);
+    }
+}
+
+
 
 
 #pragma mark - Table view delegate

@@ -891,7 +891,7 @@
     
     
     //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
-    NSNumber * level = [NSNumber numberWithFloat: floor((pow((points/1000), (1/1)))+1.0)];
+    NSNumber * level = [NSNumber numberWithFloat: floor((pow((points/1000), (1/1.5)))+1.0)];
     
     //    if(level == 0 || level == nil)
     //        return [NSNumber numberWithInteger:1];
