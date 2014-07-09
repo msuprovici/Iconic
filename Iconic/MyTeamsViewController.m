@@ -145,7 +145,9 @@
         
         NSUserDefaults *myRetrievedSteps = [NSUserDefaults standardUserDefaults];
         
-        int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsAddToTeamBeforeSaving];
+        int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsToday];
+        
+//        int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsAddToTeamBeforeSaving];
         
 //        NSLog(@"My stored steps in MyTeamsViewController: %d", myStoredSteps);
         

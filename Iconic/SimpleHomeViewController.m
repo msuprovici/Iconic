@@ -169,8 +169,7 @@ static NSString *kImageKey = @"imageKey";
     
     
     
-    
-    [self refreshHomeView];
+       [self refreshHomeView];
     
 //    [self showChart];
     [self showMyTeamsView];
@@ -265,18 +264,17 @@ static NSString *kImageKey = @"imageKey";
     
     [self savePointsFromCurrentAppLaunch];
     
-    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-    [calculatePointsClass retrieveFromParse];
-    [calculatePointsClass incrementPlayerPointsInBackground];
+//    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//    [calculatePointsClass retrieveFromParse];
+//    [calculatePointsClass incrementPlayerPointsInBackground];
     
 //    [calculatePointsClass migrateLeaguesToCoreData];
 
     
     [self findSevenDayStepsAndPoints];
-    
-//    [self showChart];
-    [[self.myTeamsPageController view] removeFromSuperview];
-   [self showMyTeamsView];
+
+   
+    [self showMyTeamsView];
     
     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
     
@@ -310,6 +308,10 @@ static NSString *kImageKey = @"imageKey";
     
 //    [self.myTeamsPageController didMoveToParentViewController:self];
     
+
+    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+    [calculatePointsClass retrieveFromParse];
+    [calculatePointsClass incrementPlayerPointsInBackground];
 
     
     

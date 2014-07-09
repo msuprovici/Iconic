@@ -431,7 +431,10 @@
             
             
             NSUserDefaults *myRetrievedSteps = [NSUserDefaults standardUserDefaults];
-            int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsBeforeSaving];
+            
+            int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsToday];
+            
+//            int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsBeforeSaving];
             //            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
             
             int myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
