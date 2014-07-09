@@ -33,9 +33,10 @@
     user = aUser;
     
     // Set name button properties and avatar image
-   
-    [self.playerName setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateNormal];
-    [self.playerName setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateHighlighted];
+    self.playerName.text = [self.user objectForKey:kUserDisplayNameKey];
+    
+//    [self.playerName setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateNormal];
+//    [self.playerName setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateHighlighted];
    
     
     // Set a placeholder image first

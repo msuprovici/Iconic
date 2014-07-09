@@ -707,22 +707,13 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myTeamates" rowHeight="55" id="AT3-x5-tNn" customClass="VSTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myTeamates" rowHeight="55" id="AT3-x5-tNn" customClass="VSTableViewCell">
                                 <rect key="frame" x="0.0" y="333" width="320" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AT3-x5-tNn" id="FJO-Kp-7F8">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="54"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5fi-Ba-xvb" userLabel="Button - Teamate Name">
-                                            <rect key="frame" x="60" y="10" width="160" height="31"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
-                                            <state key="normal" title="Rachel Kozemczak">
-                                                <color key="titleColor" red="0.98039215690000003" green="0.0" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8756" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zoy-dJ-EMH">
                                             <rect key="frame" x="203" y="15" width="65" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -749,10 +740,16 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fxq-XK-l1O">
+                                            <rect key="frame" x="58" y="14" width="169" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="playerName" destination="5fi-Ba-xvb" id="OmB-xJ-4Xx"/>
+                                    <outlet property="playerName" destination="Fxq-XK-l1O" id="gpG-cg-wRL"/>
                                     <outlet property="playerPhoto" destination="FZe-r7-qCH" id="XPn-RF-fTU"/>
                                     <outlet property="playerPoints" destination="zoy-dJ-EMH" id="rhZ-eZ-3Aa"/>
                                     <segue destination="UbG-da-jWg" kind="push" identifier="PlayerSelectedVSPlayersView" id="cdC-Af-usM"/>
@@ -1452,13 +1449,7 @@
                             <outlet property="delegate" destination="6i5-gz-KD6" id="TSb-Po-TI1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="j71-2k-EPN">
-                        <barButtonItem key="rightBarButtonItem" title="Find Friends" id="hgh-mq-kGK">
-                            <connections>
-                                <segue destination="m0U-Ki-COa" kind="modal" id="rg9-uI-MRW"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="j71-2k-EPN"/>
                     <connections>
                         <outlet property="myAvgSteps" destination="2dG-aP-gvw" id="Vz1-EF-HpU"/>
                         <outlet property="myProfilePhoto" destination="sd6-mq-E81" id="LCk-ZE-Sun"/>
@@ -1718,19 +1709,16 @@
                                             <rect key="frame" x="16" y="12" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="i1Y-J8-5Oe">
-                                            <rect key="frame" x="71" y="17" width="155" height="30"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cWd-5c-cul">
+                                            <rect key="frame" x="73" y="17" width="186" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                            <state key="normal" title="Player Name">
-                                                <color key="titleColor" red="0.98039215690000003" green="0.0" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="playerName" destination="i1Y-J8-5Oe" id="vvg-0b-UN9"/>
+                                    <outlet property="playerName" destination="cWd-5c-cul" id="uHb-d6-mQL"/>
                                     <outlet property="playerPhoto" destination="c4W-SQ-lBh" id="5ff-yY-vcF"/>
                                     <segue destination="UbG-da-jWg" kind="push" identifier="PlayerSelectedTeamPlayersView" id="SjS-YP-2E8"/>
                                 </connections>
@@ -1776,7 +1764,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="oGg-mV-ZYc">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="180"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="MUm-0U-niA" customClass="PFImageView">
@@ -1809,7 +1797,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerTeamCell" rowHeight="57" id="BY8-cH-K8H" customClass="PlayerTeamsCell">
-                                <rect key="frame" x="0.0" y="202" width="320" height="57"/>
+                                <rect key="frame" x="0.0" y="266" width="320" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BY8-cH-K8H" id="TZj-Lp-XQd">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="56"/>
@@ -2161,7 +2149,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q6d-Yn-sqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1139" y="-5169"/>
+            <point key="canvasLocation" x="-993" y="-5391"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="u2b-4b-vYw">
@@ -2295,7 +2283,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Om-yI-ZJN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1665" y="-5169"/>
+            <point key="canvasLocation" x="-1519" y="-5391"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="bdr-7G-5wF">
@@ -2397,7 +2385,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="RgY-QV-Nzf"/>
-        <segue reference="cdC-Af-usM"/>
+        <segue reference="SjS-YP-2E8"/>
         <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>

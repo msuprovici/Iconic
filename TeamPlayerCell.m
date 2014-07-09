@@ -35,8 +35,10 @@
     
     // Set name button properties and avatar image
     //   [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
-    [self.playerName setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateNormal];
-    [self.playerName setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateHighlighted];
+//    [self.playerName setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateNormal];
+//    [self.playerName setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateHighlighted];
+    
+    self.playerName.text = [self.user objectForKey:kUserDisplayNameKey];
     //    [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];
     //    [self.avatarImageView loadInBackground];
     

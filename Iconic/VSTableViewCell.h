@@ -16,7 +16,7 @@
 @property (strong, nonatomic) IBOutlet PFImageView *playerPhoto;
 
 
-@property (strong, nonatomic) IBOutlet UIButton *playerName;
+@property (strong, nonatomic) IBOutlet UILabel *playerName;
 
 
 @property (strong, nonatomic) IBOutlet UILabel *playerPoints;
