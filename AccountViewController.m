@@ -54,7 +54,7 @@
     
     self.myUserName.text = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     
-    self.myAvgSteps.text = [NSString stringWithFormat:@"%@ Lifetime Steps", [user objectForKey:kPlayerPoints]];
+    self.myAvgSteps.text = [NSString stringWithFormat:@"%@ Average Daily Steps", [user objectForKey:kPlayerAvgDailySteps]];
     
     self.myXP.text = [NSString stringWithFormat:@"XP %@", [user objectForKey:kPlayerXP]];
     

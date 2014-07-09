@@ -747,6 +747,9 @@
                         if ( day == 1) { // Just reached the last element, we can now do what we want with the data
                             //                            NSLog(@"_stepsArray filled with data: %@", _stepsArray);
                             
+                            
+                            
+                            
                             //convert the past 7 days worth of steps to points
                             NSMutableArray * myWeekleyPoints = [[NSMutableArray alloc]initWithCapacity:7];
                             
@@ -789,6 +792,21 @@
                                     NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
                                     [myStats setObject:_stepsArray forKey:kMyStepsWeekArray];
                                     [myStats synchronize];
+                                    
+                                    //calcualte avg steps/day
+                                    NSNumber * totalWeekleySteps = [_stepsArray valueForKeyPath:@"@sum.self"];
+//                                     NSLog(@"totalWeekleySteps: %@", totalWeekleySteps);
+                                    int intTotalWeekleySteps = [totalWeekleySteps intValue];
+                                    
+                                    int intAverageDailySteps = intTotalWeekleySteps / 7;
+                                    NSNumber * averageDailySteps = [NSNumber numberWithInt:intAverageDailySteps];
+//                                    NSLog(@"averageDailySteps: %@", averageDailySteps);
+                                   
+                                    
+                                    
+                                    
+                                    
+                                    
 //                                    NSLog(@"myWeekleySteps: %@", _stepsArray);
                                     
 //                                    //convert the past 7 days worth of steps to points
@@ -821,6 +839,7 @@
                                     PFObject *playerStats = [PFUser currentUser];
                                     [playerStats setObject:_stepsArray forKey:kPlayerStepsWeek];
                                     [playerStats setObject:myWeekleyPoints forKey:kPlayerPointsWeek];
+                                    [playerStats setObject:averageDailySteps forKey:kPlayerAvgDailySteps];
                                     [playerStats saveEventually];
                                     
                                 }

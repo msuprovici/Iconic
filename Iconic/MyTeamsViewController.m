@@ -36,7 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self updateTeamChart:self.index];
+   [self updateTeamChart:self.index];
     
 
 
@@ -202,8 +202,15 @@
                     
                     //show my team's steps before counting up the label bellow
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
+                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0];
                     
-                     [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0];
+//                    double delayInSeconds = 3.0;
+//                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//                        [self updateTeamLabel];
+//                    });
+
+                    
                     
 //                    //if this is the 1st team at index, animate and count up my team score
 //                    if (index == 0)
@@ -248,8 +255,14 @@
                 if (myStepsGainedDelta > 0) {
                     
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
-                    
                     [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0];
+
+//                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0];
+//                    double delayInSeconds = 3.0;
+//                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//                        [self updateTeamLabel];
+//                    });
                     
                     //if this is the 1st team at index, animate and count up my team score
 //                    if (index == 0) {
@@ -302,9 +315,11 @@
 {
     
      NSLog(@"self.myTeamPoints in updateTeamLabel: %d",  self.myTeamPoints);
-    NSLog(@"self.myStepsGained in updateTeamLabel: %d",  self.myStepsGained);
+     NSLog(@"self.myStepsGained in updateTeamLabel: %d",  self.myStepsGained);
     
-    int pointsAfterPlayerScored = self.myTeamPoints + self.myStepsGained;
+     int pointsAfterPlayerScored = self.myTeamPoints + self.myStepsGained;
+    
+//    [self.MyTeamScore  countFrom:pointsAfterPlayerScored to:self.myTeamPoints withDuration:1.5];
     [self.MyTeamScore  countFrom:self.myTeamPoints to:pointsAfterPlayerScored withDuration:1.5];
     
 }

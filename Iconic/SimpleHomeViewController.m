@@ -167,6 +167,9 @@ static NSString *kImageKey = @"imageKey";
     pageControl.currentPageIndicatorTintColor = PNWeiboColor;
     pageControl.backgroundColor = [UIColor clearColor];
     
+    
+    
+    
     [self refreshHomeView];
     
 //    [self showChart];
@@ -1065,7 +1068,9 @@ static NSString *kImageKey = @"imageKey";
 
 - (MyTeamsViewController *)viewControllerAtIndex:(NSUInteger)index {
     
-    MyTeamsViewController *childViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MyTeamsViewController"];    childViewController.index = index;
+    MyTeamsViewController *childViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MyTeamsViewController"];
+    
+    childViewController.index = index;
     
 
     
@@ -1213,7 +1218,7 @@ static NSString *kImageKey = @"imageKey";
     
     //when selecting the join team button switch to leagues view controller
     
-    self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:2];
+    self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:1];
     
     self.joinedTeamButtonPressed = YES;
     

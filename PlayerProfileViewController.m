@@ -63,7 +63,7 @@
     
     self.playerUserName.text = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     
-    self.playerAvgSteps.text = [NSString stringWithFormat:@"%@ Lifetime Steps", [user objectForKey:kPlayerPoints]];
+    self.playerAvgSteps.text = [NSString stringWithFormat:@"%@ Average Daily Steps", [user objectForKey:kPlayerAvgDailySteps]];
     
     self.playerXP.text = [NSString stringWithFormat:@"XP %@", [user objectForKey:kPlayerXP]];
     
@@ -197,7 +197,7 @@
 
 //pass the team to the teammates view controller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"PlayerSelecteVSView"]) {
+    if ([segue.identifier isEqualToString:@"TeamSelectedPlayerProfileView"]) {
         
         //Find the row the button was selected from
         //        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
