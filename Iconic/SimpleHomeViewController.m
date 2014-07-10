@@ -285,6 +285,13 @@ static NSString *kImageKey = @"imageKey";
     }
     
 //    [self beginDeltaPointsAnimation];
+    
+    
+    // remove all the subviews from our scrollview
+    for (UIView *view in self.MyTeamsView.subviews)
+    {
+        [view removeFromSuperview];
+    }
    
     
     self.myTeamsPageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
