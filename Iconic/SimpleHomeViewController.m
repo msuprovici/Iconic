@@ -180,29 +180,6 @@ static NSString *kImageKey = @"imageKey";
     
     
     
-//    self.myTeamsPageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-//    
-//    self.myTeamsPageController.dataSource = self;
-//    [[self.myTeamsPageController view] setFrame:[self.MyTeamsView  bounds]];
-//    
-//    MyTeamsViewController *initialViewController = [self viewControllerAtIndex:0];
-//    
-//    
-//    self.myTeamsViewControllers = [[NSArray alloc]init];
-//    self.myTeamsViewControllers = [NSArray arrayWithObject:initialViewController];
-//    
-//    [self.myTeamsPageController setViewControllers:self.myTeamsViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-//    
-////    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
-////    
-////    [self.myTeamsPageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-//    
-//    [self addChildViewController:self.myTeamsPageController];
-//    [self.MyTeamsView  addSubview:[self.myTeamsPageController view]];
-//    [self.myTeamsPageController didMoveToParentViewController:self];
-
-    
-    
     
 }
 
@@ -221,7 +198,9 @@ static NSString *kImageKey = @"imageKey";
         
         self.receivedNotification = NO;
     }
-     }
+}
+
+
 #pragma mark Refresh Home View
 
 -(void)refreshHomeView

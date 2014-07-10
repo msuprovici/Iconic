@@ -245,10 +245,13 @@
 {
     
     UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    sectionHeader.backgroundColor = HeaderColor;
+    sectionHeader.backgroundColor = [UIColor colorWithRed:225.0f/255.0f
+                                                    green:225.0f/255.0f
+                                                     blue:225.0f/255.0f
+                                                    alpha:1.0f];
     sectionHeader.textAlignment = HeaderAlignment;
     sectionHeader.font = HeaderFont;
-    sectionHeader.textColor = HeaderTextColor;
+    sectionHeader.textColor = PNWeiboColor;
     
     sectionHeader.text =@"Teams";
     

@@ -102,7 +102,7 @@
     self.vsTeamName.textColor = PNDarkBlue;
     self.VSTeamScore.textColor = PNDarkBlue;
     
-    self.myLeagueName.textColor = PNBlue;
+    self.myLeagueName.textColor = PNWeiboColor;
     
     
     
@@ -326,70 +326,6 @@
     
 }
 
-
-
-//-(void)countUpTeamScore:(int)myStepsGainedDelta
-//{
-//    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-//    
-//    NSArray *homeTeamScores = [RetrievedTeams objectForKey:kArrayOfHomeTeamScores];
-//    NSArray *awayTeamScores = [RetrievedTeams objectForKey:kArrayOfAwayTeamScores];
-//    
-//    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
-//    NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
-//
-//    
-//    
-//    self.myLeagueName.text = leagueName;
-//    
-//    
-//    
-//    
-//    
-//    if([myTeamsNames[i] isEqualToString: homeTeamName])
-//    {
-//        
-//        self.nameOfMyTeamString = homeTeamName;
-//        //             NSLog(@"my Home Team Name: %@",  self.nameOfMyTeamString);
-//        
-//        
-//        //set the right order for homeTeamScore
-//        self.teamPoints = @[homeTeamScore, awayTeamScore];
-//        
-//        self.MyTeamName.text = homeTeamName;
-//        self.vsTeamName.text = awayTeamName;
-//        
-//        self.VSTeamScore.text = awayTeamScore;
-//        
-//        
-//        
-//        //                int pointsBeforePlayerScoredHome = homeTeamPoints - myStepsGainedDelta;
-//        int pointsAfterPlayerScoredHome = homeTeamPoints + myStepsGainedDelta;
-//        
-//        NSLog(@"pointsAferPlayerScored: %d",  pointsAfterPlayerScoredHome);
-//        //                               NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
-//        NSLog(@"homeTeamPointsDelta: %d",  myStepsGainedDelta);
-//        
-//        //                    double delayInSeconds = 2.0;
-//        //                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//        //                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//        //                        //code to be executed on the main queue after delay
-//        //                        [self updateTeamLabel:homeTeamPoints];
-//        //                    });
-//        if (myStepsGainedDelta > 0)
-//        {
-//            
-//            [self.MyTeamScore  countFrom:homeTeamPoints to:pointsAfterPlayerScoredHome withDuration:1.5];
-//            
-//        }
-//        else
-//        {
-//            self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
-//        }
-//        
-//    }
-//    
-//}
 
 
 
