@@ -11,7 +11,7 @@
 #import "PlayerTeamsCell.h"
 #import "TeamPlayersViewController.h"
 #import <Parse/Parse.h>
-
+#import "PNColor.h"
 @interface PlayerProfileViewController ()
 
 @end
@@ -216,6 +216,46 @@
 
 
 #pragma mark - UITableViewDataSource
+
+//dirty way to hide all other cells that do not contain data
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    
+    //    UIColor *color = [UIColor clearColor];
+    //
+    //    view.backgroundColor = color;
+    
+    
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    return 65;
+}
+
+//create a header section for Leagues
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return HeaderHeight;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    sectionHeader.backgroundColor = HeaderColor;
+    sectionHeader.textAlignment = HeaderAlignment;
+    sectionHeader.font = HeaderFont;
+    sectionHeader.textColor = HeaderTextColor;
+    
+    sectionHeader.text =@"Teams";
+    
+    return sectionHeader;
+    
+}
+
 
 /*
  // Override to support conditional editing of the table view.

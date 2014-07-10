@@ -523,13 +523,19 @@
 {
     UIView *view = [[UIView alloc] init];
     
-//    UIColor *color = PNCloudWhite;
+//    UIColor *color = [UIColor clearColor];
 //    
 //    view.backgroundColor = color;
     
     
     return view;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    return 65;
+}
+
 
 
 /*

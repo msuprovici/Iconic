@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface AccountViewController : PFQueryTableViewController
+@interface AccountViewController : PFQueryTableViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet PFImageView *myProfilePhoto;
 
@@ -18,5 +18,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *myAvgSteps;
 
 @property (strong, nonatomic) IBOutlet UILabel *myXP;
+
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+
+- (IBAction)selectPhoto:(UIButton *)sender;
+
 
 @end

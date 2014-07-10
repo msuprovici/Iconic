@@ -11,7 +11,7 @@
 #import "AccountMyTeamCell.h"
 #import "TeamPlayersViewController.h"
 #import <Parse/Parse.h>
-
+#import "PNColor.h"
 @interface AccountViewController ()
 
 @end
@@ -74,7 +74,20 @@
     [imageLayer setBorderWidth:0];
     [imageLayer setMasksToBounds:YES];
 
-
+    
+    //if device has no camera i.e. simulator show an error message.
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Device has no camera"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        
+        [myAlertView show];
+        
+    }
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -205,6 +218,48 @@
 
 #pragma mark - UITableViewDataSource
 
+
+//dirty way to hide all other cells that do not contain data
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    
+    //    UIColor *color = [UIColor clearColor];
+    //
+    //    view.backgroundColor = color;
+    
+    
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    return 65;
+}
+
+
+//create a header section for Leagues
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return HeaderHeight;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    sectionHeader.backgroundColor = HeaderColor;
+    sectionHeader.textAlignment = HeaderAlignment;
+    sectionHeader.font = HeaderFont;
+    sectionHeader.textColor = HeaderTextColor;
+    
+    sectionHeader.text =@"Teams";
+    
+    return sectionHeader;
+    
+}
+
+
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -324,5 +379,62 @@
 }
 
  */
+
+#pragma mark - Add Player Photo
+
+- (IBAction)selectPhoto:(UIButton *)sender {
+    
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    //start activity indicator
+    [self.activityIndicator startAnimating];
+ 
+    //save photo to parse and display
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    NSData *imageData = UIImagePNGRepresentation(chosenImage);
+    PFFile *imageFile = [PFFile fileWithName:@"ProfileImage.png" data:imageData];
+    
+    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            if (succeeded) {
+                
+                //stop activity indicator
+                [self.activityIndicator stopAnimating];
+                
+                self.myProfilePhoto.image = chosenImage;
+                
+                PFUser *user = [PFUser currentUser];
+               
+                user[kUserProfilePicSmallKey] = imageFile;
+                [user saveInBackground];
+                
+                
+                [self.view setNeedsDisplay];
+            }
+        } else {
+            // Handle error
+        }        
+    }];
+    
+//    self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
 
 @end
