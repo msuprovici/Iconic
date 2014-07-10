@@ -107,6 +107,8 @@
     self.view.backgroundColor = color;
 
     
+   //set the title of the view controller to the selectedTeamName
+   self.title = self.selectedTeamName;
     
    }
 

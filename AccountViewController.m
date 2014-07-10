@@ -53,12 +53,14 @@
     PFUser * user = [PFUser currentUser];
     
     self.myUserName.text = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
+     self.title = @"Account";
     
     self.myAvgSteps.text = [NSString stringWithFormat:@"%@ Average Daily Steps", [user objectForKey:kPlayerAvgDailySteps]];
     
     self.myXP.text = [NSString stringWithFormat:@"XP %@", [user objectForKey:kPlayerXP]];
     
-    self.navigationItem.title = @"Profile";
+    //view controller header title
+    self.navigationItem.title = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     
     // Set a placeholder image first
     self.myProfilePhoto.image = [UIImage imageNamed:@"empty_avatar.png"];

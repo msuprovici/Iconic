@@ -67,7 +67,8 @@
     
     self.playerXP.text = [NSString stringWithFormat:@"XP %@", [user objectForKey:kPlayerXP]];
     
-    self.navigationItem.title = @"Profile";
+    //view controller header title
+    self.navigationItem.title = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     
     // Set a placeholder image first
     self.playerProfilePhoto.image = [UIImage imageNamed:@"empty_avatar.png"];

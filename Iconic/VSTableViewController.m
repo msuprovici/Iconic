@@ -84,7 +84,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    //view controller header title
+    self.navigationItem.title = @"Box Score";
 //    UIColor *color = PNCloudWhite;
 //    self.view.backgroundColor = color;
     

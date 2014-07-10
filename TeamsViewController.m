@@ -131,6 +131,8 @@
     UIColor *color = PNCloudWhite;
     self.view.backgroundColor = color;
     
+    //set the title of the view controller to the selected League Name
+    self.title = [NSString stringWithFormat:@"%@",[self.league objectForKey:kLeagues]];
     
 }
 

@@ -111,7 +111,7 @@
 
     
     
-   // [self customizeAppearance];
+    [self customizeAppearance];
     
     // Override point for customization after application launch.
     return YES;
@@ -128,8 +128,13 @@
       NSShadowAttributeName, [UIFont fontWithName:@"DIN Alternate" size:17],
       NSFontAttributeName,
       nil]];*/
-    
-    
+//    [[UINavigationBar appearance] setTitleTextAttributes: @{
+//                                                            UITextAttributeTextColor: [UIColor greenColor],
+//                                                            UITextAttributeTextShadowColor: [UIColor redColor],
+//                                                            UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)],
+//                                                            UITextAttributeFont: [UIFont fontWithName:@"Helvetica" size:20.0f]
+//                                                            }];
+//    
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Light" size:20], NSFontAttributeName, nil]];
     
    
