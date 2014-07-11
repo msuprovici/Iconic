@@ -1340,9 +1340,9 @@
                            [team setOnteam:[NSNumber numberWithBool:NO]];
 //                           NSLog(team.onteam ? @"Yes" : @"No");
                        }
+                      
                        
                        [context save:&error];
-                       
                        if (![context save:&error]) {
                            return;
                        }

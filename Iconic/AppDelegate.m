@@ -272,6 +272,17 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     //send and retrieve data from Parse
     [calculatePoints incrementPlayerPointsInBackground];
     [calculatePoints retrieveFromParse];
+    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
+//                   {
+//                       NSLog(@"Background Fetch Parse methods executed");
+//                       //send and retrieve data from Parse
+//                       [calculatePoints incrementPlayerPointsInBackground];
+//                       [calculatePoints retrieveFromParse];
+//                   });
+//    //send and retrieve data from Parse
+//    [calculatePoints incrementPlayerPointsInBackground];
+//    [calculatePoints retrieveFromParse];
 //    [calculatePoints getYesterdaysPointsAndSteps];
     
     NSLog(@"Background Fetch From Push intialized");
@@ -279,7 +290,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     //buying Parse 20 seconds to perform retrieve and save
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
                    dispatch_get_main_queue(), ^{
-                       
+                        NSLog(@"Background Fetch retrieve and save");
                        handler(UIBackgroundFetchResultNewData);
                    });
 

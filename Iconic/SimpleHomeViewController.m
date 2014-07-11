@@ -294,7 +294,7 @@ static NSString *kImageKey = @"imageKey";
 //    [self.myTeamsPageController didMoveToParentViewController:self];
     
     //perform server updates methods on a separate thread so that we don't lock up the UI
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void)
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
     {
         CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
         [calculatePointsClass retrieveFromParse];

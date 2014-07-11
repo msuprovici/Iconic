@@ -87,12 +87,12 @@
     NSString * homeTeamScore = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
     //    self.MyTeamScore.text = homeTeamScore;
     int  homeTeamPoints = (int)[homeTeamScore integerValue];
-     NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
+//     NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
     
     NSString * awayTeamScore = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:index]];
     //    self.VSTeamScore.text = awayTeamScore;
     int  awayTeamPoints = (int)[awayTeamScore integerValue];
-     NSLog(@"awayTeamPoints: %d",  awayTeamPoints);
+//     NSLog(@"awayTeamPoints: %d",  awayTeamPoints);
     
     //set colors
     self.MyTeamName.textColor = PNWeiboColor;
@@ -303,7 +303,7 @@
     }
         
         //save most recent step count to a different key because kMyMostRecentPointsBeforeSaving gets updated too fast in SimpleViewController
-        NSLog(@"numberOfSteps before saving: %ld",  (long)numberOfSteps);
+//        NSLog(@"numberOfSteps before saving: %ld",  (long)numberOfSteps);
 
         [myRetrievedSteps setInteger:numberOfSteps forKey:kMyMostRecentStepsAddToTeamBeforeSaving];
         [myRetrievedSteps synchronize];
