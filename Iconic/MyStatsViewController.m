@@ -124,7 +124,7 @@
                 
                 
                 float myLevelProgress = (myLifetimePoints - myTotalPointsForCurrentLevelValue);
-//               NSLog(@"myLevelProgress: %f", myLevelProgress);
+//                NSLog(@"myLevelProgress: %f", myLevelProgress);
                 
                 float myTotalPointsToNextLevel = (myTotalPointsForNextLevelValue - myTotalPointsForCurrentLevelValue);
 //                NSLog(@"myTotalPointsToNextLevel: %f", myTotalPointsToNextLevel);
@@ -176,12 +176,12 @@
                 
                 //using counting label to increment level
                 //get the level the player was at the last time they launched the app
-                int myPreviousLevel = (int)[myRetrievedPoints integerForKey:kMyLevelOnLastLaunch];
+//                int myPreviousLevel = (int)[myRetrievedPoints integerForKey:kMyLevelOnLastLaunch];
                 
                 
                 //count up the level number
-                [self.xpValue  countFrom: myPreviousLevel to:[myLevel intValue] withDuration:1];
-                
+//                [self.xpValue  countFrom: myPreviousLevel to:[myLevel intValue] withDuration:1];
+                self.xpValue.text = [NSString stringWithFormat:@"%d",[myLevel intValue]];
                 
     
                 

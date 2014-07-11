@@ -294,14 +294,14 @@
                                 </connections>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5bt-XF-GVm" userLabel="Counting Label - MyTeamScore" customClass="UICountingLabel">
-                                <rect key="frame" x="10" y="34" width="150" height="40"/>
+                                <rect key="frame" x="11" y="34" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="40"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gbh-3R-nSI" userLabel="Label - VsTeamScore">
-                                <rect key="frame" x="158" y="34" width="150" height="40"/>
+                                <rect key="frame" x="162" y="34" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="40"/>
                                 <nil key="highlightedColor"/>
@@ -1394,8 +1394,8 @@
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zAl-xp-ODZ" userLabel="Label - XP">
-                                    <rect key="frame" x="36" y="230" width="250" height="21"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W6b-T5-zfe" userLabel="Label - Steps">
+                                    <rect key="frame" x="35" y="228" width="250" height="34"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1456,7 +1456,7 @@
                         <outlet property="myAvgSteps" destination="2dG-aP-gvw" id="Vz1-EF-HpU"/>
                         <outlet property="myProfilePhoto" destination="sd6-mq-E81" id="LCk-ZE-Sun"/>
                         <outlet property="myUserName" destination="L1X-kb-Tvz" id="OGM-eR-thW"/>
-                        <outlet property="myXP" destination="zAl-xp-ODZ" id="HmT-94-Cpe"/>
+                        <outlet property="myXPLevel" destination="W6b-T5-zfe" id="ea0-eb-ZKW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cK6-Ou-8KV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2304,8 +2304,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="GlC-f2-v4y"/>
+        <segue reference="RgY-QV-Nzf"/>
         <segue reference="SjS-YP-2E8"/>
-        <segue reference="f2W-wf-Lkd"/>
+        <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>

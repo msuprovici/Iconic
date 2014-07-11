@@ -528,101 +528,101 @@ static NSString *kImageKey = @"imageKey";
 
 
 //Store the points and steps from current app launch so that we can use them as the starting values for counting labels
--(void)savePointsFromCurrentAppLaunch
-{
-    self.stepCounter = [[CMStepCounter alloc] init];
-    NSDate *now = [NSDate date];
-    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-    NSDate *from = [calculatePointsClass beginningOfDay];
-    
-    //find the number of steps I have take today
-    [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
-        
-        
-        self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
-        //convert steps to points
-        //check for NAN values
+//-(void)savePointsFromCurrentAppLaunch
+//{
+//    self.stepCounter = [[CMStepCounter alloc] init];
+//    NSDate *now = [NSDate date];
+//    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//    NSDate *from = [calculatePointsClass beginningOfDay];
+//    
+//    //find the number of steps I have take today
+//    [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
+//        
+//        
+//        self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
+//        //convert steps to points
+//        //check for NAN values
+////        if(numberOfSteps == 0)
+////        {
+////            self.myPoints = 0;
+////            self.mySteps = 0;
+////            
+////        }
+////        else
+////        {
+////            CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+////            
+////            self.myPoints = [calculatePointsClass calculatePoints:numberOfSteps];
+////            
+////            self.mySteps = &(numberOfSteps);
+////        }
+//        
+//        
+//        
+//        //set the player's total points in memory
+//        NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
+//        
+//
+//        
+//        [myRetrievedPoints synchronize];
+//        
+////        NSLog(@"self.myLevel: %d", [self.myLevel intValue]);
+////        NSLog(@"self.myPoints intValue: %d", [self.myPoints intValue]);
+//        //to prevent null values check if # of steps is 0
 //        if(numberOfSteps == 0)
 //        {
-//            self.myPoints = 0;
-//            self.mySteps = 0;
 //            
-//        }
+////            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentPointsBeforeSaving];
+//            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentStepsBeforeSaving];
+//            
+//            [myRetrievedPoints synchronize];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//            
+//                    }
+//        
 //        else
 //        {
-//            CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+//               //we are going to use this value to start the couter in the counting label in MyStatsViewController
+////            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyMostRecentPointsBeforeSaving];
+//            //        NSLog(@"self.myPoints intValue: %d", [self.myPoints intValue]);
+//            [myRetrievedPoints setInteger:[self.mySteps intValue] forKey:kMyMostRecentStepsBeforeSaving];
 //            
-//            self.myPoints = [calculatePointsClass calculatePoints:numberOfSteps];
-//            
-//            self.mySteps = &(numberOfSteps);
+//            [myRetrievedPoints synchronize];
 //        }
-        
-        
-        
-        //set the player's total points in memory
-        NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
-        
-
-        
-        [myRetrievedPoints synchronize];
-        
-//        NSLog(@"self.myLevel: %d", [self.myLevel intValue]);
-//        NSLog(@"self.myPoints intValue: %d", [self.myPoints intValue]);
-        //to prevent null values check if # of steps is 0
-        if(numberOfSteps == 0)
-        {
-            
-//            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentPointsBeforeSaving];
-            [myRetrievedPoints setInteger:0 forKey:kMyMostRecentStepsBeforeSaving];
-            
-            [myRetrievedPoints synchronize];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-                    }
-        
-        else
-        {
-               //we are going to use this value to start the couter in the counting label in MyStatsViewController
-//            [myRetrievedPoints setInteger:[self.myPoints intValue]  forKey:kMyMostRecentPointsBeforeSaving];
-            //        NSLog(@"self.myPoints intValue: %d", [self.myPoints intValue]);
-            [myRetrievedPoints setInteger:[self.mySteps intValue] forKey:kMyMostRecentStepsBeforeSaving];
-            
-            [myRetrievedPoints synchronize];
-        }
-        
-        
-        //set level
-        
-        //find out how many steps were gained since the last time the points were synct
-        int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedStepsToday];
-        int myMostRecentPointsValue = [self.mySteps intValue];
-        int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
-        
-//        NSLog(@"Delta in simplehomeviewcontroller: %d", myPointsDeltaValue);
-        
-        
-        
-        //calculate the current total steps
-        int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedStepsTotal];
-        int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
-//        NSLog(@"myTotalPoints: %d", myTotalPoints);
-//        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
-        //calculate current level
-        self.myLevel = [calculatePointsClass calculateLevel:myNewTotalPoints];
+//        
+//        
+//        //set level
+//        
+//        //find out how many steps were gained since the last time the points were synct
+//        int myStoredPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedStepsToday];
+//        int myMostRecentPointsValue = [self.mySteps intValue];
+//        int myPointsDeltaValue = myMostRecentPointsValue - myStoredPoints;
+//        
+////        NSLog(@"Delta in simplehomeviewcontroller: %d", myPointsDeltaValue);
+//        
+//        
+//        
+//        //calculate the current total steps
+//        int myTotalPoints = (int)[myRetrievedPoints integerForKey:kMyFetchedStepsTotal];
+//        int myNewTotalPoints = myTotalPoints + myPointsDeltaValue;
+////        NSLog(@"myTotalPoints: %d", myTotalPoints);
+////        NSLog(@"myNewTotalPoints: %d", myNewTotalPoints);
+//        //calculate current level
+//        self.myLevel = [calculatePointsClass calculateLevel:myNewTotalPoints];
 //        NSLog(@"self.myLevel: %@", self.myLevel);
-        
-        //save the current level so that we can use it as a starting point for the level label counter
-        [myRetrievedPoints setInteger: [self.myLevel intValue] forKey:kMyLevelOnLastLaunch];
-        
-        [myRetrievedPoints synchronize];
-        
-        
-        
-        
-        
-    }];
-
-}
+//        
+//        //save the current level so that we can use it as a starting point for the level label counter
+//        [myRetrievedPoints setInteger: [self.myLevel intValue] forKey:kMyLevelOnLastLaunch];
+//        
+//        [myRetrievedPoints synchronize];
+//        
+//        
+//        
+//        
+//        
+//    }];
+//
+//}
 
 #pragma mark - MyTeams Scroll View
 

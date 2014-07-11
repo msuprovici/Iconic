@@ -551,7 +551,9 @@
     [playerSteps saveInBackground];
     
     NSNumber *myLevel = [self calculateLevel:myNewTotalSteps];
-    
+//     NSLog(@"myNewTotalSteps %d",myNewTotalSteps);
+//    NSLog(@"myLevel %@",myLevel);
+
     //save to NSuserdefaults
     [myRetrievedSteps setInteger:[myLevel intValue]  forKey:@"myLevel"];
     
@@ -598,6 +600,7 @@
             
             
             //set player's level
+//            NSLog(@"myLevel sent to parse %@",myLevel);
             [object setObject:myLevel forKey:kPlayerXP];
             //save #points needed to reach the next level
             
@@ -910,7 +913,12 @@
     
     
     //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
-    NSNumber * level = [NSNumber numberWithFloat: floor((pow((points/1000), (1/1.5)))+1.0)];
+    float number = points/1000;
+    float power = 1.0/3.0;
+//    NSLog(@"number %f",number);
+    
+    NSNumber * level = [NSNumber numberWithFloat:floor(powf(number, power))];
+//    NSLog(@"level %@",level);
     
     //    if(level == 0 || level == nil)
     //        return [NSNumber numberWithInteger:1];
@@ -938,8 +946,8 @@
     
     
     //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
-    NSNumber * points = [NSNumber numberWithFloat: floor((pow(level, 1)*1000))+1];
-    
+    NSNumber * points = [NSNumber numberWithFloat: floor((pow(level+1, 3)*1000))];
+//    NSLog(@"points to next level %@",points);
     //    return points;
     if([points isEqualToNumber:[NSDecimalNumber notANumber]])
     {
@@ -959,7 +967,7 @@
     //scale = 1
     //hardcoded for now - will need to send this number down from the server
     //had to use the floor to find the round down (map a real number to the largest previous) to the lowest level - calcualtions with ceil were very inacurate.
-    NSNumber * points = [NSNumber numberWithFloat: floor((pow(level-1, 1)*1000))+1];
+    NSNumber * points = [NSNumber numberWithFloat: floor((pow(level, 3)*1000))];
     
     //    return points;
     

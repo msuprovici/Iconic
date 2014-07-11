@@ -51,16 +51,19 @@
     
     //set the user's data
     PFUser * user = [PFUser currentUser];
-    
+    if (user) {
     self.myUserName.text = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
-     self.title = @"Account";
+     self.navigationItem.title = @"Account";
     
     self.myAvgSteps.text = [NSString stringWithFormat:@"%@ Average Daily Steps", [user objectForKey:kPlayerAvgDailySteps]];
     
-    self.myXP.text = [NSString stringWithFormat:@"XP %@", [user objectForKey:kPlayerXP]];
+    //created "myXP" to test parse for xp bug always showing 1 - it does not work!
+    self.myXPLevel.text = [NSString stringWithFormat:@"XP: %@ ", [user objectForKey:@"myXP"]];
+        
+//    NSLog(%@XP: ", [user objectForKey:kPlayerXP]);
     
     //view controller header title
-    self.navigationItem.title = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
+//    self.navigationItem.title = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     
     // Set a placeholder image first
     self.myProfilePhoto.image = [UIImage imageNamed:@"empty_avatar.png"];
@@ -89,7 +92,7 @@
         [myAlertView show];
         
     }
-    
+    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  

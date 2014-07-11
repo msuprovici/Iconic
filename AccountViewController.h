@@ -17,7 +17,10 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *myAvgSteps;
 
-@property (strong, nonatomic) IBOutlet UILabel *myXP;
+
+
+@property (strong, nonatomic) IBOutlet UILabel *myXPLevel;
+
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
