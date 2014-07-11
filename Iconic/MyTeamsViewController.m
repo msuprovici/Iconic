@@ -316,8 +316,8 @@
 -(void)updateTeamLabel
 {
     
-     NSLog(@"self.myTeamPoints in updateTeamLabel: %d",  self.myTeamPoints);
-     NSLog(@"self.myStepsGained in updateTeamLabel: %d",  self.myStepsGained);
+//     NSLog(@"self.myTeamPoints in updateTeamLabel: %d",  self.myTeamPoints);
+//     NSLog(@"self.myStepsGained in updateTeamLabel: %d",  self.myStepsGained);
     
      int pointsAfterPlayerScored = self.myTeamPoints + self.myStepsGained;
     

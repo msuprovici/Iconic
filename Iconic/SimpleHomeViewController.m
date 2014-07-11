@@ -146,10 +146,10 @@ static NSString *kImageKey = @"imageKey";
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(refreshHomeView)
 //                                                 name:UIApplicationDidFinishLaunchingNotification object:nil];
-    //add past 7 days steps to an array
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(findSevenDayStepsAndPoints)
-                                                 name:UIApplicationDidFinishLaunchingNotification object:nil];
+//    //add past 7 days steps to an array
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(findSevenDayStepsAndPoints)
+//                                                 name:UIApplicationDidFinishLaunchingNotification object:nil];
 
     
     //refreshes the app when it enters foreground
@@ -157,9 +157,6 @@ static NSString *kImageKey = @"imageKey";
                                              selector:@selector(refreshHomeView)
                                                  name:UIApplicationWillEnterForegroundNotification object:nil];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(showChart)
-//                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
 
     
     UIPageControl *pageControl = [UIPageControl appearance];
@@ -172,7 +169,7 @@ static NSString *kImageKey = @"imageKey";
        [self refreshHomeView];
     
 //    [self showChart];
-    [self showMyTeamsView];
+//    [self showMyTeamsView];
    
 //Use the line bellow to cancel local notficiations
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
@@ -241,7 +238,9 @@ static NSString *kImageKey = @"imageKey";
     
     //initialize all other methods
     
-    [self savePointsFromCurrentAppLaunch];
+//    [self savePointsFromCurrentAppLaunch];
+    
+    
     
 //    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
 //    [calculatePointsClass retrieveFromParse];
@@ -250,7 +249,7 @@ static NSString *kImageKey = @"imageKey";
 //    [calculatePointsClass migrateLeaguesToCoreData];
 
     
-    [self findSevenDayStepsAndPoints];
+//    [self findSevenDayStepsAndPoints];
 
    
     [self showMyTeamsView];
@@ -295,11 +294,12 @@ static NSString *kImageKey = @"imageKey";
 //    [self.myTeamsPageController didMoveToParentViewController:self];
     
     //perform server updates methods on a separate thread so that we don't lock up the UI
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                             (unsigned long)NULL), ^(void) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long)NULL), ^(void)
+    {
         CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
         [calculatePointsClass retrieveFromParse];
         [calculatePointsClass incrementPlayerPointsInBackground];
+        [calculatePointsClass findPastWeekleySteps];
     });
 
    
@@ -425,82 +425,6 @@ static NSString *kImageKey = @"imageKey";
 
 
 
-//#pragma mark scroll teams buttons
-//
-////scroll through team data
-//- (IBAction)scrollTeamsRight:(id)sender {
-//    
-//    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-//    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
-//    
-//    int myTeamIndex = (int)[homeTeamNames indexOfObject:self.myNewTeamObject];
-//    int myFirstTeamIndex = (int)[homeTeamNames indexOfObject:homeTeamNames.firstObject];
-//    
-//   
-//   
-//    
-////    NSLog(@"index of myteamObjectRight: %d", myTeamIndex);
-//    
-//    if (myTeamIndex <= homeTeamNames.count-1) {
-//        
-//        int incrementTeamIndex = myTeamIndex += 1;
-//        
-//        [self updateTeamChart:incrementTeamIndex];
-//        
-//        if (myTeamIndex == homeTeamNames.count-1 )
-//        {
-//            
-//            [self.scrollTeamsRight setEnabled:FALSE];
-//            [self.scrollTeamsLeft setEnabled:TRUE];
-//            
-//        }
-//        if (myTeamIndex > myFirstTeamIndex) {
-//            
-//            [self.scrollTeamsLeft setEnabled:TRUE];
-//            
-//        }
-//    }
-//
-//}
-//
-//
-//
-//- (IBAction)scrollTeamsLeft:(id)sender {
-//    
-//     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-//    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
-//    
-//    //find the index of myTeamObject - see comments above in scrollTeamsRight
-//    int myTeamIndex = (int)[homeTeamNames indexOfObject:self.myNewTeamObject];
-//    int myFirstTeamIndex = (int)[homeTeamNames indexOfObject:homeTeamNames.firstObject];
-////    NSLog(@"index of myteamObjectLeft: %d", myTeamIndex);
-//    
-//   
-////     NSLog(@"index of myteamObjectLeft: %d", self.matchupsIndex);
-//    
-//    if (myTeamIndex <= homeTeamNames.count-1 )
-//    {
-//        [self.scrollTeamsRight setEnabled:TRUE];
-//        
-//        int decrementTeamIndex = myTeamIndex -= 1;
-//        
-//        [self updateTeamChart:decrementTeamIndex];
-//        
-//        
-//        
-//        
-//        if (myTeamIndex == myFirstTeamIndex) {
-//            
-//            [self.scrollTeamsLeft setEnabled:FALSE];
-//            [self.scrollTeamsRight setEnabled:TRUE];
-//            
-//        }
-//        
-//    }
-//
-//    
-//
-//}
 
 -(void)showMyTeamsView
 {
@@ -523,363 +447,6 @@ static NSString *kImageKey = @"imageKey";
 }
 
 
-//#pragma mark Team Chart
-//
-//-(void)showChart
-//{
-//    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-//    
-//    
-//    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
-//    //NSLog(@"homeTeamNames.count: %lu", (unsigned long)homeTeamNames.count);
-//    
-//    //need to do something different then homeTeamNames.count because it aways returns 1 even if it's empty
-//    //need to come up with a condition if there is only one team
-//    if(numberOfTeams > 1 )
-//    {
-//        
-//        [self updateTeamChart:0];
-//        [self.scrollTeamsLeft setEnabled:FALSE];
-//        [self.scrollTeamsRight setEnabled:TRUE];
-//        
-//        //disable join team button
-//        [self.joinTeamButton setEnabled:FALSE];
-//        self.joinTeamButton.hidden = YES;
-//        
-//        //show navigation buttons
-//        self.scrollTeamsRight.hidden = NO ;
-//        self.scrollTeamsLeft.hidden = NO ;
-//        
-//        //show chart
-//        self.teamBarChart.hidden = NO;
-//        
-//        //show labels
-//        self.MyTeamName.hidden = NO;
-//        self.MyTeamScore.hidden = NO;
-//        self.vsTeamName.hidden = NO;
-//        self.VSTeamScore.hidden = NO;
-//        
-//        
-//    }
-//    else if(numberOfTeams == 1 )
-//    {
-//        [self updateTeamChart:0];
-//        
-//        
-//        //disable join team button
-//        [self.joinTeamButton setEnabled:FALSE];
-//        self.joinTeamButton.hidden = YES;
-//        
-//        
-//        //hide navigation buttons
-//        self.scrollTeamsRight.hidden = YES ;
-//        self.scrollTeamsLeft.hidden = YES ;
-//        
-//        //show chart
-//        self.teamBarChart.hidden = NO;
-//        
-//        //show labels
-//        self.MyTeamName.hidden = NO;
-//        self.MyTeamScore.hidden = NO;
-//        self.vsTeamName.hidden = NO;
-//        self.VSTeamScore.hidden = NO;
-//        self.myLeagueName.hidden = NO;
-//    }
-//    
-//    else
-//    {
-//        //enable join team button
-//        [self.joinTeamButton setEnabled:TRUE];
-//        self.joinTeamButton.hidden = NO;
-//        
-//        //hide navigation buttons
-//        self.scrollTeamsRight.hidden = YES ;
-//        self.scrollTeamsLeft.hidden = YES ;
-//        
-//        //hide chart
-//        self.teamBarChart.hidden = YES;
-//        
-//        //hide labels
-//        self.MyTeamName.hidden = YES;
-//        self.MyTeamScore.hidden = YES;
-//        self.vsTeamName.hidden = YES;
-//        self.VSTeamScore.hidden = YES;
-//        self.myLeagueName.hidden = YES;
-//        
-//    }
-//    
-//}
-//
-//
-//-(void)updateTeamChart:(int)index
-//{
-//    
-//    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-//    
-//    NSArray *homeTeamScores = [RetrievedTeams objectForKey:kArrayOfHomeTeamScores];
-//    NSArray *awayTeamScores = [RetrievedTeams objectForKey:kArrayOfAwayTeamScores];
-//    
-//    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
-//    NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
-//    
-//    NSArray *arrayOfLeagueNames = [RetrievedTeams objectForKey:kArrayOfLeagueNames];
-//    
-//    
-//    int myStepsDelta = (int)[RetrievedTeams integerForKey:@"myStepsDelta"];
-//    
-//    self.myNewTeamObject = [homeTeamNames objectAtIndex:index];
-//    self.matchupsIndex = index;
-//
-////    NSLog(@"matchupsIndex %d", self.matchupsIndex);
-////    NSLog(@"homeTeamNames retrieved: %@", homeTeamNames);
-////    
-////    NSLog(@"awayTeamNames retrieved: %@", awayTeamNames);
-//    
-//    //set team names
-//    NSString * homeTeamName = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
-////    self.MyTeamName.text = homeTeamName;
-//    
-//    NSString * awayTeamName = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
-////    self.vsTeamName.text = awayTeamName;
-//    
-//    
-//    //set league names
-//    NSString * leagueName = [NSString stringWithFormat:@"%@",[arrayOfLeagueNames objectAtIndex:index]];
-//    
-//    //set score
-//    NSString * homeTeamScore = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
-////    self.MyTeamScore.text = homeTeamScore;
-//    int  homeTeamPoints = (int)[homeTeamScore integerValue];
-//    
-//    
-//    NSString * awayTeamScore = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:index]];
-////    self.VSTeamScore.text = awayTeamScore;
-//    int  awayTeamPoints = (int)[awayTeamScore integerValue];
-//
-//    
-//    //set colors
-//    self.MyTeamName.textColor = PNWeiboColor;
-//    self.MyTeamScore.textColor = PNWeiboColor;
-//    
-//
-//    self.vsTeamName.textColor = PNDarkBlue;
-//    self.VSTeamScore.textColor = PNDarkBlue;
-//    
-//    self.myLeagueName.textColor = PNBlue;
-// 
-//    
-//    
-//    
-//    //find out what team the player is on and set that as a property so that we can send it to VS view controller
-//    NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
-//    
-//    //    NSLog(@"# of teams I'm on: %lu",  (unsigned long)myTeamsNames.count);
-//    //     for (int i = 0; i < myTeamsNames.count; i++) {
-//    //        NSLog(@"myTeamsNames[index] %@",  myTeamsNames[index]);
-//    //        NSLog(@"homeTeamName %@",  homeTeamName);
-//    //        NSLog(@"awayTeamName %@",  awayTeamName);
-//    
-//    
-//    
-//    //initialize couting label
-//    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-//    formatter.numberStyle = kCFNumberFormatterNoStyle;
-//    self.MyTeamScore.formatBlock = ^NSString* (float value)
-//    {
-//        NSString* formatted = [formatter stringFromNumber:@((int)value)];
-//        return [NSString stringWithFormat:@"%@",formatted];
-//    };
-//
-//    
-//    
-//    for (int i = 0; i < myTeamsNames.count; i++) {
-//        {
-//            //            NSLog(@"myTeamsNames[i] %@",  myTeamsNames[i]);
-//            
-//            //            if([myTeamsNames containsObject:homeTeamName] || [myTeamsNames containsObject:awayTeamName])
-//            
-//            
-//            //ensure that my team is always on the left hand side of the chart
-//            //if the object in my teams arrays is equal to the home team set it
-//            
-//            self.myLeagueName.text = leagueName;
-//            
-//            if([myTeamsNames[i] isEqualToString: homeTeamName])
-//            {
-//                
-//                
-//                self.nameOfMyTeamString = homeTeamName;
-//                //             NSLog(@"my Home Team Name: %@",  self.nameOfMyTeamString);
-//                
-//                
-//                //set the right order for homeTeamScore
-//                self.teamPoints = @[homeTeamScore, awayTeamScore];
-//                
-//                self.MyTeamName.text = homeTeamName;
-//                 self.vsTeamName.text = awayTeamName;
-//                
-//                self.VSTeamScore.text = awayTeamScore;
-//                
-////                self.MyTeamScore.text = homeTeamScore;
-//                
-////                NSLog(@"homeTeamScore: %@",  homeTeamScore);
-////                NSLog(@"homeTeamPoints: %d",  homeTeamPoints);
-//                
-////                int pointsAfterPlayerScored = homeTeamPoints + myStepsDelta;
-//                
-//                int pointsBeforePlayerScored = homeTeamPoints - myStepsDelta;
-//                
-////                self.MyTeamScore.text = [NSString stringWithFormat:@"%d",pointsBeforePlayerScored];
-//                
-//                
-//                    if (myStepsDelta > 0) {
-//                        
-//                        if(self.deltaPointsLabelIsAnimating == YES)
-//                        {
-////                            [self.MyTeamScore  countFrom:homeTeamPoints to:pointsAfterPlayerScored withDuration:2];
-//                            [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:homeTeamPoints withDuration:1.5];
-//                            self.deltaPointsLabelIsAnimating = NO;
-//                        }
-//                        else
-//                        {
-//                            self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
-//                        }
-//                        
-//                        
-////                        [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:homeTeamPoints withDuration:2];
-//                        
-//                    }
-//                    
-//
-//                else
-//                {
-//
-//                    
-//                    self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
-//
-//                }
-//                    
-//                    
-//             
-//                    
-//                
-//                
-//                
-//            }
-//            //if the object in my teams arrays is equal to the away team set it
-//            
-//            else if ([myTeamsNames[i] isEqualToString: awayTeamName])
-//            {
-//                self.nameOfMyTeamString = awayTeamName;
-//                //                NSLog(@"my Away Team Name: %@",  self.nameOfMyTeamString);
-//                
-//                //ensure that my team is always on the left hand side of the chart - so in this case the away team is on the right
-//                //reverse order for bargraph
-//                self.teamPoints = @[awayTeamScore, homeTeamScore];
-//                
-//                //reverse the values of the labels
-//                self.MyTeamName.text = awayTeamName;
-//                self.vsTeamName.text = homeTeamName;
-//                
-//                self.VSTeamScore.text = homeTeamScore;
-//                
-////                self.MyTeamScore.text = awayTeamScore;
-//                
-////                int pointsAfterPlayerScored = awayTeamPoints + myStepsDelta;
-//                int pointsBeforePlayerScored = awayTeamPoints - myStepsDelta;
-//                
-//                if (myStepsDelta > 0)
-//                {
-//                        
-//                            if(self.deltaPointsLabelIsAnimating == YES)
-//                                {
-//                                 
-//                                [self.MyTeamScore  countFrom:pointsBeforePlayerScored to:awayTeamPoints withDuration:1.5];
-//                                self.deltaPointsLabelIsAnimating = NO;
-//                                   
-//                                }
-//                    
-//                            else
-//                                {
-//                                    self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
-//                                }
-//
-//                }
-//                else
-//                {
-//                    self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
-//                    
-//                }
-//                
-//
-//            }
-//        }
-//
-//    
-//    
-//    
-//    
-//    //create bar chart to display days
-//    PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 220)];
-//    
-//    //    PNBarChart * barChart = [[PNBarChart alloc] init];
-//    
-//    
-//    
-////     NSArray * teamPoints = @[homeTeamScore, awayTeamScore];
-//    
-//    [barChart setYValues:self.teamPoints];
-// 
-//    
-//    [barChart setStrokeColors:@[PNWeiboColor, PNDarkBlue]];
-//    [barChart setBarBackgroundColor:[UIColor clearColor]];
-//    //    [barChart setStrokeColor:PNLightBlue];
-//    [barChart strokeChart];
-//    
-//    [self.teamBarChart addSubview:barChart];
-//    
-//    
-////    //find out what team the player is on and set that as a property so that we can send it to VS view controller
-////    NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
-////    
-//////    NSLog(@"# of teams I'm on: %lu",  (unsigned long)myTeamsNames.count);
-//////     for (int i = 0; i < myTeamsNames.count; i++) {
-//////        NSLog(@"myTeamsNames[index] %@",  myTeamsNames[index]);
-//////        NSLog(@"homeTeamName %@",  homeTeamName);
-//////        NSLog(@"awayTeamName %@",  awayTeamName);
-////    
-////    
-////    
-////    for (int i = 0; i < myTeamsNames.count; i++) {
-////        {
-//////            NSLog(@"myTeamsNames[i] %@",  myTeamsNames[i]);
-////            
-//////            if([myTeamsNames containsObject:homeTeamName] || [myTeamsNames containsObject:awayTeamName])
-////            
-////            //if the object in my teams arrays is equal to the home team set it
-////            if([myTeamsNames[i] isEqualToString: homeTeamName])
-////            {
-////
-////             self.nameOfMyTeamString = myTeamsNames[i];
-////                self.nameOfMyTeamString = homeTeamName;
-//////             NSLog(@"my Home Team Name: %@",  self.nameOfMyTeamString);
-////             
-////         
-////        }
-////            //if the object in my teams arrays is equal to the away team set it
-////
-////            else if ([myTeamsNames[i] isEqualToString: awayTeamName])
-////            {
-////                self.nameOfMyTeamString = homeTeamName;
-//////                NSLog(@"my Away Team Name: %@",  self.nameOfMyTeamString);
-////            }
-////    }
-//    
-//    
-//    }
-////     }
-//    
-//}
 
 
 
@@ -925,36 +492,36 @@ static NSString *kImageKey = @"imageKey";
 
 
 
-#pragma mark Step Counting
-
-
-
--(void)findSevenDayStepsAndPoints {
-    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-    [calculatePointsClass findPastWeekleySteps];
-
-}
+//#pragma mark Step Counting
+//
+//
+//
+//-(void)findSevenDayStepsAndPoints {
+//    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+//    [calculatePointsClass findPastWeekleySteps];
+//
+//}
 
 #pragma mark Motion Activity
 
--(void)getMotionData {
-    self.motionActivity = [[CMMotionActivityManager alloc] init];
-    
-//    NSLog(@"activities called");
-    
-    NSDate *now = [NSDate date];
-//    NSDate *from = [self beginningOfDay];
-    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-    NSDate *from = [calculatePointsClass beginningOfDay];
-   
-    [self.motionActivity queryActivityStartingFromDate:from toDate:now toQueue:self.operationQueue withHandler:^(NSArray *activities, NSError *error) {
-//        NSLog(@"activities array: %@", activities);
-//        
-//        NSLog(@"activities array count: %lu", (unsigned long)activities.count);
-    }];
-
-
-}
+//-(void)getMotionData {
+//    self.motionActivity = [[CMMotionActivityManager alloc] init];
+//    
+////    NSLog(@"activities called");
+//    
+//    NSDate *now = [NSDate date];
+////    NSDate *from = [self beginningOfDay];
+//    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//    NSDate *from = [calculatePointsClass beginningOfDay];
+//   
+//    [self.motionActivity queryActivityStartingFromDate:from toDate:now toQueue:self.operationQueue withHandler:^(NSArray *activities, NSError *error) {
+////        NSLog(@"activities array: %@", activities);
+////        
+////        NSLog(@"activities array count: %lu", (unsigned long)activities.count);
+//    }];
+//
+//
+//}
 
 
 #pragma mark - Save Points From Current App Launch
@@ -1073,20 +640,19 @@ static NSString *kImageKey = @"imageKey";
 
 - (NSUInteger)indexOfViewController:(MyTeamsViewController *)viewController
 {
-//    MyTeamsViewController *childViewController = [self.myTeamsPageController.viewControllers objectAtIndex:0];
+
     
     return [self.myTeamsViewControllers indexOfObject:viewController];
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-    // If the page did not turn
+    
     if (!completed)
     {
                return;
     }
     
-    // This is where you would know the page number changed and handle it appropriately
     
 
    

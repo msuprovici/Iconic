@@ -119,25 +119,20 @@
 
 - (void)customizeAppearance
 {
-    // Customize the title text for *all* UINavigationBars
-    /*[[UINavigationBar appearance] setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
-      NSForegroundColorAttributeName,[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],
-      NSShadowAttributeName, [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
-      NSShadowAttributeName, [UIFont fontWithName:@"DIN Alternate" size:17],
-      NSFontAttributeName,
-      nil]];*/
-//    [[UINavigationBar appearance] setTitleTextAttributes: @{
-//                                                            UITextAttributeTextColor: [UIColor greenColor],
-//                                                            UITextAttributeTextShadowColor: [UIColor redColor],
-//                                                            UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)],
-//                                                            UITextAttributeFont: [UIFont fontWithName:@"Helvetica" size:20.0f]
-//                                                            }];
-//    
+   //sets the font for the title of each view controller
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Light" size:20], NSFontAttributeName, nil]];
     
-   
+   //sets color of the text inside the button but not the image/accessory
+//   [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Light" size:15], NSFontAttributeName,[UIColor blackColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+    
+    //this changes the color of all accessories & buttons
+    self.window.tintColor = [UIColor blackColor];
+    
+    //this changes the clor of just UIBarButtonItems
+//    if([UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+//        [UINavigationBar appearance].tintColor = [UIColor blackColor];
+//    }
+    
 }
 
 // Facebook oauth callback
