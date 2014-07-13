@@ -1175,6 +1175,10 @@
 #pragma mark Local Notification
 -(void)scheduleDailySummaryLocalNotification
 {
+    //1st cancel previous notificaitons
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    //then re-create & schedule the notifcation
     NSDate *now = [NSDate date];
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
@@ -1212,7 +1216,15 @@
         
          NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
         
-    localNotification.alertBody = [myStats objectForKey:@"yesterdayPointsAndStepsNotificationText"];
+        
+        //get 7 day steps
+        NSArray *myWeekeleySteps = [myStats objectForKey:kMyStepsWeekArray];
+        
+        //get yesterday's Steps
+        
+
+        
+    localNotification.alertBody = [NSString stringWithFormat:@"You scored %@ steps yesterday.",[myWeekeleySteps objectAtIndex:5]];
     
 //    [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:self.matchupsIndex]];
     
@@ -1231,25 +1243,24 @@
 }
 
 
--(void)getYesterdaysPointsAndSteps
-{
-    
-    NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
-    
-    //get 7 day steps and points array
-    NSArray *myWeekeleyPoints = [myStats objectForKey:kMyPointsWeekArray];
-    NSArray *myWeekeleySteps = [myStats objectForKey:kMyStepsWeekArray];
-    
-    //get yesterday's Points & Steps
-    NSString *yesterdayPoints = [myWeekeleyPoints objectAtIndex:5];
-    NSString *yesterdaySteps = [myWeekeleySteps objectAtIndex:5];
-    
-    NSString *yesterdaysPointsAndSteps = [NSString stringWithFormat:@"You scored %@ points on %@ steps yesterday.", yesterdayPoints, yesterdaySteps];
-    
-    [myStats setObject:yesterdaysPointsAndSteps forKey:@"yesterdayPointsAndStepsNotificationText"];
-    [myStats synchronize];
-    
-  }
+//-(void)getYesterdaysPointsAndSteps
+//{
+//    
+//    NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
+//    
+//    //get 7 day steps
+//    NSArray *myWeekeleySteps = [myStats objectForKey:kMyStepsWeekArray];
+//    
+//    //get yesterday's Steps
+//
+//    NSString *yesterdaySteps = [NSString stringWithFormat:@"You scored %@ steps yesterday.",[myWeekeleySteps objectAtIndex:5]];
+//    
+//   // NSString *yesterdaysPointsAndSteps = [NSString stringWithFormat:@"You scored %@ steps yesterday.", yesterdaySteps];
+//    
+//    [myStats setObject:yesterdaySteps forKey:@"yesterdayPointsAndStepsNotificationText"];
+//    [myStats synchronize];
+//    
+//  }
 
 
 #pragma mark - Core Data
