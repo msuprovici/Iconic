@@ -174,6 +174,7 @@ static NSString *kImageKey = @"imageKey";
 //Use the line bellow to cancel local notficiations
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
+       
     
     
     
@@ -305,7 +306,7 @@ static NSString *kImageKey = @"imageKey";
 
    
 
-    //[self performSegueWithIdentifier:@"FinalScores" sender:self];
+    
     
 //    [self.view setNeedsDisplay];
 
@@ -723,7 +724,19 @@ static NSString *kImageKey = @"imageKey";
 
 #pragma mark - Navigation
 
-
+-(void)appLoadedFirstTimeThisWeek
+{
+   
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == NO)
+    {
+        // Show Final Scores
+        [self performSegueWithIdentifier:@"FinalScores" sender:self];
+        
+        [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
+        
+    }
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

@@ -256,10 +256,25 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
+    //If the day of the week is Sunday, change the bool "hasRunAppThisWeekKey"  so that we can display FinalScoresTableViewController tomorrow or the next time the user opens the app next week.
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSDateComponents *weekdayComponents =[gregorian components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
+    
+    NSInteger weekday = [weekdayComponents weekday];
+    //Sunday = 1
+    if (weekday == 1) {
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:NO forKey:@"hasRunAppThisWeekKey"];
+    }
+    
 //    if([userInfo[@"aps"][@"content-available"] intValue]== 1)
     
 //    if([userInfo[@"content-available"] intValue]== 1) //it's the silent notification
 //    {
+    
+    
+    //fetch the team & player stats for today
     NSDate *fetchStart = [NSDate date];
     
     CalculatePoints *calculatePoints = [[CalculatePoints alloc]init];

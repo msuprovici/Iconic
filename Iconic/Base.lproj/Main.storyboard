@@ -2225,7 +2225,7 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="RaU-mo-0mS">
-                        <barButtonItem key="rightBarButtonItem" title="Close" id="eUk-21-E5W">
+                        <barButtonItem key="rightBarButtonItem" title="Exit" id="eUk-21-E5W">
                             <connections>
                                 <segue destination="hxa-kF-GYL" kind="unwind" unwindAction="done:" id="1ry-Xr-osy"/>
                             </connections>
