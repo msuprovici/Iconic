@@ -13,7 +13,7 @@
 #import "MyTeamsViewController.h"
 #import "CalculatePoints.h"
 #import <Foundation/Foundation.h>
-
+#import "FinalScoresTableViewController.h"
 
 #import "Cache.h"
 #import "Constants.h"
@@ -177,7 +177,6 @@ static NSString *kImageKey = @"imageKey";
     
     
     
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -202,6 +201,8 @@ static NSString *kImageKey = @"imageKey";
 
 -(void)refreshHomeView
 {
+    
+
     //Page control for MyStatsView
 //    NSUInteger numberPages = self.contentList.count;
     NSUInteger numberPages = 2;
@@ -304,7 +305,7 @@ static NSString *kImageKey = @"imageKey";
 
    
 
-    
+    //[self performSegueWithIdentifier:@"FinalScores" sender:self];
     
 //    [self.view setNeedsDisplay];
 
@@ -720,7 +721,27 @@ static NSString *kImageKey = @"imageKey";
 
 
 
-//#pragma mark - Navigation
+#pragma mark - Navigation
+
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    //show final scores
+    if ([[segue identifier] isEqualToString:@"FinalScores"])
+    {
+        FinalScoresTableViewController *nextVC = [segue destinationViewController];
+        //pass any data to next view here
+        
+    }
+}
+
+- (IBAction)done:(UIStoryboardSegue *)segue {
+    NSLog(@"Popping back to this view controller!");
+    // reset UI elements etc here
+}
+
 //
 ////pass the team to the teammates view controller
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

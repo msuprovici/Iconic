@@ -444,6 +444,20 @@
     }
 
 }
+
+
+//if the player's xp is not high enough cell should not be selected
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // rows in section 0 should not be selectable
+//    if ( indexPath.section == 0 ) return nil;
+    
+    // first 3 rows in any section should not be selectable
+//    if ( indexPath.row <= 1 ) return nil;
+    
+    // By default, allow row to be selected
+    return indexPath;
+}
+
 //
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 //    NSString *roundType = [self categories:section];
