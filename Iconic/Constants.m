@@ -180,7 +180,7 @@ NSString *const kScore = @"score";
 
 NSString *const kScoreToday = @"scoretoday";
 NSString *const kScoreWeek = @"scoreweek"; //array of kScoreToday
-
+NSString *const kFinalScore = @"finalScore";
 
 #pragma mark - Team Matchups Class
 

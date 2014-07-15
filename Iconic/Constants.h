@@ -172,6 +172,7 @@ NSString *const kLeagues;
 NSString *const kScore;
 NSString *const kScoreToday;
 NSString *const kScoreWeek;
+NSString *const kFinalScore;
 
 #pragma mark - Team Matchups Class
 

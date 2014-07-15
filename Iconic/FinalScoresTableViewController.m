@@ -7,8 +7,12 @@
 //
 
 #import "FinalScoresTableViewController.h"
+#import "FinalScoresTableViewCell.h"
+#import "Constants.h"
 
 @interface FinalScoresTableViewController ()
+
+
 
 @end
 
@@ -22,10 +26,10 @@
         // Custom the table
         
         // The className to query on
-        self.parseClassName = @"Foo";
+        self.parseClassName = @"TeamName";
         
         // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @"text";
+        self.textKey = @"teams";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
@@ -42,8 +46,17 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)didReceiveMemoryWarning {
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
+}
+
+
+#pragma mark - UIViewController
+
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -53,27 +66,33 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidUnload {
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 
 #pragma mark - PFQueryTableViewController
 
@@ -89,12 +108,40 @@
     // This method is called every time objects are loaded from Parse via the PFQuery
 }
 
-/*
+
  // Override to customize what kind of query to perform on the class. The default is to query for
  // all objects ordered by createdAt descending.
  - (PFQuery *)queryForTable {
- PFQuery *query = [PFQuery queryWithClassName:self.className];
+ PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
  
+     
+     PFObject * user = [PFUser currentUser];
+     
+     
+     
+     PFQuery *teamPlayersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
+     [teamPlayersClass whereKey:kUserObjectIdString equalTo:user.objectId];
+     [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
+    
+     
+     
+     
+     //Query Team Classes, find the team matchups and save the team scores to memory
+     PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+     [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+
+     
+     
+     PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+     [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+
+     
+     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
+     
+     //hardcoded for now but this will change depending on the tournament
+     [queryTeamMatchupsClass whereKey:kRound containsString:@"1"];
+
+     
  // If Pull To Refresh is enabled, query against the network by default.
  if (self.pullToRefreshEnabled) {
  query.cachePolicy = kPFCachePolicyNetworkOnly;
@@ -108,29 +155,83 @@
  
  [query orderByDescending:@"createdAt"];
  
- return query;
+ return queryTeamMatchupsClass;
  }
- */
 
-/*
+
+
  // Override to customize the look of a cell representing an object. The default is to display
  // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
  // and the imageView being the imageKey in the object.
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
- static NSString *CellIdentifier = @"Cell";
- 
- PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
- if (cell == nil) {
- cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
- }
- 
- // Configure the cell
- cell.textLabel.text = [object objectForKey:self.textKey];
- cell.imageView.file = [object objectForKey:self.imageKey];
- 
- return cell;
- }
- */
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+    static NSString *CellIdentifier = @"FinalScoresCell";
+    
+    FinalScoresTableViewCell *cell = (FinalScoresTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[FinalScoresTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    
+    //always show my teams on the left side of the cell (myTeamName & myTeamScore)
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
+
+     for (int i = 0; i < myTeamsNames.count; i++) {
+         
+         //comparing the teamname string in memory to the *!kTeamMatchupClass!* class
+         if([myTeamsNames[i] isEqualToString: [object objectForKey:kHomeTeamName]])
+         {
+             
+                //retrieving homeTeamObject kTeamsTeam class from pointer in *kTeamMatchupClass* class
+                PFObject * homeTeamObject = [object objectForKey:kHomeTeam];
+                [homeTeamObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                   
+                    //use object properties in kTeamsTeam class
+                    cell.myTeamName.text = [object objectForKey:kTeams];
+                    cell.myTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kFinalScore]];
+                    
+                }];
+                
+                 
+                PFObject * awayTeamObject = [object objectForKey:kAwayTeam];
+                [awayTeamObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                    
+                    cell.vsTeamName.text = [object objectForKey:kTeams];
+                    cell.vsTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kFinalScore]];
+        
+                }];
+         }
+         
+         
+         //now reverse the cell data
+         if([myTeamsNames[i] isEqualToString: [object objectForKey:kAwayTeamName]])
+         {
+             
+             
+             PFObject * homeTeamObject = [object objectForKey:kHomeTeam];
+             [homeTeamObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                 
+                     cell.vsTeamName.text = [object objectForKey:kTeams];
+                     cell.vsTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kFinalScore]];
+                 
+             }];
+             
+             
+             PFObject * awayTeamObject = [object objectForKey:kAwayTeam];
+             [awayTeamObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                 
+                     cell.myTeamName.text = [object objectForKey:kTeams];
+                     cell.myTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kFinalScore]];
+                 
+
+             }];
+         }
+     }
+    
+    return cell;
+}
+
+
 
 /*
  // Override if you need to change the ordering of objects in the table.
@@ -198,66 +299,5 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
-
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

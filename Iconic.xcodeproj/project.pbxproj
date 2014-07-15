@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C01003C197449FB00024BDC /* FinalScoresTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C01003B197449FB00024BDC /* FinalScoresTableViewController.m */; };
+		5C01003F1974765A00024BDC /* FinalScoresTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C01003E1974765A00024BDC /* FinalScoresTableViewCell.m */; };
 		5C04C2F31940E63700E21ED4 /* CustomPFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C04C2F21940E63700E21ED4 /* CustomPFSignUpViewController.m */; };
 		5C04C2F61940E79400E21ED4 /* CustomPFLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C04C2F51940E79400E21ED4 /* CustomPFLogInViewController.m */; };
 		5C0FBDE318AD4BC900A0A122 /* LeagueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0FBDE218AD4BC900A0A122 /* LeagueCell.m */; };
@@ -161,6 +162,8 @@
 /* Begin PBXFileReference section */
 		5C01003A197449FB00024BDC /* FinalScoresTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalScoresTableViewController.h; sourceTree = "<group>"; };
 		5C01003B197449FB00024BDC /* FinalScoresTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalScoresTableViewController.m; sourceTree = "<group>"; };
+		5C01003D1974765A00024BDC /* FinalScoresTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalScoresTableViewCell.h; sourceTree = "<group>"; };
+		5C01003E1974765A00024BDC /* FinalScoresTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalScoresTableViewCell.m; sourceTree = "<group>"; };
 		5C04C2F11940E63700E21ED4 /* CustomPFSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPFSignUpViewController.h; sourceTree = "<group>"; };
 		5C04C2F21940E63700E21ED4 /* CustomPFSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPFSignUpViewController.m; sourceTree = "<group>"; };
 		5C04C2F41940E79300E21ED4 /* CustomPFLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPFLogInViewController.h; path = ../CustomPFLogInViewController.h; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 				5C356DA81959FF7E00ECF5C9 /* MyTeamsViewController.m */,
 				5C01003A197449FB00024BDC /* FinalScoresTableViewController.h */,
 				5C01003B197449FB00024BDC /* FinalScoresTableViewController.m */,
+				5C01003D1974765A00024BDC /* FinalScoresTableViewCell.h */,
+				5C01003E1974765A00024BDC /* FinalScoresTableViewCell.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1125,6 +1130,7 @@
 				5CD93829187B5047006CE08B /* MZTransition.m in Sources */,
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
 				5C62BF9A19382F3300B67FEB /* LogInPageContentViewController.m in Sources */,
+				5C01003F1974765A00024BDC /* FinalScoresTableViewCell.m in Sources */,
 				5C4EF982186CA7BD000E0E59 /* Constants.m in Sources */,
 				5C539A0C18679A37006676FA /* FollowingViewController.m in Sources */,
 				5C2C1CCF185E98A3006722D2 /* MenuViewController.m in Sources */,

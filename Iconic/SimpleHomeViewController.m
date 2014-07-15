@@ -305,8 +305,11 @@ static NSString *kImageKey = @"imageKey";
     });
 
    
+    //use the line bellow to test FinalScoresTableViewController
+//    [self performSegueWithIdentifier:@"FinalScores" sender:self];
 
-    
+    //comment this line out to test FinalScoresTableViewController
+    [self appLoadedFirstTimeThisWeek];
     
 //    [self.view setNeedsDisplay];
 
