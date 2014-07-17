@@ -49,6 +49,20 @@
 @property (nonatomic, retain) NSArray *teamMatchups;
 
 
+@property (strong, nonatomic) NSMutableArray * finalScoresStringsArray;
+
+@property (strong, nonatomic) NSString *myTeamNameString;
+@property (strong, nonatomic) NSString *myTeamScoreString;
+@property (strong, nonatomic) NSString *vsTeamNameString;
+@property (strong, nonatomic) NSString *vsTeamScoreString;
+
+@property (strong, nonatomic) NSString *myTeamNameAndScoreString;
+@property (strong, nonatomic) NSString *vsTeamNameAndScoreString;
+
+@property int myTeamScoreInt;
+@property int vsTeamScoreInt;
+
+
 + (id)sharedManager;
 
 //convert steps to points and store here
@@ -86,6 +100,9 @@
 -(NSNumber*)calculatePointsToReachCurrentLevel:(float)level;
 
 -(void)scheduleDailySummaryLocalNotification;
+
+-(void)createFinalTeamScoresNotificationBody;
+-(void)scheduleWeekleyFinalScoresLocalNotification;
 
 -(void)findPastWeekleySteps;
 

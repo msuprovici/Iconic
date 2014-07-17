@@ -65,6 +65,8 @@ NSString *const STEPS_KEY = @"steps";
 NSString *const kMyStepsWeekArray = @"MyWeekleySteps";
 
 
+//final team scores notficiation text
+NSString *const kMyFinalScoresNotificationText = @"finalScoresNotificationText";
 
 #pragma mark - Launch URLs
 

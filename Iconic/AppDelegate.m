@@ -86,8 +86,8 @@
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
 //      [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [calculatePointsClass scheduleDailySummaryLocalNotification];
-
-    
+//    [calculatePointsClass scheduleWeekleyFinalScoresLocalNotification];
+//    [calculatePointsClass createFinalTeamScoresNotificationBody];
     // Handle launching from a notification
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     
@@ -256,6 +256,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
     //If the day of the week is Sunday, change the bool "hasRunAppThisWeekKey"  so that we can display FinalScoresTableViewController tomorrow or the next time the user opens the app next week.
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
@@ -264,8 +266,15 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     NSInteger weekday = [weekdayComponents weekday];
     //Sunday = 1
     if (weekday == 1) {
-        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        
         [defaults setBool:NO forKey:@"hasRunAppThisWeekKey"];
+        [defaults synchronize];
+        
+        //schedule notification
+        
+        CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+        
+        [calculatePointsClass scheduleWeekleyFinalScoresLocalNotification];
     }
     
 //    if([userInfo[@"aps"][@"content-available"] intValue]== 1)
@@ -273,6 +282,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
 //    if([userInfo[@"content-available"] intValue]== 1) //it's the silent notification
 //    {
     
+    
+    
+   
     
     //fetch the team & player stats for today
     NSDate *fetchStart = [NSDate date];
@@ -311,6 +323,17 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
 
         
         return;
+    
+    //reset mysteps for the next day to 0 after 1 minute (12:00 am)
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 60 * NSEC_PER_SEC),
+                   dispatch_get_main_queue(), ^{
+                       NSLog(@"mysteps were reset to 0");
+                       
+                       [defaults setInteger:0   forKey:kMyFetchedStepsToday];
+                       [defaults synchronize];
+                   });
+    
+    
 }
 
 #pragma mark local notification

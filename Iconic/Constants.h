@@ -64,6 +64,8 @@ extern NSString *const kArrayOfLeagueNames;
 //nuber of teams
 extern NSString *const kNumberOfTeams;
 
+//final scores notification text
+extern NSString *const kMyFinalScoresNotificationText;
 
 
 //step counting

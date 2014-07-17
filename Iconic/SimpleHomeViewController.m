@@ -302,6 +302,8 @@ static NSString *kImageKey = @"imageKey";
         [calculatePointsClass retrieveFromParse];
         [calculatePointsClass incrementPlayerPointsInBackground];
         [calculatePointsClass findPastWeekleySteps];
+        
+        
     });
 
    
@@ -754,7 +756,7 @@ static NSString *kImageKey = @"imageKey";
 }
 
 - (IBAction)done:(UIStoryboardSegue *)segue {
-    NSLog(@"Popping back to this view controller!");
+    NSLog(@"Popping back to SimpleHomeViewController");
     // reset UI elements etc here
 }
 
