@@ -84,10 +84,9 @@
     //local notification
     
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-//      [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [calculatePointsClass scheduleDailySummaryLocalNotification];
-//    [calculatePointsClass scheduleWeekleyFinalScoresLocalNotification];
-//    [calculatePointsClass createFinalTeamScoresNotificationBody];
+
     // Handle launching from a notification
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     
@@ -208,7 +207,7 @@
         
         [calculatePoints incrementPlayerPointsInBackground];
         [calculatePoints retrieveFromParse];
-        [calculatePoints getYesterdaysPointsAndSteps];
+//        [calculatePoints getYesterdaysPointsAndSteps];
     
 //    }];
     NSLog(@"Background fetch intialized");
@@ -256,8 +255,12 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
+    //reset mysteps at 11:58 pm
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    
+//    [defaults setInteger:0   forKey:kMyFetchedStepsToday];
+//    [defaults synchronize];
+
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     //If the day of the week is Sunday, change the bool "hasRunAppThisWeekKey"  so that we can display FinalScoresTableViewController tomorrow or the next time the user opens the app next week.
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
@@ -273,8 +276,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         //schedule notification
         
         CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-        
-        [calculatePointsClass scheduleWeekleyFinalScoresLocalNotification];
+        [calculatePointsClass  createFinalTeamScoresNotificationBody];
+        [calculatePointsClass createFinalTeamScoresNotificationBody];
     }
     
 //    if([userInfo[@"aps"][@"content-available"] intValue]== 1)
@@ -282,9 +285,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
 //    if([userInfo[@"content-available"] intValue]== 1) //it's the silent notification
 //    {
     
-    
-    
-   
     
     //fetch the team & player stats for today
     NSDate *fetchStart = [NSDate date];
@@ -300,23 +300,19 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     [calculatePoints incrementPlayerPointsInBackground];
     [calculatePoints retrieveFromParse];
     
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
-//                   {
-//                       NSLog(@"Background Fetch Parse methods executed");
-//                       //send and retrieve data from Parse
-//                       [calculatePoints incrementPlayerPointsInBackground];
-//                       [calculatePoints retrieveFromParse];
-//                   });
-//    //send and retrieve data from Parse
-//    [calculatePoints incrementPlayerPointsInBackground];
-//    [calculatePoints retrieveFromParse];
-//    [calculatePoints getYesterdaysPointsAndSteps];
+
     
     NSLog(@"Background Fetch From Push intialized");
     
     //buying Parse 20 seconds to perform retrieve and save
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
                    dispatch_get_main_queue(), ^{
+                       
+                       
+                       [defaults setInteger:0   forKey:kMyFetchedStepsToday];
+                       [defaults synchronize];
+
+                       
                         NSLog(@"Background Fetch retrieve and save");
                        handler(UIBackgroundFetchResultNewData);
                    });
@@ -325,13 +321,18 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         return;
     
     //reset mysteps for the next day to 0 after 1 minute (12:00 am)
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 60 * NSEC_PER_SEC),
-                   dispatch_get_main_queue(), ^{
-                       NSLog(@"mysteps were reset to 0");
-                       
-                       [defaults setInteger:0   forKey:kMyFetchedStepsToday];
-                       [defaults synchronize];
-                   });
+    
+//    [defaults setInteger:0   forKey:kMyFetchedStepsToday];
+//    [defaults synchronize];
+
+    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 60 * NSEC_PER_SEC),
+//                   dispatch_get_main_queue(), ^{
+//                       NSLog(@"mysteps were reset to 0");
+//                       
+//                       [defaults setInteger:0   forKey:kMyFetchedStepsToday];
+//                       [defaults synchronize];
+//                   });
     
     
 }

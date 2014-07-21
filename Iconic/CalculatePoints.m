@@ -474,7 +474,8 @@
             [myRetrievedPoints setInteger:0   forKey:kMyFetchedStepsToday];
             
             [myRetrievedPoints synchronize];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            self.myStepsDeltaValue = 0;
             
             
             //save the player's points for today to the server
@@ -1243,81 +1244,12 @@
 }
 
 
--(void)scheduleWeekleyFinalScoresLocalNotification
-{
-    //create notification body
-    [self createFinalTeamScoresNotificationBody];
-    
-    //1st cancel previous notificaitons
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    
-    //then re-create & schedule the notifcation
-    NSDate *now = [NSDate date];
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
-    
-    
-    
-    //set time for 10am
-    [components setHour:11];
-    [components setMinute:58];
-    [components setSecond:0];
-    
-    //Alert Body
-    
-    //create local notification
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    
-    
-    if (localNotification)
-    {
-        
-        //set time
-        localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        localNotification.fireDate = [cal dateFromComponents:components];
-        
-        //repeate daily
-        localNotification.repeatInterval = NSCalendarUnitDay;
-        localNotification.soundName = UILocalNotificationDefaultSoundName;
-        
-        
-        
 
-        
-        
-        
-        //add all the contents in the finalScoresStringsArray to the alert body
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *notificationBody = [defaults objectForKey:kMyFinalScoresNotificationText];
-       
-        localNotification.alertBody = notificationBody;
-
-        
-        //used in UIAlert button or 'slide to unlock...' slider in place of unlock
-        localNotification.alertAction = @"Final Scores";
-        
-        //increase badge number
-        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
-        
-//        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        
-        //if the user has not opened the app this week...
-         if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == NO)
-         {
-        //schedule the local notfication
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-         }
-        
-    }
-}
 
 -(void)createFinalTeamScoresNotificationBody
 {
     
-//    self.myTeamNameString = [[NSString alloc]init];
-//    self.myTeamScoreString = [[NSString alloc]init];
-//    self.vsTeamNameString = [[NSString alloc]init];
-//    self.vsTeamScoreString = [[NSString alloc]init];
+
 
     self.finalScoresStringsArray = [[NSMutableArray alloc]init];
     
@@ -1381,27 +1313,6 @@
                     int  homeTeamScoreInt = (int)[homeTeamObject objectForKey:kFinalScore];
                     int  awayTeamScoreInt = (int)[awayTeamObject objectForKey:kFinalScore];
                     
-//                    [homeTeamObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//                        //use object properties in kTeamsTeam class
-//                        self.myTeamNameString = [object objectForKey:kTeams];
-//                        
-//                        self.myTeamScoreString = [NSString stringWithFormat:@"%@",[object objectForKey:kFinalScore]];
-//                        self.myTeamScoreInt = (int)[object objectForKey:kFinalScore];
-//                        self.myTeamNameAndScoreString = [NSString stringWithFormat:@"Win: %@: %@",self.myTeamNameString,self.myTeamScoreString];
-//                        NSLog(@"myTeamNameAndScoreString: %@",  self.myTeamNameAndScoreString);
-//
-//
-//
-//                    }];
-//                    PFObject * awayTeamObject = [object objectForKey:kAwayTeam];
-//                    [awayTeamObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-//                        
-//                        self.vsTeamNameString = [object objectForKey:kTeams];
-//                        self.vsTeamScoreString = [NSString stringWithFormat:@"%@",[object objectForKey:kFinalScore]];
-//                        self.vsTeamScoreInt = (int)[object objectForKey:kFinalScore];
-//                        self.vsTeamNameAndScoreString = [NSString stringWithFormat:@"Win: %@: %@",self.vsTeamNameString,self.vsTeamScoreString];
-//                                                NSLog(@"vsTeamNameAndScoreString: %@",  self.vsTeamNameAndScoreString);
-//                    }];
                     
                     
                                         
@@ -1441,7 +1352,7 @@
                 
                 
                 NSString *finalScoreSummaryString;
-//                finalScoreSummaryString = [NSString stringWithFormat:@"Win: %@: %@ %@: %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
+
 //                NSLog(@"finalScoreSummaryString: %@",  finalScoreSummaryString);
                 if (self.myTeamScoreInt > self.vsTeamScoreInt) {
                     
@@ -1474,17 +1385,14 @@
                 
                 //create local notification text from finalScoresStringsArray
                 NSString * finalScoresNotificationText = [[self.finalScoresStringsArray valueForKey:@"description"] componentsJoinedByString:@"; "];
-                NSLog(@"finalScoresNotificationText: %@",  finalScoresNotificationText);
+//                NSLog(@"finalScoresNotificationText: %@",  finalScoresNotificationText);
                 
-                //save to memory
-                NSUserDefaults *defaluts = [NSUserDefaults standardUserDefaults];
-                [defaluts setObject:finalScoresNotificationText forKey:kMyFinalScoresNotificationText];
-                [defaluts synchronize];
+                [self scheduleWeekleyFinalScoresLocalNotification: finalScoresNotificationText];
                 
 
-                            }
+            }
             
-                   }
+        }
         else
         {
             NSLog(@"createFinalTeamScoresNotificationBody pfquerry failed");
@@ -1492,9 +1400,73 @@
         }
     }];
     
-   
     
-//    NSLog(@"finalScoresStringsArray: %@",  self.finalScoresStringsArray);
+ 
+}
+
+-(NSString*)scheduleWeekleyFinalScoresLocalNotification:(NSString*)notificationBody
+{
+    //    //create notification body
+    //    [self createFinalTeamScoresNotificationBody];
+    
+    //1st cancel previous notificaitons
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    //then re-create & schedule the notifcation
+    NSDate *now = [NSDate date];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
+    
+    
+    
+    //set time for 10am
+    [components setHour:10];
+    [components setMinute:0];
+    [components setSecond:0];
+    
+    //Alert Body
+    
+    //create local notification
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    
+    
+    if (localNotification)
+    {
+        
+        //set time
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.fireDate = [cal dateFromComponents:components];
+        
+        //repeate daily
+        localNotification.repeatInterval = NSCalendarUnitDay;
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        
+        
+        
+        NSLog(@"notificationBody: %@",   notificationBody);
+        
+        
+        localNotification.alertBody = notificationBody;
+        
+        
+        //used in UIAlert button or 'slide to unlock...' slider in place of unlock
+        localNotification.alertAction = @"Final Scores";
+        
+        //increase badge number
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        
+        
+        //if the user has not opened the app this week...
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == NO)
+        {
+            //schedule the local notfication
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        }
+        
+    }
+    
+    return notificationBody;
 }
 
 
