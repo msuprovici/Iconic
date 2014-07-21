@@ -1351,32 +1351,33 @@
                 }
                 
                 
-                NSString *finalScoreSummaryString;
+                NSString *finalScoreSummaryString= [NSString stringWithFormat:@"%@ %@ - %@ %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
+;
 
-//                NSLog(@"finalScoreSummaryString: %@",  finalScoreSummaryString);
-                if (self.myTeamScoreInt > self.vsTeamScoreInt) {
-                    
-                    finalScoreSummaryString = [NSString stringWithFormat:@"Win: %@: %@ %@: %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
-                }
-                
-                else if(self.myTeamScoreInt < self.vsTeamScoreInt)
-                
-                {
-                    
-                    finalScoreSummaryString = [NSString stringWithFormat:@"Loss: %@: %@ %@: %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
-                
-                }
-                
-                //!*bug here - shows win as tie*!
-                else if(self.myTeamScoreInt == self.vsTeamScoreInt)
-                
-                {
-                
-                    finalScoreSummaryString = [NSString stringWithFormat:@"Tie: %@: %@ %@: %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
-                
-                }
-//                 NSLog(@"finalScoreSummaryString: %@",  finalScoreSummaryString);
-                
+////                NSLog(@"finalScoreSummaryString: %@",  finalScoreSummaryString);
+//                if (self.myTeamScoreInt > self.vsTeamScoreInt) {
+//                    
+//                    finalScoreSummaryString = [NSString stringWithFormat:@"Win: %@: %@ %@: %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
+//                }
+//                
+//                else if(self.myTeamScoreInt < self.vsTeamScoreInt)
+//                
+//                {
+//                    
+//                    finalScoreSummaryString = [NSString stringWithFormat:@"Loss: %@: %@ %@: %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
+//                
+//                }
+//                
+//                //!*bug here - shows win as tie*!
+//                else if(self.myTeamScoreInt == self.vsTeamScoreInt)
+//                
+//                {
+//                
+//                    finalScoreSummaryString = [NSString stringWithFormat:@"Tie: %@: %@ %@: %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
+//                
+//                }
+////                 NSLog(@"finalScoreSummaryString: %@",  finalScoreSummaryString);
+//                
                 
                 //add the string finalScoresStringsArray
                 [self.finalScoresStringsArray addObject:finalScoreSummaryString];
@@ -1386,8 +1387,11 @@
                 //create local notification text from finalScoresStringsArray
                 NSString * finalScoresNotificationText = [[self.finalScoresStringsArray valueForKey:@"description"] componentsJoinedByString:@"; "];
 //                NSLog(@"finalScoresNotificationText: %@",  finalScoresNotificationText);
+                NSString * notificationBeginningText = @"Final:";
                 
-                [self scheduleWeekleyFinalScoresLocalNotification: finalScoresNotificationText];
+                NSString *notificationBody = [NSString stringWithFormat:@"%@ %@", notificationBeginningText, finalScoresNotificationText];
+                NSLog(@"notificationBody: %@",  notificationBody);
+                [self scheduleWeekleyFinalScoresLocalNotification: notificationBody];
                 
 
             }
