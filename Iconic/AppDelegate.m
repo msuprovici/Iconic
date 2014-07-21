@@ -277,7 +277,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         
         CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
         [calculatePointsClass  createFinalTeamScoresNotificationBody];
-        [calculatePointsClass createFinalTeamScoresNotificationBody];
+        
     }
     
 //    if([userInfo[@"aps"][@"content-available"] intValue]== 1)
@@ -319,21 +319,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
 
         
         return;
-    
-    //reset mysteps for the next day to 0 after 1 minute (12:00 am)
-    
-//    [defaults setInteger:0   forKey:kMyFetchedStepsToday];
-//    [defaults synchronize];
-
-    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 60 * NSEC_PER_SEC),
-//                   dispatch_get_main_queue(), ^{
-//                       NSLog(@"mysteps were reset to 0");
-//                       
-//                       [defaults setInteger:0   forKey:kMyFetchedStepsToday];
-//                       [defaults synchronize];
-//                   });
-    
     
 }
 

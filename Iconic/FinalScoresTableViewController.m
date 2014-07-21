@@ -140,7 +140,8 @@
      
      //hardcoded for now but this will change depending on the tournament
      [queryTeamMatchupsClass whereKey:kRound containsString:@"1"];
-
+     [queryTeamMatchupsClass includeKey:kHomeTeam];
+     [queryTeamMatchupsClass includeKey:kAwayTeam];
      
  // If Pull To Refresh is enabled, query against the network by default.
  if (self.pullToRefreshEnabled) {
@@ -178,28 +179,30 @@
 
      for (int i = 0; i < myTeamsNames.count; i++) {
          
+         
+         PFObject * homeTeamObject = [object objectForKey:kHomeTeam];
+         PFObject * awayTeamObject = [object objectForKey:kAwayTeam];
+         
+         NSString * homeTeamNameString = [homeTeamObject objectForKey:kTeams];
+         NSString * awayTeamNameString = [awayTeamObject objectForKey:kTeams];
+         
+         NSString * homeTeamScoreString = [homeTeamObject objectForKey:kFinalScore];
+         NSString * awayTeamScoreString = [awayTeamObject objectForKey:kFinalScore];
+
+         
          //comparing the teamname string in memory to the *!kTeamMatchupClass!* class
          if([myTeamsNames[i] isEqualToString: [object objectForKey:kHomeTeamName]])
          {
              
-                //retrieving homeTeamObject kTeamsTeam class from pointer in *kTeamMatchupClass* class
-                PFObject * homeTeamObject = [object objectForKey:kHomeTeam];
-                [homeTeamObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                   
-                    //use object properties in kTeamsTeam class
-                    cell.myTeamName.text = [object objectForKey:kTeams];
-                    cell.myTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kFinalScore]];
-                    
-                }];
-                
-                 
-                PFObject * awayTeamObject = [object objectForKey:kAwayTeam];
-                [awayTeamObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                    
-                    cell.vsTeamName.text = [object objectForKey:kTeams];
-                    cell.vsTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kFinalScore]];
-        
-                }];
+             
+             //use object properties in kTeamsTeam class
+             cell.myTeamName.text = [NSString stringWithFormat:@"%@",homeTeamNameString];
+             cell.myTeamScore.text = [NSString stringWithFormat:@"%@",homeTeamScoreString];
+             
+             
+             cell.vsTeamName.text = [NSString stringWithFormat:@"%@",awayTeamNameString];
+             cell.vsTeamScore.text = [NSString stringWithFormat:@"%@",awayTeamScoreString];
+           
          }
          
          
@@ -207,24 +210,13 @@
          if([myTeamsNames[i] isEqualToString: [object objectForKey:kAwayTeamName]])
          {
              
-             
-             PFObject * homeTeamObject = [object objectForKey:kHomeTeam];
-             [homeTeamObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                 
-                     cell.vsTeamName.text = [object objectForKey:kTeams];
-                     cell.vsTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kFinalScore]];
-                 
-             }];
+             cell.vsTeamName.text = [NSString stringWithFormat:@"%@",homeTeamNameString];
+             cell.vsTeamScore.text = [NSString stringWithFormat:@"%@",homeTeamScoreString];
              
              
-             PFObject * awayTeamObject = [object objectForKey:kAwayTeam];
-             [awayTeamObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                 
-                     cell.myTeamName.text = [object objectForKey:kTeams];
-                     cell.myTeamScore.text = [NSString stringWithFormat:@"%@",[object objectForKey:kFinalScore]];
-                 
-
-             }];
+             cell.myTeamName.text = [NSString stringWithFormat:@"%@",awayTeamNameString];
+             cell.myTeamScore.text = [NSString stringWithFormat:@"%@",awayTeamScoreString];
+             
          }
      }
     
