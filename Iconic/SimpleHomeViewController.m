@@ -312,7 +312,7 @@ static NSString *kImageKey = @"imageKey";
 
     
     /*comment this line out to test Final Scores view controller*/
-//    [self performSegueWithIdentifier:@"FinalScores" sender:self];
+   //[self performSegueWithIdentifier:@"FinalScores" sender:self];
     
     //show FinalScoresTableViewController if this is the 1st time a user opens the app this week
     [self appLoadedFirstTimeThisWeek];
