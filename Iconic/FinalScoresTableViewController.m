@@ -59,6 +59,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //remove separatorlines in between rows
+    self.tableView.separatorColor=[UIColor clearColor];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
