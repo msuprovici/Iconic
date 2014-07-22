@@ -324,6 +324,23 @@
 //    [self.MyTeamScore  countFrom:pointsAfterPlayerScored to:self.myTeamPoints withDuration:1.5];
     [self.MyTeamScore  countFrom:self.myTeamPoints to:pointsAfterPlayerScored withDuration:1.5];
     
+    
+    if (self.myStepsGained > 0) {
+        
+        //redraw barChart
+        PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 220)];
+        [barChart setYValues:self.teamPoints];
+        
+        [barChart setStrokeColors:@[PNWeiboColor, PNDarkBlue]];
+        [barChart setBarBackgroundColor:[UIColor clearColor]];
+        //    [barChart setStrokeColor:PNLightBlue];
+        [barChart strokeChart];
+        
+        [self.teamBarChart addSubview:barChart];
+
+    }
+    
+    
 }
 
 
