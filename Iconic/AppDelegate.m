@@ -260,7 +260,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
 //    [defaults setInteger:0   forKey:kMyFetchedStepsToday];
 //    [defaults synchronize];
 
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     //If the day of the week is Sunday, change the bool "hasRunAppThisWeekKey"  so that we can display FinalScoresTableViewController tomorrow or the next time the user opens the app next week.
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
