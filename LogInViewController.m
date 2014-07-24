@@ -32,6 +32,10 @@
 {
     [super viewDidLoad];
     
+    
+    
+    //[[UIApplication sharedApplication] setStatusBarHidden:YES];
+    
     self.currentIndex = 0;
     
     self.Login.hidden = YES;
@@ -72,6 +76,11 @@
    
         
 
+}
+
+//setting status bar manually 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning

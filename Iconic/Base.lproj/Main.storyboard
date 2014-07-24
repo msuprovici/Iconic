@@ -2146,6 +2146,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="Main" definesPresentationContext="YES" id="sEI-Ya-ylU" customClass="TabBarViewController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="IU5-dq-xHT"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="zEj-zi-NgI">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
