@@ -183,7 +183,7 @@
     // loop through all of the submitted data
     for (id key in info) {
         NSString *field = [info objectForKey:key];
-        if (!field || !field.length) { // check completion
+        if (!field || field.length < 3) { // check completion
             informationComplete = NO;
             break;
         }
@@ -191,7 +191,7 @@
     
     // Display an alert if a field wasn't completed
     if (!informationComplete) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Please fill out all of the information.  3 charachter minimum for Username/Password/Email", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
     }
     
     return informationComplete;
