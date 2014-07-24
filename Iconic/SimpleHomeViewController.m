@@ -129,7 +129,12 @@ static NSString *kImageKey = @"imageKey";
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
     
+    
+     [self refreshHomeView];
+    
+    
     [self setReceivedNotification:NO];
+   
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveTeamNotification:)
@@ -166,7 +171,7 @@ static NSString *kImageKey = @"imageKey";
     
     
     
-       [self refreshHomeView];
+       
     
 //    [self showChart];
 //    [self showMyTeamsView];
@@ -295,6 +300,15 @@ static NSString *kImageKey = @"imageKey";
     
 //    [self.myTeamsPageController didMoveToParentViewController:self];
     
+      /*comment this line out to test Final Scores view controller*/
+   //[self performSegueWithIdentifier:@"FinalScores" sender:self];
+    
+    //show FinalScoresTableViewController if this is the 1st time a user opens the app this week
+    [self appLoadedFirstTimeThisWeek];
+    
+    //waiting 10 seconds before we reach out to the network so that we don't lock up the UI when viewDidLoad is called
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC),
+                   dispatch_get_main_queue(), ^{
     //perform server updates methods on a separate thread so that we don't lock up the UI
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
     {
@@ -302,21 +316,16 @@ static NSString *kImageKey = @"imageKey";
         [calculatePointsClass retrieveFromParse];
         [calculatePointsClass incrementPlayerPointsInBackground];
         [calculatePointsClass findPastWeekleySteps];
-        
+//        NSLog(@"Calling this in 10 seconds");
         
     });
-
+    });
    
     //use the line bellow to test FinalScoresTableViewController
 //    [self performSegueWithIdentifier:@"FinalScores" sender:self];
 
     
-    /*comment this line out to test Final Scores view controller*/
-   //[self performSegueWithIdentifier:@"FinalScores" sender:self];
-    
-    //show FinalScoresTableViewController if this is the 1st time a user opens the app this week
-    [self appLoadedFirstTimeThisWeek];
-    
+  
 //    [self.view setNeedsDisplay];
 
 }
