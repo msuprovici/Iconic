@@ -34,7 +34,7 @@
     
     //set backbround color
     [self.signUpView setBackgroundColor: [UIColor whiteColor]];
-    [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bluesquare.jpeg"]]];
+    [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconicLogoBlack.png"]]];
     
     
     // Remove text shadow
@@ -49,22 +49,22 @@
     
     //set button text
     self.signUpView.signUpButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
-//    [self.signUpView.signUpButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.signUpView.signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     
     // Set field text color
     self.signUpView.usernameField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     self.signUpView.usernameField.textColor = PNWeiboColor;
-    [self.signUpView.usernameField setBackgroundColor:PNCleanGrey];
+    [self.signUpView.usernameField setBackgroundColor:PNHealYellow];
     
     self.signUpView.passwordField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     [self.signUpView.passwordField setTextColor:PNWeiboColor];
-    [self.signUpView.passwordField setBackgroundColor:PNCleanGrey];
+    [self.signUpView.passwordField setBackgroundColor:PNHealYellow];
     
     
     self.signUpView.emailField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     [self.signUpView.emailField setTextColor:PNWeiboColor];
-    [self.signUpView.emailField setBackgroundColor:PNCleanGrey];
+    [self.signUpView.emailField setBackgroundColor:PNHealYellow];
 
 
     

@@ -31,7 +31,7 @@
     
     //customize log-in.  for more options go here https://parse.com/tutorials/login-and-signup-views
     [self.logInView setBackgroundColor: [UIColor whiteColor]];
-    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bluesquare.jpeg"]]];
+    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconicLogoBlack.png"]]];
     
     // Remove text shadow
     CALayer *layer = self.logInView.usernameField.layer;
@@ -45,17 +45,17 @@
     
     //set button text
     self.logInView.logInButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
-    [self.logInView.logInButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.logInView.logInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     
     // Set field text color
     self.logInView.usernameField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     [self.logInView.usernameField setTextColor:PNWeiboColor];
-     [self.logInView.usernameField setBackgroundColor:PNCleanGrey];
+     [self.logInView.usernameField setBackgroundColor:PNHealYellow];
     
     self.logInView.passwordField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     [self.logInView.passwordField setTextColor:PNWeiboColor];
-    [self.logInView.passwordField setBackgroundColor:PNCleanGrey];
+    [self.logInView.passwordField setBackgroundColor:PNHealYellow];
     
     self.logInView.passwordForgottenButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
     [self.logInView.passwordForgottenButton.titleLabel setTextColor:[UIColor colorWithRed:135.0f/255.0f green:118.0f/255.0f blue:92.0f/255.0f alpha:1.0]];
