@@ -27,8 +27,8 @@ UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
 
 
-@property (strong, nonatomic) IBOutlet UILabel *mainTitle;
-@property (strong, nonatomic) IBOutlet UILabel *subTitle;
+//@property (strong, nonatomic) IBOutlet UILabel *mainTitle;
+//@property (strong, nonatomic) IBOutlet UILabel *subTitle;
 
 @property (strong, nonatomic) NSArray *pageTitles;
 @property (strong, nonatomic) NSArray *pageSubTitles;

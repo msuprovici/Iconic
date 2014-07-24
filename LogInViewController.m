@@ -38,12 +38,12 @@
     self.SignUp.hidden = YES;
     
     // Create the data model
-    _pageTitles = @[@"Title 1", @"Title 2", @"Title 3"];
-    _pageSubTitles = @[@"Subtitle 1", @"Subtitle 2", @"Subtitle 3"];
-    _pageImages = @[@"Walkthrough1.png", @"Walkthrough2.png", @"Walkthrough3.png"];
+//    _pageTitles = @[@"Title 1", @"Title 2", @"Title 3"];
+//    _pageSubTitles = @[@"Subtitle 1", @"Subtitle 2", @"Subtitle 3"];
+    _pageImages = @[@"IntroScreen1.png", @"IntroScreen2.png", @"IntroScreen3.png"];
     
-    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex: 0]];
-    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex: 0]];
+//    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex: 0]];
+//    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex: 0]];
 
 
     
@@ -226,8 +226,8 @@
     
     [self.pageControl setCurrentPage:self.currentIndex];
     
-    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex:self.currentIndex]];
-    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex:self.currentIndex]];
+//    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex:self.currentIndex]];
+//    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex:self.currentIndex]];
    
     if (self.currentIndex == 2) {
         
@@ -283,8 +283,8 @@
     }
 
     
-    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex: page]];
-    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex: page]];
+//    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex: page]];
+//    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex: page]];
     
 
 }

@@ -59,9 +59,6 @@
 		5C5CBDD519253DB300C2C328 /* LeaguesTeamsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5C5CBDD319253DB300C2C328 /* LeaguesTeamsModel.xcdatamodeld */; };
 		5C5CBDD71925484D00C2C328 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5CBDD61925484D00C2C328 /* CoreData.framework */; };
 		5C62BF9A19382F3300B67FEB /* LogInPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C62BF9919382F3300B67FEB /* LogInPageContentViewController.m */; };
-		5C62BFAC193D8DAB00B67FEB /* Walkthrough3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C62BFA9193D8DAB00B67FEB /* Walkthrough3.png */; };
-		5C62BFAD193D8DAB00B67FEB /* Walkthrough2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C62BFAA193D8DAB00B67FEB /* Walkthrough2.png */; };
-		5C62BFAE193D8DAB00B67FEB /* Walkthrough1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C62BFAB193D8DAB00B67FEB /* Walkthrough1.png */; };
 		5C6A6EE018A47BE40044269F /* TeamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A6EDF18A47BE40044269F /* TeamCell.m */; };
 		5C726C08196B1433007C4F4E /* AccountMyTeamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C726C07196B1433007C4F4E /* AccountMyTeamCell.m */; };
 		5C726C0B196B2BDE007C4F4E /* PlayerProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C726C0A196B2BDE007C4F4E /* PlayerProfileViewController.m */; };
@@ -82,6 +79,9 @@
 		5C78DA66189997CA00CBA29B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C78DA65189997C900CBA29B /* libsqlite3.dylib */; };
 		5C78DA691899B61700CBA29B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C78DA681899B61700CBA29B /* MBProgressHUD.m */; };
 		5C78DA711899B91400CBA29B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C78DA6F1899B91400CBA29B /* Reachability.m */; };
+		5C88F67019809D11001D5851 /* IntroScreen3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C88F66F19809D11001D5851 /* IntroScreen3.png */; };
+		5C88F67219809EBA001D5851 /* IntroScreen1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C88F67119809EBA001D5851 /* IntroScreen1.png */; };
+		5C88F6741980A240001D5851 /* IntroScreen2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C88F6731980A240001D5851 /* IntroScreen2.png */; };
 		5C8B0476189CAE3F000AD0DF /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B0475189CAE3F000AD0DF /* AccountViewController.m */; };
 		5C8B047A189CAF8E000AD0DF /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8B0479189CAF8E000AD0DF /* TabBarViewController.m */; };
 		5C8BB5B21884627000E89ADF /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B11884627000E89ADF /* TimelineViewController.m */; };
@@ -253,9 +253,6 @@
 		5C5CBDD61925484D00C2C328 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		5C62BF9819382F3300B67FEB /* LogInPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInPageContentViewController.h; sourceTree = "<group>"; };
 		5C62BF9919382F3300B67FEB /* LogInPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInPageContentViewController.m; sourceTree = "<group>"; };
-		5C62BFA9193D8DAB00B67FEB /* Walkthrough3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walkthrough3.png; sourceTree = "<group>"; };
-		5C62BFAA193D8DAB00B67FEB /* Walkthrough2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walkthrough2.png; sourceTree = "<group>"; };
-		5C62BFAB193D8DAB00B67FEB /* Walkthrough1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Walkthrough1.png; sourceTree = "<group>"; };
 		5C6A6EDE18A47BE40044269F /* TeamCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamCell.h; sourceTree = "<group>"; };
 		5C6A6EDF18A47BE40044269F /* TeamCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCell.m; sourceTree = "<group>"; };
 		5C726C06196B1433007C4F4E /* AccountMyTeamCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountMyTeamCell.h; sourceTree = "<group>"; };
@@ -284,6 +281,9 @@
 		5C78DA681899B61700CBA29B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5C78DA6F1899B91400CBA29B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		5C78DA701899B91400CBA29B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		5C88F66F19809D11001D5851 /* IntroScreen3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroScreen3.png; sourceTree = "<group>"; };
+		5C88F67119809EBA001D5851 /* IntroScreen1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroScreen1.png; sourceTree = "<group>"; };
+		5C88F6731980A240001D5851 /* IntroScreen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroScreen2.png; sourceTree = "<group>"; };
 		5C8B0474189CAE3F000AD0DF /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		5C8B0475189CAE3F000AD0DF /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		5C8B0478189CAF8E000AD0DF /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
@@ -480,9 +480,9 @@
 				5C430F1D18D7A66300D932AA /* points_background_team_screen_iconic_red.png */,
 				5C430F1E18D7A66300D932AA /* points_background_team_screen_iconic.png */,
 				5C430F1F18D7A66300D932AA /* timer_background_iconic.png */,
-				5C62BFA9193D8DAB00B67FEB /* Walkthrough3.png */,
-				5C62BFAA193D8DAB00B67FEB /* Walkthrough2.png */,
-				5C62BFAB193D8DAB00B67FEB /* Walkthrough1.png */,
+				5C88F67119809EBA001D5851 /* IntroScreen1.png */,
+				5C88F6731980A240001D5851 /* IntroScreen2.png */,
+				5C88F66F19809D11001D5851 /* IntroScreen3.png */,
 			);
 			name = Resources;
 			path = Iconic;
@@ -1079,15 +1079,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C62BFAE193D8DAB00B67FEB /* Walkthrough1.png in Resources */,
 				5C78DA4E189872BF00CBA29B /* activity_comment_icon_green-01.png in Resources */,
 				5C539A001863D9A1006676FA /* empty_avatar.png in Resources */,
 				5CA3D1A61831DF51006C7932 /* Images.xcassets in Resources */,
-				5C62BFAD193D8DAB00B67FEB /* Walkthrough2.png in Resources */,
 				5C5399FB1862432C006676FA /* bluesquare.jpeg in Resources */,
 				5C78DA4F189872BF00CBA29B /* activity_speaker_icon_green-01.png in Resources */,
 				5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */,
-				5C62BFAC193D8DAB00B67FEB /* Walkthrough3.png in Resources */,
+				5C88F6741980A240001D5851 /* IntroScreen2.png in Resources */,
+				5C88F67219809EBA001D5851 /* IntroScreen1.png in Resources */,
+				5C88F67019809D11001D5851 /* IntroScreen3.png in Resources */,
 				5CA3D1951831DF51006C7932 /* InfoPlist.strings in Resources */,
 				5C430F2118D7A66300D932AA /* chart_background_iconic_3@2x.png in Resources */,
 				5C2C1CC7185E9040006722D2 /* reveal-icon@2x.png in Resources */,
