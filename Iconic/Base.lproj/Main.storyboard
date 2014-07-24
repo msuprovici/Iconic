@@ -1870,7 +1870,7 @@
                                 <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jzk-34-ioB">
-                                <rect key="frame" x="35" y="519" width="81" height="36"/>
+                                <rect key="frame" x="1" y="507" width="160" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="Sign Up">
@@ -1881,7 +1881,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cuZ-PR-S7K">
-                                <rect key="frame" x="224" y="522" width="55" height="30"/>
+                                <rect key="frame" x="160" y="507" width="160" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="Login">
@@ -1891,6 +1891,13 @@
                                     <action selector="userLogin:" destination="H5O-hK-5UJ" eventType="touchUpInside" id="Ptl-mG-llO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rrn-Lo-C4i" userLabel="Separator Line">
+                                <rect key="frame" x="160" y="507" width="1" height="61"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1903,6 +1910,7 @@
                         <outlet property="SignUp" destination="Jzk-34-ioB" id="4fX-aq-q1G"/>
                         <outlet property="pageControl" destination="S3r-Ut-M6O" id="Bbd-BZ-wmu"/>
                         <outlet property="scrollView" destination="74L-dr-NWU" id="1Ga-ql-XUb"/>
+                        <outlet property="separatorLine" destination="rrn-Lo-C4i" id="4jJ-LK-tgC"/>
                         <outlet property="startWalkthroughButton" destination="79b-Eq-S5o" id="dpj-tJ-1gS"/>
                         <segue destination="sEI-Ya-ylU" kind="push" identifier="LoginSuccesful" id="Wkm-gx-o8j"/>
                     </connections>

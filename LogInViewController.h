@@ -38,4 +38,7 @@ UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 @property (nonatomic) NSInteger vcIndex;
 @property UILabel *myLabel;
 
+@property (strong, nonatomic) IBOutlet UILabel *separatorLine;
+
+
 @end

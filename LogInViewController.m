@@ -40,6 +40,7 @@
     
     self.Login.hidden = YES;
     self.SignUp.hidden = YES;
+    self.separatorLine.hidden = YES;
     
     // Create the data model
 //    _pageTitles = @[@"Title 1", @"Title 2", @"Title 3"];
@@ -252,6 +253,7 @@
         //show login options once the person selected the grant permission label
         self.Login.hidden = NO;
         self.SignUp.hidden = NO;
+        self.separatorLine.hidden = NO;
         self.startWalkthroughButton.hidden = YES;
         
         
