@@ -18,7 +18,7 @@
 #import "MBProgressHUD.h"
 #import "SimpleHomeViewController.h"
 #import "CalculatePoints.h"
-
+#import "Amplitude.h"
 
 
 @interface AppDelegate ()
@@ -57,6 +57,8 @@
     //perform background fetch
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     
+    
+    //initialize Parse
     [Parse setApplicationId:@"LiLukyOROzCPxkNIvG9SD6nPMFdZsFNxzYsB06LT"
                   clientKey:@"NWnu7sQiFf9t3vyruSWQ8CqepFjKQh7IAZr8b3WA"];
     
@@ -69,6 +71,13 @@
                                         NSLog(@"%@", result);
                                     }
                                 }];*/
+    
+    //initialize Amplitude analytics
+    [Amplitude initializeApiKey:@"feed5aeff24dcdb58a34cf1943234c4b"];
+    //Tracking test event
+//    [Amplitude logEvent:@"Application Launch"];
+    
+    
     //Intitialize FB
     [PFFacebookUtils initializeFacebook];
     
