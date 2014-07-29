@@ -241,7 +241,7 @@ static NSString *kImageKey = @"imageKey";
     // load the page on either side to avoid flashes when the user starts scrolling
     //
     [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
+//    [self loadScrollViewWithPage:1]; //comment this out to improve loading speed
     [self.view addSubview:self.pageControl];
     
     //initialize all other methods
