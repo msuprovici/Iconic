@@ -19,6 +19,7 @@
 #import "SimpleHomeViewController.h"
 #import "CalculatePoints.h"
 #import "Amplitude.h"
+#import <Crashlytics/Crashlytics.h>
 
 
 @interface AppDelegate ()
@@ -88,7 +89,8 @@
      UIRemoteNotificationTypeSound];
     
     
-    
+    //Crashlytics crash reporting
+    [Crashlytics startWithAPIKey:@"dccd1cb0874211ca77a81c83ab5926ee77e129d4"];
     
     //local notification
     

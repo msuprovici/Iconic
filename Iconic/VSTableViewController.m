@@ -13,6 +13,7 @@
 #import "CalculatePoints.h"
 #import "PNColor.h"
 #import "PlayerProfileViewController.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface VSTableViewController ()
 
@@ -83,6 +84,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     
     //view controller header title
     self.navigationItem.title = @"Box Score";
