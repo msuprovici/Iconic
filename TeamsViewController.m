@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "Team.h"
 #import "AppDelegate.h"
+#import "Amplitude.h"
 
 @interface TeamsViewController ()
 
@@ -423,6 +424,11 @@
 
 
 #pragma mark - Table view delegate
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    [Amplitude logEvent:@"Teams: Team selected"];
+    
+}
 
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //{

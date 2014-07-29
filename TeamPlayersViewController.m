@@ -17,6 +17,7 @@
 #import "SimpleHomeViewController.h"
 #import "AppDelegate.h"
 #import "PlayerProfileViewController.h"
+#import "Amplitude.h"
 
 
 @interface TeamPlayersViewController ()
@@ -439,7 +440,7 @@
     
       if(self.joinTeam.selected == NO)
     {
-        
+        [Amplitude logEvent:@"Team: Join Team selected"];
         
         [self.joinTeam setSelected:YES];
         
@@ -545,7 +546,7 @@
     else if (self.joinTeam.selected == YES)
     {
         
-      
+         [Amplitude logEvent:@"Team: Leave Team selected"];
 
         [self.joinTeam setSelected:NO];
         //find out if the team name that = the stored team and filp the onteam flag to no

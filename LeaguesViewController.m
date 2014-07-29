@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "PNChart.h"
 #import "AppDelegate.h"
+#import "Amplitude.h"
 
 @interface LeaguesViewController ()
 
@@ -443,6 +444,12 @@
     return rowIndecesInSection.count;
     }
 
+}
+
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    [Amplitude logEvent:@"Leagues: League selected"];
+    
 }
 
 

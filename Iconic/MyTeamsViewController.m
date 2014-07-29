@@ -13,6 +13,8 @@
 #import "SimpleHomeViewController.h"
 #import "VSTableViewController.h"
 #import "CalculatePoints.h"
+#import "Amplitude.h"
+
 @interface MyTeamsViewController ()
 
 @property int myStepsGained;
@@ -359,6 +361,7 @@
     
     if ([segue.identifier isEqualToString:@"vs"]) {
         
+         [Amplitude logEvent:@"Dashboard: Game Details selected"];
         
           //we use this index to pass the correct data to the vs view controller
           int myRetreivedIndex = (int)self.index ;

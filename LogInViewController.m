@@ -12,11 +12,12 @@
 #import "CustomPFLoginViewController.h"
 #import "PNColor.h"
 #import <CoreMotion/CoreMotion.h>
+#import "Amplitude.h"
 
 @interface LogInViewController ()<UIScrollViewDelegate>
 
 @property NSUInteger currentIndex;
-
+@property (nonatomic, strong) NSOperationQueue *operationQueue;
 
 @property (nonatomic, strong) CMStepCounter *cmStepCounter;
 
@@ -110,6 +111,9 @@
 //Login
 - (IBAction)userLogin:(id)sender {
     
+    
+    [Amplitude logEvent:@"Onboard: LogIn selected"];
+    
     // Create the log in view controller
     CustomPFLogInViewController *logInViewController = [[CustomPFLogInViewController alloc] init];
     [logInViewController setDelegate:self]; // Set ourselves as the delegate
@@ -128,6 +132,8 @@
     
 }
 - (IBAction)signUpAction:(id)sender {
+    
+    [Amplitude logEvent:@"Onboard: SignUp selected"];
     
     // Create the sign up view controller
     CustomPFSignUpViewController *signUpViewController = [[CustomPFSignUpViewController alloc] init];
@@ -157,14 +163,19 @@
 
 // Sent to the delegate when a PFUser is logged in.
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    
+    [Amplitude logEvent:@"Onboard: Log In successful"];
+    
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
 }
 
 // Sent to the delegate when the log in attempt fails.
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
+    
+    [Amplitude logEvent:@"Onboard: LogIn failed"];
 //    NSLog(@"Failed to log in...");
-    [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
+//    [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
 }
 
 // Sent to the delegate when the log in screen is dismissed.
@@ -199,17 +210,25 @@
 
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    
+    [Amplitude logEvent:@"Onboard: SignUp successful"];
+    
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
 }
 
 // Sent to the delegate when the sign up attempt fails.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
+    
+    [Amplitude logEvent:@"Onboard: SignUp failed"];
+    
 //    NSLog(@"Failed to sign up...");
 }
 
 // Sent to the delegate when the sign up screen is dismissed.
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
+    
+    [Amplitude logEvent:@"Onboard: SignUp canceled"];
 //    NSLog(@"User dismissed the signUpViewController");
 }
 
@@ -228,6 +247,7 @@
     
     if (self.currentIndex < self.pageSubTitles.count -1 ) {
         
+        [Amplitude logEvent:@"Onboard: Next selected"];
 //          NSLog(@"CurrentIndex on Button Press  %lu", (unsigned long)self.currentIndex);
         
         self.currentIndex = self.currentIndex+1;
@@ -240,8 +260,18 @@
 //    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex:self.currentIndex]];
    
     if (self.currentIndex == 2) {
-        
+       
         [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
+        
+        //this needs to be here so that the standarad Apple motion permission request pops up
+        self.cmStepCounter = [[CMStepCounter alloc] init];
+        NSDate *today = [NSDate date];
+        NSDate *yesterday = [today dateByAddingTimeInterval: -86400.0];
+        [self.cmStepCounter queryStepCountStartingFrom:yesterday to:today toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error){
+              }];
+        
+        [Amplitude logEvent:@"Onboard: Motion selected"];
+
     }
 
     
@@ -263,11 +293,19 @@
         if([CMStepCounter isStepCountingAvailable])
         {
             NSLog(@"CMStepCounter is Avaialble");
+            [Amplitude logEvent:@"Onboard: Motion dialogue"];
+            
         }
         else{
              NSLog(@"CMStepCounter is NOT Avaialble");
         }
         
+        //this needs to be here so that the standarad Apple motion permission request pops up
+        NSDate *today = [NSDate date];
+        NSDate *yesterday = [today dateByAddingTimeInterval: -86400.0];
+        [self.cmStepCounter queryStepCountStartingFrom:yesterday to:today toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error){
+        }];
+
         
         
          }
@@ -275,6 +313,13 @@
     }
 
 
+ - (NSOperationQueue *)operationQueue {
+     if (_operationQueue == nil) {
+         _operationQueue = [NSOperationQueue new];
+     }
+     return _operationQueue;
+ }
+                                                                                                                         
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)sender {
     
@@ -286,10 +331,12 @@
     [self.pageControl setCurrentPage:page];
     
     if (page == 2) {
+        [Amplitude logEvent:@"Onboard: Swipe_Motion"];
         [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
     }
     
     else{
+        [Amplitude logEvent:@"Onboard: Swipe"];
         [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
     }
 

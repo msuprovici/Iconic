@@ -28,6 +28,7 @@
 
 #import <CoreMotion/CoreMotion.h>
 #include <math.h>
+#import "Amplitude.h"
 
 static NSString *kNameKey = @"nameKey";
 static NSString *kImageKey = @"imageKey";
@@ -833,7 +834,7 @@ static NSString *kImageKey = @"imageKey";
     self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:1];
     
     self.joinedTeamButtonPressed = YES;
-    
+    [Amplitude logEvent:@"Dashboard: Join Team selected"];
     
     
 //    
