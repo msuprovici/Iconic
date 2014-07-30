@@ -1631,9 +1631,18 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Locked" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="k4I-cX-QGH" userLabel="Label - League Locked">
+                                            <rect key="frame" x="0.0" y="0.0" width="321" height="64"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="leagueLocked" destination="k4I-cX-QGH" id="bTA-IW-whS"/>
                                     <outlet property="leagueName" destination="AG6-VK-GHa" id="zdW-cv-wiG"/>
                                     <segue destination="Quu-w8-KMQ" kind="push" identifier="league" id="hkU-Qn-mtb"/>
                                 </connections>

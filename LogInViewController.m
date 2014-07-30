@@ -13,6 +13,7 @@
 #import "PNColor.h"
 #import <CoreMotion/CoreMotion.h>
 #import "Amplitude.h"
+#import "CalculatePoints.h"
 
 @interface LogInViewController ()<UIScrollViewDelegate>
 
@@ -166,6 +167,9 @@
     
     [Amplitude logEvent:@"Onboard: Log In successful"];
     
+    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+    [calculatePointsClass migrateLeaguesToCoreData];
+    
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
 }
@@ -212,6 +216,10 @@
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     
     [Amplitude logEvent:@"Onboard: SignUp successful"];
+    
+    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+    [calculatePointsClass migrateLeaguesToCoreData];
+
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];

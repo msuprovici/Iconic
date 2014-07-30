@@ -100,7 +100,9 @@
                 
                 CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
                 NSNumber *myLevel = [calculatePointsClass calculateLevel:myLifetimePoints];
-                
+                NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
+                [myStats setObject:myLevel forKey:@"myXP"];
+                [myStats synchronize];
 
                 
                 float myLevelValue = [myLevel floatValue];

@@ -13,7 +13,7 @@
 #import "CalculatePoints.h"
 #import "PNColor.h"
 #import "PlayerProfileViewController.h"
-#import <Crashlytics/Crashlytics.h>
+
 
 @interface VSTableViewController ()
 

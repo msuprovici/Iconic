@@ -97,6 +97,7 @@
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [calculatePointsClass scheduleDailySummaryLocalNotification];
+//    [calculatePointsClass migrateLeaguesToCoreData];
 
     // Handle launching from a notification
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
@@ -110,10 +111,15 @@
     
     //If user is already logged in, skip the login screen and go to the main view
    if([PFUser currentUser]) {
-        
+       
+       
+        [calculatePointsClass migrateLeaguesToCoreData];
+       
+       
         UIStoryboard *storyboard = self.window.rootViewController.storyboard;
         UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"Main"];
         self.window.rootViewController = rootViewController;
+       
     }
 
     

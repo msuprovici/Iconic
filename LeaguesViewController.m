@@ -271,6 +271,33 @@
      
          cell.leagueName.text =[object objectForKey:self.textKey];
      
+//        int leagueLevel = (int)[object objectForKey:@"Level"];
+//         NSLog(@"leagueLevel %@", [object objectForKey:@"Level"]);
+     
+//        cell.leagueLocked.text =[NSString stringWithFormat:@"XP: %@", [object objectForKey:@"Level"]];
+     
+     [cell.leagueLocked setHidden:YES];
+ 
+     
+     
+//     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//     
+//
+////     int playerXP = (int)[defaults objectForKey:@"playerXP"];
+//     NSLog(@"playerXP %@", [defaults objectForKey:@"myXP"]);
+//     
+//    
+//     if ([defaults objectForKey:@"myXP"] < [object objectForKey:@"Level"]) {
+//         [cell.leagueLocked setHidden:NO];
+//         cell.leagueLocked.text =[NSString stringWithFormat:@"XP: %@", [object objectForKey:@"Level"]];
+//     }
+//     else
+//     {
+//         [cell.leagueLocked setHidden:YES];
+//     }
+     
+     
+     
      
  // Configure the cell
          //cell.leagueName.text =[object objectForKey:self.textKey];
@@ -342,7 +369,8 @@
          }
          
      }
-
+     
+    
 
  
  return cell;

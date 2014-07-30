@@ -425,6 +425,8 @@
 #pragma mark - Join/Leave Team
 - (IBAction)joinTeam:(id)sender {
     
+
+    
     AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     
     NSFetchRequest *teamFetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Team"];

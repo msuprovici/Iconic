@@ -603,6 +603,9 @@
             //set player's level
 //            NSLog(@"myLevel sent to parse %@",myLevel);
             [object setObject:myLevel forKey:kPlayerXP];
+           
+            
+            
             //save #points needed to reach the next level
             
             [object setObject:myStepsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
@@ -1681,6 +1684,7 @@
             }
             
             //If a player is on a team, set the boolean values
+            /* causing error when 1st time user  leaves all teams*/
             [self onTeam];
             
         }
@@ -1699,7 +1703,7 @@
 -(void)onTeam
 {
     
-    
+    /* !causing error when player leaves all teams! */
     
     AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     
@@ -1723,8 +1727,9 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         
-        if (!error) {
+    if (!error) {
             
+
             
             for (int i = 0; i < objects.count; i++) {
                 
@@ -1774,7 +1779,7 @@
             
             
         }
-        
+
     }];
 
 }

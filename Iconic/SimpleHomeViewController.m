@@ -308,7 +308,7 @@ static NSString *kImageKey = @"imageKey";
     [self appLoadedFirstTimeThisWeek];
     
     //waiting 10 seconds before we reach out to the network so that we don't lock up the UI when viewDidLoad is called
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC),
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC),
                    dispatch_get_main_queue(), ^{
     //perform server updates methods on a separate thread so that we don't lock up the UI
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
@@ -317,6 +317,9 @@ static NSString *kImageKey = @"imageKey";
         [calculatePointsClass retrieveFromParse];
         [calculatePointsClass incrementPlayerPointsInBackground];
         [calculatePointsClass findPastWeekleySteps];
+        //update core data with most recent league data
+//        [calculatePointsClass migrateLeaguesToCoreData];
+
 //        NSLog(@"Calling this in 10 seconds");
         
     });
