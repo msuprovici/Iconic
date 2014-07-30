@@ -1685,7 +1685,11 @@
             
             //If a player is on a team, set the boolean values
             /* causing error when 1st time user  leaves all teams*/
-            [self onTeam];
+//            [self onTeam];
+            
+            //bandaid fix: delay method by 1 second so that we load all the necessary data.
+            //crash is taking place at NSArray *fetchedTeamNames on line 1765
+            [self performSelector:@selector(onTeam) withObject:self afterDelay:1.0 ];
             
         }
     
@@ -1737,6 +1741,8 @@
 //                for(PFObject *myTeam in objects)
 //            {
                 
+                if (objects.count > 0) {
+                    
                 
                 PFObject *myTeam = objects[i];
                 
@@ -1770,7 +1776,7 @@
                 [context save:&error];
                 
                 
-                
+                }
                 
                 
                 
