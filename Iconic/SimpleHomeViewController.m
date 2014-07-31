@@ -461,6 +461,9 @@ static NSString *kImageKey = @"imageKey";
         [self.joinTeamButton setEnabled:TRUE];
         self.joinTeamButton.hidden = NO;
         
+        
+        [NSTimer scheduledTimerWithTimeInterval:7.0 target:self selector:@selector(animateJoinTeamButton) userInfo:nil repeats:YES];
+
     }
     else
     {
@@ -849,6 +852,20 @@ static NSString *kImageKey = @"imageKey";
     
     
     
+}
+
+#pragma mark - Join Team Button Animation
+-(void)animateJoinTeamButton
+{
+    CABasicAnimation *theAnimation;
+    
+    theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    theAnimation.duration=0.2;
+    theAnimation.repeatCount=2;
+    theAnimation.autoreverses=NO;
+    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+    theAnimation.toValue=[NSNumber numberWithFloat:1.05];
+    [self.joinTeamButton.layer addAnimation:theAnimation forKey:@"animateScale"];
 }
 
 #pragma mark - Delta Label Animation
