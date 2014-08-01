@@ -13,6 +13,7 @@
 #import "CalculatePoints.h"
 #import "PNColor.h"
 #import "PlayerProfileViewController.h"
+#import "MyTeamsViewController.h"
 
 
 @interface VSTableViewController ()
@@ -85,7 +86,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    //track if the user pressed vs details so that we can stop pulsing bar chart
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:@"userPressedMatchDetails"];
+    [defaults synchronize];
+
     
     //view controller header title
     self.navigationItem.title = @"Box Score";

@@ -197,11 +197,14 @@ static NSString *kImageKey = @"imageKey";
         //1st remove the my teams page controller subview then create it again - if we don't do this, it draw the teams view above the current one.
         [[self.myTeamsPageController view] removeFromSuperview];
         
+        
         [self refreshHomeView];
         
         self.receivedNotification = NO;
+        
+        
     }
-}
+   }
 
 
 #pragma mark Refresh Home View
@@ -462,7 +465,7 @@ static NSString *kImageKey = @"imageKey";
         self.joinTeamButton.hidden = NO;
         
         
-        [NSTimer scheduledTimerWithTimeInterval:7.0 target:self selector:@selector(animateJoinTeamButton) userInfo:nil repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(animateJoinTeamButton) userInfo:nil repeats:YES];
 
     }
     else
@@ -470,6 +473,23 @@ static NSString *kImageKey = @"imageKey";
         self.MyTeamsView.hidden = NO;
         [self.joinTeamButton setEnabled:FALSE];
         self.joinTeamButton.hidden = YES;
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        BOOL userPressedMatchDetails = [defaults boolForKey:@"userPressedMatchDetails"];
+        
+        if (userPressedMatchDetails == NO) {
+            
+            [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animateMyTeamsView) userInfo:nil repeats:NO];
+            
+            [NSTimer scheduledTimerWithTimeInterval:7.0 target:self selector:@selector(animateMyTeamsView) userInfo:nil repeats:NO];
+            
+            [NSTimer scheduledTimerWithTimeInterval:11.0 target:self selector:@selector(animateMyTeamsView) userInfo:nil repeats:NO];
+            
+           
+            
+        }
+
     }
 }
 
@@ -776,10 +796,10 @@ static NSString *kImageKey = @"imageKey";
     }
 }
 
-- (IBAction)done:(UIStoryboardSegue *)segue {
-    NSLog(@"Popping back to SimpleHomeViewController");
-    // reset UI elements etc here
-}
+
+
+
+
 
 //
 ////pass the team to the teammates view controller
@@ -867,6 +887,24 @@ static NSString *kImageKey = @"imageKey";
     theAnimation.toValue=[NSNumber numberWithFloat:1.05];
     [self.joinTeamButton.layer addAnimation:theAnimation forKey:@"animateScale"];
 }
+
+
+
+#pragma mark - Teams View Animation
+-(void)animateMyTeamsView
+{
+    CABasicAnimation *theAnimation;
+    
+    theAnimation=[CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    theAnimation.duration=0.2;
+    theAnimation.repeatCount=2;
+    theAnimation.autoreverses=NO;
+    theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
+    theAnimation.toValue=[NSNumber numberWithFloat:1.02];
+    [self.MyTeamsView.layer addAnimation:theAnimation forKey:@"animateScale"];
+}
+
+
 
 #pragma mark - Delta Label Animation
 

@@ -363,6 +363,7 @@
         
          [Amplitude logEvent:@"Dashboard: Game Details selected"];
         
+          
           //we use this index to pass the correct data to the vs view controller
           int myRetreivedIndex = (int)self.index ;
 //        NSLog(@"myRetreivedIndex: %d", myRetreivedIndex);
@@ -377,11 +378,26 @@
         //send my team name to vs view controller
         transferViewController.myTeamReceived = [NSString stringWithFormat:@"%@",self.nameOfMyTeamString];
         
+       
+        
     }
 }
 
 
-
+- (IBAction)unwindToMyTeamsViewController:(UIStoryboardSegue *)unwindSegue
+{
+    NSLog(@"unwind method");
+    
+//    UIViewController* sourceViewController = unwindSegue.sourceViewController;
+    
+    
+    if ([unwindSegue.identifier isEqualToString:@"backFromVS"]) {
+        
+        NSLog(@"unwind method");
+    }
+    
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
