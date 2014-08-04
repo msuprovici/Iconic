@@ -51,7 +51,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 4;
+        self.objectsPerPage = 25;
     }
     return self;
 }
@@ -532,7 +532,7 @@
 {
     UIView *view = [[UIView alloc] init];
     
-//    UIColor *color = [UIColor clearColor];
+//    UIColor *color = [UIColor whiteColor];
 //    
 //    view.backgroundColor = color;
     

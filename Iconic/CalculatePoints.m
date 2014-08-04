@@ -1179,15 +1179,15 @@
 #pragma mark Local Notification
 -(void)scheduleDailySummaryLocalNotification
 {
-//    //1st cancel previous notificaitons
-//    
-//    //see loggic in scheduleWeekleyFinalScoresLocalNotification:(NSString*)notificationBody
-//    //if [defaults boolForKey:@"hasRunAppThisWeekKey"] == NO we cancel all notifications in the method above. Otherwise cancel them here.
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == YES)
-//    {
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-//    }
+    //1st cancel previous notificaitons
+    
+    //see loggic in scheduleWeekleyFinalScoresLocalNotification:(NSString*)notificationBody
+    //if [defaults boolForKey:@"hasRunAppThisWeekKey"] == NO we cancel all notifications in the method above. Otherwise cancel them here.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == YES)
+    {
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    }
     
     
     
@@ -1206,25 +1206,25 @@
     
     
     //1st cancel previous notificaitons
-    //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
-    /*Must use different date tell local notifications appar*/
-    //find scheduled local notifications that were scheduled for the time above
-    UIApplication *app = [UIApplication sharedApplication];
-	NSArray *localNotificationsArray = [app scheduledLocalNotifications];
-    
-    
-    for (int i=0; i<[localNotificationsArray count]; i++) {
-        
-        UILocalNotification* scheduledLocalNotification = [localNotificationsArray objectAtIndex:i];
-		NSDictionary *userInfoCurrent = scheduledLocalNotification.userInfo;
-		NSDate *dateCurrent = [userInfoCurrent valueForKey:@"date"];
-        
-        if(dateCurrent == [cal dateFromComponents:components])
-        {
-            [app cancelLocalNotification:scheduledLocalNotification];
-        }
-    }
+//    /*Must use different date tell local notifications appar*/
+//    //find scheduled local notifications that were scheduled for the time above
+//    UIApplication *app = [UIApplication sharedApplication];
+//	NSArray *localNotificationsArray = [app scheduledLocalNotifications];
+//    
+//    
+//    for (int i=0; i<[localNotificationsArray count]; i++) {
+//        
+//        UILocalNotification* scheduledLocalNotification = [localNotificationsArray objectAtIndex:i];
+//		NSDictionary *userInfoCurrent = scheduledLocalNotification.userInfo;
+//		NSDate *dateCurrent = [userInfoCurrent valueForKey:@"date"];
+//        
+//        if(dateCurrent == [cal dateFromComponents:components])
+//        {
+//            [app cancelLocalNotification:scheduledLocalNotification];
+//        }
+//    }
     
     //Alert Body
 
@@ -1469,25 +1469,25 @@
     
     
     //1st cancel previous notificaitons
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
-    /*Must use different date tell local notifications appear*/
-    //find scheduled local notifications that were scheduled for the time above
-    UIApplication *app = [UIApplication sharedApplication];
-	NSArray *localNotificationsArray = [app scheduledLocalNotifications];
-    
-
-    for (int i=0; i<[localNotificationsArray count]; i++) {
-        
-        UILocalNotification* scheduledLocalNotification = [localNotificationsArray objectAtIndex:i];
-		NSDictionary *userInfoCurrent = scheduledLocalNotification.userInfo;
-		NSDate *dateCurrent = [userInfoCurrent valueForKey:@"date"];
-        
-        if(dateCurrent == [cal dateFromComponents:components])
-        {
-            [app cancelLocalNotification:scheduledLocalNotification];
-        }
-    }
+//    /*Must use different date tell local notifications appear*/
+//    //find scheduled local notifications that were scheduled for the time above
+//    UIApplication *app = [UIApplication sharedApplication];
+//	NSArray *localNotificationsArray = [app scheduledLocalNotifications];
+//    
+//
+//    for (int i=0; i<[localNotificationsArray count]; i++) {
+//        
+//        UILocalNotification* scheduledLocalNotification = [localNotificationsArray objectAtIndex:i];
+//		NSDictionary *userInfoCurrent = scheduledLocalNotification.userInfo;
+//		NSDate *dateCurrent = [userInfoCurrent valueForKey:@"date"];
+//        
+//        if(dateCurrent == [cal dateFromComponents:components])
+//        {
+//            [app cancelLocalNotification:scheduledLocalNotification];
+//        }
+//    }
 
     
     

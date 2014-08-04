@@ -414,10 +414,10 @@
             </objects>
             <point key="canvasLocation" x="-1217" y="2260"/>
         </scene>
-        <!--Table View Controller-->
+        <!--VS Table View Controller-->
         <scene sceneID="lOF-AZ-wnj">
             <objects>
-                <tableViewController id="7jw-Rg-QgJ" customClass="VSTableViewController" sceneMemberID="viewController">
+                <tableViewController id="7jw-Rg-QgJ" userLabel="VS Table View Controller" customClass="VSTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="7d3-4V-oPr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -720,11 +720,7 @@
                                             <color key="textColor" red="0.8764648438" green="0.1105902305" blue="0.1742419097" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_avatar.png" id="aeR-6q-bGU" userLabel="Image - Teamate" customClass="PFImageView">
-                                            <rect key="frame" x="0.0" y="312" width="35" height="35"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_avatar.png" id="FZe-r7-qCH" customClass="PFImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="FZe-r7-qCH" customClass="PFImageView">
                                             <rect key="frame" x="10" y="12" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -775,7 +771,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7x5-uQ-AxN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1553" y="-3684"/>
+            <point key="canvasLocation" x="-1551" y="-3684"/>
         </scene>
         <!--Dialog View Controller - dialog-->
         <scene sceneID="es0-wK-jC1">
