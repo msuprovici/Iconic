@@ -158,7 +158,7 @@ NSString *const kActivityOpenGraphIDKey    = @"fbOpenGraphID";
 NSString *const kTimerClass = @"Timer";
 
 
-#pragma mark - Team Class
+#pragma mark - Team Players ClassClass
 //Class key
 NSString *const kTeamPlayersClass = @"TeamPlayers";
 

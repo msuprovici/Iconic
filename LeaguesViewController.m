@@ -270,22 +270,23 @@
 //     if (leagueName == receivedLeagueName) {
      
          cell.leagueName.text =[object objectForKey:self.textKey];
-     
+         cell.leagueLevel.text = [NSString stringWithFormat:@"%@",[object objectForKey:@"Level"]];
 //        int leagueLevel = (int)[object objectForKey:@"Level"];
 //         NSLog(@"leagueLevel %@", [object objectForKey:@"Level"]);
      
 //        cell.leagueLocked.text =[NSString stringWithFormat:@"XP: %@", [object objectForKey:@"Level"]];
      
-     [cell.leagueLocked setHidden:YES];
+//     [cell.leagueLocked setHidden:YES];
  
      
      
-//     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//     
-//
-////     int playerXP = (int)[defaults objectForKey:@"playerXP"];
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+     
+
+     int playerXP = (int)[defaults objectForKey:@"playerXP"];
+//     NSNumber *myXP = [NSNumber numberWithInt:playerXP];
 //     NSLog(@"playerXP %@", [defaults objectForKey:@"myXP"]);
-//     
+//
 //    
 //     if ([defaults objectForKey:@"myXP"] < [object objectForKey:@"Level"]) {
 //         [cell.leagueLocked setHidden:NO];
@@ -330,7 +331,7 @@
      NSError *error;
      NSArray *fetchedLeagues = [context executeFetchRequest:request error:&error];
      NSString *myLeagueName;
-     
+//     NSNumber *leagueLevel;
      
      
      NSString *leagueLeft = [NSString stringWithFormat:@"%@",[self.leagueLeft objectForKey:kLeagues]];
@@ -357,6 +358,9 @@
          myLeagueName = [NSString stringWithFormat:@"%@",[myLeagueNames valueForKeyPath:kLeagues]];
          
          
+         
+//         leagueLevel = [myLeagueNames valueForKeyPath:@"level"];
+         
          if ([cell.leagueName.text isEqualToString: myLeagueName] )
          {
              cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -368,9 +372,29 @@
              cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
          }
          
+         
      }
      
-    
+     
+     //grey out cell if the player's XP is not high enough to unlock the other leagues
+     
+     int leagueLevel = [cell.leagueLevel.text intValue];
+//     NSLog(@"leagueLevel %d", leagueLevel);
+//     NSLog(@"playerXP %d", playerXP);
+     if(playerXP >= leagueLevel)
+     {
+         [cell.leagueLocked setHidden:YES];
+         [cell.leagueLevel setHidden:YES];
+         [cell.unlocksAtLevelTitle setHidden:YES];
+     }
+     else{
+         [cell.leagueLocked setHidden:NO];
+         [cell.leagueLevel setHidden:NO];
+         [cell.unlocksAtLevelTitle setHidden:NO];
+         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+         cell.userInteractionEnabled = NO;
+     }
+
 
  
  return cell;

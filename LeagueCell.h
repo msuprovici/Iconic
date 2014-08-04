@@ -10,6 +10,8 @@
 
 @interface LeagueCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *leagueName;
+@property (strong, nonatomic) IBOutlet UILabel *unlocksAtLevelTitle;
+@property (strong, nonatomic) IBOutlet UILabel *leagueLevel;
 
 @property (strong, nonatomic) IBOutlet UILabel *leagueLocked;
 @end

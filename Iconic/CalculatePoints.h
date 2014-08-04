@@ -78,6 +78,7 @@
 
 //unique leagues
 @property NSArray *uniqueLeagues;
+//@property NSArray *uniqueLeaguesLevel;
 
 @property NSArray *allLeaguesTeams;
 

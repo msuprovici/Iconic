@@ -1596,6 +1596,8 @@
             self.allLeaguesTeams = objects;
             
             self.uniqueLeagues = [objects valueForKeyPath:@"@distinctUnionOfObjects.league"];
+//            self.uniqueLeaguesLevel = [objects valueForKeyPath:@"@distinctUnionOfObjects.leagueLevel"];
+            
             
 //            NSLog(@"uniqueLeagues: %@", self.uniqueLeagues);
             
@@ -1605,6 +1607,7 @@
             
             //add corresponding teams that match to core data
              for (int i = 0; i < self.uniqueLeagues.count; i++) {
+                
                 
                 
                 
@@ -1626,6 +1629,7 @@
                     NSManagedObjectContext *context = [appDelegate managedObjectContext];
                     League *league = [NSEntityDescription insertNewObjectForEntityForName:@"League" inManagedObjectContext:context];
                     league.league = LeagueName;
+//                    league.level = self.uniqueLeaguesLevel[i];
                     
                     [context save:&error];
                     
@@ -1639,6 +1643,7 @@
                        TeamObject = [myTeam objectForKey:kTeams];
                        
 //                       NSLog(@"League: %@",self.uniqueLeagues[i]);
+//                       NSLog(@"League Level: %@",self.uniqueLeaguesLevel[i]);
 //                       NSLog(@"TeamName: %@", TeamName);
                        
                        [teamsInLeague addObject:TeamName];
