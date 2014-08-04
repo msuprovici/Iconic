@@ -470,6 +470,7 @@
      
      // Order by categories type
      [query orderByDescending:@"createdAt"];
+     
      return query;
 
  }
