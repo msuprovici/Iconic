@@ -283,7 +283,7 @@
      NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
      
 
-     int playerXP = (int)[defaults objectForKey:@"playerXP"];
+     int playerXP = [[defaults objectForKey:@"myXP"]intValue];
 //     NSNumber *myXP = [NSNumber numberWithInt:playerXP];
 //     NSLog(@"playerXP %@", [defaults objectForKey:@"myXP"]);
 //
@@ -379,14 +379,24 @@
      //grey out cell if the player's XP is not high enough to unlock the other leagues
      
      int leagueLevel = [cell.leagueLevel.text intValue];
-//     NSLog(@"leagueLevel %d", leagueLevel);
-//     NSLog(@"playerXP %d", playerXP);
+     NSLog(@"leagueLevel %d", leagueLevel);
+     NSLog(@"playerXP %d", playerXP);
      if(playerXP >= leagueLevel)
      {
          [cell.leagueLocked setHidden:YES];
          [cell.leagueLevel setHidden:YES];
          [cell.unlocksAtLevelTitle setHidden:YES];
+         //cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+         cell.userInteractionEnabled = YES;
      }
+//     else if(playerXP == leagueLevel)
+//     {
+//         [cell.leagueLocked setHidden:YES];
+//         [cell.leagueLevel setHidden:YES];
+//         [cell.unlocksAtLevelTitle setHidden:YES];
+//         //cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+//         cell.userInteractionEnabled = YES;
+//     }
      else{
          [cell.leagueLocked setHidden:NO];
          [cell.leagueLevel setHidden:NO];
