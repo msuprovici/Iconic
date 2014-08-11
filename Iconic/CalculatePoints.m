@@ -1250,10 +1250,12 @@
     
         
          NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
+       
         
+        int yesterdaysSteps = (int)[myStats integerForKey: @"myFinalStepsForTheDay"];
         
         //get 7 day steps
-        NSArray *myWeekeleySteps = [myStats objectForKey:kMyStepsWeekArray];
+//        NSArray *myWeekeleySteps = [myStats objectForKey:kMyStepsWeekArray];
         
         //get yesterday's Steps
         
@@ -1261,7 +1263,7 @@
          /*Must use different date tell local notifications appar*/
     localNotification.userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[cal dateFromComponents:components],nil] forKeys:[NSArray arrayWithObjects: @"date",nil]];
         
-    localNotification.alertBody = [NSString stringWithFormat:@"You scored %@ steps yesterday.",[myWeekeleySteps objectAtIndex:5]];
+    localNotification.alertBody = [NSString stringWithFormat:@"You scored %d steps for your team yesterday.",yesterdaysSteps];
     
 //    [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:self.matchupsIndex]];
     

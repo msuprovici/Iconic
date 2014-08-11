@@ -170,6 +170,7 @@ static NSString *kImageKey = @"imageKey";
     pageControl.currentPageIndicatorTintColor = PNWeiboColor;
     pageControl.backgroundColor = [UIColor clearColor];
     
+ 
     
     
        

@@ -121,6 +121,10 @@
         self.window.rootViewController = rootViewController;
        
     }
+    else
+    {
+        [self logOut];
+    }
 
     
 //    pageControl.hidden = YES;
@@ -274,6 +278,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
     //reset mysteps at 11:58 pm
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    
+    int myStoredSteps = (int)[defaults integerForKey:kMyFetchedStepsToday];
+    [defaults setInteger:myStoredSteps   forKey:@"myFinalStepsForTheDay"];
+//    [defaults synchronize];
+    
 //    [defaults setInteger:0   forKey:kMyFetchedStepsToday];
 //    [defaults synchronize];
 
@@ -324,6 +334,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     //buying Parse 20 seconds to perform retrieve and save
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
                    dispatch_get_main_queue(), ^{
+                       
+                       int myStoredSteps = (int)[defaults integerForKey:kMyFetchedStepsToday];
+                       [defaults setInteger:myStoredSteps   forKey:@"myFinalStepsForTheDay"];
+                       [defaults synchronize];
                        
                        
                        [defaults setInteger:0   forKey:kMyFetchedStepsToday];
@@ -378,6 +392,9 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
     // Clear all caches
     [PFQuery clearAllCachedResults];
+    
+    //clear allLocalNotificaitons
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     // Log out
     [PFUser logOut];
