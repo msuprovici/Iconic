@@ -1537,7 +1537,7 @@
             [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
             
             //reschedule the DailySummary Notification
-            [self scheduleDailySummaryLocalNotification];
+//            [self scheduleDailySummaryLocalNotification];
         }
         
     }

@@ -379,8 +379,8 @@
      //grey out cell if the player's XP is not high enough to unlock the other leagues
      
      int leagueLevel = [cell.leagueLevel.text intValue];
-     NSLog(@"leagueLevel %d", leagueLevel);
-     NSLog(@"playerXP %d", playerXP);
+//     NSLog(@"leagueLevel %d", leagueLevel);
+//     NSLog(@"playerXP %d", playerXP);
      if(playerXP >= leagueLevel)
      {
          [cell.leagueLocked setHidden:YES];

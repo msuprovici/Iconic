@@ -96,7 +96,7 @@
     
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    [calculatePointsClass scheduleDailySummaryLocalNotification];
+//    [calculatePointsClass scheduleDailySummaryLocalNotification];
 //    [calculatePointsClass migrateLeaguesToCoreData];
 
     // Handle launching from a notification
@@ -345,7 +345,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
 
                        
                         NSLog(@"Background Fetch retrieve and save");
-                       handler(UIBackgroundFetchResultNewData);
+                        handler(UIBackgroundFetchResultNewData);
+                       
                    });
 
         
