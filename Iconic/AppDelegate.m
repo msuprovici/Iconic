@@ -236,7 +236,9 @@
     //buying Parse 20 seconds to perform retrieve and save
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
                    dispatch_get_main_queue(), ^{
-
+                       
+    [Amplitude logEvent:@"Background Fetch Completed"];
+                       
     completionHandler(UIBackgroundFetchResultNewData);
     });
     
@@ -276,79 +278,121 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
-    //reset mysteps at 11:58 pm
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     
     
-    int myStoredSteps = (int)[defaults integerForKey:kMyFetchedStepsToday];
-    [defaults setInteger:myStoredSteps   forKey:@"myFinalStepsForTheDay"];
-//    [defaults synchronize];
+    NSString *notificationId = [userInfo objectForKey:@"notificationID"];
     
-//    [defaults setInteger:0   forKey:kMyFetchedStepsToday];
-//    [defaults synchronize];
+    if ([notificationId isEqualToString:@"GetFinalScorePush"]) {
+        
+        NSLog(@"silent notificaiton: get score push");
+        
+        [Amplitude logEvent:@"GetFinalScore Push Received"];
+        //reset mysteps at 11:58 pm
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        
+        
+        int myStoredSteps = (int)[defaults integerForKey:kMyFetchedStepsToday];
+        [defaults setInteger:myStoredSteps   forKey:@"myFinalStepsForTheDay"];
+        //    [defaults synchronize];
+        
+        //    [defaults setInteger:0   forKey:kMyFetchedStepsToday];
+        //    [defaults synchronize];
+        
+        //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        //If the day of the week is Sunday, change the bool "hasRunAppThisWeekKey"  so that we can display FinalScoresTableViewController tomorrow or the next time the user opens the app next week.
+        NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        
+        NSDateComponents *weekdayComponents =[gregorian components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
+        
+        NSInteger weekday = [weekdayComponents weekday];
+        //Sunday = 1
+        if (weekday == 1) {
+            
+            [defaults setBool:NO forKey:@"hasRunAppThisWeekKey"];
+            [defaults synchronize];
+            
+            //schedule notification
+            
+            CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+            [calculatePointsClass  createFinalTeamScoresNotificationBody];
+            
+        }
+        
+        //    if([userInfo[@"aps"][@"content-available"] intValue]== 1)
+        
+        //    if([userInfo[@"content-available"] intValue]== 1) //it's the silent notification
+        //    {
+        
+        
+        //fetch the team & player stats for today
+        NSDate *fetchStart = [NSDate date];
+        
+        CalculatePoints *calculatePoints = [[CalculatePoints alloc]init];
+        
+        
+        NSDate *fetchEnd = [NSDate date];
+        NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
+        NSLog(@"Background Fetch From Push Duration: %f seconds", timeElapsed);
+        
+        //send and retrieve data from Parse
+        [calculatePoints incrementPlayerPointsInBackground];
+        [calculatePoints retrieveFromParse];
+        
+        
+        
+        NSLog(@"Background Fetch From Push intialized");
+        
+        //buying Parse 20 seconds to perform retrieve and save
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
+                       dispatch_get_main_queue(), ^{
+                           
+                           int myStoredSteps = (int)[defaults integerForKey:kMyFetchedStepsToday];
+                           [defaults setInteger:myStoredSteps   forKey:@"myFinalStepsForTheDay"];
+                           [defaults synchronize];
+                           
+                           
+                           [defaults setInteger:0   forKey:kMyFetchedStepsToday];
+                           [defaults synchronize];
+                           
+                           
+                           NSLog(@"Background Fetch retrieve and save");
+                           handler(UIBackgroundFetchResultNewData);
+                           
+                       });
 
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    //If the day of the week is Sunday, change the bool "hasRunAppThisWeekKey"  so that we can display FinalScoresTableViewController tomorrow or the next time the user opens the app next week.
-    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    
-    NSDateComponents *weekdayComponents =[gregorian components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
-    
-    NSInteger weekday = [weekdayComponents weekday];
-    //Sunday = 1
-    if (weekday == 1) {
-        
-        [defaults setBool:NO forKey:@"hasRunAppThisWeekKey"];
-        [defaults synchronize];
-        
-        //schedule notification
-        
-        CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-        [calculatePointsClass  createFinalTeamScoresNotificationBody];
         
     }
     
-//    if([userInfo[@"aps"][@"content-available"] intValue]== 1)
-    
-//    if([userInfo[@"content-available"] intValue]== 1) //it's the silent notification
-//    {
-    
-    
-    //fetch the team & player stats for today
-    NSDate *fetchStart = [NSDate date];
-    
-    CalculatePoints *calculatePoints = [[CalculatePoints alloc]init];
-    
-    
-    NSDate *fetchEnd = [NSDate date];
-    NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
-    NSLog(@"Background Fetch From Push Duration: %f seconds", timeElapsed);
-    
-    //send and retrieve data from Parse
-    [calculatePoints incrementPlayerPointsInBackground];
-    [calculatePoints retrieveFromParse];
-    
+    if ([notificationId isEqualToString:@"GetHourlyUpdatePush"]) {
+        
+        [Amplitude logEvent:@"GetHourlyUpdate Push Received"];
+        
+        NSDate *fetchStart = [NSDate date];
+        
+        CalculatePoints *calculatePoints = [[CalculatePoints alloc]init];
+        
+        NSDate *fetchEnd = [NSDate date];
+        NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
+        NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
+        
+        [calculatePoints incrementPlayerPointsInBackground];
+        [calculatePoints retrieveFromParse];
+        //        [calculatePoints getYesterdaysPointsAndSteps];
+        
+        //    }];
+        NSLog(@"Background fetch from silent push notification intialized");
+        
+        //buying Parse 20 seconds to perform retrieve and save
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
+                       dispatch_get_main_queue(), ^{
+                           
+                           handler(UIBackgroundFetchResultNewData);
+                       });
 
+        
+    }
     
-    NSLog(@"Background Fetch From Push intialized");
-    
-    //buying Parse 20 seconds to perform retrieve and save
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
-                   dispatch_get_main_queue(), ^{
-                       
-                       int myStoredSteps = (int)[defaults integerForKey:kMyFetchedStepsToday];
-                       [defaults setInteger:myStoredSteps   forKey:@"myFinalStepsForTheDay"];
-                       [defaults synchronize];
-                       
-                       
-                       [defaults setInteger:0   forKey:kMyFetchedStepsToday];
-                       [defaults synchronize];
-
-                       
-                        NSLog(@"Background Fetch retrieve and save");
-                        handler(UIBackgroundFetchResultNewData);
-                       
-                   });
-
+  
         
         return;
     
