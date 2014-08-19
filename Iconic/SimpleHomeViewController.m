@@ -481,11 +481,11 @@ static NSString *kImageKey = @"imageKey";
         
         if (userPressedMatchDetails == NO) {
             
-            [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animateMyTeamsView) userInfo:nil repeats:NO];
+            [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(animateMyTeamsView) userInfo:nil repeats:NO];
             
-            [NSTimer scheduledTimerWithTimeInterval:7.0 target:self selector:@selector(animateMyTeamsView) userInfo:nil repeats:NO];
+            [NSTimer scheduledTimerWithTimeInterval:8.0 target:self selector:@selector(animateMyTeamsView) userInfo:nil repeats:NO];
             
-            [NSTimer scheduledTimerWithTimeInterval:11.0 target:self selector:@selector(animateMyTeamsView) userInfo:nil repeats:NO];
+            [NSTimer scheduledTimerWithTimeInterval:12.0 target:self selector:@selector(animateMyTeamsView) userInfo:nil repeats:NO];
             
            
             
@@ -892,7 +892,7 @@ static NSString *kImageKey = @"imageKey";
     theAnimation.repeatCount=2;
     theAnimation.autoreverses=NO;
     theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-    theAnimation.toValue=[NSNumber numberWithFloat:1.05];
+    theAnimation.toValue=[NSNumber numberWithFloat:1.06];
     [self.joinTeamButton.layer addAnimation:theAnimation forKey:@"animateScale"];
 }
 
@@ -908,7 +908,7 @@ static NSString *kImageKey = @"imageKey";
     theAnimation.repeatCount=2;
     theAnimation.autoreverses=NO;
     theAnimation.fromValue=[NSNumber numberWithFloat:1.0];
-    theAnimation.toValue=[NSNumber numberWithFloat:1.02];
+    theAnimation.toValue=[NSNumber numberWithFloat:1.06];
     [self.MyTeamsView.layer addAnimation:theAnimation forKey:@"animateScale"];
 }
 

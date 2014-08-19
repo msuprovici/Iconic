@@ -485,6 +485,7 @@
                     
             }
             
+            
         }
 
         
@@ -520,8 +521,7 @@
                 [calculatePoints retrieveFromParse];
                 
 
-               
-            }
+                           }
         }];
         
 //        //subscribe to the team's push notificaiton channel
@@ -536,6 +536,14 @@
         
         NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
         [nc postNotificationName:@"JoinedTeam" object:self userInfo:teamInfo];
+        
+        
+        //give the app some time to add the player to the team then automatically show to the home screen
+        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.4f target:self selector:@selector(showHomeScreen) userInfo:nil repeats:NO];
+        
+        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.4f]];
+
+        
     }
     
     
@@ -667,6 +675,9 @@
             NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
             [nc postNotificationName:@"LeftTeam" object:self userInfo:teamInfo];
             
+                
+                
+
             }];
         
         
@@ -674,6 +685,11 @@
     
 
     
+}
+
+-(void)showHomeScreen
+{
+    self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:0];
 }
 
 
