@@ -1329,8 +1329,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Explorence Inc. (M4TCM8UAB8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Explorence Inc. (M4TCM8UAB8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1349,7 +1349,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "f0d83f7b-555a-4d30-bbb6-b0b952274efd";
+				PROVISIONING_PROFILE = "c64f4343-9290-4465-84e7-d1f9f7a8093a";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1371,8 +1371,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Explorence Inc. (M4TCM8UAB8)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Explorence Inc. (M4TCM8UAB8)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1384,7 +1384,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "f0d83f7b-555a-4d30-bbb6-b0b952274efd";
+				PROVISIONING_PROFILE = "c64f4343-9290-4465-84e7-d1f9f7a8093a";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

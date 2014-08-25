@@ -1694,10 +1694,11 @@
             /* causing error when 1st time user  leaves all teams*/
 //            [self onTeam];
             
-            //bandaid fix: delay method by 1 second so that we load all the necessary data.
+            //bandaid fix: delay method by 2 seconds so that we load all the necessary data.
             //crash is taking place at NSArray *fetchedTeamNames on line 1765
-            [self performSelector:@selector(onTeam) withObject:self afterDelay:1.0 ];
+//            [self performSelector:@selector(onTeam) withObject:self afterDelay:2.0 ];
             
+            [self onTeam];
         }
     
     }
@@ -1761,6 +1762,7 @@
                 NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
                 NSFetchRequest *request = [[NSFetchRequest alloc]init];
                 [request setEntity:entityDesc];
+                [request setFetchLimit:1];
                 
                 //filter for my teams
                 NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)" , myTeamName];
@@ -1773,15 +1775,21 @@
                 NSArray *fetchedTeamNames = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
                 [request setSortDescriptors:fetchedTeamNames];
                 
-                Team *team = [[context executeFetchRequest:request error:&error] objectAtIndex:0];
+//                Team *team = [[context executeFetchRequest:request error:&error] objectAtIndex:0];
+                    
+                NSArray *results = [context executeFetchRequest:request error:&error];
+                if([results count] > 0)
+                {
+                Team *team = [results objectAtIndex:0];
                 
+                    
                 
-                //                NSLog(@"teamNameJoinedAtIndex %@", team.name);
+                NSLog(@"teamNameJoined %@", team.name);
                 
                 //if I am on the team, filp boolean to yes
                 team.onteam = [NSNumber numberWithBool:YES];
                 [context save:&error];
-                
+                }
                 
                 }
                 

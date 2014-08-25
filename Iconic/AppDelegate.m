@@ -237,7 +237,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
                    dispatch_get_main_queue(), ^{
                        
-    [Amplitude logEvent:@"Background Fetch Completed"];
+//    [Amplitude logEvent:@"Background Fetch Completed"];
                        
     completionHandler(UIBackgroundFetchResultNewData);
     });
@@ -286,7 +286,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         
         NSLog(@"silent notificaiton: get score push");
         
-        [Amplitude logEvent:@"GetFinalScore Push Received"];
+//        [Amplitude logEvent:@"GetFinalScore Push Received"];
         //reset mysteps at 11:58 pm
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         

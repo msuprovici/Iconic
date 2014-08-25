@@ -487,12 +487,6 @@
             
             
         }
-
-        
-        
-        
-        
-        
        
         //save a pointer to the current logged in user
         [loggedInUser setObject:[PFUser currentUser] forKey:kTeamate];
