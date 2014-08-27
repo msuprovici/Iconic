@@ -91,6 +91,13 @@ NSString *const kPlayerXP = @"xp";
 NSString *const kPlayerPointsToNextLevel = @"pointsToNextLevel";
 NSString *const kPlayerSteps = @"steps";
 
+NSString * const kMyStepsDelta = @"myStepsDelta"; //for animated delta points label - i.e. label that shows # of steps added to your teams
+
+#pragma mark - App state booleans
+NSString *const kAppWasTerminated = @"appWasTerminated";
+NSString *const kDateAppLastRan = @"dateAppLastRan";
+
+
 #pragma mark - NSNotification
 
 NSString *const AppDelegateApplicationDidReceiveRemoteNotification           = @"com.stickyplay.Iconic.appDelegate.applicationDidReceiveRemoteNotification";

@@ -128,7 +128,7 @@
 
     
 //    pageControl.hidden = YES;
-
+    
     
     
     [self customizeAppearance];
@@ -178,10 +178,14 @@
     
     // Handle an interruption during the authorization flow, such as the user clicking the home button.
     [FBSession.activeSession handleDidBecomeActive];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
+    [defaults synchronize];
 }
 
 
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -199,6 +203,8 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
+
+
 /*- (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
@@ -207,6 +213,12 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    //track if the app was terminated
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:YES forKey:kAppWasTerminated];
+    [defaults synchronize];
+    
 }
 
 #pragma mark background fetch
@@ -232,6 +244,10 @@
     
 //    }];
     NSLog(@"Background fetch intialized");
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
+    [defaults synchronize];
     
     //buying Parse 20 seconds to perform retrieve and save
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
@@ -309,6 +325,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         if (weekday == 1) {
             
             [defaults setBool:NO forKey:@"hasRunAppThisWeekKey"];
+            [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
             [defaults synchronize];
             
             //schedule notification
@@ -365,7 +382,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
     if ([notificationId isEqualToString:@"GetHourlyUpdatePush"]) {
         
-        [Amplitude logEvent:@"GetHourlyUpdate Push Received"];
+//        [Amplitude logEvent:@"GetHourlyUpdate Push Received"];
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
+        [defaults synchronize];
         
         NSDate *fetchStart = [NSDate date];
         

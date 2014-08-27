@@ -166,7 +166,7 @@
             {
                 
                 for (int i = 0; i < objects.count; i++) {
-                                        PFObject *myMatchupObject = [objects objectAtIndex:i];
+                    PFObject *myMatchupObject = [objects objectAtIndex:i];
                     
                     
                     NSString * round = [myMatchupObject objectForKey:kRound];
@@ -437,17 +437,13 @@
 //        {
 //
 //            
-//            self.myPoints = 0;
+//            self.mySteps = 0;
 //                
 //            
 //        }
 //        else
 //        {
 //         
-//
-//            self.myPoints = [self calculatePoints:numberOfSteps];
-//          
-//            
 //            self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
 //            
 //        }
@@ -509,16 +505,55 @@
     
     //set the player's total steps in memory
     NSUserDefaults *myRetrievedSteps = [NSUserDefaults standardUserDefaults];
-
+    
     
     
     int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsToday];
     int myMostRecentStepsValue = [self.mySteps intValue];
     
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    BOOL  appWasTerminated = [defaults boolForKey:kAppWasTerminated];
+    
+    NSDate *dateAppWasLastRan = [defaults objectForKey:kDateAppLastRan];
+    NSDate *todaysDate = [NSDate date];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE"];
+    
+    NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
+    NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
+    
+    if (appWasTerminated == YES) {
+        
+        if([todaysDay isEqualToString:dayAppWasLastActivated])
+        {
+            self.myStepsDeltaValue = myMostRecentStepsValue - myStoredSteps;
+        }
+        else
+        {
+            self.myStepsDeltaValue = myMostRecentStepsValue;
 
-    
-    self.myStepsDeltaValue = myMostRecentStepsValue - myStoredSteps;
-    
+        }
+        
+        [defaults setBool:NO forKey:kAppWasTerminated];
+        [defaults synchronize];
+        
+                
+        
+    }
+    else
+    {
+        if([todaysDay isEqualToString:dayAppWasLastActivated])
+        {
+            self.myStepsDeltaValue = myMostRecentStepsValue - myStoredSteps;
+        }
+        else
+        {
+            self.myStepsDeltaValue = myMostRecentStepsValue;
+            
+        }
+
+    }
     
 //                                    NSLog(@"myFetchedStoredSteps: %d", myStoredSteps);
 //                                    NSLog(@"myFetchedMostRecentStepsValue: %d", myMostRecentStepsValue);
@@ -1784,7 +1819,7 @@
                 
                     
                 
-                NSLog(@"teamNameJoined %@", team.name);
+//                NSLog(@"teamNameJoined %@", team.name);
                 
                 //if I am on the team, filp boolean to yes
                 team.onteam = [NSNumber numberWithBool:YES];

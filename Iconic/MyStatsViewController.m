@@ -439,16 +439,6 @@
 //            int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsBeforeSaving];
             //            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
             
-            int myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
-            //            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
-            [myRetrievedSteps setInteger:myStepsGainedDelta forKey:@"myStepsDelta"];
-            [myRetrievedSteps synchronize];
-
-            
-//            [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:1.5];
-            
-           
-            
             
             self.stepsValue.formatBlock = ^NSString* (float value)
             {
@@ -456,9 +446,92 @@
                 return [NSString stringWithFormat:@"%@",formatted];
             };
             
-//            int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsBeforeSaving];
-            [self.stepsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
-            [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
+            
+            
+            //check if app crashed or was terminated by the user
+            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+            BOOL  appWasTerminated = [defaults boolForKey:kAppWasTerminated];
+            
+            NSDate *dateAppWasLastRan = [defaults objectForKey:kDateAppLastRan];
+//            NSLog(@"dateAppWasLastLaunched: %@", dateAppWasLastLaunched);
+            
+            NSDate *todaysDate = [NSDate date];
+//            NSLog(@"todaysDate: %@", todaysDate);
+            
+            //find the day of the week string
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEEE"];
+            
+            NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
+            NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
+            
+//            NSLog(@"today's day %@", [dateFormatter stringFromDate:todaysDate]);
+//            NSLog(@"day app las launched %@", [dateFormatter stringFromDate:dateAppWasLastLaunched]);
+            int myStepsGainedDelta;
+            
+            if (appWasTerminated == YES) {
+                
+                if([todaysDay isEqualToString:dayAppWasLastActivated])
+                {
+                    myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
+                    [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
+
+                }
+                else
+                {
+                    myStepsGainedDelta = (int)numberOfSteps;
+                    [self.pointsValue  countFrom:0 to:numberOfSteps withDuration:1.5];
+
+                    
+                }
+                
+                [defaults setBool:NO forKey:kAppWasTerminated];
+                [defaults synchronize];
+                
+                
+                
+            }
+            else
+            {
+//                myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
+//                [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
+
+                
+                if([todaysDay isEqualToString:dayAppWasLastActivated])
+                {
+                    myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
+                    [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
+                    
+                }
+                else
+                {
+                    myStepsGainedDelta = (int)numberOfSteps;
+                    [self.pointsValue  countFrom:0 to:numberOfSteps withDuration:1.5];
+                    
+                    
+                }
+
+
+            }
+
+            
+            
+            
+            
+            //            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
+            [myRetrievedSteps setInteger:myStepsGainedDelta forKey:kMyStepsDelta];
+            [myRetrievedSteps synchronize];
+
+            
+//            [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:1.5];
+            
+            //            int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsBeforeSaving];
+//            [self.stepsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
+//            [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
+            
+
+            
+            
             
         }
         

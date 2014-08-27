@@ -87,6 +87,12 @@ extern NSString *const kPlayerXP;
 extern NSString *const kPlayerPointsToNextLevel;
 extern NSString *const kPlayerSteps;
 
+extern NSString * const kMyStepsDelta; //for animated delta points label - i.e. label that shows # of steps added to your teams
+
+#pragma mark - App state booleans
+extern NSString *const kAppWasTerminated;
+extern NSString *const kDateAppLastRan;
+
 #pragma mark - NSNotification
 extern NSString *const AppDelegateApplicationDidReceiveRemoteNotification;
 extern NSString *const UtilityUserFollowingChangedNotification;

@@ -57,8 +57,11 @@
     
     self.myAvgSteps.text = [NSString stringWithFormat:@"%@ Average Daily Steps", [user objectForKey:kPlayerAvgDailySteps]];
     
+        NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
+        
+        
     //created "myXP" to test parse for xp bug always showing 1 - it does not work!
-       self.myXPLevel.text = [NSString stringWithFormat:@"XP %@", [user objectForKey:@"xp"]];
+       self.myXPLevel.text = [NSString stringWithFormat:@"XP %@", [myStats objectForKey:@"myXP"]];
         
 //    NSLog(%@XP: ", [user objectForKey:kPlayerXP]);
     

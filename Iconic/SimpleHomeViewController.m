@@ -131,8 +131,8 @@ static NSString *kImageKey = @"imageKey";
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
     
     
-     [self refreshHomeView];
-    
+    [self refreshHomeView];
+//    [self performSelector:@selector(refreshHomeView) withObject:self afterDelay:2.0 ];
     
     [self setReceivedNotification:NO];
    
@@ -321,6 +321,7 @@ static NSString *kImageKey = @"imageKey";
         [calculatePointsClass retrieveFromParse];
         [calculatePointsClass incrementPlayerPointsInBackground];
         [calculatePointsClass findPastWeekleySteps];
+        [self.view setNeedsDisplay];
         //update core data with most recent league data
 //        [calculatePointsClass migrateLeaguesToCoreData];
 
@@ -947,7 +948,7 @@ static NSString *kImageKey = @"imageKey";
     //populate the deltaValueLabel
     NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
     
-    int myStepsDelta = (int)[myRetrievedPoints integerForKey:@"myStepsDelta"];
+    int myStepsDelta = (int)[myRetrievedPoints integerForKey:kMyStepsDelta];
 //    int  numberOfTeams = (int)[myRetrievedPoints integerForKey: kNumberOfTeams];
 
     
@@ -962,6 +963,7 @@ static NSString *kImageKey = @"imageKey";
         CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
         [calculatePointsClass retrieveFromParse];
         [calculatePointsClass incrementPlayerPointsInBackground];
+//        [self performSelector:@selector(refreshHomeView) withObject:self afterDelay:3.0 ];
 
         
 
