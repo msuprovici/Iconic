@@ -523,37 +523,17 @@
     NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
     NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
     
-    if (appWasTerminated == YES) {
-        
-        if([todaysDay isEqualToString:dayAppWasLastActivated])
-        {
-            self.myStepsDeltaValue = myMostRecentStepsValue - myStoredSteps;
-        }
-        else
-        {
-            self.myStepsDeltaValue = myMostRecentStepsValue;
-
-        }
-        
-        [defaults setBool:NO forKey:kAppWasTerminated];
-        [defaults synchronize];
-        
-                
-        
+    if([todaysDay isEqualToString:dayAppWasLastActivated])
+    {
+        self.myStepsDeltaValue = myMostRecentStepsValue - myStoredSteps;
     }
     else
     {
-        if([todaysDay isEqualToString:dayAppWasLastActivated])
-        {
-            self.myStepsDeltaValue = myMostRecentStepsValue - myStoredSteps;
-        }
-        else
-        {
-            self.myStepsDeltaValue = myMostRecentStepsValue;
-            
-        }
-
+        self.myStepsDeltaValue = myMostRecentStepsValue;
+        
     }
+
+    
     
 //                                    NSLog(@"myFetchedStoredSteps: %d", myStoredSteps);
 //                                    NSLog(@"myFetchedMostRecentStepsValue: %d", myMostRecentStepsValue);

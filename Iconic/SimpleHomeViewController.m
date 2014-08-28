@@ -213,6 +213,10 @@ static NSString *kImageKey = @"imageKey";
 -(void)refreshHomeView
 {
     
+    //set date the app was last active
+    //delaying by 3 seconds so to ensure that we don't reset this value right away.  We are using this value to compare with the last date the app ran.  If we don't delay, the date will always be reset to now.
+    [self performSelector:@selector(dateAppActivated) withObject:self afterDelay:3.0];
+    
 
     //Page control for MyStatsView
 //    NSUInteger numberPages = self.contentList.count;
@@ -339,6 +343,13 @@ static NSString *kImageKey = @"imageKey";
 
 }
 
+
+-(void)dateAppActivated
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
+    [defaults synchronize];
+}
 
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation

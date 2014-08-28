@@ -130,7 +130,6 @@
 //    pageControl.hidden = YES;
     
     
-    
     [self customizeAppearance];
     
     // Override point for customization after application launch.
@@ -179,11 +178,10 @@
     // Handle an interruption during the authorization flow, such as the user clicking the home button.
     [FBSession.activeSession handleDidBecomeActive];
     
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
-    [defaults synchronize];
+    
+    
+    
 }
-
 
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -215,9 +213,10 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
     //track if the app was terminated
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setBool:YES forKey:kAppWasTerminated];
-    [defaults synchronize];
+//    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+//    [defaults setBool:YES forKey:kAppWasTerminated];
+//    [defaults setObject:[NSDate date] forKey:@"dateAppWasTerminated"];
+//    [defaults synchronize];
     
 }
 
@@ -245,15 +244,16 @@
 //    }];
     NSLog(@"Background fetch intialized");
     
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
-    [defaults synchronize];
     
     //buying Parse 20 seconds to perform retrieve and save
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
                    dispatch_get_main_queue(), ^{
                        
 //    [Amplitude logEvent:@"Background Fetch Completed"];
+                       NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+                       [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
+                       [defaults synchronize];
+
                        
     completionHandler(UIBackgroundFetchResultNewData);
     });
@@ -363,8 +363,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
                        dispatch_get_main_queue(), ^{
                            
+
                            int myStoredSteps = (int)[defaults integerForKey:kMyFetchedStepsToday];
                            [defaults setInteger:myStoredSteps   forKey:@"myFinalStepsForTheDay"];
+                           [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
                            [defaults synchronize];
                            
                            
@@ -383,9 +385,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     if ([notificationId isEqualToString:@"GetHourlyUpdatePush"]) {
         
 //        [Amplitude logEvent:@"GetHourlyUpdate Push Received"];
-        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
-        [defaults synchronize];
+        
         
         NSDate *fetchStart = [NSDate date];
         
@@ -405,6 +405,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         //buying Parse 20 seconds to perform retrieve and save
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
                        dispatch_get_main_queue(), ^{
+                           
+                           NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+                           [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
+                           [defaults synchronize];
                            
                            handler(UIBackgroundFetchResultNewData);
                        });

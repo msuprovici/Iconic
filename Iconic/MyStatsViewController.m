@@ -450,10 +450,13 @@
             
             //check if app crashed or was terminated by the user
             NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-            BOOL  appWasTerminated = [defaults boolForKey:kAppWasTerminated];
+//            BOOL  appWasTerminated = [defaults boolForKey:kAppWasTerminated];
             
             NSDate *dateAppWasLastRan = [defaults objectForKey:kDateAppLastRan];
-//            NSLog(@"dateAppWasLastLaunched: %@", dateAppWasLastLaunched);
+            NSLog(@"dateAppWasLastLaunched: %@", dateAppWasLastRan);
+            
+//            NSDate *dateAppWasTerminated = [defaults objectForKey:@"dateAppWasTerminated"];
+//            NSLog(@"dateAppWasTerminated: %@", dateAppWasTerminated);
             
             NSDate *todaysDate = [NSDate date];
 //            NSLog(@"todaysDate: %@", todaysDate);
@@ -465,54 +468,25 @@
             NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
             NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
             
-//            NSLog(@"today's day %@", [dateFormatter stringFromDate:todaysDate]);
-//            NSLog(@"day app las launched %@", [dateFormatter stringFromDate:dateAppWasLastLaunched]);
+            NSLog(@"today's day %@", [dateFormatter stringFromDate:todaysDate]);
+            NSLog(@"day app last launched %@", dayAppWasLastActivated);
             int myStepsGainedDelta;
             
-            if (appWasTerminated == YES) {
-                
-                if([todaysDay isEqualToString:dayAppWasLastActivated])
-                {
-                    myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
-                    [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
-
-                }
-                else
-                {
-                    myStepsGainedDelta = (int)numberOfSteps;
-                    [self.pointsValue  countFrom:0 to:numberOfSteps withDuration:1.5];
-
-                    
-                }
-                
-                [defaults setBool:NO forKey:kAppWasTerminated];
-                [defaults synchronize];
-                
-                
+            if([todaysDay isEqualToString:dayAppWasLastActivated])
+            {
+                myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
+                [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
                 
             }
             else
             {
-//                myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
-//                [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
-
+                myStepsGainedDelta = (int)numberOfSteps;
+                [self.pointsValue  countFrom:0 to:numberOfSteps withDuration:1.5];
                 
-                if([todaysDay isEqualToString:dayAppWasLastActivated])
-                {
-                    myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
-                    [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
-                    
-                }
-                else
-                {
-                    myStepsGainedDelta = (int)numberOfSteps;
-                    [self.pointsValue  countFrom:0 to:numberOfSteps withDuration:1.5];
-                    
-                    
-                }
-
-
+                
             }
+
+            
 
             
             
