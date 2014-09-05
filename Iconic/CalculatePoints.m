@@ -520,6 +520,9 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE"];
     
+    NSTimeZone * timezone = [NSTimeZone timeZoneWithName: @"PST"];
+    [dateFormatter setTimeZone:timezone];
+    
     NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
     NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
     
@@ -664,8 +667,12 @@
     //had to set the cahce policy to kPFCachePolicyNetworkElseCache
     //kPFCachePolicyCacheThenNetwork ran the query bellow 2x and dobled kScore & kScoreToday
     
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
-    query2.cachePolicy = kPFCachePolicyNetworkElseCache;
+//    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+//    query2.cachePolicy = kPFCachePolicyNetworkElseCache;
+    
+    //using network only to
+    query.cachePolicy = kPFCachePolicyNetworkOnly;
+    query2.cachePolicy = kPFCachePolicyNetworkOnly;
     
     [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
     
@@ -696,16 +703,16 @@
 //                NSLog(@"delta in query %@", delta);
                     //                    [object save];
 //                    [object saveInBackground];
-                    //                    [object saveEventually];
+                                        [myTeams saveEventually];
                 
-                    [myTeams saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                        if (succeeded) {
-//                            NSLog(@"Team stats succesfully saved");
-                        }
-                        else{
-//                            NSLog(@"Team stats failed to save");
-                        }
-                    }];
+//                    [myTeams saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                        if (succeeded) {
+////                            NSLog(@"Team stats succesfully saved");
+//                        }
+//                        else{
+////                            NSLog(@"Team stats failed to save");
+//                        }
+//                    }];
                    
                }
 //            }

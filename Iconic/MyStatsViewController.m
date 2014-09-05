@@ -453,23 +453,28 @@
 //            BOOL  appWasTerminated = [defaults boolForKey:kAppWasTerminated];
             
             NSDate *dateAppWasLastRan = [defaults objectForKey:kDateAppLastRan];
-            NSLog(@"dateAppWasLastLaunched: %@", dateAppWasLastRan);
+//            NSLog(@"dateAppWasLastLaunched: %@", dateAppWasLastRan);
             
 //            NSDate *dateAppWasTerminated = [defaults objectForKey:@"dateAppWasTerminated"];
 //            NSLog(@"dateAppWasTerminated: %@", dateAppWasTerminated);
             
             NSDate *todaysDate = [NSDate date];
+            
 //            NSLog(@"todaysDate: %@", todaysDate);
             
             //find the day of the week string
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"EEEE"];
             
+            NSTimeZone * timezone = [NSTimeZone timeZoneWithName: @"PST"];
+            [dateFormatter setTimeZone:timezone];
+            
             NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
             NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
             
-            NSLog(@"today's day %@", [dateFormatter stringFromDate:todaysDate]);
-            NSLog(@"day app last launched %@", dayAppWasLastActivated);
+//            NSLog(@"today's day %@", [dateFormatter stringFromDate:todaysDate]);
+//            NSLog(@"day app last launched %@", dayAppWasLastActivated);
+            
             int myStepsGainedDelta;
             
             if([todaysDay isEqualToString:dayAppWasLastActivated])

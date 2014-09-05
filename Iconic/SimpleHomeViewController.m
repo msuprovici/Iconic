@@ -217,6 +217,7 @@ static NSString *kImageKey = @"imageKey";
     //delaying by 3 seconds so to ensure that we don't reset this value right away.  We are using this value to compare with the last date the app ran.  If we don't delay, the date will always be reset to now.
     [self performSelector:@selector(dateAppActivated) withObject:self afterDelay:3.0];
     
+    
 
     //Page control for MyStatsView
 //    NSUInteger numberPages = self.contentList.count;
@@ -268,7 +269,88 @@ static NSString *kImageKey = @"imageKey";
 //    [self findSevenDayStepsAndPoints];
 
    
-    [self showMyTeamsView];
+//    [self showMyTeamsView];
+//    
+//    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+//    
+//    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+//    
+//    if (numberOfTeams > 0) {
+//        [self beginDeltaPointsAnimation];
+//    }
+//    
+////    [self beginDeltaPointsAnimation];
+//    
+//    
+//    // remove all the subviews from our scrollview
+//    for (UIView *view in self.MyTeamsView.subviews)
+//    {
+//        [view removeFromSuperview];
+//    }
+//   
+//    
+//    self.myTeamsPageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+//    
+//    self.myTeamsPageController.dataSource = self;
+//    [[self.myTeamsPageController view] setFrame:[self.MyTeamsView  bounds]];
+//    
+//    MyTeamsViewController *initialViewController = [self viewControllerAtIndex:0];
+//    
+//    
+//    self.myTeamsViewControllers = [[NSArray alloc]init];
+//    self.myTeamsViewControllers = [NSArray arrayWithObject:initialViewController];
+//    
+//    [self.myTeamsPageController setViewControllers:self.myTeamsViewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+//    
+//    
+//    
+//    
+//    [self addChildViewController:self.myTeamsPageController];
+//    [self.MyTeamsView  addSubview:[self.myTeamsPageController view]];
+    
+//    [self.myTeamsPageController didMoveToParentViewController:self];
+    
+      /*comment this line out to test Final Scores view controller*/
+   //[self performSegueWithIdentifier:@"FinalScores" sender:self];
+    
+    //show FinalScoresTableViewController if this is the 1st time a user opens the app this week
+    [self appLoadedFirstTimeThisWeek];
+    
+    //we're updating the app data from the server 3 times so that the scores are always up to date.
+    //if we don't do it, team scores are often inaccurate unless we close & refresh the app again.
+    
+    [self performSelector:@selector(updateAppDataFromServer) withObject:self afterDelay:1.5];
+    
+     [self.view setNeedsDisplay];
+    
+//    [self performSelector:@selector(updateAppDataFromServer) withObject:self afterDelay:4];
+//    [self performSelector:@selector(updateAppDataFromServer) withObject:self afterDelay:5];
+    
+    //waiting 10 seconds before we reach out to the network so that we don't lock up the UI when viewDidLoad is called
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC),
+//                   dispatch_get_main_queue(), ^{
+    //perform server updates methods on a separate thread so that we don't lock up the UI
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
+//    {
+//        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//        [calculatePointsClass retrieveFromParse];
+//        [calculatePointsClass incrementPlayerPointsInBackground];
+//        [calculatePointsClass findPastWeekleySteps];
+//        [self.view setNeedsDisplay];
+//        //update core data with most recent league data
+////        [calculatePointsClass migrateLeaguesToCoreData];
+//
+////        NSLog(@"Calling this in 10 seconds");
+//        
+//    });
+//    });
+   
+    //use the line bellow to test FinalScoresTableViewController
+//    [self performSegueWithIdentifier:@"FinalScores" sender:self];
+
+    
+  
+//    [self.view setNeedsDisplay];
     
     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
     
@@ -278,7 +360,36 @@ static NSString *kImageKey = @"imageKey";
         [self beginDeltaPointsAnimation];
     }
     
-//    [self beginDeltaPointsAnimation];
+    [self showMyTeamsView];
+    
+    [self showMyTeams];
+    
+   
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    int myStepsGainedDelta = (int)[defaults integerForKey:kMyStepsDelta];
+    
+    //reload my teams view
+    if (myStepsGainedDelta) {
+        [self performSelector:@selector(showMyTeams) withObject:self afterDelay:4.5];
+    }
+
+}
+
+-(void)showMyTeams
+{
+    
+    
+//    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+//    
+//    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+//    
+//    if (numberOfTeams > 0) {
+//        [self beginDeltaPointsAnimation];
+//    }
+    
+    //    [self beginDeltaPointsAnimation];
     
     
     // remove all the subviews from our scrollview
@@ -286,7 +397,7 @@ static NSString *kImageKey = @"imageKey";
     {
         [view removeFromSuperview];
     }
-   
+    
     
     self.myTeamsPageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
@@ -307,40 +418,25 @@ static NSString *kImageKey = @"imageKey";
     [self addChildViewController:self.myTeamsPageController];
     [self.MyTeamsView  addSubview:[self.myTeamsPageController view]];
     
-//    [self.myTeamsPageController didMoveToParentViewController:self];
-    
-      /*comment this line out to test Final Scores view controller*/
-   //[self performSegueWithIdentifier:@"FinalScores" sender:self];
-    
-    //show FinalScoresTableViewController if this is the 1st time a user opens the app this week
-    [self appLoadedFirstTimeThisWeek];
-    
-    //waiting 10 seconds before we reach out to the network so that we don't lock up the UI when viewDidLoad is called
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC),
-                   dispatch_get_main_queue(), ^{
-    //perform server updates methods on a separate thread so that we don't lock up the UI
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
-    {
-        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-        [calculatePointsClass retrieveFromParse];
-        [calculatePointsClass incrementPlayerPointsInBackground];
-        [calculatePointsClass findPastWeekleySteps];
-        [self.view setNeedsDisplay];
-        //update core data with most recent league data
-//        [calculatePointsClass migrateLeaguesToCoreData];
-
-//        NSLog(@"Calling this in 10 seconds");
-        
-    });
-    });
-   
-    //use the line bellow to test FinalScoresTableViewController
-//    [self performSegueWithIdentifier:@"FinalScores" sender:self];
-
     
   
-//    [self.view setNeedsDisplay];
+}
 
+-(void)updateAppDataFromServer
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
+                   {
+                       CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+                       [calculatePointsClass retrieveFromParse];
+                       [calculatePointsClass incrementPlayerPointsInBackground];
+                       [calculatePointsClass findPastWeekleySteps];
+                       [self.view setNeedsDisplay];
+                       //update core data with most recent league data
+                       //        [calculatePointsClass migrateLeaguesToCoreData];
+                       
+                       //        NSLog(@"Calling this in 10 seconds");
+                       
+                   });
 }
 
 
@@ -637,7 +733,7 @@ static NSString *kImageKey = @"imageKey";
 //            
 //            [myRetrievedPoints synchronize];
 //            [[NSUserDefaults standardUserDefaults] synchronize];
-//            
+//
 //                    }
 //        
 //        else
@@ -971,9 +1067,9 @@ static NSString *kImageKey = @"imageKey";
     {
         self.deltaPoints.text = [NSString stringWithFormat:@"+%d", myStepsDelta];
         
-        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-        [calculatePointsClass retrieveFromParse];
-        [calculatePointsClass incrementPlayerPointsInBackground];
+//        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//        [calculatePointsClass retrieveFromParse];
+//        [calculatePointsClass incrementPlayerPointsInBackground];
 //        [self performSelector:@selector(refreshHomeView) withObject:self afterDelay:3.0 ];
 
         

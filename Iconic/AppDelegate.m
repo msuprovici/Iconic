@@ -95,6 +95,8 @@
     //local notification
     
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+    [calculatePointsClass retrieveFromParse];
+    [calculatePointsClass incrementPlayerPointsInBackground];
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
 //    [calculatePointsClass migrateLeaguesToCoreData];
@@ -178,7 +180,9 @@
     // Handle an interruption during the authorization flow, such as the user clicking the home button.
     [FBSession.activeSession handleDidBecomeActive];
     
-    
+    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+    [calculatePointsClass retrieveFromParse];
+    [calculatePointsClass incrementPlayerPointsInBackground];
     
     
 }
