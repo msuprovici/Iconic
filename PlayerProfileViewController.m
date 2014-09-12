@@ -12,6 +12,9 @@
 #import "TeamPlayersViewController.h"
 #import <Parse/Parse.h>
 #import "PNColor.h"
+#import "Amplitude.h"
+
+
 @interface PlayerProfileViewController ()
 
 @end
@@ -93,7 +96,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    [self.cheerButton setTitle:@"Cheer" forState:UIControlStateNormal];
+    [self.cheerButton setTitle:@"High Five" forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -395,9 +398,13 @@
         
             }];
     
+    [self.cheerButton setTitle:@"High Fived" forState:UIControlStateNormal];
+    [self.cheerButton setBackgroundColor:PNDeepGrey];
+    [self.cheerButton setTitleColor:PNCleanGrey forState:UIControlStateNormal];
     
-    
-    [self.cheerButton setTitle:@"Cheered" forState:UIControlStateNormal];
+    [Amplitude logEvent:@"Cheer button pressed"];
+   
+   
     
     
 }

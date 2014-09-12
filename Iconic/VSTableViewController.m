@@ -14,7 +14,7 @@
 #import "PNColor.h"
 #import "PlayerProfileViewController.h"
 #import "MyTeamsViewController.h"
-
+#import "Amplitude.h"
 
 @interface VSTableViewController ()
 
@@ -609,6 +609,8 @@
         
         
 //        NSLog(@"VS view controller player %@", player);
+        
+        [Amplitude logEvent:@"Teamate selected from game details"];
     }
 }
 

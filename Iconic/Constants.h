@@ -11,7 +11,7 @@
 
 
 //table headers
-#define HeaderColor PNCleanGrey
+#define HeaderColor [UIColor clearColor]
 #define HeaderTextColor PNWeiboColor
 #define HeaderHeight    28
 #define HeaderAlignment  NSTextAlignmentCenter
