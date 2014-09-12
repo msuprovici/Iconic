@@ -19,7 +19,13 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *playerXP;
 
+@property (strong, nonatomic) IBOutlet UIButton *cheerButton;
+
+- (IBAction)cheerButtonPressed:(id)sender;
+
 @property (nonatomic, strong) PFObject *player;
+
+@property (nonatomic, strong) NSString *userName;
 
 -(void)initWithPlayer:(PFObject*)aPlayer;
 

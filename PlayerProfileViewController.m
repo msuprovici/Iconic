@@ -62,6 +62,7 @@
     PFObject * user = self.player;
     
     self.playerUserName.text = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
+    self.userName = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     
     self.playerAvgSteps.text = [NSString stringWithFormat:@"%@ Average Daily Steps", [user objectForKey:kPlayerAvgDailySteps]];
     
@@ -90,6 +91,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
+    [self.cheerButton setTitle:@"Cheer" forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -380,4 +384,21 @@
  }
  
  */
+- (IBAction)cheerButtonPressed:(id)sender {
+    
+    [PFCloud callFunctionInBackground:@"Cheer" withParameters:@{ @"username": self.userName } block:^(id object, NSError *error) {
+        
+        if (!error) {
+            NSLog(@"cheer cloud function worked %@", object);
+        }
+
+        
+            }];
+    
+    
+    
+    [self.cheerButton setTitle:@"Cheered" forState:UIControlStateNormal];
+    
+    
+}
 @end

@@ -122,6 +122,12 @@
         UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"Main"];
         self.window.rootViewController = rootViewController;
        
+       if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
+           NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+           [PFPush handlePush:notificationPayload];
+       }
+
+       
     }
     else
     {
@@ -285,12 +291,20 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:newDeviceToken];
+    
+    if ([PFUser currentUser]) {
+        currentInstallation[@"user"] = [PFUser currentUser];
+    } else {
+        [currentInstallation removeObjectForKey:@"user"];
+    }
+    
     [currentInstallation saveInBackground];
 }
 
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
+    NSLog(@"did receive cheer push");
 }
 
 
@@ -298,6 +312,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
+  
     
     
     NSString *notificationId = [userInfo objectForKey:@"notificationID"];
@@ -417,6 +432,12 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
                            handler(UIBackgroundFetchResultNewData);
                        });
 
+        
+    }
+    if ([notificationId isEqualToString:@"CheersPush"]) {
+        
+        [PFPush handlePush:userInfo];
+        NSLog(@"did receive cheer push in background");
         
     }
     

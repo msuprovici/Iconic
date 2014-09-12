@@ -1795,14 +1795,14 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cHt-0A-rf1" userLabel="Label - Username">
-                                    <rect key="frame" x="35" y="150" width="250" height="46"/>
+                                    <rect key="frame" x="35" y="143" width="250" height="46"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="84D-Ke-xpW" userLabel="Label - Steps">
-                                    <rect key="frame" x="36" y="193" width="250" height="34"/>
+                                    <rect key="frame" x="36" y="176" width="250" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1815,6 +1815,19 @@
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2Nl-2C-BvQ">
+                                    <rect key="frame" x="52" y="217" width="218" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="20"/>
+                                    <state key="normal" title="Button">
+                                        <color key="titleColor" red="0.8764648438" green="0.1105902305" blue="0.1742419097" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="cheerButtonPressed:" destination="UbG-da-jWg" eventType="touchUpInside" id="j2e-tO-SOT"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
@@ -1847,6 +1860,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="abb-en-3ld"/>
                     <connections>
+                        <outlet property="cheerButton" destination="2Nl-2C-BvQ" id="bzg-TK-dOC"/>
                         <outlet property="playerAvgSteps" destination="84D-Ke-xpW" id="PBJ-4x-dDf"/>
                         <outlet property="playerProfilePhoto" destination="MUm-0U-niA" id="axv-1A-Naq"/>
                         <outlet property="playerUserName" destination="cHt-0A-rf1" id="jdw-cD-m99"/>
@@ -2424,7 +2438,7 @@
         <image name="first" width="30" height="30"/>
         <image name="reveal-icon.png" width="22" height="17"/>
         <image name="second" width="30" height="30"/>
-        <image name="tutorial1.png" width="220" height="220"/>
+        <image name="tutorial1.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -2432,8 +2446,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="RgY-QV-Nzf"/>
-        <segue reference="GlC-f2-v4y"/>
         <segue reference="cdC-Af-usM"/>
+        <segue reference="f2W-wf-Lkd"/>
+        <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>
