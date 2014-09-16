@@ -95,11 +95,14 @@
     //local notification
     
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+    if ([PFUser currentUser]) {
     [calculatePointsClass retrieveFromParse];
     [calculatePointsClass incrementPlayerPointsInBackground];
+        
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
 //    [calculatePointsClass migrateLeaguesToCoreData];
+    }
 
     // Handle launching from a notification
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
@@ -187,8 +190,11 @@
     [FBSession.activeSession handleDidBecomeActive];
     
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+    
+    if ([PFUser currentUser]) {
     [calculatePointsClass retrieveFromParse];
     [calculatePointsClass incrementPlayerPointsInBackground];
+    }
     
     
 }
@@ -246,10 +252,12 @@
         NSDate *fetchEnd = [NSDate date];
         NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
         NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
-        
+    
+     if ([PFUser currentUser]) {
         [calculatePoints incrementPlayerPointsInBackground];
         [calculatePoints retrieveFromParse];
 //        [calculatePoints getYesterdaysPointsAndSteps];
+     }
     
 //    }];
     NSLog(@"Background fetch intialized");
@@ -348,10 +356,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
             [defaults synchronize];
             
             //schedule notification
-            
+             if ([PFUser currentUser]) {
             CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
             [calculatePointsClass  createFinalTeamScoresNotificationBody];
-            
+             }
         }
         
         //    if([userInfo[@"aps"][@"content-available"] intValue]== 1)
@@ -371,9 +379,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         NSLog(@"Background Fetch From Push Duration: %f seconds", timeElapsed);
         
         //send and retrieve data from Parse
+         if ([PFUser currentUser]) {
         [calculatePoints incrementPlayerPointsInBackground];
         [calculatePoints retrieveFromParse];
-        
+         }
         
         
         NSLog(@"Background Fetch From Push intialized");
@@ -414,8 +423,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
         NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
         
+         if ([PFUser currentUser]) {
         [calculatePoints incrementPlayerPointsInBackground];
         [calculatePoints retrieveFromParse];
+         }
         //        [calculatePoints getYesterdaysPointsAndSteps];
         
         //    }];
