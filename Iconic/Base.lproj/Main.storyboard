@@ -418,7 +418,7 @@
             <objects>
                 <tableViewController id="7jw-Rg-QgJ" userLabel="VS Table View Controller" customClass="VSTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="7d3-4V-oPr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="CGM-Z5-ke3">
@@ -743,7 +743,14 @@
                             <outlet property="delegate" destination="7jw-Rg-QgJ" id="tzz-IQ-BiG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Ums-Rd-y27"/>
+                    <navigationItem key="navigationItem" id="Ums-Rd-y27">
+                        <barButtonItem key="rightBarButtonItem" title="Chat" id="Fnd-6b-HVV">
+                            <connections>
+                                <segue destination="uCQ-5v-qry" kind="push" id="PnL-OJ-DjW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="myTeam" destination="dVV-ik-LlT" id="XMJ-yA-gWY"/>
                         <outlet property="myTeamFriday" destination="Ab4-Ru-EQq" id="KTO-zw-8ol"/>
@@ -1869,6 +1876,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DUH-Yv-nl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-496" y="-3938"/>
+        </scene>
+        <!--Chat Room Table View Controller-->
+        <scene sceneID="k2Y-fI-PCk">
+            <objects>
+                <tableViewController id="uCQ-5v-qry" customClass="ChatRoomTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4cg-ya-6ao">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0g9-fk-QXn" customClass="ChatRoomTableViewCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0g9-fk-QXn" id="RUX-Oc-muW">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uCQ-5v-qry" id="Lt2-Dt-BXR"/>
+                            <outlet property="delegate" destination="uCQ-5v-qry" id="Tcv-Io-I47"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRa-Nk-LOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-726" y="-3168"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="MnR-SJ-9PX">

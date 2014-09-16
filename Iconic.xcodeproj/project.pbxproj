@@ -129,6 +129,8 @@
 		5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */; };
 		5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D1E61832F9D1006C7932 /* LogInViewController.m */; };
 		5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */; };
+		5CA6BB4B19C8DDAD00E9946E /* ChatRoomTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB4A19C8DDAD00E9946E /* ChatRoomTableViewController.m */; };
+		5CA6BB4E19C8DDEF00E9946E /* ChatRoomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB4D19C8DDEF00E9946E /* ChatRoomTableViewCell.m */; };
 		5CA7BC4A18C1A59500DBBC7D /* VSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7BC4918C1A59500DBBC7D /* VSTableViewCell.m */; };
 		5CB75DF71889A0630047BC47 /* PlayerCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF61889A0630047BC47 /* PlayerCommentCell.m */; };
 		5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF91889CCB60047BC47 /* ActivityDeatailsHeaderCell.m */; };
@@ -364,6 +366,10 @@
 		5CA3D1E51832F9D1006C7932 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ../LogInViewController.h; sourceTree = "<group>"; };
 		5CA3D1E61832F9D1006C7932 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ../LogInViewController.m; sourceTree = "<group>"; };
 		5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		5CA6BB4919C8DDAD00E9946E /* ChatRoomTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomTableViewController.h; sourceTree = "<group>"; };
+		5CA6BB4A19C8DDAD00E9946E /* ChatRoomTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomTableViewController.m; sourceTree = "<group>"; };
+		5CA6BB4C19C8DDEF00E9946E /* ChatRoomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomTableViewCell.h; sourceTree = "<group>"; };
+		5CA6BB4D19C8DDEF00E9946E /* ChatRoomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomTableViewCell.m; sourceTree = "<group>"; };
 		5CA7BC4818C1A59500DBBC7D /* VSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSTableViewCell.h; sourceTree = "<group>"; };
 		5CA7BC4918C1A59500DBBC7D /* VSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSTableViewCell.m; sourceTree = "<group>"; };
 		5CB75DF51889A0630047BC47 /* PlayerCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCommentCell.h; sourceTree = "<group>"; };
@@ -473,6 +479,7 @@
 				5CB75DFE188A21C70047BC47 /* Comments+Likes On Activity */,
 				5CB75E00188A23060047BC47 /* Profile */,
 				5C539A1018679A66006676FA /* Followers_following_teams */,
+				5CA6BB4F19C8DE0900E9946E /* ChatRoom */,
 			);
 			name = Social;
 			sourceTree = "<group>";
@@ -931,6 +938,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5CA6BB4F19C8DE0900E9946E /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				5CA6BB4919C8DDAD00E9946E /* ChatRoomTableViewController.h */,
+				5CA6BB4A19C8DDAD00E9946E /* ChatRoomTableViewController.m */,
+				5CA6BB4C19C8DDEF00E9946E /* ChatRoomTableViewCell.h */,
+				5CA6BB4D19C8DDEF00E9946E /* ChatRoomTableViewCell.m */,
+			);
+			name = ChatRoom;
+			sourceTree = "<group>";
+		};
 		5CB75DFE188A21C70047BC47 /* Comments+Likes On Activity */ = {
 			isa = PBXGroup;
 			children = (
@@ -1176,6 +1194,7 @@
 			files = (
 				5C539A161867A2AC006676FA /* FollowCell.m in Sources */,
 				5C8BB5B21884627000E89ADF /* TimelineViewController.m in Sources */,
+				5CA6BB4E19C8DDEF00E9946E /* ChatRoomTableViewCell.m in Sources */,
 				5CA19A3918B83E290023C940 /* PNLineChart.m in Sources */,
 				5CA19A3E18B83F240023C940 /* UICountingLabel.m in Sources */,
 				5CD76B5F188852530014072F /* FeedViewController.m in Sources */,
@@ -1262,6 +1281,7 @@
 				5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */,
 				5CA3D1971831DF51006C7932 /* main.m in Sources */,
 				5C01003C197449FB00024BDC /* FinalScoresTableViewController.m in Sources */,
+				5CA6BB4B19C8DDAD00E9946E /* ChatRoomTableViewController.m in Sources */,
 				5CB75DF71889A0630047BC47 /* PlayerCommentCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
