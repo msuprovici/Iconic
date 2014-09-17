@@ -14,4 +14,6 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *chatSendButton;
 
+@property (strong, nonatomic) IBOutlet UITextField *chatTextField;
+
 @end
