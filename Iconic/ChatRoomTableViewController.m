@@ -7,6 +7,8 @@
 //
 
 #import "ChatRoomTableViewController.h"
+#import "ChatRoomTableViewCell.h"
+#import "ChatTextInputTableViewCell.h"
 
 @interface ChatRoomTableViewController ()
 
@@ -42,6 +44,14 @@
     return self;
 }
 
+//get the league passed from the leagues view controller
+-(void)initWithChatTeam:(NSString *)aTeam
+{
+    self.team = aTeam;
+    
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -60,11 +70,13 @@
 }
 
 #pragma mark - PFTableViewController
-/*
+
  // Override to customize what kind of query to perform on the class. The default is to query for
  // all objects ordered by createdAt descending.
  - (PFQuery *)queryForTable {
- PFQuery *query = [PFQuery queryWithClassName:self.className];
+ PFQuery *query = [PFQuery queryWithClassName:@"Chat"];
+     [query includeKey:@"User"];
+     [query whereKey:@"TeamName" equalTo:self.team];
  
  // If Pull To Refresh is enabled, query against the network by default.
  if (self.pullToRefreshEnabled) {
@@ -77,31 +89,48 @@
  query.cachePolicy = kPFCachePolicyCacheThenNetwork;
  }
  
- [query orderByDescending:@"createdAt"];
+ [query orderByAscending:@"createdAt"];
  
  return query;
  }
- */
 
-/*
+
+
  // Override to customize the look of a cell representing an object. The default is to display
  // a UITableViewCellStyleDefault style cell with the label being the textKey in the object,
  // and the imageView being the imageKey in the object.
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
- static NSString *CellIdentifier = @"Cell";
+ static NSString *CellIdentifier = @"ChatRoomTableViewCell";
  
- PFTableViewCell *cell = (PFTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+ ChatRoomTableViewCell *cell = (ChatRoomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
  if (cell == nil) {
- cell = [[PFTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+ cell = [[ChatRoomTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
  }
  
  // Configure the cell
- cell.textLabel.text = [object objectForKey:self.textKey];
- cell.imageView.file = [object objectForKey:self.imageKey];
+ 
+     
+     cell.message.text = [object objectForKey:@"Message"];
+     cell.userName.text = [[object objectForKey:@"User"]objectForKey:@"username"];
+     
+     
+     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+     [formatter setDateStyle:NSDateFormatterShortStyle];
+     [formatter setTimeStyle:NSDateFormatterShortStyle];
+     [formatter setDoesRelativeDateFormatting:YES];
+     
+//     [formatter setDateFormat:@"yyyy"];
+     
+     //Set time zone conversions
+     [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"PST"]];
+     
+     NSString *stringFromDate = [formatter stringFromDate:object.createdAt];
+     cell.date.text = stringFromDate;
+
  
  return cell;
  }
- */
+
 
 /*
  // Override if you need to change the ordering of objects in the table.
@@ -166,6 +195,30 @@
 
 
 #pragma mark - Table view data source
+
+-(UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    static NSString *CellIdentifier = @"ChatTextInputTableViewCell";
+    //set comment cell as the footer
+    ChatTextInputTableViewCell *cell = (ChatTextInputTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil){
+        [NSException raise:@"CommentCell == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
+    }
+    
+    
+    return cell;
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 100.0f;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 55.0f;
+}
+
 /*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -243,5 +296,40 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    
+    [textField resignFirstResponder];
+    return NO;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if ([textField.text length] != 0) {
+        
+        PFObject *comment = [PFObject objectWithClassName:@"Chat"];
+        [comment setObject:[PFUser currentUser] forKey:@"User"];
+        [comment setObject:textField.text forKey:@"Message"];
+        [comment setObject:self.team forKey:@"TeamName"];
+        
+        [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                //Refresh view
+                NSLog(@"Chat object saved");
+                [self loadObjects];
+                } else {
+                NSLog(@"Failed to save object: %@", error);
+                }
+
+        }];
+    }
+    
+    textField.text = nil;
+    return YES;
+}
+
+
 
 @end

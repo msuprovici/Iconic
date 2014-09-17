@@ -14,6 +14,7 @@
 #import "PNColor.h"
 #import "PlayerProfileViewController.h"
 #import "MyTeamsViewController.h"
+#import "ChatRoomTableViewController.h"
 #import "Amplitude.h"
 
 @interface VSTableViewController ()
@@ -611,6 +612,13 @@
 //        NSLog(@"VS view controller player %@", player);
         
         [Amplitude logEvent:@"Teamate selected from game details"];
+    }
+    if ([segue.identifier isEqualToString:@"ChatSelected"]) {
+        
+//        [segue.destinationViewController initChatWithTeam:self.myTeamReceived];
+        
+        [segue.destinationViewController initWithChatTeam:self.myTeamReceived];
+        
     }
 }
 

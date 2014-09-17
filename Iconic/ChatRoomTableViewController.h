@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Parse/Parse.h"
 
-@interface ChatRoomTableViewController : PFQueryTableViewController
+@interface ChatRoomTableViewController : PFQueryTableViewController <UITextFieldDelegate>
+
+@property (nonatomic, strong) NSString *team;
+
+-(void)initWithChatTeam:(NSString*)aTeam;
+
 
 @end

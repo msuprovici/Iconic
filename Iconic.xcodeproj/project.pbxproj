@@ -131,6 +131,7 @@
 		5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */; };
 		5CA6BB4B19C8DDAD00E9946E /* ChatRoomTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB4A19C8DDAD00E9946E /* ChatRoomTableViewController.m */; };
 		5CA6BB4E19C8DDEF00E9946E /* ChatRoomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB4D19C8DDEF00E9946E /* ChatRoomTableViewCell.m */; };
+		5CA6BB5219C8F43C00E9946E /* ChatTextInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB5119C8F43C00E9946E /* ChatTextInputTableViewCell.m */; };
 		5CA7BC4A18C1A59500DBBC7D /* VSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7BC4918C1A59500DBBC7D /* VSTableViewCell.m */; };
 		5CB75DF71889A0630047BC47 /* PlayerCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF61889A0630047BC47 /* PlayerCommentCell.m */; };
 		5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF91889CCB60047BC47 /* ActivityDeatailsHeaderCell.m */; };
@@ -370,6 +371,8 @@
 		5CA6BB4A19C8DDAD00E9946E /* ChatRoomTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomTableViewController.m; sourceTree = "<group>"; };
 		5CA6BB4C19C8DDEF00E9946E /* ChatRoomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomTableViewCell.h; sourceTree = "<group>"; };
 		5CA6BB4D19C8DDEF00E9946E /* ChatRoomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomTableViewCell.m; sourceTree = "<group>"; };
+		5CA6BB5019C8F43C00E9946E /* ChatTextInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextInputTableViewCell.h; sourceTree = "<group>"; };
+		5CA6BB5119C8F43C00E9946E /* ChatTextInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextInputTableViewCell.m; sourceTree = "<group>"; };
 		5CA7BC4818C1A59500DBBC7D /* VSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSTableViewCell.h; sourceTree = "<group>"; };
 		5CA7BC4918C1A59500DBBC7D /* VSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSTableViewCell.m; sourceTree = "<group>"; };
 		5CB75DF51889A0630047BC47 /* PlayerCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCommentCell.h; sourceTree = "<group>"; };
@@ -896,11 +899,11 @@
 				5C726C0F196B2C15007C4F4E /* PlayerProfile */,
 				5C2C1CBE185BAF12006722D2 /* Social */,
 				5C2EA52A1851474400B21C52 /* Home */,
+				5C328BFC186002DC00E0E985 /* Leagues */,
 				5C328C0018601AEE00E0E985 /* Teams */,
 				5C2EA52B1851475900B21C52 /* Schedule */,
 				5C2C1CD4185EADFA006722D2 /* Activity */,
 				5C2EA52C1851476B00B21C52 /* VS */,
-				5C328BFC186002DC00E0E985 /* Leagues */,
 				5C2EA52D1851477D00B21C52 /* LogIn */,
 				5CD93832187B54D1006CE08B /* Custom Dialog */,
 				5CA3D1A51831DF51006C7932 /* Images.xcassets */,
@@ -945,6 +948,8 @@
 				5CA6BB4A19C8DDAD00E9946E /* ChatRoomTableViewController.m */,
 				5CA6BB4C19C8DDEF00E9946E /* ChatRoomTableViewCell.h */,
 				5CA6BB4D19C8DDEF00E9946E /* ChatRoomTableViewCell.m */,
+				5CA6BB5019C8F43C00E9946E /* ChatTextInputTableViewCell.h */,
+				5CA6BB5119C8F43C00E9946E /* ChatTextInputTableViewCell.m */,
 			);
 			name = ChatRoom;
 			sourceTree = "<group>";
@@ -1211,6 +1216,7 @@
 				5CEC3BDE18A2A86200C444FA /* TeamPlayerCell.m in Sources */,
 				5C4EF985186CBC15000E0E59 /* Utility.m in Sources */,
 				5C78DA691899B61700CBA29B /* MBProgressHUD.m in Sources */,
+				5CA6BB5219C8F43C00E9946E /* ChatTextInputTableViewCell.m in Sources */,
 				5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */,
 				5C539DFD198715090027669A /* Amplitude.m in Sources */,
 				5C726C08196B1433007C4F4E /* AccountMyTeamCell.m in Sources */,
