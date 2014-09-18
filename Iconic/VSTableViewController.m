@@ -704,18 +704,22 @@
         
         PFObject *player = [playerPointer objectForKey:kTeamate];
         
+        [Amplitude logEvent:@"Teamate selected from game details"];
+        
         [segue.destinationViewController initWithPlayer:player];
         
         
 //        NSLog(@"VS view controller player %@", player);
         
-        [Amplitude logEvent:@"Teamate selected from game details"];
+        
     }
     if ([segue.identifier isEqualToString:@"ChatSelected"]) {
         
 //        [segue.destinationViewController initChatWithTeam:self.myTeamReceived];
+        [Amplitude logEvent:@"Chat selected"];
         
         [segue.destinationViewController initWithChatTeam:self.myTeamReceived];
+        
         
     }
 }

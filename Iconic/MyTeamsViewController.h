@@ -10,10 +10,11 @@
 #import <Parse/Parse.h>
 #import "PNChart.h"
 #import "UICountingLabel.h"
+#import "MZTimerLabel.h"
 #import <CoreMotion/CoreMotion.h>
 
 
-@interface MyTeamsViewController : UIViewController
+@interface MyTeamsViewController : UIViewController <MZTimerLabelDelegate>
 
 @property (nonatomic, strong) PFObject * myteamObject;
 @property (nonatomic, strong) PFObject * myNewTeamObject;
@@ -47,5 +48,9 @@
 
 @property (assign, nonatomic) NSInteger index;
 @property (assign, nonatomic) int myTeamPoints;
+
+//timer
+@property (strong, nonatomic) IBOutlet MZTimerLabel *gameClock;
+
 
 @end

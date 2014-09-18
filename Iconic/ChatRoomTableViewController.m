@@ -8,6 +8,7 @@
 
 #import "ChatRoomTableViewController.h"
 #import "ChatRoomTableViewCell.h"
+#import "Amplitude.h"
 
 
 @interface ChatRoomTableViewController ()
@@ -342,6 +343,8 @@
                 //Refresh view
                 NSLog(@"Chat object saved");
                 [self loadObjects];
+                
+                [Amplitude logEvent:@"Player Comment"];
                 
                 if (self.objects.count > 5) {
                     CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height +150);
