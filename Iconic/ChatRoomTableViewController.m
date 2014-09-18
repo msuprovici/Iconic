@@ -111,9 +111,9 @@
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-        if (self.tableView.contentSize.height > self.tableView.frame.size.height)
+        if (self.tableView.contentSize.height >= self.tableView.frame.size.height)
     {
-        CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height + 50);
+        CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height );
         [self.self.tableView setContentOffset:offset animated:YES];
     }
 }
@@ -181,6 +181,7 @@
      
      NSString *stringFromDate = [formatter stringFromDate:object.createdAt];
      cell.date.text = stringFromDate;
+   
 
  
  return cell;
@@ -265,13 +266,13 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 100.0f;
+    return 85.0f;
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 55.0f;
+    return 40.0f;
 }
 
 /*
@@ -377,9 +378,9 @@
                 [self loadObjects];
                 
                 //make sure view is always scrolled to the buttom
-                if (self.tableView.contentSize.height > self.tableView.frame.size.height)
+                if (self.tableView.contentSize.height >= self.tableView.frame.size.height)
                 {
-                    CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height + 150);
+                    CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height );
                     [self.self.tableView setContentOffset:offset animated:NO];
                 }
 
@@ -400,7 +401,7 @@
 
 #pragma mark - Keyboard
 
-#define kOFFSET_FOR_KEYBOARD 300.0
+#define kOFFSET_FOR_KEYBOARD 80
 
 -(void)keyboardWillShow {
     // Animate the current view out of the way
@@ -469,9 +470,9 @@
     
     [self.view endEditing:YES];
     
-     if (self.tableView.contentSize.height > self.tableView.frame.size.height)
+     if (self.tableView.contentSize.height >= self.tableView.frame.size.height)
     {
-        CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height + 100);
+        CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height );
         [self.self.tableView setContentOffset:offset animated:YES];
     }
    
