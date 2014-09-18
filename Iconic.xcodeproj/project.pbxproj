@@ -131,7 +131,6 @@
 		5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */; };
 		5CA6BB4B19C8DDAD00E9946E /* ChatRoomTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB4A19C8DDAD00E9946E /* ChatRoomTableViewController.m */; };
 		5CA6BB4E19C8DDEF00E9946E /* ChatRoomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB4D19C8DDEF00E9946E /* ChatRoomTableViewCell.m */; };
-		5CA6BB5219C8F43C00E9946E /* ChatTextInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB5119C8F43C00E9946E /* ChatTextInputTableViewCell.m */; };
 		5CA6BB5619CA431C00E9946E /* BBBadgeBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB5519CA431C00E9946E /* BBBadgeBarButtonItem.m */; };
 		5CA6BB5819CA4DD600E9946E /* chat18.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CA6BB5719CA4DD600E9946E /* chat18.png */; };
 		5CA6BB5A19CA4EF400E9946E /* chat19.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CA6BB5919CA4EF400E9946E /* chat19.png */; };
@@ -374,8 +373,6 @@
 		5CA6BB4A19C8DDAD00E9946E /* ChatRoomTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomTableViewController.m; sourceTree = "<group>"; };
 		5CA6BB4C19C8DDEF00E9946E /* ChatRoomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomTableViewCell.h; sourceTree = "<group>"; };
 		5CA6BB4D19C8DDEF00E9946E /* ChatRoomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomTableViewCell.m; sourceTree = "<group>"; };
-		5CA6BB5019C8F43C00E9946E /* ChatTextInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextInputTableViewCell.h; sourceTree = "<group>"; };
-		5CA6BB5119C8F43C00E9946E /* ChatTextInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextInputTableViewCell.m; sourceTree = "<group>"; };
 		5CA6BB5419CA431C00E9946E /* BBBadgeBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBBadgeBarButtonItem.h; sourceTree = "<group>"; };
 		5CA6BB5519CA431C00E9946E /* BBBadgeBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBadgeBarButtonItem.m; sourceTree = "<group>"; };
 		5CA6BB5719CA4DD600E9946E /* chat18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat18.png; sourceTree = "<group>"; };
@@ -958,8 +955,6 @@
 				5CA6BB4A19C8DDAD00E9946E /* ChatRoomTableViewController.m */,
 				5CA6BB4C19C8DDEF00E9946E /* ChatRoomTableViewCell.h */,
 				5CA6BB4D19C8DDEF00E9946E /* ChatRoomTableViewCell.m */,
-				5CA6BB5019C8F43C00E9946E /* ChatTextInputTableViewCell.h */,
-				5CA6BB5119C8F43C00E9946E /* ChatTextInputTableViewCell.m */,
 			);
 			name = ChatRoom;
 			sourceTree = "<group>";
@@ -1237,7 +1232,6 @@
 				5CEC3BDE18A2A86200C444FA /* TeamPlayerCell.m in Sources */,
 				5C4EF985186CBC15000E0E59 /* Utility.m in Sources */,
 				5C78DA691899B61700CBA29B /* MBProgressHUD.m in Sources */,
-				5CA6BB5219C8F43C00E9946E /* ChatTextInputTableViewCell.m in Sources */,
 				5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */,
 				5C539DFD198715090027669A /* Amplitude.m in Sources */,
 				5C726C08196B1433007C4F4E /* AccountMyTeamCell.m in Sources */,

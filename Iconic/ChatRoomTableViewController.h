@@ -15,5 +15,8 @@
 
 -(void)initWithChatTeam:(NSString*)aTeam;
 
+@property (strong, nonatomic) IBOutlet UITextField *chatInputField;
+
+
 
 @end

@@ -1894,6 +1894,22 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="eAb-Zr-R13">
+                            <rect key="frame" x="0.0" y="107" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="message" minimumFontSize="17" id="ucq-QQ-VK7">
+                                    <rect key="frame" x="11" y="7" width="302" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="uCQ-5v-qry" id="Yif-pd-vlg"/>
+                                    </connections>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatRoomTableViewCell" rowHeight="85" id="0g9-fk-QXn" customClass="ChatRoomTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="85"/>
@@ -1932,30 +1948,6 @@
                                     <outlet property="userName" destination="Lk5-GF-7ds" id="D2V-ls-xos"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatTextInputTableViewCell" rowHeight="40" id="we1-jU-JSa" customClass="ChatTextInputTableViewCell">
-                                <rect key="frame" x="0.0" y="107" width="320" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="we1-jU-JSa" id="EOi-tw-nYc">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="message" clearsOnBeginEditing="YES" minimumFontSize="17" id="VtG-Kp-eNe">
-                                            <rect key="frame" x="10" y="4" width="302" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="send"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="uCQ-5v-qry" id="Eat-Yy-jQh"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="chatTextField" destination="VtG-Kp-eNe" id="hYp-nU-f94"/>
-                                    <outlet property="chatTextInput" destination="EOi-tw-nYc" id="Fng-oT-dHq"/>
-                                </connections>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="uCQ-5v-qry" id="Lt2-Dt-BXR"/>
@@ -1964,6 +1956,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Chat" id="dwU-t8-bmH"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="chatInputField" destination="ucq-QQ-VK7" id="svC-3U-JF3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRa-Nk-LOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
