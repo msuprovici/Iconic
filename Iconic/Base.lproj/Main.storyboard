@@ -744,10 +744,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Ums-Rd-y27">
-                        <barButtonItem key="rightBarButtonItem" title="Chat" id="Fnd-6b-HVV">
-                            <connections>
-                                <segue destination="uCQ-5v-qry" kind="push" identifier="ChatSelected" id="PnL-OJ-DjW"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" title="Chat" style="plain" id="Lcv-d3-ZsB">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bNr-Pf-NQJ">
+                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Chat">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="uCQ-5v-qry" kind="push" identifier="ChatSelected" id="yOM-NL-QPd"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1882,7 +1891,7 @@
             <objects>
                 <tableViewController id="uCQ-5v-qry" customClass="ChatRoomTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" id="4cg-ya-6ao">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1949,6 +1958,8 @@
                             <outlet property="delegate" destination="uCQ-5v-qry" id="aSh-br-2pT"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="dwU-t8-bmH"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRa-Nk-LOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

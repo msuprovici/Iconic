@@ -49,6 +49,7 @@
 {
     self.team = aTeam;
     
+    
 }
 
 
@@ -61,6 +62,16 @@
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
+    
+   
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *dateTeamChatRoomVisited = [NSString stringWithFormat:@"%@ChatRoomDate",self.team];
+    
+    [defaults setObject:[NSDate date] forKey:dateTeamChatRoomVisited];
+    [defaults synchronize];
+
+   
     
 //    [self.tableView setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
     // Uncomment the following line to preserve selection between presentations.

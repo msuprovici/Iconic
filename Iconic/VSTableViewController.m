@@ -15,13 +15,15 @@
 #import "PlayerProfileViewController.h"
 #import "MyTeamsViewController.h"
 #import "ChatRoomTableViewController.h"
+#import "BBBadgeBarButtonItem.h"
+ #import <QuartzCore/QuartzCore.h>
 #import "Amplitude.h"
 
 @interface VSTableViewController ()
 
 @property (strong, nonatomic) NSTimer *timer;
 //@property NSArray * teamMatchups;
-
+@property  BOOL chatButtonPressedNow;
 
 
 @end
@@ -178,9 +180,71 @@
             //            timer.delegate = self;
             //            [timer start];
         }
-    
+        
+        
+//        PFQuery *chatQuery = [PFQuery queryWithClassName:@"Chat"];
+//        [query whereKey:@"TeamName" isEqualTo:
+        
+        // If you want your BarButtonItem to handle touch event and click, use a UIButton as customView
+        self.chatButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 28, 28)];
+        [self.chatButton setImage:[UIImage imageNamed:@"chat19.png"] forState:UIControlStateNormal];
+        [self.chatButton addTarget:self action:@selector(chatButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+//        customButton.backgroundColor = [UIColor clearColor] ;
+        
+        
+        // Then create and add our custom BBBadgeBarButtonItem
+        BBBadgeBarButtonItem *barButton = [[BBBadgeBarButtonItem alloc] initWithCustomUIButton:self.chatButton];
+        barButton.shouldHideBadgeAtZero = YES;
+        
+        //find out how many new chat messages have added since the last time the user opened the team's chat room
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        NSString *dateTeamChatRoomVisited = [NSString stringWithFormat:@"%@ChatRoomDate",self.myTeamReceived];
+        
+        //check if the button was pressed
+        self.chatButtonPressedNow = NO;
+        
+        
+        //check if nsuserdefulats has ever stored a date for this chat room
+        NSObject * checkValue = [defaults objectForKey:dateTeamChatRoomVisited];
+        if(checkValue != nil && self.chatButtonPressedNow == NO)
+        {
+        
+        NSDate *lastDateTeamChatRoomVisited = [defaults objectForKey:dateTeamChatRoomVisited];
+            
+        PFQuery *chatQuery = [PFQuery queryWithClassName:@"Chat"];
+        [chatQuery whereKey:@"TeamName" equalTo:self.myTeamReceived];
+        [chatQuery whereKey:@"User" notEqualTo:[PFUser currentUser]];
+        [chatQuery whereKey:@"createdAt" greaterThan:lastDateTeamChatRoomVisited];
+        
+        [chatQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            // Set a value for the badge
+            if (!error) {
+                 barButton.badgeValue = [NSString stringWithFormat:@"%lu",(unsigned long)objects.count];
+            }
+            else
+            {
+                barButton.badgeValue = @"0";
+            }
+           
+        }];
+        
+        }
+        else
+        {
+            barButton.badgeValue = @"0";
+        }
+        
+        
+        barButton.badgeOriginX = 18;
+        barButton.badgeOriginY = -5;
+        
+        // Add it as the rightBarButtonItem of the navigation bar
+        self.navigationItem.rightBarButtonItem = barButton;
+
         
     }];
+    
+    
 
 
 
@@ -190,6 +254,43 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES ];
+    
+    if (self.chatButtonPressedNow == YES) {
+        BBBadgeBarButtonItem *barButton = (BBBadgeBarButtonItem *)self.navigationItem.rightBarButtonItem;
+        barButton.badgeValue = @"0";
+        
+        
+        barButton.shouldHideBadgeAtZero = YES;
+    }
+}
+
+
+
+
+- (void) chatButtonPressed{
+    [self performSegueWithIdentifier:@"ChatSelected" sender:self];
+    self.chatButtonPressedNow = YES;
+}
+
+// Bar button pressed
+- (void)barButtonItemPressed:(UIButton *)sender
+{
+    NSLog(@"Bar Button Item Pressed");
+    
+    
+    BBBadgeBarButtonItem *barButton = (BBBadgeBarButtonItem *)self.navigationItem.rightBarButtonItem;
+    barButton.badgeValue = @"0";
+    
+  
+    barButton.shouldHideBadgeAtZero = YES;
+  
+}
+
+
 
 //method to show days in timer label
 
@@ -215,9 +316,6 @@
     [super viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];

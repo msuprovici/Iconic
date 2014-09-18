@@ -80,5 +80,7 @@
 
 @property (nonatomic,retain) NSString * myTeamReceived;
 
+@property (strong, nonatomic) IBOutlet UIButton *chatButton;
+
 
 @end

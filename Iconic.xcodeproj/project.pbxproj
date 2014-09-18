@@ -132,6 +132,9 @@
 		5CA6BB4B19C8DDAD00E9946E /* ChatRoomTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB4A19C8DDAD00E9946E /* ChatRoomTableViewController.m */; };
 		5CA6BB4E19C8DDEF00E9946E /* ChatRoomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB4D19C8DDEF00E9946E /* ChatRoomTableViewCell.m */; };
 		5CA6BB5219C8F43C00E9946E /* ChatTextInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB5119C8F43C00E9946E /* ChatTextInputTableViewCell.m */; };
+		5CA6BB5619CA431C00E9946E /* BBBadgeBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA6BB5519CA431C00E9946E /* BBBadgeBarButtonItem.m */; };
+		5CA6BB5819CA4DD600E9946E /* chat18.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CA6BB5719CA4DD600E9946E /* chat18.png */; };
+		5CA6BB5A19CA4EF400E9946E /* chat19.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CA6BB5919CA4EF400E9946E /* chat19.png */; };
 		5CA7BC4A18C1A59500DBBC7D /* VSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7BC4918C1A59500DBBC7D /* VSTableViewCell.m */; };
 		5CB75DF71889A0630047BC47 /* PlayerCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF61889A0630047BC47 /* PlayerCommentCell.m */; };
 		5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF91889CCB60047BC47 /* ActivityDeatailsHeaderCell.m */; };
@@ -373,6 +376,10 @@
 		5CA6BB4D19C8DDEF00E9946E /* ChatRoomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomTableViewCell.m; sourceTree = "<group>"; };
 		5CA6BB5019C8F43C00E9946E /* ChatTextInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTextInputTableViewCell.h; sourceTree = "<group>"; };
 		5CA6BB5119C8F43C00E9946E /* ChatTextInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTextInputTableViewCell.m; sourceTree = "<group>"; };
+		5CA6BB5419CA431C00E9946E /* BBBadgeBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBBadgeBarButtonItem.h; sourceTree = "<group>"; };
+		5CA6BB5519CA431C00E9946E /* BBBadgeBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBBadgeBarButtonItem.m; sourceTree = "<group>"; };
+		5CA6BB5719CA4DD600E9946E /* chat18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat18.png; sourceTree = "<group>"; };
+		5CA6BB5919CA4EF400E9946E /* chat19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat19.png; sourceTree = "<group>"; };
 		5CA7BC4818C1A59500DBBC7D /* VSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSTableViewCell.h; sourceTree = "<group>"; };
 		5CA7BC4918C1A59500DBBC7D /* VSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSTableViewCell.m; sourceTree = "<group>"; };
 		5CB75DF51889A0630047BC47 /* PlayerCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCommentCell.h; sourceTree = "<group>"; };
@@ -509,6 +516,8 @@
 				5C88F6731980A240001D5851 /* IntroScreen2.png */,
 				5C88F66F19809D11001D5851 /* IntroScreen3.png */,
 				5C88F67519817FBC001D5851 /* IconicLogoBlack.png */,
+				5CA6BB5719CA4DD600E9946E /* chat18.png */,
+				5CA6BB5919CA4EF400E9946E /* chat19.png */,
 			);
 			name = Resources;
 			path = Iconic;
@@ -647,6 +656,7 @@
 		5C4EF986186D01FF000E0E59 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				5CA6BB5319CA431C00E9946E /* BBBadgeBarButtonItem */,
 				5C539DF3198715090027669A /* Amplitude-iOS-master */,
 				5CA19A3F18B83F2C0023C940 /* UICountingLabel */,
 				5CA19A2118B83E290023C940 /* PNChart */,
@@ -954,6 +964,15 @@
 			name = ChatRoom;
 			sourceTree = "<group>";
 		};
+		5CA6BB5319CA431C00E9946E /* BBBadgeBarButtonItem */ = {
+			isa = PBXGroup;
+			children = (
+				5CA6BB5419CA431C00E9946E /* BBBadgeBarButtonItem.h */,
+				5CA6BB5519CA431C00E9946E /* BBBadgeBarButtonItem.m */,
+			);
+			path = BBBadgeBarButtonItem;
+			sourceTree = "<group>";
+		};
 		5CB75DFE188A21C70047BC47 /* Comments+Likes On Activity */ = {
 			isa = PBXGroup;
 			children = (
@@ -1142,6 +1161,7 @@
 				5CA3D1A61831DF51006C7932 /* Images.xcassets in Resources */,
 				5C78DA4F189872BF00CBA29B /* activity_speaker_icon_green-01.png in Resources */,
 				5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */,
+				5CA6BB5A19CA4EF400E9946E /* chat19.png in Resources */,
 				5C88F6741980A240001D5851 /* IntroScreen2.png in Resources */,
 				5C88F67219809EBA001D5851 /* IntroScreen1.png in Resources */,
 				5C88F67019809D11001D5851 /* IntroScreen3.png in Resources */,
@@ -1158,6 +1178,7 @@
 				5C430F2318D7A66300D932AA /* points_background_team_screen_iconic.png in Resources */,
 				5C539DFC198715090027669A /* Amplitude-iOS.podspec in Resources */,
 				5CB75E04188DAE850047BC47 /* scoreboardicon2-01.png in Resources */,
+				5CA6BB5819CA4DD600E9946E /* chat18.png in Resources */,
 				5CD9383A187B814F006CE08B /* achievment_test.png in Resources */,
 				5C78DA4D189872BF00CBA29B /* activity_comment_icon_blue-01.png in Resources */,
 				5CB75E07188DCC4D0047BC47 /* joinicon2-01.png in Resources */,
@@ -1250,6 +1271,7 @@
 				5CD93831187B510E006CE08B /* NSInvocation+Copy.m in Sources */,
 				5C349E9D18602ED600325A29 /* TeamPlayersViewController.m in Sources */,
 				5C118E871926B08E00C1760C /* League.m in Sources */,
+				5CA6BB5619CA431C00E9946E /* BBBadgeBarButtonItem.m in Sources */,
 				5C2EA5441851641500B21C52 /* ContentController.m in Sources */,
 				5C8BB5B81884AFE900E89ADF /* CommentCell.m in Sources */,
 				5C6A6EE018A47BE40044269F /* TeamCell.m in Sources */,
