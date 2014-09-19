@@ -335,13 +335,14 @@
         
         PFObject *comment = [PFObject objectWithClassName:@"Chat"];
         [comment setObject:[PFUser currentUser] forKey:@"User"];
+        [comment setObject:[PFUser currentUser].username forKey:@"username"];
         [comment setObject:textField.text forKey:@"Message"];
         [comment setObject:self.team forKey:@"TeamName"];
         
         [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 //Refresh view
-                NSLog(@"Chat object saved");
+//                NSLog(@"Chat object saved");
                 [self loadObjects];
                 
                 [Amplitude logEvent:@"Player Comment"];

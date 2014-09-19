@@ -271,12 +271,12 @@
        
         [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
         
-        //this needs to be here so that the standarad Apple motion permission request pops up
-        self.cmStepCounter = [[CMStepCounter alloc] init];
-        NSDate *today = [NSDate date];
-        NSDate *yesterday = [today dateByAddingTimeInterval: -86400.0];
-        [self.cmStepCounter queryStepCountStartingFrom:yesterday to:today toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error){
-              }];
+//        //this needs to be here so that the standarad Apple motion permission request pops up
+//        self.cmStepCounter = [[CMStepCounter alloc] init];
+//        NSDate *today = [NSDate date];
+//        NSDate *yesterday = [today dateByAddingTimeInterval: -86400.0];
+//        [self.cmStepCounter queryStepCountStartingFrom:yesterday to:today toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error){
+//              }];
         
         [Amplitude logEvent:@"Onboard: Motion selected"];
 
