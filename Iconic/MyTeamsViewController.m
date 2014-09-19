@@ -373,7 +373,7 @@
     if (self.myStepsGained > 0) {
         
         //redraw barChart
-        PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 140)];
+        PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
         [barChart setYValues:self.teamPoints];
         
         [barChart setStrokeColors:@[PNWeiboColor, PNDarkBlue]];

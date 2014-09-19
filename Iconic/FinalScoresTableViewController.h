@@ -11,4 +11,5 @@
 
 @interface FinalScoresTableViewController : PFQueryTableViewController
 
+
 @end

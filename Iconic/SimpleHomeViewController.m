@@ -883,12 +883,18 @@ static NSString *kImageKey = @"imageKey";
    
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSObject * checkValue = [defaults objectForKey:@"hasRunAppThisWeekKey"];
+    if(checkValue != nil)
+    {
+    
     if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == NO)
     {
         // Show Final Scores
         [self performSegueWithIdentifier:@"FinalScores" sender:self];
         
         [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
+        
+    }
         
     }
 }
@@ -907,13 +913,6 @@ static NSString *kImageKey = @"imageKey";
 
 
 
-- (IBAction)done:(UIStoryboardSegue *)unwindSegue
-{
-    NSLog(@"unwind from final scores summary");
-    
-    
-    
-}
 
 
 
@@ -1087,7 +1086,7 @@ static NSString *kImageKey = @"imageKey";
     //animated label that shows the points the player contributed to his or her team(s)
     self.deltaPoints.center = CGPointMake(140, 190);
     float newX = 90.0f;
-    float newY = 259.0f;
+    float newY = 279.0f;
     
     //animate the label so that it drops right on top of my team score
     [UIView transitionWithView:self.deltaPoints

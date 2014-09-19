@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Yi2-3K-q1V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Yi2-3K-q1V">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller - Iconic-->
+        <!--Iconic-->
         <scene sceneID="n8l-lt-A00">
             <objects>
                 <viewController id="url-9a-9C7" customClass="HomeViewController" sceneMemberID="viewController">
@@ -184,7 +184,7 @@
             </objects>
             <point key="canvasLocation" x="-1977" y="2268"/>
         </scene>
-        <!--Simple Home View Controller - Iconic-->
+        <!--Iconic-->
         <scene sceneID="7w4-jO-MWX">
             <objects>
                 <viewController id="iLB-wQ-v5S" customClass="SimpleHomeViewController" sceneMemberID="viewController">
@@ -265,7 +265,7 @@
                         <outlet property="joinTeamButton" destination="3f8-Nq-Cu0" id="md8-RE-dfY"/>
                         <outlet property="pageControl" destination="pp4-bC-Hv9" id="YR2-LS-lqO"/>
                         <outlet property="scrollView" destination="83S-Gt-Rep" id="f3n-ah-bHJ"/>
-                        <segue destination="9Lb-ej-rjc" kind="modal" identifier="FinalScores" id="czc-Q4-0nb"/>
+                        <segue destination="b8b-GT-E5C" kind="push" identifier="FinalScores" id="K0s-lx-pLE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9v4-Lm-y8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -795,7 +795,7 @@
             </objects>
             <point key="canvasLocation" x="-1551" y="-3684"/>
         </scene>
-        <!--Dialog View Controller - dialog-->
+        <!--dialog-->
         <scene sceneID="es0-wK-jC1">
             <objects>
                 <viewController storyboardIdentifier="dialog" title="dialog" id="m8P-KC-yjp" customClass="DialogViewController" sceneMemberID="viewController">
@@ -826,7 +826,7 @@
             </objects>
             <point key="canvasLocation" x="1739" y="2062"/>
         </scene>
-        <!--Profile View Controller - My Profile-->
+        <!--My Profile-->
         <scene sceneID="mcB-oh-bUv">
             <objects>
                 <viewController id="z4K-7d-GbM" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -1046,7 +1046,7 @@
             </objects>
             <point key="canvasLocation" x="-313" y="2977"/>
         </scene>
-        <!--Comments View Controller - Comments-->
+        <!--Comments-->
         <scene sceneID="eD6-bZ-2td">
             <objects>
                 <tableViewController id="tuF-GK-KB7" customClass="CommentsViewController" sceneMemberID="viewController">
@@ -1352,7 +1352,7 @@
             </objects>
             <point key="canvasLocation" x="2589" y="2404"/>
         </scene>
-        <!--Activity View Controller - Activity-->
+        <!--Activity-->
         <scene sceneID="Ay6-Fh-eSi">
             <objects>
                 <tableViewController id="eRC-hV-aQj" customClass="ActivityViewController" sceneMemberID="viewController">
@@ -1482,7 +1482,7 @@
             </objects>
             <point key="canvasLocation" x="-2109" y="-5169"/>
         </scene>
-        <!--Feed View Controller - News-->
+        <!--News-->
         <scene sceneID="lBY-ZS-NvU">
             <objects>
                 <tableViewController id="YRb-r1-hFU" customClass="FeedViewController" sceneMemberID="viewController">
@@ -1577,7 +1577,7 @@
             </objects>
             <point key="canvasLocation" x="-2101" y="-1872"/>
         </scene>
-        <!--Schedule View Controller - Schedule-->
+        <!--Schedule-->
         <scene sceneID="Ady-YN-Mkh">
             <objects>
                 <tableViewController id="Lae-yS-QNg" customClass="ScheduleViewController" sceneMemberID="viewController">
@@ -1626,7 +1626,7 @@
             </objects>
             <point key="canvasLocation" x="-2697" y="-949"/>
         </scene>
-        <!--Leagues View Controller - Leagues-->
+        <!--Leagues-->
         <scene sceneID="C8b-lU-tvu">
             <objects>
                 <tableViewController id="C4a-YJ-kes" customClass="LeaguesViewController" sceneMemberID="viewController">
@@ -1693,7 +1693,7 @@
             </objects>
             <point key="canvasLocation" x="-2121" y="-4398"/>
         </scene>
-        <!--Teams View Controller - Teams-->
+        <!--Teams-->
         <scene sceneID="cch-nZ-qtU">
             <objects>
                 <tableViewController title="Teams" id="Quu-w8-KMQ" customClass="TeamsViewController" sceneMemberID="viewController">
@@ -1735,7 +1735,7 @@
             </objects>
             <point key="canvasLocation" x="-1634" y="-4398"/>
         </scene>
-        <!--Team Players View Controller - My Team-->
+        <!--My Team-->
         <scene sceneID="k9c-kx-2m0">
             <objects>
                 <tableViewController id="k2R-Un-KHX" customClass="TeamPlayersViewController" sceneMemberID="viewController">
@@ -1894,7 +1894,7 @@
             </objects>
             <point key="canvasLocation" x="-496" y="-3938"/>
         </scene>
-        <!--Chat Room Table View Controller - Chat-->
+        <!--Chat-->
         <scene sceneID="k2Y-fI-PCk">
             <objects>
                 <tableViewController id="uCQ-5v-qry" customClass="ChatRoomTableViewController" sceneMemberID="viewController">
@@ -1930,7 +1930,7 @@
                                             <rect key="frame" x="8" y="12" width="299" height="70"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
@@ -2306,7 +2306,7 @@
             </objects>
             <point key="canvasLocation" x="-3771" y="-4412"/>
         </scene>
-        <!--Navigation Controller - Dashboard-->
+        <!--Dashboard-->
         <scene sceneID="amm-ij-1SH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gvb-Hc-USI" sceneMemberID="viewController">
@@ -2399,26 +2399,15 @@
                         </connections>
                     </tableView>
                     <toolbarItems>
-                        <barButtonItem title="Item" id="xA0-Hn-30R">
-                            <connections>
-                                <segue destination="hxa-kF-GYL" kind="unwind" unwindAction="done:" id="Spg-Jt-kmy"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem title="Item" id="xA0-Hn-30R"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="RaU-mo-0mS">
-                        <barButtonItem key="rightBarButtonItem" title="Exit" id="eUk-21-E5W">
-                            <connections>
-                                <segue destination="hxa-kF-GYL" kind="unwind" unwindAction="done:" id="1ry-Xr-osy"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="RaU-mo-0mS"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PY9-a3-66O" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="hxa-kF-GYL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2109" y="-2980"/>
         </scene>
-        <!--Navigation Controller - Leagues-->
+        <!--Leagues-->
         <scene sceneID="gU5-aa-U3V">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7rE-BU-qmk" sceneMemberID="viewController">
@@ -2455,7 +2444,7 @@
             </objects>
             <point key="canvasLocation" x="1213" y="2062"/>
         </scene>
-        <!--Navigation Controller - Account-->
+        <!--Account-->
         <scene sceneID="CW1-L6-BhJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pdi-2m-LBf" sceneMemberID="viewController">
@@ -2474,7 +2463,7 @@
             </objects>
             <point key="canvasLocation" x="-2635" y="-5169"/>
         </scene>
-        <!--Navigation Controller - News-->
+        <!--News-->
         <scene sceneID="0en-ay-l1z">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s4M-j9-3XA" sceneMemberID="viewController">
@@ -2512,24 +2501,6 @@
             </objects>
             <point key="canvasLocation" x="-1519" y="-5391"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="cKe-8G-Dcb">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Lb-ej-rjc" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wG8-rT-S97">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="b8b-GT-E5C" kind="relationship" relationship="rootViewController" id="8gX-BA-77S"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XxM-pS-vne" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2635" y="-2980"/>
-        </scene>
     </scenes>
     <resources>
         <image name="achievment_test.png" width="894" height="894"/>
@@ -2547,8 +2518,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="GlC-f2-v4y"/>
         <segue reference="cdC-Af-usM"/>
         <segue reference="f2W-wf-Lkd"/>
-        <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>
