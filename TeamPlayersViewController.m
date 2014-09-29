@@ -526,6 +526,16 @@
         PFInstallation *currentInstallation = [PFInstallation currentInstallation];
         [currentInstallation addUniqueObject:pushChanelName forKey:@"channels"];
         [currentInstallation saveInBackground];
+        
+        //send push to teamates letting them know a new teamate just joined
+        [PFCloud callFunctionInBackground:@"newTeamateNotification"
+                           withParameters:@{@"team": pushChanelName}
+                                    block:^(NSString *success, NSError *error) {
+                                        if (!error) {
+                                            // Push sent successfully
+//                                            NSLog(@"newTeamatePushSent");
+                                        }
+                                    }];
 
         
         //send nsnotificaiton to view controllers so they can update
