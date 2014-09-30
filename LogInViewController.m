@@ -172,6 +172,11 @@
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
+    
+    //create pointer to current user for push notifications
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    currentInstallation[@"user"] = [PFUser currentUser];
+    [currentInstallation saveInBackground];
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -223,6 +228,11 @@
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
+    
+    //create pointer to current user for push notifications
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+     currentInstallation[@"user"] = [PFUser currentUser];
+    [currentInstallation saveInBackground];
 }
 
 // Sent to the delegate when the sign up attempt fails.
