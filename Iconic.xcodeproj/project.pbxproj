@@ -32,6 +32,11 @@
 		5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C328BFE18601ADF00E0E985 /* TeamsViewController.m */; };
 		5C349E9D18602ED600325A29 /* TeamPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */; };
 		5C356DAA1959FF7E00ECF5C9 /* MyTeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C356DA81959FF7E00ECF5C9 /* MyTeamsViewController.m */; };
+		5C3BC49F19DF15CD00D9A9AD /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3BC49E19DF15CD00D9A9AD /* NotificationCenter.framework */; };
+		5C3BC4A519DF15CD00D9A9AD /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3BC4A419DF15CD00D9A9AD /* TodayViewController.m */; };
+		5C3BC4A719DF15CD00D9A9AD /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BC4A619DF15CD00D9A9AD /* MainInterface.storyboard */; };
+		5C3BC4AA19DF15CD00D9A9AD /* Iconic_Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5C3BC49D19DF15CC00D9A9AD /* Iconic_Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5C3BC4B219DF169500D9A9AD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3BC4B119DF169500D9A9AD /* StoreKit.framework */; };
 		5C430F2018D7A66300D932AA /* chart_background_iconic_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C430F1B18D7A66300D932AA /* chart_background_iconic_3.png */; };
 		5C430F2118D7A66300D932AA /* chart_background_iconic_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C430F1C18D7A66300D932AA /* chart_background_iconic_3@2x.png */; };
 		5C430F2218D7A66300D932AA /* points_background_team_screen_iconic_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C430F1D18D7A66300D932AA /* points_background_team_screen_iconic_red.png */; };
@@ -125,7 +130,6 @@
 		5CA3D1CD1831E039006C7932 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1CC1831E039006C7932 /* MobileCoreServices.framework */; };
 		5CA3D1CF1831E045006C7932 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1CE1831E045006C7932 /* QuartzCore.framework */; };
 		5CA3D1D11831E04C006C7932 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D01831E04C006C7932 /* Security.framework */; };
-		5CA3D1D31831E054006C7932 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D21831E054006C7932 /* StoreKit.framework */; };
 		5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */; };
 		5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA3D1E61832F9D1006C7932 /* LogInViewController.m */; };
 		5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */; };
@@ -161,6 +165,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5C3BC4A819DF15CD00D9A9AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5CA3D17F1831DF51006C7932 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C3BC49C19DF15CC00D9A9AD;
+			remoteInfo = Iconic_Widget;
+		};
+		5C3BC4AB19DF15CE00D9A9AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5CA3D17F1831DF51006C7932 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C3BC49C19DF15CC00D9A9AD;
+			remoteInfo = Iconic_Widget;
+		};
 		5CA3D1B01831DF51006C7932 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5CA3D17F1831DF51006C7932 /* Project object */;
@@ -169,6 +187,20 @@
 			remoteInfo = Iconic;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5C3BC4B019DF15CE00D9A9AD /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5C3BC4AA19DF15CD00D9A9AD /* Iconic_Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5C01003A197449FB00024BDC /* FinalScoresTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalScoresTableViewController.h; sourceTree = "<group>"; };
@@ -219,6 +251,15 @@
 		5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamPlayersViewController.m; sourceTree = "<group>"; };
 		5C356DA71959FF7E00ECF5C9 /* MyTeamsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTeamsViewController.h; sourceTree = "<group>"; };
 		5C356DA81959FF7E00ECF5C9 /* MyTeamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTeamsViewController.m; sourceTree = "<group>"; };
+		5C3BC49D19DF15CC00D9A9AD /* Iconic_Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Iconic_Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C3BC49E19DF15CD00D9A9AD /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		5C3BC4A219DF15CD00D9A9AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C3BC4A319DF15CD00D9A9AD /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		5C3BC4A419DF15CD00D9A9AD /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		5C3BC4A619DF15CD00D9A9AD /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		5C3BC4B119DF169500D9A9AD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		5C3BC4B319DF169E00D9A9AD /* Iconic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Iconic.entitlements; sourceTree = "<group>"; };
+		5C3BC4B419DF16B500D9A9AD /* Iconic_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Iconic_Widget.entitlements; sourceTree = "<group>"; };
 		5C430F1B18D7A66300D932AA /* chart_background_iconic_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chart_background_iconic_3.png; sourceTree = "<group>"; };
 		5C430F1C18D7A66300D932AA /* chart_background_iconic_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart_background_iconic_3@2x.png"; sourceTree = "<group>"; };
 		5C430F1D18D7A66300D932AA /* points_background_team_screen_iconic_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = points_background_team_screen_iconic_red.png; sourceTree = "<group>"; };
@@ -364,7 +405,6 @@
 		5CA3D1CC1831E039006C7932 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		5CA3D1CE1831E045006C7932 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5CA3D1D01831E04C006C7932 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		5CA3D1D21831E054006C7932 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5CA3D1E51832F9D1006C7932 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogInViewController.h; path = ../LogInViewController.h; sourceTree = "<group>"; };
 		5CA3D1E61832F9D1006C7932 /* LogInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogInViewController.m; path = ../LogInViewController.m; sourceTree = "<group>"; };
@@ -422,6 +462,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5C3BC49A19DF15CC00D9A9AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C3BC49F19DF15CD00D9A9AD /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5CA3D1841831DF51006C7932 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -440,10 +488,10 @@
 				5C78DA5C189996F700CBA29B /* Social.framework in Frameworks */,
 				5C78DA5A189996E000CBA29B /* AddressBook.framework in Frameworks */,
 				5C78DA58189996C500CBA29B /* AddressBookUI.framework in Frameworks */,
-				5CA3D1D31831E054006C7932 /* StoreKit.framework in Frameworks */,
 				5CA3D1D11831E04C006C7932 /* Security.framework in Frameworks */,
 				5CA3D1CF1831E045006C7932 /* QuartzCore.framework in Frameworks */,
 				5CA3D1CB1831E02F006C7932 /* libz.1.1.3.dylib in Frameworks */,
+				5C3BC4B219DF169500D9A9AD /* StoreKit.framework in Frameworks */,
 				5CCB26DA1908A909002B6832 /* Parse.framework in Frameworks */,
 				5CA3D1C91831E025006C7932 /* CoreLocation.framework in Frameworks */,
 				5CA3D1C51831E004006C7932 /* AudioToolbox.framework in Frameworks */,
@@ -650,6 +698,26 @@
 			name = HomeCells;
 			sourceTree = "<group>";
 		};
+		5C3BC4A019DF15CD00D9A9AD /* Iconic_Widget */ = {
+			isa = PBXGroup;
+			children = (
+				5C3BC4B419DF16B500D9A9AD /* Iconic_Widget.entitlements */,
+				5C3BC4A319DF15CD00D9A9AD /* TodayViewController.h */,
+				5C3BC4A419DF15CD00D9A9AD /* TodayViewController.m */,
+				5C3BC4A619DF15CD00D9A9AD /* MainInterface.storyboard */,
+				5C3BC4A119DF15CD00D9A9AD /* Supporting Files */,
+			);
+			path = Iconic_Widget;
+			sourceTree = "<group>";
+		};
+		5C3BC4A119DF15CD00D9A9AD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5C3BC4A219DF15CD00D9A9AD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		5C4EF986186D01FF000E0E59 /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -835,6 +903,7 @@
 				5CA3D1901831DF51006C7932 /* Iconic */,
 				5C2C1CC8185E9051006722D2 /* Resources */,
 				5CA3D1B21831DF51006C7932 /* IconicTests */,
+				5C3BC4A019DF15CD00D9A9AD /* Iconic_Widget */,
 				5CA3D1891831DF51006C7932 /* Frameworks */,
 				5C4EF986186D01FF000E0E59 /* External */,
 				5CA3D1881831DF51006C7932 /* Products */,
@@ -847,6 +916,7 @@
 			children = (
 				5CA3D1871831DF51006C7932 /* Iconic.app */,
 				5CA3D1AB1831DF51006C7932 /* IconicTests.xctest */,
+				5C3BC49D19DF15CC00D9A9AD /* Iconic_Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -854,6 +924,7 @@
 		5CA3D1891831DF51006C7932 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C3BC4B119DF169500D9A9AD /* StoreKit.framework */,
 				5C539E021987F97E0027669A /* Crashlytics.framework */,
 				5C5CBDD61925484D00C2C328 /* CoreData.framework */,
 				5CCB26D91908A909002B6832 /* Parse.framework */,
@@ -868,7 +939,6 @@
 				5C78DA57189996C500CBA29B /* AddressBookUI.framework */,
 				5CA3D1EA18333D14006C7932 /* FacebookSDK.framework */,
 				5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */,
-				5CA3D1D21831E054006C7932 /* StoreKit.framework */,
 				5CA3D1D01831E04C006C7932 /* Security.framework */,
 				5CA3D1CE1831E045006C7932 /* QuartzCore.framework */,
 				5CA3D1CC1831E039006C7932 /* MobileCoreServices.framework */,
@@ -880,6 +950,7 @@
 				5CA3D18C1831DF51006C7932 /* CoreGraphics.framework */,
 				5CA3D18E1831DF51006C7932 /* UIKit.framework */,
 				5CA3D1AC1831DF51006C7932 /* XCTest.framework */,
+				5C3BC49E19DF15CD00D9A9AD /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -887,6 +958,7 @@
 		5CA3D1901831DF51006C7932 /* Iconic */ = {
 			isa = PBXGroup;
 			children = (
+				5C3BC4B319DF169E00D9A9AD /* Iconic.entitlements */,
 				5CA3D19C1831DF51006C7932 /* Main.storyboard */,
 				5CA3D1991831DF51006C7932 /* AppDelegate.h */,
 				5CA3D19A1831DF51006C7932 /* AppDelegate.m */,
@@ -1068,6 +1140,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5C3BC49C19DF15CC00D9A9AD /* Iconic_Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C3BC4AD19DF15CE00D9A9AD /* Build configuration list for PBXNativeTarget "Iconic_Widget" */;
+			buildPhases = (
+				5C3BC49919DF15CC00D9A9AD /* Sources */,
+				5C3BC49A19DF15CC00D9A9AD /* Frameworks */,
+				5C3BC49B19DF15CC00D9A9AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Iconic_Widget;
+			productName = Iconic_Widget;
+			productReference = 5C3BC49D19DF15CC00D9A9AD /* Iconic_Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		5CA3D1861831DF51006C7932 /* Iconic */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5CA3D1BC1831DF51006C7932 /* Build configuration list for PBXNativeTarget "Iconic" */;
@@ -1076,10 +1165,13 @@
 				5CA3D1841831DF51006C7932 /* Frameworks */,
 				5CA3D1851831DF51006C7932 /* Resources */,
 				5C539E011987F9240027669A /* ShellScript */,
+				5C3BC4B019DF15CE00D9A9AD /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5C3BC4A919DF15CD00D9A9AD /* PBXTargetDependency */,
+				5C3BC4AC19DF15CE00D9A9AD /* PBXTargetDependency */,
 			);
 			name = Iconic;
 			productName = Iconic;
@@ -1113,10 +1205,25 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Explorence;
 				TargetAttributes = {
+					5C3BC49C19DF15CC00D9A9AD = {
+						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = M4TCM8UAB8;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					5CA3D1861831DF51006C7932 = {
 						DevelopmentTeam = M4TCM8UAB8;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
 						};
@@ -1142,11 +1249,20 @@
 			targets = (
 				5CA3D1861831DF51006C7932 /* Iconic */,
 				5CA3D1AA1831DF51006C7932 /* IconicTests */,
+				5C3BC49C19DF15CC00D9A9AD /* Iconic_Widget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5C3BC49B19DF15CC00D9A9AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C3BC4A719DF15CD00D9A9AD /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5CA3D1851831DF51006C7932 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1210,6 +1326,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5C3BC49919DF15CC00D9A9AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C3BC4A519DF15CD00D9A9AD /* TodayViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5CA3D1831831DF51006C7932 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1320,6 +1444,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5C3BC4A919DF15CD00D9A9AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C3BC49C19DF15CC00D9A9AD /* Iconic_Widget */;
+			targetProxy = 5C3BC4A819DF15CD00D9A9AD /* PBXContainerItemProxy */;
+		};
+		5C3BC4AC19DF15CE00D9A9AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C3BC49C19DF15CC00D9A9AD /* Iconic_Widget */;
+			targetProxy = 5C3BC4AB19DF15CE00D9A9AD /* PBXContainerItemProxy */;
+		};
 		5CA3D1B11831DF51006C7932 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5CA3D1861831DF51006C7932 /* Iconic */;
@@ -1355,6 +1489,49 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5C3BC4AE19DF15CE00D9A9AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = Iconic_Widget/Iconic_Widget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = Iconic_Widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		5C3BC4AF19DF15CE00D9A9AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_ENTITLEMENTS = Iconic_Widget/Iconic_Widget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = Iconic_Widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		5CA3D1BA1831DF51006C7932 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1438,8 +1615,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				CODE_SIGN_ENTITLEMENTS = Iconic/Iconic.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1450,7 +1628,7 @@
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";
 				INFOPLIST_FILE = "Iconic/Iconic-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c64f4343-9290-4465-84e7-d1f9f7a8093a";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1460,8 +1638,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				CODE_SIGN_ENTITLEMENTS = Iconic/Iconic.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1472,7 +1651,7 @@
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";
 				INFOPLIST_FILE = "Iconic/Iconic-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c64f4343-9290-4465-84e7-d1f9f7a8093a";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1528,6 +1707,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5C3BC4AD19DF15CE00D9A9AD /* Build configuration list for PBXNativeTarget "Iconic_Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C3BC4AE19DF15CE00D9A9AD /* Debug */,
+				5C3BC4AF19DF15CE00D9A9AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		5CA3D1821831DF51006C7932 /* Build configuration list for PBXProject "Iconic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
