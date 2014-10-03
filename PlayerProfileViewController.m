@@ -105,7 +105,7 @@
     
     if([myName isEqualToString:selectedPlayer])
     {
-        NSLog(@"current user");
+//        NSLog(@"current user");
         [self.cheerButton setHidden:YES];
     }
     else
