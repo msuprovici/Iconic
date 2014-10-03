@@ -491,7 +491,10 @@
                 
             }
 
+            NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
             
+            [sharedDefaults setInteger:numberOfSteps forKey:@"totalNumberStepsToday"];
+            [sharedDefaults synchronize];
 
             
             

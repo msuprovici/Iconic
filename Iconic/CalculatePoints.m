@@ -430,6 +430,11 @@
         //convert steps to points
         //check for NAN values
         
+        //this methods shares today's step count with widget
+        NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
+        
+        [sharedDefaults setInteger:numberOfSteps forKey:@"totalNumberStepsToday"];
+        [sharedDefaults synchronize];
         
        self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
 //        NSLog(@"self.mySteps: %@", self.mySteps);
