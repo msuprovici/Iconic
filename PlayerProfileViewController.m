@@ -94,9 +94,25 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//    [self.cheerButton setHidden:YES];
     
+    NSString * myName  = [NSString stringWithFormat:@"%@", [[PFUser currentUser] objectForKey:kUserDisplayNameKey]];
+//     NSLog(@"myName %@", myName);
+    
+    
+    NSString * selectedPlayer = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
+//    NSLog(@"selectedPlayer %@", selectedPlayer);
+    
+    if([myName isEqualToString:selectedPlayer])
+    {
+        NSLog(@"current user");
+        [self.cheerButton setHidden:YES];
+    }
+    else
+    {
     
     [self.cheerButton setTitle:@"High Five" forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -433,6 +433,7 @@
         
        self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
 //        NSLog(@"self.mySteps: %@", self.mySteps);
+//        NSLog(@"self.mySteps: %@", self.mySteps);
 //        if(numberOfSteps == 0)
 //        {
 //

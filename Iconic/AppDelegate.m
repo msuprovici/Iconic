@@ -74,7 +74,13 @@
                                 }];*/
     
     //initialize Amplitude analytics
-    [Amplitude initializeApiKey:@"43017a7316efee7bf680d57d7c3ab327"];
+     //beta key
+//    [Amplitude initializeApiKey:@"43017a7316efee7bf680d57d7c3ab327"];
+    
+    //testing key
+    [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"];
+    
+    
     //Tracking test event
 //    [Amplitude logEvent:@"Application Launch"];
     
