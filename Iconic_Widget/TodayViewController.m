@@ -11,10 +11,15 @@
 #import <Parse/Parse.h>
 #import "Constants.h"
 #import <CoreMotion/CoreMotion.h>
+#import "TodayTeamsTableViewCell.h"
+
 
 @interface TodayViewController () <NCWidgetProviding>
 
 @property (strong, nonatomic) IBOutlet UILabel *mySteps;
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstrain;
 
 //step counter
 @property (nonatomic, strong) CMPedometer *stepCounter;
@@ -42,6 +47,22 @@
     
     [self loadMySteps];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    //dynamically change the height of the tableview
+//    CGFloat height = self.tableView.rowHeight;
+//    NSArray *arrayOfLeagueNames = [defaults objectForKey:@"widgetArrayOfLeagueNames"];
+//    height *= arrayOfLeagueNames.count;
+//    
+//    CGRect tableFrame = self.tableView.frame;
+//    tableFrame.size.height = height;
+//    self.tableView.frame = tableFrame;
+//
+//    
+//    [self adjustHeightOfTableview];
+    
+    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.contentSize.height);
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -51,6 +72,7 @@
     self.mySteps.text = [NSString stringWithFormat:@"%ld",(long)mySteps];
     [self loadMySteps];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -117,66 +139,124 @@
     
     return [cal dateFromComponents:components];
     
-    //NSLog(@"Local Time Zone %@",[[NSTimeZone localTimeZone] name]);
-    
-    //     NSLog(@"Calendar date: %@",[cal dateFromComponents:components]);
-    
-    //convert GMT to my local time
-    //    NSDate* sourceDate = [cal dateFromComponents:components];
-    //
-    //    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
-    //    NSTimeZone* myTimeZone = [NSTimeZone localTimeZone];
-    //
-    //    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-    //    NSInteger myGMTOffset = [myTimeZone secondsFromGMTForDate:sourceDate];
-    //    NSTimeInterval interval = myGMTOffset - sourceGMTOffset;
-    //
-    //    NSDate* myDate = [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate]init];
-    //
-    //
-    //        NSLog(@"Converted date: %@",myDate);
-    //        NSLog(@"Source date: %@",myDate);
-    //
-    //
-    //    return myDate;
     
 }
 
 
--(void)loadTeamScoresFromParse
+//-(void)loadTeamScoresFromParse
+//{
+//    PFQuery *query = [PFQuery queryWithClassName:@"TeamName"];
+//    
+//    
+//    PFObject * user = [PFUser currentUser];
+//    
+//    
+//    
+//    PFQuery *teamPlayersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
+//    [teamPlayersClass whereKey:kUserObjectIdString equalTo:user.objectId];
+//    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
+//    
+//    
+//    
+//    
+//    //Query Team Classes, find the team matchups and save the team scores to memory
+//    PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+//    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+//    
+//    
+//    
+//    PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+//    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+//    
+//    
+//    PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
+//    
+//    //hardcoded for now but this will change depending on the tournament
+//    [queryTeamMatchupsClass whereKey:kRound containsString:@"1"];
+//    [queryTeamMatchupsClass includeKey:kHomeTeam];
+//    [queryTeamMatchupsClass includeKey:kAwayTeam];
+//    
+//}
+
+
+#pragma mark - Table View Methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    // If you're serving data from an array, return the length of the array:
+    
+     NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
+    NSArray *arrayOfLeagueNames = [sharedDefaults objectForKey:@"widgetArrayOfLeagueNames"];
+    
+    return arrayOfLeagueNames.count;
+    
+    //return 3;
+
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"TeamCell";
+    
+    TodayTeamsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[TodayTeamsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] ;
+    }
+    
+     NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
+    NSArray *homeTeamScores = [sharedDefaults objectForKey:@"widgetArrayOfHomeTeamScores"];
+    NSArray *awayTeamScores = [sharedDefaults objectForKey:@"widgetArrayOfAwayTeamScores"];
+    
+    NSArray *homeTeamNames = [sharedDefaults objectForKey:@"widgetArrayOfHomeTeamNames"];
+    NSArray *awayTeamNames = [sharedDefaults objectForKey:@"widgetArrayOfAwayTeamNames"];
+    
+    NSArray *arrayOfLeagueNames = [sharedDefaults objectForKey:@"widgetArrayOfLeagueNames"];
+    
+    
+  
+        
+        cell.myTeamName.text = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:indexPath.row]];
+        cell.myTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:indexPath.row]];
+        
+        cell.vsTeamName.text = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:indexPath.row]];
+        cell.vsTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:indexPath.row]];
+        
+        cell.leagueName.text = [NSString stringWithFormat:@"%@",[arrayOfLeagueNames objectAtIndex:indexPath.row]];
+ 
+    
+    
+    return cell;
+}
+
+- (void)adjustHeightOfTableview
 {
-    PFQuery *query = [PFQuery queryWithClassName:@"TeamName"];
-    
-    
-    PFObject * user = [PFUser currentUser];
-    
-    
-    
-    PFQuery *teamPlayersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
-    [teamPlayersClass whereKey:kUserObjectIdString equalTo:user.objectId];
-    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
     
     
     
     
-    //Query Team Classes, find the team matchups and save the team scores to memory
-    PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+    CGFloat height = self.tableView.contentSize.height;
+    CGFloat maxHeight = self.tableView.superview.frame.size.height - self.tableView.frame.origin.y;
     
+    // if the height of the content is greater than the maxHeight of
+    // total space on the screen, limit the height to the size of the
+    // superview.
     
+    if (height > maxHeight)
+        height = maxHeight;
     
-    PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+    // now set the height constraint accordingly
     
-    
-    PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
-    
-    //hardcoded for now but this will change depending on the tournament
-    [queryTeamMatchupsClass whereKey:kRound containsString:@"1"];
-    [queryTeamMatchupsClass includeKey:kHomeTeam];
-    [queryTeamMatchupsClass includeKey:kAwayTeam];
-    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.tableViewHeightConstrain.constant = height;
+        [self.view needsUpdateConstraints];
+    }];
 }
+
 
 
 @end

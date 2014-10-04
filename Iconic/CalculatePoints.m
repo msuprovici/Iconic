@@ -314,6 +314,17 @@
                             [myRetrievedTeams setObject:self.arrayOfWeekleyAwayTeamScores  forKey:kArrayOfWeekleyAwayTeamScores];
                             
                             [myRetrievedTeams synchronize];
+                            
+                            //this methods shares today's step count with app
+                            NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
+                            
+                            [sharedDefaults setObject:self.arrayOfhomeTeamScores forKey:@"widgetArrayOfHomeTeamScores"];
+                            [sharedDefaults setObject:self.arrayOfawayTeamScores forKey:@"widgetArrayOfAwayTeamScores"];
+                            [sharedDefaults setObject:self.arrayOfhomeTeamNames forKey:@"widgetArrayOfHomeTeamNames"];
+                            [sharedDefaults setObject:self.arrayOfawayTeamNames forKey:@"widgetArrayOfAwayTeamNames"];
+                            [sharedDefaults setObject:leagueArray forKey:@"widgetArrayOfLeagueNames"];
+                            
+                            [sharedDefaults synchronize];
 
                             //logs
 //                             NSLog(@"awayTeamPointer: %@", awayTeamPointer);
