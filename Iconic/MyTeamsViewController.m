@@ -42,8 +42,11 @@
    [self updateTeamChart:self.index];
     
 
-
-    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(userDefaultsDidChange:)
+//                                                 name:NSUserDefaultsDidChangeNotification object:nil];
+//
+    //[self performSelector:@selector(finalUpdateMyTeamLabel) withObject:self afterDelay:3.5];
 }
 
 
@@ -302,6 +305,8 @@
                     
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
                     [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0];
+                    
+//                    [self performSelector:@selector(finalUpdateMyTeamLabel) withObject:self afterDelay:5.0];
 
 //                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0];
 //                    double delayInSeconds = 3.0;
@@ -318,6 +323,9 @@
 //                    }
                 }
                 else{
+                    
+//                    [self updateTeamLabel];
+                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:1.0];
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
                 }
                 
@@ -370,22 +378,40 @@
     [self.MyTeamScore  countFrom:self.myTeamPoints to:pointsAfterPlayerScored withDuration:1.5];
     
     
-    if (self.myStepsGained > 0) {
-        
-        //redraw barChart
-        PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-        [barChart setYValues:self.teamPoints];
-        
-        [barChart setStrokeColors:@[PNWeiboColor, PNDarkBlue]];
-        [barChart setBarBackgroundColor:[UIColor clearColor]];
-        //    [barChart setStrokeColor:PNLightBlue];
-        [barChart strokeChart];
-        
-        [self.teamBarChart addSubview:barChart];
+    //redraw barChart
+    PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+    [barChart setYValues:self.teamPoints];
+    
+    [barChart setStrokeColors:@[PNWeiboColor, PNDarkBlue]];
+    [barChart setBarBackgroundColor:[UIColor clearColor]];
+    //    [barChart setStrokeColor:PNLightBlue];
+    [barChart strokeChart];
+    
+    [self.teamBarChart addSubview:barChart];
 
-    }
+    
+//    if (self.myStepsGained > 0) {
+//        
+//        //redraw barChart
+//        PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+//        [barChart setYValues:self.teamPoints];
+//        
+//        [barChart setStrokeColors:@[PNWeiboColor, PNDarkBlue]];
+//        [barChart setBarBackgroundColor:[UIColor clearColor]];
+//        //    [barChart setStrokeColor:PNLightBlue];
+//        [barChart strokeChart];
+//        
+//        [self.teamBarChart addSubview:barChart];
+//
+//    }
     
     
+}
+//reupdating again to make sure data is in sync with parse
+-(void)finalUpdateMyTeamLabel
+{
+ 
+    [self updateTeamChart:self.index];
 }
 
 #pragma mark - Timer Label customization
@@ -455,6 +481,16 @@
     
     
 }
+
+
+//#pragma mark - Norifications
+////when nsuserdefualts are updated, refresh the view
+//- (void)userDefaultsDidChange:(NSNotification *)notification {
+//     //[self updateTeamChart:self.index];
+//}
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -163,6 +163,9 @@ static NSString *kImageKey = @"imageKey";
                                              selector:@selector(refreshHomeView)
                                                  name:UIApplicationWillEnterForegroundNotification object:nil];
     
+    
+   
+    
 
     
     UIPageControl *pageControl = [UIPageControl appearance];
@@ -364,16 +367,16 @@ static NSString *kImageKey = @"imageKey";
     
     [self showMyTeams];
     
-   
+//   [self performSelector:@selector(showMyTeams) withObject:self afterDelay:.5];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    int myStepsGainedDelta = (int)[defaults integerForKey:kMyStepsDelta];
-    
-    //reload my teams view
-    if (myStepsGainedDelta) {
-        [self performSelector:@selector(showMyTeams) withObject:self afterDelay:4.5];
-    }
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    
+//    int myStepsGainedDelta = (int)[defaults integerForKey:kMyStepsDelta];
+//    
+//    //reload my teams view
+//    if (myStepsGainedDelta) {
+//        [self performSelector:@selector(showMyTeams) withObject:self afterDelay:4.5];
+//    }
 
 }
 
@@ -644,6 +647,7 @@ static NSString *kImageKey = @"imageKey";
 //        NSLog(@"Received Leave Team Notification on home screen");
     }
 }
+
 
 
 
@@ -1108,9 +1112,9 @@ static NSString *kImageKey = @"imageKey";
                         {
                             
 //                            [self showChart];
-                            
+//                            [self showMyTeams];
                            
-                        
+                        [self performSelector:@selector(showMyTeams) withObject:self afterDelay:3.5];
                         }
                     }];
     
