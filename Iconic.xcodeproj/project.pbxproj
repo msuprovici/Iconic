@@ -1617,7 +1617,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "c64f4343-9290-4465-84e7-d1f9f7a8093a";
+				PROVISIONING_PROFILE = "6a7584fc-b116-429f-a593-c6fde450bee6";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1652,7 +1652,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "c64f4343-9290-4465-84e7-d1f9f7a8093a";
+				PROVISIONING_PROFILE = "6a7584fc-b116-429f-a593-c6fde450bee6";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1664,8 +1664,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Iconic/Iconic.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1676,7 +1676,7 @@
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";
 				INFOPLIST_FILE = "Iconic/Iconic-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6a7584fc-b116-429f-a593-c6fde450bee6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1687,8 +1687,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Iconic/Iconic.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -1699,7 +1699,7 @@
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";
 				INFOPLIST_FILE = "Iconic/Iconic-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6a7584fc-b116-429f-a593-c6fde450bee6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

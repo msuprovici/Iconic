@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSTimer *timer;
 //@property NSArray * teamMatchups;
 @property  BOOL chatButtonPressedNow;
+@property  BOOL scoutTeamPressed;
 
 
 @end
@@ -71,6 +72,7 @@
 {
     self.matchupsIndex = matchupsIndex;
 //    NSLog(@"Segue index received: %d", self.matchupsIndex);
+    self.scoutTeamPressed = false;
     
 }
 
@@ -88,6 +90,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    self.scoutTeamPressed = false;
     
     //track if the user pressed vs details so that we can stop pulsing bar chart
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -258,7 +263,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES ];
-    
+   
     if (self.chatButtonPressedNow == YES) {
         BBBadgeBarButtonItem *barButton = (BBBadgeBarButtonItem *)self.navigationItem.rightBarButtonItem;
         barButton.badgeValue = @"0";
@@ -376,6 +381,7 @@
     
        //home team name
     self.myTeam.text = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
+        
 
     //create an array for the daily scores for the week
     //have to make mutableCopy because values returned from NSUserDefaults are immutable
@@ -398,12 +404,12 @@
     self.myTeamSunday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:6]];
     
     
-    //home team score
+    //away team score
     self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:index]];
     
-    //home team name
+    //away team name
     self.vsTeam.text = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
-
+       
     
     //have to make mutableCopy because values returned from NSUserDefaults are immutable
     //add the updated score for today to the array
@@ -425,6 +431,20 @@
     self.vsTeamFriday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:4]];
     self.vsTeamSaturday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:5]];
     self.vsTeamSunday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:6]];
+        
+        
+        self.homeTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
+        self.awayTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
+//        if (self.scoutTeamPressed == false)
+//        {
+//        self.homeTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
+//        self.awayTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
+//        }
+//        else
+//        {
+//            self.homeTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
+//            self.awayTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
+//        }
 
     }
     
@@ -462,10 +482,10 @@
         self.myTeamSunday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:6]];
         
         
-        //home team score
+        //awat team score
         self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
         
-        //home team name
+        //awat team name
         self.vsTeam.text = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
         
         
@@ -490,6 +510,21 @@
         self.vsTeamSaturday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:5]];
         self.vsTeamSunday.text = [NSString stringWithFormat:@"%@",[awayTeamWeekleyScores objectAtIndex:6]];
         
+        self.homeTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
+        self.awayTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
+
+//        if (self.scoutTeamPressed == false)
+//        {
+//            self.homeTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
+//            self.awayTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
+//        }
+//        else
+//        {
+//            self.homeTeam = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
+//            self.awayTeam = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
+//        }
+
+        
     }
     
     
@@ -502,6 +537,7 @@
 
 - (void)objectsWillLoad {
     [super objectsWillLoad];
+    
     
     // This method is called before a PFQuery is fired to get more objects
 }
@@ -528,31 +564,81 @@
 //     NSLog(@"home team in table %@", self.homeTeam);
 //     NSLog(@"away team in table %@", self.awayTeam);
      
-     //Query Team Class - query that mathches team names sent in segue
-     PFQuery *homeTeamsClass = [PFQuery queryWithClassName:kTeamTeamsClass];
-     [homeTeamsClass whereKey:kTeams equalTo:self.homeTeam];
+//     //Query Team Class - query that mathches team names sent in segue
+//     PFQuery *homeTeamsClass = [PFQuery queryWithClassName:kTeamTeamsClass];
+//     [homeTeamsClass whereKey:kTeams equalTo:self.homeTeam];
+//     
+//     
+//     PFQuery *awayTeamsClass = [PFQuery queryWithClassName:kTeamTeamsClass];
+//     [awayTeamsClass whereKey:kTeams equalTo:self.awayTeam];
+//     
+//     
+//     //query either home or away teams
+//     PFQuery *retrievedTeams = [PFQuery orQueryWithSubqueries:@[homeTeamsClass,awayTeamsClass]];
+//     //Query Teamates Class (query to find what the team the player is on)
+//     PFQuery *playersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
      
      
-     PFQuery *awayTeamsClass = [PFQuery queryWithClassName:kTeamTeamsClass];
-     [awayTeamsClass whereKey:kTeams equalTo:self.awayTeam];
      
      
-     //query either home or away teams
-     PFQuery *retrievedTeams = [PFQuery orQueryWithSubqueries:@[homeTeamsClass,awayTeamsClass]];
-
      
-     //Query Teamates Class (query to find what the team the player is on)
-     PFQuery *playersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
-     [playersClass whereKey:kTeamate equalTo:[PFUser currentUser]];
-     [retrievedTeams whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:playersClass];
-
-     
-     //finally get the players that are on that team
+     //query team players class
      PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
      [query includeKey:kTeam];
      [query includeKey:kTeamate];
      
-     [query whereKey:kTeam matchesKey:@"objectId" inQuery:retrievedTeams];
+     
+     
+     if (self.scoutTeamPressed == false)
+     {
+         
+//         
+//         [playersClass whereKey:kTeamate equalTo:[PFUser currentUser]];
+//         [retrievedTeams whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:playersClass];
+//        
+//         
+//         [query whereKey:kTeamObjectIdString matchesKey:@"objectId" inQuery:retrievedTeams];
+//         
+//         [query whereKey:kTeam matchesKey:@"objectId" inQuery:homeTeamsClass];
+         
+         
+         //query where team is the player's team
+         PFQuery *teamsClass = [PFQuery queryWithClassName:kTeamTeamsClass];
+         [teamsClass whereKey:kTeams equalTo:self.myTeamReceived];
+         [query whereKey:kTeam matchesQuery:teamsClass];
+
+     }
+     if (self.scoutTeamPressed == true)
+     {
+         
+         
+//         [playersClass whereKey:kTeamate notEqualTo:[PFUser currentUser]];
+//         [retrievedTeams whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:playersClass];
+//         
+//         
+//         
+//         [query whereKey:kTeamObjectIdString matchesKey:@"objectId" inQuery:retrievedTeams];
+         
+         
+         //query where team is the opposing team
+         PFQuery *teamsClass = [PFQuery queryWithClassName:kTeamTeamsClass];
+         [teamsClass whereKey:kTeams equalTo:self.awayTeam];
+         [query whereKey:kTeam matchesQuery:teamsClass];
+     }
+    
+     
+     
+     
+     
+     
+
+     
+//     //finally get the players that are on that team
+//     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+//     [query includeKey:kTeam];
+//     [query includeKey:kTeamate];
+//     
+//     [query whereKey:kTeam matchesKey:@"objectId" inQuery:retrievedTeams];
      
      
      
@@ -724,6 +810,26 @@
     }
 }
 
+#pragma mark - Scout Opposing Team
 
 
+- (IBAction)scoutMyTeam:(id)sender {
+//    NSLog(@"Scout My Team Pressed");
+    self.scoutTeamPressed = false;
+    //update team label to player's team
+    self.myTeamName.text = self.myTeamReceived;
+    //reload table
+    [self loadObjects];
+}
+- (IBAction)scoutVsTeam:(id)sender {
+//     NSLog(@"Scout VS Team Pressed");
+    
+     [Amplitude logEvent:@"Scout Vs Team"];
+    
+    self.scoutTeamPressed = true;
+    //update team label to opposing team
+    self.myTeamName.text = self.awayTeam;
+    //reload table
+    [self loadObjects];
+}
 @end

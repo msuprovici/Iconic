@@ -21,8 +21,8 @@
 
 
 
-@property (nonatomic, assign) NSString *homeTeam;
-@property (nonatomic, assign) NSString *awayTeam;
+@property  NSString *homeTeam;
+@property  NSString *awayTeam;
 
 
 @property (strong, nonatomic) IBOutlet MZTimerLabel *timerLabel;
@@ -81,6 +81,16 @@
 @property (nonatomic,retain) NSString * myTeamReceived;
 
 @property (strong, nonatomic) IBOutlet UIButton *chatButton;
+
+//scout my team - see my team or vsteam
+
+@property (strong, nonatomic) IBOutlet UIButton *scoutMyTeam;
+- (IBAction)scoutMyTeam:(id)sender;
+
+
+@property (strong, nonatomic) IBOutlet UIButton *scoutVsTeam;
+
+- (IBAction)scoutVsTeam:(id)sender;
 
 
 @end

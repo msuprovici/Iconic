@@ -708,6 +708,26 @@
                                     <color key="textColor" red="0.8764648438" green="0.1105902305" blue="0.1742419097" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="70C-Mw-nOF">
+                                    <rect key="frame" x="53" y="63" width="130" height="220"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="scoutMyTeam:" destination="7jw-Rg-QgJ" eventType="touchUpInside" id="qfP-67-GKu"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jdf-Kf-Ccv">
+                                    <rect key="frame" x="186" y="63" width="130" height="220"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="scoutVsTeam:" destination="7jw-Rg-QgJ" eventType="touchUpInside" id="U4M-Rg-ijd"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
@@ -779,6 +799,8 @@
                         <outlet property="myTeamThursday" destination="JcX-iS-bBz" id="KUA-yQ-Jig"/>
                         <outlet property="myTeamTuesday" destination="Bbp-tR-Ftx" id="CX2-8P-YJk"/>
                         <outlet property="myTeamWednesday" destination="1sX-Au-CRR" id="fet-eV-8Sk"/>
+                        <outlet property="scoutMyTeam" destination="70C-Mw-nOF" id="VUh-lK-3Zj"/>
+                        <outlet property="scoutVsTeam" destination="Jdf-Kf-Ccv" id="dVX-Wh-FMR"/>
                         <outlet property="timerLabel" destination="uB9-EE-7BW" id="rxh-hE-MtP"/>
                         <outlet property="vsTeam" destination="3ma-ul-9Vl" id="Mke-9h-C86"/>
                         <outlet property="vsTeamFriday" destination="is8-nL-45r" id="Td8-YI-d1j"/>
