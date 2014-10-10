@@ -50,18 +50,19 @@
     
     
     //dynamically change the height of the tableview
-//    CGFloat height = self.tableView.rowHeight;
-//    NSArray *arrayOfLeagueNames = [defaults objectForKey:@"widgetArrayOfLeagueNames"];
-//    height *= arrayOfLeagueNames.count;
-//    
+    CGFloat height = self.tableView.rowHeight;
+    NSArray *arrayOfLeagueNames = [defaults objectForKey:@"widgetArrayOfLeagueNames"];
+    height *= arrayOfLeagueNames.count;
+    
 //    CGRect tableFrame = self.tableView.frame;
 //    tableFrame.size.height = height;
 //    self.tableView.frame = tableFrame;
-//
-//    
+
+    self.tableViewHeightConstrain.constant = height + 68 ;//70 is the height of the steps label + today's steps
+    
 //    [self adjustHeightOfTableview];
     
-    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.contentSize.height);
+//    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.contentSize.height);
 
 }
 
@@ -198,6 +199,12 @@
     //return 3;
 
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0;
+}
+
+
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

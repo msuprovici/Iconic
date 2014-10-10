@@ -821,6 +821,7 @@
     //reload table
     [self loadObjects];
 }
+
 - (IBAction)scoutVsTeam:(id)sender {
 //     NSLog(@"Scout VS Team Pressed");
     
