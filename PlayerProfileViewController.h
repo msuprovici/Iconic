@@ -21,6 +21,10 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *cheerButton;
 
+@property (strong, nonatomic) IBOutlet UILabel *streak;
+
+@property (strong, nonatomic) IBOutlet UILabel *streakLong;
+
 - (IBAction)cheerButtonPressed:(id)sender;
 
 @property (nonatomic, strong) PFObject *player;

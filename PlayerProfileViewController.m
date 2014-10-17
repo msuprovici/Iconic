@@ -69,7 +69,9 @@
     
     self.playerAvgSteps.text = [NSString stringWithFormat:@"%@ Average Daily Steps", [user objectForKey:kPlayerAvgDailySteps]];
     
-    self.playerXP.text = [NSString stringWithFormat:@"XP %@", [user objectForKey:kPlayerXP]];
+    self.playerXP.text = [NSString stringWithFormat:@"XP: %@", [user objectForKey:kPlayerXP]];
+    self.streak.text = [NSString stringWithFormat:@"%@ days", [user objectForKey:kPlayerStreak]];
+    self.streakLong.text = [NSString stringWithFormat:@"%@ days", [user objectForKey:kPlayerStreakLong]];
     
     //view controller header title
     self.navigationItem.title = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];

@@ -17,7 +17,9 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *myAvgSteps;
 
+@property (strong, nonatomic) IBOutlet UILabel *streak;
 
+@property (strong, nonatomic) IBOutlet UILabel *streakLong;
 
 @property (strong, nonatomic) IBOutlet UILabel *myXPLevel;
 

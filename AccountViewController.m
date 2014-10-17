@@ -50,18 +50,32 @@
     [super viewDidLoad];
     
     //set the user's data
-    PFUser * user = [PFUser currentUser];
-    if (user) {
-    self.myUserName.text = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
+//    PFUser * user = [PFUser currentUser];
+    
+    
+    PFObject *user = [PFUser currentUser];
+    
+    PFQuery *query = [PFUser query];
+    
+    [query whereKey:@"objectId" equalTo:user.objectId];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    
+    
+    
+
+    self.myUserName.text = [NSString stringWithFormat:@"%@", [object objectForKey:kUserDisplayNameKey]];
      self.navigationItem.title = @"Account";
     
-    self.myAvgSteps.text = [NSString stringWithFormat:@"%@ Average Daily Steps", [user objectForKey:kPlayerAvgDailySteps]];
+    self.myAvgSteps.text = [NSString stringWithFormat:@"%@ Average Daily Steps", [object objectForKey:kPlayerAvgDailySteps]];
     
-        NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
+    
+
+       self.myXPLevel.text = [NSString stringWithFormat:@"XP: %@", [object objectForKey:@"xp"]];
         
-        
-    //created "myXP" to test parse for xp bug always showing 1 - it does not work!
-       self.myXPLevel.text = [NSString stringWithFormat:@"XP %@", [myStats objectForKey:@"myXP"]];
+        self.streak.text = [NSString stringWithFormat:@"%@ days", [object objectForKey:kPlayerStreak]];
+        self.streakLong.text = [NSString stringWithFormat:@"%@ days", [object objectForKey:kPlayerStreakLong]];
         
 //    NSLog(%@XP: ", [user objectForKey:kPlayerXP]);
     
@@ -95,13 +109,15 @@
         [myAlertView show];
         
     }
-    }
+//    }
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    }];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
