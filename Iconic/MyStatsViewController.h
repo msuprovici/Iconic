@@ -22,6 +22,7 @@
 //@property (weak, nonatomic) IBOutlet UILabel *xpValue;
 @property (strong, nonatomic) IBOutlet UICountingLabel *xpValue;
 
+@property (strong, nonatomic) IBOutlet UILabel *streak;
 
 //@property (weak, nonatomic) IBOutlet UILabel *pointsValue;
 @property (strong, nonatomic) IBOutlet UICountingLabel *pointsValue;

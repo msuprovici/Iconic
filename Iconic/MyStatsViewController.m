@@ -231,6 +231,20 @@
             
                 
 //            [self startAnimation];
+                
+                //show # days in a row with steps above average
+                NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
+                NSInteger streak = [defaults integerForKey:@"streak"];
+                
+                if (streak > 1) {
+                    self.streak.text = [NSString stringWithFormat:@"%ld day streak",streak];
+                }
+                else
+                {
+                    self.streak.hidden = true;
+                }
+                
+
             }
         }
         
@@ -242,11 +256,12 @@
             self.pointsImage.hidden = YES;
             self.stepsImage.hidden = YES;
                 
+                
 //            self.timeActiveLabel.hidden = NO;
 //            NSInteger numberOfSteps = [[NSUserDefaults standardUserDefaults] integerForKey:STEPS_KEY];
 //            self.timeActiveLabel.text = [NSString stringWithFormat:@"%li", (long)numberOfSteps];
                 
-                
+            self.streak.hidden = true;
             self.pointsLabel.hidden = true;
             self.xpLabel.hidden = true;
             self.pointsValue.hidden = true;

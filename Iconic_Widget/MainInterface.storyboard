@@ -28,6 +28,12 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="days streak" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4O-Im-l78">
+                                <rect key="frame" x="206" y="52" width="64" height="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="56" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7T8-Vx-I8A">
                                 <rect key="frame" x="0.0" y="71" width="320" height="250"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -97,6 +103,12 @@
                                     <outlet property="delegate" destination="M4Y-Lb-cyx" id="0rz-LZ-0tm"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lg6-0I-zX0">
+                                <rect key="frame" x="213" y="1" width="50" height="54"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="60"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="height" secondItem="7T8-Vx-I8A" secondAttribute="height" id="Fi7-1M-FYP"/>
@@ -108,6 +120,8 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mySteps" destination="wd8-Xf-8br" id="UK5-p4-Vmm"/>
+                        <outlet property="streak" destination="Lg6-0I-zX0" id="2zA-Nl-fCX"/>
+                        <outlet property="streakSubLabel" destination="F4O-Im-l78" id="9Jw-mG-oG6"/>
                         <outlet property="tableView" destination="7T8-Vx-I8A" id="8jo-tP-gWw"/>
                         <outlet property="tableViewHeightConstrain" destination="FbZ-vZ-xFp" id="qIJ-dH-n4t"/>
                     </connections>

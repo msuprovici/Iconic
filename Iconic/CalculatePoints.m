@@ -631,6 +631,13 @@
         
         if(!error)
         {
+            //retrieve current streak from parse
+            int streak = [[object objectForKey:@"streak"] intValue];
+            //shares today's step count with widget
+            NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
+            [sharedDefaults setInteger:streak  forKey:@"streak"];
+            [sharedDefaults synchronize];
+
             
             [object incrementKey:kPlayerPoints byAmount:myNSStepsDeltaValue];
             

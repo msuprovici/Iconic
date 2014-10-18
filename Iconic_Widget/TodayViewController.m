@@ -20,6 +20,8 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstrain;
+@property (strong, nonatomic) IBOutlet UILabel *streak;
+@property (strong, nonatomic) IBOutlet UILabel *streakSubLabel;
 
 //step counter
 @property (nonatomic, strong) CMPedometer *stepCounter;
@@ -71,6 +73,19 @@
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
     NSInteger mySteps = [defaults integerForKey:@"totalNumberStepsToday"];
     self.mySteps.text = [NSString stringWithFormat:@"%ld",(long)mySteps];
+    
+    //show # days in a row with steps above average
+    NSInteger streak = [defaults integerForKey:@"streak"];
+    
+    if (streak > 1) {
+        self.streak.text = [NSString stringWithFormat:@"%ld",streak];
+    }
+    else
+    {
+        self.streak.hidden = true;
+        self.streakSubLabel.hidden = true;
+    }
+
     [self loadMySteps];
 }
 
