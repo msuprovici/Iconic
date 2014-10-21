@@ -87,6 +87,7 @@
 		5C726C08196B1433007C4F4E /* AccountMyTeamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C726C07196B1433007C4F4E /* AccountMyTeamCell.m */; };
 		5C726C0B196B2BDE007C4F4E /* PlayerProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C726C0A196B2BDE007C4F4E /* PlayerProfileViewController.m */; };
 		5C726C12196B2CD1007C4F4E /* PlayerTeamsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C726C11196B2CD1007C4F4E /* PlayerTeamsCell.m */; };
+		5C78C0FC19F6103300533E30 /* CreateTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C78C0FB19F6103300533E30 /* CreateTeamViewController.m */; };
 		5C78DA4D189872BF00CBA29B /* activity_comment_icon_blue-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA49189872BF00CBA29B /* activity_comment_icon_blue-01.png */; };
 		5C78DA4E189872BF00CBA29B /* activity_comment_icon_green-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA4A189872BF00CBA29B /* activity_comment_icon_green-01.png */; };
 		5C78DA4F189872BF00CBA29B /* activity_speaker_icon_green-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA4B189872BF00CBA29B /* activity_speaker_icon_green-01.png */; };
@@ -114,6 +115,7 @@
 		5C8BB5B81884AFE900E89ADF /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5B71884AFE900E89ADF /* CommentCell.m */; };
 		5C8BB5C418860F9700E89ADF /* ActivityHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5C318860F9700E89ADF /* ActivityHeaderCell.m */; };
 		5C8BB5CB1886256400E89ADF /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5CA1886256400E89ADF /* TTTTimeIntervalFormatter.m */; };
+		5C905C6919F5BE9700D9FC06 /* CreateLeagueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C905C6819F5BE9700D9FC06 /* CreateLeagueViewController.m */; };
 		5CA19A2018B51F6D0023C940 /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA19A1F18B51F6D0023C940 /* MZTimerLabel.m */; };
 		5CA19A3418B83E290023C940 /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA19A2318B83E290023C940 /* PNBar.m */; };
 		5CA19A3518B83E290023C940 /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA19A2518B83E290023C940 /* PNBarChart.m */; };
@@ -341,6 +343,8 @@
 		5C726C0A196B2BDE007C4F4E /* PlayerProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerProfileViewController.m; sourceTree = "<group>"; };
 		5C726C10196B2CD1007C4F4E /* PlayerTeamsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTeamsCell.h; sourceTree = "<group>"; };
 		5C726C11196B2CD1007C4F4E /* PlayerTeamsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTeamsCell.m; sourceTree = "<group>"; };
+		5C78C0FA19F6103300533E30 /* CreateTeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTeamViewController.h; sourceTree = "<group>"; };
+		5C78C0FB19F6103300533E30 /* CreateTeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTeamViewController.m; sourceTree = "<group>"; };
 		5C78DA49189872BF00CBA29B /* activity_comment_icon_blue-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_comment_icon_blue-01.png"; sourceTree = "<group>"; };
 		5C78DA4A189872BF00CBA29B /* activity_comment_icon_green-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_comment_icon_green-01.png"; sourceTree = "<group>"; };
 		5C78DA4B189872BF00CBA29B /* activity_speaker_icon_green-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_speaker_icon_green-01.png"; sourceTree = "<group>"; };
@@ -379,6 +383,8 @@
 		5C8BB5C318860F9700E89ADF /* ActivityHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityHeaderCell.m; sourceTree = "<group>"; };
 		5C8BB5C91886256400E89ADF /* TTTTimeIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTimeIntervalFormatter.h; sourceTree = "<group>"; };
 		5C8BB5CA1886256400E89ADF /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
+		5C905C6719F5BE9700D9FC06 /* CreateLeagueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateLeagueViewController.h; sourceTree = "<group>"; };
+		5C905C6819F5BE9700D9FC06 /* CreateLeagueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateLeagueViewController.m; sourceTree = "<group>"; };
 		5CA19A1E18B51F6D0023C940 /* MZTimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
 		5CA19A1F18B51F6D0023C940 /* MZTimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
 		5CA19A2218B83E290023C940 /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
@@ -699,6 +705,8 @@
 				5C328BFA186002D300E0E985 /* LeaguesViewController.m */,
 				5C0FBDE118AD4BC900A0A122 /* LeagueCell.h */,
 				5C0FBDE218AD4BC900A0A122 /* LeagueCell.m */,
+				5C905C6719F5BE9700D9FC06 /* CreateLeagueViewController.h */,
+				5C905C6819F5BE9700D9FC06 /* CreateLeagueViewController.m */,
 			);
 			name = Leagues;
 			path = ..;
@@ -715,6 +723,8 @@
 				5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */,
 				5CEC3BDC18A2A86200C444FA /* TeamPlayerCell.h */,
 				5CEC3BDD18A2A86200C444FA /* TeamPlayerCell.m */,
+				5C78C0FA19F6103300533E30 /* CreateTeamViewController.h */,
+				5C78C0FB19F6103300533E30 /* CreateTeamViewController.m */,
 			);
 			name = Teams;
 			path = ..;
@@ -1410,6 +1420,7 @@
 				5C48B8961880CFAA00A09A1C /* SimpleHomeViewController.m in Sources */,
 				5C8BB5C418860F9700E89ADF /* ActivityHeaderCell.m in Sources */,
 				5CCB26D419085BA5002B6832 /* CalculatePoints.m in Sources */,
+				5C905C6919F5BE9700D9FC06 /* CreateLeagueViewController.m in Sources */,
 				5C48B8BD1880F89F00A09A1C /* UIImage+ResizeAdditions.m in Sources */,
 				5C78DA531899676000CBA29B /* FindFriendsViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
@@ -1436,6 +1447,7 @@
 				5C6A6EE018A47BE40044269F /* TeamCell.m in Sources */,
 				5C5CBDD519253DB300C2C328 /* LeaguesTeamsModel.xcdatamodeld in Sources */,
 				5CA19A3B18B83E290023C940 /* PNLineChartDataItem.m in Sources */,
+				5C78C0FC19F6103300533E30 /* CreateTeamViewController.m in Sources */,
 				5C04C2F31940E63700E21ED4 /* CustomPFSignUpViewController.m in Sources */,
 				5C539A091864E900006676FA /* FeedCell.m in Sources */,
 				5C328BF5185F70C100E0E985 /* VSViewController.m in Sources */,
@@ -1534,8 +1546,8 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = Iconic_Widget/Iconic_Widget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1561,8 +1573,8 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = Iconic_Widget/Iconic_Widget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (

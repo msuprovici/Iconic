@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Yi2-3K-q1V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Yi2-3K-q1V">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--Iconic-->
@@ -1533,7 +1533,153 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cK6-Ou-8KV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2109" y="-5169"/>
+            <point key="canvasLocation" x="-2147" y="-5785"/>
+        </scene>
+        <!--Create League-->
+        <scene sceneID="jde-1t-tFb">
+            <objects>
+                <viewController storyboardIdentifier="CreateLeague" title="Create League" id="lFo-3s-8vR" customClass="CreateLeagueViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Qk-nG-GRU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="League" minimumFontSize="17" id="RUO-aw-yaT">
+                                <rect key="frame" x="136" y="109" width="159" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="lFo-3s-8vR" id="p4W-Zc-pjs"/>
+                                </connections>
+                            </textField>
+                            <pickerView contentMode="scaleToFill" id="3J9-hM-ADw">
+                                <rect key="frame" x="233" y="149" width="60" height="100"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lFo-3s-8vR" id="LWC-ju-MmQ"/>
+                                    <outlet property="delegate" destination="lFo-3s-8vR" id="kih-Np-wZ5"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# of teams in league" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OOQ-jm-CPp">
+                                <rect key="frame" x="26" y="219" width="155" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" id="DWf-vP-r8d">
+                                <rect key="frame" x="233" y="262" width="60" height="100"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="lFo-3s-8vR" id="iJO-4A-5Jm"/>
+                                    <outlet property="delegate" destination="lFo-3s-8vR" id="YYY-yV-wKh"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimum XP" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eap-O8-ZWa">
+                                <rect key="frame" x="26" y="329" width="98" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bfP-lq-6kB">
+                                <rect key="frame" x="26" y="113" width="92" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="F9G-yO-W2W">
+                                <rect key="frame" x="3" y="422" width="315" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Create League">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createLeagueButtonPressed:" destination="lFo-3s-8vR" eventType="touchUpInside" id="1aU-OD-Xfg"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vgf-k9-Sx7"/>
+                    <connections>
+                        <outlet property="createLeague" destination="F9G-yO-W2W" id="szD-65-kbs"/>
+                        <outlet property="leagueNameTextField" destination="RUO-aw-yaT" id="eE6-EN-Cqc"/>
+                        <outlet property="minimumXP" destination="DWf-vP-r8d" id="GWL-Qb-b0t"/>
+                        <outlet property="numberOfTeamsInLeague" destination="3J9-hM-ADw" id="1wP-94-Bdh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cbg-cP-abc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2121" y="-5089"/>
+        </scene>
+        <!--Create Team View Controller-->
+        <scene sceneID="KTt-0D-Ovp">
+            <objects>
+                <viewController storyboardIdentifier="CreateTeam" id="wv6-hi-tt4" customClass="CreateTeamViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JTN-uc-wtF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Qec-P3-DLf">
+                                <rect key="frame" x="165" y="113" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wv6-hi-tt4" id="dCd-6y-LZI"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="net-vH-3Aq">
+                                <rect key="frame" x="16" y="117" width="106" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="QzR-H2-7VO">
+                                <rect key="frame" x="165" y="170" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wv6-hi-tt4" id="uqL-gE-6Wz"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Steps/Teamate:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x6t-9q-g9M">
+                                <rect key="frame" x="16" y="174" width="149" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y3G-vT-jL4">
+                                <rect key="frame" x="16" y="416" width="288" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Create Team">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createTeamAction:" destination="wv6-hi-tt4" eventType="touchUpInside" id="thd-CD-AUt"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="e4t-V7-1q3"/>
+                    <connections>
+                        <outlet property="createTeam" destination="Y3G-vT-jL4" id="wRl-BF-H2m"/>
+                        <outlet property="dailyStepsGoal" destination="QzR-H2-7VO" id="eYE-z4-d6X"/>
+                        <outlet property="teamNameField" destination="Qec-P3-DLf" id="c5O-jN-xsh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s2N-ZG-rSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1634" y="-5094"/>
         </scene>
         <!--News-->
         <scene sceneID="lBY-ZS-NvU">
@@ -1739,7 +1885,13 @@
                             <outlet property="delegate" destination="C4a-YJ-kes" id="H6O-cH-h8J"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Leagues" id="FZe-MD-eLJ"/>
+                    <navigationItem key="navigationItem" title="Leagues" id="FZe-MD-eLJ">
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="AbA-hE-crJ">
+                            <connections>
+                                <segue destination="lFo-3s-8vR" kind="push" id="u8W-zH-94E"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tef-q3-TPF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1782,7 +1934,13 @@
                             <outlet property="delegate" destination="Quu-w8-KMQ" id="In4-oL-lTs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Teams" id="f6H-1V-ESq"/>
+                    <navigationItem key="navigationItem" title="Teams" id="f6H-1V-ESq">
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="9RT-yq-G8w">
+                            <connections>
+                                <segue destination="wv6-hi-tt4" kind="push" identifier="createTeam" id="i0O-nJ-NVX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mn0-hG-UKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1793,7 +1951,7 @@
             <objects>
                 <tableViewController id="k2R-Un-KHX" customClass="TeamPlayersViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="yTF-Ig-H8d">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1859,7 +2017,7 @@
             <objects>
                 <tableViewController id="UbG-da-jWg" customClass="PlayerProfileViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="gxJ-9q-Ru6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="oGg-mV-ZYc">
@@ -2365,7 +2523,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q6d-Yn-sqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-993" y="-5391"/>
+            <point key="canvasLocation" x="-620" y="-5587"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="u2b-4b-vYw">
@@ -2544,7 +2702,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TOK-oA-YZa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2635" y="-5169"/>
+            <point key="canvasLocation" x="-2673" y="-5785"/>
         </scene>
         <!--News-->
         <scene sceneID="0en-ay-l1z">
@@ -2582,7 +2740,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Om-yI-ZJN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1519" y="-5391"/>
+            <point key="canvasLocation" x="-1146" y="-5587"/>
         </scene>
     </scenes>
     <resources>
@@ -2601,8 +2759,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="GlC-f2-v4y"/>
+        <segue reference="BKk-Oi-vMX"/>
         <segue reference="cdC-Af-usM"/>
-        <segue reference="f2W-wf-Lkd"/>
+        <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>

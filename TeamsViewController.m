@@ -8,6 +8,7 @@
 
 #import "TeamsViewController.h"
 #import "TeamPlayersViewController.h"
+#import "CreateTeamViewController.h"
 #import "TeamCell.h"
 #import <Parse/Parse.h>
 #import "PNChart.h"
@@ -511,6 +512,18 @@
         //[segue.destinationViewController initWithTeam:self.league];
         
     }
+    
+    
+    
+    if ([segue.identifier isEqualToString:@"createTeam"]) {
+        
+        
+        [segue.destinationViewController initWithLeague:self.league];
+        
+        
+    }
+
+    
 }
 
 
