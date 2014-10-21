@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "TeamsViewController.h"
 #import "Constants.h"
+#import "CalculatePoints.h"
 
 @interface CreateTeamViewController ()
 
@@ -28,6 +29,10 @@
     [singleTap setNumberOfTapsRequired:1];
     [singleTap setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:singleTap];
+    
+    
+    
+    
     
 }
 
@@ -86,12 +91,16 @@
 - (IBAction)createTeamAction:(id)sender {
     
     NSLog(@"createTeam Pressed ");
-//    if ([self.teamNameField.text length] != 0) {
+    if ([self.teamNameField.text length] != 0) {
+        
+        self.createTeamActivityIndicator.hidden = NO;
+        [self.createTeamActivityIndicator startAnimating];
     
         NSString *leagueName = [NSString stringWithFormat:@"%@",[self.league objectForKey:kLeagues]];
         
         NSNumber *leagueLevel = [self.league objectForKey:@"Level"];
         NSString *stepGoalString = [NSString stringWithFormat:@"%@",self.dailyStepsGoal.text];
+       
         int stepGoal = [stepGoalString intValue];
     
     
@@ -111,7 +120,33 @@
         [team saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 //Refresh view
-                NSLog(@"team name saved");
+//                NSLog(@"team name saved");
+                [self.createTeamActivityIndicator stopAnimating];
+                
+                 NSString *teamName = [NSString stringWithFormat:@"New team: %@",self.teamNameField.text];
+                
+                UIAlertController *alertController = [UIAlertController
+                                                      alertControllerWithTitle:teamName
+                                                      message:@""
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *okAction = [UIAlertAction
+                                           actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+//                                               NSLog(@"OK action");
+                                           }];
+                
+                [alertController addAction:okAction];
+                [self presentViewController:alertController animated:YES completion:nil];
+                
+                
+                self.teamNameField.text = @"";
+                self.dailyStepsGoal.text = @"";
+                
+                CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+                [calculatePointsClass migrateLeaguesToCoreData];
                 
             } else {
                 NSLog(@"Failed to save object: %@", error);
@@ -119,7 +154,28 @@
             
         }];
         
-//    }
+    }
+    else
+    {
+       
+            UIAlertController *alertController = [UIAlertController
+                                                  alertControllerWithTitle:@"Please name your league"
+                                                  message:@""
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *okAction = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"OK action");
+                                       }];
+            
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        
+
+    }
     
     [self.teamNameField resignFirstResponder];
     [self.dailyStepsGoal resignFirstResponder];

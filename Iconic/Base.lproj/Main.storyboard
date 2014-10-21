@@ -1601,12 +1601,17 @@
                                     <action selector="createLeagueButtonPressed:" destination="lFo-3s-8vR" eventType="touchUpInside" id="1aU-OD-Xfg"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="zde-VZ-sBb">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="vgf-k9-Sx7"/>
                     <connections>
                         <outlet property="createLeague" destination="F9G-yO-W2W" id="szD-65-kbs"/>
+                        <outlet property="leagueAddedActivityIndicator" destination="zde-VZ-sBb" id="XuB-7v-Gh7"/>
                         <outlet property="leagueNameTextField" destination="RUO-aw-yaT" id="eE6-EN-Cqc"/>
                         <outlet property="minimumXP" destination="DWf-vP-r8d" id="GWL-Qb-b0t"/>
                         <outlet property="numberOfTeamsInLeague" destination="3J9-hM-ADw" id="1wP-94-Bdh"/>
@@ -1667,12 +1672,17 @@
                                     <action selector="createTeamAction:" destination="wv6-hi-tt4" eventType="touchUpInside" id="thd-CD-AUt"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="3UX-Zh-cNa">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="e4t-V7-1q3"/>
                     <connections>
                         <outlet property="createTeam" destination="Y3G-vT-jL4" id="wRl-BF-H2m"/>
+                        <outlet property="createTeamActivityIndicator" destination="3UX-Zh-cNa" id="5YB-Uj-kA1"/>
                         <outlet property="dailyStepsGoal" destination="QzR-H2-7VO" id="eYE-z4-d6X"/>
                         <outlet property="teamNameField" destination="Qec-P3-DLf" id="c5O-jN-xsh"/>
                     </connections>
@@ -1829,7 +1839,7 @@
         <scene sceneID="C8b-lU-tvu">
             <objects>
                 <tableViewController id="C4a-YJ-kes" customClass="LeaguesViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" id="54O-of-IGh">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="10" sectionFooterHeight="10" id="54O-of-IGh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -1902,7 +1912,7 @@
         <scene sceneID="cch-nZ-qtU">
             <objects>
                 <tableViewController title="Teams" id="Quu-w8-KMQ" customClass="TeamsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="k7d-L5-oeV">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="k7d-L5-oeV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2017,7 +2027,7 @@
             <objects>
                 <tableViewController id="UbG-da-jWg" customClass="PlayerProfileViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="gxJ-9q-Ru6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="oGg-mV-ZYc">

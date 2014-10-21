@@ -28,4 +28,6 @@
 
 @property  NSInteger selectedMinimumXP;
 
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *leagueAddedActivityIndicator;
+
 @end

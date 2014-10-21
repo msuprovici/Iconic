@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *dailyStepsGoal;
 
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *createTeamActivityIndicator;
+
 
 @property (strong, nonatomic) IBOutlet UIButton *createTeam;
 
