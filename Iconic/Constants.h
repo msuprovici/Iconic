@@ -15,7 +15,7 @@
 #define HeaderTextColor PNWeiboColor
 #define HeaderHeight    28
 #define HeaderAlignment  NSTextAlignmentCenter
-#define HeaderFont [UIFont fontWithName:@"HelveticaNeue-Light" size:20]
+#define HeaderFont [UIFont fontWithName:@"HelveticaNeue-Light" size:15]
 
 #pragma mark - NSUserDefaults
 extern NSString *const kUserDefaultsActivityFeedViewControllerLastRefreshKey;

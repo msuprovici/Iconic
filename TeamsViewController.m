@@ -407,26 +407,52 @@
 }
 
 //Create custom header for teams view
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return HeaderHeight;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    
+    //if league is not full show header
+    int teamsInLeague = [[self.league objectForKey:@"numberOfTeams"]intValue];
+    
+    int teamsRetrieved = [[self.league objectForKey:@"totalNumberOfTeams"]intValue];
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    
-//    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    sectionHeader.backgroundColor = HeaderColor;
-//    sectionHeader.textAlignment = HeaderAlignment;
-//    sectionHeader.font = HeaderFont;
-//    sectionHeader.textColor = HeaderTextColor;
-//    
-//    
-//   sectionHeader.text =[self categories:section];
-//    
-//    return sectionHeader;
-//    
-//}
+    
+    if (teamsRetrieved < teamsInLeague) {
+    return HeaderHeight;
+    }
+    else
+        return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    sectionHeader.backgroundColor = HeaderColor;
+    sectionHeader.textAlignment = HeaderAlignment;
+    sectionHeader.font = HeaderFont;
+    sectionHeader.textColor = HeaderTextColor;
+    
+    int teamsInLeague = [[self.league objectForKey:@"numberOfTeams"]intValue];
+    
+    int teamsRetrieved = [[self.league objectForKey:@"totalNumberOfTeams"]intValue];
+    
+    
+    int teamsLeft = teamsInLeague - teamsRetrieved;
+    
+    if (teamsLeft == 1)
+    {
+        sectionHeader.text =[NSString stringWithFormat:@"%d more team required to begin season", teamsLeft];
+    }
+    else
+    {
+        sectionHeader.text =[NSString stringWithFormat:@"%d more teams required to start season", teamsLeft];
+    }
+    
+   
+    
+    return sectionHeader;
+    
+}
 
 
 // Get the array of indeces for that section. This lets us pick the correct PFObject from self.objects

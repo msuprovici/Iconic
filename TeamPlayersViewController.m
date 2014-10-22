@@ -227,25 +227,30 @@
 }
 
 //Create custom header for teams view
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return HeaderHeight;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    
-//    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    sectionHeader.backgroundColor = HeaderColor;
-//    sectionHeader.textAlignment = HeaderAlignment;
-//    sectionHeader.font = HeaderFont;
-//    sectionHeader.textColor = HeaderTextColor;
-//    
-//    sectionHeader.text =[self categories:section];
-//        
-//    return sectionHeader;
-//    
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if([[self.team valueForKey:@"stepsGoal"]intValue] > 0)
+    {
+    return HeaderHeight;
+    }
+    else return 0;
+    
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    sectionHeader.backgroundColor = HeaderColor;
+    sectionHeader.textAlignment = HeaderAlignment;
+    sectionHeader.font = HeaderFont;
+    sectionHeader.textColor = HeaderTextColor;
+    
+    sectionHeader.text =[NSString stringWithFormat:@"Daily Goal: %@ steps/teamate",[self.team valueForKey:@"stepsGoal"]];
+        
+    return sectionHeader;
+    
+}
 
 
 
