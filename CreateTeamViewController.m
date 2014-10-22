@@ -16,6 +16,8 @@
 
 @property (nonatomic, assign) id currentResponder;
 
+@property (nonatomic, assign) NSUInteger numberOfTeamsInLeague;
+
 @end
 
 @implementation CreateTeamViewController
@@ -110,12 +112,18 @@
             
             if(!error)
             {
+                
+
+                
                 for (PFObject * object in objects)
                 {
                    
                     
                     int teamsInLeague = [[object objectForKey:@"totalNumberOfTeams"]intValue];
                     int maximumTeamsInLeague = [[object objectForKey:@"numberOfTeams"]intValue];
+                    
+                    //adding 1 because team # can't be 0 for round robing function
+                    self.numberOfTeamsInLeague = [[object objectForKey:@"totalNumberOfTeams"]intValue]+1;
                     
 //                    NSLog(@"teamsInLeague: %d",teamsInLeague);
 //                    NSLog(@"maximumTeamsInLeague: %d",maximumTeamsInLeague);
@@ -136,7 +144,79 @@
                         
                         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                             if (succeeded) {
-//                                NSLog(@"league  saved");
+////                                NSLog(@"league  saved");
+                                
+                                //create a teamnumber for each team added
+                                //we will use team number after generating round robin schedule
+                                
+                                NSString *teamNumberString = [NSString stringWithFormat:@"%lu",(unsigned long)self.numberOfTeamsInLeague];
+                                
+                                
+                                
+                                NSNumber *leagueLevel = [self.league objectForKey:@"Level"];
+                                NSString *stepGoalString = [NSString stringWithFormat:@"%@",self.dailyStepsGoal.text];
+                                
+                                int stepGoal = [stepGoalString intValue];
+                                
+                                
+                                PFObject *team = [PFObject objectWithClassName:@"TeamName"];
+                                
+                                [team setObject:self.teamNameField.text forKey:@"teams"];
+                                [team setObject:@(stepGoal) forKey:@"stepsGoal"];
+                                [team setObject:leagueName forKey:@"league"];
+                                [team setObject:leagueLevel forKey:@"leagueLevel"];
+                                [team setObject:@(self.numberOfTeamsInLeague) forKey:@"teamnumber"];
+                                [team setObject:teamNumberString forKey:@"teamnumberString"];
+                                
+                                [team setObject:[PFUser currentUser] forKey:@"teamCreator"];
+                                
+                                
+                                
+                                
+                                
+                                [team saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                    if (succeeded) {
+                                        //Refresh view
+                                        //                NSLog(@"team name saved");
+                                        [self.createTeamActivityIndicator stopAnimating];
+                                        
+                                        NSString *teamName = [NSString stringWithFormat:@"New team: %@",self.teamNameField.text];
+                                        
+                                        UIAlertController *alertController = [UIAlertController
+                                                                              alertControllerWithTitle:teamName
+                                                                              message:@""
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+                                        
+                                        UIAlertAction *okAction = [UIAlertAction
+                                                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                                                   style:UIAlertActionStyleDefault
+                                                                   handler:^(UIAlertAction *action)
+                                                                   {
+                                                                       //                                               NSLog(@"OK action");
+                                                                       [self performSegueWithIdentifier:@"unwindToTeams" sender:self];
+                                                                   }];
+                                        
+                                        [alertController addAction:okAction];
+                                        [self presentViewController:alertController animated:YES completion:nil];
+                                        
+                                        
+                                        self.teamNameField.text = @"";
+                                        self.dailyStepsGoal.text = @"";
+                                        
+                                        CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+                                        [calculatePointsClass migrateLeaguesToCoreData];
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    } else {
+                                        NSLog(@"Failed to save object: %@", error);
+                                    }
+                                    
+                                }];
+
                             }
                             else
                             {
@@ -159,73 +239,6 @@
         }];
         
         
-        
-     
-        
-        
-        
-        
-        NSNumber *leagueLevel = [self.league objectForKey:@"Level"];
-        NSString *stepGoalString = [NSString stringWithFormat:@"%@",self.dailyStepsGoal.text];
-       
-        int stepGoal = [stepGoalString intValue];
-    
-    
-        PFObject *team = [PFObject objectWithClassName:@"TeamName"];
-        
-        [team setObject:self.teamNameField.text forKey:@"teams"];
-        [team setObject:@(stepGoal) forKey:@"stepsGoal"];
-        [team setObject:leagueName forKey:@"league"];
-        [team setObject:leagueLevel forKey:@"leagueLevel"];
-    
-        [team setObject:[PFUser currentUser] forKey:@"teamCreator"];
-        
-        
-        
-        
-        
-        [team saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                //Refresh view
-//                NSLog(@"team name saved");
-                [self.createTeamActivityIndicator stopAnimating];
-                
-                 NSString *teamName = [NSString stringWithFormat:@"New team: %@",self.teamNameField.text];
-                
-                UIAlertController *alertController = [UIAlertController
-                                                      alertControllerWithTitle:teamName
-                                                      message:@""
-                                                      preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction *okAction = [UIAlertAction
-                                           actionWithTitle:NSLocalizedString(@"OK", @"OK action")
-                                           style:UIAlertActionStyleDefault
-                                           handler:^(UIAlertAction *action)
-                                           {
-//                                               NSLog(@"OK action");
-                                               [self performSegueWithIdentifier:@"unwindToTeams" sender:self];
-                                           }];
-                
-                [alertController addAction:okAction];
-                [self presentViewController:alertController animated:YES completion:nil];
-                
-                
-                self.teamNameField.text = @"";
-                self.dailyStepsGoal.text = @"";
-                
-                CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-                [calculatePointsClass migrateLeaguesToCoreData];
-                
-                
-                
-                
-                
-                
-            } else {
-                NSLog(@"Failed to save object: %@", error);
-            }
-            
-        }];
         
     }
     else
