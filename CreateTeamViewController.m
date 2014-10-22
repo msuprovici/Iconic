@@ -120,6 +120,14 @@
 //                    NSLog(@"teamsInLeague: %d",teamsInLeague);
 //                    NSLog(@"maximumTeamsInLeague: %d",maximumTeamsInLeague);
                     
+                    //send nsnotificaiton to teams view controller to update create button
+                    if(teamsInLeague + 1 == maximumTeamsInLeague)
+                    {
+                        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+                        [nc postNotificationName:@"LeagueFull" object:self];
+                        
+                    }
+                    
                     if (teamsInLeague < maximumTeamsInLeague) {
                         
 //                        NSLog(@"teamsInLeague < maximumTeamsInLeague");
@@ -149,6 +157,8 @@
             
             
         }];
+        
+        
         
      
         

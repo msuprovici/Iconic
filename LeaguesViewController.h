@@ -11,4 +11,6 @@
 
 @interface LeaguesViewController : PFQueryTableViewController
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *createLeague;
+
 @end

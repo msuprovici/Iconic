@@ -23,6 +23,7 @@
 @property (nonatomic, retain) NSMutableDictionary *leagues;
 @property (nonatomic, retain) NSMutableDictionary *categories;
 @property (nonatomic, assign) BOOL receivedJoinLeaveNotification;
+@property (nonatomic, assign) BOOL receivedAddedTeamNotification;
 @property PFObject *leagueLeft;
 @property PFObject *leagueJoined;
 
@@ -97,9 +98,21 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"JoinedTeam" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"LeftTeam" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"LeagueFull" object:nil];
 
     UIColor *color = PNCloudWhite;
     self.view.backgroundColor = color;
+    
+    self.receivedAddedTeamNotification = NO;
+    
+    [self.createLeague setTitle:@"+"];
+    
+    [self.createLeague  setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0]} forState:UIControlStateNormal];
+    
+    
+    ///since we can't make the button invisible we make it clear
+    [self.createLeague  setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0], NSForegroundColorAttributeName: [UIColor clearColor]} forState:UIControlStateDisabled];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -125,6 +138,11 @@
         [self.tableView reloadData];
         [self.view setNeedsDisplay];
         self.receivedJoinLeaveNotification = NO;
+    }
+    
+    if(self.receivedAddedTeamNotification == YES)
+    {
+        [self loadObjects];
     }
 }
 
@@ -678,6 +696,18 @@
         [self.tableView setNeedsDisplay];
 //                  NSLog (@"Successfully received notification!");
     }
+    
+    if([[notification name] isEqualToString:@"LeagueFull"])
+    {
+        
+        
+        self.receivedAddedTeamNotification = YES;
+        
+        
+        [self.tableView setNeedsDisplay];
+        //        NSLog (@"Successfully received notification!");
+    }
+
     
 }
 

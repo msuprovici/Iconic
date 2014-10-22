@@ -23,6 +23,8 @@
 
 @property (nonatomic, assign) BOOL receivedJoinLeaveNotification;
 
+@property (nonatomic, assign) BOOL receivedAddedTeamNotification;
+
 @property (nonatomic, retain) NSMutableDictionary *teams;
 //@property (nonatomic, retain) NSMutableDictionary *categories;
 
@@ -93,6 +95,8 @@
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"LeftTeam" object:nil];
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"LeagueFull" object:nil];
+        
 
 
     
@@ -146,6 +150,8 @@
     [super viewDidLoad];
     
     self.receivedJoinLeaveNotification = NO;
+    
+    self.receivedAddedTeamNotification = NO;
     //self.leaguesArray = [[NSMutableArray alloc] init];
     
     //TeamsViewController.teamsViewControllerDelegate = self;
@@ -161,6 +167,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"JoinedTeam" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"LeftTeam" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveJoinOrLeaveTeam:) name:@"LeagueFull" object:nil];
 
     UIColor *color = PNCloudWhite;
     self.view.backgroundColor = color;
@@ -168,12 +176,27 @@
     //set the title of the view controller to the selected League Name
     self.title = [NSString stringWithFormat:@"%@",[self.league objectForKey:kLeagues]];
     
+    
+    
+    //set up create team button
+    
+    [self.createTeam setTitle:@"+"];
+    
+    [self.createTeam  setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0]} forState:UIControlStateNormal];
+    
+     //since we can't hide the button we disable it and make it clear
+     [self.createTeam  setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0], NSForegroundColorAttributeName: [UIColor clearColor]} forState:UIControlStateDisabled];
+    
+    //if league is full disable create button
     int teamsInLeague = [[self.league objectForKey:@"numberOfTeams"]intValue];
     
     int teamsRetrieved = [[self.league objectForKey:@"totalNumberOfTeams"]intValue];
     
+    
+    
     if (teamsInLeague == teamsRetrieved) {
         self.createTeam.enabled = NO;
+        
     }
     else
     {
@@ -199,8 +222,20 @@
         
         [self.tableView reloadData];
         
+        [self loadObjects];
+        
         self.receivedJoinLeaveNotification = NO;
     }
+    
+  
+    //if league is full disable create button
+    if(self.receivedAddedTeamNotification == YES)
+        
+    {
+        
+        self.createTeam.enabled = NO;
+    }
+    
 }
 
 //method for loading table cells with leagues
@@ -631,6 +666,20 @@
             [self.tableView setNeedsDisplay];
 //            NSLog (@"Successfully received notification!");
         }
+    
+    
+    //if league is full flip boolean and refresh in view did appear
+    if([[notification name] isEqualToString:@"LeagueFull"])
+    {
+        
+        
+        self.receivedAddedTeamNotification = YES;
+        
+        
+        [self.tableView setNeedsDisplay];
+        //        NSLog (@"Successfully received notification!");
+    }
+
     
 }
 
