@@ -700,6 +700,10 @@
     }
 }
 
+- (IBAction)unwindToLeagues:(UIStoryboardSegue *)segue
+{
+    [self loadObjects];
+}
 
 
 

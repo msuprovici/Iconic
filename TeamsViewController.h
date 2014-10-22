@@ -15,7 +15,11 @@
 
 @property (nonatomic, strong) PFObject *league;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *createTeam;
 
+
+
+- (IBAction)createTeamPressed:(id)sender;
 
 -(void)initWithLeague:(PFObject*)aLeague;
 

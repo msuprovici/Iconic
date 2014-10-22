@@ -161,6 +161,7 @@
     [league setObject:self.leagueNameTextField.text forKey:@"league"];
     [league setObject:@"New" forKey:@"categories"];
     league[@"numberOfTeams"] = @(self.numberOfTeams);
+    league[@"totalNumberOfTeams"] = @(0);
     league[@"Level"] = @(self.selectedMinimumXP);
         
     [league setObject:[PFUser currentUser] forKey:@"leagueCreator"];
@@ -187,7 +188,8 @@
                                        style:UIAlertActionStyleDefault
                                        handler:^(UIAlertAction *action)
                                        {
-                                           NSLog(@"OK action");
+//                                           NSLog(@"OK action");
+                                           [self performSegueWithIdentifier:@"unwindToLeagues" sender:self];
                                        }];
             
             [alertController addAction:okAction];
@@ -196,7 +198,7 @@
             self.leagueNameTextField.text = @"";
             
             
-            NSLog(@"League name saved");
+//            NSLog(@"League name saved");
             CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
             [calculatePointsClass migrateLeaguesToCoreData];
             

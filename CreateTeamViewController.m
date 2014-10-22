@@ -95,8 +95,65 @@
         
         self.createTeamActivityIndicator.hidden = NO;
         [self.createTeamActivityIndicator startAnimating];
+        
+        
+        
+        
+        
     
         NSString *leagueName = [NSString stringWithFormat:@"%@",[self.league objectForKey:kLeagues]];
+        
+        //increment the number of teams in league
+        PFQuery * query = [PFQuery queryWithClassName:kLeagues];
+        [query whereKey:@"league" equalTo:leagueName];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            
+            if(!error)
+            {
+                for (PFObject * object in objects)
+                {
+                   
+                    
+                    int teamsInLeague = [[object objectForKey:@"totalNumberOfTeams"]intValue];
+                    int maximumTeamsInLeague = [[object objectForKey:@"numberOfTeams"]intValue];
+                    
+//                    NSLog(@"teamsInLeague: %d",teamsInLeague);
+//                    NSLog(@"maximumTeamsInLeague: %d",maximumTeamsInLeague);
+                    
+                    if (teamsInLeague < maximumTeamsInLeague) {
+                        
+//                        NSLog(@"teamsInLeague < maximumTeamsInLeague");
+                        
+                        [object incrementKey:@"totalNumberOfTeams"];
+                        
+                        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            if (succeeded) {
+//                                NSLog(@"league  saved");
+                            }
+                            else
+                            {
+//                                NSLog(@"league save failed");
+                            }
+                        }];
+                        
+                    }
+                    
+                    
+                }
+                
+            }
+            else
+            {
+                NSLog(@"leage query error");
+            }
+            
+            
+        }];
+        
+     
+        
+        
+        
         
         NSNumber *leagueLevel = [self.league objectForKey:@"Level"];
         NSString *stepGoalString = [NSString stringWithFormat:@"%@",self.dailyStepsGoal.text];
@@ -136,6 +193,7 @@
                                            handler:^(UIAlertAction *action)
                                            {
 //                                               NSLog(@"OK action");
+                                               [self performSegueWithIdentifier:@"unwindToTeams" sender:self];
                                            }];
                 
                 [alertController addAction:okAction];
@@ -147,6 +205,11 @@
                 
                 CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
                 [calculatePointsClass migrateLeaguesToCoreData];
+                
+                
+                
+                
+                
                 
             } else {
                 NSLog(@"Failed to save object: %@", error);

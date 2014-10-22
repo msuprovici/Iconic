@@ -1615,9 +1615,11 @@
                         <outlet property="leagueNameTextField" destination="RUO-aw-yaT" id="eE6-EN-Cqc"/>
                         <outlet property="minimumXP" destination="DWf-vP-r8d" id="GWL-Qb-b0t"/>
                         <outlet property="numberOfTeamsInLeague" destination="3J9-hM-ADw" id="1wP-94-Bdh"/>
+                        <segue destination="zqi-VT-iID" kind="unwind" identifier="unwindToLeagues" unwindAction="unwindToLeagues:" id="Z6H-tW-SAe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbg-cP-abc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zqi-VT-iID" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2121" y="-5089"/>
         </scene>
@@ -1685,9 +1687,11 @@
                         <outlet property="createTeamActivityIndicator" destination="3UX-Zh-cNa" id="5YB-Uj-kA1"/>
                         <outlet property="dailyStepsGoal" destination="QzR-H2-7VO" id="eYE-z4-d6X"/>
                         <outlet property="teamNameField" destination="Qec-P3-DLf" id="c5O-jN-xsh"/>
+                        <segue destination="6eD-u6-X2M" kind="unwind" identifier="unwindToTeams" unwindAction="unwindToTeams:" id="0p4-CC-snz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2N-ZG-rSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6eD-u6-X2M" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1634" y="-5094"/>
         </scene>
@@ -1947,10 +1951,14 @@
                     <navigationItem key="navigationItem" title="Teams" id="f6H-1V-ESq">
                         <barButtonItem key="rightBarButtonItem" title="Create" id="9RT-yq-G8w">
                             <connections>
+                                <action selector="createTeamPressed:" destination="Quu-w8-KMQ" id="GwB-nJ-NbJ"/>
                                 <segue destination="wv6-hi-tt4" kind="push" identifier="createTeam" id="i0O-nJ-NVX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="createTeam" destination="9RT-yq-G8w" id="wt8-gy-hQr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mn0-hG-UKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

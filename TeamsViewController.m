@@ -103,6 +103,38 @@
 }
 
 //get the league passed from the leagues view controller
+
+- (IBAction)createTeamPressed:(id)sender {
+    
+    int teamsInLeague = [[self.league objectForKey:@"numberOfTeams"]intValue];
+    
+    int teamsRetrieved = [[self.league objectForKey:@"totalNumberOfTeams"]intValue];
+    
+    if (teamsInLeague == teamsRetrieved) {
+        NSString *maximumTeams = [NSString stringWithFormat:@"%d team maximum for this league",teamsInLeague];
+        
+        
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"League is full"
+                                              message:maximumTeams
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       //                                           NSLog(@"OK action");
+                                       
+                                   }];
+        
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+    }
+
+}
+
 -(void)initWithLeague:(PFObject *)aLeague
 {
     self.league = aLeague;
@@ -135,6 +167,20 @@
     
     //set the title of the view controller to the selected League Name
     self.title = [NSString stringWithFormat:@"%@",[self.league objectForKey:kLeagues]];
+    
+    int teamsInLeague = [[self.league objectForKey:@"numberOfTeams"]intValue];
+    
+    int teamsRetrieved = [[self.league objectForKey:@"totalNumberOfTeams"]intValue];
+    
+    if (teamsInLeague == teamsRetrieved) {
+        self.createTeam.enabled = NO;
+    }
+    else
+    {
+        self.createTeam.enabled = YES;
+    }
+
+    
     
 }
 
@@ -250,6 +296,8 @@
     if (self.objects.count == 0) {
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
+    
+    
     
     // Order by Teams type
    // [query orderByAscending:@"categories"];
@@ -524,6 +572,11 @@
     }
 
     
+}
+
+- (IBAction)unwindToTeams:(UIStoryboardSegue *)segue
+{
+    [self loadObjects];
 }
 
 
