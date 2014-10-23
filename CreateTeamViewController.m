@@ -92,7 +92,7 @@
 
 - (IBAction)createTeamAction:(id)sender {
     
-    NSLog(@"createTeam Pressed ");
+    //NSLog(@"createTeam Pressed ");
     if ([self.teamNameField.text length] != 0) {
         
         self.createTeamActivityIndicator.hidden = NO;
@@ -172,11 +172,39 @@
                                 
                                 
                                 
+                                //when the last team in the league is added - generate a schedule
+                                if(teamsInLeague + 1 == maximumTeamsInLeague)
+                                {
+                                    
+                                    //send the league name & number of teams to league schedule function
+                                    NSMutableDictionary * params = [NSMutableDictionary new];
+                                    params[@"numberOfTeams"] = @(maximumTeamsInLeague);
+                                    params[@"league"] = leagueName;
+                                    
+                                    
+                                    //downlaod team objects and send them to cloud function
+                                    
+                                    
+                                    
+                                    [PFCloud callFunctionInBackground:@"roundRobin"
+                                                       withParameters:params
+                                                                block:^(NSString *result, NSError *error) {
+                                                                    if (!error) {
+                                                                       //NSLog(@"%@", result);
+                                                                    }
+                                                                }];
+
+                                }
                                 
+                                
+                                
+                                //save team
                                 
                                 [team saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                                     if (succeeded) {
-                                        //Refresh view
+                                        
+                                        
+                                        //Show alert
                                         //                NSLog(@"team name saved");
                                         [self.createTeamActivityIndicator stopAnimating];
                                         
@@ -192,7 +220,7 @@
                                                                    style:UIAlertActionStyleDefault
                                                                    handler:^(UIAlertAction *action)
                                                                    {
-                                                                       //                                               NSLog(@"OK action");
+                                                                      //segue back to teams in league
                                                                        [self performSegueWithIdentifier:@"unwindToTeams" sender:self];
                                                                    }];
                                         
@@ -205,11 +233,7 @@
                                         
                                         CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
                                         [calculatePointsClass migrateLeaguesToCoreData];
-                                        
-                                        
-                                        
-                                        
-                                        
+   
                                         
                                     } else {
                                         NSLog(@"Failed to save object: %@", error);
