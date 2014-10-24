@@ -137,13 +137,13 @@
     
     //Query Team Classes, find the team matchups and save the team scores to memory
     PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
-    
+//    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+    [queryHomeTeamMatchups whereKey:kHomeTeam matchesQuery:query];
     
     
     PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
-    
+//    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+    [queryAwayTeamMatchups whereKey:kAwayTeam matchesQuery:query];
     
     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
     
@@ -1358,12 +1358,14 @@
     
     //Query Team Classes, find the team matchups and save the team scores to memory
     PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+//    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+    [queryHomeTeamMatchups whereKey:kHomeTeam matchesQuery:query];
     
     
     
     PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+//    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+    [queryHomeTeamMatchups whereKey:kAwayTeam matchesQuery:query];
     
     
     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
@@ -1405,7 +1407,8 @@
                     
                                         
                     //comparing the teamname string in memory to the *!kTeamMatchupClass!* class
-                    if([myTeamsNames[i] isEqualToString: [object objectForKey:kHomeTeamName]])
+//                    if([myTeamsNames[i] isEqualToString: [object objectForKey:kHomeTeamName]])
+                    if([myTeamsNames[i] isEqualToString: homeTeamNameString])
                     {
                         
                         //use object properties in kTeamsTeam class
@@ -1421,7 +1424,8 @@
                     
                     
                     //now reverse the cell data
-                    if([myTeamsNames[i] isEqualToString: [object objectForKey:kAwayTeamName]])
+//                    if([myTeamsNames[i] isEqualToString: [object objectForKey:kAwayTeamName]])
+                    if([myTeamsNames[i] isEqualToString: awayTeamNameString])
                     {
                         
                         

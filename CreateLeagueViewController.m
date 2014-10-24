@@ -203,6 +203,27 @@
             [calculatePointsClass migrateLeaguesToCoreData];
             
         } else {
+            
+            [self.leagueAddedActivityIndicator stopAnimating];
+            
+            NSString *errorMessage = [NSString stringWithFormat:@"%@",[error userInfo][@"error"]];
+            
+            UIAlertController *alertController = [UIAlertController
+                                                  alertControllerWithTitle:errorMessage
+                                                  message:@"Please use a different name"
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *okAction = [UIAlertAction
+                                       actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                       style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction *action)
+                                       {
+                                           NSLog(@"OK action");
+                                       }];
+            
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+
             NSLog(@"Failed to save object: %@", error);
         }
         

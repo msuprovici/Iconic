@@ -236,7 +236,11 @@
    
                                         
                                     } else {
+                                                                                
                                         NSLog(@"Failed to save object: %@", error);
+                                        
+                                        
+
                                     }
                                     
                                 }];
@@ -257,7 +261,8 @@
             else
             {
                 NSLog(@"leage query error");
-            }
+                
+                            }
             
             
         }];
