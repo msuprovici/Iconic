@@ -114,10 +114,10 @@
     
     
     
-    //    NSLog(@"matchupsIndex %d", self.matchupsIndex);
-    //    NSLog(@"homeTeamNames retrieved: %@", homeTeamNames);
-    //
-    //    NSLog(@"awayTeamNames retrieved: %@", awayTeamNames);
+//        NSLog(@"matchupsIndex %d", self.matchupsIndex);
+//        NSLog(@"homeTeamNames retrieved: %@", homeTeamNames);
+//    
+//        NSLog(@"awayTeamNames retrieved: %@", awayTeamNames);
     
     //set team names
     NSString * homeTeamName = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
@@ -157,12 +157,12 @@
     //find out what team the player is on and set that as a property so that we can send it to VS view controller
     NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
     
-    //    NSLog(@"# of teams I'm on: %lu",  (unsigned long)myTeamsNames.count);
-    //     for (int i = 0; i < myTeamsNames.count; i++) {
-    //        NSLog(@"myTeamsNames[index] %@",  myTeamsNames[index]);
-    //        NSLog(@"homeTeamName %@",  homeTeamName);
-    //        NSLog(@"awayTeamName %@",  awayTeamName);
-    
+//        NSLog(@"# of teams I'm on: %lu",  (unsigned long)myTeamsNames.count);
+//         for (int i = 0; i < myTeamsNames.count; i++) {
+//            NSLog(@"myTeamsNames[index] %@",  myTeamsNames[index]);
+//            NSLog(@"homeTeamName %@",  homeTeamName);
+//            NSLog(@"awayTeamName %@",  awayTeamName);
+//         }
     
     
     //initialize couting label

@@ -248,7 +248,7 @@
                             }
                             else
                             {
-//                                NSLog(@"league save failed");
+                                NSLog(@"increment total number of teams failed");
                             }
                         }];
                         
@@ -272,22 +272,7 @@
     }
     else
     {
-       
-            UIAlertController *alertController = [UIAlertController
-                                                  alertControllerWithTitle:@"Please name your league"
-                                                  message:@""
-                                                  preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *okAction = [UIAlertAction
-                                       actionWithTitle:NSLocalizedString(@"OK", @"OK action")
-                                       style:UIAlertActionStyleDefault
-                                       handler:^(UIAlertAction *action)
-                                       {
-                                           NSLog(@"OK action");
-                                       }];
-            
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
+       NSLog(@"leage query error");
         
 
     }

@@ -29,16 +29,20 @@
 @property (strong, nonatomic) NSMutableArray * arrayOfawayTeamScores;
 @property (strong, nonatomic) NSMutableArray * arrayOfhomeTeamNames;
 @property (strong, nonatomic) NSMutableArray * arrayOfawayTeamNames;
+@property (strong, nonatomic) NSMutableArray * arrayOfTeamRounds;
+@property (strong, nonatomic) NSMutableArray * leagueArray;
 
 @property (strong, nonatomic) NSMutableArray * homeTeamPointers;
 @property (strong, nonatomic) NSMutableArray * awayTeamPointers;
-@property (strong, nonatomic) NSArray * myMatchups;
+@property (strong, nonatomic) NSMutableArray * myMatchups;
 @property (strong, nonatomic) NSMutableArray * homeTeamScores;
 @property (strong, nonatomic) NSMutableArray * awayTeamScores;
 @property (strong, nonatomic) NSString * homeTeamNames;
 @property (strong, nonatomic) NSString * awayTeamNames;
 @property (strong, nonatomic) NSNumber * homeTeamTotalScore;
 @property (strong, nonatomic) NSNumber * awayTeamTotalScore;
+
+@property (strong, nonatomic) NSString * teamRound;
 
 @property (strong, nonatomic) NSMutableArray * arrayOfTodayHomeTeamScores;
 @property (strong, nonatomic) NSMutableArray * arrayOfTodayAwayTeamScores;
