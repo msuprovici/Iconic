@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *scheduleButton;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *createTeam;
+@property (strong, nonatomic) IBOutlet UILabel *teamsNeeded;
 
 @property (nonatomic, strong) PFObject *league;
 
