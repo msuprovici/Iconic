@@ -146,12 +146,9 @@
                             if (succeeded) {
 ////                                NSLog(@"league  saved");
                                 
-                                //create a teamnumber for each team added
-                                //we will use team number after generating round robin schedule
+                                //create a team
                                 
                                 NSString *teamNumberString = [NSString stringWithFormat:@"%lu",(unsigned long)self.numberOfTeamsInLeague];
-                                
-                                
                                 
                                 NSNumber *leagueLevel = [self.league objectForKey:@"Level"];
                                 NSString *stepGoalString = [NSString stringWithFormat:@"%@",self.dailyStepsGoal.text];
@@ -159,6 +156,37 @@
                                 int stepGoal = [stepGoalString intValue];
                                 
                                 
+                                
+                                
+                                //add 0s to scoreweek array so that it matches the week day
+                                NSCalendar *gregorian=[[NSCalendar alloc] initWithCalendarIdentifier: NSGregorianCalendar];
+                                [gregorian setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"PST"]];
+                               
+                                NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:[NSDate dateWithTimeIntervalSinceNow:-24*60*60]];//yesterday's date
+                                
+//                                NSLog(@"comps %@", comps);
+
+                                NSMutableArray *scoreWeek = [[NSMutableArray alloc] init];
+                                //if it's monday don't insert an object
+                                if([comps weekday] == 1)
+                                {
+//                                    [scoreWeek addObject:[]];
+                                }
+                                else
+                                {
+                                    //add 0s to the score week array
+                                    //array is always 1 day behind yesterday
+                                    for(int i = 0; i < [comps weekday]-1; i++)
+                                    {
+                                        [scoreWeek addObject:@(0)];
+                                    }
+                                }
+                                
+                                
+                                
+                                
+                                //create team object
+
                                 PFObject *team = [PFObject objectWithClassName:@"TeamName"];
                                 
                                 [team setObject:self.teamNameField.text forKey:@"teams"];
@@ -167,6 +195,11 @@
                                 [team setObject:leagueLevel forKey:@"leagueLevel"];
                                 [team setObject:@(self.numberOfTeamsInLeague) forKey:@"teamnumber"];
                                 [team setObject:teamNumberString forKey:@"teamnumberString"];
+                                [team setObject:@(0) forKey:@"score"];
+                                [team setObject:@(0) forKey:@"scoretoday"];
+                                [team setObject:scoreWeek forKey:@"scoreweek"];
+                                [team setObject:@(1) forKey:@"round"];
+                                [team setObject:@"1" forKey:@"roundString"];
                                 
                                 [team setObject:[PFUser currentUser] forKey:@"teamCreator"];
                                 
