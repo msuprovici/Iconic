@@ -518,7 +518,7 @@
     
     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
     
-    [queryTeamMatchupsClass whereKey:@"round" equalTo: [myTeam objectForKey:@"roundString"]];
+    [queryTeamMatchupsClass whereKey:@"currentRound" equalTo: [myTeam objectForKey:@"round"]];
     
     
     [queryTeamMatchupsClass includeKey:kHomeTeam];

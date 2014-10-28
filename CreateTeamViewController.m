@@ -134,6 +134,14 @@
                         NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
                         [nc postNotificationName:@"LeagueFull" object:self];
                         
+                        //set boolean for league is full on parse server
+                        [object setValue:[NSNumber numberWithBool:YES] forKey:@"leagueFull"];
+                        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            if(!error)
+                            {
+//                                NSLog(@"league object saved");
+                            }
+                        }];
                     }
                     
                     if (teamsInLeague < maximumTeamsInLeague) {
