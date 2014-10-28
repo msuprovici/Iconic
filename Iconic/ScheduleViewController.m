@@ -95,6 +95,13 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(void)initWithLeague:(PFObject *)aLeague
+{
+    self.league = aLeague;
+    
+}
+
+
 //method for loading table cells with scheduled matachups
 - (void)loadInitialData {
     
@@ -183,7 +190,7 @@
     NSInteger section = 0;
     NSInteger rowIndex = 0;
     for (PFObject *object in self.objects) {
-        NSString *teamMatchup = [NSString stringWithFormat:@"Round %@",[object objectForKey:@"round"]];
+        NSString *teamMatchup = [NSString stringWithFormat:@"Week %@",[object objectForKey:@"currentRound"]];
         NSMutableArray *objectsInSection = [self.matchups objectForKey:teamMatchup];
         if (!objectsInSection) {
             objectsInSection = [NSMutableArray array];
@@ -204,6 +211,11 @@
  // all objects ordered by createdAt descending.
 - (PFQuery *)queryForTable {
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
+    [query includeKey:kHomeTeam];
+    [query includeKey:kAwayTeam];
+    
+    [query whereKey:@"leaguename" equalTo:[self.league objectForKey:@"league"]];
+    
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     // If Pull To Refresh is enabled, query against the network by default.
     if (self.pullToRefreshEnabled) {
@@ -217,7 +229,7 @@
     }
     
     // Order by teamMatchup type
-    [query orderByAscending:@"round"];
+    [query orderByAscending:@"currentRound"];
     return query;
 }
 
@@ -243,8 +255,8 @@
      }
      
      // Configure the cell
-     cell.teamMatchups.text = [object objectForKey:@"matchups"];
-     cell.teamScore.text = [object objectForKey:@"Score"];
+     cell.homeTeam.text = [[object objectForKey:@"hometeam"] objectForKey:@"teams"];
+     cell.awayTeam.text = [[object objectForKey:@"awayteam"] objectForKey:@"teams"];
      //cell.teamMatchups.font = [UIFont fontWithName:@"DIN Alternate" size:17];
      // cell.imageView.file = [object objectForKey:self.imageKey];
      

@@ -631,6 +631,15 @@
         
         
     }
+    
+    if ([segue.identifier isEqualToString:@"schedule"]) {
+        
+        
+        [segue.destinationViewController initWithLeague:self.league];
+        
+        
+    }
+
 
     
 }

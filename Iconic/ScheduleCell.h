@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ScheduleCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *teamMatchups;
-@property (weak, nonatomic) IBOutlet UILabel *teamScore;
+
+@property (strong, nonatomic) IBOutlet UILabel *homeTeam;
+@property (strong, nonatomic) IBOutlet UILabel *awayTeam;
 
 @end

@@ -13,11 +13,14 @@
 
 @interface TeamsViewController : PFQueryTableViewController<TeamPlayersViewControllerDelegate>
 
-@property (nonatomic, strong) PFObject *league;
+
+
+@property (strong, nonatomic) IBOutlet UIView *scheduleView;
+@property (strong, nonatomic) IBOutlet UIButton *scheduleButton;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *createTeam;
 
-
+@property (nonatomic, strong) PFObject *league;
 
 - (IBAction)createTeamPressed:(id)sender;
 

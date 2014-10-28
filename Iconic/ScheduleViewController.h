@@ -14,4 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *matchupsLabel;
 
+-(void)initWithLeague:(PFObject*)aLeague;
+@property (nonatomic, strong) PFObject *league;
+
 @end
