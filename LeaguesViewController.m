@@ -728,6 +728,14 @@
         [segue.destinationViewController initWithLeague:[self objectAtIndexPath:newIndexPath]];
         
     }
+    
+
+    
+    if ([segue.identifier isEqualToString:@"addleague"]) {
+        
+        [Amplitude logEvent:@"Leagues: Add league pressed"];
+        
+    }
 }
 
 - (IBAction)unwindToLeagues:(UIStoryboardSegue *)segue

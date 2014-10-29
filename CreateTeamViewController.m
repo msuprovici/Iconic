@@ -11,6 +11,7 @@
 #import "TeamsViewController.h"
 #import "Constants.h"
 #import "CalculatePoints.h"
+#import "Amplitude.h"
 
 @interface CreateTeamViewController ()
 
@@ -99,7 +100,7 @@
         [self.createTeamActivityIndicator startAnimating];
         
         
-        
+        [Amplitude logEvent:@"Create team: Add team pressed"];
         
         
     
@@ -262,6 +263,7 @@
                                                                    style:UIAlertActionStyleDefault
                                                                    handler:^(UIAlertAction *action)
                                                                    {
+                                                                       [Amplitude logEvent:@"Create team: Team added"];
                                                                       //segue back to teams in league
                                                                        [self performSegueWithIdentifier:@"unwindToTeams" sender:self];
                                                                    }];

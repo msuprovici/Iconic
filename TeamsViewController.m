@@ -110,6 +110,8 @@
 
 - (IBAction)createTeamPressed:(id)sender {
     
+    [Amplitude logEvent:@"Teams: Add team pressed"];
+    
     int teamsInLeague = [[self.league objectForKey:@"numberOfTeams"]intValue];
     
     int teamsRetrieved = [[self.league objectForKey:@"totalNumberOfTeams"]intValue];
@@ -658,7 +660,7 @@
     
     if ([segue.identifier isEqualToString:@"schedule"]) {
         
-        
+        [Amplitude logEvent:@"Schedule pressed"];
         [segue.destinationViewController initWithLeague:self.league];
         
         

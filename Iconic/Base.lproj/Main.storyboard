@@ -1914,7 +1914,7 @@
                     <navigationItem key="navigationItem" title="Leagues" id="FZe-MD-eLJ">
                         <barButtonItem key="rightBarButtonItem" title="Create" id="AbA-hE-crJ">
                             <connections>
-                                <segue destination="lFo-3s-8vR" kind="push" id="u8W-zH-94E"/>
+                                <segue destination="lFo-3s-8vR" kind="push" identifier="addleague" id="u8W-zH-94E"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2013,7 +2013,7 @@
             <objects>
                 <tableViewController id="k2R-Un-KHX" customClass="TeamPlayersViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="yTF-Ig-H8d">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -2079,7 +2079,7 @@
             <objects>
                 <tableViewController id="UbG-da-jWg" customClass="PlayerProfileViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="gxJ-9q-Ru6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="oGg-mV-ZYc">

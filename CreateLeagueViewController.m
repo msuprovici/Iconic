@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "CalculatePoints.h"
 #import "Constants.h"
+#import "Amplitude.h"
 
 @interface CreateLeagueViewController ()
 
@@ -151,7 +152,7 @@
 
 - (IBAction)createLeagueButtonPressed:(id)sender {
  
-    
+    [Amplitude logEvent:@"Create League: Add league pressed"];
     if ([self.leagueNameTextField.text length] != 0) {
         
         [self.leagueAddedActivityIndicator startAnimating];
@@ -202,6 +203,7 @@
                                                    style:UIAlertActionStyleDefault
                                                    handler:^(UIAlertAction *action)
                                                    {
+                                                       [Amplitude logEvent:@"Create League: League added"];
             //                                           NSLog(@"OK action");
                                                        [self performSegueWithIdentifier:@"unwindToLeagues" sender:self];
                                                    }];
