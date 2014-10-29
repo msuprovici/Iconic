@@ -314,8 +314,21 @@
     }
     else
     {
-       NSLog(@"leage query error");
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Please name your team"
+                                              message:@""
+                                              preferredStyle:UIAlertControllerStyleAlert];
         
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       NSLog(@"OK action");
+                                   }];
+        
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
 
     }
     
@@ -323,5 +336,5 @@
     [self.dailyStepsGoal resignFirstResponder];
     
 }
-    
+
 @end

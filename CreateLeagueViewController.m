@@ -9,6 +9,7 @@
 #import "CreateLeagueViewController.h"
 #import <Parse/Parse.h>
 #import "CalculatePoints.h"
+#import "Constants.h"
 
 @interface CreateLeagueViewController ()
 
@@ -149,37 +150,116 @@
 #pragma mark Create League button
 
 - (IBAction)createLeagueButtonPressed:(id)sender {
-    
-    
+ 
     
     if ([self.leagueNameTextField.text length] != 0) {
         
         [self.leagueAddedActivityIndicator startAnimating];
-    
-    PFObject *league = [PFObject objectWithClassName:@"league"];
-    
-    [league setObject:self.leagueNameTextField.text forKey:@"league"];
-    [league setObject:@"New" forKey:@"categories"];
-    league[@"numberOfTeams"] = @(self.numberOfTeams);
-    league[@"totalNumberOfTeams"] = @(0);
-    league[@"Level"] = @(self.selectedMinimumXP);
         
-    [league setObject:[PFUser currentUser] forKey:@"leagueCreator"];
-   
-    
-    
-    
-    [league saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-            //Refresh view
-            //set text view
-            [self.leagueAddedActivityIndicator stopAnimating];
-            
-            NSString *teamName = [NSString stringWithFormat:@"New league: %@",self.leagueNameTextField.text];
+        //check if legue already exists
+        NSString *leagueNameEntered = [NSString stringWithFormat:@"%@",self.leagueNameTextField.text];
+        
+        PFQuery * query = [PFQuery queryWithClassName:kLeagues];
+        [query whereKey:@"league" equalTo:leagueNameEntered];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//            NSLog(@"objects.count: %lu", (unsigned long)objects.count);
 
-            
+            //if object with matching league name does not exist save the object
+            if(objects.count == 0)
+            {
+        
+                
+                
+                PFObject *league = [PFObject objectWithClassName:@"league"];
+                
+                [league setObject:self.leagueNameTextField.text forKey:@"league"];
+                [league setObject:@"New" forKey:@"categories"];
+                league[@"numberOfTeams"] = @(self.numberOfTeams);
+                league[@"totalNumberOfTeams"] = @(0);
+                league[@"Level"] = @(self.selectedMinimumXP);
+                    
+                [league setObject:[PFUser currentUser] forKey:@"leagueCreator"];
+               
+                
+                
+                
+                [league saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        //Refresh view
+                        //set text view
+                        [self.leagueAddedActivityIndicator stopAnimating];
+                        
+                        NSString *leagueName = [NSString stringWithFormat:@"New league: %@",self.leagueNameTextField.text];
+
+                        
+                        UIAlertController *alertController = [UIAlertController
+                                                              alertControllerWithTitle:leagueName
+                                                              message:@""
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+                        
+                        UIAlertAction *okAction = [UIAlertAction
+                                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                                   style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction *action)
+                                                   {
+            //                                           NSLog(@"OK action");
+                                                       [self performSegueWithIdentifier:@"unwindToLeagues" sender:self];
+                                                   }];
+                        
+                        [alertController addAction:okAction];
+                        [self presentViewController:alertController animated:YES completion:nil];
+                        
+                        self.leagueNameTextField.text = @"";
+                        
+                        
+            //            NSLog(@"League name saved");
+                        CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+                        [calculatePointsClass migrateLeaguesToCoreData];
+                        
+                    } else {
+                        
+                        
+
+                        NSLog(@"Failed to save league object: %@", error);
+                    }
+                    
+                }];
+            }
+            else
+            {
+                
+                //let alert the user to use a different league name
+                [self.leagueAddedActivityIndicator stopAnimating];
+                
+                
+                
+                UIAlertController *alertController = [UIAlertController
+                                                      alertControllerWithTitle:@"This league already exists"
+                                                      message:@"Please use a different name"
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *okAction = [UIAlertAction
+                                           actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                           style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               //                                                       NSLog(@"OK action");
+                                           }];
+                
+                [alertController addAction:okAction];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+        
+        }];
+        
+        
+        
+
+        }
+        else
+        {   //alert use to enter a league name
             UIAlertController *alertController = [UIAlertController
-                                                  alertControllerWithTitle:teamName
+                                                  alertControllerWithTitle:@"Please name your league"
                                                   message:@""
                                                   preferredStyle:UIAlertControllerStyleAlert];
             
@@ -189,67 +269,15 @@
                                        handler:^(UIAlertAction *action)
                                        {
 //                                           NSLog(@"OK action");
-                                           [self performSegueWithIdentifier:@"unwindToLeagues" sender:self];
                                        }];
             
             [alertController addAction:okAction];
             [self presentViewController:alertController animated:YES completion:nil];
-            
-            self.leagueNameTextField.text = @"";
-            
-            
-//            NSLog(@"League name saved");
-            CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-            [calculatePointsClass migrateLeaguesToCoreData];
-            
-        } else {
-            
-            [self.leagueAddedActivityIndicator stopAnimating];
-            
-            NSString *errorMessage = [NSString stringWithFormat:@"%@",[error userInfo][@"error"]];
-            
-            UIAlertController *alertController = [UIAlertController
-                                                  alertControllerWithTitle:errorMessage
-                                                  message:@"Please use a different name"
-                                                  preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction *okAction = [UIAlertAction
-                                       actionWithTitle:NSLocalizedString(@"OK", @"OK action")
-                                       style:UIAlertActionStyleDefault
-                                       handler:^(UIAlertAction *action)
-                                       {
-                                           NSLog(@"OK action");
-                                       }];
-            
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
-
-            NSLog(@"Failed to save object: %@", error);
         }
-        
-    }];
-        
-    }
-    else
-    {
-        UIAlertController *alertController = [UIAlertController
-                                              alertControllerWithTitle:@"Please name your team"
-                                              message:@""
-                                              preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *okAction = [UIAlertAction
-                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction *action)
-                                   {
-                                       NSLog(@"OK action");
-                                   }];
-        
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-    }
-    
+
     [self.leagueNameTextField resignFirstResponder];
+
+    
 
 }
 @end
