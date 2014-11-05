@@ -678,6 +678,8 @@
 -(void)incrementPlayerPointsInBackground
 {
     
+//    NSLog(@"increment player points in background");
+    
     //listen for nsnotification
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self
@@ -717,32 +719,32 @@
         [sharedDefaults setInteger:numberOfSteps forKey:@"totalNumberStepsToday"];
         [sharedDefaults synchronize];
         
-       self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
+//       self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
 //        NSLog(@"self.mySteps: %@", self.mySteps);
 //        NSLog(@"self.mySteps: %@", self.mySteps);
-//        if(numberOfSteps == 0)
-//        {
-//
-//            
-//            self.mySteps = 0;
-//                
-//            
-//        }
-//        else
-//        {
-//         
-//            self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
-//            
-//        }
+        if(numberOfSteps == 0)
+        {
+
+            
+            self.mySteps = 0;
+                
+            
+        }
+        else
+        {
+         
+            self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
+            
+        }
         
         
         
          //set the player's total points in memory//set the player's total points in memory
 
         NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
-        [myRetrievedPoints synchronize];
+//        [myRetrievedPoints synchronize];
         
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         
         //to prevent null values check if # of steps is 0
         if(numberOfSteps == 0)
@@ -799,20 +801,30 @@
     int myMostRecentStepsValue = [self.mySteps intValue];
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    BOOL  appWasTerminated = [defaults boolForKey:kAppWasTerminated];
+//    BOOL  appWasTerminated = [defaults boolForKey:kAppWasTerminated];
     
     NSDate *dateAppWasLastRan = [defaults objectForKey:kDateAppLastRan];
     NSDate *todaysDate = [NSDate date];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEEE"];
+//    [dateFormatter setDateFormat:@"EEEE"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
     NSTimeZone * timezone = [NSTimeZone timeZoneWithName: @"PST"];
     [dateFormatter setTimeZone:timezone];
     
+    
+    
     NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
     NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
     
+//    NSLog(@"todaysDay: %@", todaysDay);
+//    NSLog(@"dayAppWasLastActivated: %@", dayAppWasLastActivated);
+//    NSLog(@"todaysDate: %@", todaysDate);
+//    NSLog(@"dateAppWasLastRan: %@", dateAppWasLastRan);
+    
+//   NSLog(@"myStoredSteps: %d", myStoredSteps);
+
     if([todaysDay isEqualToString:dayAppWasLastActivated])
     {
         self.myStepsDeltaValue = myMostRecentStepsValue - myStoredSteps;
@@ -820,7 +832,6 @@
     else
     {
         self.myStepsDeltaValue = myMostRecentStepsValue;
-        
     }
 
     
@@ -881,7 +892,7 @@
     
     //convert delta to NSNumber so we can increment later
     NSNumber* myNSStepsDeltaValue = [NSNumber numberWithInt:self.myStepsDeltaValue];
-    
+   
     
     //increment the points for all my teams
     [self incrementMyTeamsPointsInBackground:myNSStepsDeltaValue];
@@ -985,7 +996,8 @@
                 //NSLog(@"%@", object.objectId);
                 
 //            NSLog(@"objects count %lu", (unsigned long)objects.count);
-
+//                NSLog(@"delta to increment team score: %@", delta);
+            
                for( int i = 0; i < objects.count; i++)
                {
                    PFObject *myTeams = [objects objectAtIndex:i];
@@ -997,16 +1009,16 @@
 //                NSLog(@"delta in query %@", delta);
                     //                    [object save];
 //                    [object saveInBackground];
-                                        [myTeams saveEventually];
+//                                        [myTeams saveEventually];
                 
-//                    [myTeams saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                        if (succeeded) {
-////                            NSLog(@"Team stats succesfully saved");
-//                        }
-//                        else{
-////                            NSLog(@"Team stats failed to save");
-//                        }
-//                    }];
+                    [myTeams saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (succeeded) {
+//                            NSLog(@"Team stats succesfully saved");
+                        }
+                        else{
+//                            NSLog(@"Team stats failed to save");
+                        }
+                    }];
                    
                }
 //            }

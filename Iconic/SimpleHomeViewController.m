@@ -129,7 +129,7 @@ static NSString *kImageKey = @"imageKey";
 //    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
-    
+    [self performSegueWithIdentifier:@"FinalScores" sender:self];
     
     [self refreshHomeView];
 //    [self performSelector:@selector(refreshHomeView) withObject:self afterDelay:2.0 ];
@@ -431,7 +431,7 @@ static NSString *kImageKey = @"imageKey";
                    {
                        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
                        [calculatePointsClass retrieveFromParse];
-                       [calculatePointsClass incrementPlayerPointsInBackground];
+//                       [calculatePointsClass incrementPlayerPointsInBackground];//commeted this out because it was incrementing my steps value 2x
                        [calculatePointsClass findPastWeekleySteps];
                        [self.view setNeedsDisplay];
                        //update core data with most recent league data

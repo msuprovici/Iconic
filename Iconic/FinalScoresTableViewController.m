@@ -124,12 +124,18 @@
  PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
  
      
-     PFObject * user = [PFUser currentUser];
+//     PFObject * user = [PFUser currentUser];
      
      
      
      PFQuery *teamPlayersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
-     [teamPlayersClass whereKey:kUserObjectIdString equalTo:user.objectId];
+     [teamPlayersClass includeKey:@"playerpointer"];
+     [teamPlayersClass includeKey:@"team"];
+     
+     [teamPlayersClass whereKey:@"playerpointer" equalTo:[PFUser currentUser]];
+     
+//     [teamPlayersClass whereKey:kUserObjectIdString equalTo:user.objectId];
+     
      [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
     
      
@@ -137,18 +143,25 @@
      
      //Query Team Classes, find the team matchups and save the team scores to memory
      PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-     [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+     [queryHomeTeamMatchups whereKey:@"hometeam" matchesQuery:query];
+//     [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+//     [queryHomeTeamMatchups whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
 
      
      
      PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-     [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+     [queryAwayTeamMatchups whereKey:kAwayTeam matchesQuery:query];
+//     [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+//     [queryAwayTeamMatchups whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
+
 
      
      PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
      
      //hardcoded for now but this will change depending on the tournament
-     [queryTeamMatchupsClass whereKey:kRound containsString:@"1"];
+//     [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
+
+     
      [queryTeamMatchupsClass includeKey:kHomeTeam];
      [queryTeamMatchupsClass includeKey:kAwayTeam];
      
@@ -200,7 +213,7 @@
 
          
          //comparing the teamname string in memory to the *!kTeamMatchupClass!* class
-         if([myTeamsNames[i] isEqualToString: [object objectForKey:kHomeTeamName]])
+         if([myTeamsNames[i] isEqualToString: [homeTeamObject objectForKey:kTeams]])
          {
              
              
@@ -216,7 +229,7 @@
          
          
          //now reverse the cell data
-         if([myTeamsNames[i] isEqualToString: [object objectForKey:kAwayTeamName]])
+         if([myTeamsNames[i] isEqualToString: [awayTeamObject objectForKey:kTeams]])
          {
              
              cell.vsTeamName.text = [NSString stringWithFormat:@"%@",homeTeamNameString];

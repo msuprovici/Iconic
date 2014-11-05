@@ -75,10 +75,10 @@
     
     //initialize Amplitude analytics
      //beta key
-    [Amplitude initializeApiKey:@"43017a7316efee7bf680d57d7c3ab327"];
+//   [Amplitude initializeApiKey:@"43017a7316efee7bf680d57d7c3ab327"];
     
     //testing key
-//    [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"];
+    [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"];
     
     
     //Tracking test event
@@ -118,14 +118,14 @@
     //local notification
     
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-    if ([PFUser currentUser]) {
-    [calculatePointsClass retrieveFromParse];
-    [calculatePointsClass incrementPlayerPointsInBackground];
-        
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-//    [calculatePointsClass scheduleDailySummaryLocalNotification];
-//    [calculatePointsClass migrateLeaguesToCoreData];
-    }
+//    if ([PFUser currentUser]) {
+//    [calculatePointsClass retrieveFromParse];
+//    [calculatePointsClass incrementPlayerPointsInBackground];
+//        
+////    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+////    [calculatePointsClass scheduleDailySummaryLocalNotification];
+////    [calculatePointsClass migrateLeaguesToCoreData];
+//    }
 
     // Handle launching from a notification
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
