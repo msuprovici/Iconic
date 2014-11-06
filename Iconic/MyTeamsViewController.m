@@ -251,7 +251,7 @@
                     
                     //show my team's steps before counting up the label bellow
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
-                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0];
+                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:2.0];
                     
 //                    double delayInSeconds = 3.0;
 //                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -304,7 +304,7 @@
                 if (myStepsGainedDelta > 0) {
                     
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
-                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.0];
+                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:2.0];
                     
 //                    [self performSelector:@selector(finalUpdateMyTeamLabel) withObject:self afterDelay:5.0];
 
@@ -325,7 +325,7 @@
                 else{
                     
 //                    [self updateTeamLabel];
-                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:1.0];
+//                    [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:1.0];
                     self.MyTeamScore.text = [NSString stringWithFormat:@"%d",awayTeamPoints];
                 }
                 
@@ -379,15 +379,15 @@
     
     
     //redraw barChart
-    PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
-    [barChart setYValues:self.teamPoints];
-    
-    [barChart setStrokeColors:@[PNWeiboColor, PNDarkBlue]];
-    [barChart setBarBackgroundColor:[UIColor clearColor]];
-    //    [barChart setStrokeColor:PNLightBlue];
-    [barChart strokeChart];
-    
-    [self.teamBarChart addSubview:barChart];
+//    PNBarChart * barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 320, 200)];
+//    [barChart setYValues:self.teamPoints];
+//    
+//    [barChart setStrokeColors:@[PNWeiboColor, PNDarkBlue]];
+//    [barChart setBarBackgroundColor:[UIColor clearColor]];
+//    //    [barChart setStrokeColor:PNLightBlue];
+//    [barChart strokeChart];
+//    
+//    [self.teamBarChart addSubview:barChart];
 
     
 //    if (self.myStepsGained > 0) {

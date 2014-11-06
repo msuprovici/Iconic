@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 
 #import <Parse/Parse.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "ContentController.h"
 #import "Cache.h"
 #import "Constants.h"

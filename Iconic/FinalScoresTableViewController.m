@@ -140,7 +140,6 @@
     
      
      
-     
      //Query Team Classes, find the team matchups and save the team scores to memory
      PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
      [queryHomeTeamMatchups whereKey:@"hometeam" matchesQuery:query];
@@ -154,11 +153,12 @@
 //     [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
 //     [queryAwayTeamMatchups whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
 
-
+     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups, queryAwayTeamMatchups]];
      
-     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
+//     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryAwayTeamMatchups, queryHomeTeamMatchups]];
      
-     //hardcoded for now but this will change depending on the tournament
+     [queryTeamMatchupsClass whereKey:@"currentRound" equalTo:@1];
+     
 //     [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
 
      

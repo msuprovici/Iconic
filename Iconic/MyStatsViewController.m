@@ -495,13 +495,13 @@
             if([todaysDay isEqualToString:dayAppWasLastActivated])
             {
                 myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
-                [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1.5];
+                [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1];
                 
             }
             else
             {
                 myStepsGainedDelta = (int)numberOfSteps;
-                [self.pointsValue  countFrom:0 to:numberOfSteps withDuration:1.5];
+                [self.pointsValue  countFrom:0 to:numberOfSteps withDuration:1];
                 
                 
             }

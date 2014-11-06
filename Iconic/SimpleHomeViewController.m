@@ -129,7 +129,7 @@ static NSString *kImageKey = @"imageKey";
 //    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
-    [self performSegueWithIdentifier:@"FinalScores" sender:self];
+//    [self performSegueWithIdentifier:@"FinalScores" sender:self];
     
     [self refreshHomeView];
 //    [self performSelector:@selector(refreshHomeView) withObject:self afterDelay:2.0 ];
@@ -1033,9 +1033,9 @@ static NSString *kImageKey = @"imageKey";
     self.deltaPoints.hidden = YES;
     
     //wait untill the countdown is almost finished to begin animation
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.5f target:self selector:@selector(animateDeltaPointsLabel) userInfo:nil repeats:NO];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(animateDeltaPointsLabel) userInfo:nil repeats:NO];
     
-    [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.5f]];
+    [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0f]];
     
     
     
@@ -1090,11 +1090,11 @@ static NSString *kImageKey = @"imageKey";
     //animated label that shows the points the player contributed to his or her team(s)
     self.deltaPoints.center = CGPointMake(140, 190);
     float newX = 90.0f;
-    float newY = 279.0f;
+    float newY = 255.0f;
     
     //animate the label so that it drops right on top of my team score
     [UIView transitionWithView:self.deltaPoints
-                      duration:2.0f
+                      duration:1.5f
                        options:UIViewAnimationOptionCurveEaseInOut
                     animations:^(void) {
                         
@@ -1114,7 +1114,7 @@ static NSString *kImageKey = @"imageKey";
 //                            [self showChart];
 //                            [self showMyTeams];
                            
-                        [self performSelector:@selector(showMyTeams) withObject:self afterDelay:3.5];
+                        [self performSelector:@selector(showMyTeams) withObject:self afterDelay:1.5];
                         }
                     }];
     
