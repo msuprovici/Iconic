@@ -81,6 +81,10 @@
     //testing key
     [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"];
     
+    //set parse username as the user id in Amplitude
+    NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
+    [Amplitude setUserId:userId];
+    
     
     //Tracking test event
 //    [Amplitude logEvent:@"Application Launch"];
