@@ -447,6 +447,7 @@
     
       if(self.joinTeam.selected == NO)
     {
+//        NSLog(@"joined team");
         [Amplitude logEvent:@"Team: Join Team selected"];
         
         [self.joinTeam setSelected:YES];
@@ -569,6 +570,8 @@
     else if (self.joinTeam.selected == YES)
     {
         
+//        NSLog(@"left team");
+        
          [Amplitude logEvent:@"Team: Leave Team selected"];
 
         [self.joinTeam setSelected:NO];
@@ -619,58 +622,77 @@
         }
 
         
-        
+   
         
        //save team Parse
         
         PFQuery *query = [PFQuery queryWithClassName:kTeamPlayersClass];
-        [query whereKey:kTeamate equalTo:[PFUser currentUser]];
-        
+//        [query whereKey:kTeamate equalTo:[PFUser currentUser]];
+        [query whereKey:kUserObjectIdString equalTo:[PFUser currentUser].objectId];
 
         [query whereKey:kTeamObjectIdString equalTo:self.team.objectId];
-         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
         
-            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                
-                
-            if (!error) {
-//                NSLog(@"number of teams: %lu", (unsigned long)objects.count);
-                
-                for (PFObject *object in objects)
-                {
-//                    NSLog(@"team object id: %@", object);
-//                    NSLog(@"self.team: %@", self.team);
-                    
+//            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                if (!error) {
+//                    NSLog(@"no error");
                     [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (succeeded)
+                        if (succeeded)
                         {
-                        
-//                        [self.joinTeam setSelected:NO];
-                        
-                        [self loadObjects];
-                        
-                        CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
-                        [calculatePoints retrieveFromParse];
-
+                            
+                            //                        [self.joinTeam setSelected:NO];
+//                            NSLog(@"object deleated");
+                            [self loadObjects];
+                            
+                            CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
+                            [calculatePoints retrieveFromParse];
+                            
                         }
                         else
                         {
-                            
+//                            NSLog(@"error: %@", error);
                         }
                     }];
-                    
-                   
 
-                }
-          
-                
-            }
-                else
-                {
                     
                 }
-                
-                
+           
+    
+    
+//            if (!error) {
+////                NSLog(@"number of teams: %lu", (unsigned long)objects.count);
+//                
+//                for (PFObject *object in objects)
+//                {
+////                    NSLog(@"team object id: %@", object);
+////                    NSLog(@"self.team: %@", self.team);
+//                    
+//                    [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                    if (succeeded)
+//                        {
+//                        
+////                        [self.joinTeam setSelected:NO];
+//                        NSLog(@"object dleated");
+//                        [self loadObjects];
+//                        
+//                        CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
+//                        [calculatePoints retrieveFromParse];
+//
+//                        }
+//                        else
+//                        {
+//                            NSLog(@"error: %@", error);
+//                        }
+//                    }];
+//                    
+//                   
+//
+//                }
+//          
+//                
+//            }
+        
                 
                 //unsubscribe to the team's push notification chanel
                 
