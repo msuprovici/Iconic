@@ -49,7 +49,7 @@ static NSString *kImageKey = @"imageKey";
 
 
     //Retrieve from Parse
-    [self performSelector:@selector(retrieveFromParse)];
+//    [self performSelector:@selector(retrieveFromParse)];
     
     
     

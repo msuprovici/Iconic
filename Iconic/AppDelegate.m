@@ -220,7 +220,7 @@
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
     
     if ([PFUser currentUser]) {
-    [calculatePointsClass retrieveFromParse];
+//    [calculatePointsClass retrieveFromParse];
     [calculatePointsClass incrementPlayerPointsInBackground];
     }
     

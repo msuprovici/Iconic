@@ -551,11 +551,11 @@
         NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
         [nc postNotificationName:@"JoinedTeam" object:self userInfo:teamInfo];
         
-        
-        //give the app some time to add the player to the team then automatically show to the home screen
-        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.4f target:self selector:@selector(showHomeScreen) userInfo:nil repeats:NO];
-        
-        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.4f]];
+//        
+//        //give the app some time to add the player to the team then automatically show to the home screen
+//        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.4f target:self selector:@selector(showHomeScreen) userInfo:nil repeats:NO];
+//        
+//        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.4f]];
 
         
     }
@@ -642,7 +642,7 @@
                         {
                             
                             //                        [self.joinTeam setSelected:NO];
-//                            NSLog(@"object deleated");
+                            NSLog(@"object deleated");
                             [self loadObjects];
                             
                             CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
@@ -692,31 +692,29 @@
 //          
 //                
 //            }
-        
                 
                 //unsubscribe to the team's push notification chanel
                 
                 NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
-//                [[PFInstallation currentInstallation] removeObject:pushChanelName forKey:@"channels"];
-//                [[PFInstallation currentInstallation] saveInBackground];
+                //                [[PFInstallation currentInstallation] removeObject:pushChanelName forKey:@"channels"];
+                //                [[PFInstallation currentInstallation] saveInBackground];
                 
                 PFInstallation *currentInstallation = [PFInstallation currentInstallation];
                 [currentInstallation removeObject:pushChanelName forKey:@"channels"];
                 [currentInstallation saveInBackground];
-                
-   
-                
-            //send nsnotificaiton to view controllers so they can update
-             NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
-            [teamInfo setObject:self.team forKey:@"team"];
-            
-            NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-            [nc postNotificationName:@"LeftTeam" object:self userInfo:teamInfo];
-            
-                
-                
-
+        
+ 
             }];
+        
+          
+        //send nsnotificaiton to view controllers so they can update
+        NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
+        [teamInfo setObject:self.team forKey:@"team"];
+        
+        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:@"LeftTeam" object:self userInfo:teamInfo];
+        
+
         
         
     }

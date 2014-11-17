@@ -197,9 +197,11 @@ static NSString *kImageKey = @"imageKey";
     // If we received joined/leave team notification update team charts
     if (self.receivedNotification == YES) {
         
+         NSLog(@"receivedNotification");
         
         //1st remove the my teams page controller subview then create it again - if we don't do this, it draw the teams view above the current one.
         [[self.myTeamsPageController view] removeFromSuperview];
+        
         
         
         [self refreshHomeView];
@@ -322,7 +324,7 @@ static NSString *kImageKey = @"imageKey";
     //we're updating the app data from the server 3 times so that the scores are always up to date.
     //if we don't do it, team scores are often inaccurate unless we close & refresh the app again.
     
-    [self performSelector:@selector(updateAppDataFromServer) withObject:self afterDelay:1.5];
+    [self performSelector:@selector(updateAppDataFromServer) withObject:self afterDelay:2];
     
      [self.view setNeedsDisplay];
     
@@ -638,13 +640,13 @@ static NSString *kImageKey = @"imageKey";
         
         
     }
-    else if ([[notification name] isEqualToString:@"LeftTeam"])
+    if ([[notification name] isEqualToString:@"LeftTeam"])
     {
         
        [self.view setNeedsDisplay];
         [self setReceivedNotification:YES];
       
-//        NSLog(@"Received Leave Team Notification on home screen");
+        NSLog(@"Received Leave Team Notification on home screen");
     }
 }
 
