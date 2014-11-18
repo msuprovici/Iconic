@@ -1627,33 +1627,44 @@
     PFQuery *query = [PFQuery queryWithClassName:@"TeamName"];
     
     
-    PFObject * user = [PFUser currentUser];
+    //     PFObject * user = [PFUser currentUser];
     
     
     
     PFQuery *teamPlayersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
-    [teamPlayersClass whereKey:kUserObjectIdString equalTo:user.objectId];
-    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
+    [teamPlayersClass includeKey:@"playerpointer"];
+    [teamPlayersClass includeKey:@"team"];
     
+    [teamPlayersClass whereKey:@"playerpointer" equalTo:[PFUser currentUser]];
+    
+    //     [teamPlayersClass whereKey:kUserObjectIdString equalTo:user.objectId];
+    
+    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
     
     
     
     //Query Team Classes, find the team matchups and save the team scores to memory
     PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-//    [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
-    [queryHomeTeamMatchups whereKey:kHomeTeam matchesQuery:query];
+    [queryHomeTeamMatchups whereKey:@"hometeam" matchesQuery:query];
+    //     [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
+    //     [queryHomeTeamMatchups whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
     
     
     
     PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-//    [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
-    [queryHomeTeamMatchups whereKey:kAwayTeam matchesQuery:query];
+    [queryAwayTeamMatchups whereKey:kAwayTeam matchesQuery:query];
+    //     [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
+    //     [queryAwayTeamMatchups whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
+    
+    PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups, queryAwayTeamMatchups]];
+    
+    //     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryAwayTeamMatchups, queryHomeTeamMatchups]];
+    
+    [queryTeamMatchupsClass whereKey:@"currentRound" equalTo:@1];
+    
+    //     [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
     
     
-    PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups,queryAwayTeamMatchups]];
-    
-    //hardcoded for now but this will change depending on the tournament
-    [queryTeamMatchupsClass whereKey:kRound containsString:@"1"];
     [queryTeamMatchupsClass includeKey:kHomeTeam];
     [queryTeamMatchupsClass includeKey:kAwayTeam];
     
@@ -1668,17 +1679,20 @@
             
 //            NSLog(@"pfobjects: %@",  objects);
             
-            for (PFObject * object in objects)
+            for (int i = 0; i < objects.count; i++)
             {
 //                 NSLog(@"pfobjects: %@",  object);
-                for (int i = 0; i < myTeamsNames.count; i++) {
-                    
-                    PFObject * homeTeamObject = [object objectForKey:kHomeTeam];
-                    PFObject * awayTeamObject = [object objectForKey:kAwayTeam];
+//                for (int i = 0; i < myTeamsNames.count; i++) {
+                
+                    PFObject * homeTeamObject = [objects[i] objectForKey:kHomeTeam];
+                    PFObject * awayTeamObject = [objects[i] objectForKey:kAwayTeam];
                     
                     NSString * homeTeamNameString = [homeTeamObject objectForKey:kTeams];
                     NSString * awayTeamNameString = [awayTeamObject objectForKey:kTeams];
-                    
+                
+//                NSLog(@"homeTeamNameString: %@",  homeTeamNameString);
+//                NSLog(@"homeTeamNameString: %@",  awayTeamNameString);
+                
                     NSString * homeTeamScoreString = [homeTeamObject objectForKey:kFinalScore];
                     NSString * awayTeamScoreString = [awayTeamObject objectForKey:kFinalScore];
                     
@@ -1688,45 +1702,61 @@
                     
                     
                                         
-                    //comparing the teamname string in memory to the *!kTeamMatchupClass!* class
-//                    if([myTeamsNames[i] isEqualToString: [object objectForKey:kHomeTeamName]])
-                    if([myTeamsNames[i] isEqualToString: homeTeamNameString])
-                    {
-                        
-                        //use object properties in kTeamsTeam class
-                        self.myTeamNameString = homeTeamNameString;
-                        self.myTeamScoreString = homeTeamScoreString;
-                        self.myTeamScoreInt = homeTeamScoreInt;
-                        
-                        self.vsTeamNameString = awayTeamNameString;
-                        self.vsTeamScoreString = awayTeamScoreString;
-                        self.vsTeamScoreInt = awayTeamScoreInt;
-                        
-                    }
-                    
-                    
-                    //now reverse the cell data
-//                    if([myTeamsNames[i] isEqualToString: [object objectForKey:kAwayTeamName]])
-                    if([myTeamsNames[i] isEqualToString: awayTeamNameString])
-                    {
-                        
-                        
-                        self.myTeamNameString = awayTeamNameString;
-                        self.myTeamScoreString = awayTeamScoreString;
-                        self.myTeamScoreInt = awayTeamScoreInt;
-                        
-                        self.vsTeamNameString = homeTeamNameString;
-                        self.vsTeamScoreString = homeTeamScoreString;                    }
-                        self.vsTeamScoreInt = homeTeamScoreInt;
-                    
-//                    NSLog(@"self.myTeamNameString: %@",  self.myTeamNameString);
-                    
+//                    //comparing the teamname string in memory to the *!kTeamMatchupClass!* class
+////                    if([myTeamsNames[i] isEqualToString: [object objectForKey:kHomeTeamName]])
+//                    if([myTeamsNames[i] isEqualToString: homeTeamNameString])
+//                    {
+//                        
+//                        //use object properties in kTeamsTeam class
+//                        self.myTeamNameString = homeTeamNameString;
+//                        self.myTeamScoreString = homeTeamScoreString;
+//                        self.myTeamScoreInt = homeTeamScoreInt;
+//                        
+//                        self.vsTeamNameString = awayTeamNameString;
+//                        self.vsTeamScoreString = awayTeamScoreString;
+//                        self.vsTeamScoreInt = awayTeamScoreInt;
+//                        
+//                    }
+//                    
+//                    
+//                    //now reverse the cell data
+////                    if([myTeamsNames[i] isEqualToString: [object objectForKey:kAwayTeamName]])
+//                    if([myTeamsNames[i] isEqualToString: awayTeamNameString])
+//                    {
+//                        
+//                        
+//                        self.myTeamNameString = awayTeamNameString;
+//                        self.myTeamScoreString = awayTeamScoreString;
+//                        self.myTeamScoreInt = awayTeamScoreInt;
+//                        
+//                        self.vsTeamNameString = homeTeamNameString;
+//                        self.vsTeamScoreString = homeTeamScoreString;
+//                        self.vsTeamScoreInt = homeTeamScoreInt;
+//                    
+////                    NSLog(@"self.myTeamNameString: %@",  self.myTeamNameString);
+//                    
+//                    }
+////                }
+                
+                //use object properties in kTeamsTeam class
+                self.myTeamNameString = homeTeamNameString;
+                self.myTeamScoreString = homeTeamScoreString;
+                self.myTeamScoreInt = homeTeamScoreInt;
+                
+                self.vsTeamNameString = awayTeamNameString;
+                self.vsTeamScoreString = awayTeamScoreString;
+                self.vsTeamScoreInt = awayTeamScoreInt;
 
-                }
+                
+                
+//                 NSLog(@"self.myTeamNameString: %@",  self.myTeamNameString);
+//                NSLog(@"self.myTeamScoreString: %@",  self.myTeamScoreString);
+//                NSLog(@"self.vsTeamNameString: %@",  self.vsTeamNameString);
+//                NSLog(@"self.vsTeamScoreString: %@",  self.vsTeamScoreString);
                 
                 
                 NSString *finalScoreSummaryString= [NSString stringWithFormat:@"%@ %@ - %@ %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
-;
+
 
 ////                NSLog(@"finalScoreSummaryString: %@",  finalScoreSummaryString);
 //                if (self.myTeamScoreInt > self.vsTeamScoreInt) {
@@ -1764,11 +1794,12 @@
                 NSString * notificationBeginningText = @"Final:";
                 
                 NSString *notificationBody = [NSString stringWithFormat:@"%@ %@", notificationBeginningText, finalScoresNotificationText];
-                NSLog(@"notificationBody: %@",  notificationBody);
-                [self scheduleWeekleyFinalScoresLocalNotification: notificationBody];
-                
+//                NSLog(@"notificationBody: %@",  notificationBody);
+//                [self scheduleWeekleyFinalScoresLocalNotification: notificationBody];
+                self.notificationBody = notificationBody;
 
             }
+            [self scheduleWeekleyFinalScoresLocalNotification: self.notificationBody];
             
         }
         else
@@ -1796,7 +1827,7 @@
     
     
     //set time for 9:00am
-    [components setHour:9];
+    [components setHour:11];
     [components setMinute:0];
     [components setSecond:0];
     
@@ -1847,7 +1878,7 @@
         localNotification.userInfo = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[cal dateFromComponents:components],nil] forKeys:[NSArray arrayWithObjects: @"date",nil]];
 
         
-        NSLog(@"notificationBody: %@",   notificationBody);
+//        NSLog(@"notificationBody: %@",   notificationBody);
         
         
         localNotification.alertBody = notificationBody;

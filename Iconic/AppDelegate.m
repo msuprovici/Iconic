@@ -123,6 +123,7 @@
     //local notification
     
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+    [calculatePointsClass  createFinalTeamScoresNotificationBody];
 //    if ([PFUser currentUser]) {
 //    [calculatePointsClass retrieveFromParse];
 //    [calculatePointsClass incrementPlayerPointsInBackground];

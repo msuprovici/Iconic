@@ -435,7 +435,8 @@ static NSString *kImageKey = @"imageKey";
                        [calculatePointsClass retrieveFromParse];
 //                       [calculatePointsClass incrementPlayerPointsInBackground];//commeted this out because it was incrementing my steps value 2x
                        [calculatePointsClass findPastWeekleySteps];
-                       [self.view setNeedsDisplay];
+                       
+                                            [self.view setNeedsDisplay];
                        //update core data with most recent league data
                        //        [calculatePointsClass migrateLeaguesToCoreData];
                        

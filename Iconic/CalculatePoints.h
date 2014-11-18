@@ -63,6 +63,8 @@
 @property (strong, nonatomic) NSString *myTeamNameAndScoreString;
 @property (strong, nonatomic) NSString *vsTeamNameAndScoreString;
 
+@property (strong, nonatomic) NSString *notificationBody;
+
 @property int myTeamScoreInt;
 @property int vsTeamScoreInt;
 

@@ -706,7 +706,7 @@
  
             }];
         
-          
+        
         //send nsnotificaiton to view controllers so they can update
         NSMutableDictionary* teamInfo = [NSMutableDictionary dictionary];
         [teamInfo setObject:self.team forKey:@"team"];
