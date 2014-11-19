@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "DACircularProgressView.h"
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+#import <Parse/PFObject.h>
+#import <Parse/PFQuery.h>
+#import <ParseUI/PFTableViewCell.h>
+
 #import "PNChart.h"
 
 #import <CoreMotion/CoreMotion.h>

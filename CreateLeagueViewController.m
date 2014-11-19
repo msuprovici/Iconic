@@ -8,6 +8,10 @@
 
 #import "CreateLeagueViewController.h"
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+#import <Parse/PFObject.h>
+#import <Parse/PFQuery.h>
+#import <ParseUI/PFTableViewCell.h>
 #import "CalculatePoints.h"
 #import "Constants.h"
 #import "Amplitude.h"

@@ -8,6 +8,10 @@
 
 #import "MyStatsViewController.h"
 #import  <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+#import <Parse/PFObject.h>
+#import <Parse/PFQuery.h>
+#import <ParseUI/PFTableViewCell.h>
 #import "Constants.h"
 #import "Cache.h"
 #import "SimpleHomeViewController.h"

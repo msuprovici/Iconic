@@ -10,6 +10,10 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import <MessageUI/MessageUI.h>
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+#import <Parse/PFObject.h>
+#import <Parse/PFQuery.h>
+#import <ParseUI/PFTableViewCell.h>
 #import "FindFriendsCell.h"
 
 @interface FindFriendsViewController : PFQueryTableViewController <FindFriendsCellDelegate, ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>

@@ -8,6 +8,12 @@
 
 #import <Parse/Parse.h>
 #import <QuartzCore/QuartzCore.h>
+#import <ParseUI/ParseUI.h>
+#import <Parse/PFObject.h>
+#import <Parse/PFQuery.h>
+#import <ParseUI/PFTableViewCell.h>
+#import <ParseUI/PFSignUpViewController.h>
+#import <ParseUI/PFLogInViewController.h>
 
 
 @interface CustomPFSignUpViewController : PFSignUpViewController

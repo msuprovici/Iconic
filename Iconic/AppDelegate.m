@@ -81,9 +81,9 @@
     //testing key
     [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"];
     
-    //set parse username as the user id in Amplitude
-    NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
-    [Amplitude setUserId:userId];
+//    //set parse username as the user id in Amplitude
+//    NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
+//    [Amplitude setUserId:userId];
     
     
     //Tracking test event
@@ -123,7 +123,7 @@
     //local notification
     
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-    [calculatePointsClass  createFinalTeamScoresNotificationBody];
+//    [calculatePointsClass  createFinalTeamScoresNotificationBody];
 //    if ([PFUser currentUser]) {
 //    [calculatePointsClass retrieveFromParse];
 //    [calculatePointsClass incrementPlayerPointsInBackground];
@@ -146,6 +146,9 @@
     //If user is already logged in, skip the login screen and go to the main view
    if([PFUser currentUser]) {
        
+       //set parse username as the user id in Amplitude
+       NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
+       [Amplitude setUserId:userId];
        
         [calculatePointsClass migrateLeaguesToCoreData];
        
