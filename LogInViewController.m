@@ -177,6 +177,12 @@
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     currentInstallation[@"user"] = [PFUser currentUser];
     [currentInstallation saveInBackground];
+    
+   
+        //set parse username as the user id in Amplitude
+        NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
+        [Amplitude setUserId:userId];
+
 }
 
 // Sent to the delegate when the log in attempt fails.
@@ -233,6 +239,10 @@
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
      currentInstallation[@"user"] = [PFUser currentUser];
     [currentInstallation saveInBackground];
+    
+    //set parse username as the user id in Amplitude
+    NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
+    [Amplitude setUserId:userId];
 }
 
 // Sent to the delegate when the sign up attempt fails.
