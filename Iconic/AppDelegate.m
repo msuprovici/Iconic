@@ -78,23 +78,24 @@
     
     //initialize Amplitude analytics
      //beta key
-//   [Amplitude initializeApiKey:@"43017a7316efee7bf680d57d7c3ab327"];
+//   [Amplitude initializeApiKey:@"43017a7316efee7bf680d57d7c3ab327"]; //live
     
     //testing key
-    [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"];
+    [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"]; //dev
     
-    
-//    //set parse username as the user id in Amplitude
-//    NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
-//    [Amplitude setUserId:userId];
 
     //initialize intercom
     
-    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"tx0dtabz"];
+//    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"tx0dtabz"];//live
+    
+    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"c1ubvxjw"];//dev
+    
     
     //initialize heap analytics
     
-        [Heap setAppId:@"1914446395"];
+//    [Heap setAppId:@"1914446395"]; //live
+    
+    [Heap setAppId:@"3704495766"]; //dev
     #ifdef DEBUG
         [Heap enableVisualizer];
     #endif
