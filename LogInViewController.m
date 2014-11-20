@@ -14,6 +14,8 @@
 #import <CoreMotion/CoreMotion.h>
 #import "Amplitude.h"
 #import "CalculatePoints.h"
+#import "Intercom.h"
+#import "Heap.h"
 
 @interface LogInViewController ()<UIScrollViewDelegate>
 
@@ -182,6 +184,17 @@
         //set parse username as the user id in Amplitude
         NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
         [Amplitude setUserId:userId];
+    
+    
+    //set parse username for Intercom
+    [Intercom beginSessionForUserWithUserId:userId completion:nil];
+    
+    // set parse username for Heap
+    NSDictionary* userProperties = @{
+                                     @"name": userId,
+                                     };
+    
+    [Heap identify:userProperties];
 
 }
 
@@ -243,6 +256,16 @@
     //set parse username as the user id in Amplitude
     NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
     [Amplitude setUserId:userId];
+    
+    //set parse username for Intercom
+    [Intercom beginSessionForUserWithUserId:userId completion:nil];
+    
+    // set parse username for Heap
+    NSDictionary* userProperties = @{
+                                     @"name": userId,
+                                     };
+    
+    [Heap identify:userProperties];
 }
 
 // Sent to the delegate when the sign up attempt fails.

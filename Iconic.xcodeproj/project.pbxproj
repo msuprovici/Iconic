@@ -58,6 +58,9 @@
 		5C48B8BB1880F89F00A09A1C /* UIImage+RoundedCornerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48B8B51880F89F00A09A1C /* UIImage+RoundedCornerAdditions.m */; };
 		5C48B8BC1880F89F00A09A1C /* UIImage+AlphaAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48B8B61880F89F00A09A1C /* UIImage+AlphaAdditions.m */; };
 		5C48B8BD1880F89F00A09A1C /* UIImage+ResizeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48B8B81880F89F00A09A1C /* UIImage+ResizeAdditions.m */; };
+		5C4AB64D1A1E8F25007B8BE8 /* libIntercom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4AB64C1A1E8F25007B8BE8 /* libIntercom.a */; };
+		5C4AB6511A1E94EE007B8BE8 /* libHeap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4AB6501A1E94EE007B8BE8 /* libHeap.a */; };
+		5C4AB6531A1E956A007B8BE8 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4AB6521A1E956A007B8BE8 /* libicucore.dylib */; };
 		5C4EF97F1868D99B000E0E59 /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4EF97E1868D99B000E0E59 /* Cache.m */; };
 		5C4EF982186CA7BD000E0E59 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4EF981186CA7BD000E0E59 /* Constants.m */; };
 		5C4EF985186CBC15000E0E59 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4EF984186CBC15000E0E59 /* Utility.m */; };
@@ -309,6 +312,11 @@
 		5C48B8B81880F89F00A09A1C /* UIImage+ResizeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ResizeAdditions.m"; sourceTree = "<group>"; };
 		5C48B8B91880F89F00A09A1C /* UIImage+RoundedCornerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCornerAdditions.h"; sourceTree = "<group>"; };
 		5C48B8BA1880F89F00A09A1C /* UIImage+ResizeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ResizeAdditions.h"; sourceTree = "<group>"; };
+		5C4AB64B1A1E8F25007B8BE8 /* Intercom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intercom.h; sourceTree = "<group>"; };
+		5C4AB64C1A1E8F25007B8BE8 /* libIntercom.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIntercom.a; sourceTree = "<group>"; };
+		5C4AB64F1A1E94EE007B8BE8 /* Heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heap.h; sourceTree = "<group>"; };
+		5C4AB6501A1E94EE007B8BE8 /* libHeap.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libHeap.a; sourceTree = "<group>"; };
+		5C4AB6521A1E956A007B8BE8 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		5C4EF97D1868D99B000E0E59 /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
 		5C4EF97E1868D99B000E0E59 /* Cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cache.m; sourceTree = "<group>"; };
 		5C4EF980186CA7BD000E0E59 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -538,16 +546,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C4AB6531A1E956A007B8BE8 /* libicucore.dylib in Frameworks */,
+				5CA3D1C71831E00E006C7932 /* CFNetwork.framework in Frameworks */,
+				5C78DA621899974D00CBA29B /* AVFoundation.framework in Frameworks */,
+				5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */,
+				5CA3D1CD1831E039006C7932 /* MobileCoreServices.framework in Frameworks */,
+				5C78DA601899973B00CBA29B /* ImageIO.framework in Frameworks */,
 				5C5CBDD71925484D00C2C328 /* CoreData.framework in Frameworks */,
 				5CA3D18D1831DF51006C7932 /* CoreGraphics.framework in Frameworks */,
 				5CE57DE718D8C2F0006C9F31 /* CoreMotion.framework in Frameworks */,
-				5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */,
 				5C78DA66189997CA00CBA29B /* libsqlite3.dylib in Frameworks */,
 				5C78DA641899979800CBA29B /* Accounts.framework in Frameworks */,
-				5CA3D1C71831E00E006C7932 /* CFNetwork.framework in Frameworks */,
-				5CA3D1CD1831E039006C7932 /* MobileCoreServices.framework in Frameworks */,
-				5C78DA621899974D00CBA29B /* AVFoundation.framework in Frameworks */,
-				5C78DA601899973B00CBA29B /* ImageIO.framework in Frameworks */,
 				5C78DA5E1899971200CBA29B /* MessageUI.framework in Frameworks */,
 				5C78DA5C189996F700CBA29B /* Social.framework in Frameworks */,
 				5CE6FFAC1A1D1F120084C997 /* ParseUI.framework in Frameworks */,
@@ -555,6 +564,7 @@
 				5CE6FFAA1A1D1F120084C997 /* ParseFacebookUtils.framework in Frameworks */,
 				5CE6FFAE1A1D1F120084C997 /* Bolts.framework in Frameworks */,
 				5C78DA58189996C500CBA29B /* AddressBookUI.framework in Frameworks */,
+				5C4AB6511A1E94EE007B8BE8 /* libHeap.a in Frameworks */,
 				5CA3D1D11831E04C006C7932 /* Security.framework in Frameworks */,
 				5CA3D1CF1831E045006C7932 /* QuartzCore.framework in Frameworks */,
 				5CA3D1CB1831E02F006C7932 /* libz.1.1.3.dylib in Frameworks */,
@@ -562,6 +572,7 @@
 				5CA3D1C51831E004006C7932 /* AudioToolbox.framework in Frameworks */,
 				5C539E031987F97E0027669A /* Crashlytics.framework in Frameworks */,
 				5CA3D18F1831DF51006C7932 /* UIKit.framework in Frameworks */,
+				5C4AB64D1A1E8F25007B8BE8 /* libIntercom.a in Frameworks */,
 				5CA3D18B1831DF51006C7932 /* Foundation.framework in Frameworks */,
 				5CE6FFA81A1D1F120084C997 /* Parse.framework in Frameworks */,
 				5CA3D1EB18333D14006C7932 /* FacebookSDK.framework in Frameworks */,
@@ -790,9 +801,29 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5C4AB64A1A1E8F25007B8BE8 /* Intercom */ = {
+			isa = PBXGroup;
+			children = (
+				5C4AB64B1A1E8F25007B8BE8 /* Intercom.h */,
+				5C4AB64C1A1E8F25007B8BE8 /* libIntercom.a */,
+			);
+			path = Intercom;
+			sourceTree = "<group>";
+		};
+		5C4AB64E1A1E94EE007B8BE8 /* heap-ios-latest */ = {
+			isa = PBXGroup;
+			children = (
+				5C4AB64F1A1E94EE007B8BE8 /* Heap.h */,
+				5C4AB6501A1E94EE007B8BE8 /* libHeap.a */,
+			);
+			path = "heap-ios-latest";
+			sourceTree = "<group>";
+		};
 		5C4EF986186D01FF000E0E59 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				5C4AB64E1A1E94EE007B8BE8 /* heap-ios-latest */,
+				5C4AB64A1A1E8F25007B8BE8 /* Intercom */,
 				5CA6BB5319CA431C00E9946E /* BBBadgeBarButtonItem */,
 				5C539DF3198715090027669A /* Amplitude-iOS-master */,
 				5CA19A3F18B83F2C0023C940 /* UICountingLabel */,
@@ -996,6 +1027,7 @@
 		5CA3D1891831DF51006C7932 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C4AB6521A1E956A007B8BE8 /* libicucore.dylib */,
 				5C3BC4BE19DF194D00D9A9AD /* libz.dylib */,
 				5CE6FFA41A1D1F120084C997 /* Parse.framework */,
 				5CE6FFA51A1D1F120084C997 /* ParseFacebookUtils.framework */,
@@ -1749,7 +1781,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";
 				INFOPLIST_FILE = "Iconic/Iconic-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Intercom",
+					"$(PROJECT_DIR)/heap-ios-latest",
+				);
 				ONLY_ACTIVE_ARCH = NO;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "70aa4fc8-e44e-4772-9fc5-51dcaf857e04";
 				WRAPPER_EXTENSION = app;
@@ -1773,7 +1814,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";
 				INFOPLIST_FILE = "Iconic/Iconic-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Intercom",
+					"$(PROJECT_DIR)/heap-ios-latest",
+				);
 				ONLY_ACTIVE_ARCH = NO;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "70aa4fc8-e44e-4772-9fc5-51dcaf857e04";
 				WRAPPER_EXTENSION = app;

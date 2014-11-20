@@ -21,6 +21,8 @@
 #import "CalculatePoints.h"
 #import "Amplitude.h"
 #import <Crashlytics/Crashlytics.h>
+#import "Intercom.h"
+#import "Heap.h"
 
 
 @interface AppDelegate ()
@@ -81,14 +83,21 @@
     //testing key
     [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"];
     
+    
 //    //set parse username as the user id in Amplitude
 //    NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
 //    [Amplitude setUserId:userId];
+
+    //initialize intercom
     
+    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"tx0dtabz"];
     
-    //Tracking test event
-//    [Amplitude logEvent:@"Application Launch"];
+    //initialize heap analytics
     
+        [Heap setAppId:@"1914446395"];
+    #ifdef DEBUG
+        [Heap enableVisualizer];
+    #endif
     
     //Intitialize FB
     [PFFacebookUtils initializeFacebook];
@@ -149,6 +158,17 @@
        //set parse username as the user id in Amplitude
        NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
        [Amplitude setUserId:userId];
+       
+       //set parse username for Intercom
+       [Intercom beginSessionForUserWithUserId:userId completion:nil];
+       
+       
+       // set parse username for Heap
+       NSDictionary* userProperties = @{
+                                        @"name": userId,
+                                        };
+       
+       [Heap identify:userProperties];
        
         [calculatePointsClass migrateLeaguesToCoreData];
        
