@@ -122,19 +122,13 @@
  // all objects ordered by createdAt descending.
  - (PFQuery *)queryForTable {
  PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
- 
-     
-//     PFObject * user = [PFUser currentUser];
-     
-     
-     
+      
      PFQuery *teamPlayersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
      [teamPlayersClass includeKey:@"playerpointer"];
      [teamPlayersClass includeKey:@"team"];
      
      [teamPlayersClass whereKey:@"playerpointer" equalTo:[PFUser currentUser]];
-     
-//     [teamPlayersClass whereKey:kUserObjectIdString equalTo:user.objectId];
+
      
      [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
     
@@ -143,23 +137,16 @@
      //Query Team Classes, find the team matchups and save the team scores to memory
      PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
      [queryHomeTeamMatchups whereKey:@"hometeam" matchesQuery:query];
-//     [queryHomeTeamMatchups whereKey:kHomeTeamName matchesKey:kTeams inQuery:query];
-//     [queryHomeTeamMatchups whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
 
      
      
      PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
      [queryAwayTeamMatchups whereKey:kAwayTeam matchesQuery:query];
-//     [queryAwayTeamMatchups whereKey:kAwayTeamName matchesKey:kTeams inQuery:query];
-//     [queryAwayTeamMatchups whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
+
 
      PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups, queryAwayTeamMatchups]];
      
-//     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryAwayTeamMatchups, queryHomeTeamMatchups]];
-     
-     [queryTeamMatchupsClass whereKey:@"currentRound" equalTo:@1];
-     
-//     [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
+     [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
 
      
      [queryTeamMatchupsClass includeKey:kHomeTeam];
