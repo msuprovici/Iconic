@@ -86,9 +86,9 @@
 
     //initialize intercom
     
-//    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"tx0dtabz"];//live
+    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"tx0dtabz"];//live
     
-    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"c1ubvxjw"];//dev
+//    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"c1ubvxjw"];//dev
     
     
     //initialize heap analytics
@@ -97,7 +97,7 @@
     
     [Heap setAppId:@"3704495766"]; //dev
     #ifdef DEBUG
-        [Heap enableVisualizer];
+//        [Heap enableVisualizer]; //uncomment to set up events
     #endif
     
     //Intitialize FB
