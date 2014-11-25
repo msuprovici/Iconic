@@ -11,5 +11,6 @@
 @interface TeamCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *teamName;
+@property (strong, nonatomic) IBOutlet UILabel *teamRecord;
 
 @end

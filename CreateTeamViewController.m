@@ -17,7 +17,7 @@
 
 @property (nonatomic, assign) id currentResponder;
 
-@property (nonatomic, assign) NSUInteger numberOfTeamsInLeague;
+@property (nonatomic, assign) NSUInteger teamNumber;
 
 @end
 
@@ -124,7 +124,7 @@
                     int maximumTeamsInLeague = [[object objectForKey:@"numberOfTeams"]intValue];
                     
                     //adding 1 because team # can't be 0 for round robing function
-                    self.numberOfTeamsInLeague = [[object objectForKey:@"totalNumberOfTeams"]intValue]+1;
+                    self.teamNumber = [[object objectForKey:@"totalNumberOfTeams"]intValue]+1;
                     
 //                    NSLog(@"teamsInLeague: %d",teamsInLeague);
 //                    NSLog(@"maximumTeamsInLeague: %d",maximumTeamsInLeague);
@@ -157,7 +157,7 @@
                                 
                                 //create a team
                                 
-                                NSString *teamNumberString = [NSString stringWithFormat:@"%lu",(unsigned long)self.numberOfTeamsInLeague];
+                                NSString *teamNumberString = [NSString stringWithFormat:@"%lu",(unsigned long)self.teamNumber];
                                 
                                 NSNumber *leagueLevel = [self.league objectForKey:@"Level"];
                                 NSString *stepGoalString = [NSString stringWithFormat:@"%@",self.dailyStepsGoal.text];
@@ -202,13 +202,15 @@
                                 [team setObject:@(stepGoal) forKey:@"stepsGoal"];
                                 [team setObject:leagueName forKey:@"league"];
                                 [team setObject:leagueLevel forKey:@"leagueLevel"];
-                                [team setObject:@(self.numberOfTeamsInLeague) forKey:@"teamnumber"];
+                                [team setObject:@(self.teamNumber) forKey:@"teamnumber"];
                                 [team setObject:teamNumberString forKey:@"teamnumberString"];
-                                [team setObject:@(0) forKey:@"score"];
-                                [team setObject:@(0) forKey:@"scoretoday"];
+                                [team setObject:@0 forKey:@"score"];
+                                [team setObject:@0 forKey:@"scoretoday"];
                                 [team setObject:scoreWeek forKey:@"scoreweek"];
-                                [team setObject:@(1) forKey:@"round"];
-                                [team setObject:@"1" forKey:@"roundString"];
+                                [team setObject:@1 forKey:@"round"];
+                                [team setObject:@0 forKey:@"wins"];
+                                [team setObject:@0 forKey:@"losses"];
+                                [team setObject:@(maximumTeamsInLeague) forKey:@"numberOfTeamsInLeague"];
                                 
                                 [team setObject:[PFUser currentUser] forKey:@"teamCreator"];
                                 

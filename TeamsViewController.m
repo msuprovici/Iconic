@@ -388,6 +388,22 @@
     // Configure the cell
     cell.teamName.text = [object objectForKey:self.textKey];
     
+   
+    //add team record
+    NSString *teamRecord = [NSString stringWithFormat:@"%@ - %@",[object objectForKey:@"wins"],[object objectForKey:@"losses"]];
+    
+    int numberOfTeamsInLeague = [[object objectForKey:@"numberOfTeamsInLeague"]intValue];
+    
+    
+    //only show team record if the league contains more then two teams
+    if(numberOfTeamsInLeague > 2)
+    {
+    cell.teamRecord.text = teamRecord;
+    }
+    else
+    {
+        cell.teamRecord.text = @"";
+    }
     
     //set check mark if the player is on a team
     
