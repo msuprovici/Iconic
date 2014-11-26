@@ -33,7 +33,11 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *myTeamName;
 
+@property (strong, nonatomic) IBOutlet UILabel *myTeamRecord;
+
 @property (strong, nonatomic) IBOutlet UILabel *myTeamScore;
+
+@property (strong, nonatomic) IBOutlet UILabel *vsTeamRecord;
 
 @property (strong, nonatomic) IBOutlet UILabel *vsTeamScore;
 

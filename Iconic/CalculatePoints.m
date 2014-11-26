@@ -34,7 +34,10 @@
     self.arrayOfawayTeamScores = [[NSMutableArray alloc] init];
     
     self.arrayOfhomeTeamNames = [[NSMutableArray alloc] init];
+    self.arrayOfhomeTeamRecords = [[NSMutableArray alloc] init];
+    
     self.arrayOfawayTeamNames = [[NSMutableArray alloc] init];
+    self.arrayOfawayTeamRecords = [[NSMutableArray alloc] init];
     
     self.awayTeamPointers = [[NSMutableArray alloc] init];
     self.homeTeamPointers = [[NSMutableArray alloc] init];
@@ -231,14 +234,32 @@
         
         NSString * homeTeamName = [homeTeamPointer objectForKey:kTeams];
         NSNumber * homeTeamTotalScore = [homeTeamPointer objectForKey:kScore];
-        
-        
+            
+        NSString * homeTeamRecord = [NSString stringWithFormat:@"%@ - %@",[homeTeamPointer objectForKey:@"wins"],[homeTeamPointer objectForKey:@"losses"]];
+        NSString * awayTeamRecord = [NSString stringWithFormat:@"%@ - %@",[awayTeamPointer objectForKey:@"wins"],[awayTeamPointer objectForKey:@"losses"]];
+            
+        int numberOfTeamsInLeague = [[homeTeamPointer objectForKey:@"numberOfTeamsInLeague"]intValue];
+            
+        if(numberOfTeamsInLeague > 2)
+        {
+            self.homeTeamRecord = homeTeamRecord;
+            self.awayTeamRecord = awayTeamRecord;
+        }
+        else
+        {
+            self.homeTeamRecord = @"";
+            self.awayTeamRecord = @"";
+
+        }
         
         //add objects to array of teamScores(array) objects so that we don't have to download again
         [self.arrayOfhomeTeamScores addObject:homeTeamTotalScore];
         
         //add objects to array of teamScores(array) objects so that we don't have to download again
         [self.arrayOfhomeTeamNames addObject:homeTeamName];
+        
+        //add home team records to array
+        [self.arrayOfhomeTeamRecords addObject:self.homeTeamRecord];
         
         //aray of arays of daily scores
         NSMutableArray * arrayOfWeekleyHomeScores = [homeTeamPointer objectForKey: kScoreWeek];
@@ -267,6 +288,7 @@
         //save to NSUserdefaults
         [myRetrievedTeams setObject:self.arrayOfTodayHomeTeamScores  forKey:kArrayOfTodayHomeTeamScores];
         [myRetrievedTeams setObject:self.arrayOfhomeTeamScores  forKey:kArrayOfHomeTeamScores];
+        [myRetrievedTeams setObject:self.arrayOfhomeTeamRecords  forKey:@"homeTeamRecords"];
         [myRetrievedTeams setObject:self.arrayOfhomeTeamNames  forKey:kArrayOfHomeTeamNames];
         [myRetrievedTeams setObject:self.arrayOfWeekleyHomeTeamScores  forKey:kArrayOfWeekleyHomeTeamScores];
         
@@ -290,6 +312,10 @@
         
         //add objects to array of teamScores(array) objects so that we don't have to download again
         [self.arrayOfawayTeamNames addObject:awayTeamName];
+            
+        //add away team records to array
+        [self.arrayOfawayTeamRecords addObject:self.awayTeamRecord];
+    
         
         //array of everyday scores for the week
         NSMutableArray * arrayOfAwayWeekleyScores = [awayTeamPointer objectForKey: kScoreWeek];
@@ -312,6 +338,7 @@
         //save to NSUserdefaults
         [myRetrievedTeams setObject:self.arrayOfTodayAwayTeamScores  forKey:kArrayOfTodayAwayTeamScores];
         [myRetrievedTeams setObject:self.arrayOfawayTeamScores  forKey:kArrayOfAwayTeamScores];
+        [myRetrievedTeams setObject:self.arrayOfawayTeamRecords  forKey:@"awayTeamRecords"];
         [myRetrievedTeams setObject:self.arrayOfawayTeamNames  forKey:kArrayOfAwayTeamNames];
         [myRetrievedTeams setObject:self.arrayOfWeekleyAwayTeamScores  forKey:kArrayOfWeekleyAwayTeamScores];
         
@@ -322,6 +349,8 @@
         
         [sharedDefaults setObject:self.arrayOfhomeTeamScores forKey:@"widgetArrayOfHomeTeamScores"];
         [sharedDefaults setObject:self.arrayOfawayTeamScores forKey:@"widgetArrayOfAwayTeamScores"];
+        [sharedDefaults setObject:self.arrayOfhomeTeamRecords  forKey:@"widgetArrayOfHomeTeamRecords"];
+        [sharedDefaults setObject:self.arrayOfawayTeamRecords  forKey:@"widgetArrayOfAwayTeamRecords"];
         [sharedDefaults setObject:self.arrayOfhomeTeamNames forKey:@"widgetArrayOfHomeTeamNames"];
         [sharedDefaults setObject:self.arrayOfawayTeamNames forKey:@"widgetArrayOfAwayTeamNames"];
         [sharedDefaults setObject:self.leagueArray forKey:@"widgetArrayOfLeagueNames"];

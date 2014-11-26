@@ -344,7 +344,10 @@
     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
     
     NSArray *homeTeamScores = [RetrievedTeams objectForKey:kArrayOfHomeTeamScores];
+    NSArray *homeTeamRecords = [RetrievedTeams objectForKey:@"homeTeamRecords"];
+    
     NSArray *awayTeamScores = [RetrievedTeams objectForKey:kArrayOfAwayTeamScores];
+    NSArray *awayTeamRecords = [RetrievedTeams objectForKey:@"awayTeamRecords"];
     
     NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
     NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
@@ -381,7 +384,8 @@
     
        //home team name
     self.myTeam.text = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
-        
+        //home team record
+    self.myTeamRecord.text = [NSString stringWithFormat:@"%@",[homeTeamRecords objectAtIndex:index]];
 
     //create an array for the daily scores for the week
     //have to make mutableCopy because values returned from NSUserDefaults are immutable
@@ -406,6 +410,9 @@
     
     //away team score
     self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:index]];
+        
+    //away team record
+    self.vsTeamRecord.text = [NSString stringWithFormat:@"%@",[awayTeamRecords objectAtIndex:index]];
     
     //away team name
     self.vsTeam.text = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
@@ -455,6 +462,9 @@
         //home team score
         self.myTeamScore.text = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:index]];
         
+        //home team record
+        self.myTeamRecord.text = [NSString stringWithFormat:@"%@",[awayTeamRecords objectAtIndex:index]];
+        
         //home team name
         self.myTeam.text = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:index]];
         
@@ -482,12 +492,14 @@
         self.myTeamSunday.text = [NSString stringWithFormat:@"%@",[homeTeamWeekleyScores objectAtIndex:6]];
         
         
-        //awat team score
+        //away team score
         self.vsTeamScore.text = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:index]];
         
-        //awat team name
+        //away team name
         self.vsTeam.text = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:index]];
         
+        //away team record
+        self.vsTeamRecord.text = [NSString stringWithFormat:@"%@",[homeTeamRecords objectAtIndex:index]];
         
         //have to make mutableCopy because values returned from NSUserDefaults are immutable
         //add the updated score for today to the array
