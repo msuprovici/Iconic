@@ -412,7 +412,7 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 }
 
 /* Called when the user selects a property of a person in their address book (ex. phone, email, location,...)
- This method will allow them to send a text or email inviting them to Anypic.  */
+ This method will allow them to send a text or email inviting them to Iconic.  */
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
     
     if (property == kABPersonEmailProperty) {
@@ -595,7 +595,7 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     [composeEmailViewController setSubject:@"Join me on Iconic"];
     [composeEmailViewController setToRecipients:[NSArray arrayWithObjects:recipient, nil]];
     [composeEmailViewController setMessageBody:@"Come join my team" isHTML:NO];
-   // [composeEmailViewController setMessageBody:@"<h2>Share your activity, share your story.</h2><p><a href=\"http://anypic.org\">Anypic</a> is the easiest way to share activity with your friends. Get the app and share your fun activity with the world.</p><p><a href=\"http://anypic.org\">Anypic</a> is fully powered by <a href=\"http://parse.com\">Parse</a>.</p>" isHTML:YES];
+   // [composeEmailViewController setMessageBody:@"<h2>Share your activity, share your story.</h2><p><a href=\"http://imiconic.com\">Iconic</a> is is a fun way to team with your friends and compete in walking leagues. Get the app and get healthy together.</p><p><a href=\"http://imiconic.com\">Anypic</a> is fully powered by <a href=\"http://parse.com\">Parse</a>.</p>" isHTML:YES];
     
     // Dismiss the current modal view controller and display the compose email one.
     // Note that we do not animate them. Doing so would require us to present the compose

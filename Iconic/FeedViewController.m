@@ -204,6 +204,7 @@
      [query includeKey:kActivityUserKey];
      [query orderByDescending:@"createdAt"];
      
+     
  // If Pull To Refresh is enabled, query against the network by default.
  if (self.pullToRefreshEnabled) {
  query.cachePolicy = kPFCachePolicyNetworkOnly;
@@ -274,7 +275,7 @@
          [cell setLikeStatus:[[Cache sharedCache] isActivityLikedByCurrentUser:activity]];
          [cell.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
          [cell.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
-         
+         //24 tulip
 //         if (cell.likeButton.alpha < 1.0f || cell.commentButton.alpha < 1.0f) {
 //             [UIView animateWithDuration:0.200f animations:^{
 //                 cell.likeButton.alpha = 1.0f;

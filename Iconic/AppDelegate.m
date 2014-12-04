@@ -66,16 +66,7 @@
     [Parse setApplicationId:@"LiLukyOROzCPxkNIvG9SD6nPMFdZsFNxzYsB06LT"
                   clientKey:@"NWnu7sQiFf9t3vyruSWQ8CqepFjKQh7IAZr8b3WA"];
     
-    //Round Robin: testing out new schedule parse cloud function
-    /*[PFCloud callFunctionInBackground:@"schedule"
-                       withParameters:@{@"NumberOfTeams":@3}
-                                block:^(NSString *result, NSError *error) {
-                                    if (!error) {
-                                        // result is @"Hello world!"
-                                        NSLog(@"%@", result);
-                                    }
-                                }];*/
-    
+       
     //initialize Amplitude analytics
      //beta key
 //   [Amplitude initializeApiKey:@"43017a7316efee7bf680d57d7c3ab327"]; //live
@@ -597,7 +588,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
                 [user setObject:@YES forKey:kUserAlreadyAutoFollowedFacebookFriendsKey];
                 NSError *error = nil;
                 
-                // find common Facebook friends already using Anypic
+                // find common Facebook friends already using Iconic
                 PFQuery *facebookFriendsQuery = [PFUser query];
                 [facebookFriendsQuery whereKey:kUserFacebookIDKey containedIn:facebookIds];
                 
@@ -608,10 +599,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
                 // combined query
                 PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:autoFollowAccountsQuery,facebookFriendsQuery, nil]];
                 
-                NSArray *anypicFriends = [query findObjects:&error];
+                NSArray *iconicFollowers = [query findObjects:&error];
                 
                 if (!error) {
-                    [anypicFriends enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
+                    [iconicFollowers enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
                         PFObject *joinActivity = [PFObject objectWithClassName:kActivityClassKey];
                         [joinActivity setObject:user forKey:kPlayerActionFromUserKey];
                         [joinActivity setObject:newFriend forKey:kPlayerActionToUserKey];
@@ -644,7 +635,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
                 
                 if (!error) {
                     //[MBProgressHUD hideHUDForView:self.navController.presentedViewController.view animated:NO];
-                    if (anypicFriends.count > 0) {
+                    if (iconicFollowers.count > 0) {
                         //self.hud = [MBProgressHUD showHUDAddedTo:self.homeViewController.view animated:NO];
                         self.hud.dimBackground = YES;
                         self.hud.labelText = NSLocalizedString(@"Following Friends", nil);

@@ -240,6 +240,7 @@
             
         int numberOfTeamsInLeague = [[homeTeamPointer objectForKey:@"numberOfTeamsInLeague"]intValue];
             
+        //only show records for leagues with more then two teams
         if(numberOfTeamsInLeague > 2)
         {
             self.homeTeamRecord = homeTeamRecord;
@@ -480,6 +481,8 @@
             [playerPoints saveInBackground];
 //            }
             
+
+            
         }
         
         else
@@ -575,6 +578,15 @@
     //            [playerPoints saveEventually];
   
     [playerSteps saveInBackground];
+    
+    
+    /*testing player activity class for feed*/
+    
+    PFObject *playerActivity = [PFObject objectWithClassName:@"Activity"];
+    [playerActivity setObject:[PFUser currentUser] forKey:@"user"];
+    [playerActivity setObject: self.mySteps forKey:@"activity"];
+    [playerActivity saveInBackground];
+
     
     NSNumber *myLevel = [self calculateLevel:myNewTotalSteps];
 //     NSLog(@"myNewTotalSteps %d",myNewTotalSteps);
