@@ -188,7 +188,7 @@
      // the friends the current user is following
      PFQuery *activityFromFollowedUsersQuery = [PFQuery queryWithClassName:self.parseClassName];
      [activityFromFollowedUsersQuery whereKey:kActivityUserKey matchesKey:kPlayerActionToUserKey inQuery:followingActivitiesQuery];
-     [activityFromFollowedUsersQuery whereKeyExists:kActivityKey];//<-kActivityKey this key needs to be revised, in anypic example it reffers to the photo take by a user.  we are replacing phtos with a user's physical activity.
+     [activityFromFollowedUsersQuery whereKeyExists:kActivityKey];
 
      
      // We create a second query for the current user's activity
@@ -196,29 +196,41 @@
      [activityFromCurrentUserQuery whereKey:kActivityUserKey equalTo:[PFUser currentUser]];
      [activityFromCurrentUserQuery whereKeyExists:kActivityKey]; //<-kActivityKey this key needs to be revised see above
      
+     //retrieve my teams array from NSUserDefaults
+      NSUserDefaults *Teams = [NSUserDefaults standardUserDefaults];
+     NSArray * myTeams = [Teams objectForKey:kArrayOfMyTeamsNames];
+     
+     // We create a third query for the current user's team activity
+     PFQuery *teamActivityForCurrentUser = [PFQuery queryWithClassName:self.parseClassName];
+     [teamActivityForCurrentUser whereKey:@"teamName" containedIn:myTeams];//array of players teams stored in NSuserDefualuts
+     
+     [teamActivityForCurrentUser whereKeyExists:kActivityKey];
+     
      
      
      // We create a final compound query that will find all of the activities that were
      // participated in by the user's friends or by the user
-     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:activityFromFollowedUsersQuery, activityFromCurrentUserQuery, nil]];
+     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:activityFromFollowedUsersQuery, activityFromCurrentUserQuery, teamActivityForCurrentUser, nil]];
      [query includeKey:kActivityUserKey];
+     [query includeKey:@"team"];
      [query orderByDescending:@"createdAt"];
      
      
- // If Pull To Refresh is enabled, query against the network by default.
- if (self.pullToRefreshEnabled) {
- query.cachePolicy = kPFCachePolicyNetworkOnly;
- }
+     // If Pull To Refresh is enabled, query against the network by default.
+     if (self.pullToRefreshEnabled) {
+     query.cachePolicy = kPFCachePolicyNetworkOnly;
+     }
+     
+     // If no objects are loaded in memory, we look to the cache first to fill the table
+     // and then subsequently do a query against the network.
+     if (self.objects.count == 0) {
+     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+     }
  
- // If no objects are loaded in memory, we look to the cache first to fill the table
- // and then subsequently do a query against the network.
- if (self.objects.count == 0) {
- query.cachePolicy = kPFCachePolicyCacheThenNetwork;
- }
+     
  
- 
- 
- return query;
+    return query;
+     
  }
 
 
@@ -254,7 +266,9 @@
      
      // show points
      if (object) {
-         cell.activityStatusLabel.text = [NSString stringWithFormat:@"Scored %@ points",[object objectForKey:kActivityKey]];
+//         cell.activityStatusLabel.text = [NSString stringWithFormat:@"Scored %@ points",[object objectForKey:kActivityKey]];
+         
+         cell.activityStatusLabel.text = [object objectForKey:kActivityKey];
      }
      
      // add time stamp

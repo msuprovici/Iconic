@@ -582,10 +582,10 @@
     
     /*testing player activity class for feed*/
     
-    PFObject *playerActivity = [PFObject objectWithClassName:@"Activity"];
-    [playerActivity setObject:[PFUser currentUser] forKey:@"user"];
-    [playerActivity setObject: self.mySteps forKey:@"activity"];
-    [playerActivity saveInBackground];
+//    PFObject *playerActivity = [PFObject objectWithClassName:@"Activity"];
+//    [playerActivity setObject:[PFUser currentUser] forKey:@"user"];
+//    [playerActivity setObject: self.mySteps forKey:@"activity"];
+//    [playerActivity saveInBackground];
 
     
     NSNumber *myLevel = [self calculateLevel:myNewTotalSteps];

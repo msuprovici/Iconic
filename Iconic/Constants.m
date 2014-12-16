@@ -157,7 +157,7 @@ NSString *const kUserAlreadyAutoFollowedFacebookFriendsKey   = @"userAlreadyAuto
 NSString *const kActivityClassKey = @"Activity";// <-careful, make sure to set the right class here
 
 // Field keys
-NSString *const kActivityKey         = @"activity";
+NSString *const kActivityKey         = @"activityString";
 //NSString *const kPhotoThumbnailKey       = @"thumbnail";
 NSString *const kActivityUserKey            = @"user";
 NSString *const kActivityOpenGraphIDKey    = @"fbOpenGraphID";

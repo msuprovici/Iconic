@@ -140,6 +140,14 @@
 - (void)setActivity:(PFObject *)anActivity {
     activity = anActivity;
     
+    
+    //show user in feed
+    
+
+    if ([activity objectForKey:@"user"]) {
+       
+    
+    
     // user's avatar
     PFUser *user = [activity objectForKey:kActivityUserKey];
     //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
@@ -173,12 +181,56 @@
     [self.userButton setTitle:authorName forState:UIControlStateNormal];
    
     [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    else
+    {
+        
+        // user's avatar
+        [activity fetchIfNeededInBackground];
+        PFObject *team = [activity objectForKey:@"team"];
+//        [team fetchIfNeededInBackground];
+        
+        
+        //new approach for setting the photo that is more robust
+        // Set a placeholder image first
+        self.avatarImageView.image = [UIImage imageNamed:@"empty_avatar.png"];
+        PFFile *imageFile = [team objectForKey:@"teamAvatar"];
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            // Now that the data is fetched, update the cell's image property.
+            self.avatarImageView.image = [UIImage imageWithData:data];
+            
+        }];
+        
+        //turn photo to circle
+        CALayer *imageLayer = self.avatarImageView.layer;
+        [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
+        [imageLayer setBorderWidth:0];
+        [imageLayer setMasksToBounds:YES];
+        
+
+        
+        NSString *teamName = [team objectForKey:@"teams"];
+        [self.userButton setTitle:teamName forState:UIControlStateNormal];
+        self.userButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Neue-Medium" size:20];//changing font to differentiate between team & user activity
+        [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    }
+        
+    
+    
+    
+    
+    
+    
     
     [self.commentButton addTarget:self action:@selector(didTapCommentOnActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     
     [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
+        
+        
 //    CGFloat constrainWidth = containerView.bounds.size.width;
 //    
 //    if (self.buttons & ActivityHeaderButtonsUser) {
