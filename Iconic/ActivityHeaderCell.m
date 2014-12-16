@@ -181,6 +181,15 @@
     [self.userButton setTitle:authorName forState:UIControlStateNormal];
    
     [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.commentButton addTarget:self action:@selector(didTapCommentOnActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.likeButton.hidden = NO;
+        self.commentButton.hidden = NO;
+
     }
     
     else
@@ -214,6 +223,12 @@
         [self.userButton setTitle:teamName forState:UIControlStateNormal];
         self.userButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Neue-Medium" size:20];//changing font to differentiate between team & user activity
         [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        //hiding buttons because current archiecture does not allow for likes & comments on team activity, just user activity.
+        self.likeButton.hidden = YES;
+        self.commentButton.hidden = YES;
+        
 
     }
         
@@ -224,10 +239,6 @@
     
     
     
-    [self.commentButton addTarget:self action:@selector(didTapCommentOnActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
         
         
