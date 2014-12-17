@@ -1725,7 +1725,7 @@
         <scene sceneID="lBY-ZS-NvU">
             <objects>
                 <tableViewController id="YRb-r1-hFU" customClass="FeedViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rm3-hb-ptd">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rm3-hb-ptd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1750,45 +1750,59 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="slb-3g-iGi" userLabel="Comment">
+                                                    <rect key="frame" x="282" y="24" width="15" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" backgroundImage="comment.png"/>
+                                                    <connections>
+                                                        <segue destination="tuF-GK-KB7" kind="push" identifier="ActivityDetails" id="qLx-Qv-ZGQ"/>
+                                                    </connections>
+                                                </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_avatar.png" id="tiJ-Zk-FHB" customClass="PFImageView">
                                                     <rect key="frame" x="18" y="9" width="40" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Stamp" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ly7-M7-Xvp">
-                                                    <rect key="frame" x="211" y="8" width="101" height="21"/>
+                                                    <rect key="frame" x="211" y="3" width="101" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ybt-Is-eQl">
-                                                    <rect key="frame" x="65" y="26" width="235" height="32"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ybt-Is-eQl">
+                                                    <rect key="frame" x="65" y="26" width="179" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="slb-3g-iGi" userLabel="Comment">
-                                                    <rect key="frame" x="117" y="49" width="30" height="31"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fx4-JC-vyW">
+                                                    <rect key="frame" x="296" y="20" width="21" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <state key="normal" title="0" backgroundImage="activity_comment_icon_blue-01.png"/>
-                                                    <connections>
-                                                        <segue destination="tuF-GK-KB7" kind="push" identifier="ActivityDetails" id="qLx-Qv-ZGQ"/>
-                                                    </connections>
-                                                </button>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" id="qqm-bp-BZy" userLabel="High Five">
-                                                    <rect key="frame" x="64" y="50" width="30" height="30"/>
+                                                    <rect key="frame" x="242" y="21" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <state key="normal" title="0" backgroundImage="activity_speaker_icon_blue-01.png">
+                                                    <state key="normal" backgroundImage="highFive.png">
                                                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="didTapActivityButton:" destination="YRb-r1-hFU" eventType="touchUpInside" id="3no-JJ-BVp"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vRS-TY-UcK">
+                                                    <rect key="frame" x="259" y="20" width="21" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
@@ -1798,8 +1812,10 @@
                                     <outlet property="activityStatusLabel" destination="Ybt-Is-eQl" id="d8C-9h-1qo"/>
                                     <outlet property="avatarImageView" destination="tiJ-Zk-FHB" id="nJX-8u-p6P"/>
                                     <outlet property="commentButton" destination="slb-3g-iGi" id="0F4-Sv-v7B"/>
+                                    <outlet property="commentCount" destination="Fx4-JC-vyW" id="Yuo-pg-QnJ"/>
                                     <outlet property="containerView" destination="dQW-F3-Rxf" id="4Qf-A5-2Qp"/>
                                     <outlet property="likeButton" destination="qqm-bp-BZy" id="gd9-Ki-dSU"/>
+                                    <outlet property="likeCount" destination="vRS-TY-UcK" id="AhU-BU-Sr5"/>
                                     <outlet property="timestampLabel" destination="Ly7-M7-Xvp" id="2dn-pU-4Tx"/>
                                     <outlet property="userButton" destination="EhL-VV-CE3" id="6Nb-0O-fny"/>
                                 </connections>
@@ -2827,10 +2843,10 @@
     </scenes>
     <resources>
         <image name="achievment_test.png" width="894" height="894"/>
-        <image name="activity_comment_icon_blue-01.png" width="417" height="417"/>
-        <image name="activity_speaker_icon_blue-01.png" width="417" height="417"/>
+        <image name="comment.png" width="64" height="54"/>
         <image name="empty_avatar.png" width="500" height="500"/>
         <image name="first" width="30" height="30"/>
+        <image name="highFive.png" width="64" height="64"/>
         <image name="reveal-icon.png" width="22" height="17"/>
         <image name="second" width="30" height="30"/>
         <image name="tutorial1.png" width="16" height="16"/>

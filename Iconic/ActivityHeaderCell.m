@@ -152,15 +152,8 @@
     PFUser *user = [activity objectForKey:kActivityUserKey];
     //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
     
-//    [self.avatarImageView setFile:[user objectForKey:kUserProfilePicSmallKey]];
-//    [self.avatarImageView loadInBackground];
-//    //turn photo to circle
-//    CALayer *imageLayer = self.avatarImageView.layer;
-//    [imageLayer setCornerRadius:self.avatarImageView.frame.size.width/2];
-//    [imageLayer setBorderWidth:0];
-//    [imageLayer setMasksToBounds:YES];
 
-    //new approach for setting the photo that is more robust
+  
     // Set a placeholder image first
     self.avatarImageView.image = [UIImage imageNamed:@"empty_avatar.png"];
     PFFile *imageFile = [user objectForKey:kUserProfilePicSmallKey];
@@ -189,6 +182,8 @@
         
         self.likeButton.hidden = NO;
         self.commentButton.hidden = NO;
+        self.likeCount.hidden = NO;
+        self.commentCount.hidden = NO;
 
     }
     
@@ -198,12 +193,9 @@
         // user's avatar
         [activity fetchIfNeededInBackground];
         PFObject *team = [activity objectForKey:@"team"];
-//        [team fetchIfNeededInBackground];
-        
-        
-        //new approach for setting the photo that is more robust
+
         // Set a placeholder image first
-        self.avatarImageView.image = [UIImage imageNamed:@"empty_avatar.png"];
+        self.avatarImageView.image = [UIImage imageNamed:@"team2.png"];
         PFFile *imageFile = [team objectForKey:@"teamAvatar"];
         [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             // Now that the data is fetched, update the cell's image property.
@@ -228,7 +220,8 @@
         //hiding buttons because current archiecture does not allow for likes & comments on team activity, just user activity.
         self.likeButton.hidden = YES;
         self.commentButton.hidden = YES;
-        
+        self.likeCount.hidden = YES;
+        self.commentCount.hidden = YES;
 
     }
         
@@ -271,7 +264,7 @@
 
 - (void)setLikeStatus:(BOOL)liked {
     [self.likeButton setSelected:liked];
-    [self.likeButton setBackgroundImage:[UIImage imageNamed:@"activity_speaker_icon_green-01.png"] forState:UIControlStateSelected];
+    [self.likeButton setBackgroundImage:[UIImage imageNamed:@"hi-five-icon_edit2.png"] forState:UIControlStateSelected];
     
 //    
 //    if (liked) {

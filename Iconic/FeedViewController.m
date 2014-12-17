@@ -287,9 +287,11 @@
      
      if (attributesForActivity) {
          [cell setLikeStatus:[[Cache sharedCache] isActivityLikedByCurrentUser:activity]];
-         [cell.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
-         [cell.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
-         //24 tulip
+//         [cell.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
+         cell.likeCount.text = [[[Cache sharedCache] likeCountForActivity:activity] description];
+//         [cell.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
+         cell.commentCount.text = [[[Cache sharedCache] commentCountForActivity:activity] description];
+         
 //         if (cell.likeButton.alpha < 1.0f || cell.commentButton.alpha < 1.0f) {
 //             [UIView animateWithDuration:0.200f animations:^{
 //                 cell.likeButton.alpha = 1.0f;
@@ -336,9 +338,12 @@
                          
                          
                          [cell setLikeStatus:[[Cache sharedCache] isActivityLikedByCurrentUser:activity]];
-                         [cell.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
-                         [cell.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
-                         
+//                         [cell.likeButton setTitle:[[[Cache sharedCache] likeCountForActivity:activity] description] forState:UIControlStateNormal];
+                         cell.likeCount.text = [[[Cache sharedCache] likeCountForActivity:activity] description];
+
+//                         [cell.commentButton setTitle:[[[Cache sharedCache] commentCountForActivity:activity] description] forState:UIControlStateNormal];
+                         cell.commentCount.text = [[[Cache sharedCache] commentCountForActivity:activity] description];
+
 //                         if (cell.likeButton.alpha < 1.0f || cell.commentButton.alpha < 1.0f) {
 //                             [UIView animateWithDuration:0.200f animations:^{
 //                                 cell.likeButton.alpha = 1.0f;

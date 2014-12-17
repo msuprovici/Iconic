@@ -49,10 +49,12 @@ typedef enum {
 /// The Like Activity button
 //@property (nonatomic,readonly) UIButton *likeButton;
 @property (strong, nonatomic, readonly) IBOutlet UIButton *likeButton;
+@property (strong, nonatomic) IBOutlet UILabel *likeCount;
 
 /// The Comment On Activity button
 //@property (nonatomic,readonly) UIButton *commentButton;
 @property (strong, nonatomic) IBOutlet UIButton *commentButton;
+@property (strong, nonatomic) IBOutlet UILabel *commentCount;
 
 /*! @name Delegate */
 @property (nonatomic,weak) id <ActivityHeaderCellDelegate> delegate;

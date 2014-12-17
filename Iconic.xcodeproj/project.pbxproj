@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		5C01003C197449FB00024BDC /* FinalScoresTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C01003B197449FB00024BDC /* FinalScoresTableViewController.m */; };
 		5C01003F1974765A00024BDC /* FinalScoresTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C01003E1974765A00024BDC /* FinalScoresTableViewCell.m */; };
+		5C0304891A41011700E86578 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0304871A41011700E86578 /* comment.png */; };
+		5C03048A1A41011700E86578 /* highFive.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0304881A41011700E86578 /* highFive.png */; };
+		5C03048C1A41047B00E86578 /* hi-five-icon_edit2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C03048B1A41047B00E86578 /* hi-five-icon_edit2.png */; };
+		5C03048E1A410A5500E86578 /* team2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C03048D1A410A5500E86578 /* team2.png */; };
 		5C04C2F31940E63700E21ED4 /* CustomPFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C04C2F21940E63700E21ED4 /* CustomPFSignUpViewController.m */; };
 		5C04C2F61940E79400E21ED4 /* CustomPFLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C04C2F51940E79400E21ED4 /* CustomPFLogInViewController.m */; };
 		5C0FBDE318AD4BC900A0A122 /* LeagueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0FBDE218AD4BC900A0A122 /* LeagueCell.m */; };
@@ -240,6 +244,10 @@
 		5C01003B197449FB00024BDC /* FinalScoresTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalScoresTableViewController.m; sourceTree = "<group>"; };
 		5C01003D1974765A00024BDC /* FinalScoresTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalScoresTableViewCell.h; sourceTree = "<group>"; };
 		5C01003E1974765A00024BDC /* FinalScoresTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalScoresTableViewCell.m; sourceTree = "<group>"; };
+		5C0304871A41011700E86578 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
+		5C0304881A41011700E86578 /* highFive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highFive.png; sourceTree = "<group>"; };
+		5C03048B1A41047B00E86578 /* hi-five-icon_edit2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hi-five-icon_edit2.png"; sourceTree = "<group>"; };
+		5C03048D1A410A5500E86578 /* team2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = team2.png; sourceTree = "<group>"; };
 		5C04C2F11940E63700E21ED4 /* CustomPFSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPFSignUpViewController.h; sourceTree = "<group>"; };
 		5C04C2F21940E63700E21ED4 /* CustomPFSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPFSignUpViewController.m; sourceTree = "<group>"; };
 		5C04C2F41940E79300E21ED4 /* CustomPFLogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomPFLogInViewController.h; path = ../CustomPFLogInViewController.h; sourceTree = "<group>"; };
@@ -619,6 +627,10 @@
 		5C2C1CC8185E9051006722D2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5C03048D1A410A5500E86578 /* team2.png */,
+				5C0304871A41011700E86578 /* comment.png */,
+				5C0304881A41011700E86578 /* highFive.png */,
+				5C03048B1A41047B00E86578 /* hi-five-icon_edit2.png */,
 				5C78DA49189872BF00CBA29B /* activity_comment_icon_blue-01.png */,
 				5C78DA4A189872BF00CBA29B /* activity_comment_icon_green-01.png */,
 				5C78DA4B189872BF00CBA29B /* activity_speaker_icon_green-01.png */,
@@ -1400,6 +1412,7 @@
 				5C78DA4F189872BF00CBA29B /* activity_speaker_icon_green-01.png in Resources */,
 				5CE778341A0D7D0D008B3585 /* Icon-76@2x.png in Resources */,
 				5CE7782F1A0D7D0D008B3585 /* Icon-40@2x.png in Resources */,
+				5C03048A1A41011700E86578 /* highFive.png in Resources */,
 				5CE7782D1A0D7D0D008B3585 /* Contents.json in Resources */,
 				5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */,
 				5CA6BB5A19CA4EF400E9946E /* chat19.png in Resources */,
@@ -1407,6 +1420,7 @@
 				5CE778311A0D7D0D008B3585 /* Icon-60@2x.png in Resources */,
 				5C88F6741980A240001D5851 /* IntroScreen2.png in Resources */,
 				5CE778321A0D7D0D008B3585 /* Icon-60@3x.png in Resources */,
+				5C0304891A41011700E86578 /* comment.png in Resources */,
 				5CE778301A0D7D0D008B3585 /* Icon-40@3x.png in Resources */,
 				5C88F67219809EBA001D5851 /* IntroScreen1.png in Resources */,
 				5C88F67019809D11001D5851 /* IntroScreen3.png in Resources */,
@@ -1424,9 +1438,11 @@
 				5C78DA50189872BF00CBA29B /* activity_speaker_icon_blue-01.png in Resources */,
 				5C88F67619817FBC001D5851 /* IconicLogoBlack.png in Resources */,
 				5C430F2318D7A66300D932AA /* points_background_team_screen_iconic.png in Resources */,
+				5C03048C1A41047B00E86578 /* hi-five-icon_edit2.png in Resources */,
 				5C539DFC198715090027669A /* Amplitude-iOS.podspec in Resources */,
 				5CB75E04188DAE850047BC47 /* scoreboardicon2-01.png in Resources */,
 				5CA6BB5819CA4DD600E9946E /* chat18.png in Resources */,
+				5C03048E1A410A5500E86578 /* team2.png in Resources */,
 				5CD9383A187B814F006CE08B /* achievment_test.png in Resources */,
 				5C78DA4D189872BF00CBA29B /* activity_comment_icon_blue-01.png in Resources */,
 				5CB75E07188DCC4D0047BC47 /* joinicon2-01.png in Resources */,
