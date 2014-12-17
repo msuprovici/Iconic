@@ -24,6 +24,7 @@
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *createTeam;
 @property (strong, nonatomic) IBOutlet UILabel *teamsNeeded;
+@property (strong, nonatomic) IBOutlet UIImageView *teamLogo;
 
 @property (nonatomic, strong) PFObject *league;
 

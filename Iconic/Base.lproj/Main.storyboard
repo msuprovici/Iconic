@@ -2046,22 +2046,27 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jw4-Sw-1uC">
-                                            <rect key="frame" x="38" y="17" width="212" height="30"/>
+                                            <rect key="frame" x="73" y="17" width="212" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zPy-0I-JaG">
-                                            <rect key="frame" x="38" y="42" width="57" height="21"/>
+                                            <rect key="frame" x="75" y="42" width="57" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="0e1-51-Yty">
+                                            <rect key="frame" x="16" y="12" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="teamLogo" destination="0e1-51-Yty" id="jxG-f9-zG0"/>
                                     <outlet property="teamName" destination="Jw4-Sw-1uC" id="CHv-ZD-I15"/>
                                     <outlet property="teamRecord" destination="zPy-0I-JaG" id="jHm-G6-4Zn"/>
                                     <segue destination="k2R-Un-KHX" kind="push" identifier="teamates" id="BKk-Oi-vMX"/>
@@ -2876,8 +2881,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cdC-Af-usM"/>
-        <segue reference="RgY-QV-Nzf"/>
+        <segue reference="BKk-Oi-vMX"/>
+        <segue reference="SjS-YP-2E8"/>
         <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *teamName;
 @property (strong, nonatomic) IBOutlet UILabel *teamRecord;
+@property (strong, nonatomic) IBOutlet UIImageView *teamLogo;
 
 @end

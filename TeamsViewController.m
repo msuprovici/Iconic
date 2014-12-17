@@ -387,7 +387,21 @@
     
     // Configure the cell
     cell.teamName.text = [object objectForKey:self.textKey];
+   
     
+    // Set a placeholder image first
+    cell.teamLogo.image = [UIImage imageNamed:@"team2.png"];
+    PFFile *imageFile = [object objectForKey:@"teamAvatar"];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        // Now that the data is fetched, update the cell's image property.
+        cell.teamLogo.image = [UIImage imageWithData:data];
+    }];
+    //turn photo to circle
+    CALayer *imageLayer = cell.teamLogo.layer;
+    [imageLayer setCornerRadius:cell.teamLogo.frame.size.width/2];
+    [imageLayer setBorderWidth:0];
+    [imageLayer setMasksToBounds:YES];
+
    
     //add team record
     NSString *teamRecord = [NSString stringWithFormat:@"%@ - %@",[object objectForKey:@"wins"],[object objectForKey:@"losses"]];
