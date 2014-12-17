@@ -66,25 +66,25 @@
     [imageLayer setMasksToBounds:YES];
     
     // Set name
-    NSString *nameString = [self.user objectForKey:kUserDisplayNameKey];
-    CGSize nameSize = [nameString sizeWithFont:[UIFont boldSystemFontOfSize:16.0f] forWidth:144.0f lineBreakMode:UILineBreakModeTailTruncation];
+//    NSString *nameString = [self.user objectForKey:kUserDisplayNameKey];
+//    CGSize nameSize = [nameString sizeWithFont:[UIFont boldSystemFontOfSize:16.0f] forWidth:144.0f lineBreakMode:UILineBreakModeTailTruncation];
     [nameButton setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateNormal];
     [nameButton setTitle:[self.user objectForKey:kUserDisplayNameKey] forState:UIControlStateHighlighted];
     
-    [nameButton setFrame:CGRectMake( 60.0f, 17.0f, nameSize.width, nameSize.height)];
-    
-    // Set activity number label
-    CGSize photoLabelSize = [@"activity" sizeWithFont:[UIFont systemFontOfSize:11.0f] forWidth:144.0f lineBreakMode:UILineBreakModeTailTruncation];
-    [activityLabel setFrame:CGRectMake( 60.0f, 17.0f + nameSize.height, 140.0f, photoLabelSize.height)];
-    
-    // Set follow button
-    [followButton setFrame:CGRectMake( 208.0f, 20.0f, 103.0f, 32.0f)];
+//    [nameButton setFrame:CGRectMake( 60.0f, 17.0f, nameSize.width, nameSize.height)];
+//    
+//    // Set activity number label
+//    CGSize photoLabelSize = [@"activity" sizeWithFont:[UIFont systemFontOfSize:11.0f] forWidth:144.0f lineBreakMode:UILineBreakModeTailTruncation];
+//    [activityLabel setFrame:CGRectMake( 60.0f, 17.0f + nameSize.height, 140.0f, photoLabelSize.height)];
+//    
+//    // Set follow button
+//    [followButton setFrame:CGRectMake( 208.0f, 20.0f, 103.0f, 32.0f)];
 }
 
 #pragma mark - ()
 
 + (CGFloat)heightForCell {
-    return 67.0f;
+    return 65.0f;
 }
 - (IBAction)followButtonSelected:(id)sender {
     [self.followButton addTarget:self action:@selector(didTapFollowButtonAction:) forControlEvents:UIControlEventTouchUpInside];

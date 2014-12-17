@@ -76,7 +76,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 10;
+        self.objectsPerPage = 20;
         
         self.timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
     }

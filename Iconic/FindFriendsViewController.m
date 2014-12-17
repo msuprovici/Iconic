@@ -264,17 +264,6 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
      [cell setUser:(PFUser*)object];
      
      [cell.activityLabel setText:@"0 activities"];
-//     
-//     cell.avatarImageView = [[PFImageView alloc] init];
-//     cell.avatarImageView.image = [UIImage imageNamed:@"empty_avatar.png"]; // placeholder image
-//     cell.avatarImageView.file = [object objectForKey:kUserProfilePicSmallKey];
-//     [cell.avatarImageView loadInBackground];
-//     
-//     //turn photo to circle
-//     CALayer *imageLayer = cell.avatarImageView.layer;
-//     [imageLayer setCornerRadius:cell.avatarImageView.frame.size.width/2];
-//     [imageLayer setBorderWidth:0];
-//     [imageLayer setMasksToBounds:YES];
 
 
      
