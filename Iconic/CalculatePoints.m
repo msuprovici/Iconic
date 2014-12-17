@@ -1869,5 +1869,52 @@
     
 }
 
+#pragma mark auto-follow users
+
+-(void)autoFollowUsers
+{
+   
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSObject * object = [defaults objectForKey:@"autoFollowedUsers"];
+    
+    
+    //1st check if the users were auto-followed
+   if(object == nil)
+   {
+       
+    PFQuery *autoFollowAccountsQuery = [PFUser query];
+    
+    [autoFollowAccountsQuery whereKey:@"username" equalTo:@"Super"];// auto-follow super so that there is something in the newsfeed for now
+    
+    [autoFollowAccountsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(!error)
+        {
+            for(PFObject *object in objects)
+            {
+                
+                PFObject *joinActivity = [PFObject objectWithClassName:kPlayerActionClassKey];
+                [joinActivity setObject:[PFUser currentUser] forKey:kPlayerActionFromUserKey];
+                [joinActivity setObject:object forKey:kPlayerActionToUserKey];
+                [joinActivity setObject:kPlayerActionTypeFollow forKey:kPlayerActionTypeKey];
+                
+                PFACL *joinACL = [PFACL ACL];
+                [joinACL setPublicReadAccess:YES];
+                joinActivity.ACL = joinACL;
+                
+                [joinActivity saveInBackground];
+                
+                [defaults setBool:YES forKey:@"autoFollowedUsers"];
+                [defaults synchronize];
+            }
+            
+        }
+    }];
+       
+   }
+    
+}
+
+
 
 @end

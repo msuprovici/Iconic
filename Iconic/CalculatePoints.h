@@ -121,5 +121,7 @@
 
 -(void)getYesterdaysPointsAndSteps;
 
+-(void)autoFollowUsers;
+
 
 @end

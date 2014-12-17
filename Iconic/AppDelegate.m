@@ -162,7 +162,9 @@
        
        [Heap identify:userProperties];
        
-        [calculatePointsClass migrateLeaguesToCoreData];
+       [calculatePointsClass migrateLeaguesToCoreData];
+       
+       [calculatePointsClass autoFollowUsers];
        
        
         UIStoryboard *storyboard = self.window.rootViewController.storyboard;
@@ -559,7 +561,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
 
 
 
-
 #pragma mark facebook
 
 - (void)facebookRequestDidLoad:(id)result {
@@ -574,6 +575,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         for (NSDictionary *friendData in data) {
             if (friendData[@"id"]) {
                 [facebookIds addObject:friendData[@"id"]];
+                
+                
             }
         }
         
@@ -594,8 +597,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
                 
                 // auto-follow Parse employees <- create teams/interests to autofollow here
                 PFQuery *autoFollowAccountsQuery = [PFUser query];
-                [autoFollowAccountsQuery whereKey:kUserFacebookIDKey containedIn:kAutoFollowAccountFacebookIds];
-                
+               [autoFollowAccountsQuery whereKey:kUserFacebookIDKey containedIn:kAutoFollowAccountFacebookIds];
+         
                 // combined query
                 PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:autoFollowAccountsQuery,facebookFriendsQuery, nil]];
                 
@@ -603,7 +606,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
                 
                 if (!error) {
                     [iconicFollowers enumerateObjectsUsingBlock:^(PFUser *newFriend, NSUInteger idx, BOOL *stop) {
-                        PFObject *joinActivity = [PFObject objectWithClassName:kActivityClassKey];
+                        
+                        PFObject *joinActivity = [PFObject objectWithClassName:kPlayerActionClassKey];
                         [joinActivity setObject:user forKey:kPlayerActionFromUserKey];
                         [joinActivity setObject:newFriend forKey:kPlayerActionToUserKey];
                         [joinActivity setObject:kPlayerActionTypeJoined forKey:kPlayerActionTypeKey];
