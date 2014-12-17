@@ -556,6 +556,16 @@
 //        NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.4f target:self selector:@selector(showHomeScreen) userInfo:nil repeats:NO];
 //        
 //        [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.4f]];
+        
+        
+        //add info to activity feed
+        
+        PFObject *activity = [PFObject objectWithClassName:@"Activity"];
+        [activity setObject:[PFUser currentUser] forKey:@"user"];
+        
+        NSString * activityString = [NSString stringWithFormat:@"Joined team: %@",[self.team objectForKey:kTeams]];
+        [activity setObject:activityString forKey:@"activityString"];
+        [activity saveInBackground];
 
         
     }
@@ -714,8 +724,14 @@
         NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
         [nc postNotificationName:@"LeftTeam" object:self userInfo:teamInfo];
         
-
         
+        //Add to activity feed
+        PFObject *activity = [PFObject objectWithClassName:@"Activity"];
+        [activity setObject:[PFUser currentUser] forKey:@"user"];
+        
+        NSString * activityString = [NSString stringWithFormat:@"Left team: %@",[self.team objectForKey:kTeams]];
+        [activity setObject:activityString forKey:@"activityString"];
+        [activity saveInBackground];
         
     }
     

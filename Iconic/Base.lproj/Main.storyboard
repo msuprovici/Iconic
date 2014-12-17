@@ -1687,8 +1687,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logo:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DMn-CY-KhR">
+                                <rect key="frame" x="16" y="241" width="171" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y3G-vT-jL4">
-                                <rect key="frame" x="20" y="259" width="280" height="50"/>
+                                <rect key="frame" x="20" y="366" width="280" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="30"/>
@@ -1704,11 +1711,27 @@
                                 <rect key="frame" x="150" y="222" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="team2.png" id="bgr-Du-H35" userLabel="Team Logo">
+                                <rect key="frame" x="240" y="222" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nE5-U5-fIs" userLabel="Add Team Logo button">
+                                <rect key="frame" x="229" y="214" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addTeamLogoButtonPressed:" destination="wv6-hi-tt4" eventType="touchUpInside" id="OKB-Ev-3Sf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Team" id="e4t-V7-1q3"/>
                     <connections>
+                        <outlet property="addTeamLogo" destination="bgr-Du-H35" id="nTo-2V-kMG"/>
+                        <outlet property="addTeamLogoButton" destination="nE5-U5-fIs" id="noj-vO-qcS"/>
                         <outlet property="createTeam" destination="Y3G-vT-jL4" id="wRl-BF-H2m"/>
                         <outlet property="createTeamActivityIndicator" destination="3UX-Zh-cNa" id="5YB-Uj-kA1"/>
                         <outlet property="dailyStepsGoal" destination="QzR-H2-7VO" id="eYE-z4-d6X"/>
@@ -2844,6 +2867,7 @@
         <image name="highFive.png" width="64" height="64"/>
         <image name="reveal-icon.png" width="22" height="17"/>
         <image name="second" width="30" height="30"/>
+        <image name="team2.png" width="64" height="64"/>
         <image name="tutorial1.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -2853,7 +2877,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="cdC-Af-usM"/>
-        <segue reference="BKk-Oi-vMX"/>
+        <segue reference="RgY-QV-Nzf"/>
         <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>

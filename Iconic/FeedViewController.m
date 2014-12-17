@@ -127,6 +127,7 @@
     
     //should use delegation instead of reloading the view everytime
     [self.tableView reloadData];
+    [self loadObjects];
     
     if (self.shouldReloadOnAppear) {
         self.shouldReloadOnAppear = NO;

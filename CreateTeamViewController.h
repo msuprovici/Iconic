@@ -13,7 +13,7 @@
 #import <Parse/PFQuery.h>
 #import <ParseUI/PFTableViewCell.h>
 
-@interface CreateTeamViewController : UIViewController <UITextFieldDelegate>
+@interface CreateTeamViewController : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *teamNameField;
 
@@ -21,8 +21,16 @@
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *createTeamActivityIndicator;
 
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *addLogoActivityIndicator;
 
 @property (strong, nonatomic) IBOutlet UIButton *createTeam;
+
+@property (strong, nonatomic) IBOutlet UIImageView *addTeamLogo;
+
+@property (strong, nonatomic) IBOutlet UIButton *addTeamLogoButton;
+
+- (IBAction)addTeamLogoButtonPressed:(id)sender;
+
 
 - (IBAction)createTeamAction:(id)sender;
 

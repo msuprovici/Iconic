@@ -230,6 +230,13 @@
                     }
                     
                 }];
+                
+                PFObject *activity = [PFObject objectWithClassName:@"Activity"];
+                [activity setObject:[PFUser currentUser] forKey:@"user"];
+                
+                NSString * activityString = [NSString stringWithFormat:@"Created new league: %@",self.leagueNameTextField.text];
+                [activity setObject:activityString forKey:@"activityString"];
+                [activity saveInBackground];
             }
             else
             {

@@ -19,6 +19,8 @@
 
 @property (nonatomic, assign) NSUInteger teamNumber;
 
+@property (nonatomic, retain) PFFile* imageFile;
+
 @end
 
 @implementation CreateTeamViewController
@@ -34,7 +36,7 @@
     [self.view addGestureRecognizer:singleTap];
     
     
-    
+   
     
     
 }
@@ -89,6 +91,8 @@
 - (void)resignOnTap:(id)iSender {
     [self.currentResponder resignFirstResponder];
 }
+
+
 
 
 - (IBAction)createTeamAction:(id)sender {
@@ -214,7 +218,7 @@
                                 
                                 [team setObject:[PFUser currentUser] forKey:@"teamCreator"];
                                 
-                                
+                                [team setObject: self.imageFile forKey:@"teamAvatar"];
                                 
                                 //when the last team in the league is added - generate a schedule
                                 if(teamsInLeague + 1 == maximumTeamsInLeague)
@@ -290,6 +294,18 @@
                                     }
                                     
                                 }];
+                                
+                                
+                                
+                                //add info to activity feed
+                                
+                                PFObject *activity = [PFObject objectWithClassName:@"Activity"];
+                                [activity setObject:[PFUser currentUser] forKey:@"user"];
+                                
+                                NSString * activityString = [NSString stringWithFormat:@"Created new team: %@",self.teamNameField.text];
+                                [activity setObject:activityString forKey:@"activityString"];
+                                [activity saveInBackground];
+                                
 
                             }
                             else
@@ -340,5 +356,119 @@
     [self.dailyStepsGoal resignFirstResponder];
     
 }
+
+
+#pragma mark - Add Player Photo
+
+- (IBAction)addTeamLogoButtonPressed:(id)sender {
+
+    
+    UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"How would you like to set your logo?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
+                            @"Take Picture",
+                            @"Choose Picture",
+                            
+                            nil];
+    popup.tag = 1;
+    [popup showInView:[UIApplication sharedApplication].keyWindow];
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    switch (popup.tag) {
+        case 1: {
+            switch (buttonIndex) {
+                case 0:
+                    [self showCamera];
+                    break;
+                case 1:
+                    [self showPicker];
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+-(void)showCamera
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+    
+}
+-(void)showPicker
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+//    //start activity indicator
+//    self.addLogoActivityIndicator.hidden = NO;
+//    [self.addLogoActivityIndicator startAnimating];
+//    
+    //save photo to parse and display
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    NSData *imageData = UIImagePNGRepresentation(chosenImage);
+    self.imageFile = [PFFile fileWithName:@"team2.png" data:imageData];
+    
+//    //stop activity indicator
+//    [self.addLogoActivityIndicator stopAnimating];
+//    self.addLogoActivityIndicator.hidden = YES;
+//    
+    
+    
+    
+    self.addTeamLogo.image = chosenImage;
+   
+//    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//        if (!error) {
+//            if (succeeded) {
+//                
+//                //stop activity indicator
+//                [self.addLogoActivityIndicator stopAnimating];
+//                
+//                self.addTeamLogo.image = chosenImage;
+//                
+//                
+//                
+//                [team setObject:imageFile forKey:@"teamAvatar"];
+//                
+//                
+//                
+//                [self.view setNeedsDisplay];
+//            }
+//        } else {
+//            // Handle error
+//        }
+//    }];
+//    
+    //    self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+     [self.view setNeedsDisplay];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
 
 @end
