@@ -21,6 +21,8 @@
 
 @property (nonatomic, retain) PFFile* imageFile;
 
+@property BOOL didCreateTeam;
+
 @end
 
 @implementation CreateTeamViewController
@@ -218,7 +220,11 @@
                                 
                                 [team setObject:[PFUser currentUser] forKey:@"teamCreator"];
                                 
+                                
+                                if(self.didCreateTeam == YES)
+                                {
                                 [team setObject: self.imageFile forKey:@"teamAvatar"];
+                                }
                                 
                                 //when the last team in the league is added - generate a schedule
                                 if(teamsInLeague + 1 == maximumTeamsInLeague)
@@ -426,6 +432,7 @@
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     NSData *imageData = UIImagePNGRepresentation(chosenImage);
     self.imageFile = [PFFile fileWithName:@"team2.png" data:imageData];
+    self.didCreateTeam = YES;
     
 //    //stop activity indicator
 //    [self.addLogoActivityIndicator stopAnimating];

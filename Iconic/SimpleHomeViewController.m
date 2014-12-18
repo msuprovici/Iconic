@@ -979,7 +979,7 @@ static NSString *kImageKey = @"imageKey";
     
     //when selecting the join team button switch to leagues view controller
     
-    self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:1];
+    self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:2];
     
     self.joinedTeamButtonPressed = YES;
     [Amplitude logEvent:@"Dashboard: Join Team selected"];

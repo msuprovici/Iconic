@@ -1885,7 +1885,7 @@
        
     PFQuery *autoFollowAccountsQuery = [PFUser query];
     
-    [autoFollowAccountsQuery whereKey:@"username" equalTo:@"Super"];// auto-follow super so that there is something in the newsfeed for now
+    [autoFollowAccountsQuery whereKey:@"username" equalTo:@"JoeDemo"];// auto-follow super so that there is something in the newsfeed for now
     
     [autoFollowAccountsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(!error)

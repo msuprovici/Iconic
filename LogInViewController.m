@@ -171,6 +171,7 @@
     
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
     [calculatePointsClass migrateLeaguesToCoreData];
+    [calculatePointsClass autoFollowUsers];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
@@ -243,7 +244,7 @@
     
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
     [calculatePointsClass migrateLeaguesToCoreData];
-
+    [calculatePointsClass autoFollowUsers];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];

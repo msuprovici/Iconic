@@ -1217,13 +1217,7 @@
                             <outlet property="delegate" destination="tuF-GK-KB7" id="owu-xi-UNy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Comments" id="3X7-VE-7t5">
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="UZl-qJ-mCl">
-                            <connections>
-                                <action selector="shareButton:" destination="tuF-GK-KB7" id="JZE-iU-eFB"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Comments" id="3X7-VE-7t5"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BDK-Cg-bhE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
