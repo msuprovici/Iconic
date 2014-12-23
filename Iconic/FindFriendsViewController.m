@@ -213,7 +213,7 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     [isFollowingQuery whereKey:kPlayerActionFromUserKey equalTo:[PFUser currentUser]];
     [isFollowingQuery whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeFollow];
     [isFollowingQuery whereKey:kPlayerActionToUserKey containedIn:self.objects];
-    [isFollowingQuery setCachePolicy:kPFCachePolicyNetworkOnly];
+    [isFollowingQuery setCachePolicy:kPFCachePolicyCacheThenNetwork];
     
     [isFollowingQuery countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         if (!error) {
