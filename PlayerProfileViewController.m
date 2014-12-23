@@ -13,6 +13,8 @@
 #import <Parse/Parse.h>
 #import "PNColor.h"
 #import "Amplitude.h"
+#import "Utility.h"
+#import "Cache.h"
 
 
 @interface PlayerProfileViewController ()
@@ -51,6 +53,7 @@
 -(void)initWithPlayer:(PFUser *)aPlayer
 {
     self.player = aPlayer;
+    self.playerUserObject = aPlayer;
     }
 
 
@@ -115,7 +118,42 @@
     
     [self.cheerButton setTitle:@"High Five" forState:UIControlStateNormal];
     }
+    
+    
+    
 }
+
+- (void)objectsDidLoad:(NSError *)error {
+    [super objectsDidLoad:error];
+    
+    // This method is called every time objects are loaded from Parse via the PFQuery
+    
+    //determine if the current user is following this user and set the follow button state
+    PFQuery *isFollowingQuery = [PFQuery queryWithClassName:kPlayerActionClassKey];
+    [isFollowingQuery whereKey:kPlayerActionFromUserKey equalTo:[PFUser currentUser]];
+    [isFollowingQuery whereKey:kPlayerActionToUserKey equalTo:self.playerUserObject];
+    [isFollowingQuery whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeFollow];
+    
+    [isFollowingQuery setCachePolicy:kPFCachePolicyNetworkOnly];
+    
+    [isFollowingQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if(!error)
+        {
+            self.followUser.selected = YES;
+            [self.followUser setTitle:@"Following" forState:UIControlStateNormal];
+//            NSLog(@"Player Followed %@", object);
+            
+        }
+        else
+        {
+            self.followUser.selected = NO;
+            [self.followUser setTitle:@"Follow" forState:UIControlStateNormal];
+        }
+    }];
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -131,11 +169,6 @@
     // This method is called before a PFQuery is fired to get more objects
 }
 
-- (void)objectsDidLoad:(NSError *)error {
-    [super objectsDidLoad:error];
-    
-    // This method is called every time objects are loaded from Parse via the PFQuery
-}
 
 
 // Override to customize what kind of query to perform on the class. The default is to query for
@@ -426,4 +459,35 @@
     
     
 }
+- (IBAction)followUserPressed:(id)sender {
+    [self shouldToggleFollowUser];
+}
+
+//toggle button state
+- (void)shouldToggleFollowUser {
+    
+    if ([self.followUser isSelected]) {
+        // Unfollow
+//        NSLog(@"unfollow player");
+        
+        
+        self.followUser.selected = NO;
+        [self.followUser setTitle:@"Follow" forState:UIControlStateNormal];
+        [Utility unfollowUserEventually:self.playerUserObject];
+        [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserFollowingChangedNotification object:nil];
+    } else {
+        // Follow
+//        NSLog(@"follow player");
+        self.followUser.selected = YES;
+        [self.followUser setTitle:@"Following" forState:UIControlStateNormal];
+        [Utility followUserEventually:self.playerUserObject block:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserFollowingChangedNotification object:nil];
+            } else {
+                self.followUser.selected = NO;
+            }
+        }];
+    }
+}
+
 @end

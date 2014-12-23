@@ -2264,9 +2264,23 @@
                             <outlet property="delegate" destination="UbG-da-jWg" id="0kQ-Ni-xAB"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="abb-en-3ld"/>
+                    <navigationItem key="navigationItem" id="abb-en-3ld">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="2gf-Ch-Bzh">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vav-ND-7Sj">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="followUserPressed:" destination="UbG-da-jWg" eventType="touchUpInside" id="jJF-6g-lev"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cheerButton" destination="2Nl-2C-BvQ" id="bzg-TK-dOC"/>
+                        <outlet property="followUser" destination="Vav-ND-7Sj" id="WGN-Yl-28s"/>
                         <outlet property="playerAvgSteps" destination="84D-Ke-xpW" id="PBJ-4x-dDf"/>
                         <outlet property="playerProfilePhoto" destination="MUm-0U-niA" id="axv-1A-Naq"/>
                         <outlet property="playerUserName" destination="cHt-0A-rf1" id="jdw-cD-m99"/>
@@ -2875,8 +2889,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="BKk-Oi-vMX"/>
-        <segue reference="SjS-YP-2E8"/>
         <segue reference="GlC-f2-v4y"/>
+        <segue reference="SjS-YP-2E8"/>
+        <segue reference="f2W-wf-Lkd"/>
     </inferredMetricsTieBreakers>
 </document>

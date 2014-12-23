@@ -803,7 +803,6 @@ static NSString *kImageKey = @"imageKey";
 
 - (NSUInteger)indexOfViewController:(MyTeamsViewController *)viewController
 {
-
     
     return [self.myTeamsViewControllers indexOfObject:viewController];
 }

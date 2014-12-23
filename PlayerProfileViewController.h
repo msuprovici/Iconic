@@ -31,7 +31,13 @@
 
 - (IBAction)cheerButtonPressed:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIButton *followUser;
+
+- (IBAction)followUserPressed:(id)sender;
+
 @property (nonatomic, strong) PFObject *player;
+
+@property (nonatomic, strong) PFUser *playerUserObject;
 
 @property (nonatomic, strong) NSString *userName;
 
