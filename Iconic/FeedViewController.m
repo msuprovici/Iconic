@@ -9,6 +9,9 @@
 #import "FeedViewController.h"
 #import "ActivityHeaderCell.h"
 #import "CommentsViewController.h"
+#import "TeamPlayersViewController.h"
+#import "PlayerProfileViewController.h"
+
 #import <Parse/Parse.h>
 #import "Constants.h"
 #import "Cache.h"
@@ -570,28 +573,46 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    //Find the row the button was selected from
+    CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+    
+    PFObject *activity = [self.objects objectAtIndex:hitIndex.row];
+    
     if ([segue.identifier isEqualToString:@"ActivityDetails"]) {
        
-        //Find the row the button was selected from
-        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
-        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
-  
-        PFObject *activity = [self.objects objectAtIndex:hitIndex.row];
+//        //Find the row the button was selected from
+//        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+//        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+//  
+//        PFObject *activity = [self.objects objectAtIndex:hitIndex.row];
         
         [segue.destinationViewController initWithActivity:activity];
        
     }
+    
+    if ([segue.identifier isEqualToString:@"FeedPlayerSegue"]) {
+        
+        
+        PFUser *user = [activity objectForKey:kActivityUserKey];
+        
+        [segue.destinationViewController initWithPlayer:user];
+        
+    }
+    
+    if ([segue.identifier isEqualToString:@"FeedTeamSegue"]) {
+        
+        
+        [activity fetchIfNeededInBackground];
+        PFObject *team = [activity objectForKey:@"team"];
+        
+        
+        [segue.destinationViewController initWithTeam:team];
+        
+    }
 }
 
--(void)yourButtonPressed:(id)sender
-{
-    
-    CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
-    NSLog(@"%i",hitIndex.row);
-    
-    
-}
 //
 //- (void)activityHeaderCell:(ActivityHeaderCell *)activityHeaderCell didTapCommentOnActivityButton:(UIButton *)button  activity:(PFObject *)activity {
 //    CommentsViewController *activityDetailsVC = [[CommentsViewController alloc] initWithActivity:activity];

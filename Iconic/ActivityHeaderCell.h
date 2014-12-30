@@ -79,6 +79,11 @@ typedef enum {
 
 @property (strong, nonatomic) IBOutlet UIButton *userButton;
 
+
+@property (strong, nonatomic) IBOutlet UIButton *userSelectedButton;
+
+@property (strong, nonatomic) IBOutlet UIButton *teamSelectedButton;
+
 @property (strong, nonatomic) IBOutlet PFImageView *avatarImageView;
 
 @property (strong, nonatomic) IBOutlet UILabel *timestampLabel;

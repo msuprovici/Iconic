@@ -185,7 +185,9 @@ static NSString *kImageKey = @"imageKey";
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
        
-    
+    //testing achievments dialog
+//        [self performSegueWithIdentifier:@"ShowAchievment" sender:self];
+//    [self.view.window.rootViewController performSegueWithIdentifier:@"ShowAchievment" sender:self];
     
     
 }
@@ -915,6 +917,14 @@ static NSString *kImageKey = @"imageKey";
         //pass any data to next view here
         
     }
+}
+
+- (IBAction)unwindToDashboard:(UIStoryboardSegue *)unwindSegue
+{
+    NSLog(@"unwind to dashboard");
+    
+    
+    
 }
 
 

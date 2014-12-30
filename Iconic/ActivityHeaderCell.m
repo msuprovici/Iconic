@@ -8,6 +8,9 @@
 
 #import "ActivityHeaderCell.h"
 #import "Constants.h"
+#import "PlayerProfileViewController.h"
+#import "TeamPlayersViewController.h"
+#import "FeedViewController.h"
 
 @implementation ActivityHeaderCell
 
@@ -146,6 +149,10 @@
 
     if ([activity objectForKey:@"user"]) {
        
+        self.userSelectedButton.enabled = YES;
+        self.userSelectedButton.hidden = NO;
+        self.teamSelectedButton.enabled = NO;
+        self.teamSelectedButton.hidden = YES;
     
     
     // user's avatar
@@ -189,6 +196,11 @@
     
     else
     {
+        
+        self.userSelectedButton.enabled = NO;
+        self.userSelectedButton.hidden = YES;
+        self.teamSelectedButton.enabled = YES;
+        self.teamSelectedButton.hidden = NO;
         
         // user's avatar
         [activity fetchIfNeededInBackground];

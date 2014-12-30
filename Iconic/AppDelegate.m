@@ -167,6 +167,7 @@
        [calculatePointsClass autoFollowUsers];
        
        
+       
         UIStoryboard *storyboard = self.window.rootViewController.storyboard;
         UIViewController *rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"Main"];
         self.window.rootViewController = rootViewController;
