@@ -76,6 +76,7 @@ typedef enum {
 @property (strong, nonatomic) IBOutlet UIView *containerView;
 
 @property (strong, nonatomic) IBOutlet UILabel *activityStatusLabel;
+@property (strong, nonatomic) IBOutlet UITextView *activityStatusTextView;
 
 @property (strong, nonatomic) IBOutlet UIButton *userButton;
 

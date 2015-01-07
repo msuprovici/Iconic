@@ -272,7 +272,8 @@
      if (object) {
 //         cell.activityStatusLabel.text = [NSString stringWithFormat:@"Scored %@ points",[object objectForKey:kActivityKey]];
          
-         cell.activityStatusLabel.text = [object objectForKey:kActivityKey];
+        
+         cell.activityStatusTextView.text = [object objectForKey:kActivityKey];
      }
      
      // add time stamp
@@ -363,7 +364,6 @@
 
  return cell;
  }
-
 
 /*
  // Override if you need to change the ordering of objects in the table.

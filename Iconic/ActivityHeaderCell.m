@@ -36,95 +36,6 @@
     
     //self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        //[self.likeButton setBackgroundImage:[UIImage imageNamed:@"activity_speaker_icon_green-01.png"] forState:UIControlStateSelected];
-        
-        
-//        [ActivityHeaderCell validateButtons:otherButtons];
-//        buttons = otherButtons;
-//
-        
-        
-// we will set the parameters bellow in the storyboard
-        
-//        if (self.buttons & ActivityHeaderButtonsComment) {
-//            // comments button
-//            commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//            [containerView addSubview:self.commentButton];
-//            [self.commentButton setFrame:CGRectMake( 242.0f, 10.0f, 29.0f, 28.0f)];
-//            [self.commentButton setBackgroundColor:[UIColor clearColor]];
-//            [self.commentButton setTitle:@"" forState:UIControlStateNormal];
-//            [self.commentButton setTitleColor:[UIColor colorWithRed:0.369f green:0.271f blue:0.176f alpha:1.0f] forState:UIControlStateNormal];
-//            [self.commentButton setTitleShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f] forState:UIControlStateNormal];
-//            [self.commentButton setTitleEdgeInsets:UIEdgeInsetsMake( -4.0f, 0.0f, 0.0f, 0.0f)];
-//            [[self.commentButton titleLabel] setShadowOffset:CGSizeMake( 0.0f, 1.0f)];
-//            [[self.commentButton titleLabel] setFont:[UIFont systemFontOfSize:12.0f]];
-//            [[self.commentButton titleLabel] setMinimumScaleFactor:11.0f];
-//            [[self.commentButton titleLabel] setAdjustsFontSizeToFitWidth:YES];
-//            [self.commentButton setBackgroundImage:[UIImage imageNamed:@"IconComment.png"] forState:UIControlStateNormal];
-//            [self.commentButton setSelected:NO];
-//        }
-//        
-//        if (self.buttons & ActivityHeaderButtonsLike) {
-//            // like button
-//            likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//            [containerView addSubview:self.likeButton];
-//            [self.likeButton setFrame:CGRectMake(206.0f, 8.0f, 29.0f, 29.0f)];
-//            [self.likeButton setBackgroundColor:[UIColor clearColor]];
-//            [self.likeButton setTitle:@"" forState:UIControlStateNormal];
-//            [self.likeButton setTitleColor:[UIColor colorWithRed:0.369f green:0.271f blue:0.176f alpha:1.0f] forState:UIControlStateNormal];
-//            [self.likeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-//            [self.likeButton setTitleShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f] forState:UIControlStateNormal];
-//            [self.likeButton setTitleShadowColor:[UIColor colorWithWhite:0.0f alpha:0.750f] forState:UIControlStateSelected];
-//            [self.likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
-//            [[self.likeButton titleLabel] setShadowOffset:CGSizeMake(0.0f, 1.0f)];
-//            [[self.likeButton titleLabel] setFont:[UIFont systemFontOfSize:12.0f]];
-//            [[self.likeButton titleLabel] setMinimumScaleFactor:11.0f];
-//            [[self.likeButton titleLabel] setAdjustsFontSizeToFitWidth:YES];
-//            [self.likeButton setAdjustsImageWhenHighlighted:NO];
-//            [self.likeButton setAdjustsImageWhenDisabled:NO];
-//            [self.likeButton setBackgroundImage:[UIImage imageNamed:@"ButtonLike.png"] forState:UIControlStateNormal];
-//            [self.likeButton setBackgroundImage:[UIImage imageNamed:@"ButtonLikeSelected.png"] forState:UIControlStateSelected];
-//            [self.likeButton setSelected:NO];
-//        }
-//        
-//        if (self.buttons & ActivityHeaderButtonsUser) {
-//            // This is the user's display name, on a button so that we can tap on it
-//            self.userButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//            [containerView addSubview:self.userButton];
-//            [self.userButton setBackgroundColor:[UIColor clearColor]];
-//            [[self.userButton titleLabel] setFont:[UIFont boldSystemFontOfSize:15]];
-//            [self.userButton setTitleColor:[UIColor colorWithRed:73.0f/255.0f green:55.0f/255.0f blue:35.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
-//            [self.userButton setTitleColor:[UIColor colorWithRed:134.0f/255.0f green:100.0f/255.0f blue:65.0f/255.0f alpha:1.0f] forState:UIControlStateHighlighted];
-//            //[[self.userButton titleLabel] setLineBreakMode:UILineBreakModeTailTruncation];
-//            [[self.userButton titleLabel] setShadowOffset:CGSizeMake( 0.0f, 1.0f)];
-//            [self.userButton setTitleShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f] forState:UIControlStateNormal];
-//        }
-
-        
-        
-        // timestamp
-//        self.timestampLabel = [[UILabel alloc] initWithFrame:CGRectMake( 50.0f, 24.0f, containerView.bounds.size.width - 50.0f - 72.0f, 18.0f)];
-//        [containerView addSubview:self.timestampLabel];
-//        [self.timestampLabel setTextColor:[UIColor colorWithRed:124.0f/255.0f green:124.0f/255.0f blue:124.0f/255.0f alpha:1.0f]];
-//        [self.timestampLabel setShadowColor:[UIColor colorWithWhite:1.0f alpha:0.750f]];
-//        [self.timestampLabel setShadowOffset:CGSizeMake( 0.0f, 1.0f)];
-//        [self.timestampLabel setFont:[UIFont systemFontOfSize:11.0f]];
-//        [self.timestampLabel setBackgroundColor:[UIColor clearColor]];
-//        
-//        CALayer *layer = [containerView layer];
-//        layer.backgroundColor = [[UIColor whiteColor] CGColor];
-//        layer.masksToBounds = NO;
-//        layer.shadowRadius = 1.0f;
-//        layer.shadowOffset = CGSizeMake( 0.0f, 2.0f);
-//        layer.shadowOpacity = 0.5f;
-//        layer.shouldRasterize = YES;
-//        layer.shadowPath = [UIBezierPath bezierPathWithRect:CGRectMake( 0.0f, containerView.frame.size.height - 4.0f, containerView.frame.size.width, 4.0f)].CGPath;
-    
-        //self.timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
-     //likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-     //[self.likeButton setSelected:NO];
         
     }
     return self;
@@ -234,11 +145,55 @@
         self.commentButton.hidden = YES;
         self.likeCount.hidden = YES;
         self.commentCount.hidden = YES;
+        
+//        self.activityStatusTextView = [[UITextView alloc] init];
+        
+//        UITextPosition *Pos2 = [self.activityStatusTextView positionFromPosition: self.activityStatusTextView.endOfDocument offset: 0];
+//        
+//        UITextPosition *Pos1 = [self.activityStatusTextView positionFromPosition: self.activityStatusTextView.endOfDocument offset: -3];
+//        
+//        UITextRange *range = [self.activityStatusTextView textRangeFromPosition:Pos1 toPosition:Pos2];
+//        
+//        CGRect result1 = [self.activityStatusTextView firstRectForRange:(UITextRange *)range ];
+//        
+//        NSLog(@"%f, %f", result1.origin.x, result1.origin.y);
+//        
+//        
+//        //button to test
+//        UIButton *selectFollowedUserOrTeam =  [UIButton buttonWithType:UIButtonTypeSystem];
+//        selectFollowedUserOrTeam.frame = result1;
+////        selectFollowedUserOrTeam.backgroundColor = [UIColor clearColor];
+//        selectFollowedUserOrTeam.backgroundColor = [UIColor blueColor];
+//        [self.activityStatusTextView addSubview:selectFollowedUserOrTeam];
+//        
+//        
+//        //view to test
+//        UIView *view1 = [[UIView alloc] initWithFrame:result1];
+//        view1.backgroundColor = [UIColor colorWithRed:0.2f green:0.5f blue:0.2f alpha:0.4f];
+//        [self.activityStatusTextView addSubview:view1];
+//        
+        
+//        NSRange range=self.activityStatusTextView.selectedRange;
+//        [self.activityStatusTextView.text enumerateSubstringsInRange:NSMakeRange(0, [self.activityStatusTextView.text length]) options:NSStringEnumerationByWords usingBlock:^(NSString* word, NSRange wordRange, NSRange enclosingRange, BOOL* stop){
+//            NSRange intersectionRange=NSIntersectionRange(range,wordRange);
+//            if(intersectionRange.length>0){
+//                [self.activityStatusTextView setSelectedRange:wordRange];
+//            }
+//        }];
+
 
     }
         
     
-    
+//    - (void)textViewDidChangeSelection:(UITextView *)textView{
+//        NSRange range=textView.selectedRange;
+//        [textView.text enumerateSubstringsInRange:NSMakeRange(0, [textView.text length]) options:NSStringEnumerationByWords usingBlock:^(NSString* word, NSRange wordRange, NSRange enclosingRange, BOOL* stop){
+//            NSRange intersectionRange=NSIntersectionRange(range,wordRange);
+//            if(interesectionRange.length>0){
+//                [textView setSelectedRange:wordRange];
+//            }
+//        }];
+//    }
     
     
     
@@ -269,10 +224,60 @@
 //    NSString *timestamp = [self.timeIntervalFormatter stringForTimeInterval:timeInterval];
 //    [self.timestampLabel setText:timestamp];
     
-
+//    NSMutableAttributedString *paragraph = [[NSMutableAttributedString alloc] initWithString:@"We lost the " attributes:@{NSForegroundColorAttributeName:[UIColor blueColor]}];
+//    
+//    NSAttributedString* attributedString = [[NSAttributedString alloc] initWithString:@"lead" attributes:@{ @"myCustomTag" : @(YES) }];
+//    [paragraph appendAttributedString:attributedString];
     
-    [self setNeedsDisplay];
+    [self.activityStatusTextView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didReceiveGestureOnText:)]];
+    
+
 }
+
+
+-(void)didReceiveGestureOnText:(UITapGestureRecognizer*)recognizer
+{
+    //check if this is actual user
+    NSString* pressedWord = [self getPressedWordWithRecognizer:recognizer];
+    NSLog(@"%@", pressedWord);
+    
+    PFUser *user = [activity objectForKey:kActivityUserKey];
+    NSString * userName = [user objectForKey:@"username"];
+    
+//    if([pressedWord isEqualToString:userName])
+//    {
+//    
+////    FeedViewController * feedViewController = [[FeedViewController alloc]init];
+////    
+////    [feedViewController performSegueWithIdentifier:@"FeedToPlayerSegue" sender:self];
+//        
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        UIViewController *ivc = [storyboard instantiateViewControllerWithIdentifier:@"Achievment"];
+//        
+//        [(UINavigationController*)self.window.rootViewController presentViewController:ivc animated:YES completion:nil];
+//    }
+
+}
+
+-(NSString*)getPressedWordWithRecognizer:(UIGestureRecognizer*)recognizer
+{
+    //get view
+//    UITextView *textView = (UITextView *)recognizer.view;
+    //get location
+    CGPoint location = [recognizer locationInView:self.activityStatusTextView];
+    UITextPosition *tapPosition = [self.activityStatusTextView closestPositionToPoint:location];
+    UITextRange *textRange = [self.activityStatusTextView.tokenizer rangeEnclosingPosition:tapPosition withGranularity:UITextGranularityWord inDirection:UITextLayoutDirectionRight];
+    
+    //return string
+    return [self.activityStatusTextView textInRange:textRange];
+}
+
+
+//dismisses 'copy menu'
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.activityStatusTextView resignFirstResponder];
+}
+
 
 - (void)setLikeStatus:(BOOL)liked {
     [self.likeButton setSelected:liked];
