@@ -146,62 +146,12 @@
         self.likeCount.hidden = YES;
         self.commentCount.hidden = YES;
         
-//        self.activityStatusTextView = [[UITextView alloc] init];
-        
-//        UITextPosition *Pos2 = [self.activityStatusTextView positionFromPosition: self.activityStatusTextView.endOfDocument offset: 0];
-//        
-//        UITextPosition *Pos1 = [self.activityStatusTextView positionFromPosition: self.activityStatusTextView.endOfDocument offset: -3];
-//        
-//        UITextRange *range = [self.activityStatusTextView textRangeFromPosition:Pos1 toPosition:Pos2];
-//        
-//        CGRect result1 = [self.activityStatusTextView firstRectForRange:(UITextRange *)range ];
-//        
-//        NSLog(@"%f, %f", result1.origin.x, result1.origin.y);
-//        
-//        
-//        //button to test
-//        UIButton *selectFollowedUserOrTeam =  [UIButton buttonWithType:UIButtonTypeSystem];
-//        selectFollowedUserOrTeam.frame = result1;
-////        selectFollowedUserOrTeam.backgroundColor = [UIColor clearColor];
-//        selectFollowedUserOrTeam.backgroundColor = [UIColor blueColor];
-//        [self.activityStatusTextView addSubview:selectFollowedUserOrTeam];
-//        
-//        
-//        //view to test
-//        UIView *view1 = [[UIView alloc] initWithFrame:result1];
-//        view1.backgroundColor = [UIColor colorWithRed:0.2f green:0.5f blue:0.2f alpha:0.4f];
-//        [self.activityStatusTextView addSubview:view1];
-//        
-        
-//        NSRange range=self.activityStatusTextView.selectedRange;
-//        [self.activityStatusTextView.text enumerateSubstringsInRange:NSMakeRange(0, [self.activityStatusTextView.text length]) options:NSStringEnumerationByWords usingBlock:^(NSString* word, NSRange wordRange, NSRange enclosingRange, BOOL* stop){
-//            NSRange intersectionRange=NSIntersectionRange(range,wordRange);
-//            if(intersectionRange.length>0){
-//                [self.activityStatusTextView setSelectedRange:wordRange];
-//            }
-//        }];
+
 
 
     }
         
     
-//    - (void)textViewDidChangeSelection:(UITextView *)textView{
-//        NSRange range=textView.selectedRange;
-//        [textView.text enumerateSubstringsInRange:NSMakeRange(0, [textView.text length]) options:NSStringEnumerationByWords usingBlock:^(NSString* word, NSRange wordRange, NSRange enclosingRange, BOOL* stop){
-//            NSRange intersectionRange=NSIntersectionRange(range,wordRange);
-//            if(interesectionRange.length>0){
-//                [textView setSelectedRange:wordRange];
-//            }
-//        }];
-//    }
-    
-    
-    
-    
-    
-    
-        
-        
 //    CGFloat constrainWidth = containerView.bounds.size.width;
 //    
 //    if (self.buttons & ActivityHeaderButtonsUser) {
@@ -229,10 +179,22 @@
 //    NSAttributedString* attributedString = [[NSAttributedString alloc] initWithString:@"lead" attributes:@{ @"myCustomTag" : @(YES) }];
 //    [paragraph appendAttributedString:attributedString];
     
-    [self.activityStatusTextView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didReceiveGestureOnText:)]];
+
+    
+    
+    /* uncomment bellow to find out what word in the textview was selected */
+    
+    //    [self.activityStatusTextView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didReceiveGestureOnText:)]];
     
 
 }
+
+/* not in use right now
+-methods to deterine what word was selected in textview
+-to do: 
+ 1. determine if the the word selected is a user or a team 
+ 2. segue to user PlayerProfileViewController or TeamPlayersViewController
+*/
 
 
 -(void)didReceiveGestureOnText:(UITapGestureRecognizer*)recognizer
@@ -244,18 +206,22 @@
     PFUser *user = [activity objectForKey:kActivityUserKey];
     NSString * userName = [user objectForKey:@"username"];
     
-//    if([pressedWord isEqualToString:userName])
-//    {
-//    
-////    FeedViewController * feedViewController = [[FeedViewController alloc]init];
-////    
-////    [feedViewController performSegueWithIdentifier:@"FeedToPlayerSegue" sender:self];
-//        
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//        UIViewController *ivc = [storyboard instantiateViewControllerWithIdentifier:@"Achievment"];
-//        
-//        [(UINavigationController*)self.window.rootViewController presentViewController:ivc animated:YES completion:nil];
-//    }
+    if([pressedWord isEqualToString:userName])
+    {
+    
+//    FeedViewController * feedViewController = [[FeedViewController alloc]init];
+    
+//    [feedViewController performSegueWithIdentifier:@"FeedToPlayerSegue" sender:self];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *ivc = [storyboard instantiateViewControllerWithIdentifier:@"AccountViewController"];
+        
+        [(UINavigationController*)self.window.rootViewController presentViewController:ivc animated:YES completion:nil];
+      
+   
+        
+        
+    }
 
 }
 
@@ -291,6 +257,7 @@
 //        [self.likeButton setTitleEdgeInsets:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
 //        [[self.likeButton titleLabel] setShadowOffset:CGSizeMake(0.0f, 1.0f)];
 //    }
+    
 }
 
 - (void)shouldEnableLikeButton:(BOOL)enable {
