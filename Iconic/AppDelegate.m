@@ -23,6 +23,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "Intercom.h"
 #import "Heap.h"
+#import "ParseCrashReporting/ParseCrashReporting.h"
 
 
 @interface AppDelegate ()
@@ -61,7 +62,9 @@
     //perform background fetch
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     
-    
+    //Parse crash reporting
+    [ParseCrashReporting enable];
+
     //initialize Parse
     [Parse setApplicationId:@"LiLukyOROzCPxkNIvG9SD6nPMFdZsFNxzYsB06LT"
                   clientKey:@"NWnu7sQiFf9t3vyruSWQ8CqepFjKQh7IAZr8b3WA"];
@@ -93,6 +96,7 @@
     
     //Intitialize FB
     [PFFacebookUtils initializeFacebook];
+    [FBAppEvents activateApp];
     
     // Register for push notifications
     float ver = [[[UIDevice currentDevice] systemVersion] floatValue];
@@ -114,7 +118,6 @@
      UIRemoteNotificationTypeAlert |
      UIRemoteNotificationTypeSound];
     }
-    
     
     
     
@@ -213,15 +216,21 @@
 }
 
 // Facebook oauth callback
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [PFFacebookUtils handleOpenURL:url];
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+//    return [PFFacebookUtils handleOpenURL:url];
+//}
+//
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+//  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+//    return [PFFacebookUtils handleOpenURL:url];
+//}
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    // attempt to extract a token from the url
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [PFFacebookUtils handleOpenURL:url];
-}
-
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -242,6 +251,8 @@
 //    [calculatePointsClass retrieveFromParse];
     [calculatePointsClass incrementPlayerPointsInBackground];
     }
+    
+     [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
     
     
 }

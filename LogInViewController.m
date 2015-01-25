@@ -122,7 +122,7 @@
     [logInViewController setDelegate:self]; // Set ourselves as the delegate
     
 //    logInViewController.facebookPermissions = @[@"friends_about_me"];
-    logInViewController.fields = PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword  ;
+    logInViewController.fields = PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook  ;
 
 //    logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsSignUpButton ;
     
@@ -142,7 +142,7 @@
     CustomPFSignUpViewController *signUpViewController = [[CustomPFSignUpViewController alloc] init];
     [signUpViewController setDelegate:self]; // Set ourselves as the delegate
     
-    signUpViewController.fields =  PFSignUpFieldsDefault   ;
+    signUpViewController.fields =  PFSignUpFieldsDefault  ;
     
     // Present the log in view controller
     [self presentViewController:signUpViewController animated:YES completion:NULL];
