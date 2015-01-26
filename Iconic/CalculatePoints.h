@@ -123,5 +123,7 @@
 
 -(void)autoFollowUsers;
 
+-(void)loadFacebookUserData;
+
 
 @end

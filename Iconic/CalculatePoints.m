@@ -1915,6 +1915,86 @@
     
 }
 
+#pragma mark Facebook methods
+
+- (void)loadFacebookUserData {
+    
+//     NSLog(@"loadFacebookData called");
+    // ...
+    FBRequest *request = [FBRequest requestForMe];
+    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            
+//            NSLog(@"facebook request received");
+            // result is a dictionary with the user's Facebook data
+            NSDictionary *userData = (NSDictionary *)result;
+            
+            NSString *facebookID = userData[@"id"];
+            
+            NSString *name = userData[@"name"];
+//            NSLog(@"name: %@",name);
+            
+//            NSString *userName = userData[@"username"];
+//            NSLog(@"userName: %@",userName);
+            
+            NSString *email = userData[@"email"];
+//            NSLog(@"email: %@",email);
+//            NSString *location = userData[@"location"][@"name"];
+//            NSString *gender = userData[@"gender"];
+//            NSString *birthday = userData[@"birthday"];
+//            NSString *relationship = userData[@"relationship_status"];
+            
+            
+            [PFUser currentUser][@"username"] = name;
+            [PFUser currentUser][@"email"] = email;
+            [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                
+                if (succeeded) {
+//                    NSLog(@"facebook user name: %@ saved to Parse",name);
+                }
+                else
+                {
+//                    NSLog(@"facebook user name: %@ NOT saved to Parse",name);
+                }
+                
+            }];
+            
+            
+            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+            
+            // Now add the data to the UI elements
+            // ...
+            NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
+            
+            // Run network request asynchronously
+            [NSURLConnection sendAsynchronousRequest:urlRequest
+                                               queue:[NSOperationQueue mainQueue]
+                                   completionHandler:
+             ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                 if (connectionError == nil && data != nil) {
+                     // Set the image in the header imageView
+//                     self.headerImageView.image = [UIImage imageWithData:data];
+                     
+                     PFFile *imageFile = [PFFile fileWithName:@"Profileimage.png" data:data];
+                     [PFUser currentUser][@"photo"] = imageFile;
+                     [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                         
+                         if (succeeded) {
+//                             NSLog(@"facebook profile photo saved to Parse");
+                         }
+                         else{
+//                             NSLog(@"facebook profile photo NOT saved to Parse");
+                         }
+                     }];
+                 }
+             }];
+
+        }
+        else{
+//               NSLog(@"facebook request failed");
+        }
+    }];
+}
 
 
 @end

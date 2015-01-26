@@ -16,6 +16,7 @@
 #import "CalculatePoints.h"
 #import "Intercom.h"
 #import "Heap.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 @interface LogInViewController ()<UIScrollViewDelegate>
 
@@ -122,10 +123,12 @@
     [logInViewController setDelegate:self]; // Set ourselves as the delegate
     
 //    logInViewController.facebookPermissions = @[@"friends_about_me"];
-    logInViewController.fields = PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook  ;
+//    logInViewController.fields = PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook  ;
 
 //    logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsSignUpButton ;
     
+    logInViewController.fields = PFLogInFieldsFacebook | PFLogInFieldsSignUpButton ;
+    logInViewController.facebookPermissions = @[ @"public_profile", @"email" ];
     
     
     // Present the log in view controller
@@ -172,6 +175,15 @@
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
     [calculatePointsClass migrateLeaguesToCoreData];
     [calculatePointsClass autoFollowUsers];
+    
+    BOOL linkedWithFacebook = [PFFacebookUtils isLinkedWithUser:user];
+    
+    if(linkedWithFacebook)
+    {
+//        NSLog(@"linkedWithFacebook");
+        [calculatePointsClass loadFacebookUserData];
+    }
+
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];

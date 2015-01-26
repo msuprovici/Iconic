@@ -8,6 +8,8 @@
 
 #import "CustomPFLogInViewController.h"
 #import "PNColor.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "CalculatePoints.h"
 
 @interface CustomPFLogInViewController ()
 
@@ -53,6 +55,13 @@
     [self.logInView.usernameField setTextColor:PNWeiboColor];
      [self.logInView.usernameField setBackgroundColor:PNHealYellow];
     
+//    [self.logInView.logInButton setTitle:@"Test!" forState:UIControlStateNormal];
+//    [self.logInView.facebookButton setTitle:@"Test!" forState:UIControlStateNormal];
+//    self.logInView.facebookButton.titleLabel.text = @"Sign Up With Facebook";
+//    self.logInView.signUpButton.titleLabel.text = @"Sign Up With Email";
+    
+    
+    
     self.logInView.passwordField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     [self.logInView.passwordField setTextColor:PNWeiboColor];
     [self.logInView.passwordField setBackgroundColor:PNHealYellow];
@@ -63,6 +72,19 @@
   
 
 }
+
+//-(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
+//{
+//    BOOL linkedWithFacebook = [PFFacebookUtils isLinkedWithUser:user];
+//    
+//    if(linkedWithFacebook)
+//    {
+//        NSLog(@"account linked with Facebook");
+//        CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+//        [calculatePointsClass loadFacebookUserData];
+//    }
+//}
+
 
 - (void)didReceiveMemoryWarning
 {

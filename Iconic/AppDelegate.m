@@ -97,6 +97,8 @@
     //Intitialize FB
     [PFFacebookUtils initializeFacebook];
     [FBAppEvents activateApp];
+   
+
     
     // Register for push notifications
     float ver = [[[UIDevice currentDevice] systemVersion] floatValue];
@@ -224,12 +226,21 @@
 //  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 //    return [PFFacebookUtils handleOpenURL:url];
 //}
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
-    // attempt to extract a token from the url
-    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+//- (BOOL)application:(UIApplication *)application
+//            openURL:(NSURL *)url
+//  sourceApplication:(NSString *)sourceApplication
+//         annotation:(id)annotation {
+//    // attempt to extract a token from the url
+//    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+//}
+
+// Facebook oauth callback
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [FBSession.activeSession handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
 }
 
 
