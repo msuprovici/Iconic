@@ -7,9 +7,12 @@
 //
 
 #import "CustomPFLogInViewController.h"
+#import "LogInViewController.h"
 #import "PNColor.h"
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "CalculatePoints.h"
+#import "CustomPFSignUpViewController.h"
+#import "Amplitude.h"
 
 @interface CustomPFLogInViewController ()
 
@@ -70,20 +73,8 @@
     [self.logInView.passwordForgottenButton.titleLabel setTextColor:[UIColor colorWithRed:135.0f/255.0f green:118.0f/255.0f blue:92.0f/255.0f alpha:1.0]];
     
   
-
 }
 
-//-(void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
-//{
-//    BOOL linkedWithFacebook = [PFFacebookUtils isLinkedWithUser:user];
-//    
-//    if(linkedWithFacebook)
-//    {
-//        NSLog(@"account linked with Facebook");
-//        CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-//        [calculatePointsClass loadFacebookUserData];
-//    }
-//}
 
 
 - (void)didReceiveMemoryWarning
