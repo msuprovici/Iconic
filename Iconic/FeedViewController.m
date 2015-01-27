@@ -21,6 +21,7 @@
 @property (nonatomic, assign) BOOL shouldReloadOnAppear;
 @property (nonatomic, strong) NSMutableDictionary *outstandingActivityObjectQueries;
 @property (nonatomic, strong) TTTTimeIntervalFormatter *timeIntervalFormatter;
+@property (nonatomic, strong) PFQuery *query;
 
 @end
 
@@ -177,8 +178,17 @@
          [query setLimit:0];
          return query;
      }
+  //retrieve my teams array from NSUserDefaults
+      NSUserDefaults *Teams = [NSUserDefaults standardUserDefaults];
+     NSArray * myTeams = [Teams objectForKey:kArrayOfMyTeamsNames];
 
      
+   //if user is not on a team, don't show teams in feed
+   //this apprach elimates crash due to null values in myTeams array
+     
+   if(!myTeams)
+   {
+       
      // Query for the friends the current user is following
      //PFQuery *followingActivitiesQuery = [PFQuery queryWithClassName:@"Test"];//<- using this for testing purposes
      PFQuery *followingActivitiesQuery = [PFQuery queryWithClassName:kPlayerActionClassKey];
@@ -200,40 +210,109 @@
      [activityFromCurrentUserQuery whereKey:kActivityUserKey equalTo:[PFUser currentUser]];
      [activityFromCurrentUserQuery whereKeyExists:kActivityKey]; //<-kActivityKey this key needs to be revised see above
      
-     //retrieve my teams array from NSUserDefaults
-      NSUserDefaults *Teams = [NSUserDefaults standardUserDefaults];
-     NSArray * myTeams = [Teams objectForKey:kArrayOfMyTeamsNames];
-     
+        
      // We create a third query for the current user's team activity
-     PFQuery *teamActivityForCurrentUser = [PFQuery queryWithClassName:self.parseClassName];
-     [teamActivityForCurrentUser whereKey:@"teamName" containedIn:myTeams];//array of players teams stored in NSuserDefualuts
-     
-     [teamActivityForCurrentUser whereKeyExists:kActivityKey];
+//     PFQuery *teamActivityForCurrentUser = [PFQuery queryWithClassName:self.parseClassName];
+//     [teamActivityForCurrentUser whereKey:@"teamName" containedIn:myTeams];//array of players teams stored in NSuserDefualuts
+//     
+//     [teamActivityForCurrentUser whereKeyExists:kActivityKey];
      
      
      
      // We create a final compound query that will find all of the activities that were
      // participated in by the user's friends or by the user
-     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:activityFromFollowedUsersQuery, activityFromCurrentUserQuery, teamActivityForCurrentUser, nil]];
-     [query includeKey:kActivityUserKey];
-     [query includeKey:@"team"];
-     [query orderByDescending:@"createdAt"];
+//     PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:activityFromFollowedUsersQuery, activityFromCurrentUserQuery, teamActivityForCurrentUser, nil]];
+     
+//      PFQuery *query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:activityFromFollowedUsersQuery, activityFromCurrentUserQuery, nil]];
+     
+     self.query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:activityFromFollowedUsersQuery, activityFromCurrentUserQuery, nil]];
+   }
+     
+     
+   //if the user is on a team, show team updates in feed
+   else
+     {
+         
+         // Query for the friends the current user is following
+         //PFQuery *followingActivitiesQuery = [PFQuery queryWithClassName:@"Test"];//<- using this for testing purposes
+         PFQuery *followingActivitiesQuery = [PFQuery queryWithClassName:kPlayerActionClassKey];
+         [followingActivitiesQuery whereKey:kPlayerActionTypeKey equalTo:kPlayerActionTypeFollow];
+         [followingActivitiesQuery whereKey:kPlayerActionFromUserKey equalTo:[PFUser currentUser]];
+         followingActivitiesQuery.cachePolicy = kPFCachePolicyNetworkOnly;
+         followingActivitiesQuery.limit = 1000;
+         
+         
+         // Using the activities from the query above, we find all of the activity by
+         // the friends the current user is following
+         PFQuery *activityFromFollowedUsersQuery = [PFQuery queryWithClassName:self.parseClassName];
+         [activityFromFollowedUsersQuery whereKey:kActivityUserKey matchesKey:kPlayerActionToUserKey inQuery:followingActivitiesQuery];
+         [activityFromFollowedUsersQuery whereKeyExists:kActivityKey];
+         
+         
+         // We create a second query for the current user's activity
+         PFQuery *activityFromCurrentUserQuery = [PFQuery queryWithClassName:self.parseClassName];
+         [activityFromCurrentUserQuery whereKey:kActivityUserKey equalTo:[PFUser currentUser]];
+         [activityFromCurrentUserQuery whereKeyExists:kActivityKey]; //<-kActivityKey this key needs to be revised see above
+         
+         
+//          We create a third query for the current user's team activity
+              PFQuery *teamActivityForCurrentUser = [PFQuery queryWithClassName:self.parseClassName];
+              [teamActivityForCurrentUser whereKey:@"teamName" containedIn:myTeams];//array of players teams stored in NSuserDefualuts
+         
+              [teamActivityForCurrentUser whereKeyExists:kActivityKey];
+         
+         
+         
+         // We create a final compound query that will find all of the activities that were
+         // participated in by the user's friends or by the user
+         
+         self.query = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:activityFromFollowedUsersQuery, activityFromCurrentUserQuery, teamActivityForCurrentUser, nil]];
+     }
+     
+     
+     
+     
+     
+     
+     [self.query includeKey:kActivityUserKey];
+     [self.query includeKey:@"team"];
+     [self.query orderByDescending:@"createdAt"];
      
      
      // If Pull To Refresh is enabled, query against the network by default.
      if (self.pullToRefreshEnabled) {
-     query.cachePolicy = kPFCachePolicyNetworkOnly;
+         self.query.cachePolicy = kPFCachePolicyNetworkOnly;
      }
      
      // If no objects are loaded in memory, we look to the cache first to fill the table
      // and then subsequently do a query against the network.
      if (self.objects.count == 0) {
-     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+         self.query.cachePolicy = kPFCachePolicyCacheThenNetwork;
      }
- 
      
- 
-    return query;
+     
+     
+     return self.query;
+     
+//     [query includeKey:kActivityUserKey];
+//     [query includeKey:@"team"];
+//     [query orderByDescending:@"createdAt"];
+//     
+//     
+//     // If Pull To Refresh is enabled, query against the network by default.
+//     if (self.pullToRefreshEnabled) {
+//     query.cachePolicy = kPFCachePolicyNetworkOnly;
+//     }
+//     
+//     // If no objects are loaded in memory, we look to the cache first to fill the table
+//     // and then subsequently do a query against the network.
+//     if (self.objects.count == 0) {
+//     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+//     }
+// 
+//     
+// 
+//    return query;
      
  }
 
