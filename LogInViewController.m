@@ -126,18 +126,18 @@
     
     CustomPFSignUpViewController *signUpViewController = [[CustomPFSignUpViewController alloc] init];
     
-    logInViewController.signUpController = [[CustomPFSignUpViewController alloc] init];
+//    logInViewController.signUpController = [[CustomPFSignUpViewController alloc] init];
     
-    signUpViewController.fields =  PFSignUpFieldsDefault  ;
+//    signUpViewController.fields =  PFSignUpFieldsDefault  ;
     
     
     
 //    logInViewController.facebookPermissions = @[@"friends_about_me"];
 //    logInViewController.fields = PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook  ;
 
-//    logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsSignUpButton ;
+    logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword  ;
     
-    logInViewController.fields = PFLogInFieldsFacebook | PFLogInFieldsSignUpButton |PFLogInFieldsDismissButton  ;
+//    logInViewController.fields = PFLogInFieldsFacebook | PFLogInFieldsSignUpButton |PFLogInFieldsDismissButton  ;
     logInViewController.facebookPermissions = @[ @"public_profile", @"email" ];
     
     
@@ -153,14 +153,41 @@
     
     [Amplitude logEvent:@"Onboard: SignUp selected"];
     
-    // Create the sign up view controller
+//    // Create the sign up view controller
+//    CustomPFSignUpViewController *signUpViewController = [[CustomPFSignUpViewController alloc] init];
+//    [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+//    
+//    signUpViewController.fields =  PFSignUpFieldsDefault  ;
+//    
+//    // Present the log in view controller
+//    [self presentViewController:signUpViewController animated:YES completion:NULL];
+
+    // Create the log in view controller
+    CustomPFLogInViewController *logInViewController = [[CustomPFLogInViewController alloc] init];
+    [logInViewController setDelegate:self]; // Set ourselves as the delegate
+    
+    
+    
     CustomPFSignUpViewController *signUpViewController = [[CustomPFSignUpViewController alloc] init];
-    [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+    
+    logInViewController.signUpController = [[CustomPFSignUpViewController alloc] init];
     
     signUpViewController.fields =  PFSignUpFieldsDefault  ;
     
+    
+    
+    //    logInViewController.facebookPermissions = @[@"friends_about_me"];
+    //    logInViewController.fields = PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook  ;
+    
+    //    logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsSignUpButton ;
+    
+    logInViewController.fields = PFLogInFieldsFacebook | PFLogInFieldsSignUpButton |PFLogInFieldsDismissButton  ;
+    logInViewController.facebookPermissions = @[ @"public_profile", @"email" ];
+    
+    
+    
     // Present the log in view controller
-    [self presentViewController:signUpViewController animated:YES completion:NULL];
+    [self presentViewController:logInViewController animated:YES completion:NULL];
 
 
     
