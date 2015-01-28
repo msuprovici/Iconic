@@ -1596,7 +1596,7 @@
     //     PFObject * user = [PFUser currentUser];
     
     
-    
+    //query team class
     PFQuery *teamPlayersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
     [teamPlayersClass includeKey:@"playerpointer"];
     [teamPlayersClass includeKey:@"team"];
@@ -1605,6 +1605,28 @@
  
     
     [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (!error) {
+            
+            //             NSLog(@"# of teams i'm on: %lu", (unsigned long)objects.count);
+            
+            for (int i = 0; i < objects.count; i++) {
+                PFObject *myTeams = [objects objectAtIndex:i];
+                NSNumber *roundNumber = [myTeams objectForKey:@"round"];
+                //                NSLog(@"roundNumber: %@", roundNumber);
+                
+                [self.arrayOfRounds addObject:roundNumber];
+                //                NSLog(@"arrayOfRounds: %@", self.arrayOfRounds);
+                
+                
+            }
+            
+            
+        }
+        
+    }];
     
     
     
@@ -1619,121 +1641,108 @@
     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups, queryAwayTeamMatchups]];
     
     
-    [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
+//    [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
     
     
     [queryTeamMatchupsClass includeKey:kHomeTeam];
     [queryTeamMatchupsClass includeKey:kAwayTeam];
     
-    
-    //find the teams I'm on from memeory
-    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-    NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
-
-    
     [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
         if (!error) {
             
-//            NSLog(@"pfobjects: %@",  objects);
+            //            NSLog(@"#of team matchups: %lu", (unsigned long)objects.count);
             
-            for (int i = 0; i < objects.count; i++)
-            {
-//                 NSLog(@"pfobjects: %@",  object);
-//                for (int i = 0; i < myTeamsNames.count; i++) {
+            for (int i = 0; i < objects.count; i++) {
+                PFObject *myTeams = [objects objectAtIndex:i];
+                NSNumber *roundNumber = [myTeams objectForKey:@"currentRound"];
                 
-                    PFObject * homeTeamObject = [objects[i] objectForKey:kHomeTeam];
-                    PFObject * awayTeamObject = [objects[i] objectForKey:kAwayTeam];
+                //when the for loop has ended populate nsuserdefualts
+                if (i == objects.count - 1)
+                {
+                    //                    NSLog(@"populate defaults");
+                    [self populateNotificationText];
+                    [self scheduleWeekleyFinalScoresLocalNotification: self.notificationBody];
                     
-                    NSString * homeTeamNameString = [homeTeamObject objectForKey:kTeams];
-                    NSString * awayTeamNameString = [awayTeamObject objectForKey:kTeams];
+                }
                 
-//                NSLog(@"homeTeamNameString: %@",  homeTeamNameString);
-//                NSLog(@"homeTeamNameString: %@",  awayTeamNameString);
+                //add teams where the round # is =
+                if (self.arrayOfRounds[i] == roundNumber) {
+                    [self.arrayOfTeamMatchupsObjects addObject:myTeams];
+                }
                 
-                    NSString * homeTeamScoreString = [homeTeamObject objectForKey:kFinalScore];
-                    NSString * awayTeamScoreString = [awayTeamObject objectForKey:kFinalScore];
-                    
-                    int  homeTeamScoreInt = (int)[homeTeamObject objectForKey:kFinalScore];
-                    int  awayTeamScoreInt = (int)[awayTeamObject objectForKey:kFinalScore];
-                    
-                    
-                    
-                                        
-                
-                //use object properties in kTeamsTeam class
-                self.myTeamNameString = homeTeamNameString;
-                self.myTeamScoreString = homeTeamScoreString;
-                self.myTeamScoreInt = homeTeamScoreInt;
-                
-                self.vsTeamNameString = awayTeamNameString;
-                self.vsTeamScoreString = awayTeamScoreString;
-                self.vsTeamScoreInt = awayTeamScoreInt;
-
-                
-                
-//                 NSLog(@"self.myTeamNameString: %@",  self.myTeamNameString);
-//                NSLog(@"self.myTeamScoreString: %@",  self.myTeamScoreString);
-//                NSLog(@"self.vsTeamNameString: %@",  self.vsTeamNameString);
-//                NSLog(@"self.vsTeamScoreString: %@",  self.vsTeamScoreString);
-                
-                
-                NSString *finalScoreSummaryString= [NSString stringWithFormat:@"%@ %@ - %@ %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
-
-
-////                NSLog(@"finalScoreSummaryString: %@",  finalScoreSummaryString);
-//                if (self.myTeamScoreInt > self.vsTeamScoreInt) {
-//                    
-//                    finalScoreSummaryString = [NSString stringWithFormat:@"Win: %@: %@ %@: %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
-//                }
-//                
-//                else if(self.myTeamScoreInt < self.vsTeamScoreInt)
-//                
-//                {
-//                    
-//                    finalScoreSummaryString = [NSString stringWithFormat:@"Loss: %@: %@ %@: %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
-//                
-//                }
-//                
-//                //!*bug here - shows win as tie*!
-//                else if(self.myTeamScoreInt == self.vsTeamScoreInt)
-//                
-//                {
-//                
-//                    finalScoreSummaryString = [NSString stringWithFormat:@"Tie: %@: %@ %@: %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
-//                
-//                }
-////                 NSLog(@"finalScoreSummaryString: %@",  finalScoreSummaryString);
-//                
-                
-                //add the string finalScoresStringsArray
-                [self.finalScoresStringsArray addObject:finalScoreSummaryString];
-//                 NSLog(@"self.finalScoresStringsArray: %@",  self.finalScoresStringsArray);
-                
-                
-                //create local notification text from finalScoresStringsArray
-                NSString * finalScoresNotificationText = [[self.finalScoresStringsArray valueForKey:@"description"] componentsJoinedByString:@"; "];
-//                NSLog(@"finalScoresNotificationText: %@",  finalScoresNotificationText);
-                NSString * notificationBeginningText = @"Final:";
-                
-                NSString *notificationBody = [NSString stringWithFormat:@"%@ %@", notificationBeginningText, finalScoresNotificationText];
-//                NSLog(@"notificationBody: %@",  notificationBody);
-//                [self scheduleWeekleyFinalScoresLocalNotification: notificationBody];
-                self.notificationBody = notificationBody;
-
             }
-            [self scheduleWeekleyFinalScoresLocalNotification: self.notificationBody];
-            
-        }
-        else
-        {
-            NSLog(@"createFinalTeamScoresNotificationBody pfquerry failed");
-
         }
     }];
     
-    
- 
 }
+
+    
+ -(void)populateNotificationText
+{
+    for (int i = 0; i < self.arrayOfTeamMatchupsObjects.count; i++)
+    {
+        //                 NSLog(@"pfobjects: %@",  object);
+        //                for (int i = 0; i < myTeamsNames.count; i++) {
+        
+        PFObject * homeTeamObject = [self.arrayOfTeamMatchupsObjects[i] objectForKey:kHomeTeam];
+        PFObject * awayTeamObject = [self.arrayOfTeamMatchupsObjects[i] objectForKey:kAwayTeam];
+        
+        NSString * homeTeamNameString = [homeTeamObject objectForKey:kTeams];
+        NSString * awayTeamNameString = [awayTeamObject objectForKey:kTeams];
+        
+        //                NSLog(@"homeTeamNameString: %@",  homeTeamNameString);
+        //                NSLog(@"homeTeamNameString: %@",  awayTeamNameString);
+        
+        NSString * homeTeamScoreString = [homeTeamObject objectForKey:kFinalScore];
+        NSString * awayTeamScoreString = [awayTeamObject objectForKey:kFinalScore];
+        
+        int  homeTeamScoreInt = (int)[homeTeamObject objectForKey:kFinalScore];
+        int  awayTeamScoreInt = (int)[awayTeamObject objectForKey:kFinalScore];
+        
+        
+        
+        
+        
+        //use object properties in kTeamsTeam class
+        self.myTeamNameString = homeTeamNameString;
+        self.myTeamScoreString = homeTeamScoreString;
+        self.myTeamScoreInt = homeTeamScoreInt;
+        
+        self.vsTeamNameString = awayTeamNameString;
+        self.vsTeamScoreString = awayTeamScoreString;
+        self.vsTeamScoreInt = awayTeamScoreInt;
+        
+        
+        
+        //                 NSLog(@"self.myTeamNameString: %@",  self.myTeamNameString);
+        //                NSLog(@"self.myTeamScoreString: %@",  self.myTeamScoreString);
+        //                NSLog(@"self.vsTeamNameString: %@",  self.vsTeamNameString);
+        //                NSLog(@"self.vsTeamScoreString: %@",  self.vsTeamScoreString);
+        
+        
+        NSString *finalScoreSummaryString= [NSString stringWithFormat:@"%@ %@ - %@ %@",self.myTeamNameString,self.myTeamScoreString,self.vsTeamNameString,self.vsTeamScoreString];
+        
+        
+        
+        //add the string finalScoresStringsArray
+        [self.finalScoresStringsArray addObject:finalScoreSummaryString];
+        //                 NSLog(@"self.finalScoresStringsArray: %@",  self.finalScoresStringsArray);
+        
+        
+        //create local notification text from finalScoresStringsArray
+        NSString * finalScoresNotificationText = [[self.finalScoresStringsArray valueForKey:@"description"] componentsJoinedByString:@"; "];
+        //                NSLog(@"finalScoresNotificationText: %@",  finalScoresNotificationText);
+        NSString * notificationBeginningText = @"Final:";
+        
+        NSString *notificationBody = [NSString stringWithFormat:@"%@ %@", notificationBeginningText, finalScoresNotificationText];
+        //                NSLog(@"notificationBody: %@",  notificationBody);
+        //                [self scheduleWeekleyFinalScoresLocalNotification: notificationBody];
+        self.notificationBody = notificationBody;
+        
+    }
+}
+
 
 -(NSString*)scheduleWeekleyFinalScoresLocalNotification:(NSString*)notificationBody
 {
@@ -1744,7 +1753,7 @@
     //then re-create & schedule the notifcation
     NSDate *now = [NSDate date];
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:now];
+    NSDateComponents *components = [cal components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond) fromDate:now];
     
     
     
