@@ -52,6 +52,8 @@
     
     self.leagueArray = [[NSMutableArray alloc] init];
 
+     self.arrayOfRounds = [[NSMutableArray alloc] init];
+     self.arrayOfTeamMatchupsObjects = [[NSMutableArray alloc] init];
 
     
     //Query Team Class
@@ -162,13 +164,223 @@
     
 }
 
+//approach that parse support said sql would not do
+
+//-(void)addTeamsToDefaults
+//{
+//    
+//    NSUserDefaults *myRetrievedTeams = [NSUserDefaults standardUserDefaults];
+//    
+//    PFQuery *query = [PFQuery queryWithClassName:@"TeamName"];
+//    
+//    
+//    
+//    PFQuery *teamPlayersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
+//    [teamPlayersClass includeKey:@"playerpointer"];
+//    [teamPlayersClass includeKey:@"team"];
+//    
+//    [teamPlayersClass whereKey:@"playerpointer" equalTo:[PFUser currentUser]];
+//    
+//    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
+//    
+//    
+//    
+//    //Query Team Classes, find the team matchups and save the team scores to memory
+//    PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+//    [queryHomeTeamMatchups whereKey:@"hometeam" matchesQuery:query];
+//   
+//    
+//    
+//    
+//    PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
+//    [queryAwayTeamMatchups whereKey:kAwayTeam matchesQuery:query];
+//   
+//    
+//    PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups, queryAwayTeamMatchups]];
+//    
+//    
+//    [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
+//    
+//    
+//    [queryTeamMatchupsClass includeKey:kHomeTeam];
+//    [queryTeamMatchupsClass includeKey:kAwayTeam];
+//
+//    
+//
+//    [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//    
+//        if(!error)
+//        {
+//            /*set parse data to NSUserdefaults*/
+//        
+//            
+//        for (int i = 0; i < objects.count; i++) {
+//            
+//            
+//        PFObject *myMatchupObject = [objects objectAtIndex:i];
+//            
+//        //add all objects to a array so that we can send the correct one to the next view controller
+//        [self.myMatchups addObject:myMatchupObject];
+//        
+//        
+//        //acces away & home team pointers in parse
+//        PFObject* awayTeamPointer = [myMatchupObject objectForKey:kAwayTeam];
+//        PFObject* homeTeamPointer = [myMatchupObject objectForKey:kHomeTeam];
+//        
+//        //add pointers to an array & save to NSUserDefaults
+//        [self.awayTeamPointers addObject:awayTeamPointer];
+//        [self.homeTeamPointers addObject:homeTeamPointer];
+//        
+//        
+//        //Home Team Scores
+//        
+//        NSString * homeTeamName = [homeTeamPointer objectForKey:kTeams];
+//        NSNumber * homeTeamTotalScore = [homeTeamPointer objectForKey:kScore];
+//            
+//        NSString * homeTeamRecord = [NSString stringWithFormat:@"%@ - %@",[homeTeamPointer objectForKey:@"wins"],[homeTeamPointer objectForKey:@"losses"]];
+//        NSString * awayTeamRecord = [NSString stringWithFormat:@"%@ - %@",[awayTeamPointer objectForKey:@"wins"],[awayTeamPointer objectForKey:@"losses"]];
+//            
+//        int numberOfTeamsInLeague = [[homeTeamPointer objectForKey:@"numberOfTeamsInLeague"]intValue];
+//            
+//        //only show records for leagues with more then two teams
+//        if(numberOfTeamsInLeague > 2)
+//        {
+//            self.homeTeamRecord = homeTeamRecord;
+//            self.awayTeamRecord = awayTeamRecord;
+//        }
+//        else
+//        {
+//            self.homeTeamRecord = @"";
+//            self.awayTeamRecord = @"";
+//
+//        }
+//        
+//        //add objects to array of teamScores(array) objects so that we don't have to download again
+//        [self.arrayOfhomeTeamScores addObject:homeTeamTotalScore];
+//        
+//        //add objects to array of teamScores(array) objects so that we don't have to download again
+//        [self.arrayOfhomeTeamNames addObject:homeTeamName];
+//        
+//        //add home team records to array
+//        [self.arrayOfhomeTeamRecords addObject:self.homeTeamRecord];
+//        
+//        //aray of arays of daily scores
+//        NSMutableArray * arrayOfWeekleyHomeScores = [homeTeamPointer objectForKey: kScoreWeek];
+//        //                            NSLog(@"initial arrayOfWeekleyScores in calculate points: %@", arrayOfWeekleyHomeScores);
+//        
+//        
+//        
+//        //add all the home team scores for TODAY to an array
+//        NSNumber * todaysTotalScore = [homeTeamPointer objectForKey:kScoreToday];
+//        //                            NSLog(@"todaysTotalScore in calculate points: %@", todaysTotalScore);
+//        [self.arrayOfTodayHomeTeamScores addObject:todaysTotalScore];
+//        
+//        
+//        
+//        
+//        //array of arrays: add the arrays of weekeley home scores to an array
+//        [self.arrayOfWeekleyHomeTeamScores addObject:arrayOfWeekleyHomeScores];
+//        //                                NSLog(@"arrayOfTodayHomeTeamScores CP %@", self.arrayOfTodayHomeTeamScores);
+//        
+//        
+//        //create and array of leagues
+//        NSString * homeTeamLeague = [homeTeamPointer objectForKey:kLeagues];
+//        
+//        [self.leagueArray addObject:homeTeamLeague];
+//        
+//        //save to NSUserdefaults
+//        [myRetrievedTeams setObject:self.arrayOfTodayHomeTeamScores  forKey:kArrayOfTodayHomeTeamScores];
+//        [myRetrievedTeams setObject:self.arrayOfhomeTeamScores  forKey:kArrayOfHomeTeamScores];
+//        [myRetrievedTeams setObject:self.arrayOfhomeTeamRecords  forKey:@"homeTeamRecords"];
+//        [myRetrievedTeams setObject:self.arrayOfhomeTeamNames  forKey:kArrayOfHomeTeamNames];
+//        [myRetrievedTeams setObject:self.arrayOfWeekleyHomeTeamScores  forKey:kArrayOfWeekleyHomeTeamScores];
+//        
+//        [myRetrievedTeams setObject:self.leagueArray  forKey:kArrayOfLeagueNames];
+//        
+//        //                            NSLog(@"array of weekley arrays in calculate points: %@", self.arrayOfWeekleyHomeTeamScores);
+//        [myRetrievedTeams synchronize];
+//        
+//        
+//        //Away Team Scores
+//        //get awayTeamScores(array)
+//        
+//        NSString * awayTeamName = [awayTeamPointer objectForKey:kTeams];
+//        NSNumber * awayTeamTotalScore = [awayTeamPointer objectForKey:kScore];
+//        
+//        
+//        
+//        //add objects to array of teamScores(array) objects so that we don't have to download again
+//        [self.arrayOfawayTeamScores addObject:awayTeamTotalScore];
+//        
+//        
+//        //add objects to array of teamScores(array) objects so that we don't have to download again
+//        [self.arrayOfawayTeamNames addObject:awayTeamName];
+//            
+//        //add away team records to array
+//        [self.arrayOfawayTeamRecords addObject:self.awayTeamRecord];
+//    
+//        
+//        //array of everyday scores for the week
+//        NSMutableArray * arrayOfAwayWeekleyScores = [awayTeamPointer objectForKey: kScoreWeek];
+//        //                            NSLog(@"initial arrayOfAwayWeekleyScores in calculate points: %@", arrayOfAwayWeekleyScores);
+//        
+//        //add all the away team scores for TODAY to an array
+//        NSNumber * todaysTotalAwayScore = [awayTeamPointer objectForKey:kScoreToday];
+//        
+//        [self.arrayOfTodayAwayTeamScores addObject:todaysTotalAwayScore];
+//        //                             NSLog(@"arrayOfTodayAwayTeamScores CP %@", self.arrayOfTodayAwayTeamScores);
+//        
+//        
+//        //create an array of arrays of weekley teams scores
+//        [self.arrayOfWeekleyAwayTeamScores addObject:arrayOfAwayWeekleyScores];
+//        //                            NSLog(@"self.arrayOfWeekleyHomeTeamScores: %@", self.arrayOfWeekleyAwayTeamScores);
+//        
+//        
+//        
+//        
+//        //save to NSUserdefaults
+//        [myRetrievedTeams setObject:self.arrayOfTodayAwayTeamScores  forKey:kArrayOfTodayAwayTeamScores];
+//        [myRetrievedTeams setObject:self.arrayOfawayTeamScores  forKey:kArrayOfAwayTeamScores];
+//        [myRetrievedTeams setObject:self.arrayOfawayTeamRecords  forKey:@"awayTeamRecords"];
+//        [myRetrievedTeams setObject:self.arrayOfawayTeamNames  forKey:kArrayOfAwayTeamNames];
+//        [myRetrievedTeams setObject:self.arrayOfWeekleyAwayTeamScores  forKey:kArrayOfWeekleyAwayTeamScores];
+//        
+//        [myRetrievedTeams synchronize];
+//        
+//        //this methods shares today's step count with app
+//        NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
+//        
+//        [sharedDefaults setObject:self.arrayOfhomeTeamScores forKey:@"widgetArrayOfHomeTeamScores"];
+//        [sharedDefaults setObject:self.arrayOfawayTeamScores forKey:@"widgetArrayOfAwayTeamScores"];
+//        [sharedDefaults setObject:self.arrayOfhomeTeamRecords  forKey:@"widgetArrayOfHomeTeamRecords"];
+//        [sharedDefaults setObject:self.arrayOfawayTeamRecords  forKey:@"widgetArrayOfAwayTeamRecords"];
+//        [sharedDefaults setObject:self.arrayOfhomeTeamNames forKey:@"widgetArrayOfHomeTeamNames"];
+//        [sharedDefaults setObject:self.arrayOfawayTeamNames forKey:@"widgetArrayOfAwayTeamNames"];
+//        [sharedDefaults setObject:self.leagueArray forKey:@"widgetArrayOfLeagueNames"];
+//        
+////        NSLog(@"awayTeamNamesArray: %@", self.arrayOfawayTeamNames);
+////        NSLog(@"homeTeamNamessArray: %@", self.arrayOfhomeTeamNames);
+//      
+//        
+//        [sharedDefaults synchronize];
+//        }
+//        }
+//        else
+//        {
+//            NSLog(@"querry error: %@", error);
+//        }
+//        
+//    }];
+//    
+//    
+//}
 
 
 -(void)addTeamsToDefaults
 {
     
-    NSUserDefaults *myRetrievedTeams = [NSUserDefaults standardUserDefaults];
-    
+
+    //team query
     PFQuery *query = [PFQuery queryWithClassName:@"TeamName"];
     
     
@@ -181,42 +393,83 @@
     
     [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
     
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        if (!error) {
+            
+//             NSLog(@"# of teams i'm on: %lu", (unsigned long)objects.count);
+       
+            for (int i = 0; i < objects.count; i++) {
+                PFObject *myTeams = [objects objectAtIndex:i];
+                NSNumber *roundNumber = [myTeams objectForKey:@"round"];
+//                NSLog(@"roundNumber: %@", roundNumber);
+                
+                [self.arrayOfRounds addObject:roundNumber];
+//                NSLog(@"arrayOfRounds: %@", self.arrayOfRounds);
+               
+                
+            }
+            
+            
+         }
+        
+    }];
+    
     
     
     //Query Team Classes, find the team matchups and save the team scores to memory
     PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
     [queryHomeTeamMatchups whereKey:@"hometeam" matchesQuery:query];
-   
-    
-    
     
     PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
     [queryAwayTeamMatchups whereKey:kAwayTeam matchesQuery:query];
-   
     
     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups, queryAwayTeamMatchups]];
     
-    
-    [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
-    
-    
     [queryTeamMatchupsClass includeKey:kHomeTeam];
     [queryTeamMatchupsClass includeKey:kAwayTeam];
-
     
-
     [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    
-        if(!error)
-        {
-            /*set parse data to NSUserdefaults*/
         
+        if (!error) {
             
-        for (int i = 0; i < objects.count; i++) {
+//            NSLog(@"#of team matchups: %lu", (unsigned long)objects.count);
             
-            
-        PFObject *myMatchupObject = [objects objectAtIndex:i];
-            
+            for (int i = 0; i < objects.count; i++) {
+                PFObject *myTeams = [objects objectAtIndex:i];
+                NSNumber *roundNumber = [myTeams objectForKey:@"currentRound"];
+                
+                //when the for loop has ended populate nsuserdefualts
+                if (i == objects.count - 1)
+                {
+//                    NSLog(@"populate defaults");
+                    [self populateDefualts];
+                }
+
+                //add teams where the round # is =
+                if (self.arrayOfRounds[i] == roundNumber) {
+                    [self.arrayOfTeamMatchupsObjects addObject:myTeams];
+                }
+                
+         
+            }
+        }
+    }];
+    
+    
+   
+    
+}
+
+-(void)populateDefualts
+{
+    NSUserDefaults *myRetrievedTeams = [NSUserDefaults standardUserDefaults];
+    
+    for (int i = 0; i < self.arrayOfTeamMatchupsObjects.count; i++) {
+        
+        
+        PFObject *myMatchupObject = [self.arrayOfTeamMatchupsObjects objectAtIndex:i];
+        
         //add all objects to a array so that we can send the correct one to the next view controller
         [self.myMatchups addObject:myMatchupObject];
         
@@ -234,12 +487,12 @@
         
         NSString * homeTeamName = [homeTeamPointer objectForKey:kTeams];
         NSNumber * homeTeamTotalScore = [homeTeamPointer objectForKey:kScore];
-            
+        
         NSString * homeTeamRecord = [NSString stringWithFormat:@"%@ - %@",[homeTeamPointer objectForKey:@"wins"],[homeTeamPointer objectForKey:@"losses"]];
         NSString * awayTeamRecord = [NSString stringWithFormat:@"%@ - %@",[awayTeamPointer objectForKey:@"wins"],[awayTeamPointer objectForKey:@"losses"]];
-            
+        
         int numberOfTeamsInLeague = [[homeTeamPointer objectForKey:@"numberOfTeamsInLeague"]intValue];
-            
+        
         //only show records for leagues with more then two teams
         if(numberOfTeamsInLeague > 2)
         {
@@ -250,7 +503,7 @@
         {
             self.homeTeamRecord = @"";
             self.awayTeamRecord = @"";
-
+            
         }
         
         //add objects to array of teamScores(array) objects so that we don't have to download again
@@ -313,10 +566,10 @@
         
         //add objects to array of teamScores(array) objects so that we don't have to download again
         [self.arrayOfawayTeamNames addObject:awayTeamName];
-            
+        
         //add away team records to array
         [self.arrayOfawayTeamRecords addObject:self.awayTeamRecord];
-    
+        
         
         //array of everyday scores for the week
         NSMutableArray * arrayOfAwayWeekleyScores = [awayTeamPointer objectForKey: kScoreWeek];
@@ -358,19 +611,11 @@
         
 //        NSLog(@"awayTeamNamesArray: %@", self.arrayOfawayTeamNames);
 //        NSLog(@"homeTeamNamessArray: %@", self.arrayOfhomeTeamNames);
-      
+        
         
         [sharedDefaults synchronize];
-        }
-        }
-        else
-        {
-            NSLog(@"querry error: %@", error);
-        }
-        
-    }];
-    
-    
+    }
+
 }
 
 
@@ -403,7 +648,7 @@
     
     
 //    SimpleHomeViewController * simpleViewController = [[SimpleHomeViewController alloc]init];
-//    
+//
 //    if (simpleViewController.joinedTeamButtonPressed  == YES) {
 //        NSLog(@"Player joined 1st team");
 //    }
