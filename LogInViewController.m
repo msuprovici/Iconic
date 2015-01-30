@@ -225,7 +225,11 @@
 //        NSLog(@"linkedWithFacebook");
         [calculatePointsClass loadFacebookUserData];
     }
-
+    
+    //eliminate null values for 1st time users
+    [[PFUser currentUser] setObject:@0 forKey: @"steak"];
+    [[PFUser currentUser] setObject:@0 forKey: @"streakLong"];
+    [[PFUser currentUser] saveInBackground];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
