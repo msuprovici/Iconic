@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C01003C197449FB00024BDC /* FinalScoresTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C01003B197449FB00024BDC /* FinalScoresTableViewController.m */; };
-		5C01003F1974765A00024BDC /* FinalScoresTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C01003E1974765A00024BDC /* FinalScoresTableViewCell.m */; };
 		5C0304891A41011700E86578 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0304871A41011700E86578 /* comment.png */; };
 		5C03048A1A41011700E86578 /* highFive.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C0304881A41011700E86578 /* highFive.png */; };
 		5C03048C1A41047B00E86578 /* hi-five-icon_edit2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C03048B1A41047B00E86578 /* hi-five-icon_edit2.png */; };
@@ -235,10 +233,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5C01003A197449FB00024BDC /* FinalScoresTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalScoresTableViewController.h; sourceTree = "<group>"; };
-		5C01003B197449FB00024BDC /* FinalScoresTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalScoresTableViewController.m; sourceTree = "<group>"; };
-		5C01003D1974765A00024BDC /* FinalScoresTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalScoresTableViewCell.h; sourceTree = "<group>"; };
-		5C01003E1974765A00024BDC /* FinalScoresTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalScoresTableViewCell.m; sourceTree = "<group>"; };
 		5C0304871A41011700E86578 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
 		5C0304881A41011700E86578 /* highFive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highFive.png; sourceTree = "<group>"; };
 		5C03048B1A41047B00E86578 /* hi-five-icon_edit2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hi-five-icon_edit2.png"; sourceTree = "<group>"; };
@@ -705,14 +699,10 @@
 				5C2EA54818516B0E00B21C52 /* content_mystats.plist */,
 				5C356DA71959FF7E00ECF5C9 /* MyTeamsViewController.h */,
 				5C356DA81959FF7E00ECF5C9 /* MyTeamsViewController.m */,
-				5C01003A197449FB00024BDC /* FinalScoresTableViewController.h */,
-				5C01003B197449FB00024BDC /* FinalScoresTableViewController.m */,
 				5C7207711A79635000D6F5F3 /* MyFinalScoresTableViewController.h */,
 				5C7207721A79635000D6F5F3 /* MyFinalScoresTableViewController.m */,
 				5C7882C21A7C0B8500843E2F /* MyFinalScoresCell.h */,
 				5C7882C31A7C0B8500843E2F /* MyFinalScoresCell.m */,
-				5C01003D1974765A00024BDC /* FinalScoresTableViewCell.h */,
-				5C01003E1974765A00024BDC /* FinalScoresTableViewCell.m */,
 				5CA7593C1A49ECAE0016ED8E /* AchievmentsViewController.h */,
 				5CA7593D1A49ECAE0016ED8E /* AchievmentsViewController.m */,
 			);
@@ -1515,7 +1505,6 @@
 				5CD93829187B5047006CE08B /* MZTransition.m in Sources */,
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
 				5C62BF9A19382F3300B67FEB /* LogInPageContentViewController.m in Sources */,
-				5C01003F1974765A00024BDC /* FinalScoresTableViewCell.m in Sources */,
 				5C4EF982186CA7BD000E0E59 /* Constants.m in Sources */,
 				5C539A0C18679A37006676FA /* FollowingViewController.m in Sources */,
 				5C2C1CCF185E98A3006722D2 /* MenuViewController.m in Sources */,
@@ -1598,7 +1587,6 @@
 				5CB75DFD1889F65C0047BC47 /* ProfileImageView.m in Sources */,
 				5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */,
 				5CA3D1971831DF51006C7932 /* main.m in Sources */,
-				5C01003C197449FB00024BDC /* FinalScoresTableViewController.m in Sources */,
 				5C7882C41A7C0B8500843E2F /* MyFinalScoresCell.m in Sources */,
 				5CA6BB4B19C8DDAD00E9946E /* ChatRoomTableViewController.m in Sources */,
 				5CB75DF71889A0630047BC47 /* PlayerCommentCell.m in Sources */,
