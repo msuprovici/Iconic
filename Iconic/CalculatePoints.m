@@ -54,6 +54,9 @@
 
      self.arrayOfRounds = [[NSMutableArray alloc] init];
      self.arrayOfTeamMatchupsObjects = [[NSMutableArray alloc] init];
+    
+    self.arrayOfFinalhomeTeamScores = [[NSMutableArray alloc] init];
+    self.arrayOfFinalawayTeamScores = [[NSMutableArray alloc] init];
 
     
     //Query Team Class
@@ -487,6 +490,7 @@
         
         NSString * homeTeamName = [homeTeamPointer objectForKey:kTeams];
         NSNumber * homeTeamTotalScore = [homeTeamPointer objectForKey:kScore];
+        NSNumber * homeTeamFinalScore = [homeTeamPointer objectForKey:@"finalScore"];
         
         NSString * homeTeamRecord = [NSString stringWithFormat:@"%@ - %@",[homeTeamPointer objectForKey:@"wins"],[homeTeamPointer objectForKey:@"losses"]];
         NSString * awayTeamRecord = [NSString stringWithFormat:@"%@ - %@",[awayTeamPointer objectForKey:@"wins"],[awayTeamPointer objectForKey:@"losses"]];
@@ -514,6 +518,10 @@
         
         //add home team records to array
         [self.arrayOfhomeTeamRecords addObject:self.homeTeamRecord];
+        
+        //add final home team scores to array
+        [self.arrayOfFinalhomeTeamScores addObject:homeTeamFinalScore];
+        
         
         //aray of arays of daily scores
         NSMutableArray * arrayOfWeekleyHomeScores = [homeTeamPointer objectForKey: kScoreWeek];
@@ -545,6 +553,7 @@
         [myRetrievedTeams setObject:self.arrayOfhomeTeamRecords  forKey:@"homeTeamRecords"];
         [myRetrievedTeams setObject:self.arrayOfhomeTeamNames  forKey:kArrayOfHomeTeamNames];
         [myRetrievedTeams setObject:self.arrayOfWeekleyHomeTeamScores  forKey:kArrayOfWeekleyHomeTeamScores];
+        [myRetrievedTeams setObject:self.arrayOfFinalhomeTeamScores forKey:@"FinalHomeTeamScores"];
         
         [myRetrievedTeams setObject:self.leagueArray  forKey:kArrayOfLeagueNames];
         
@@ -557,6 +566,7 @@
         
         NSString * awayTeamName = [awayTeamPointer objectForKey:kTeams];
         NSNumber * awayTeamTotalScore = [awayTeamPointer objectForKey:kScore];
+        NSNumber * awayTeamFinalScore = [awayTeamPointer objectForKey:@"finalScore"];
         
         
         
@@ -569,6 +579,9 @@
         
         //add away team records to array
         [self.arrayOfawayTeamRecords addObject:self.awayTeamRecord];
+        
+        //add final home team scores to array
+        [self.arrayOfFinalawayTeamScores addObject:awayTeamFinalScore];
         
         
         //array of everyday scores for the week
@@ -595,6 +608,7 @@
         [myRetrievedTeams setObject:self.arrayOfawayTeamRecords  forKey:@"awayTeamRecords"];
         [myRetrievedTeams setObject:self.arrayOfawayTeamNames  forKey:kArrayOfAwayTeamNames];
         [myRetrievedTeams setObject:self.arrayOfWeekleyAwayTeamScores  forKey:kArrayOfWeekleyAwayTeamScores];
+        [myRetrievedTeams setObject:self.arrayOfFinalawayTeamScores forKey:@"FinalAwayTeamScores"];
         
         [myRetrievedTeams synchronize];
         

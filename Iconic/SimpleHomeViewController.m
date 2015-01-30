@@ -13,7 +13,7 @@
 #import "MyTeamsViewController.h"
 #import "CalculatePoints.h"
 #import <Foundation/Foundation.h>
-#import "FinalScoresTableViewController.h"
+#import "MyFinalScoresTableViewController.h"
 
 #import "Cache.h"
 #import "Constants.h"
@@ -129,7 +129,7 @@ static NSString *kImageKey = @"imageKey";
 //    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
-//    [self performSegueWithIdentifier:@"FinalScores" sender:self];
+//    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
     
     [self refreshHomeView];
 //    [self performSelector:@selector(refreshHomeView) withObject:self afterDelay:2.0 ];
@@ -317,10 +317,9 @@ static NSString *kImageKey = @"imageKey";
     
 //    [self.myTeamsPageController didMoveToParentViewController:self];
     
-      /*comment this line out to test Final Scores view controller*/
-   //[self performSegueWithIdentifier:@"FinalScores" sender:self];
     
-    //show FinalScoresTableViewController if this is the 1st time a user opens the app this week
+    
+    //show MyFinalScoresTableViewController if this is the 1st time a user opens the app this week
     [self appLoadedFirstTimeThisWeek];
     
     //we're updating the app data from the server 3 times so that the scores are always up to date.
@@ -352,8 +351,7 @@ static NSString *kImageKey = @"imageKey";
 //    });
 //    });
    
-    //use the line bellow to test FinalScoresTableViewController
-//    [self performSegueWithIdentifier:@"FinalScores" sender:self];
+
 
     
   
@@ -898,7 +896,7 @@ static NSString *kImageKey = @"imageKey";
     if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == NO)
     {
         // Show Final Scores
-        [self performSegueWithIdentifier:@"FinalScores" sender:self];
+        [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
         
         [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
         
@@ -910,13 +908,13 @@ static NSString *kImageKey = @"imageKey";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    //show final scores
-    if ([[segue identifier] isEqualToString:@"FinalScores"])
-    {
-        FinalScoresTableViewController *nextVC = [segue destinationViewController];
-        //pass any data to next view here
-        
-    }
+//    //show final scores
+//    if ([[segue identifier] isEqualToString:@"MyFinalScores"])
+//    {
+//        MyFinalScoresTableViewController *nextVC = [segue destinationViewController];
+//        //pass any data to next view here
+//        
+//    }
 }
 
 - (IBAction)unwindToDashboard:(UIStoryboardSegue *)unwindSegue

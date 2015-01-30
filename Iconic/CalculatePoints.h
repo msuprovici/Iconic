@@ -28,6 +28,8 @@
 @property (strong, nonatomic) NSMutableArray * arrayOfWeekleyAwayTeamScores;//array of arrays
 @property (strong, nonatomic) NSMutableArray * arrayOfawayTeamScores;
 @property (strong, nonatomic) NSMutableArray * arrayOfhomeTeamNames;
+@property (strong, nonatomic) NSMutableArray * arrayOfFinalhomeTeamScores;
+@property (strong, nonatomic) NSMutableArray * arrayOfFinalawayTeamScores;
 @property (strong, nonatomic) NSMutableArray * arrayOfhomeTeamRecords;
 @property (strong, nonatomic) NSMutableArray * arrayOfawayTeamNames;
 @property (strong, nonatomic) NSMutableArray * arrayOfawayTeamRecords;

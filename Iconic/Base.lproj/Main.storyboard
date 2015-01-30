@@ -267,6 +267,7 @@
                         <outlet property="scrollView" destination="83S-Gt-Rep" id="f3n-ah-bHJ"/>
                         <segue destination="b8b-GT-E5C" kind="push" identifier="FinalScores" id="K0s-lx-pLE"/>
                         <segue destination="WY6-bu-bE9" kind="modal" identifier="ShowAchievment" id="up7-de-fhc"/>
+                        <segue destination="1OA-rb-SZS" kind="push" identifier="MyFinalScores" id="rf4-8k-JPl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9v4-Lm-y8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -277,6 +278,84 @@
                 </customObject>
             </objects>
             <point key="canvasLocation" x="-2077" y="-3684"/>
+        </scene>
+        <!--My Final Scores Table View Controller-->
+        <scene sceneID="b54-sh-9Hv">
+            <objects>
+                <tableViewController id="1OA-rb-SZS" customClass="MyFinalScoresTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="E9z-ao-pLv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <label key="tableHeaderView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Scores" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dUW-sS-HHj">
+                            <rect key="frame" x="0.0" y="64" width="320" height="111"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="60"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyFinalScoresCell" rowHeight="80" id="381-hp-4gT" customClass="MyFinalScoresCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="381-hp-4gT" id="qc2-C5-Qn3">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2oI-7z-nBx">
+                                            <rect key="frame" x="3" y="24" width="150" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uks-Lo-TNo">
+                                            <rect key="frame" x="167" y="24" width="150" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s5R-VL-lAa">
+                                            <rect key="frame" x="3" y="51" width="150" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eCb-eN-lPR">
+                                            <rect key="frame" x="167" y="51" width="150" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I9y-Yl-tlH">
+                                            <rect key="frame" x="85" y="3" width="150" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="myLeague" destination="I9y-Yl-tlH" id="V8c-ny-ewe"/>
+                                    <outlet property="myTeamName" destination="2oI-7z-nBx" id="HGC-FG-g6h"/>
+                                    <outlet property="myTeamScore" destination="s5R-VL-lAa" id="DOa-85-3hH"/>
+                                    <outlet property="vsTeamName" destination="Uks-Lo-TNo" id="kdC-SY-Yae"/>
+                                    <outlet property="vsTeamScore" destination="eCb-eN-lPR" id="ojV-WB-Y62"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1OA-rb-SZS" id="fH9-Tw-hpD"/>
+                            <outlet property="delegate" destination="1OA-rb-SZS" id="II7-Nw-qwb"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="o3J-Ht-Znf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lEF-Rl-Fqp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1765" y="-2984"/>
         </scene>
         <!--My Teams View Controller-->
         <scene sceneID="Ahg-va-eIE">
@@ -2831,7 +2910,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Scores" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4f8-2j-cFu">
-                                    <rect key="frame" x="20" y="-14" width="280" height="142"/>
+                                    <rect key="frame" x="20" y="-4" width="280" height="142"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="60"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -2879,7 +2958,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="myTeamName" destination="FVt-lY-YOa" id="yXl-Ud-Tam"/>
                                     <outlet property="myTeamScore" destination="85H-dV-ozh" id="2Yx-zq-CDH"/>
                                     <outlet property="vsTeamName" destination="4VJ-Wc-jEq" id="Eqi-jI-GHW"/>
                                     <outlet property="vsTeamScore" destination="jz1-Nf-hKm" id="wND-vg-2Tu"/>
@@ -2887,8 +2965,8 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="b8b-GT-E5C" id="xVW-qH-D3S"/>
-                            <outlet property="delegate" destination="b8b-GT-E5C" id="VwK-WT-QTT"/>
+                            <outlet property="dataSource" destination="b8b-GT-E5C" id="VhN-Ko-z0l"/>
+                            <outlet property="delegate" destination="b8b-GT-E5C" id="NpQ-Md-vRG"/>
                         </connections>
                     </tableView>
                     <toolbarItems>

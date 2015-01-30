@@ -12,7 +12,10 @@
 
 @interface FinalScoresTableViewController ()
 
-
+@property (strong, nonatomic) NSMutableArray * arrayOfRounds;
+@property (strong, nonatomic) NSMutableArray * arrayOfTeamMatchupsObjects;
+@property (strong, nonatomic) PFObject *myTeamRoundNumber;
+@property (strong, nonatomic) PFObject *myLeagueRoundNumber;
 
 @end
 
@@ -114,7 +117,20 @@
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
     
+    
     // This method is called every time objects are loaded from Parse via the PFQuery
+    
+    
+    
+    for (PFObject *object in self.objects) {
+       
+       if(self.myTeamRoundNumber == self.myLeagueRoundNumber)
+       {
+           
+       }
+
+        
+    }
 }
 
 
@@ -131,6 +147,31 @@
 
      
      [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
+     
+     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+         
+         if (!error) {
+             
+             //             NSLog(@"# of teams i'm on: %lu", (unsigned long)objects.count);
+             
+             for (int i = 0; i < objects.count; i++) {
+                 PFObject *myTeams = [objects objectAtIndex:i];
+                 
+                 self.myTeamRoundNumber = [myTeams objectForKey:@"round"];
+//                 NSNumber *roundNumber = [myTeams objectForKey:@"round"];
+//                 //                NSLog(@"roundNumber: %@", roundNumber);
+//                 
+//                 [self.arrayOfRounds addObject:roundNumber];
+//                 //                NSLog(@"arrayOfRounds: %@", self.arrayOfRounds);
+                 
+                 
+             }
+             
+             
+         }
+         
+     }];
+
     
      
      
@@ -146,11 +187,39 @@
 
      PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups, queryAwayTeamMatchups]];
      
-     [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
+//     [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
 
      
      [queryTeamMatchupsClass includeKey:kHomeTeam];
      [queryTeamMatchupsClass includeKey:kAwayTeam];
+     
+     [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+         
+         if (!error) {
+             
+             //            NSLog(@"#of team matchups: %lu", (unsigned long)objects.count);
+             
+             for (int i = 0; i < objects.count; i++) {
+                 PFObject *myTeams = [objects objectAtIndex:i];
+                 NSNumber *roundNumber = [myTeams objectForKey:@"currentRound"];
+                 self.myLeagueRoundNumber = [myTeams objectForKey:@"currentRound"];
+//                 
+//                 //when the for loop has ended populate nsuserdefualts
+//                 if (i == objects.count - 1)
+//                 {
+//                     //                    NSLog(@"populate defaults");
+//                     
+//                 }
+//                 
+//                 //add teams where the round # is =
+//                 if (self.arrayOfRounds[i] == roundNumber) {
+//                     [self.arrayOfTeamMatchupsObjects addObject:myTeams];
+//                 }
+                 
+             }
+         }
+     }];
+
      
  // If Pull To Refresh is enabled, query against the network by default.
  if (self.pullToRefreshEnabled) {
@@ -165,7 +234,7 @@
  
  [query orderByDescending:@"createdAt"];
  
- return queryTeamMatchupsClass;
+ return query;
  }
 
 

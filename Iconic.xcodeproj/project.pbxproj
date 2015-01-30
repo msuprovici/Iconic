@@ -87,9 +87,11 @@
 		5C5CBDD71925484D00C2C328 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C5CBDD61925484D00C2C328 /* CoreData.framework */; };
 		5C62BF9A19382F3300B67FEB /* LogInPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C62BF9919382F3300B67FEB /* LogInPageContentViewController.m */; };
 		5C6A6EE018A47BE40044269F /* TeamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A6EDF18A47BE40044269F /* TeamCell.m */; };
+		5C7207731A79635000D6F5F3 /* MyFinalScoresTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7207721A79635000D6F5F3 /* MyFinalScoresTableViewController.m */; };
 		5C726C08196B1433007C4F4E /* AccountMyTeamCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C726C07196B1433007C4F4E /* AccountMyTeamCell.m */; };
 		5C726C0B196B2BDE007C4F4E /* PlayerProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C726C0A196B2BDE007C4F4E /* PlayerProfileViewController.m */; };
 		5C726C12196B2CD1007C4F4E /* PlayerTeamsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C726C11196B2CD1007C4F4E /* PlayerTeamsCell.m */; };
+		5C7882C41A7C0B8500843E2F /* MyFinalScoresCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7882C31A7C0B8500843E2F /* MyFinalScoresCell.m */; };
 		5C78C0FC19F6103300533E30 /* CreateTeamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C78C0FB19F6103300533E30 /* CreateTeamViewController.m */; };
 		5C78DA4D189872BF00CBA29B /* activity_comment_icon_blue-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA49189872BF00CBA29B /* activity_comment_icon_blue-01.png */; };
 		5C78DA4E189872BF00CBA29B /* activity_comment_icon_green-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C78DA4A189872BF00CBA29B /* activity_comment_icon_green-01.png */; };
@@ -356,12 +358,16 @@
 		5C62BF9919382F3300B67FEB /* LogInPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInPageContentViewController.m; sourceTree = "<group>"; };
 		5C6A6EDE18A47BE40044269F /* TeamCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamCell.h; sourceTree = "<group>"; };
 		5C6A6EDF18A47BE40044269F /* TeamCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCell.m; sourceTree = "<group>"; };
+		5C7207711A79635000D6F5F3 /* MyFinalScoresTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFinalScoresTableViewController.h; sourceTree = "<group>"; };
+		5C7207721A79635000D6F5F3 /* MyFinalScoresTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFinalScoresTableViewController.m; sourceTree = "<group>"; };
 		5C726C06196B1433007C4F4E /* AccountMyTeamCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountMyTeamCell.h; sourceTree = "<group>"; };
 		5C726C07196B1433007C4F4E /* AccountMyTeamCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountMyTeamCell.m; sourceTree = "<group>"; };
 		5C726C09196B2BDE007C4F4E /* PlayerProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerProfileViewController.h; sourceTree = "<group>"; };
 		5C726C0A196B2BDE007C4F4E /* PlayerProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerProfileViewController.m; sourceTree = "<group>"; };
 		5C726C10196B2CD1007C4F4E /* PlayerTeamsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTeamsCell.h; sourceTree = "<group>"; };
 		5C726C11196B2CD1007C4F4E /* PlayerTeamsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTeamsCell.m; sourceTree = "<group>"; };
+		5C7882C21A7C0B8500843E2F /* MyFinalScoresCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFinalScoresCell.h; sourceTree = "<group>"; };
+		5C7882C31A7C0B8500843E2F /* MyFinalScoresCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFinalScoresCell.m; sourceTree = "<group>"; };
 		5C78C0FA19F6103300533E30 /* CreateTeamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTeamViewController.h; sourceTree = "<group>"; };
 		5C78C0FB19F6103300533E30 /* CreateTeamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTeamViewController.m; sourceTree = "<group>"; };
 		5C78DA49189872BF00CBA29B /* activity_comment_icon_blue-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "activity_comment_icon_blue-01.png"; sourceTree = "<group>"; };
@@ -701,6 +707,10 @@
 				5C356DA81959FF7E00ECF5C9 /* MyTeamsViewController.m */,
 				5C01003A197449FB00024BDC /* FinalScoresTableViewController.h */,
 				5C01003B197449FB00024BDC /* FinalScoresTableViewController.m */,
+				5C7207711A79635000D6F5F3 /* MyFinalScoresTableViewController.h */,
+				5C7207721A79635000D6F5F3 /* MyFinalScoresTableViewController.m */,
+				5C7882C21A7C0B8500843E2F /* MyFinalScoresCell.h */,
+				5C7882C31A7C0B8500843E2F /* MyFinalScoresCell.m */,
 				5C01003D1974765A00024BDC /* FinalScoresTableViewCell.h */,
 				5C01003E1974765A00024BDC /* FinalScoresTableViewCell.m */,
 				5CA7593C1A49ECAE0016ED8E /* AchievmentsViewController.h */,
@@ -1542,6 +1552,7 @@
 				5C48B8BC1880F89F00A09A1C /* UIImage+AlphaAdditions.m in Sources */,
 				5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */,
 				5C47815E18C0EE5F002E6C3F /* VSTableViewController.m in Sources */,
+				5C7207731A79635000D6F5F3 /* MyFinalScoresTableViewController.m in Sources */,
 				5C8BB5CB1886256400E89ADF /* TTTTimeIntervalFormatter.m in Sources */,
 				5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */,
 				5C539A1318679F3A006676FA /* PlayerTeamsViewController.m in Sources */,
@@ -1588,6 +1599,7 @@
 				5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */,
 				5CA3D1971831DF51006C7932 /* main.m in Sources */,
 				5C01003C197449FB00024BDC /* FinalScoresTableViewController.m in Sources */,
+				5C7882C41A7C0B8500843E2F /* MyFinalScoresCell.m in Sources */,
 				5CA6BB4B19C8DDAD00E9946E /* ChatRoomTableViewController.m in Sources */,
 				5CB75DF71889A0630047BC47 /* PlayerCommentCell.m in Sources */,
 			);
