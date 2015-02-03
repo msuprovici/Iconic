@@ -1959,7 +1959,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="yQf-DP-4VV" kind="push" id="3gp-qS-hIQ"/>
+                                    <segue destination="yQf-DP-4VV" kind="push" id="ugF-jg-eBD"/>
                                 </connections>
                             </button>
                         </barButtonItem>

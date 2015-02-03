@@ -830,7 +830,7 @@
 }
 
 - (void)userFollowingChanged:(NSNotification *)note {
-    NSLog(@"User following changed.");
+    NSLog(@"User ing changed.");
     self.shouldReloadOnAppear = YES;
 }
 

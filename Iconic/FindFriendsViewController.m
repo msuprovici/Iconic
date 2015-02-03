@@ -164,7 +164,7 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
      
      // Query for all friends you have on facebook and who are using the app
      PFQuery *friendsQuery = [PFUser query];
-     [friendsQuery whereKey:kUserFacebookIDKey containedIn:facebookFriends];
+//     [friendsQuery whereKey:kUserFacebookIDKey containedIn:facebookFriends];
      
      // Query for all auto-follow accounts
      NSMutableArray *autoFollowAccountFacebookIds = [[NSMutableArray alloc] initWithArray:kAutoFollowAccountFacebookIds];
