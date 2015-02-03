@@ -307,6 +307,8 @@
                                 
                                 PFObject *activity = [PFObject objectWithClassName:@"Activity"];
                                 [activity setObject:[PFUser currentUser] forKey:@"user"];
+                                [activity setObject:team forKey:@"toTeam"];
+                                
                                 
                                 NSString * activityString = [NSString stringWithFormat:@"Created new team: %@",self.teamNameField.text];
                                 [activity setObject:activityString forKey:@"activityString"];

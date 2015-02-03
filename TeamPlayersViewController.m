@@ -562,6 +562,7 @@
         
         PFObject *activity = [PFObject objectWithClassName:@"Activity"];
         [activity setObject:[PFUser currentUser] forKey:@"user"];
+        [activity setObject:self.team forKey:@"toTeam"];
         
         NSString * activityString = [NSString stringWithFormat:@"Joined team: %@",[self.team objectForKey:kTeams]];
         [activity setObject:activityString forKey:@"activityString"];
@@ -728,6 +729,7 @@
         //Add to activity feed
         PFObject *activity = [PFObject objectWithClassName:@"Activity"];
         [activity setObject:[PFUser currentUser] forKey:@"user"];
+        [activity setObject:self.team forKey:@"toTeam"];
         
         NSString * activityString = [NSString stringWithFormat:@"Left team: %@",[self.team objectForKey:kTeams]];
         [activity setObject:activityString forKey:@"activityString"];

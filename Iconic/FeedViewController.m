@@ -10,6 +10,7 @@
 #import "ActivityHeaderCell.h"
 #import "CommentsViewController.h"
 #import "TeamPlayersViewController.h"
+#import "TeamsViewController.h"
 #import "PlayerProfileViewController.h"
 
 #import <Parse/Parse.h>
@@ -22,6 +23,9 @@
 @property (nonatomic, strong) NSMutableDictionary *outstandingActivityObjectQueries;
 @property (nonatomic, strong) TTTTimeIntervalFormatter *timeIntervalFormatter;
 @property (nonatomic, strong) PFQuery *query;
+@property (nonatomic, strong) PFUser *toUser;
+@property (nonatomic, strong) PFObject *teamSelected;
+@property (nonatomic, strong) PFObject *leagueSelected;
 
 @end
 
@@ -45,6 +49,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UtilityUserLikedUnlikedActivityCallbackFinishedNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:ActivityDetailsViewControllerUserCommentedOnActivityNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:ActivityDetailsViewControllerUserDeletedActivityNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"selectedUserName" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"selectedTeamName" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"selectedLeagueName" object:nil];
 }
 
 
@@ -112,6 +120,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLikeOrUnlikeActivity:) name:ActivityDetailsViewControllerUserLikedUnlikedActivityNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLikeOrUnlikeActivity:) name:UtilityUserLikedUnlikedActivityCallbackFinishedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidCommentOnActivity:) name:ActivityDetailsViewControllerUserCommentedOnActivityNotification object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tapedOnWordInFeedTextViewNotification:) name:@"selectedUserName" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tapedOnWordInFeedTextViewNotification:) name:@"selectedTeamName" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tapedOnWordInFeedTextViewNotification:) name:@"selectedLeagueName" object:nil];
+    
     
   
 }
@@ -276,6 +290,10 @@
      
      [self.query includeKey:kActivityUserKey];
      [self.query includeKey:@"team"];
+     [self.query includeKey:@"toUser"];
+     [self.query includeKey:@"toTeam"];
+     [self.query includeKey:@"league"];
+  
      [self.query orderByDescending:@"createdAt"];
      
      
@@ -343,6 +361,7 @@
 
      
      PFObject *activity = [self.objects objectAtIndex:indexPath.row];
+     
      [cell setActivity:activity];
      cell.tag = indexPath.row;
      [cell.likeButton setTag:indexPath.row];
@@ -653,14 +672,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    //Find the row the button was selected from
-    CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
     
-    PFObject *activity = [self.objects objectAtIndex:hitIndex.row];
     
     if ([segue.identifier isEqualToString:@"ActivityDetails"]) {
        
+        //Find the row the button was selected from
+        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+        
+        PFObject *activity = [self.objects objectAtIndex:hitIndex.row];
 //        //Find the row the button was selected from
 //        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
 //        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
@@ -673,6 +693,11 @@
     
     if ([segue.identifier isEqualToString:@"FeedPlayerSegue"]) {
         
+        //Find the row the button was selected from
+        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+        
+        PFObject *activity = [self.objects objectAtIndex:hitIndex.row];
         
         PFUser *user = [activity objectForKey:kActivityUserKey];
         
@@ -682,6 +707,11 @@
     
     if ([segue.identifier isEqualToString:@"FeedTeamSegue"]) {
         
+        //Find the row the button was selected from
+        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+        
+        PFObject *activity = [self.objects objectAtIndex:hitIndex.row];
         
         [activity fetchIfNeededInBackground];
         PFObject *team = [activity objectForKey:@"team"];
@@ -690,6 +720,30 @@
         [segue.destinationViewController initWithTeam:team];
         
     }
+    
+    if ([segue.identifier isEqualToString:@"SelectedUserNameInFeed"]) {
+        
+
+        [segue.destinationViewController initWithPlayer:self.toUser];
+        
+    }
+    
+    if ([segue.identifier isEqualToString:@"SelectedTeamNameInFeed"]) {
+        
+        
+        [segue.destinationViewController initWithTeam:self.teamSelected];
+        
+    }
+    
+    if ([segue.identifier isEqualToString:@"SelectedLeagueNameInFeed"]) {
+        
+        
+        [segue.destinationViewController initWithLeague:self.leagueSelected];
+        
+    }
+
+
+
 }
 
 //
@@ -697,6 +751,42 @@
 //    CommentsViewController *activityDetailsVC = [[CommentsViewController alloc] initWithActivity:activity];
 //    [self.navigationController pushViewController:activityDetailsVC animated:YES];
 //}
+
+
+
+
+-(void)tapedOnWordInFeedTextViewNotification:(NSNotification *) notification
+{
+    if ([[notification name] isEqualToString:@"selectedUserName"])
+    {
+        NSLog(@"selectedUserName");
+        NSDictionary* userInfo = notification.userInfo;
+        self.toUser = userInfo[@"user"];
+        [self performSegueWithIdentifier:@"SelectedUserNameInFeed" sender:self];
+        
+    }
+    
+    if ([[notification name] isEqualToString:@"selectedTeamName"])
+    {
+        NSLog(@"selectedTeamName");
+        NSDictionary* userInfo = notification.userInfo;
+        self.teamSelected = userInfo[@"team"];
+        [self performSegueWithIdentifier:@"SelectedTeamNameInFeed" sender:self];
+        
+    }
+    
+    if ([[notification name] isEqualToString:@"selectedLeagueName"])
+    {
+        NSLog(@"selectedLeagueName");
+        NSDictionary* userInfo = notification.userInfo;
+        self.leagueSelected = userInfo[@"league"];
+        [self performSegueWithIdentifier:@"SelectedLeagueNameInFeed" sender:self];
+        
+    }
+
+
+}
+
 
 
 #pragma mark - ()

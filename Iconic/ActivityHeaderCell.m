@@ -68,10 +68,7 @@
     
     // user's avatar
     PFUser *user = [activity objectForKey:kActivityUserKey];
-    //PFFile *profilePictureSmall = [user objectForKey:kUserProfilePicSmallKey];
-    
-
-  
+   
     // Set a placeholder image first
     self.avatarImageView.image = [UIImage imageNamed:@"empty_avatar.png"];
     PFFile *imageFile = [user objectForKey:kUserProfilePicSmallKey];
@@ -117,6 +114,7 @@
         [activity fetchIfNeededInBackground];
         PFObject *team = [activity objectForKey:@"team"];
 
+
         // Set a placeholder image first
         self.avatarImageView.image = [UIImage imageNamed:@"team2.png"];
         PFFile *imageFile = [team objectForKey:@"teamAvatar"];
@@ -152,76 +150,62 @@
     }
         
     
-//    CGFloat constrainWidth = containerView.bounds.size.width;
-//    
-//    if (self.buttons & ActivityHeaderButtonsUser) {
-//        [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    
-//    if (self.buttons & ActivityHeaderButtonsComment) {
-//        constrainWidth = self.commentButton.frame.origin.x;
-//        [self.commentButton addTarget:self action:@selector(didTapCommentOnActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    
-//    if (self.buttons & ActivityHeaderButtonsLike) {
-//       constrainWidth = self.likeButton.frame.origin.x;
-//        [self.likeButton addTarget:self action:@selector(didTapLikeActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//        NSLog(@"like activity is tapped");
-//    }
-    
-// moved the time stamp to FeedViewController in cellForRowAtIndexPath
-//    NSTimeInterval timeInterval = [[self.activity createdAt] timeIntervalSinceNow];
-//    NSString *timestamp = [self.timeIntervalFormatter stringForTimeInterval:timeInterval];
-//    [self.timestampLabel setText:timestamp];
-    
-//    NSMutableAttributedString *paragraph = [[NSMutableAttributedString alloc] initWithString:@"We lost the " attributes:@{NSForegroundColorAttributeName:[UIColor blueColor]}];
-//    
-//    NSAttributedString* attributedString = [[NSAttributedString alloc] initWithString:@"lead" attributes:@{ @"myCustomTag" : @(YES) }];
-//    [paragraph appendAttributedString:attributedString];
-    
-
-    
-    
-    /* uncomment bellow to find out what word in the textview was selected */
-    
-    //    [self.activityStatusTextView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didReceiveGestureOnText:)]];
+        //determine what word was tapped by the user
+        //if user - segue to user profile, if team segue to team, if league segue to league...
+        [self.activityStatusTextView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(didReceiveGestureOnText:)]];
     
 
 }
 
-/* not in use right now
--methods to deterine what word was selected in textview
--to do: 
- 1. determine if the the word selected is a user or a team 
- 2. segue to user PlayerProfileViewController or TeamPlayersViewController
-*/
+
 
 
 -(void)didReceiveGestureOnText:(UITapGestureRecognizer*)recognizer
 {
-    //check if this is actual user
+    //determine the pressed word
     NSString* pressedWord = [self getPressedWordWithRecognizer:recognizer];
-    NSLog(@"%@", pressedWord);
+//    NSLog(@"%@", pressedWord);
     
-    PFUser *user = [activity objectForKey:kActivityUserKey];
+
+    PFUser *user = [activity objectForKey:@"toUser"];
     NSString * userName = [user objectForKey:@"username"];
+    
+    PFObject *team = [activity objectForKey:@"toTeam"];
+    NSString * teamName = [team objectForKey:@"teams"];
+
+    
+    PFObject *league = [activity objectForKey:@"league"];
+    NSString * leagueName = [league objectForKey:@"league"];
+    
+    
     
     if([pressedWord isEqualToString:userName])
     {
-    
-//    FeedViewController * feedViewController = [[FeedViewController alloc]init];
-    
-//    [feedViewController performSegueWithIdentifier:@"FeedToPlayerSegue" sender:self];
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *ivc = [storyboard instantiateViewControllerWithIdentifier:@"AccountViewController"];
-        
-        [(UINavigationController*)self.window.rootViewController presentViewController:ivc animated:YES completion:nil];
-      
-   
-        
+//        NSLog(@"%@", userName);
+        NSDictionary* toUser = @{@"user": user};
+        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:@"selectedUserName" object:self userInfo:toUser];
         
     }
+    
+    else if([pressedWord isEqualToString:teamName])
+    {
+//        NSLog(@"%@", teamName);
+        NSDictionary* teamObject = @{@"team": team};
+        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:@"selectedTeamName" object:self userInfo:teamObject];
+        
+    }
+
+    else if([pressedWord isEqualToString:leagueName])
+    {
+//        NSLog(@"%@", leagueName);
+        NSDictionary* leagueObject = @{@"league": league};
+        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:@"selectedLeagueName" object:self userInfo:leagueObject];
+        
+    }
+
 
 }
 

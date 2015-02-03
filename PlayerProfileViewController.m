@@ -444,6 +444,8 @@
         
         if (!error) {
             NSLog(@"cheer cloud function worked %@", object);
+            
+
         }
 
         
@@ -483,6 +485,14 @@
         [Utility followUserEventually:self.playerUserObject block:^(BOOL succeeded, NSError *error) {
             if (!error) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserFollowingChangedNotification object:nil];
+                PFObject *activity = [PFObject objectWithClassName:@"Activity"];
+                [activity setObject:[PFUser currentUser] forKey:@"user"];
+                [activity setObject:self.player forKey:@"toUser"];
+                
+                NSString * activityString = [NSString stringWithFormat:@"%@ followed %@",[[PFUser currentUser] objectForKey:@"username"], [self.player objectForKey:@"username"]];
+                [activity setObject:activityString forKey:@"activityString"];
+                [activity saveInBackground];
+                
             } else {
                 self.followUser.selected = NO;
             }

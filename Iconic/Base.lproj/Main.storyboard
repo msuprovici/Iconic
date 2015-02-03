@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Yi2-3K-q1V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Yi2-3K-q1V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -1964,6 +1964,11 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="UbG-da-jWg" kind="push" identifier="SelectedUserNameInFeed" id="gHY-LU-ack"/>
+                        <segue destination="k2R-Un-KHX" kind="push" identifier="SelectedTeamNameInFeed" id="RZ4-Fm-Edx"/>
+                        <segue destination="Quu-w8-KMQ" kind="push" identifier="SelectedLeagueNameInFeed" id="Rnz-xH-lvc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQv-L4-Baj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2990,8 +2995,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="PMz-E9-Z88"/>
-        <segue reference="X84-Yq-ofY"/>
+        <segue reference="Rnz-xH-lvc"/>
+        <segue reference="gHY-LU-ack"/>
+        <segue reference="RZ4-Fm-Edx"/>
         <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>

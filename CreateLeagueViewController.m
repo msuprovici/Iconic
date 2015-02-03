@@ -233,6 +233,7 @@
                 
                 PFObject *activity = [PFObject objectWithClassName:@"Activity"];
                 [activity setObject:[PFUser currentUser] forKey:@"user"];
+                [activity setObject:league forKey:@"league"];
                 
                 NSString * activityString = [NSString stringWithFormat:@"Created new league: %@",self.leagueNameTextField.text];
                 [activity setObject:activityString forKey:@"activityString"];
