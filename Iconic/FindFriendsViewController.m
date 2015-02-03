@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "MBProgressHUD.h"
 #import "Utility.h"
+#import "PlayerProfileViewController.h"
 
 typedef enum {
     FindFriendsFollowingNone = 0,    // User isn't following anybody in Friends list
@@ -263,7 +264,7 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
      
      [cell setUser:(PFUser*)object];
      
-     [cell.activityLabel setText:@"0 activities"];
+     //[cell.activityLabel setText:@"0 activities"];
 
 
      
@@ -681,10 +682,34 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
  }
  */
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"SelectUserFromFindFriendsViewController"]) {
+        
+        //Find the row the button was selected from
+        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
+        
+        
+        
+        FindFriendsCell * tappedcell = (FindFriendsCell *)[(UITableView *)self.view cellForRowAtIndexPath:hitIndex];
+        
+        //[self shouldToggleFollowFriendForCell:tappedcell];
+        PFUser *cellUser = tappedcell.user;
+        
+        [segue.destinationViewController initWithPlayer:cellUser];
+        
+    }
+
+    
+  }
+
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
+
+
 
 @end

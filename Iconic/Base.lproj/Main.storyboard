@@ -2732,7 +2732,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4MU-5P-iWZ">
-                                            <rect key="frame" x="64" y="16" width="184" height="30"/>
+                                            <rect key="frame" x="56" y="16" width="184" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                             <state key="normal" title="Button">
@@ -2759,6 +2759,16 @@
                                             </state>
                                             <connections>
                                                 <action selector="followButtonTapped:" destination="yQf-DP-4VV" eventType="touchUpInside" id="ucr-T1-tZ0"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZSI-HD-1Oi" userLabel="SelectUser&amp;PicButton">
+                                            <rect key="frame" x="6" y="8" width="217" height="47"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="UbG-da-jWg" kind="push" identifier="SelectUserFromFindFriendsViewController" id="gBJ-V0-gCX"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -2996,8 +3006,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Rnz-xH-lvc"/>
-        <segue reference="gHY-LU-ack"/>
         <segue reference="RZ4-Fm-Edx"/>
+        <segue reference="gBJ-V0-gCX"/>
         <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>
