@@ -2724,7 +2724,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="XGg-Sw-VaO">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="96"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gRm-B8-W0B">
@@ -2736,6 +2736,18 @@
                                     </state>
                                     <connections>
                                         <action selector="inviteFriendsPressed:" destination="yQf-DP-4VV" eventType="touchUpInside" id="Ejh-n6-PxP"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vt9-85-Lcp">
+                                    <rect key="frame" x="0.0" y="50" width="320" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <state key="normal" title="Invite Facebook Friends">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="inviteFacebookFriendsPressed:" destination="yQf-DP-4VV" eventType="touchUpInside" id="tXh-xQ-TPx"/>
+                                        <action selector="inviteFriendsPressed:" destination="yQf-DP-4VV" eventType="touchUpInside" id="poL-SR-VaI"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -2806,6 +2818,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Fls-mv-1dH"/>
                     <connections>
+                        <outlet property="inviteFacebookFriends" destination="vt9-85-Lcp" id="O2x-bh-HQa"/>
                         <outlet property="inviteFriends" destination="gRm-B8-W0B" id="8fM-Yp-Uyl"/>
                     </connections>
                 </tableViewController>

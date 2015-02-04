@@ -24,4 +24,10 @@
 
 - (IBAction)inviteFriendsPressed:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIButton *inviteFacebookFriends;
+
+
+- (IBAction)inviteFacebookFriendsPressed:(id)sender;
+
+
 @end

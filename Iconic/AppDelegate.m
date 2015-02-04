@@ -97,6 +97,7 @@
     //Intitialize FB
     [PFFacebookUtils initializeFacebook];
     [FBAppEvents activateApp];
+    
    
 
     
@@ -736,6 +737,18 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         }
     }
 }
+
+//- (NSDictionary*)parseURLParams:(NSString *)query {
+//    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+//    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+//    for (NSString *pair in pairs) {
+//        NSArray *kv = [pair componentsSeparatedByString:@"="];
+//        NSString *val =
+//        [kv[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        params[kv[0]] = val;
+//    }
+//    return params;
+//}
 
 
 
