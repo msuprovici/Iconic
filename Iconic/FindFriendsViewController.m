@@ -101,7 +101,6 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-
     
    
 }
@@ -393,12 +392,18 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 
 /* Called when the user cancels the address book view controller. We simply dismiss it. */
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
-    [self dismissModalViewControllerAnimated:YES ];
+//    [self dismissModalViewControllerAnimated:YES ];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /* Called when a member of the address book is selected, we return YES to display the member's details. */
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
-    return YES;
+    return NO;
+}
+
+//Method necessary for iOS 8
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+    [self peoplePickerNavigationController:peoplePicker shouldContinueAfterSelectingPerson:person property:property identifier:identifier];
 }
 
 /* Called when the user selects a property of a person in their address book (ex. phone, email, location,...)
@@ -439,7 +444,7 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 
 /* Simply dismiss the MFMailComposeViewController when the user sends an email or cancels */
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -447,7 +452,7 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 
 /* Simply dismiss the MFMessageComposeViewController when the user sends a text or cancels */
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -483,7 +488,13 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
         addressBook.displayedProperties = [NSArray arrayWithObject:[NSNumber numberWithInt:kABPersonPhoneProperty]];
     }
     
-    [self presentModalViewController:addressBook animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self presentViewController:addressBook animated:YES completion:^{
+        
+    }];
+    
+//    [self presentModalViewController:addressBook animated:YES];
 }
 
 - (void)followAllFriendsButtonAction:(id)sender {
@@ -710,6 +721,57 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
+#pragma mark - Invite Contacts Button Pressed
 
+- (IBAction)inviteFriendsPressed:(id)sender {
+    
+    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied ||
+        ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted){
+        //Check if contacts access was denied
+//        NSLog(@"Denied");
+        
+        
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Contacts access was previously denied"
+                                              message:@"Go to iOS Settings -> Iconic -> Contacts to allow access"
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                   style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       
+                                   }];
 
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+        
+    } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized){
+        
+//        NSLog(@"Authorized");
+        
+        //if contacts access permission was given then show contacts
+        [self inviteFriendsButtonAction:sender];
+        
+
+    } else{ //ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined
+        
+//        NSLog(@"Not determined");
+        //if contacts access permission is not determined grant access
+        ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
+            if (!granted){
+                //4
+//                NSLog(@"Just denied");
+                return;
+            }
+            //5
+//            NSLog(@"Just authorized");
+           [self inviteFriendsButtonAction:sender];
+
+        });
+    }
+    
+}
 @end
