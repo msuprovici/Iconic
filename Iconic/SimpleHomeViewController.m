@@ -14,6 +14,8 @@
 #import "CalculatePoints.h"
 #import <Foundation/Foundation.h>
 #import "MyFinalScoresTableViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 #import "Cache.h"
 #import "Constants.h"
@@ -189,6 +191,17 @@ static NSString *kImageKey = @"imageKey";
 //        [self performSegueWithIdentifier:@"ShowAchievment" sender:self];
 //    [self.view.window.rootViewController performSegueWithIdentifier:@"ShowAchievment" sender:self];
     
+    //testing Facebook Login
+//    FBLoginView *loginView = [[FBLoginView alloc] init];
+//    loginView.center = self.view.center;
+//    [self.view addSubview:loginView];
+    
+    
+//    [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser] block:^(BOOL succeeded, NSError *error) {
+//        if (succeeded) {
+//            NSLog(@"The user is no longer associated with their Facebook account.");
+//        }
+//    }];
     
 }
 

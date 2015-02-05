@@ -8,6 +8,7 @@
 
 #import "FindFriendsViewController.h"
 #import "Parse/Parse.h"
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 #import "AppDelegate.h"
 #import "Cache.h"
@@ -101,6 +102,21 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    BOOL linkedWithFacebook = [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]];
+    
+    if(linkedWithFacebook)
+    {
+//        NSLog(@"Linked with Facebook");
+        self.facebookLogIn.hidden = YES;
+        self.inviteFacebookFriends.hidden = NO;
+       
+    }
+    else
+    {
+//         NSLog(@"Not linked with Facebook");
+        self.facebookLogIn.hidden = NO;
+        self.inviteFacebookFriends.hidden = YES;
+    }
     
    
 }
@@ -488,11 +504,13 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
         addressBook.displayedProperties = [NSArray arrayWithObject:[NSNumber numberWithInt:kABPersonPhoneProperty]];
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
     [self presentViewController:addressBook animated:YES completion:^{
         
     }];
+    
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
     
 //    [self presentModalViewController:addressBook animated:YES];
 }
@@ -778,9 +796,10 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 #pragma mark - Invite Facebook Friends
 
 - (IBAction)inviteFacebookFriendsPressed:(id)sender {
+    
     [FBWebDialogs
      presentRequestsDialogModallyWithSession:nil
-     message:@"Join my walking team http://imiconic.com"
+     message:@"Join my Iconic walking team http://imiconic.com"
      title:nil
      parameters:nil
      handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
@@ -788,6 +807,8 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
              // Error launching the dialog or sending the request.
              NSLog(@"Error sending request.");
          } else {
+        
+             
              if (result == FBWebDialogResultDialogNotCompleted) {
                  // User clicked the "x" icon
                  NSLog(@"User canceled request.");
@@ -820,5 +841,31 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     }
     return params;
 }
+
+
+//connect Facebook if the user has not created an account yet
+- (IBAction)facebookLogInAction:(id)sender {
+    
+    //link user with their facebook account
+    
+    // Set permissions required from the facebook user account
+    NSArray *permissionsArray = @[ @"public_profile", @"email" ];
+    [PFFacebookUtils linkUser:[PFUser currentUser] permissions:permissionsArray block:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+//            NSLog(@"Woohoo, user logged in with Facebook!");
+            self.facebookLogIn.hidden = YES;
+            self.inviteFacebookFriends.hidden = NO;
+            
+        }
+        else
+        {
+//            NSLog(@"Could not log in user: %@", error);
+        }
+    }];
+
+    
+  
+    }
+
 
 @end

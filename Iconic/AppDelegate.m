@@ -24,6 +24,7 @@
 #import "Intercom.h"
 #import "Heap.h"
 #import "ParseCrashReporting/ParseCrashReporting.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 
 @interface AppDelegate ()

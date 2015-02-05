@@ -30,4 +30,8 @@
 - (IBAction)inviteFacebookFriendsPressed:(id)sender;
 
 
+@property (strong, nonatomic) IBOutlet UIButton *facebookLogIn;
+
+- (IBAction)facebookLogInAction:(id)sender;
+
 @end

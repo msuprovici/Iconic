@@ -2715,7 +2715,7 @@
             </objects>
             <point key="canvasLocation" x="-2344" y="2252"/>
         </scene>
-        <!--Find Friends View Controller-->
+        <!--Find People-->
         <scene sceneID="ttt-Me-Hck">
             <objects>
                 <tableViewController id="yQf-DP-4VV" customClass="FindFriendsViewController" sceneMemberID="viewController">
@@ -2728,7 +2728,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gRm-B8-W0B">
-                                    <rect key="frame" x="0.0" y="6" width="320" height="30"/>
+                                    <rect key="frame" x="0.0" y="12" width="320" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                     <state key="normal" title="Invite Contacts">
@@ -2739,7 +2739,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vt9-85-Lcp">
-                                    <rect key="frame" x="0.0" y="50" width="320" height="30"/>
+                                    <rect key="frame" x="0.0" y="57" width="320" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                     <state key="normal" title="Invite Facebook Friends">
@@ -2748,6 +2748,17 @@
                                     <connections>
                                         <action selector="inviteFacebookFriendsPressed:" destination="yQf-DP-4VV" eventType="touchUpInside" id="tXh-xQ-TPx"/>
                                         <action selector="inviteFriendsPressed:" destination="yQf-DP-4VV" eventType="touchUpInside" id="poL-SR-VaI"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MO8-8a-dxM">
+                                    <rect key="frame" x="0.0" y="57" width="320" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <state key="normal" title="Log in to invite Facebook Friends">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="facebookLogInAction:" destination="yQf-DP-4VV" eventType="touchUpInside" id="QhI-Vm-Dcz"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -2816,8 +2827,9 @@
                             <outlet property="delegate" destination="yQf-DP-4VV" id="Khu-Aq-Mc0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Fls-mv-1dH"/>
+                    <navigationItem key="navigationItem" title="Find People" id="Fls-mv-1dH"/>
                     <connections>
+                        <outlet property="facebookLogIn" destination="MO8-8a-dxM" id="zXH-Q0-yjw"/>
                         <outlet property="inviteFacebookFriends" destination="vt9-85-Lcp" id="O2x-bh-HQa"/>
                         <outlet property="inviteFriends" destination="gRm-B8-W0B" id="8fM-Yp-Uyl"/>
                     </connections>
