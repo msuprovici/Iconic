@@ -34,6 +34,7 @@
     self.arrayOfawayTeamScores = [[NSMutableArray alloc] init];
     
     self.arrayOfhomeTeamNames = [[NSMutableArray alloc] init];
+    self.arrayOfMyTeamObjects = [[NSMutableArray alloc] init];
     self.arrayOfhomeTeamRecords = [[NSMutableArray alloc] init];
     
     self.arrayOfawayTeamNames = [[NSMutableArray alloc] init];
@@ -54,6 +55,7 @@
 
      self.arrayOfRounds = [[NSMutableArray alloc] init];
      self.arrayOfTeamMatchupsObjects = [[NSMutableArray alloc] init];
+    self.arrayOfAllTeamMatchupObjects = [[NSMutableArray alloc] init];
     
     self.arrayOfFinalhomeTeamScores = [[NSMutableArray alloc] init];
     self.arrayOfFinalawayTeamScores = [[NSMutableArray alloc] init];
@@ -96,8 +98,8 @@
                 //                NSLog(@"team class query worked");
                 
 
-                //add teams to defaults
-                [self addTeamsToDefaults];
+//                //add teams to defaults
+//                [self addTeamsToDefaults];
                 
                 
                 //convert NSArray to myTeamDataArray
@@ -134,6 +136,11 @@
                     
 //                    NSLog(@"self.arrayOfMyTeamNames: %@", self.arrayOfMyTeamNames);
                     [myRetrievedTeams synchronize];
+                    
+                    if (i == objects.count -1) {
+                        //add teams to defaults
+                        [self addTeamsToDefaults];
+                    }
                         
                    
                     
@@ -379,6 +386,7 @@
 //}
 
 
+//1. find the teams that I am on
 -(void)addTeamsToDefaults
 {
     
@@ -405,11 +413,16 @@
             for (int i = 0; i < objects.count; i++) {
                 PFObject *myTeams = [objects objectAtIndex:i];
                 NSNumber *roundNumber = [myTeams objectForKey:@"round"];
-//                NSLog(@"roundNumber: %@", roundNumber);
+//               NSLog(@"roundNumber TeamName: %@", roundNumber);
                 
+                [self.arrayOfMyTeamObjects addObject:myTeams];
                 [self.arrayOfRounds addObject:roundNumber];
 //                NSLog(@"arrayOfRounds: %@", self.arrayOfRounds);
                
+                if (i == objects.count-1) {
+
+                    [self findTeamMatcups];
+                }
                 
             }
             
@@ -420,50 +433,108 @@
     
     
     
+}
+
+//2. find all team matchups that include my team
+-(void)findTeamMatcups
+{
+    
+//    NSLog(@"self.arrayOfMyTeamObjects: %@", self.arrayOfMyTeamObjects);
+    NSArray * myTeamObjects = self.arrayOfMyTeamObjects;
+//    NSLog(@"myTeamObjects: %@", myTeamObjects);
+    
     //Query Team Classes, find the team matchups and save the team scores to memory
     PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-    [queryHomeTeamMatchups whereKey:@"hometeam" matchesQuery:query];
+    //    [queryHomeTeamMatchups whereKey:@"hometeam" matchesQuery:query];
+    [queryHomeTeamMatchups whereKey:@"hometeam" containedIn:myTeamObjects];
     
     PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-    [queryAwayTeamMatchups whereKey:kAwayTeam matchesQuery:query];
+    //    [queryAwayTeamMatchups whereKey:kAwayTeam matchesQuery:query];
+    [queryAwayTeamMatchups whereKey:@"awayteam" containedIn:myTeamObjects];
     
     PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups, queryAwayTeamMatchups]];
+
     
-    [queryTeamMatchupsClass includeKey:kHomeTeam];
-    [queryTeamMatchupsClass includeKey:kAwayTeam];
+    
+    
+    [queryTeamMatchupsClass includeKey:@"hometeam"];
+    [queryTeamMatchupsClass includeKey:@"awayteam"];
+    
+//    [queryTeamMatchupsClass includeKey:kHomeTeam];
+//    [queryTeamMatchupsClass includeKey:kAwayTeam];
     
     [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         if (!error) {
             
+            
+//            NSLog(@"team matchups: %@", objects);
 //            NSLog(@"#of team matchups: %lu", (unsigned long)objects.count);
             
             for (int i = 0; i < objects.count; i++) {
-                PFObject *myTeams = [objects objectAtIndex:i];
-                NSNumber *roundNumber = [myTeams objectForKey:@"currentRound"];
-                
-                //when the for loop has ended populate nsuserdefualts
-                if (i == objects.count - 1)
-                {
-//                    NSLog(@"populate defaults");
-                    [self populateDefualts];
-                }
+                PFObject *teamMatchups = [objects objectAtIndex:i];
 
-                //add teams where the round # is =
-                if (self.arrayOfRounds[i] == roundNumber) {
-                    [self.arrayOfTeamMatchupsObjects addObject:myTeams];
+                [self.arrayOfAllTeamMatchupObjects addObject:teamMatchups];
+                
+                if (i == objects.count-1)
+                {
+                    [self findMyTeamMatchups];
                 }
                 
-         
+                
             }
         }
     }];
     
-    
-   
-    
+
 }
 
+//3. find the team matchups that my team is playing in which share the same round #
+-(void)findMyTeamMatchups
+{
+    for (int i = 0; i < self.arrayOfRounds.count; i++) {
+        
+        NSNumber *roundNumberAtIndex = self.arrayOfRounds[i];
+        PFObject *myTeam = self.arrayOfMyTeamObjects[i];
+        NSString *myTeamName =  [myTeam objectForKey:@"teams"];
+//        NSLog(@"teamName %@", myTeamName);
+        
+        
+        for (int j = 0; j < self.arrayOfAllTeamMatchupObjects.count; j++) {
+            
+            PFObject *teamMatchup = [self.arrayOfAllTeamMatchupObjects objectAtIndex:j];
+            PFObject *awayTeam = [teamMatchup objectForKey:@"awayteam"];
+            NSString *awayTeamName =  [awayTeam objectForKey:@"teams"];
+            PFObject *homeTeam = [teamMatchup objectForKey:@"hometeam"];
+            NSString *homeTeamName =  [homeTeam objectForKey:@"teams"];
+                                  
+            NSNumber *roundNumber = [teamMatchup objectForKey:@"currentRound"];
+//            NSLog(@"roundNumber %@", roundNumber);
+//            NSLog(@"roundNumberAtIndex %@", roundNumberAtIndex);
+//            NSLog(@"myTeamName %@", myTeamName);
+            
+            if (roundNumberAtIndex == roundNumber && ([myTeamName isEqualToString:awayTeamName] || [myTeamName isEqualToString:homeTeamName])) {
+//                NSLog(@"roundNumberAtIndex: %@", roundNumberAtIndex);
+//                 NSLog(@"roundNumber retrieved: %@", roundNumber);
+                
+                [self.arrayOfTeamMatchupsObjects addObject:teamMatchup];
+                
+                //when the for loop has ended populate nsuserdefualts
+                if (i == self.arrayOfRounds.count-1)
+                {
+//                    NSLog(@"populate defaults");
+                    [self populateDefualts];
+                }
+            }
+            
+        }
+        
+    }
+    
+
+}
+
+//4. pouplate NSUserDefaults
 -(void)populateDefualts
 {
     NSUserDefaults *myRetrievedTeams = [NSUserDefaults standardUserDefaults];
@@ -515,6 +586,7 @@
         
         //add objects to array of teamScores(array) objects so that we don't have to download again
         [self.arrayOfhomeTeamNames addObject:homeTeamName];
+//        NSLog(@"arrayOfhomeTeamNames in calculate points: %@", self.arrayOfhomeTeamNames);
         
         //add home team records to array
         [self.arrayOfhomeTeamRecords addObject:self.homeTeamRecord];
@@ -576,6 +648,7 @@
         
         //add objects to array of teamScores(array) objects so that we don't have to download again
         [self.arrayOfawayTeamNames addObject:awayTeamName];
+//        NSLog(@"arrayOfawayTeamNames in calculate points: %@", self.arrayOfawayTeamNames);
         
         //add away team records to array
         [self.arrayOfawayTeamRecords addObject:self.awayTeamRecord];

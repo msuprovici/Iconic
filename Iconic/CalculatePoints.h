@@ -56,7 +56,9 @@
 
 @property (strong, nonatomic) NSMutableArray * arrayOfRounds;
 @property (strong, nonatomic) NSMutableArray * arrayOfTeamMatchupsObjects;
+@property (strong, nonatomic) NSMutableArray * arrayOfAllTeamMatchupObjects;
 
+@property (strong, nonatomic) NSMutableArray * arrayOfMyTeamObjects;
 @property (strong, nonatomic) NSMutableArray * arrayOfMyTeamNames;
 
 @property (nonatomic, retain) NSArray *teamMatchups;
