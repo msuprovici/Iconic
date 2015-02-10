@@ -2057,7 +2057,8 @@
         
         //repeate daily
         localNotification.repeatInterval = 0;//0 means don't repepat
-//        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
        
         
         //create an NSDictionarry with the date & time to indentify this notification
