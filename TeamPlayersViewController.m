@@ -27,6 +27,7 @@
 @property (nonatomic, retain) NSMutableDictionary *players;
 //@property (nonatomic, retain) NSMutableDictionary *categories;
 @property NSString * selectedTeamName;
+@property NSString * teamPushChannelName;
 
 
 @end
@@ -526,8 +527,22 @@
         
         //subscribe to the team's push notificaiton channel
         NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
-//        [[PFInstallation currentInstallation] addUniqueObject:pushChanelName forKey:@"channels"];
-//        [[PFInstallation currentInstallation] saveInBackground];
+        
+        //find if team name has spaces
+        //Parse push notification channels must not contain spaces
+        NSRange whiteSpaceRange = [pushChanelName rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+        if (whiteSpaceRange.location != NSNotFound) {
+            
+            
+//            NSLog(@"Found whitespace");
+            NSString *chanelNameNoSpaces = [pushChanelName stringByReplacingOccurrencesOfString:@" " withString:@""];
+            self.teamPushChannelName = chanelNameNoSpaces;
+        }
+        else
+        {
+            self.teamPushChannelName = pushChanelName;
+        }
+        
         
         
         
@@ -535,17 +550,17 @@
         
         if(![currentInstallation channels]) {
         
-        [currentInstallation setChannels:@[pushChanelName]];
+        [currentInstallation setChannels:@[self.teamPushChannelName]];
         
         }
         else
         {
-            [currentInstallation addUniqueObject:pushChanelName forKey:@"channels"];
+            [currentInstallation addUniqueObject:self.teamPushChannelName forKey:@"channels"];
             [currentInstallation saveInBackground];
         }
         //send push to teamates letting them know a new teamate just joined
         [PFCloud callFunctionInBackground:@"newTeamateNotification"
-                           withParameters:@{@"team": pushChanelName}
+                           withParameters:@{@"team": self.teamPushChannelName}
                                     block:^(NSString *success, NSError *error) {
                                         if (!error) {
                                             // Push sent successfully
@@ -596,7 +611,8 @@
          [Amplitude logEvent:@"Team: Leave Team selected"];
 
         [self.joinTeam setSelected:NO];
-        //find out if the team name that = the stored team and filp the onteam flag to no
+        
+        //find out if the team name  = the stored team and filp the onteam flag to no
         for (int i = 0; i < [storedTeamNames count]; i++) {
             NSManagedObject *teamNames = storedTeamNames[i];
             
@@ -680,49 +696,35 @@
                 }
            
     
-    
-//            if (!error) {
-////                NSLog(@"number of teams: %lu", (unsigned long)objects.count);
-//                
-//                for (PFObject *object in objects)
-//                {
-////                    NSLog(@"team object id: %@", object);
-////                    NSLog(@"self.team: %@", self.team);
-//                    
-//                    [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                    if (succeeded)
-//                        {
-//                        
-////                        [self.joinTeam setSelected:NO];
-//                        NSLog(@"object dleated");
-//                        [self loadObjects];
-//                        
-//                        CalculatePoints * calculatePoints = [[CalculatePoints alloc]init];
-//                        [calculatePoints retrieveFromParse];
-//
-//                        }
-//                        else
-//                        {
-//                            NSLog(@"error: %@", error);
-//                        }
-//                    }];
-//                    
-//                   
-//
-//                }
-//          
-//                
-//            }
+
+
                 
                 //unsubscribe to the team's push notification chanel
                 
-                NSString *pushChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
-                //                [[PFInstallation currentInstallation] removeObject:pushChanelName forKey:@"channels"];
-                //                [[PFInstallation currentInstallation] saveInBackground];
+                //find if team name has spaces
+                //Parse push notification channels must not contain spaces
+                NSString *unsubscribeFromChanelName = [NSString stringWithFormat:@"%@", [self.team objectForKey:kTeams]];
+                
+                NSRange whiteSpaceRange = [unsubscribeFromChanelName rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+                if (whiteSpaceRange.location != NSNotFound) {
+//                    NSLog(@"Found whitespace");
+                    
+                    NSString *unsubscribeFromChanelNameNoSpaces = [unsubscribeFromChanelName stringByReplacingOccurrencesOfString:@" " withString:@""];
+                    self.teamPushChannelName = unsubscribeFromChanelNameNoSpaces;
+                }
+                else
+                {
+                    
+                    self.teamPushChannelName = unsubscribeFromChanelName;
+                }
+
+                
                 
                 PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-                if([currentInstallation channels]) {
-                [currentInstallation removeObject:pushChanelName forKey:@"channels"];
+                
+                if([currentInstallation channels])
+                {
+                [currentInstallation removeObject:self.teamPushChannelName forKey:@"channels"];
                 [currentInstallation saveInBackground];
                     
                 }
