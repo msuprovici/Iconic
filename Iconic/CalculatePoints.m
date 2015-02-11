@@ -1944,52 +1944,12 @@
         
         
         //set league names
-        NSString * leagueName = [NSString stringWithFormat:@"%@",[arrayOfLeagueNames objectAtIndex:i]];
-        
       
         
         //set score
         NSString * homeTeamScore = [NSString stringWithFormat:@"%@",[homeTeamScores objectAtIndex:i]];
         
         NSString * awayTeamScore = [NSString stringWithFormat:@"%@",[awayTeamScores objectAtIndex:i]];
-        
-        NSArray *myTeamsNames = [RetrievedTeams objectForKey:kArrayOfMyTeamsNames];
-
-        
-        PFObject * homeTeamObject = [self.arrayOfTeamMatchupsObjects[i] objectForKey:kHomeTeam];
-        PFObject * awayTeamObject = [self.arrayOfTeamMatchupsObjects[i] objectForKey:kAwayTeam];
-        
-//        NSString * homeTeamNameString = [homeTeamObject objectForKey:kTeams];
-//        NSString * awayTeamNameString = [awayTeamObject objectForKey:kTeams];
-//        
-//        //                NSLog(@"homeTeamNameString: %@",  homeTeamNameString);
-//        //                NSLog(@"homeTeamNameString: %@",  awayTeamNameString);
-//        
-//        NSString * homeTeamScoreString = [homeTeamObject objectForKey:kFinalScore];
-//        NSString * awayTeamScoreString = [awayTeamObject objectForKey:kFinalScore];
-//        
-//        int  homeTeamScoreInt = (int)[homeTeamObject objectForKey:kFinalScore];
-//        int  awayTeamScoreInt = (int)[awayTeamObject objectForKey:kFinalScore];
-        
-        
-        
-        
-        
-        //use object properties in kTeamsTeam class
-        self.myTeamNameString = homeTeamName;
-        self.myTeamScoreString = homeTeamScore;
-//        self.myTeamScoreInt = homeTeamScoreInt;
-        
-        self.vsTeamNameString = awayTeamName;
-        self.vsTeamScoreString = awayTeamScore;
-//        self.vsTeamScoreInt = awayTeamScoreInt;
-        
-        
-        
-        //                 NSLog(@"self.myTeamNameString: %@",  self.myTeamNameString);
-        //                NSLog(@"self.myTeamScoreString: %@",  self.myTeamScoreString);
-        //                NSLog(@"self.vsTeamNameString: %@",  self.vsTeamNameString);
-        //                NSLog(@"self.vsTeamScoreString: %@",  self.vsTeamScoreString);
         
         
         NSString *finalScoreSummaryString= [NSString stringWithFormat:@"%@ %@ - %@ %@",homeTeamName,homeTeamScore,awayTeamName,awayTeamScore];
@@ -2009,7 +1969,7 @@
         NSString *notificationBody = [NSString stringWithFormat:@"%@ %@", notificationBeginningText, finalScoresNotificationText];
 //                        NSLog(@"notificationBody: %@",  notificationBody);
 //                       [self scheduleWeekleyFinalScoresLocalNotification: notificationBody];
-        self.notificationBody = notificationBody;
+        
         [self scheduleWeekleyFinalScoresLocalNotification: notificationBody];
         
     }
@@ -2058,7 +2018,7 @@
         //repeate daily
         localNotification.repeatInterval = 0;//0 means don't repepat
         
-        localNotification.soundName = UILocalNotificationDefaultSoundName;
+//        localNotification.soundName = UILocalNotificationDefaultSoundName;
        
         
         //create an NSDictionarry with the date & time to indentify this notification
