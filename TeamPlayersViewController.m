@@ -529,9 +529,9 @@
 //        [[PFInstallation currentInstallation] addUniqueObject:pushChanelName forKey:@"channels"];
 //        [[PFInstallation currentInstallation] saveInBackground];
         
-        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-        [currentInstallation addUniqueObject:pushChanelName forKey:@"channels"];
-        [currentInstallation saveInBackground];
+//        PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+//        [currentInstallation addUniqueObject:pushChanelName forKey:@"channels"];
+//        [currentInstallation saveInBackground];
         
         //send push to teamates letting them know a new teamate just joined
         [PFCloud callFunctionInBackground:@"newTeamateNotification"
@@ -710,9 +710,9 @@
                 //                [[PFInstallation currentInstallation] removeObject:pushChanelName forKey:@"channels"];
                 //                [[PFInstallation currentInstallation] saveInBackground];
                 
-                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-                [currentInstallation removeObject:pushChanelName forKey:@"channels"];
-                [currentInstallation saveInBackground];
+//                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+//                [currentInstallation removeObject:pushChanelName forKey:@"channels"];
+//                [currentInstallation saveInBackground];
         
  
             }];
