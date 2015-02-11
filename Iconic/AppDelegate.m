@@ -131,6 +131,7 @@
     //local notification
     
     CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+    
 //    [calculatePointsClass  createFinalTeamScoresNotificationBody];
 //    if ([PFUser currentUser]) {
 //    [calculatePointsClass retrieveFromParse];
@@ -429,6 +430,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
             //schedule notification
              if ([PFUser currentUser]) {
             CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+            [calculatePointsClass  saveFinalTeamScoresToDefaults];
             [calculatePointsClass  createFinalTeamScoresNotificationBody];
              }
         }

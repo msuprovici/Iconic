@@ -706,6 +706,34 @@
 }
 
 
+-(void)saveFinalTeamScoresToDefaults
+{
+    NSUserDefaults *myRetrievedTeams = [NSUserDefaults standardUserDefaults];
+    
+    NSArray *homeTeamScores = [myRetrievedTeams objectForKey:@"FinalHomeTeamScores"];
+    NSArray *awayTeamScores = [myRetrievedTeams objectForKey:@"FinalAwayTeamScores"];
+    
+    NSArray *homeTeamNames = [myRetrievedTeams objectForKey:kArrayOfHomeTeamNames];
+    NSArray *awayTeamNames = [myRetrievedTeams objectForKey:kArrayOfAwayTeamNames];
+    
+    NSArray *arrayOfLeagueNames = [myRetrievedTeams objectForKey:kArrayOfLeagueNames];
+    
+    
+    [myRetrievedTeams setObject:homeTeamScores  forKey:@"arrayOfFinalHomeTeamScoresWeek"];
+    [myRetrievedTeams setObject:awayTeamScores  forKey:@"arrayOfFinalAwayTeamScoresWeek"];
+    
+    [myRetrievedTeams setObject:homeTeamNames  forKey:@"arrayOfFinalHomeTeamNamesWeek"];
+    [myRetrievedTeams setObject:awayTeamNames  forKey:@"arrayOfFinalAwayTeamNamesWeek"];
+    
+    [myRetrievedTeams setObject:arrayOfLeagueNames  forKey:@"arrayOfFinalLeagueNamesWeek"];
+    
+    [myRetrievedTeams synchronize];
+
+    
+}
+
+
+
 - (NSMutableArray *)createMutableArray:(NSArray *)array
 {
     return [NSMutableArray arrayWithArray:array];
@@ -1672,241 +1700,6 @@
 
 
 
-//-(void)createFinalTeamScoresNotificationBody
-//{
-//    //initialize arrays to store contents from query bellow
-//    self.arrayOfhomeTeamScores = [[NSMutableArray alloc] init];
-//    self.arrayOfawayTeamScores = [[NSMutableArray alloc] init];
-//    
-//    self.arrayOfhomeTeamNames = [[NSMutableArray alloc] init];
-//    self.arrayOfMyTeamObjects = [[NSMutableArray alloc] init];
-//    self.arrayOfhomeTeamRecords = [[NSMutableArray alloc] init];
-//    
-//    self.arrayOfawayTeamNames = [[NSMutableArray alloc] init];
-//    self.arrayOfawayTeamRecords = [[NSMutableArray alloc] init];
-//    
-//    self.awayTeamPointers = [[NSMutableArray alloc] init];
-//    self.homeTeamPointers = [[NSMutableArray alloc] init];
-//    
-//    
-//    self.arrayOfWeekleyHomeTeamScores = [[NSMutableArray alloc] init];
-//    self.arrayOfWeekleyAwayTeamScores = [[NSMutableArray alloc] init];
-//    
-//    
-//    self.arrayOfTodayHomeTeamScores = [[NSMutableArray alloc] init];
-//    self.arrayOfTodayAwayTeamScores = [[NSMutableArray alloc] init];
-//    
-//    self.leagueArray = [[NSMutableArray alloc] init];
-//    
-//    self.arrayOfRounds = [[NSMutableArray alloc] init];
-//    self.arrayOfTeamMatchupsObjects = [[NSMutableArray alloc] init];
-//    self.arrayOfAllTeamMatchupObjects = [[NSMutableArray alloc] init];
-//    
-//    self.arrayOfFinalhomeTeamScores = [[NSMutableArray alloc] init];
-//    self.arrayOfFinalawayTeamScores = [[NSMutableArray alloc] init];
-//
-//
-//
-//    self.finalScoresStringsArray = [[NSMutableArray alloc]init];
-//    
-////    NSLog(@"createFinalTeamScoresNotificationBody called");
-//    PFQuery *query = [PFQuery queryWithClassName:@"TeamName"];
-//    
-//    
-//    //     PFObject * user = [PFUser currentUser];
-//    
-//    
-//    //query team class
-//    PFQuery *teamPlayersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
-//    [teamPlayersClass includeKey:@"playerpointer"];
-//    [teamPlayersClass includeKey:@"team"];
-//    
-//    [teamPlayersClass whereKey:@"playerpointer" equalTo:[PFUser currentUser]];
-// 
-//    
-//    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
-//    
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        
-//        if (!error) {
-//            
-//            //             NSLog(@"# of teams i'm on: %lu", (unsigned long)objects.count);
-//            
-//            for (int i = 0; i < objects.count; i++) {
-//                PFObject *myTeams = [objects objectAtIndex:i];
-//                NSNumber *roundNumber = [myTeams objectForKey:@"round"];
-//                //                NSLog(@"roundNumber: %@", roundNumber);
-//                
-//                [self.arrayOfMyTeamObjects addObject:myTeams];
-//                [self.arrayOfRounds addObject:roundNumber];
-//                //                NSLog(@"arrayOfRounds: %@", self.arrayOfRounds);
-//                
-//                if (i == objects.count-1)
-//                {
-//                    [self findAllTeamMatchupsNotifcationBody];
-//                }
-//                
-//            }
-//            
-//            
-//        }
-//        
-//    }];
-//    
-//    
-//    
-//    
-//}
-//
-//-(void)findAllTeamMatchupsNotifcationBody
-//{
-//     NSArray * myTeamObjects = self.arrayOfMyTeamObjects;
-//    
-//    //Query Team Classes, find the team matchups and save the team scores to memory
-//    PFQuery *queryHomeTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-////    [queryHomeTeamMatchups whereKey:@"hometeam" matchesQuery:query];
-//     [queryHomeTeamMatchups whereKey:@"hometeam" containedIn:myTeamObjects];
-//    
-//    
-//    PFQuery *queryAwayTeamMatchups = [PFQuery queryWithClassName:kTeamMatchupClass];
-////    [queryAwayTeamMatchups whereKey:kAwayTeam matchesQuery:query];
-//    [queryAwayTeamMatchups whereKey:@"awayteam" containedIn:myTeamObjects];
-//    
-//    PFQuery *queryTeamMatchupsClass = [PFQuery orQueryWithSubqueries:@[queryHomeTeamMatchups, queryAwayTeamMatchups]];
-//    
-//    
-//    //    [queryTeamMatchupsClass whereKey:@"currentRound" matchesKey:@"round" inQuery:query];
-//    
-//    
-//    [queryTeamMatchupsClass includeKey:kHomeTeam];
-//    [queryTeamMatchupsClass includeKey:kAwayTeam];
-//    
-//    [queryTeamMatchupsClass findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//        
-//        if (!error) {
-//            
-//            
-//                for (int i = 0; i < objects.count; i++) {
-//                    PFObject *teamMatchups = [objects objectAtIndex:i];
-//                    
-//                    [self.arrayOfAllTeamMatchupObjects addObject:teamMatchups];
-//                    
-//                    if (i == objects.count-1)
-//                    {
-//                        [self findMyTeamMatchupsNotifcationBody];
-//                    }
-//                    
-//                    
-//                
-//
-//                
-//            }
-//        }
-//    }];
-//
-//}
-//
-//-(void)findMyTeamMatchupsNotifcationBody
-//{
-//    for (int i = 0; i < self.arrayOfRounds.count; i++) {
-//        
-//        NSNumber *roundNumberAtIndex = self.arrayOfRounds[i];
-//        int roundNumberAtIndexInt = [roundNumberAtIndex intValue];
-//        PFObject *myTeam = self.arrayOfMyTeamObjects[i];
-//        NSString *myTeamName =  [myTeam objectForKey:@"teams"];
-//        //        NSLog(@"teamName %@", myTeamName);
-//        
-//        
-//        for (int j = 0; j < self.arrayOfAllTeamMatchupObjects.count; j++) {
-//            
-//            PFObject *teamMatchup = [self.arrayOfAllTeamMatchupObjects objectAtIndex:j];
-//            PFObject *awayTeam = [teamMatchup objectForKey:@"awayteam"];
-//            NSString *awayTeamName =  [awayTeam objectForKey:@"teams"];
-//            PFObject *homeTeam = [teamMatchup objectForKey:@"hometeam"];
-//            NSString *homeTeamName =  [homeTeam objectForKey:@"teams"];
-//            int numberOfTeamsInLeague = [[homeTeam objectForKey:@"numberOfTeamsInLeague"] intValue];
-//            
-//            NSLog(@"numberOfTeamsInLeague %d", numberOfTeamsInLeague);
-//            
-//            NSNumber *roundNumber = [teamMatchup objectForKey:@"currentRound"];
-//            int roundNumberInt = [roundNumber intValue];
-//            int previousRounInt = [roundNumber intValue];
-//            
-//            NSNumber *totalRounds = [teamMatchup objectForKey:@"totalRounds"];
-//            int totalRoundsInt = [totalRounds intValue];
-//            //            NSLog(@"roundNumber %@", roundNumber);
-//            //            NSLog(@"roundNumberAtIndex %@", roundNumberAtIndex);
-//            //            NSLog(@"myTeamName %@", myTeamName);
-//            
-//            
-//          if(numberOfTeamsInLeague > 2)
-//          {
-//           
-//            if ( roundNumberInt > 1 && roundNumberInt <= numberOfTeamsInLeague) {
-//                  
-//             
-//              
-//                        if (roundNumberAtIndexInt - 1 == previousRounInt && ([myTeamName isEqualToString:awayTeamName] || [myTeamName isEqualToString:homeTeamName])) {
-//                            //                NSLog(@"roundNumberAtIndex: %@", roundNumberAtIndex);
-//                            //                 NSLog(@"roundNumber retrieved: %@", roundNumber);
-//                            
-//                            [self.arrayOfTeamMatchupsObjects addObject:teamMatchup];
-//                            
-//                            NSLog(@"self.arrayOfTeamMatchupsObjects teams > 2 round > 1: %@", self.arrayOfTeamMatchupsObjects);
-//                        }
-//              }
-//              
-//              else if (roundNumberInt == 1) {
-//                  
-//                  
-//                  
-//                  if (roundNumberAtIndexInt + 2 == totalRoundsInt && ([myTeamName isEqualToString:awayTeamName] || [myTeamName isEqualToString:homeTeamName])) {
-//                      //                NSLog(@"roundNumberAtIndex: %@", roundNumberAtIndex);
-//                      //                 NSLog(@"roundNumber retrieved: %@", roundNumber);
-//                      
-//                      [self.arrayOfTeamMatchupsObjects addObject:teamMatchup];
-//                      
-//                      NSLog(@"self.arrayOfTeamMatchupsObjects teams > 2 round = 1: %@", self.arrayOfTeamMatchupsObjects);
-//                      
-//                  }
-//              }
-//
-//              
-//          }
-//            
-//          else if(numberOfTeamsInLeague == 2)
-//          {
-//              if (roundNumberAtIndexInt == 1 && ([myTeamName isEqualToString:awayTeamName] || [myTeamName isEqualToString:homeTeamName])) {
-//                  //                NSLog(@"roundNumberAtIndex: %@", roundNumberAtIndex);
-//                  //                 NSLog(@"roundNumber retrieved: %@", roundNumber);
-//                  
-//                  [self.arrayOfTeamMatchupsObjects addObject:teamMatchup];
-//                   NSLog(@"self.arrayOfTeamMatchupsObjects teams = 2 : %@", self.arrayOfTeamMatchupsObjects);
-//                  
-//                  
-//                  //when the for loop has ended populate nsuserdefualts
-//                                }
-//
-//          }
-//            
-//            
-//        }
-//        
-//        //when the for loop has ended populate nsuserdefualts
-//        if (i == self.arrayOfRounds.count-1)
-//        {
-//            //                    NSLog(@"populate defaults");
-//            [self populateNotificationText];
-//            [self scheduleWeekleyFinalScoresLocalNotification: self.notificationBody];
-//            
-//        }
-//
-//        
-//    }
-//
-//}
-
-
  -(void)createFinalTeamScoresNotificationBody
 {
     
@@ -1915,15 +1708,15 @@
     
     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
     
-    NSArray *homeTeamScores = [RetrievedTeams objectForKey:@"FinalHomeTeamScores"];
-    NSArray *awayTeamScores = [RetrievedTeams objectForKey:@"FinalAwayTeamScores"];
+    NSArray *homeTeamScores = [RetrievedTeams objectForKey:@"arrayOfFinalHomeTeamScoresWeek"];
+    NSArray *awayTeamScores = [RetrievedTeams objectForKey:@"arrayOfFinalAwayTeamScoresWeek"];
     
-    NSArray *homeTeamNames = [RetrievedTeams objectForKey:kArrayOfHomeTeamNames];
+    NSArray *homeTeamNames = [RetrievedTeams objectForKey:@"arrayOfFinalHomeTeamNamesWeek"];
 //    NSLog(@"homeTeamNames: %@",  homeTeamNames);
-    NSArray *awayTeamNames = [RetrievedTeams objectForKey:kArrayOfAwayTeamNames];
+    NSArray *awayTeamNames = [RetrievedTeams objectForKey:@"arrayOfFinalAwayTeamNamesWeek"];
 //    NSLog(@"awayTeamNames: %@",  awayTeamNames);
     
-    NSArray *arrayOfLeagueNames = [RetrievedTeams objectForKey:kArrayOfLeagueNames];
+    NSArray *arrayOfLeagueNames = [RetrievedTeams objectForKey:@"arrayOfFinalLeagueNamesWeek"];
     
     
    
