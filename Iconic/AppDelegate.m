@@ -25,6 +25,7 @@
 #import "Heap.h"
 #import "ParseCrashReporting/ParseCrashReporting.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "AchievmentsViewController.h"
 
 
 @interface AppDelegate ()
@@ -191,7 +192,38 @@
     {
         [self logOut];
     }
-
+    
+    
+    // Extract the notification data
+    NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    
+    NSString *notificationId = [notificationPayload objectForKey:@"teamAchievmentID"];
+    
+    if ([notificationId isEqualToString:@"AchievmentReceived"]) {
+        
+    // Present Achievment View Controller
+    NSString *achievmentId = [notificationPayload objectForKey:@"teamAchievmentID"];
+    
+    PFObject *achievmentObject = [PFObject objectWithoutDataWithClassName:@"AchievmentDefinitions"
+                                                            objectId:achievmentId];
+    
+    // Fetch achievment object
+    [achievmentObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        // Show achievment view controller
+        if (!error && [PFUser currentUser]) {
+            
+//             NSLog(@"achievmentReceived notification sent in did finish launching");
+            
+            //send achievement object to simplehomeviewcontroller via nsnotificaiton
+            NSDictionary* userInfo = @{@"achievment": object};
+            
+            NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+            [nc postNotificationName:@"achievmentReceived" object:self userInfo:userInfo];
+            
+        }
+    }];
+        
+    }
     
 //    pageControl.hidden = YES;
     
@@ -522,9 +554,41 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         
         [PFPush handlePush:userInfo];
         NSLog(@"did receive cheer push in background");
+        handler(UIBackgroundFetchResultNewData);
         
     }
     
+    if ([notificationId isEqualToString:@"AchievmentReceived"]) {
+        
+        // Create a pointer to the Photo object
+        NSString *achievmentId = [userInfo objectForKey:@"teamAchievmentID"];
+        PFObject *achievmentObject = [PFObject objectWithoutDataWithClassName:@"AchievmentDefinitions"
+                                                                     objectId:achievmentId];
+        
+        // Fetch achievment object
+        [achievmentObject fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if (error) {
+                handler(UIBackgroundFetchResultFailed);
+            } else if ([PFUser currentUser]) {
+
+                
+//                 NSLog(@"achievmentReceived notification sent in push");
+                
+                //send achievement object to simplehomeviewcontroller via nsnotificaiton
+                NSDictionary* userInfo = @{@"achievment": object};
+                
+                NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+                [nc postNotificationName:@"achievmentReceived" object:self userInfo:userInfo];
+                
+                
+                handler(UIBackgroundFetchResultNewData);
+            } else {
+                handler(UIBackgroundFetchResultNoData);
+            }        }];
+
+    }
+    
+    handler(UIBackgroundFetchResultNewData);
   
         
         return;

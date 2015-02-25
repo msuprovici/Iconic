@@ -2890,7 +2890,7 @@
         <!--Achievments View Controller-->
         <scene sceneID="6em-Kg-ecE">
             <objects>
-                <viewController storyboardIdentifier="Achievment" id="WY6-bu-bE9" customClass="AchievmentsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Achievement" id="WY6-bu-bE9" customClass="AchievmentsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K05-IX-eag">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2950,6 +2950,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="jJ3-6w-Dxv"/>
                     <connections>
                         <outlet property="achievmentImage" destination="hmh-p6-b8t" id="y4z-CD-7Fj"/>
                         <outlet property="achievmentName" destination="66A-tf-35V" id="HqF-LQ-zJC"/>

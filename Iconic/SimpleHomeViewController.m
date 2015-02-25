@@ -16,6 +16,7 @@
 #import "MyFinalScoresTableViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "AchievmentsViewController.h"
 
 #import "Cache.h"
 #import "Constants.h"
@@ -77,6 +78,9 @@ static NSString *kImageKey = @"imageKey";
 
 @property (nonatomic, assign) UIBackgroundTaskIdentifier activityPostBackgroundTaskId;
 
+//achievments
+@property (nonatomic, strong) PFObject * teamAchievmentReceived;
+
 
 
 //step counting
@@ -121,6 +125,12 @@ static NSString *kImageKey = @"imageKey";
 @synthesize myPoints;
 @synthesize mySteps;
 
+- (void)dealloc {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"achievmentReceived" object:nil];
+   
+}
 
 - (void)viewDidLoad
 {
@@ -128,8 +138,10 @@ static NSString *kImageKey = @"imageKey";
         [super viewDidLoad];
    
     //schedule local notification to show daily points & steps summary
-//    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+//    [calculatePointsClass createFinalTeamScoresNotificationBody];
+    
+   [[UIApplication sharedApplication] cancelAllLocalNotifications];
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
 //    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
     
@@ -166,7 +178,12 @@ static NSString *kImageKey = @"imageKey";
                                                  name:UIApplicationWillEnterForegroundNotification object:nil];
     
     
-   
+   //achievment received
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedAchievementNotification:)
+                                                 name:@"achievmentReceived"
+                                               object:nil];
+
     
 
     
@@ -627,42 +644,7 @@ static NSString *kImageKey = @"imageKey";
 
 
 
-#pragma mark NSNotifications methods
 
-- (void) receiveTeamNotification:(NSNotification *) notification
-{
-    //reload view if a player has joined a team
-    
-    if ([[notification name] isEqualToString:@"JoinedTeam"])
-    {
-        
-        
-        [self.view setNeedsDisplay];
-        [self setReceivedNotification:YES];
-//        NSLog(@"Received Joined Team Notification on home screen");
-        
-//        if (self.joinedTeamButtonPressed  == YES) {
-        
-//        self.joinedTeamButtonPressed  = YES;
-//            NSLog(@"Player joined 1st team in simple");
-
-//            self.joinedTeamButtonPressed = NO;
-            //this is where you need to give the bonus and reload the view?
-            
-//        }
-
-        
-        
-    }
-    if ([[notification name] isEqualToString:@"LeftTeam"])
-    {
-        
-       [self.view setNeedsDisplay];
-        [self setReceivedNotification:YES];
-      
-        NSLog(@"Received Leave Team Notification on home screen");
-    }
-}
 
 
 
@@ -894,6 +876,58 @@ static NSString *kImageKey = @"imageKey";
 }
 
 
+#pragma mark NSNotifications methods
+
+- (void) receiveTeamNotification:(NSNotification *) notification
+{
+    //reload view if a player has joined a team
+    
+    if ([[notification name] isEqualToString:@"JoinedTeam"])
+    {
+        
+        
+        [self.view setNeedsDisplay];
+        [self setReceivedNotification:YES];
+        //        NSLog(@"Received Joined Team Notification on home screen");
+        
+        //        if (self.joinedTeamButtonPressed  == YES) {
+        
+        //        self.joinedTeamButtonPressed  = YES;
+        //            NSLog(@"Player joined 1st team in simple");
+        
+        //            self.joinedTeamButtonPressed = NO;
+        //this is where you need to give the bonus and reload the view?
+        
+        //        }
+        
+        
+        
+    }
+    if ([[notification name] isEqualToString:@"LeftTeam"])
+    {
+        
+        [self.view setNeedsDisplay];
+        [self setReceivedNotification:YES];
+        
+        NSLog(@"Received Leave Team Notification on home screen");
+    }
+}
+
+-(void)receivedAchievementNotification:(NSNotification *) notification
+{
+    if([[notification name] isEqualToString:@"achievmentReceived"])
+    {
+//        NSLog(@"achievmentReceived notification");
+        
+        NSDictionary* userInfo = notification.userInfo;
+        self.teamAchievmentReceived = userInfo[@"achievment"];
+        
+       
+        
+        [self performSegueWithIdentifier:@"ShowAchievment" sender:self];
+    }
+}
+
 
 #pragma mark - Navigation
 
@@ -928,6 +962,19 @@ static NSString *kImageKey = @"imageKey";
 //        //pass any data to next view here
 //        
 //    }
+    
+    //show final scores
+    if ([[segue identifier] isEqualToString:@"ShowAchievment"])
+    {
+      
+//        NSLog(@"achievment object: %@", self.teamAchievmentReceived);
+        
+        
+        [segue.destinationViewController initWithAchievment:self.teamAchievmentReceived];
+
+        
+    }
+
 }
 
 - (IBAction)unwindToDashboard:(UIStoryboardSegue *)unwindSegue

@@ -14,10 +14,22 @@
 
 @implementation AchievmentsViewController
 
+-(void)initWithAchievment:(PFObject *)anAchievment
+{
+    self.achievment = anAchievment;
+   
+   
+    
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+//    NSLog(@"self.achievment: %@", self.achievment);
+//    NSLog(@"achievment name: %@", [self.achievment objectForKey:@"achievmentName"]);
+    self.achievmentName.text = [self.achievment objectForKey:@"achievmentName"];
+    self.achivmentDetails.text = [self.achievment objectForKey:@"achievmentDescription"];
 
     }
 
@@ -27,12 +39,7 @@
 }
 
 
--(void)initWithAchievment:(PFObject *)anAchievment
-{
-    self.achievment = anAchievment;
-   
-//    NSLog(@"self.achievment: %@", self.achievment);
-}
+
 
 /*
 #pragma mark - Navigation
@@ -45,6 +52,7 @@
 */
 
 - (IBAction)exitButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
