@@ -30,6 +30,12 @@
 //    NSLog(@"achievment name: %@", [self.achievment objectForKey:@"achievmentName"]);
     self.achievmentName.text = [self.achievment objectForKey:@"achievmentName"];
     self.achivmentDetails.text = [self.achievment objectForKey:@"achievmentDescription"];
+    
+    //if this is a league championship achievment use local image
+    if([[self.achievment objectForKey:@"achievmentType"] isEqualToString:@"LeagueChampion"])
+       {
+           [self.achievmentImage setImage:[UIImage imageNamed:@"achievment_test.png"]];
+       }
 
     }
 
