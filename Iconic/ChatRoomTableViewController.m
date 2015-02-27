@@ -339,6 +339,24 @@
         [comment setObject:textField.text forKey:@"Message"];
         [comment setObject:self.team forKey:@"TeamName"];
         
+        //save PushChannel
+        //Parse push notification channels must not contain spaces
+        NSRange whiteSpaceRange = [self.team rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+        if (whiteSpaceRange.location != NSNotFound) {
+            
+            
+            //            NSLog(@"Found whitespace");
+            NSString *chanelNameNoSpaces = [self.team stringByReplacingOccurrencesOfString:@" " withString:@""];
+            
+            [comment setObject:chanelNameNoSpaces forKey:@"pushChannel"];
+        }
+        else
+        {
+            
+            [comment setObject:self.team forKey:@"pushChannel"];
+        }
+
+        
         [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 //Refresh view

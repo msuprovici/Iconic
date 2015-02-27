@@ -220,6 +220,27 @@
                                 
                                 [team setObject:[PFUser currentUser] forKey:@"teamCreator"];
                                 
+                                NSString *pushChanelName = [NSString stringWithFormat:@"%@", self.teamNameField.text];
+                                
+                                //save PushChannel
+                                //Parse push notification channels must not contain spaces
+                                NSRange whiteSpaceRange = [pushChanelName rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+                                if (whiteSpaceRange.location != NSNotFound) {
+                                    
+                                    
+                                    //            NSLog(@"Found whitespace");
+                                    NSString *chanelNameNoSpaces = [pushChanelName stringByReplacingOccurrencesOfString:@" " withString:@""];
+                                    
+                                    [team setObject:chanelNameNoSpaces forKey:@"pushChannel"];
+                                }
+                                else
+                                {
+                                    
+                                    [team setObject:pushChanelName forKey:@"pushChannel"];
+                                }
+                                
+                                
+                                
                                 
                                 if(self.didCreateTeam == YES)
                                 {
