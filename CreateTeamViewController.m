@@ -219,6 +219,7 @@
                                 [team setObject:@(maximumTeamsInLeague) forKey:@"numberOfTeamsInLeague"];
                                 [team setObject:[NSNumber numberWithBool:FALSE] forKey:@"leadChange"];
                                 [team setObject:[NSNumber numberWithBool:FALSE] forKey:@"teamLeading"];
+                                [team setObject:[NSNumber numberWithBool:FALSE] forKey:@"sentSaturdayNotification"];
                                 
                                 [team setObject:[PFUser currentUser] forKey:@"teamCreator"];
                                 
