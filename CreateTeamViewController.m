@@ -217,6 +217,8 @@
                                 [team setObject:@0 forKey:@"wins"];
                                 [team setObject:@0 forKey:@"losses"];
                                 [team setObject:@(maximumTeamsInLeague) forKey:@"numberOfTeamsInLeague"];
+                                [team setObject:[NSNumber numberWithBool:FALSE] forKey:@"leadChange"];
+                                [team setObject:[NSNumber numberWithBool:FALSE] forKey:@"teamLeading"];
                                 
                                 [team setObject:[PFUser currentUser] forKey:@"teamCreator"];
                                 
