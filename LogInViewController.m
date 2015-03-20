@@ -50,7 +50,7 @@
     // Create the data model
 //    _pageTitles = @[@"Title 1", @"Title 2", @"Title 3"];
 //    _pageSubTitles = @[@"Subtitle 1", @"Subtitle 2", @"Subtitle 3"];
-    _pageImages = @[@"IntroScreen1.png", @"IntroScreen2.png", @"IntroScreen3.png"];
+    _pageImages = @[@"IconicOnboard1slice@2x.png", @"IconicOnboard2slice@2x.png", @"IconicOnboard3slice@2x.png", @"IconicOnboard4slice@2x.png", @"IconicOnboard6slice@2x.png", @"IconicOnboard7slice@2x.png", @"IconicOnboard8slice@2x.png"];
     
 //    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex: 0]];
 //    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex: 0]];
@@ -66,8 +66,6 @@
         //set background image
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
         imageView.image = [UIImage imageNamed:[_pageImages objectAtIndex:i]];
-        
-      
          [self.scrollView addSubview:imageView];
         
 
