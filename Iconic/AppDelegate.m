@@ -103,26 +103,26 @@
    
 
     
-    // Register for push notifications
-    float ver = [[[UIDevice currentDevice] systemVersion] floatValue];
-    if (ver >= 8.0) {
-        // Only executes on version OS 8 or above.
-        UIUserNotificationSettings *settings =
-        [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert |
-         UIUserNotificationTypeBadge |
-         UIUserNotificationTypeSound
-                                          categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    }
-    else
-    {
-    
-    [application registerForRemoteNotificationTypes:
-     UIRemoteNotificationTypeBadge |
-     UIRemoteNotificationTypeAlert |
-     UIRemoteNotificationTypeSound];
-    }
+//    // Register for push notifications
+//    float ver = [[[UIDevice currentDevice] systemVersion] floatValue];
+//    if (ver >= 8.0) {
+//        // Only executes on version OS 8 or above.
+//        UIUserNotificationSettings *settings =
+//        [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert |
+//         UIUserNotificationTypeBadge |
+//         UIUserNotificationTypeSound
+//                                          categories:nil];
+//        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+//        [[UIApplication sharedApplication] registerForRemoteNotifications];
+//    }
+//    else
+//    {
+//    
+//    [application registerForRemoteNotificationTypes:
+//     UIRemoteNotificationTypeBadge |
+//     UIRemoteNotificationTypeAlert |
+//     UIRemoteNotificationTypeSound];
+//    }
     
     
     

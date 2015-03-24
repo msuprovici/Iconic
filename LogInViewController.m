@@ -46,6 +46,7 @@
     self.Login.hidden = YES;
     self.SignUp.hidden = YES;
     self.separatorLine.hidden = YES;
+    self.noNotifications.hidden = YES;
     
     // Create the data model
 //    _pageTitles = @[@"Title 1", @"Title 2", @"Title 3"];
@@ -383,6 +384,7 @@
         //        [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
         [self.startWalkthroughButton setImage:buttonImageMotion forState:UIControlStateNormal];
         NSLog(@"page == 2");
+        self.noNotifications.hidden = YES;
     }
     
     else if(self.currentIndex == 3)
@@ -415,6 +417,8 @@
         }];
         
         [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
+        
+        self.noNotifications.hidden = YES;
 
         
     }
@@ -423,6 +427,8 @@
         [Amplitude logEvent:@"Onboard: Next"];
         //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
         [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
+        
+        self.noNotifications.hidden = YES;
     }
     
     else if(self.currentIndex == 5)
@@ -430,15 +436,53 @@
         [Amplitude logEvent:@"Onboard: Next"];
         //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
         [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
+        
+        self.noNotifications.hidden = YES;
+    }
+    
+    else if(self.currentIndex == 6)
+    {
+        [Amplitude logEvent:@"Onboard: Next"];
+        //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
+        
+        [self.startWalkthroughButton setImage:buttonImageYes forState:UIControlStateNormal];
+        
+        self.noNotifications.hidden = NO;
     }
 
 
     
-    else if (self.currentIndex == 6) {
+    else if (self.currentIndex == 7) {
         [Amplitude logEvent:@"Onboard: Notification Yes"];
         //        [self.startWalkthroughButton setTitle: @"test" forState: UIControlStateNormal];
-        [self.startWalkthroughButton setImage:buttonImageYes forState:UIControlStateNormal];
-        NSLog(@"page == 6");
+        
+        NSLog(@"page == 7");
+        
+        // Register for push notifications
+        float ver = [[[UIDevice currentDevice] systemVersion] floatValue];
+        if (ver >= 8.0) {
+            // Only executes on version OS 8 or above.
+            UIUserNotificationSettings *settings =
+            [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert |
+             UIUserNotificationTypeBadge |
+             UIUserNotificationTypeSound
+                                              categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        }
+        else
+        {
+            
+            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+             UIRemoteNotificationTypeBadge |
+             UIRemoteNotificationTypeAlert |
+             UIRemoteNotificationTypeSound];
+            
+            
+        }
+        
+        self.noNotifications.hidden = YES;
+
     }
     
     
@@ -446,6 +490,8 @@
         [Amplitude logEvent:@"Onboard: Next"];
         //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
         [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
+        
+        self.noNotifications.hidden = YES;
     }
 
     
@@ -453,13 +499,35 @@
     
 
     
-    
-
-    
-    
-    
-    
     }
+
+
+- (IBAction)noNotificationPressed:(id)sender {
+    
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    CGFloat pageHeight = self.scrollView.frame.size.height;
+    float newPosition = scrollView.contentOffset.x+pageWidth;
+    CGRect toVisible = CGRectMake(newPosition, 0, pageWidth, pageHeight);
+    [scrollView scrollRectToVisible:toVisible animated:YES];
+    
+    //    CGFloat pageWidth = self.scrollView.frame.size.width;
+    //    uint page = self.scrollView.frame.size.width / pageWidth;
+    //    if (self.currentIndex < self.pageSubTitles.count -1 ) {
+    //
+    //        [Amplitude logEvent:@"Onboard: Next selected"];
+    ////          NSLog(@"CurrentIndex on Button Press  %lu", (unsigned long)self.currentIndex);
+    //
+    //        self.currentIndex = self.currentIndex+1;
+    ////        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
+    
+    
+    //    }
+    
+    self.currentIndex = self.currentIndex+1;
+
+    self.noNotifications.hidden = YES;
+    
+}
 
 
  - (NSOperationQueue *)operationQueue {
@@ -516,6 +584,7 @@
     
 
 }
+
 
 
 

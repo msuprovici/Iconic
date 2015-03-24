@@ -20,7 +20,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial1.png" id="ece-cm-hJQ">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NahImGoodButton@2x.png" id="ece-cm-hJQ">
                                             <rect key="frame" x="0.0" y="394" width="62" height="62"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -2497,16 +2497,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="79b-Eq-S5o">
-                                <rect key="frame" x="48" y="510" width="225" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="LetsGetStartedButton.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startWalkthrough:" destination="H5O-hK-5UJ" eventType="touchUpInside" id="Yf8-7w-Fgi"/>
-                                </connections>
-                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="74L-dr-NWU">
                                 <rect key="frame" x="0.0" y="-11" width="320" height="510"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -2515,7 +2505,7 @@
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jzk-34-ioB">
-                                <rect key="frame" x="1" y="507" width="160" height="60"/>
+                                <rect key="frame" x="1" y="507" width="128" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="Sign Up">
@@ -2525,21 +2515,8 @@
                                     <action selector="signUpAction:" destination="H5O-hK-5UJ" eventType="touchUpInside" id="wNr-zL-MeD"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rrn-Lo-C4i" userLabel="Separator Line">
-                                <rect key="frame" x="160" y="507" width="1" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="S3r-Ut-M6O">
-                                <rect key="frame" x="141" y="487" width="39" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </pageControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cuZ-PR-S7K">
-                                <rect key="frame" x="160" y="507" width="160" height="60"/>
+                                <rect key="frame" x="226" y="507" width="94" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                 <state key="normal" title="Login">
@@ -2547,6 +2524,26 @@
                                 </state>
                                 <connections>
                                     <action selector="userLogin:" destination="H5O-hK-5UJ" eventType="touchUpInside" id="Ptl-mG-llO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="79b-Eq-S5o">
+                                <rect key="frame" x="48" y="479" width="225" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="LetsGetStartedButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startWalkthrough:" destination="H5O-hK-5UJ" eventType="touchUpInside" id="Yf8-7w-Fgi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8lu-Cu-Lns">
+                                <rect key="frame" x="109" y="539" width="95" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="noNotification.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="noNotificationPressed:" destination="H5O-hK-5UJ" eventType="touchUpInside" id="9ei-cn-d1a"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2559,9 +2556,8 @@
                     <connections>
                         <outlet property="Login" destination="cuZ-PR-S7K" id="SPE-hc-2VL"/>
                         <outlet property="SignUp" destination="Jzk-34-ioB" id="4fX-aq-q1G"/>
-                        <outlet property="pageControl" destination="S3r-Ut-M6O" id="Bbd-BZ-wmu"/>
+                        <outlet property="noNotifications" destination="8lu-Cu-Lns" id="Vlm-jv-v9W"/>
                         <outlet property="scrollView" destination="74L-dr-NWU" id="1Ga-ql-XUb"/>
-                        <outlet property="separatorLine" destination="rrn-Lo-C4i" id="4jJ-LK-tgC"/>
                         <outlet property="startWalkthroughButton" destination="79b-Eq-S5o" id="dpj-tJ-1gS"/>
                         <segue destination="sEI-Ya-ylU" kind="push" identifier="LoginSuccesful" id="Wkm-gx-o8j"/>
                     </connections>
@@ -3043,15 +3039,16 @@
     </scenes>
     <resources>
         <image name="LetsGetStartedButton.png" width="452" height="102"/>
+        <image name="NahImGoodButton@2x.png" width="16" height="16"/>
         <image name="achievment_test.png" width="894" height="894"/>
         <image name="comment.png" width="64" height="54"/>
         <image name="empty_avatar.png" width="500" height="500"/>
         <image name="first" width="30" height="30"/>
         <image name="highFive.png" width="64" height="64"/>
+        <image name="noNotification.png" width="183" height="29"/>
         <image name="reveal-icon.png" width="22" height="17"/>
         <image name="second" width="30" height="30"/>
         <image name="team2.png" width="64" height="64"/>
-        <image name="tutorial1.png" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

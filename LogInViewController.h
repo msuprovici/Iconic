@@ -37,6 +37,8 @@ UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
 
+@property (strong, nonatomic) IBOutlet UIButton *noNotifications;
+- (IBAction)noNotificationPressed:(id)sender;
 
 //@property (strong, nonatomic) IBOutlet UILabel *mainTitle;
 //@property (strong, nonatomic) IBOutlet UILabel *subTitle;
