@@ -51,7 +51,7 @@
     // Create the data model
 //    _pageTitles = @[@"Title 1", @"Title 2", @"Title 3"];
 //    _pageSubTitles = @[@"Subtitle 1", @"Subtitle 2", @"Subtitle 3"];
-    _pageImages = @[@"IconicOnboard1slice@2x.png", @"IconicOnboard2slice@2x.png", @"IconicOnboard3slice@2x.png", @"IconicOnboard4slice@2x.png", @"IconicOnboard6slice@2x.png", @"IconicOnboard7slice@2x.png", @"IconicOnboard8slice@2x.png"];
+    _pageImages = @[@"IconicOnboard1slice@2x.png", @"IconicOnboard2slice@2x.png", @"IconicOnboard3slice@2x.png", @"IconicOnboard4slice@2x.png", @"IconicOnboard6slice@2x.png", @"IconicOnboard7slice@2x.png", @"IconicOnboard8slice@2x.png", @"IconicOnboard9slice@2x.png"];
     
 //    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex: 0]];
 //    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex: 0]];
@@ -69,10 +69,6 @@
         imageView.image = [UIImage imageNamed:[_pageImages objectAtIndex:i]];
          [self.scrollView addSubview:imageView];
         
-        
-        
-
-    
     }
     //Set the content size of our scrollview according to the total width of our imageView objects.
     scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [_pageImages count], scrollView.frame.size.height);
@@ -355,6 +351,7 @@
     UIImage * buttonImageStart = [UIImage imageNamed:@"LetsGetStartedButton@2x.png"];
     UIImage * buttonImageYes = [UIImage imageNamed:@"YesButton@2x.png"];
     UIImage * buttonImageNo = [UIImage imageNamed:@"NahImGoodButton@2x.png"];
+    UIImage * buttonJoin = [UIImage imageNamed:@"JoinButton@2x.png"];
     
      CGFloat pageWidth = self.scrollView.frame.size.width;
     CGFloat pageHeight = self.scrollView.frame.size.height;
@@ -485,6 +482,51 @@
 
     }
     
+
+    
+    else if(self.currentIndex >= 8)
+    {
+        [Amplitude logEvent:@"Onboard: Next"];
+        //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
+        
+        [self.startWalkthroughButton setImage:buttonJoin forState:UIControlStateNormal];
+        
+        self.noNotifications.hidden = YES;
+        
+        [Amplitude logEvent:@"Onboard: LogIn selected"];
+        
+        // Create the log in view controller
+        CustomPFLogInViewController *logInViewController = [[CustomPFLogInViewController alloc] init];
+        [logInViewController setDelegate:self]; // Set ourselves as the delegate
+        
+        
+        
+        CustomPFSignUpViewController *signUpViewController = [[CustomPFSignUpViewController alloc] init];
+        
+        //    logInViewController.signUpController = [[CustomPFSignUpViewController alloc] init];
+        
+        //    signUpViewController.fields =  PFSignUpFieldsDefault  ;
+        
+        
+        
+        //    logInViewController.facebookPermissions = @[@"friends_about_me"];
+        //    logInViewController.fields = PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook  ;
+        
+        logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook | PFLogInFieldsSignUpButton ;
+        
+        //    logInViewController.fields = PFLogInFieldsFacebook | PFLogInFieldsSignUpButton |PFLogInFieldsDismissButton  ;
+        logInViewController.facebookPermissions = @[ @"public_profile", @"email" ];
+        
+        
+        
+        // Present the log in view controller
+        [self presentViewController:logInViewController animated:YES completion:NULL];
+        
+        
+
+    }
+
+    
     
     else{
         [Amplitude logEvent:@"Onboard: Next"];
@@ -526,6 +568,20 @@
     self.currentIndex = self.currentIndex+1;
 
     self.noNotifications.hidden = YES;
+    
+    if(self.currentIndex == 7)
+    {
+        [Amplitude logEvent:@"Onboard: Next"];
+        //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
+        
+        UIImage * buttonJoin = [UIImage imageNamed:@"JoinButton@2x.png"];
+        
+        [self.startWalkthroughButton setImage:buttonJoin forState:UIControlStateNormal];
+        
+        self.noNotifications.hidden = YES;
+    }
+    
+
     
 }
 
