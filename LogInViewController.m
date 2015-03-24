@@ -68,6 +68,8 @@
         imageView.image = [UIImage imageNamed:[_pageImages objectAtIndex:i]];
          [self.scrollView addSubview:imageView];
         
+        
+        
 
     
     }
@@ -346,6 +348,12 @@
 
 
 - (IBAction)startWalkthrough:(id)sender {
+    NSLog(@"button pressed");
+    UIImage * buttonImageMotion = [UIImage imageNamed:@"Grant_Motion_Permission_Button@2x.png"];
+    UIImage * buttonImageNext = [UIImage imageNamed:@"NextButton@2x.png"];
+    UIImage * buttonImageStart = [UIImage imageNamed:@"LetsGetStartedButton@2x.png"];
+    UIImage * buttonImageYes = [UIImage imageNamed:@"YesButton@2x.png"];
+    UIImage * buttonImageNo = [UIImage imageNamed:@"NahImGoodButton@2x.png"];
     
      CGFloat pageWidth = self.scrollView.frame.size.width;
     CGFloat pageHeight = self.scrollView.frame.size.height;
@@ -353,46 +361,38 @@
     CGRect toVisible = CGRectMake(newPosition, 0, pageWidth, pageHeight);
     [scrollView scrollRectToVisible:toVisible animated:YES];
     
-    if (self.currentIndex < self.pageSubTitles.count -1 ) {
-        
-        [Amplitude logEvent:@"Onboard: Next selected"];
-//          NSLog(@"CurrentIndex on Button Press  %lu", (unsigned long)self.currentIndex);
-        
-        self.currentIndex = self.currentIndex+1;
-        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
-    }
+//    CGFloat pageWidth = self.scrollView.frame.size.width;
+//    uint page = self.scrollView.frame.size.width / pageWidth;
+//    if (self.currentIndex < self.pageSubTitles.count -1 ) {
+//        
+//        [Amplitude logEvent:@"Onboard: Next selected"];
+////          NSLog(@"CurrentIndex on Button Press  %lu", (unsigned long)self.currentIndex);
+//        
+//        self.currentIndex = self.currentIndex+1;
+////        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
     
-    [self.pageControl setCurrentPage:self.currentIndex];
     
-//    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex:self.currentIndex]];
-//    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex:self.currentIndex]];
-   
+//    }
+    
+    self.currentIndex = self.currentIndex+1;
+    NSLog(@"button pressed %lu",  (unsigned long)self.currentIndex);
+    
+    
     if (self.currentIndex == 2) {
-       
-        [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
-        
-//        //this needs to be here so that the standarad Apple motion permission request pops up
-//        self.cmStepCounter = [[CMStepCounter alloc] init];
-//        NSDate *today = [NSDate date];
-//        NSDate *yesterday = [today dateByAddingTimeInterval: -86400.0];
-//        [self.cmStepCounter queryStepCountStartingFrom:yesterday to:today toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error){
-//              }];
-        
-        [Amplitude logEvent:@"Onboard: Motion selected"];
-
+        [Amplitude logEvent:@"Onboard: Grant Motion Permission"];
+        //        [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
+        [self.startWalkthroughButton setImage:buttonImageMotion forState:UIControlStateNormal];
+        NSLog(@"page == 2");
     }
-
     
-    
-    
-    if([self.startWalkthroughButton.titleLabel.text  isEqualToString: @"Grant Motion Permission"])
+    else if(self.currentIndex == 3)
     {
         
-        //show login options once the person selected the grant permission label
-        self.Login.hidden = NO;
-        self.SignUp.hidden = NO;
-        self.separatorLine.hidden = NO;
-        self.startWalkthroughButton.hidden = YES;
+//        //show login options once the person selected the grant permission label
+//        self.Login.hidden = NO;
+//        self.SignUp.hidden = NO;
+//        self.separatorLine.hidden = NO;
+//        self.startWalkthroughButton.hidden = YES;
         
         
         //initialize CMStepCounter to ask the user for permission
@@ -405,7 +405,7 @@
             
         }
         else{
-             NSLog(@"CMStepCounter is NOT Avaialble");
+            NSLog(@"CMStepCounter is NOT Avaialble");
         }
         
         //this needs to be here so that the standarad Apple motion permission request pops up
@@ -413,10 +413,51 @@
         NSDate *yesterday = [today dateByAddingTimeInterval: -86400.0];
         [self.cmStepCounter queryStepCountStartingFrom:yesterday to:today toQueue:self.operationQueue withHandler:^(NSInteger numberOfSteps, NSError *error){
         }];
+        
+        [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
 
         
-        
-         }
+    }
+    else if(self.currentIndex == 4)
+    {
+        [Amplitude logEvent:@"Onboard: Next"];
+        //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
+        [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
+    }
+    
+    else if(self.currentIndex == 5)
+    {
+        [Amplitude logEvent:@"Onboard: Next"];
+        //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
+        [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
+    }
+
+
+    
+    else if (self.currentIndex == 6) {
+        [Amplitude logEvent:@"Onboard: Notification Yes"];
+        //        [self.startWalkthroughButton setTitle: @"test" forState: UIControlStateNormal];
+        [self.startWalkthroughButton setImage:buttonImageYes forState:UIControlStateNormal];
+        NSLog(@"page == 6");
+    }
+    
+    
+    else{
+        [Amplitude logEvent:@"Onboard: Next"];
+        //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
+        [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
+    }
+
+    
+//    [self.pageControl setCurrentPage:self.currentIndex];
+    
+
+    
+    
+
+    
+    
+    
     
     }
 
@@ -430,6 +471,13 @@
                                                                                                                          
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)sender {
+    NSLog(@"scroolview end decelerating");
+    UIImage * buttonImageMotion = [UIImage imageNamed:@"Grant_Motion_Permission_Button@2x.png"];
+    UIImage * buttonImageNext = [UIImage imageNamed:@"NextButton@2x.png"];
+    UIImage * buttonImageStart = [UIImage imageNamed:@"LetsGetStartedButton@2x.png"];
+    UIImage * buttonImageYes = [UIImage imageNamed:@"YesButton@2x.png"];
+    UIImage * buttonImageNo = [UIImage imageNamed:@"NahImGoodButton@2x.png"];
+    
     
     CGFloat pageWidth = self.scrollView.frame.size.width;
     uint page = sender.contentOffset.x / pageWidth;
@@ -438,14 +486,28 @@
     self.currentIndex = page;
     [self.pageControl setCurrentPage:page];
     
+    if (page == 0) {
+        [Amplitude logEvent:@"Onboard: Get Started"];
+        //        [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
+        [self.startWalkthroughButton setImage:buttonImageStart forState:UIControlStateNormal];
+       
+    }
     if (page == 2) {
         [Amplitude logEvent:@"Onboard: Swipe_Motion"];
-        [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
+//        [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
+        [self.startWalkthroughButton setImage:buttonImageMotion forState:UIControlStateNormal];
     }
+    else if (page == 6) {
+        [Amplitude logEvent:@"Onboard: Swipe_Motion"];
+//        [self.startWalkthroughButton setTitle: @"test" forState: UIControlStateNormal];
+        [self.startWalkthroughButton setImage:buttonImageYes forState:UIControlStateNormal];
+    }
+
     
     else{
         [Amplitude logEvent:@"Onboard: Swipe"];
-        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
+//        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
+        [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
     }
 
     
