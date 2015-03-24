@@ -34,7 +34,7 @@
     
     //set backbround color
     [self.signUpView setBackgroundColor: [UIColor whiteColor]];
-    [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconicLogoBlack.png"]]];
+    [self.signUpView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconicLogo@2x.png"]]];
     
     
     // Remove text shadow
@@ -65,11 +65,28 @@
     self.signUpView.emailField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     [self.signUpView.emailField setTextColor:PNWeiboColor];
     [self.signUpView.emailField setBackgroundColor:PNHealYellow];
+    
+    [self.signUpView.signUpButton setBackgroundImage:[UIImage imageNamed:@"SignUpButton@2x.png"] forState:UIControlStateNormal];
+    [self.signUpView.signUpButton setBackgroundImage:[UIImage imageNamed:@"SignUpButton@2X.png"] forState:UIControlStateHighlighted];
+    [self.signUpView.signUpButton setTitle:@"" forState:UIControlStateNormal];
+    [self.signUpView.signUpButton setTitle:@"" forState:UIControlStateHighlighted];
+    [self.signUpView.signUpButton setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+    [self.signUpView.signUpButton setTitleColor:[UIColor clearColor] forState:UIControlStateHighlighted];
 
 
     
     
 }
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    // Set frame for elements
+
+    [self.signUpView.signUpButton setFrame:CGRectMake(16.0f, 400.0f, 288.0f, 40.0f)];
+
+}
+
 
 - (void)didReceiveMemoryWarning
 {

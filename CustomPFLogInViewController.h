@@ -16,4 +16,6 @@
 
 @interface CustomPFLogInViewController : PFLogInViewController
 
+@property (strong, nonatomic) UIImageView * fieldsBackground;
+
 @end

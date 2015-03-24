@@ -36,7 +36,8 @@
     
     //customize log-in.  for more options go here https://parse.com/tutorials/login-and-signup-views
     [self.logInView setBackgroundColor: [UIColor whiteColor]];
-    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconicLogoBlack.png"]]];
+   
+    [self.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"IconicLogo@2x.png"]]];
     
     // Remove text shadow
     CALayer *layer = self.logInView.usernameField.layer;
@@ -49,8 +50,8 @@
     layer.shadowOpacity = 0.0;
     
     //set button text
-    self.logInView.logInButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
-    [self.logInView.logInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    self.logInView.logInButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+//    [self.logInView.logInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     
     // Set field text color
@@ -69,12 +70,46 @@
     [self.logInView.passwordField setTextColor:PNWeiboColor];
     [self.logInView.passwordField setBackgroundColor:PNHealYellow];
     
-    self.logInView.passwordForgottenButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
-    [self.logInView.passwordForgottenButton.titleLabel setTextColor:[UIColor colorWithRed:135.0f/255.0f green:118.0f/255.0f blue:92.0f/255.0f alpha:1.0]];
+//    self.logInView.passwordForgottenButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
+//    [self.logInView.passwordForgottenButton.titleLabel setTextColor:[UIColor colorWithRed:250.0f/255.0f green:0.0f/255.0f blue:33.0f/255.0f alpha:1.0]];
+    
+    
+    [self.logInView.passwordForgottenButton setBackgroundImage:[UIImage imageNamed:@"ForgotPasswordButton@2x.png"] forState:UIControlStateNormal];
+    [self.logInView.passwordForgottenButton setBackgroundImage:[UIImage imageNamed:@"ForgotPasswordButton@2X.png"] forState:UIControlStateHighlighted];
+    [self.logInView.passwordForgottenButton setTitle:@"" forState:UIControlStateNormal];
+    [self.logInView.passwordForgottenButton setTitle:@"" forState:UIControlStateHighlighted];
+    
+    [self.logInView.signUpButton setBackgroundImage:[UIImage imageNamed:@"SignUpButton@2x.png"] forState:UIControlStateNormal];
+    [self.logInView.signUpButton setBackgroundImage:[UIImage imageNamed:@"SignUpButton@2X.png"] forState:UIControlStateHighlighted];
+    [self.logInView.signUpButton setTitle:@"" forState:UIControlStateNormal];
+    [self.logInView.signUpButton setTitle:@"" forState:UIControlStateHighlighted];
+    [self.logInView.signUpButton setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+    [self.logInView.signUpButton setTitleColor:[UIColor clearColor] forState:UIControlStateHighlighted];
+    
+    
+    [self.logInView.logInButton setBackgroundImage:[UIImage imageNamed:@"LogInButton@2x.png"] forState:UIControlStateNormal];
+    [self.logInView.logInButton setBackgroundImage:[UIImage imageNamed:@"LogInButton@2X.png"] forState:UIControlStateHighlighted];
+    [self.logInView.logInButton setTitle:@"" forState:UIControlStateNormal];
+    [self.logInView.logInButton setTitle:@"" forState:UIControlStateHighlighted];
+    
+//    // Add login field background
+    self.fieldsBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disclaimerText@2x.png"]];
+    [self.logInView insertSubview:self.fieldsBackground atIndex:1];
     
   
 }
 
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    // Set frame for elements
+
+    [self.logInView.signUpButton setFrame:CGRectMake(16.0f, 510.0f, 288.0f, 40.0f)];
+    [self.logInView.logInButton setFrame:CGRectMake(16.0f, 300.0f, 288.0f, 40.0f)];
+    [self.logInView.passwordForgottenButton setFrame:CGRectMake(120.0f, 350.0f, 85.0f, 12.0f)];
+    [self.fieldsBackground setFrame:CGRectMake(8.0f, 415.0f, 300.0f, 24.0f)];
+}
 
 
 - (void)didReceiveMemoryWarning

@@ -380,7 +380,7 @@
         [Amplitude logEvent:@"Onboard: Grant Motion Permission"];
         //        [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
         [self.startWalkthroughButton setImage:buttonImageMotion forState:UIControlStateNormal];
-        NSLog(@"page == 2");
+//        NSLog(@"page == 2");
         self.noNotifications.hidden = YES;
     }
     
@@ -478,6 +478,8 @@
             
         }
         
+        [self.startWalkthroughButton setImage:buttonJoin forState:UIControlStateNormal];
+        
         self.noNotifications.hidden = YES;
 
     }
@@ -486,7 +488,7 @@
     
     else if(self.currentIndex >= 8)
     {
-        [Amplitude logEvent:@"Onboard: Next"];
+        [Amplitude logEvent:@"Onboard: Join"];
         //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
         
         [self.startWalkthroughButton setImage:buttonJoin forState:UIControlStateNormal];
@@ -518,6 +520,7 @@
         logInViewController.facebookPermissions = @[ @"public_profile", @"email" ];
         
         
+         [logInViewController setSignUpController:signUpViewController]; 
         
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
@@ -545,6 +548,7 @@
 
 
 - (IBAction)noNotificationPressed:(id)sender {
+    [Amplitude logEvent:@"Onboard: Notifications Denied"];
     
     CGFloat pageWidth = self.scrollView.frame.size.width;
     CGFloat pageHeight = self.scrollView.frame.size.height;
