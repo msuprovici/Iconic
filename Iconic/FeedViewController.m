@@ -532,7 +532,7 @@
         return 44.0f;
     }
     
-    return 80.0f;
+    return 100.0f;
 }
 
 
