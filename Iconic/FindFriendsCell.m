@@ -50,10 +50,16 @@
     user = aUser;
     
     // Configure the cell
-    [self.followButton setTitle:@"Follow  " forState:UIControlStateNormal]; // space added for centering
-    [self.followButton setTitle:@"Following" forState:UIControlStateSelected];
+    
+    //UIImage * userNotFollowed = [UIImage imageNamed:@"Follow_Icon@2x.png"];
+   // UIImage * userFollowed = [UIImage imageNamed:@"Followed_User_Icon@2x.png"];
+    
+    //[self.followButton setImage:userNotFollowed forState:UIControlStateNormal];
+    //[self.followButton setImage:userFollowed forState:UIControlStateSelected | UIControlStateHighlighted];
+//    [self.followButton setTitle:@"Follow  " forState:UIControlStateNormal]; // space added for centering
+//    [self.followButton setTitle:@"Following" forState:UIControlStateSelected];
     //[self.followButton addTarget:self action:@selector(didTapFollowButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     
     
     [self.avatarImageView setFile:[self.user objectForKey:kUserProfilePicSmallKey]];

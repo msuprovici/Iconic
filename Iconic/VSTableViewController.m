@@ -191,8 +191,8 @@
 //        [query whereKey:@"TeamName" isEqualTo:
         
         // If you want your BarButtonItem to handle touch event and click, use a UIButton as customView
-        self.chatButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 28, 28)];
-        [self.chatButton setImage:[UIImage imageNamed:@"chat19.png"] forState:UIControlStateNormal];
+        self.chatButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+        [self.chatButton setImage:[UIImage imageNamed:@"Chat_Icon.png"] forState:UIControlStateNormal];
         [self.chatButton addTarget:self action:@selector(chatButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 //        customButton.backgroundColor = [UIColor clearColor] ;
         

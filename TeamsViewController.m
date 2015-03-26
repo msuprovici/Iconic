@@ -180,14 +180,14 @@
     
     
     
-    //set up create team button
-    
-    [self.createTeam setTitle:@"+"];
-    
-    [self.createTeam  setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0]} forState:UIControlStateNormal];
-    
-     //since we can't hide the button we disable it and make it clear
-     [self.createTeam  setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0], NSForegroundColorAttributeName: [UIColor clearColor]} forState:UIControlStateDisabled];
+//    //set up create team button
+//    
+//    [self.createTeam setTitle:@"+"];
+//    
+//    [self.createTeam  setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0]} forState:UIControlStateNormal];
+//    
+//     //since we can't hide the button we disable it and make it clear
+//     [self.createTeam  setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0], NSForegroundColorAttributeName: [UIColor clearColor]} forState:UIControlStateDisabled];
     
     //if league is full disable create button
     int teamsInLeague = [[self.league objectForKey:@"numberOfTeams"]intValue];

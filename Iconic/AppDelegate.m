@@ -243,7 +243,7 @@
 //   [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Light" size:15], NSFontAttributeName,[UIColor blackColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     
     //this changes the color of all accessories & buttons
-    self.window.tintColor = [UIColor blackColor];
+    self.window.tintColor = [UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     //this changes the clor of just UIBarButtonItems
 //    if([UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {

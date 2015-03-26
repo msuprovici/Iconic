@@ -140,14 +140,14 @@
         if(!error)
         {
             self.followUser.selected = YES;
-            [self.followUser setTitle:@"Following" forState:UIControlStateNormal];
+//            [self.followUser setTitle:@"Following" forState:UIControlStateNormal];
 //            NSLog(@"Player Followed %@", object);
             
         }
         else
         {
             self.followUser.selected = NO;
-            [self.followUser setTitle:@"Follow" forState:UIControlStateNormal];
+//            [self.followUser setTitle:@"Follow" forState:UIControlStateNormal];
         }
     }];
     

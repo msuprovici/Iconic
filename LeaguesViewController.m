@@ -106,9 +106,9 @@
     
     self.receivedAddedTeamNotification = NO;
     
-    [self.createLeague setTitle:@"+"];
-    
-    [self.createLeague  setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0]} forState:UIControlStateNormal];
+//    [self.createLeague setTitle:@"+"];
+//    
+//    [self.createLeague  setTitleTextAttributes:@{ NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:30.0]} forState:UIControlStateNormal];
     
     
     ///since we can't make the button invisible we make it clear

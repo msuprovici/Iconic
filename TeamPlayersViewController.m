@@ -95,8 +95,8 @@
     [super viewDidLoad];
   
       
-    [self.joinTeam setTitle:@"Join" forState:UIControlStateNormal];
-    [self.joinTeam setTitle:@"Leave" forState:UIControlStateSelected];
+//    [self.joinTeam setTitle:@"Join" forState:UIControlStateNormal];
+//    [self.joinTeam setTitle:@"Leave" forState:UIControlStateSelected];
     
     [self joinTeamButtonState];
     [self.tableView reloadData];
