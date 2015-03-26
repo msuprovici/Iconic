@@ -231,7 +231,7 @@
 
 - (void)setLikeStatus:(BOOL)liked {
     [self.likeButton setSelected:liked];
-    [self.likeButton setBackgroundImage:[UIImage imageNamed:@"hi-five-icon_edit2.png"] forState:UIControlStateSelected];
+//    [self.likeButton setBackgroundImage:[UIImage imageNamed:@"hi-five-icon_edit2.png"] forState:UIControlStateSelected];
     
 //    
 //    if (liked) {
