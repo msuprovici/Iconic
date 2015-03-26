@@ -267,6 +267,7 @@
                         <outlet property="scrollView" destination="83S-Gt-Rep" id="f3n-ah-bHJ"/>
                         <segue destination="WY6-bu-bE9" kind="modal" identifier="ShowAchievment" id="up7-de-fhc"/>
                         <segue destination="1OA-rb-SZS" kind="push" identifier="MyFinalScores" id="rf4-8k-JPl"/>
+                        <segue destination="Ohn-3Q-cXQ" kind="push" identifier="showDashboard" id="Df0-JS-Utf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9v4-Lm-y8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2865,6 +2866,130 @@
             </objects>
             <point key="canvasLocation" x="-3771" y="-4412"/>
         </scene>
+        <!--Dashboard Table View Controller-->
+        <scene sceneID="CzR-Fe-BRD">
+            <objects>
+                <tableViewController id="Ohn-3Q-cXQ" customClass="DashboardTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="hdH-wE-sYI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="BgW-mj-CvW">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="344"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZUU-9j-Agp" userLabel="streak">
+                                    <rect key="frame" x="54" y="144" width="188" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <color key="textColor" red="0.8764648438" green="0.1105902305" blue="0.1742419097" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="poq-Qs-0gY" userLabel="Label - PointsValue" customClass="UICountingLabel">
+                                    <rect key="frame" x="-7" y="33" width="260" height="99"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="100"/>
+                                    <color key="textColor" red="0.98039215690000003" green="0.0" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's Steps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j3L-zl-dwf">
+                                    <rect key="frame" x="73" y="122" width="100" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <color key="textColor" red="0.2498574361" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="trk-Td-665" userLabel="Label - XP">
+                                    <rect key="frame" x="248" y="116" width="64" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <color key="textColor" red="0.2498574361" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LKU-kB-mrt" userLabel="Label - XPvalue" customClass="UICountingLabel">
+                                    <rect key="frame" x="258" y="66" width="40" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="40"/>
+                                    <color key="textColor" red="0.98039215690000003" green="0.0" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" id="2Rs-0V-08s" customClass="DACircularProgressView">
+                                    <rect key="frame" x="249" y="58" width="58" height="58"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" id="Chd-qB-kHW" customClass="PNBarChart">
+                                    <rect key="frame" x="0.0" y="157" width="320" height="163"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.95686274510000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pXu-mt-QIO" userLabel="Label - High">
+                                    <rect key="frame" x="4" y="182" width="42" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Middle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BSr-xg-e39">
+                                    <rect key="frame" x="4" y="229" width="42" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SPn-cq-VYe">
+                                    <rect key="frame" x="40" y="294" width="32" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <color key="textColor" red="0.2498574361" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nt0-QW-cQH">
+                                    <rect key="frame" x="282" y="294" width="31" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <color key="textColor" red="0.2498574361" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 Day Steps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0uT-He-6jl">
+                                    <rect key="frame" x="124" y="302" width="100" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                    <color key="textColor" red="0.2498574361" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="52W-NP-gTt" customClass="DashboardTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="52W-NP-gTt" id="UQT-Ih-xIu">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ohn-3Q-cXQ" id="IRe-ja-Zka"/>
+                            <outlet property="delegate" destination="Ohn-3Q-cXQ" id="aJd-Ju-maU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Lbn-NA-ZFZ"/>
+                    <connections>
+                        <outlet property="highValue" destination="pXu-mt-QIO" id="amP-Ld-MTZ"/>
+                        <outlet property="mediumValue" destination="BSr-xg-e39" id="LOY-Lh-rrA"/>
+                        <outlet property="myStatsView" destination="BgW-mj-CvW" id="8gb-LN-thi"/>
+                        <outlet property="pointsValue" destination="poq-Qs-0gY" id="NC6-Oc-oTR"/>
+                        <outlet property="sevenDaysAgoDay" destination="SPn-cq-VYe" id="QxH-Cd-yr5"/>
+                        <outlet property="stepsBarChart" destination="Chd-qB-kHW" id="6k4-kr-2Dn"/>
+                        <outlet property="streak" destination="ZUU-9j-Agp" id="0U6-uu-UT9"/>
+                        <outlet property="todayDay" destination="Nt0-QW-cQH" id="LQx-gh-qpP"/>
+                        <outlet property="xpProgressDial" destination="2Rs-0V-08s" id="bJk-hc-adI"/>
+                        <outlet property="xpValue" destination="LKU-kB-mrt" id="SeW-J2-K13"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FNN-ut-gi9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3028" y="-3684"/>
+        </scene>
         <!--Dashboard-->
         <scene sceneID="amm-ij-1SH">
             <objects>
@@ -3050,11 +3175,11 @@
         <image name="High_Five.png" width="14" height="21"/>
         <image name="High_Five_Selected.png" width="14" height="21"/>
         <image name="Join_Team_Icon.png" width="29" height="30"/>
-        <image name="Leagues_Icon.png" width="28" height="29"/>
+        <image name="Leagues_Icon.png" width="25" height="25"/>
         <image name="Leave_Team_Icon.png" width="29" height="29"/>
         <image name="LetsGetStartedButton.png" width="452" height="102"/>
         <image name="NahImGoodButton@2x.png" width="16" height="16"/>
-        <image name="Profile_Icon.png" width="27" height="27"/>
+        <image name="Profile_Icon.png" width="26" height="26"/>
         <image name="achievment_test.png" width="894" height="894"/>
         <image name="empty_avatar.png" width="500" height="500"/>
         <image name="noNotification.png" width="183" height="29"/>

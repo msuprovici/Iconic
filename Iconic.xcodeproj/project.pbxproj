@@ -58,6 +58,8 @@
 		5C3BBF5F1AC3AD3D00B179B0 /* Feed_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF571AC3AD3D00B179B0 /* Feed_Icon@3x.png */; };
 		5C3BBF601AC3AD3D00B179B0 /* Dashboard_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF581AC3AD3D00B179B0 /* Dashboard_Icon@2x.png */; };
 		5C3BBF611AC3AD3D00B179B0 /* Dashboard_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF591AC3AD3D00B179B0 /* Dashboard_Icon@3x.png */; };
+		5C3BBF661AC483C700B179B0 /* DashboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3BBF651AC483C700B179B0 /* DashboardTableViewController.m */; };
+		5C3BBF691AC484BC00B179B0 /* DashboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3BBF681AC484BC00B179B0 /* DashboardTableViewCell.m */; };
 		5C3BC49F19DF15CD00D9A9AD /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3BC49E19DF15CD00D9A9AD /* NotificationCenter.framework */; };
 		5C3BC4A519DF15CD00D9A9AD /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3BC4A419DF15CD00D9A9AD /* TodayViewController.m */; };
 		5C3BC4A719DF15CD00D9A9AD /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BC4A619DF15CD00D9A9AD /* MainInterface.storyboard */; };
@@ -352,6 +354,10 @@
 		5C3BBF571AC3AD3D00B179B0 /* Feed_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Feed_Icon@3x.png"; sourceTree = "<group>"; };
 		5C3BBF581AC3AD3D00B179B0 /* Dashboard_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard_Icon@2x.png"; sourceTree = "<group>"; };
 		5C3BBF591AC3AD3D00B179B0 /* Dashboard_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard_Icon@3x.png"; sourceTree = "<group>"; };
+		5C3BBF641AC483C700B179B0 /* DashboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTableViewController.h; sourceTree = "<group>"; };
+		5C3BBF651AC483C700B179B0 /* DashboardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTableViewController.m; sourceTree = "<group>"; };
+		5C3BBF671AC484BC00B179B0 /* DashboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTableViewCell.h; sourceTree = "<group>"; };
+		5C3BBF681AC484BC00B179B0 /* DashboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTableViewCell.m; sourceTree = "<group>"; };
 		5C3BC49D19DF15CC00D9A9AD /* Iconic_Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Iconic_Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C3BC49E19DF15CD00D9A9AD /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		5C3BC4A219DF15CD00D9A9AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -764,6 +770,10 @@
 		5C2EA52A1851474400B21C52 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				5C3BBF641AC483C700B179B0 /* DashboardTableViewController.h */,
+				5C3BBF651AC483C700B179B0 /* DashboardTableViewController.m */,
+				5C3BBF671AC484BC00B179B0 /* DashboardTableViewCell.h */,
+				5C3BBF681AC484BC00B179B0 /* DashboardTableViewCell.m */,
 				5C48B8941880CFAA00A09A1C /* SimpleHomeViewController.h */,
 				5C48B8951880CFAA00A09A1C /* SimpleHomeViewController.m */,
 				5C2EA53A1851516700B21C52 /* MyStatsViewController.h */,
@@ -1748,6 +1758,7 @@
 				5C539A0F18679A57006676FA /* FollowersViewController.m in Sources */,
 				5CD93829187B5047006CE08B /* MZTransition.m in Sources */,
 				5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */,
+				5C3BBF691AC484BC00B179B0 /* DashboardTableViewCell.m in Sources */,
 				5C62BF9A19382F3300B67FEB /* LogInPageContentViewController.m in Sources */,
 				5C4EF982186CA7BD000E0E59 /* Constants.m in Sources */,
 				5C539A0C18679A37006676FA /* FollowingViewController.m in Sources */,
@@ -1779,6 +1790,7 @@
 				5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */,
 				5CD93830187B510E006CE08B /* MZAppearance.m in Sources */,
 				5CA19A3A18B83E290023C940 /* PNLineChartData.m in Sources */,
+				5C3BBF661AC483C700B179B0 /* DashboardTableViewController.m in Sources */,
 				5C2C1CD3185EADF2006722D2 /* ActivityViewController.m in Sources */,
 				5C8B047A189CAF8E000AD0DF /* TabBarViewController.m in Sources */,
 				5C328BFB186002D300E0E985 /* LeaguesViewController.m in Sources */,

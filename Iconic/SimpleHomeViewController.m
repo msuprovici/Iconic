@@ -145,6 +145,8 @@ static NSString *kImageKey = @"imageKey";
 //    [calculatePointsClass scheduleDailySummaryLocalNotification];
 //    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
     
+    [self performSegueWithIdentifier:@"showDashboard" sender:self];
+    
     [self refreshHomeView];
 //    [self performSelector:@selector(refreshHomeView) withObject:self afterDelay:2.0 ];
     
