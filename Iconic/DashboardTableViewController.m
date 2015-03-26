@@ -19,6 +19,11 @@
 #import "VSTableViewController.h"
 #import "CalculatePoints.h"
 #import "Amplitude.h"
+#import <Foundation/Foundation.h>
+#import "MyFinalScoresTableViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import "AchievmentsViewController.h"
 
 #import "UIImage+RoundedCornerAdditions.h"
 #import "UIImage+ResizeAdditions.h"
@@ -43,6 +48,16 @@
 @property NSMutableArray *myWeekleyStepsArray;
 @property NSNumber *maxValueInArray;
 
+@property (nonatomic, assign) BOOL receivedNotification;
+@property (nonatomic, strong) CMMotionActivityManager *motionActivity;
+@property (nonatomic, strong) NSOperationQueue *operationQueue;
+
+@property BOOL deltaPointsLabelIsAnimating;
+
+//achievments
+@property (nonatomic, strong) PFObject * teamAchievmentReceived;
+
+
 
 @end
 
@@ -52,10 +67,68 @@
 @synthesize myProgress = _myProgress;
 @synthesize xpProgressDial = _xpProgressDial;
 
+
+- (void)dealloc {
+    
+       [[NSNotificationCenter defaultCenter] removeObserver:self name:@"achievmentReceived" object:nil];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self getPlayerSteps];//get today's steps
+    
+    
+    
+    //notfications
+    //schedule local notification to show daily points & steps summary
+//    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+    //    [calculatePointsClass createFinalTeamScoresNotificationBody];
+    
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    //    [calculatePointsClass scheduleDailySummaryLocalNotification];
+    //    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
+    
+    
+    [self refreshHomeView];
+    //    [self performSelector:@selector(refreshHomeView) withObject:self afterDelay:2.0 ];
+    
+    [self setReceivedNotification:NO];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTeamNotification:)
+                                                 name:@"JoinedTeam"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveTeamNotification:)
+                                                 name:@"LeftTeam"
+                                               object:nil];
+    
+    
+    //refreshes the app when app is first launched
+    //    [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                             selector:@selector(refreshHomeView)
+    //                                                 name:UIApplicationDidFinishLaunchingNotification object:nil];
+    //    //add past 7 days steps to an array
+    //    [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                             selector:@selector(findSevenDayStepsAndPoints)
+    //                                                 name:UIApplicationDidFinishLaunchingNotification object:nil];
+    
+    
+    //refreshes the app when it enters foreground
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshHomeView)
+                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    
+    //achievment received
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedAchievementNotification:)
+                                                 name:@"achievmentReceived"
+                                               object:nil];
     
    
     
@@ -323,10 +396,7 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 
 #pragma mark - Table view data source
 
@@ -449,9 +519,281 @@
         transferViewController.myTeamReceived = [NSString stringWithFormat:@"%@",cell.nameOfMyTeamString];
         
         
+    }
+    
+    //show final scores
+    if ([[segue identifier] isEqualToString:@"ShowAchievment"])
+    {
+        
+        //        NSLog(@"achievment object: %@", self.teamAchievmentReceived);
+        
+        
+        [segue.destinationViewController initWithAchievment:self.teamAchievmentReceived];
+        
+        
+    }
+
+}
+
+
+#pragma mark NSNotifications methods
+
+- (void) receiveTeamNotification:(NSNotification *) notification
+{
+    //reload view if a player has joined a team
+    
+    if ([[notification name] isEqualToString:@"JoinedTeam"])
+    {
+        
+        
+        [self.view setNeedsDisplay];
+        [self setReceivedNotification:YES];
+        //        NSLog(@"Received Joined Team Notification on home screen");
+        
+        //        if (self.joinedTeamButtonPressed  == YES) {
+        
+        //        self.joinedTeamButtonPressed  = YES;
+        //            NSLog(@"Player joined 1st team in simple");
+        
+        //            self.joinedTeamButtonPressed = NO;
+        //this is where you need to give the bonus and reload the view?
+        
+        //        }
+        
+        
+        
+    }
+    if ([[notification name] isEqualToString:@"LeftTeam"])
+    {
+        
+        [self.view setNeedsDisplay];
+        [self setReceivedNotification:YES];
+        
+        NSLog(@"Received Leave Team Notification on home screen");
+    }
+}
+
+-(void)receivedAchievementNotification:(NSNotification *) notification
+{
+    if([[notification name] isEqualToString:@"achievmentReceived"])
+    {
+        //        NSLog(@"achievmentReceived notification");
+        
+        NSDictionary* userInfo = notification.userInfo;
+        self.teamAchievmentReceived = userInfo[@"achievment"];
+        
+        
+        
+        [self performSegueWithIdentifier:@"ShowAchievment" sender:self];
+    }
+}
+
+
+#pragma mark - Navigation
+
+-(void)appLoadedFirstTimeThisWeek
+{
+    
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSObject * checkValue = [defaults objectForKey:@"hasRunAppThisWeekKey"];
+    if(checkValue != nil)
+    {
+        
+        if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == NO)
+        {
+            // Show Final Scores
+            [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
+            
+            [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
+            
+        }
         
     }
 }
+
+#pragma mark Refresh Home View
+
+-(void)refreshHomeView
+{
+    
+    //set date the app was last active
+    //delaying by 3 seconds so to ensure that we don't reset this value right away.  We are using this value to compare with the last date the app ran.  If we don't delay, the date will always be reset to now.
+    [self performSelector:@selector(dateAppActivated) withObject:self afterDelay:3.0];
+    //show MyFinalScoresTableViewController if this is the 1st time a user opens the app this week
+    [self appLoadedFirstTimeThisWeek];
+    
+    //we're updating the app data from the server 3 times so that the scores are always up to date.
+    //if we don't do it, team scores are often inaccurate unless we close & refresh the app again.
+    
+    [self performSelector:@selector(updateAppDataFromServer) withObject:self afterDelay:2];
+    
+    [self.view setNeedsDisplay];
+ 
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    
+    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+    
+    if (numberOfTeams > 0) {
+        [self beginDeltaPointsAnimation];
+    }
+
+
+    
+}
+
+-(void)updateAppDataFromServer
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
+                   {
+                       CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+                       [calculatePointsClass retrieveFromParse];
+                       //                       [calculatePointsClass incrementPlayerPointsInBackground];//commeted this out because it was incrementing my steps value 2x
+                       [calculatePointsClass findPastWeekleySteps];
+                       
+                       [self.view setNeedsDisplay];
+                       //update core data with most recent league data
+                       //        [calculatePointsClass migrateLeaguesToCoreData];
+                       
+                       //        NSLog(@"Calling this in 10 seconds");
+                       
+                   });
+}
+
+
+-(void)dateAppActivated
+{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
+    [defaults synchronize];
+}
+
+
+
+#pragma mark - Delta Label Animation
+
+-(void)beginDeltaPointsAnimation
+{
+    
+    self.deltaPoints.hidden = YES;
+    
+    //wait untill the countdown is almost finished to begin animation
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(animateDeltaPointsLabel) userInfo:nil repeats:NO];
+    
+    [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0f]];
+    
+    
+    
+    //    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+    //        [calculatePointsClass retrieveFromParse];
+    //        [calculatePointsClass incrementPlayerPointsInBackground];
+    
+    
+    
+    
+    
+    
+}
+
+-(void)animateDeltaPointsLabel
+{
+    //show deltaPoints label
+    self.deltaPoints.hidden = NO;
+    
+    //populate the deltaValueLabel
+    NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
+    
+    int myStepsDelta = (int)[myRetrievedPoints integerForKey:kMyStepsDelta];
+    //    int  numberOfTeams = (int)[myRetrievedPoints integerForKey: kNumberOfTeams];
+    
+    
+    //    NSLog(@"Delta in simplehomeviewcontroller: %d", myStepsDelta);
+    
+    
+    
+    if(myStepsDelta > 0)
+    {
+        self.deltaPoints.text = [NSString stringWithFormat:@"+%d", myStepsDelta];
+        
+        //        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+        //        [calculatePointsClass retrieveFromParse];
+        //        [calculatePointsClass incrementPlayerPointsInBackground];
+        //        [self performSelector:@selector(refreshHomeView) withObject:self afterDelay:3.0 ];
+        
+        
+        
+    }
+    else
+    {
+        
+        //comment out this line to test deltaLabel animations
+        self.deltaPoints.text = @"";
+        
+    }
+    
+    
+    //animated label that shows the points the player contributed to his or her team(s)
+    self.deltaPoints.center = CGPointMake(140, 190);
+    float newX = 90.0f;
+    float newY = 255.0f;
+    
+    //animate the label so that it drops right on top of my team score
+    [UIView transitionWithView:self.deltaPoints
+                      duration:1.5f
+                       options:UIViewAnimationOptionCurveEaseInOut
+                    animations:^(void) {
+                        
+                        self.deltaPointsLabelIsAnimating = YES;
+                        
+                        
+                        
+                        self.deltaPoints.center = CGPointMake(newX, newY);
+                        [self fadein];
+                    }
+                    completion:^(BOOL finished) {
+                        // Hide label
+                        self.deltaPoints.hidden = YES;
+                }];
+    
+}
+
+// fade in delta label
+-(void) fadein
+{
+    self.deltaPoints.alpha = 0;
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    
+    //don't forget to add delegate.....
+    [UIView setAnimationDelegate:self];
+    
+    [UIView setAnimationDuration:1];
+    self.deltaPoints.alpha = 1;
+    
+    //also call this before commit animations......
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+    [UIView commitAnimations];
+}
+
+
+
+-(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished    context:(void *)context
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.5];
+    self.deltaPoints.alpha = 0;
+    [UIView commitAnimations];
+}
+
+
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 
 

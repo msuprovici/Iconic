@@ -53,4 +53,8 @@
 
 @property (strong, nonatomic) IBOutlet PNBarChart *stepsBarChart;
 
+//Animated steps
+@property (strong, nonatomic) IBOutlet UILabel *deltaPoints;
+
+
 @end
