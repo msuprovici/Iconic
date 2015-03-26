@@ -15,6 +15,10 @@
 #import "Constants.h"
 #import "Cache.h"
 #import "CalculatePoints.h"
+#import "DashboardTableViewCell.h"
+#import "VSTableViewController.h"
+#import "CalculatePoints.h"
+#import "Amplitude.h"
 
 #import "UIImage+RoundedCornerAdditions.h"
 #import "UIImage+ResizeAdditions.h"
@@ -131,10 +135,7 @@
     //                [self.xpValue  countFrom: myPreviousLevel to:[myLevel intValue] withDuration:1];
     self.xpValue.text = [NSString stringWithFormat:@"%d",[myLevel intValue]];
     
-    
-    
-    
-    
+   
     //Set up 7 day bar chart
     
     self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(28, 0, 300, 170)];
@@ -187,10 +188,6 @@
     //NSLog(@"%@", [dateFormatter stringFromDate:tomorrow]);
     self.sevenDaysAgoDay.text = [dateFormatter stringFromDate:tomorrow];
 
-    
-    
-    
-    
     
 }
 
@@ -310,21 +307,14 @@
             
             
             
-            
-            
             //            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
             [myRetrievedSteps setInteger:myStepsGainedDelta forKey:kMyStepsDelta];
             [myRetrievedSteps synchronize];
             
   
             
-            
-            
-            
         }
-        
-        
-        
+    
         
     }];
     
@@ -341,26 +331,36 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+//#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
-    return 0;
+    
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    
+        NSArray *arrayOfLeagueNames = [RetrievedTeams objectForKey:kArrayOfLeagueNames];
+
+    return arrayOfLeagueNames.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    DashboardTableViewCell *cell = (DashboardTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"myTeamCell" forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[DashboardTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"myTeamCell"];
+    }
+
     
     // Configure the cell...
+    [cell updateTeamCell:indexPath.row];
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -405,5 +405,54 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Navigation
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    int myRetreivedIndex = (int)indexPath.row ;
+    
+//    NSLog(@"myRetreivedIndex: %d", myRetreivedIndex);
+
+    
+   [self performSegueWithIdentifier:@"vs" sender:indexPath];
+
+}
+
+//pass the team to the teammates view controller
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    VSTableViewController *transferViewController = segue.destinationViewController;
+    
+
+    
+    if ([segue.identifier isEqualToString:@"vs"]) {
+        
+        
+        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        //we use this index to pass the correct data to the vs view controller
+        int myRetreivedIndex = (int)indexPath.row ;
+      
+        [Amplitude logEvent:@"Dashboard: Game Details selected"];
+       
+       
+//        NSLog(@"myRetreivedIndex in Segue: %d", myRetreivedIndex);
+        
+        
+        [segue.destinationViewController initWithReceivedTeam:myRetreivedIndex];
+        
+        
+        //send my team name to vs view controller
+        DashboardTableViewCell *cell = (DashboardTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        
+        transferViewController.myTeamReceived = [NSString stringWithFormat:@"%@",cell.nameOfMyTeamString];
+        
+        
+        
+    }
+}
+
+
 
 @end
