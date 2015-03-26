@@ -30,14 +30,6 @@
 		5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C328BFE18601ADF00E0E985 /* TeamsViewController.m */; };
 		5C349E9D18602ED600325A29 /* TeamPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */; };
 		5C356DAA1959FF7E00ECF5C9 /* MyTeamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C356DA81959FF7E00ECF5C9 /* MyTeamsViewController.m */; };
-		5C3BBEEF1AC3694400B179B0 /* Profile_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBEEB1AC3694400B179B0 /* Profile_Icon@2x.png */; };
-		5C3BBEF01AC3694400B179B0 /* Profile_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBEEC1AC3694400B179B0 /* Profile_Icon@3x.png */; };
-		5C3BBEF51AC36BBF00B179B0 /* Dashboard_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBEF11AC36BBF00B179B0 /* Dashboard_Icon@2x.png */; };
-		5C3BBEF61AC36BBF00B179B0 /* Dashboard_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBEF21AC36BBF00B179B0 /* Dashboard_Icon@3x.png */; };
-		5C3BBEF71AC36BBF00B179B0 /* Feed_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBEF31AC36BBF00B179B0 /* Feed_Icon@2x.png */; };
-		5C3BBEF81AC36BBF00B179B0 /* Feed_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBEF41AC36BBF00B179B0 /* Feed_Icon@3x.png */; };
-		5C3BBEFB1AC36CCE00B179B0 /* Leagues_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBEF91AC36CCE00B179B0 /* Leagues_Icon@2x.png */; };
-		5C3BBEFC1AC36CCE00B179B0 /* Leagues_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBEFA1AC36CCE00B179B0 /* Leagues_Icon@3x.png */; };
 		5C3BBEFF1AC3704700B179B0 /* Chat_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBEFD1AC3704700B179B0 /* Chat_Icon@2x.png */; };
 		5C3BBF001AC3704700B179B0 /* Chat_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBEFE1AC3704700B179B0 /* Chat_Icon@3x.png */; };
 		5C3BBF071AC3760B00B179B0 /* Follow_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF011AC3760B00B179B0 /* Follow_Icon@2x.png */; };
@@ -58,6 +50,14 @@
 		5C3BBF321AC38FDB00B179B0 /* High_Five_Selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF2E1AC38FDB00B179B0 /* High_Five_Selected@3x.png */; };
 		5C3BBF331AC38FDB00B179B0 /* High_Five@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF2F1AC38FDB00B179B0 /* High_Five@2x.png */; };
 		5C3BBF341AC38FDB00B179B0 /* High_Five@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF301AC38FDB00B179B0 /* High_Five@3x.png */; };
+		5C3BBF5A1AC3AD3D00B179B0 /* Leagues_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF521AC3AD3D00B179B0 /* Leagues_Icon@2x.png */; };
+		5C3BBF5B1AC3AD3D00B179B0 /* Leagues_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF531AC3AD3D00B179B0 /* Leagues_Icon@3x.png */; };
+		5C3BBF5C1AC3AD3D00B179B0 /* Profile_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF541AC3AD3D00B179B0 /* Profile_Icon@2x.png */; };
+		5C3BBF5D1AC3AD3D00B179B0 /* Profile_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF551AC3AD3D00B179B0 /* Profile_Icon@3x.png */; };
+		5C3BBF5E1AC3AD3D00B179B0 /* Feed_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF561AC3AD3D00B179B0 /* Feed_Icon@2x.png */; };
+		5C3BBF5F1AC3AD3D00B179B0 /* Feed_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF571AC3AD3D00B179B0 /* Feed_Icon@3x.png */; };
+		5C3BBF601AC3AD3D00B179B0 /* Dashboard_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF581AC3AD3D00B179B0 /* Dashboard_Icon@2x.png */; };
+		5C3BBF611AC3AD3D00B179B0 /* Dashboard_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF591AC3AD3D00B179B0 /* Dashboard_Icon@3x.png */; };
 		5C3BC49F19DF15CD00D9A9AD /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3BC49E19DF15CD00D9A9AD /* NotificationCenter.framework */; };
 		5C3BC4A519DF15CD00D9A9AD /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3BC4A419DF15CD00D9A9AD /* TodayViewController.m */; };
 		5C3BC4A719DF15CD00D9A9AD /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BC4A619DF15CD00D9A9AD /* MainInterface.storyboard */; };
@@ -324,14 +324,6 @@
 		5C349E9C18602ED600325A29 /* TeamPlayersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamPlayersViewController.m; sourceTree = "<group>"; };
 		5C356DA71959FF7E00ECF5C9 /* MyTeamsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTeamsViewController.h; sourceTree = "<group>"; };
 		5C356DA81959FF7E00ECF5C9 /* MyTeamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTeamsViewController.m; sourceTree = "<group>"; };
-		5C3BBEEB1AC3694400B179B0 /* Profile_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Profile_Icon@2x.png"; sourceTree = "<group>"; };
-		5C3BBEEC1AC3694400B179B0 /* Profile_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Profile_Icon@3x.png"; sourceTree = "<group>"; };
-		5C3BBEF11AC36BBF00B179B0 /* Dashboard_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard_Icon@2x.png"; sourceTree = "<group>"; };
-		5C3BBEF21AC36BBF00B179B0 /* Dashboard_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard_Icon@3x.png"; sourceTree = "<group>"; };
-		5C3BBEF31AC36BBF00B179B0 /* Feed_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Feed_Icon@2x.png"; sourceTree = "<group>"; };
-		5C3BBEF41AC36BBF00B179B0 /* Feed_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Feed_Icon@3x.png"; sourceTree = "<group>"; };
-		5C3BBEF91AC36CCE00B179B0 /* Leagues_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leagues_Icon@2x.png"; sourceTree = "<group>"; };
-		5C3BBEFA1AC36CCE00B179B0 /* Leagues_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leagues_Icon@3x.png"; sourceTree = "<group>"; };
 		5C3BBEFD1AC3704700B179B0 /* Chat_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chat_Icon@2x.png"; sourceTree = "<group>"; };
 		5C3BBEFE1AC3704700B179B0 /* Chat_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chat_Icon@3x.png"; sourceTree = "<group>"; };
 		5C3BBF011AC3760B00B179B0 /* Follow_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Follow_Icon@2x.png"; sourceTree = "<group>"; };
@@ -352,6 +344,14 @@
 		5C3BBF2E1AC38FDB00B179B0 /* High_Five_Selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High_Five_Selected@3x.png"; sourceTree = "<group>"; };
 		5C3BBF2F1AC38FDB00B179B0 /* High_Five@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High_Five@2x.png"; sourceTree = "<group>"; };
 		5C3BBF301AC38FDB00B179B0 /* High_Five@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High_Five@3x.png"; sourceTree = "<group>"; };
+		5C3BBF521AC3AD3D00B179B0 /* Leagues_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leagues_Icon@2x.png"; sourceTree = "<group>"; };
+		5C3BBF531AC3AD3D00B179B0 /* Leagues_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leagues_Icon@3x.png"; sourceTree = "<group>"; };
+		5C3BBF541AC3AD3D00B179B0 /* Profile_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Profile_Icon@2x.png"; sourceTree = "<group>"; };
+		5C3BBF551AC3AD3D00B179B0 /* Profile_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Profile_Icon@3x.png"; sourceTree = "<group>"; };
+		5C3BBF561AC3AD3D00B179B0 /* Feed_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Feed_Icon@2x.png"; sourceTree = "<group>"; };
+		5C3BBF571AC3AD3D00B179B0 /* Feed_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Feed_Icon@3x.png"; sourceTree = "<group>"; };
+		5C3BBF581AC3AD3D00B179B0 /* Dashboard_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard_Icon@2x.png"; sourceTree = "<group>"; };
+		5C3BBF591AC3AD3D00B179B0 /* Dashboard_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard_Icon@3x.png"; sourceTree = "<group>"; };
 		5C3BC49D19DF15CC00D9A9AD /* Iconic_Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Iconic_Widget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C3BC49E19DF15CD00D9A9AD /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		5C3BC4A219DF15CD00D9A9AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -869,18 +869,35 @@
 		5C3BBECE1AC35FCE00B179B0 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				5C3BBF511AC3ABDB00B179B0 /* TabBar */,
+				5C3BBF621AC3ADB000B179B0 /* ToolBar */,
+				5C3BBF631AC3AE4500B179B0 /* Feed */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
+		5C3BBF511AC3ABDB00B179B0 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				5C3BBF521AC3AD3D00B179B0 /* Leagues_Icon@2x.png */,
+				5C3BBF531AC3AD3D00B179B0 /* Leagues_Icon@3x.png */,
+				5C3BBF541AC3AD3D00B179B0 /* Profile_Icon@2x.png */,
+				5C3BBF551AC3AD3D00B179B0 /* Profile_Icon@3x.png */,
+				5C3BBF561AC3AD3D00B179B0 /* Feed_Icon@2x.png */,
+				5C3BBF571AC3AD3D00B179B0 /* Feed_Icon@3x.png */,
+				5C3BBF581AC3AD3D00B179B0 /* Dashboard_Icon@2x.png */,
+				5C3BBF591AC3AD3D00B179B0 /* Dashboard_Icon@3x.png */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		5C3BBF621AC3ADB000B179B0 /* ToolBar */ = {
+			isa = PBXGroup;
+			children = (
 				5C3BBF191AC387D800B179B0 /* Add_Icon@2x.png */,
 				5C3BBF1A1AC387D800B179B0 /* Add_Icon@3x.png */,
 				5C3BBEFD1AC3704700B179B0 /* Chat_Icon@2x.png */,
 				5C3BBEFE1AC3704700B179B0 /* Chat_Icon@3x.png */,
-				5C3BBEEB1AC3694400B179B0 /* Profile_Icon@2x.png */,
-				5C3BBEEC1AC3694400B179B0 /* Profile_Icon@3x.png */,
-				5C3BBEF91AC36CCE00B179B0 /* Leagues_Icon@2x.png */,
-				5C3BBEFA1AC36CCE00B179B0 /* Leagues_Icon@3x.png */,
-				5C3BBEF11AC36BBF00B179B0 /* Dashboard_Icon@2x.png */,
-				5C3BBEF21AC36BBF00B179B0 /* Dashboard_Icon@3x.png */,
-				5C3BBEF31AC36BBF00B179B0 /* Feed_Icon@2x.png */,
-				5C3BBEF41AC36BBF00B179B0 /* Feed_Icon@3x.png */,
 				5C3BBF011AC3760B00B179B0 /* Follow_Icon@2x.png */,
 				5C3BBF021AC3760B00B179B0 /* Follow_Icon@3x.png */,
 				5C3BBF031AC3760B00B179B0 /* Followed_User_Icon@2x.png */,
@@ -889,6 +906,13 @@
 				5C3BBF0E1AC3818A00B179B0 /* Join_Team_Icon@3x.png */,
 				5C3BBF0F1AC3818A00B179B0 /* Leave_Team_Icon@2x.png */,
 				5C3BBF101AC3818A00B179B0 /* Leave_Team_Icon@3x.png */,
+			);
+			name = ToolBar;
+			sourceTree = "<group>";
+		};
+		5C3BBF631AC3AE4500B179B0 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
 				5C3BBF251AC38BC100B179B0 /* Comment_Icon_Selected@2x.png */,
 				5C3BBF261AC38BC100B179B0 /* Comment_Icon_Selected@3x.png */,
 				5C3BBF271AC38BC100B179B0 /* Comment_Icon@2x.png */,
@@ -898,7 +922,7 @@
 				5C3BBF2F1AC38FDB00B179B0 /* High_Five@2x.png */,
 				5C3BBF301AC38FDB00B179B0 /* High_Five@3x.png */,
 			);
-			name = Icons;
+			name = Feed;
 			sourceTree = "<group>";
 		};
 		5C3BC4A019DF15CD00D9A9AD /* Iconic_Widget */ = {
@@ -1587,14 +1611,19 @@
 				5C42F8A51AC21EA500B4F7BB /* SignUpButton@2x.png in Resources */,
 				5C42F8301AC1DE7100B4F7BB /* IconicOnboard2slice@2x.png in Resources */,
 				5C42F83B1AC1E5C400B4F7BB /* IconicOnboard1Slice@3x.png in Resources */,
+				5C3BBF5D1AC3AD3D00B179B0 /* Profile_Icon@3x.png in Resources */,
 				5C881E471ABBA2B200C2D958 /* YesButton@3x.png in Resources */,
+				5C3BBF611AC3AD3D00B179B0 /* Dashboard_Icon@3x.png in Resources */,
 				5C42F82A1AC1DE7100B4F7BB /* IconicOnboard7slice@2x.png in Resources */,
 				5CA3D1A61831DF51006C7932 /* Images.xcassets in Resources */,
 				5C3BBF071AC3760B00B179B0 /* Follow_Icon@2x.png in Resources */,
+				5C3BBF5A1AC3AD3D00B179B0 /* Leagues_Icon@2x.png in Resources */,
 				5C3BBF081AC3760B00B179B0 /* Follow_Icon@3x.png in Resources */,
 				5C42F8A31AC21EA500B4F7BB /* LogInButton@2x.png in Resources */,
 				5C42F8481AC1FF2700B4F7BB /* IconicOnboard9slice@2x.png in Resources */,
 				5CE778341A0D7D0D008B3585 /* Icon-76@2x.png in Resources */,
+				5C3BBF601AC3AD3D00B179B0 /* Dashboard_Icon@2x.png in Resources */,
+				5C3BBF5B1AC3AD3D00B179B0 /* Leagues_Icon@3x.png in Resources */,
 				5CE7782F1A0D7D0D008B3585 /* Icon-40@2x.png in Resources */,
 				5C881E441ABBA2B200C2D958 /* SignInWithEmailButton@2x.png in Resources */,
 				5C42F8A61AC21EA500B4F7BB /* SignUpButton@3x.png in Resources */,
@@ -1604,13 +1633,12 @@
 				5C3BBF141AC3818A00B179B0 /* Leave_Team_Icon@3x.png in Resources */,
 				5C3BBF341AC38FDB00B179B0 /* High_Five@3x.png in Resources */,
 				5CE7782D1A0D7D0D008B3585 /* Contents.json in Resources */,
+				5C3BBF5F1AC3AD3D00B179B0 /* Feed_Icon@3x.png in Resources */,
 				5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */,
 				5C881E2C1ABBA2B200C2D958 /* Grant_Motion_Permission_Button@2x.png in Resources */,
-				5C3BBEF51AC36BBF00B179B0 /* Dashboard_Icon@2x.png in Resources */,
 				5CE778351A0D7D0D008B3585 /* Icon-Small.png in Resources */,
 				5C3BBEFF1AC3704700B179B0 /* Chat_Icon@2x.png in Resources */,
 				5C42F87F1AC2183100B4F7BB /* ForgotPasswordButton@2x.png in Resources */,
-				5C3BBEFC1AC36CCE00B179B0 /* Leagues_Icon@3x.png in Resources */,
 				5C42F8AE1AC2237E00B4F7BB /* disclaimerText@3x.png in Resources */,
 				5C3BBF091AC3760B00B179B0 /* Followed_User_Icon@2x.png in Resources */,
 				5C42F7E01AC1D57100B4F7BB /* noNotification@3x.png in Resources */,
@@ -1629,7 +1657,9 @@
 				5CA3D1951831DF51006C7932 /* InfoPlist.strings in Resources */,
 				5C3BBF0A1AC3760B00B179B0 /* Followed_User_Icon@3x.png in Resources */,
 				5C881E421ABBA2B200C2D958 /* NextButton@2x.png in Resources */,
+				5C3BBF5E1AC3AD3D00B179B0 /* Feed_Icon@2x.png in Resources */,
 				5CE778361A0D7D0D008B3585 /* Icon-Small@2x.png in Resources */,
+				5C3BBF5C1AC3AD3D00B179B0 /* Profile_Icon@2x.png in Resources */,
 				5C42F8291AC1DE7100B4F7BB /* IconicOnboard7slice@3x.png in Resources */,
 				5CE778331A0D7D0D008B3585 /* Icon-76.png in Resources */,
 				5C42F83C1AC1E5C400B4F7BB /* IconicOnboard1Slice@2x.png in Resources */,
@@ -1640,11 +1670,9 @@
 				5C3BBF111AC3818A00B179B0 /* Join_Team_Icon@2x.png in Resources */,
 				5C539E00198715090027669A /* README.md in Resources */,
 				5CA3D19E1831DF51006C7932 /* Main.storyboard in Resources */,
-				5C3BBEF81AC36BBF00B179B0 /* Feed_Icon@3x.png in Resources */,
 				5C42F85C1AC20A5200B4F7BB /* IconicLogo@3x.png in Resources */,
 				5C42F8371AC1DFE000B4F7BB /* IconicOnboard8slice@3x.png in Resources */,
 				5C3BBF321AC38FDB00B179B0 /* High_Five_Selected@3x.png in Resources */,
-				5C3BBEF61AC36BBF00B179B0 /* Dashboard_Icon@3x.png in Resources */,
 				5C42F82B1AC1DE7100B4F7BB /* IconicOnboard6slice@3x.png in Resources */,
 				5C539DFC198715090027669A /* Amplitude-iOS.podspec in Resources */,
 				5CB75E04188DAE850047BC47 /* scoreboardicon2-01.png in Resources */,
@@ -1656,13 +1684,10 @@
 				5C881E451ABBA2B200C2D958 /* SignInWithEmailButton@3x.png in Resources */,
 				5C881E461ABBA2B200C2D958 /* YesButton@2x.png in Resources */,
 				5C42F82F1AC1DE7100B4F7BB /* IconicOnboard2slice@3x.png in Resources */,
-				5C3BBEF01AC3694400B179B0 /* Profile_Icon@3x.png in Resources */,
 				5C3BBF2A1AC38BC200B179B0 /* Comment_Icon_Selected@3x.png in Resources */,
 				5C03048E1A410A5500E86578 /* team2.png in Resources */,
-				5C3BBEEF1AC3694400B179B0 /* Profile_Icon@2x.png in Resources */,
 				5C42F8441AC1FEB800B4F7BB /* JoinButton@3x.png in Resources */,
 				5C42F7DF1AC1D57100B4F7BB /* noNotification@2x.png in Resources */,
-				5C3BBEFB1AC36CCE00B179B0 /* Leagues_Icon@2x.png in Resources */,
 				5C42F8AD1AC2237E00B4F7BB /* disclaimerText@2x.png in Resources */,
 				5C42F8381AC1DFE000B4F7BB /* IconicOnboard8slice@2x.png in Resources */,
 				5C3BBF291AC38BC200B179B0 /* Comment_Icon_Selected@2x.png in Resources */,
@@ -1671,7 +1696,6 @@
 				5C2EA53E1851516700B21C52 /* MyStatsViewController.xib in Resources */,
 				5C42F85B1AC20A5200B4F7BB /* IconicLogo@2x.png in Resources */,
 				5CE778371A0D7D0D008B3585 /* Icon-Small@3x.png in Resources */,
-				5C3BBEF71AC36BBF00B179B0 /* Feed_Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
