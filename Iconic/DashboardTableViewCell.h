@@ -53,6 +53,11 @@
 @property (assign, nonatomic) int myTeamPoints;
 @property int myStepsGained;
 
+
+@property (strong, nonatomic) IBOutlet UIImageView *joinTeamButtonImage;
+
+
+
 -(void)updateTeamCell:(NSInteger)index;
 
 @end

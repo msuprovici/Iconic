@@ -2962,6 +2962,13 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mGw-gl-Ysv">
+                                            <rect key="frame" x="90" y="0.0" width="140" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VsTeam" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7wz-WJ-w8t">
                                             <rect key="frame" x="30" y="51" width="120" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2983,19 +2990,17 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mGw-gl-Ysv">
-                                            <rect key="frame" x="90" y="0.0" width="140" height="21"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JoinTeamButton.png" id="1K9-Nh-4kL">
+                                            <rect key="frame" x="48" y="25" width="225" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="MyTeamName" destination="qJ9-5J-2rW" id="4Qr-j9-wAi"/>
                                     <outlet property="MyTeamScore" destination="eVU-QU-qIF" id="7OF-kO-j1x"/>
                                     <outlet property="VSTeamScore" destination="tX2-Kv-bFh" id="TsV-75-JjG"/>
+                                    <outlet property="joinTeamButtonImage" destination="1K9-Nh-4kL" id="uNd-hz-QoX"/>
                                     <outlet property="myLeagueName" destination="mGw-gl-Ysv" id="PZK-Kx-vHO"/>
                                     <outlet property="vsTeamName" destination="7wz-WJ-w8t" id="Aw6-du-Di3"/>
                                 </connections>
@@ -3214,6 +3219,7 @@
         <image name="Followed_User_Icon.png" width="29" height="28"/>
         <image name="High_Five.png" width="14" height="21"/>
         <image name="High_Five_Selected.png" width="14" height="21"/>
+        <image name="JoinTeamButton.png" width="452" height="102"/>
         <image name="Join_Team_Icon.png" width="29" height="30"/>
         <image name="Leagues_Icon.png" width="25" height="25"/>
         <image name="Leave_Team_Icon.png" width="29" height="29"/>

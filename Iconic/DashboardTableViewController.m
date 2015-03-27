@@ -125,8 +125,7 @@
         
        
     }
-    
-    
+  
    
 }
 
@@ -163,6 +162,7 @@
     {
         self.myTeamsLabel.hidden = TRUE;
         self.gameClock.hidden = TRUE;
+        self.deltaPoints.hidden = TRUE;
     }
     
 //     NSLog(@"referesh home view");
@@ -528,9 +528,12 @@
     
     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
     
-        NSArray *arrayOfLeagueNames = [RetrievedTeams objectForKey:kArrayOfLeagueNames];
-
-    return arrayOfLeagueNames.count;
+    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+    
+    if (numberOfTeams == 0) {
+        return 1;
+    }
+    else return numberOfTeams;
 }
 
 
@@ -539,10 +542,39 @@
     if (cell == nil) {
         cell = [[DashboardTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"myTeamCell"];
     }
+    
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    
+    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
 
     
+    if (numberOfTeams == 0) {
+        cell.joinTeamButtonImage.hidden = FALSE;
+        
+        cell.myLeagueName.hidden = TRUE;
+        cell.MyTeamName.hidden = TRUE;
+        cell.MyTeamScore.hidden = TRUE;
+        cell.vsTeamName.hidden = TRUE;
+        cell.VSTeamScore.hidden = TRUE;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+    }
+    else
+    {
+        cell.myLeagueName.hidden = FALSE;
+        cell.MyTeamName.hidden = FALSE;
+        cell.MyTeamScore.hidden = FALSE;
+        cell.vsTeamName.hidden = FALSE;
+        cell.VSTeamScore.hidden = TRUE;
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.joinTeamButtonImage.hidden = TRUE;
     // Configure the cell...
     [cell updateTeamCell:indexPath.row];
+        
+    }
     
     return cell;
 }
@@ -596,13 +628,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
     
-    int myRetreivedIndex = (int)indexPath.row ;
-    
-//    NSLog(@"myRetreivedIndex: %d", myRetreivedIndex);
+    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
 
-    
-   [self performSegueWithIdentifier:@"vs" sender:indexPath];
+    if(numberOfTeams == 0)
+    {
+        self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:2];
+        [Amplitude logEvent:@"Dashboard: Join Team selected"];
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"vs" sender:indexPath];
+    }
 
 }
 
@@ -662,7 +700,7 @@
     {
         
         
-        [self.view setNeedsDisplay];
+        [self refreshHomeViewNow];
         [self setReceivedNotification:YES];
         //        NSLog(@"Received Joined Team Notification on home screen");
         
@@ -682,7 +720,7 @@
     if ([[notification name] isEqualToString:@"LeftTeam"])
     {
         
-        [self.view setNeedsDisplay];
+        [self refreshHomeViewNow];
         [self setReceivedNotification:YES];
         
         NSLog(@"Received Leave Team Notification on home screen");
@@ -734,6 +772,7 @@
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
                    {
+                       NSLog(@"updateAppDataFromServerNow");
                        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
                        [calculatePointsClass retrieveFromParse];
                        //                       [calculatePointsClass incrementPlayerPointsInBackground];//commeted this out because it was incrementing my steps value 2x
