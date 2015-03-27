@@ -109,87 +109,6 @@
  
 }
 
-//Login
-- (IBAction)userLogin:(id)sender {
-    
-    
-    [Amplitude logEvent:@"Onboard: LogIn selected"];
-    
-    // Create the log in view controller
-    CustomPFLogInViewController *logInViewController = [[CustomPFLogInViewController alloc] init];
-    [logInViewController setDelegate:self]; // Set ourselves as the delegate
-    
-    
-    
-    CustomPFSignUpViewController *signUpViewController = [[CustomPFSignUpViewController alloc] init];
-    
-//    logInViewController.signUpController = [[CustomPFSignUpViewController alloc] init];
-    
-//    signUpViewController.fields =  PFSignUpFieldsDefault  ;
-    
-    
-    
-//    logInViewController.facebookPermissions = @[@"friends_about_me"];
-//    logInViewController.fields = PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook  ;
-
-    logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword  ;
-    
-//    logInViewController.fields = PFLogInFieldsFacebook | PFLogInFieldsSignUpButton |PFLogInFieldsDismissButton  ;
-    logInViewController.facebookPermissions = @[ @"public_profile", @"email" ];
-    
-    
-    
-    // Present the log in view controller
-    [self presentViewController:logInViewController animated:YES completion:NULL];
-    
-
-
-    
-}
-- (IBAction)signUpAction:(id)sender {
-    
-    [Amplitude logEvent:@"Onboard: SignUp selected"];
-    
-//    // Create the sign up view controller
-//    CustomPFSignUpViewController *signUpViewController = [[CustomPFSignUpViewController alloc] init];
-//    [signUpViewController setDelegate:self]; // Set ourselves as the delegate
-//    
-//    signUpViewController.fields =  PFSignUpFieldsDefault  ;
-//    
-//    // Present the log in view controller
-//    [self presentViewController:signUpViewController animated:YES completion:NULL];
-
-    // Create the log in view controller
-    CustomPFLogInViewController *logInViewController = [[CustomPFLogInViewController alloc] init];
-    [logInViewController setDelegate:self]; // Set ourselves as the delegate
-    
-    
-    
-    CustomPFSignUpViewController *signUpViewController = [[CustomPFSignUpViewController alloc] init];
-    
-    logInViewController.signUpController = [[CustomPFSignUpViewController alloc] init];
-    
-    signUpViewController.fields =  PFSignUpFieldsDefault  ;
-    
-    
-    
-    //    logInViewController.facebookPermissions = @[@"friends_about_me"];
-    //    logInViewController.fields = PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook  ;
-    
-    //    logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsSignUpButton ;
-    
-    logInViewController.fields = PFLogInFieldsFacebook | PFLogInFieldsSignUpButton |PFLogInFieldsDismissButton  ;
-    logInViewController.facebookPermissions = @[ @"public_profile", @"email" ];
-    
-    
-    
-    // Present the log in view controller
-    [self presentViewController:logInViewController animated:YES completion:NULL];
-
-
-    
-    
-}
 
 
 
@@ -293,7 +212,10 @@
 }
 
 // Sent to the delegate when a PFUser is signed up.
+
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    
+//    NSLog(@"Sign Up Successfull");
     
     [Amplitude logEvent:@"Onboard: SignUp successful"];
     
@@ -303,10 +225,12 @@
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
+   
+    
     
     //create pointer to current user for push notifications
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-     currentInstallation[@"user"] = [PFUser currentUser];
+    currentInstallation[@"user"] = [PFUser currentUser];
     [currentInstallation saveInBackground];
     
     //set parse username as the user id in Amplitude
@@ -322,7 +246,42 @@
                                      };
     
     [Heap identify:userProperties];
+
+    
 }
+//- (void)signUpViewController:(PFLogInViewController *)signUpController didSignUpUser:(PFUser *)user {
+//    
+//    NSLog(@"Sign Up Successfull");
+//    
+//    [Amplitude logEvent:@"Onboard: SignUp successful"];
+//    
+//    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//    [calculatePointsClass migrateLeaguesToCoreData];
+//    [calculatePointsClass autoFollowUsers];
+//    
+//    [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
+////    [self dismissViewControllerAnimated:YES completion:NULL];
+//    
+//    
+//    //create pointer to current user for push notifications
+//    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+//     currentInstallation[@"user"] = [PFUser currentUser];
+//    [currentInstallation saveInBackground];
+//    
+//    //set parse username as the user id in Amplitude
+//    NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
+//    [Amplitude setUserId:userId];
+//    
+//    //set parse username for Intercom
+//    [Intercom beginSessionForUserWithUserId:userId completion:nil];
+//    
+//    // set parse username for Heap
+//    NSDictionary* userProperties = @{
+//                                     @"name": userId,
+//                                     };
+//    
+//    [Heap identify:userProperties];
+//}
 
 // Sent to the delegate when the sign up attempt fails.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didFailToSignUpWithError:(NSError *)error {
@@ -345,12 +304,12 @@
 
 
 - (IBAction)startWalkthrough:(id)sender {
-    NSLog(@"button pressed");
+    //NSLog(@"button pressed");
     UIImage * buttonImageMotion = [UIImage imageNamed:@"Grant_Motion_Permission_Button@2x.png"];
     UIImage * buttonImageNext = [UIImage imageNamed:@"NextButton@2x.png"];
-    UIImage * buttonImageStart = [UIImage imageNamed:@"LetsGetStartedButton@2x.png"];
+//    UIImage * buttonImageStart = [UIImage imageNamed:@"LetsGetStartedButton@2x.png"];
     UIImage * buttonImageYes = [UIImage imageNamed:@"YesButton@2x.png"];
-    UIImage * buttonImageNo = [UIImage imageNamed:@"NahImGoodButton@2x.png"];
+//    UIImage * buttonImageNo = [UIImage imageNamed:@"NahImGoodButton@2x.png"];
     UIImage * buttonJoin = [UIImage imageNamed:@"JoinButton@2x.png"];
     
      CGFloat pageWidth = self.scrollView.frame.size.width;
@@ -373,7 +332,7 @@
 //    }
     
     self.currentIndex = self.currentIndex+1;
-    NSLog(@"button pressed %lu",  (unsigned long)self.currentIndex);
+//    NSLog(@"button pressed %lu",  (unsigned long)self.currentIndex);
     
     
     if (self.currentIndex == 2) {
@@ -399,12 +358,12 @@
         
         if([CMStepCounter isStepCountingAvailable])
         {
-            NSLog(@"CMStepCounter is Avaialble");
+//            NSLog(@"CMStepCounter is Avaialble");
             [Amplitude logEvent:@"Onboard: Motion dialogue"];
             
         }
         else{
-            NSLog(@"CMStepCounter is NOT Avaialble");
+//            NSLog(@"CMStepCounter is NOT Avaialble");
         }
         
         //this needs to be here so that the standarad Apple motion permission request pops up
@@ -453,7 +412,7 @@
         [Amplitude logEvent:@"Onboard: Notification Yes"];
         //        [self.startWalkthroughButton setTitle: @"test" forState: UIControlStateNormal];
         
-        NSLog(@"page == 7");
+//        NSLog(@"page == 7");
         
         // Register for push notifications
         float ver = [[[UIDevice currentDevice] systemVersion] floatValue];
@@ -504,6 +463,7 @@
         
         
         CustomPFSignUpViewController *signUpViewController = [[CustomPFSignUpViewController alloc] init];
+        [signUpViewController setDelegate:self];
         
         //    logInViewController.signUpController = [[CustomPFSignUpViewController alloc] init];
         
@@ -599,7 +559,7 @@
                                                                                                                          
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)sender {
-    NSLog(@"scroolview end decelerating");
+//    NSLog(@"scroolview end decelerating");
     UIImage * buttonImageMotion = [UIImage imageNamed:@"Grant_Motion_Permission_Button@2x.png"];
     UIImage * buttonImageNext = [UIImage imageNamed:@"NextButton@2x.png"];
     UIImage * buttonImageStart = [UIImage imageNamed:@"LetsGetStartedButton@2x.png"];

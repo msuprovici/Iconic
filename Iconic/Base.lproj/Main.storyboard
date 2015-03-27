@@ -2500,28 +2500,6 @@
                                     <outlet property="delegate" destination="H5O-hK-5UJ" id="cgO-65-I0f"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jzk-34-ioB">
-                                <rect key="frame" x="1" y="507" width="128" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="Sign Up">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="signUpAction:" destination="H5O-hK-5UJ" eventType="touchUpInside" id="wNr-zL-MeD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cuZ-PR-S7K">
-                                <rect key="frame" x="226" y="507" width="94" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="userLogin:" destination="H5O-hK-5UJ" eventType="touchUpInside" id="Ptl-mG-llO"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="79b-Eq-S5o">
                                 <rect key="frame" x="48" y="479" width="225" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2550,8 +2528,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="Login" destination="cuZ-PR-S7K" id="SPE-hc-2VL"/>
-                        <outlet property="SignUp" destination="Jzk-34-ioB" id="4fX-aq-q1G"/>
                         <outlet property="noNotifications" destination="8lu-Cu-Lns" id="Vlm-jv-v9W"/>
                         <outlet property="scrollView" destination="74L-dr-NWU" id="1Ga-ql-XUb"/>
                         <outlet property="startWalkthroughButton" destination="79b-Eq-S5o" id="dpj-tJ-1gS"/>
@@ -3058,7 +3034,7 @@
         <scene sceneID="amm-ij-1SH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Gvb-Hc-USI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="Dashboard_Icon.png" id="dMx-zZ-nnI"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Dashboard" image="Dashboard_Icon.png" id="dMx-zZ-nnI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kUr-vV-m0J">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3155,7 +3131,7 @@
         <scene sceneID="gU5-aa-U3V">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7rE-BU-qmk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Leagues" image="Leagues_Icon.png" id="7dw-yy-RFz"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Leagues" image="Leagues_Icon.png" id="7dw-yy-RFz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dkk-Rl-noX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3192,7 +3168,7 @@
         <scene sceneID="CW1-L6-BhJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pdi-2m-LBf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Account" image="Profile_Icon.png" id="6Hj-HH-lRk"/>
+                    <tabBarItem key="tabBarItem" tag="4" title="Account" image="Profile_Icon.png" id="6Hj-HH-lRk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G0m-4p-bw2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3211,7 +3187,7 @@
         <scene sceneID="0en-ay-l1z">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="s4M-j9-3XA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Activity" image="Feed_Icon.png" id="4wY-81-cTs"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Activity" image="Feed_Icon.png" id="4wY-81-cTs"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="H4u-ts-bXz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZR1-uD-707">
