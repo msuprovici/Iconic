@@ -536,6 +536,18 @@
     else return numberOfTeams;
 }
 
+//dirty way to hide all other cells that do not contain data
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    
+    UIColor *color = [UIColor whiteColor];
+    
+    view.backgroundColor = color;
+    
+    return view;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DashboardTableViewCell *cell = (DashboardTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"myTeamCell" forIndexPath:indexPath];
@@ -772,7 +784,7 @@
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
                    {
-                       NSLog(@"updateAppDataFromServerNow");
+//                       NSLog(@"updateAppDataFromServerNow");
                        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
                        [calculatePointsClass retrieveFromParse];
                        //                       [calculatePointsClass incrementPlayerPointsInBackground];//commeted this out because it was incrementing my steps value 2x
