@@ -77,60 +77,62 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self getPlayerSteps];//get today's steps
-    
-    
-    
-    //notfications
-    //schedule local notification to show daily points & steps summary
-//    CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-    //    [calculatePointsClass createFinalTeamScoresNotificationBody];
     
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    //    [calculatePointsClass scheduleDailySummaryLocalNotification];
-    //    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
-    
-    
-    [self refreshHomeView];
-    //    [self performSelector:@selector(refreshHomeView) withObject:self afterDelay:2.0 ];
+
     
     [self setReceivedNotification:NO];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveTeamNotification:)
+                                             selector:@selector(receiveTeamNotificationNow:)
                                                  name:@"JoinedTeam"
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receiveTeamNotification:)
+                                             selector:@selector(receiveTeamNotificationNow:)
                                                  name:@"LeftTeam"
                                                object:nil];
     
     
-    //refreshes the app when app is first launched
-    //    [[NSNotificationCenter defaultCenter] addObserver:self
-    //                                             selector:@selector(refreshHomeView)
-    //                                                 name:UIApplicationDidFinishLaunchingNotification object:nil];
-    //    //add past 7 days steps to an array
-    //    [[NSNotificationCenter defaultCenter] addObserver:self
-    //                                             selector:@selector(findSevenDayStepsAndPoints)
-    //                                                 name:UIApplicationDidFinishLaunchingNotification object:nil];
-    
-    
     //refreshes the app when it enters foreground
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(refreshHomeView)
+                                             selector:@selector(refreshHomeViewNow)
                                                  name:UIApplicationWillEnterForegroundNotification object:nil];
     
     
     //achievment received
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receivedAchievementNotification:)
+                                             selector:@selector(receivedAchievementNotificationNow:)
                                                  name:@"achievmentReceived"
                                                object:nil];
     
+    
+    
    
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES ];
+    
+    // If we received joined/leave team notification update team charts
+    if (self.receivedNotification == YES) {
+       
+        self.receivedNotification = NO;
+       
+    }
+    
+    [self populateMyStats];
+   
+}
+
+
+-(void)populateMyStats
+{
+    
+    
     
     NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
     
@@ -175,10 +177,10 @@
     
     float myProgressPercent = myLevelProgress/myTotalPointsToNextLevel;
     self.myProgress = myProgressPercent;
-    
+//    NSLog(@"self.myProgress: %f", self.myProgress);
     
     //DACircularChart
-   
+    
     [self progressDialChange];
     
     self.xpProgressDial.trackTintColor = PNLightGrey;
@@ -189,7 +191,10 @@
     
     
     
-    //counting label text reformating
+    
+    
+    
+    //counting label for my steps text reformating
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     formatter.numberStyle = kCFNumberFormatterNoStyle;
     self.xpValue.formatBlock = ^NSString* (float value)
@@ -198,6 +203,7 @@
         return [NSString stringWithFormat:@"%@",formatted];
     };
     
+   
     
     //using counting label to increment level
     //get the level the player was at the last time they launched the app
@@ -208,7 +214,7 @@
     //                [self.xpValue  countFrom: myPreviousLevel to:[myLevel intValue] withDuration:1];
     self.xpValue.text = [NSString stringWithFormat:@"%d",[myLevel intValue]];
     
-   
+    
     //Set up 7 day bar chart
     
     self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(28, 0, 300, 170)];
@@ -260,9 +266,16 @@
     
     //NSLog(@"%@", [dateFormatter stringFromDate:tomorrow]);
     self.sevenDaysAgoDay.text = [dateFormatter stringFromDate:tomorrow];
-
     
+    
+    //get today's steps
+    [self getPlayerSteps];
+    
+
 }
+
+
+
 
 - (void)progressDialChange
 {
@@ -271,9 +284,8 @@
     for (DACircularProgressView *progressView in progressViews) {
         
         [progressView setProgress:self.myProgress animated:YES];
-        
-        
-        
+//        NSLog(@"progress Indicator fired");
+
     }
 }
 
@@ -538,7 +550,7 @@
 
 #pragma mark NSNotifications methods
 
-- (void) receiveTeamNotification:(NSNotification *) notification
+- (void) receiveTeamNotificationNow:(NSNotification *) notification
 {
     //reload view if a player has joined a team
     
@@ -573,7 +585,7 @@
     }
 }
 
--(void)receivedAchievementNotification:(NSNotification *) notification
+-(void)receivedAchievementNotificationNow:(NSNotification *) notification
 {
     if([[notification name] isEqualToString:@"achievmentReceived"])
     {
@@ -591,7 +603,7 @@
 
 #pragma mark - Navigation
 
--(void)appLoadedFirstTimeThisWeek
+-(void)firstAppLoadThisWeek
 {
     
     
@@ -614,35 +626,37 @@
 
 #pragma mark Refresh Home View
 
--(void)refreshHomeView
+-(void)refreshHomeViewNow
 {
     
     //set date the app was last active
     //delaying by 3 seconds so to ensure that we don't reset this value right away.  We are using this value to compare with the last date the app ran.  If we don't delay, the date will always be reset to now.
-    [self performSelector:@selector(dateAppActivated) withObject:self afterDelay:3.0];
+    [self performSelector:@selector(findWhatDateAppActivated) withObject:self afterDelay:3.0];
     //show MyFinalScoresTableViewController if this is the 1st time a user opens the app this week
-    [self appLoadedFirstTimeThisWeek];
+    [self firstAppLoadThisWeek];
     
     //we're updating the app data from the server 3 times so that the scores are always up to date.
     //if we don't do it, team scores are often inaccurate unless we close & refresh the app again.
     
-    [self performSelector:@selector(updateAppDataFromServer) withObject:self afterDelay:2];
+    [self performSelector:@selector(updateAppDataFromServerNow) withObject:self afterDelay:2];
     
-    [self.view setNeedsDisplay];
+    [self populateMyStats];
+    
+    
  
     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
     
     int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
     
     if (numberOfTeams > 0) {
-        [self beginDeltaPointsAnimation];
+        [self beginDeltaPointsAnimationNow];
     }
 
 
     
 }
 
--(void)updateAppDataFromServer
+-(void)updateAppDataFromServerNow
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
                    {
@@ -651,7 +665,7 @@
                        //                       [calculatePointsClass incrementPlayerPointsInBackground];//commeted this out because it was incrementing my steps value 2x
                        [calculatePointsClass findPastWeekleySteps];
                        
-                       [self.view setNeedsDisplay];
+                       [self.tableView setNeedsDisplay];
                        //update core data with most recent league data
                        //        [calculatePointsClass migrateLeaguesToCoreData];
                        
@@ -661,7 +675,7 @@
 }
 
 
--(void)dateAppActivated
+-(void)findWhatDateAppActivated
 {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
@@ -672,13 +686,13 @@
 
 #pragma mark - Delta Label Animation
 
--(void)beginDeltaPointsAnimation
+-(void)beginDeltaPointsAnimationNow
 {
     
     self.deltaPoints.hidden = YES;
     
     //wait untill the countdown is almost finished to begin animation
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(animateDeltaPointsLabel) userInfo:nil repeats:NO];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(animateDeltaPointsLabelNow) userInfo:nil repeats:NO];
     
     [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0f]];
     
@@ -695,7 +709,7 @@
     
 }
 
--(void)animateDeltaPointsLabel
+-(void)animateDeltaPointsLabelNow
 {
     //show deltaPoints label
     self.deltaPoints.hidden = NO;
@@ -748,17 +762,18 @@
                         
                         
                         self.deltaPoints.center = CGPointMake(newX, newY);
-                        [self fadein];
+                        [self fadeinAnimation];
                     }
                     completion:^(BOOL finished) {
                         // Hide label
                         self.deltaPoints.hidden = YES;
+//                        [self.tableView setNeedsDisplay];
                 }];
     
 }
 
 // fade in delta label
--(void) fadein
+-(void) fadeinAnimation
 {
     self.deltaPoints.alpha = 0;
     [UIView beginAnimations:nil context:nil];
@@ -771,13 +786,13 @@
     self.deltaPoints.alpha = 1;
     
     //also call this before commit animations......
-    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+    [UIView setAnimationDidStopSelector:@selector(animationDidStopNow:finished:context:)];
     [UIView commitAnimations];
 }
 
 
 
--(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished    context:(void *)context
+-(void)animationDidStopNow:(NSString *)animationID finished:(NSNumber *)finished    context:(void *)context
 {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.5];
