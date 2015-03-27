@@ -108,7 +108,7 @@
                                                object:nil];
     
     
-    
+    [self refreshHomeViewNow];
    
     
 }
@@ -120,12 +120,48 @@
     // If we received joined/leave team notification update team charts
     if (self.receivedNotification == YES) {
        
+        [self refreshHomeViewNow];
         self.receivedNotification = NO;
+        
        
     }
     
-    [self populateMyStats];
+    
    
+}
+
+#pragma mark Refresh Home View
+
+-(void)refreshHomeViewNow
+{
+    
+    //set date the app was last active
+    //delaying by 3 seconds so to ensure that we don't reset this value right away.  We are using this value to compare with the last date the app ran.  If we don't delay, the date will always be reset to now.
+    [self performSelector:@selector(findWhatDateAppActivated) withObject:self afterDelay:3.0];
+    //show MyFinalScoresTableViewController if this is the 1st time a user opens the app this week
+    [self firstAppLoadThisWeek];
+    
+    //we're updating the app data from the server 3 times so that the scores are always up to date.
+    //if we don't do it, team scores are often inaccurate unless we close & refresh the app again.
+    
+    [self performSelector:@selector(updateAppDataFromServerNow) withObject:self afterDelay:2];
+    
+    [self populateMyStats];
+    
+    
+    
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    
+    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+    
+    if (numberOfTeams > 0) {
+        [self beginDeltaPointsAnimationNow];
+    }
+    
+//     NSLog(@"referesh home view");
+    
+    
+    
 }
 
 
@@ -270,6 +306,9 @@
     
     //get today's steps
     [self getPlayerSteps];
+    
+    //reload the table view
+    [self.tableView reloadData];
     
 
 }
@@ -624,37 +663,7 @@
     }
 }
 
-#pragma mark Refresh Home View
 
--(void)refreshHomeViewNow
-{
-    
-    //set date the app was last active
-    //delaying by 3 seconds so to ensure that we don't reset this value right away.  We are using this value to compare with the last date the app ran.  If we don't delay, the date will always be reset to now.
-    [self performSelector:@selector(findWhatDateAppActivated) withObject:self afterDelay:3.0];
-    //show MyFinalScoresTableViewController if this is the 1st time a user opens the app this week
-    [self firstAppLoadThisWeek];
-    
-    //we're updating the app data from the server 3 times so that the scores are always up to date.
-    //if we don't do it, team scores are often inaccurate unless we close & refresh the app again.
-    
-    [self performSelector:@selector(updateAppDataFromServerNow) withObject:self afterDelay:2];
-    
-    [self populateMyStats];
-    
-    
- 
-    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
-    
-    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
-    
-    if (numberOfTeams > 0) {
-        [self beginDeltaPointsAnimationNow];
-    }
-
-
-    
-}
 
 -(void)updateAppDataFromServerNow
 {
@@ -665,7 +674,7 @@
                        //                       [calculatePointsClass incrementPlayerPointsInBackground];//commeted this out because it was incrementing my steps value 2x
                        [calculatePointsClass findPastWeekleySteps];
                        
-                       [self.tableView setNeedsDisplay];
+                       
                        //update core data with most recent league data
                        //        [calculatePointsClass migrateLeaguesToCoreData];
                        
@@ -680,7 +689,10 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
     [defaults synchronize];
+    [self.tableView reloadData];
+
 }
+
 
 
 
