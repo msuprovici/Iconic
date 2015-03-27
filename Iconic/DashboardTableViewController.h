@@ -15,6 +15,8 @@
 #import <Parse/PFObject.h>
 #import <Parse/PFQuery.h>
 #import <ParseUI/PFTableViewCell.h>
+#import "MZTimerLabel.h"
+
 
 #import "PNChart.h"
 
@@ -53,8 +55,15 @@
 
 @property (strong, nonatomic) IBOutlet PNBarChart *stepsBarChart;
 
+
+//My Teams Label
+@property (strong, nonatomic) IBOutlet UILabel *myTeamsLabel;
+
+
 //Animated steps
 @property (strong, nonatomic) IBOutlet UILabel *deltaPoints;
 
+//Animated game clock
+@property (strong, nonatomic) IBOutlet MZTimerLabel *gameClock;
 
 @end

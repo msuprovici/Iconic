@@ -109,7 +109,7 @@
     
     
     [self refreshHomeViewNow];
-   
+    [self updatedGameClock];
     
 }
 
@@ -156,6 +156,13 @@
     
     if (numberOfTeams > 0) {
         [self beginDeltaPointsAnimationNow];
+        self.myTeamsLabel.hidden = FALSE;
+        self.gameClock.hidden = FALSE;
+    }
+    else
+    {
+        self.myTeamsLabel.hidden = TRUE;
+        self.gameClock.hidden = TRUE;
     }
     
 //     NSLog(@"referesh home view");
@@ -313,9 +320,67 @@
 
 }
 
+-(void)updatedGameClock
+{
+    //game clock
+    
+    
+    MZTimerLabel *timer = [[MZTimerLabel alloc] initWithLabel:self.gameClock andTimerType:MZTimerLabelTypeTimer];
+    // [timer setCountDownTime:15]; //** Or you can use [timer setCountDownToDate:aDate];
+    
+    
+    //get date & time for parse
+    
+    PFQuery *query = [PFQuery queryWithClassName:kTimerClass];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    [query getObjectInBackgroundWithId:@"FZm9YjkgEb" block:^(PFObject *object, NSError *error) {
+        
+        
+        
+        if (!error) {
+            
+            //Get timeStamp from the parse timer object
+            //timer object rests itself at 12:00am on Sunday
+            
+            NSDate * timeStamp = [object updatedAt];
+            
+            //add 7 days to the time stamp
+            int daysToAdd = 7;
+            NSDate *newDate = [timeStamp dateByAddingTimeInterval:60*60*24*daysToAdd];
+            
+            
+            //Set timer
+            [timer setCountDownToDate:newDate];
+            timer.delegate = self;
+            [timer start];
+        }
+        
+        else
+        {
+            
+        }
+        
+    }];
+
+}
+
+//method to show days in timer label
+
+- (NSString*)timerLabel:(MZTimerLabel *)timerLabel customTextToDisplayAtTime:(NSTimeInterval)time
+{
+    
+    int second = (int)time  % 60;
+    int minute = ((int)time / 60) % 60;
+    int hours = ((int)time / 3600 )% 24;
+    int days = (((int)time / 3600) / 24)% 60;
+    
+    return [NSString stringWithFormat:@"%01d:%02d:%02d:%02d", days,hours,minute,second];
+}
 
 
 
+//method to show days in timer label
 - (void)progressDialChange
 {
     
