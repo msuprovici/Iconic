@@ -578,7 +578,7 @@
         cell.MyTeamName.hidden = FALSE;
         cell.MyTeamScore.hidden = FALSE;
         cell.vsTeamName.hidden = FALSE;
-        cell.VSTeamScore.hidden = TRUE;
+        cell.VSTeamScore.hidden = FALSE;
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -875,9 +875,9 @@
     
     
     //animated label that shows the points the player contributed to his or her team(s)
-    self.deltaPoints.center = CGPointMake(140, 190);
-    float newX = 90.0f;
-    float newY = 255.0f;
+    self.deltaPoints.center = CGPointMake(140, 115);
+    float newX = 150.0f;
+    float newY = 265.0f;
     
     //animate the label so that it drops right on top of my team score
     [UIView transitionWithView:self.deltaPoints
@@ -910,7 +910,7 @@
     //don't forget to add delegate.....
     [UIView setAnimationDelegate:self];
     
-    [UIView setAnimationDuration:1];
+    [UIView setAnimationDuration:0.8];
     self.deltaPoints.alpha = 1;
     
     //also call this before commit animations......
@@ -923,7 +923,7 @@
 -(void)animationDidStopNow:(NSString *)animationID finished:(NSNumber *)finished    context:(void *)context
 {
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.5];
+    [UIView setAnimationDuration:1.8];
     self.deltaPoints.alpha = 0;
     [UIView commitAnimations];
 }
