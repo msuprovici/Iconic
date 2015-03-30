@@ -237,13 +237,37 @@
 - (void)customizeAppearance
 {
    //sets the font for the title of each view controller
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Light" size:20], NSFontAttributeName, nil]];
+ //   [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Light" size:20], NSFontAttributeName, nil]];
+    
+//    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0]];
+    
+//    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+//                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
+//                                                           shadow, NSShadowAttributeName,
+//                                                           [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0], NSFontAttributeName, nil]];
+    
+//    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+//                                                           [UIColor whiteColor],
+//                                                          [UIFont fontWithName:@"HelveticaNeue-Light" size:20], nil]];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+   
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f],NSFontAttributeName,
+                                                           nil] forState:UIControlStateNormal];
+    
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0]];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+
+
     
    //sets color of the text inside the button but not the image/accessory
 //   [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Light" size:15], NSFontAttributeName,[UIColor blackColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
     
     //this changes the color of all accessories & buttons
-    self.window.tintColor = [UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0];
+    //self.window.tintColor = [UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0];
     
     //this changes the clor of just UIBarButtonItems
 //    if([UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
