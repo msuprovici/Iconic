@@ -20,7 +20,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NahImGoodButton@2x.png" id="ece-cm-hJQ">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Leave_Team_Icon_White.png" id="ece-cm-hJQ">
                                             <rect key="frame" x="0.0" y="394" width="62" height="62"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -866,12 +866,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Ums-Rd-y27">
-                        <barButtonItem key="rightBarButtonItem" title="Chat" style="plain" id="Lcv-d3-ZsB">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bNr-Pf-NQJ">
-                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Lcv-d3-ZsB">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bNr-Pf-NQJ">
+                                <rect key="frame" x="255" y="9" width="30" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Chat">
+                                <state key="normal" image="Chat_Icon_White.png">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1718,7 +1717,7 @@
             <objects>
                 <viewController storyboardIdentifier="CreateTeam" id="wv6-hi-tt4" customClass="CreateTeamViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JTN-uc-wtF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Team" minimumFontSize="17" id="Qec-P3-DLf">
@@ -1957,7 +1956,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0Lp-5f-ux9">
                                 <rect key="frame" x="17" y="7" width="29" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Follow_Icon.png">
+                                <state key="normal" image="Follow_Icon_White.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -2095,7 +2094,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Leagues" id="FZe-MD-eLJ">
-                        <barButtonItem key="rightBarButtonItem" image="Add_Icon.png" id="AbA-hE-crJ">
+                        <barButtonItem key="rightBarButtonItem" image="Add_Icon_White.png" id="AbA-hE-crJ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="lFo-3s-8vR" kind="push" identifier="addleague" id="u8W-zH-94E"/>
                             </connections>
@@ -2115,7 +2115,7 @@
             <objects>
                 <tableViewController title="Teams" id="Quu-w8-KMQ" customClass="TeamsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="k7d-L5-oeV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Vu9-WC-BuJ">
@@ -2186,7 +2186,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Teams" id="f6H-1V-ESq">
-                        <barButtonItem key="rightBarButtonItem" image="Add_Icon.png" id="9RT-yq-G8w">
+                        <barButtonItem key="rightBarButtonItem" image="Add_Icon_White.png" id="9RT-yq-G8w">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="createTeamPressed:" destination="Quu-w8-KMQ" id="GwB-nJ-NbJ"/>
                                 <segue destination="wv6-hi-tt4" kind="push" identifier="createTeam" id="i0O-nJ-NVX"/>
@@ -2249,10 +2250,10 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SNh-hs-EDZ">
                                 <rect key="frame" x="254" y="6" width="29" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Join_Team_Icon.png">
+                                <state key="normal" image="Join_Team_Icon_White.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="Leave_Team_Icon.png"/>
+                                <state key="selected" image="Leave_Team_Icon_White.png"/>
                                 <connections>
                                     <action selector="joinTeam:" destination="k2R-Un-KHX" eventType="touchUpInside" id="aLW-2c-Uys"/>
                                 </connections>
@@ -2382,10 +2383,10 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vav-ND-7Sj">
                                 <rect key="frame" x="254" y="7" width="29" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Follow_Icon.png">
+                                <state key="normal" image="Follow_Icon_White.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="selected" image="Followed_User_Icon.png"/>
+                                <state key="selected" image="Followed_User_Icon_White.png"/>
                                 <connections>
                                     <action selector="followUserPressed:" destination="UbG-da-jWg" eventType="touchUpInside" id="jJF-6g-lev"/>
                                 </connections>
@@ -2768,10 +2769,10 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="UGN-r0-e8q">
                                             <rect key="frame" x="275" y="15" width="30" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="Follow_Icon.png">
+                                            <state key="normal" image="Follow_Icon_Red.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <state key="selected" image="Followed_User_Icon.png"/>
+                                            <state key="selected" image="Followed_User_Icon_Red.png"/>
                                             <connections>
                                                 <action selector="followButtonTapped:" destination="yQf-DP-4VV" eventType="touchUpInside" id="ucr-T1-tZ0"/>
                                             </connections>
@@ -3236,21 +3237,23 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Add_Icon.png" width="20" height="20"/>
+        <image name="Add_Icon_White.png" width="20" height="20"/>
+        <image name="Chat_Icon_White.png" width="22" height="19"/>
         <image name="Comment_Icon.png" width="20" height="18"/>
         <image name="Comment_Icon_Selected.png" width="20" height="18"/>
         <image name="Dashboard_Icon.png" width="29" height="24"/>
         <image name="Feed_Icon.png" width="30" height="25"/>
-        <image name="Follow_Icon.png" width="29" height="29"/>
-        <image name="Followed_User_Icon.png" width="29" height="28"/>
+        <image name="Follow_Icon_Red.png" width="25" height="27"/>
+        <image name="Follow_Icon_White.png" width="25" height="27"/>
+        <image name="Followed_User_Icon_Red.png" width="25" height="25"/>
+        <image name="Followed_User_Icon_White.png" width="25" height="25"/>
         <image name="High_Five.png" width="14" height="21"/>
         <image name="High_Five_Selected.png" width="14" height="21"/>
         <image name="JoinTeamButton.png" width="452" height="102"/>
-        <image name="Join_Team_Icon.png" width="29" height="30"/>
+        <image name="Join_Team_Icon_White.png" width="27" height="27"/>
         <image name="Leagues_Icon.png" width="25" height="25"/>
-        <image name="Leave_Team_Icon.png" width="29" height="29"/>
+        <image name="Leave_Team_Icon_White.png" width="27" height="27"/>
         <image name="LetsGetStartedButton.png" width="452" height="102"/>
-        <image name="NahImGoodButton@2x.png" width="16" height="16"/>
         <image name="Profile_Icon.png" width="26" height="26"/>
         <image name="achievment_test.png" width="894" height="894"/>
         <image name="empty_avatar.png" width="500" height="500"/>
@@ -3265,8 +3268,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="GlC-f2-v4y"/>
-        <segue reference="Rnz-xH-lvc"/>
-        <segue reference="X84-Yq-ofY"/>
-        <segue reference="cdC-Af-usM"/>
+        <segue reference="hkU-Qn-mtb"/>
+        <segue reference="gBJ-V0-gCX"/>
+        <segue reference="f2W-wf-Lkd"/>
     </inferredMetricsTieBreakers>
 </document>

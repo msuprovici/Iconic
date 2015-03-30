@@ -474,14 +474,14 @@
         
         
         self.followUser.selected = NO;
-        [self.followUser setTitle:@"Follow" forState:UIControlStateNormal];
+//        [self.followUser setTitle:@"Follow" forState:UIControlStateNormal];
         [Utility unfollowUserEventually:self.playerUserObject];
         [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserFollowingChangedNotification object:nil];
     } else {
         // Follow
 //        NSLog(@"follow player");
         self.followUser.selected = YES;
-        [self.followUser setTitle:@"Following" forState:UIControlStateNormal];
+//        [self.followUser setTitle:@"Following" forState:UIControlStateNormal];
         [Utility followUserEventually:self.playerUserObject block:^(BOOL succeeded, NSError *error) {
             if (!error) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserFollowingChangedNotification object:nil];
