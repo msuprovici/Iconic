@@ -391,11 +391,14 @@
     
     // Set a placeholder image first
     cell.teamLogo.image = [UIImage imageNamed:@"team2.png"];
-    PFFile *imageFile = [object objectForKey:@"teamAvatar"];
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        // Now that the data is fetched, update the cell's image property.
-        cell.teamLogo.image = [UIImage imageWithData:data];
-    }];
+    cell.teamLogo.file = (PFFile *)object[@"teamAvatar"];
+    [cell.teamLogo loadInBackground];
+   
+//    PFFile *imageFile = [object objectForKey:@"teamAvatar"];
+//    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//        // Now that the data is fetched, update the cell's image property.
+//        cell.teamLogo.image = [UIImage imageWithData:data];
+//    }];
     //turn photo to circle
     CALayer *imageLayer = cell.teamLogo.layer;
     [imageLayer setCornerRadius:cell.teamLogo.frame.size.width/2];

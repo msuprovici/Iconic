@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+#import <Parse/PFObject.h>
+#import <Parse/PFQuery.h>
+#import <ParseUI/PFTableViewCell.h>
 
 @interface TeamCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *teamName;
 @property (strong, nonatomic) IBOutlet UILabel *teamRecord;
-@property (strong, nonatomic) IBOutlet UIImageView *teamLogo;
+@property (strong, nonatomic) IBOutlet PFImageView *teamLogo;
+
 
 @end

@@ -218,11 +218,14 @@ static TTTTimeIntervalFormatter *timeFormatter;
     
     // Set a placeholder image first
     cell.avatarImage.image = [UIImage imageNamed:@"empty_avatar.png"];
-   PFFile *imageFile = [self.player objectForKey:kUserProfilePicSmallKey];
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        // Now that the data is fetched, update the cell's image property.
-        cell.avatarImage.image = [UIImage imageWithData:data];
-    }];
+    cell.avatarImage.file = (PFFile *)self.player[kUserProfilePicSmallKey];
+    [cell.avatarImage loadInBackground];
+//   PFFile *imageFile = [self.player objectForKey:kUserProfilePicSmallKey];
+    
+//    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//        // Now that the data is fetched, update the cell's image property.
+//        cell.avatarImage.image = [UIImage imageWithData:data];
+//    }];
 
     
         //turn photo to circle

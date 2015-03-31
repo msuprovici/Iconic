@@ -84,11 +84,14 @@
     
     // Set a placeholder image first
     self.myProfilePhoto.image = [UIImage imageNamed:@"empty_avatar.png"];
-    PFFile *imageFile = [user objectForKey:kUserProfilePicSmallKey];
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        // Now that the data is fetched, update the cell's image property.
-        self.myProfilePhoto.image = [UIImage imageWithData:data];
-    }];
+    self.myProfilePhoto.file = (PFFile *)user[kUserProfilePicSmallKey];
+    [self.myProfilePhoto loadInBackground];
+//    
+//    PFFile *imageFile = [user objectForKey:kUserProfilePicSmallKey];
+//    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//        // Now that the data is fetched, update the cell's image property.
+//        self.myProfilePhoto.image = [UIImage imageWithData:data];
+//    }];
     
     //turn photo to circle
     CALayer *imageLayer = self.myProfilePhoto.layer;

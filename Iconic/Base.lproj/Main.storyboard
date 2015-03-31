@@ -2171,14 +2171,14 @@
                                             <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="0e1-51-Yty">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="0e1-51-Yty" customClass="PFImageView">
                                             <rect key="frame" x="16" y="12" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="teamLogo" destination="0e1-51-Yty" id="jxG-f9-zG0"/>
+                                    <outlet property="teamLogo" destination="0e1-51-Yty" id="0Bf-L6-fAx"/>
                                     <outlet property="teamName" destination="Jw4-Sw-1uC" id="CHv-ZD-I15"/>
                                     <outlet property="teamRecord" destination="zPy-0I-JaG" id="jHm-G6-4Zn"/>
                                     <segue destination="k2R-Un-KHX" kind="push" identifier="teamates" id="BKk-Oi-vMX"/>
@@ -2968,7 +2968,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyScore" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eVU-QU-qIF" customClass="UICountingLabel">
-                                            <rect key="frame" x="151" y="21" width="133" height="24"/>
+                                            <rect key="frame" x="151" y="25" width="133" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2986,14 +2986,14 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="League" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mGw-gl-Ysv">
-                                            <rect key="frame" x="15" y="2" width="140" height="21"/>
+                                            <rect key="frame" x="16" y="4" width="140" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyTeam" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qJ9-5J-2rW">
-                                            <rect key="frame" x="15" y="21" width="120" height="24"/>
+                                            <rect key="frame" x="16" y="25" width="120" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3278,7 +3278,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="GlC-f2-v4y"/>
         <segue reference="Rnz-xH-lvc"/>
-        <segue reference="X84-Yq-ofY"/>
-        <segue reference="gHY-LU-ack"/>
+        <segue reference="BKk-Oi-vMX"/>
+        <segue reference="cdC-Af-usM"/>
     </inferredMetricsTieBreakers>
 </document>
