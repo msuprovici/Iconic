@@ -12,8 +12,9 @@
 
 //table headers
 #define HeaderColor [UIColor clearColor]
-#define HeaderTextColor PNWeiboColor
-#define HeaderHeight    28
+//#define HeaderTextColor PNWeiboColor
+#define HeaderTextColor [UIColor colorWithRed:0.0/255.0 green:42.0/255.0 blue:50.0/255.0 alpha:1.0]
+#define HeaderHeight    35
 #define HeaderAlignment  NSTextAlignmentCenter
 #define HeaderFont [UIFont fontWithName:@"HelveticaNeue-Light" size:15]
 

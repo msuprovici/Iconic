@@ -250,6 +250,8 @@
     
     // Order by teamMatchup type
    // [query orderByAscending:@"round"];
+    [query orderByAscending:@"categories"];
+    
     return query;
 }
 

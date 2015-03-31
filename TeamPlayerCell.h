@@ -21,11 +21,12 @@
 /*! The user represented in the cell */
 @property (nonatomic, strong) PFUser *user;
 
-@property (strong, nonatomic) IBOutlet PFImageView *playerPhoto;
+
 
 
 @property (strong, nonatomic) IBOutlet UILabel *playerName;
 
+@property (strong, nonatomic) IBOutlet PFImageView *playerPhoto;
 
 
 @end
