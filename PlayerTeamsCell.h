@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+#import <Parse/PFObject.h>
+#import <Parse/PFQuery.h>
+#import <ParseUI/PFTableViewCell.h>
+
 
 @interface PlayerTeamsCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *playerTeamLabel;
 
+@property (strong, nonatomic) IBOutlet PFImageView *playerTeamLogo;
 
 @end

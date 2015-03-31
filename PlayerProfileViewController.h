@@ -33,6 +33,8 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *followUser;
 
+@property (strong, nonatomic) IBOutlet UILabel *playerTeamsTitle;
+
 - (IBAction)followUserPressed:(id)sender;
 
 @property (nonatomic, strong) PFObject *player;

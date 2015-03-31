@@ -76,6 +76,8 @@
     self.streak.text = [NSString stringWithFormat:@"%@ days", [user objectForKey:kPlayerStreak]];
     self.streakLong.text = [NSString stringWithFormat:@"%@ days", [user objectForKey:kPlayerStreakLong]];
     
+    self.playerTeamsTitle.text = [NSString stringWithFormat:@"%@'s Teams", [user objectForKey:kUserDisplayNameKey]];
+    
     //view controller header title
     self.navigationItem.title = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     
@@ -97,6 +99,7 @@
     [imageLayer setBorderWidth:0];
     [imageLayer setMasksToBounds:YES];
     
+   
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -117,11 +120,11 @@
 //        NSLog(@"current user");
         [self.cheerButton setHidden:YES];
     }
-    else
-    {
-    
-    [self.cheerButton setTitle:@"High Five" forState:UIControlStateNormal];
-    }
+//    else
+//    {
+//    
+//    [self.cheerButton setTitle:@"High Five" forState:UIControlStateNormal];
+//    }
     
     
     
@@ -220,6 +223,14 @@
         cell = [[PlayerTeamsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.playerTeamLabel.text = [object objectForKey:self.textKey];
+    // Set a placeholder image first
+    cell.playerTeamLogo.image = [UIImage imageNamed:@"team2.png"];
+    cell.playerTeamLogo.file = (PFFile *)object[@"teamAvatar"];
+    [cell.playerTeamLogo loadInBackground];
+    CALayer *imageLayer = cell.playerTeamLogo.layer;
+    [imageLayer setCornerRadius:cell.playerTeamLogo.frame.size.width/2];
+    [imageLayer setBorderWidth:0];
+    [imageLayer setMasksToBounds:YES];
     
     //
     // // Configure the cell
@@ -299,28 +310,28 @@
 }
 
 //create a header section for Leagues
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return HeaderHeight;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return HeaderHeight;
+//}
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    
-    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    sectionHeader.backgroundColor = [UIColor colorWithRed:225.0f/255.0f
-//                                                    green:225.0f/255.0f
-//                                                     blue:225.0f/255.0f
-//                                                    alpha:1.0f];
-    sectionHeader.backgroundColor = HeaderColor;
-    sectionHeader.textAlignment = HeaderAlignment;
-    sectionHeader.font = HeaderFont;
-    sectionHeader.textColor = HeaderTextColor;
-    sectionHeader.text =@"Teams";
-    
-    return sectionHeader;
-    
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    
+//    UILabel * sectionHeader = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+////    sectionHeader.backgroundColor = [UIColor colorWithRed:225.0f/255.0f
+////                                                    green:225.0f/255.0f
+////                                                     blue:225.0f/255.0f
+////                                                    alpha:1.0f];
+//    sectionHeader.backgroundColor = HeaderColor;
+//    sectionHeader.textAlignment = HeaderAlignment;
+//    sectionHeader.font = HeaderFont;
+//    sectionHeader.textColor = HeaderTextColor;
+//    sectionHeader.text =@"Teams";
+//    
+//    return sectionHeader;
+//    
+//}
 
 
 /*
@@ -455,9 +466,11 @@
         
             }];
     
-    [self.cheerButton setTitle:@"High Fived" forState:UIControlStateNormal];
-    [self.cheerButton setBackgroundColor:PNDeepGrey];
-    [self.cheerButton setTitleColor:PNCleanGrey forState:UIControlStateNormal];
+    self.cheerButton.selected = YES;
+    
+//    [self.cheerButton setTitle:@"High Fived" forState:UIControlStateNormal];
+//    [self.cheerButton setBackgroundColor:PNDeepGrey];
+//    [self.cheerButton setTitleColor:PNCleanGrey forState:UIControlStateNormal];
     
     [Amplitude logEvent:@"Cheer button pressed"];
    
