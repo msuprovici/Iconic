@@ -390,7 +390,7 @@
    
     
     // Set a placeholder image first
-    cell.teamLogo.image = [UIImage imageNamed:@"team2.png"];
+    cell.teamLogo.image = [UIImage imageNamed:@"team_place_holder.png"];
     cell.teamLogo.file = (PFFile *)object[@"teamAvatar"];
     [cell.teamLogo loadInBackground];
    

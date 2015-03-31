@@ -40,7 +40,7 @@
    
     
     // Set a placeholder image first
-    self.playerPhoto.image = [UIImage imageNamed:@"empty_avatar.png"];
+    self.playerPhoto.image = [UIImage imageNamed:@"user_place_holder.png"];
     self.playerPhoto.file = (PFFile *)self.user[kUserProfilePicSmallKey];
     [self.playerPhoto loadInBackground];
 //    PFFile *imageFile = [self.user objectForKey:kUserProfilePicSmallKey];

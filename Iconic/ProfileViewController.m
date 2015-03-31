@@ -368,7 +368,7 @@ static NSString *kImageKey = @"imageKey";
         
         PFImageView *photo = [[PFImageView alloc] init];
         
-        photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
+        photo.image = [UIImage imageWithContentsOfFile:@"user_place_holder.png"]; // placeholder image
         photo.file = (PFFile *)feedCell.profilePhoto.file;
         
         [photo loadInBackground];

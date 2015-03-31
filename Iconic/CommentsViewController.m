@@ -217,7 +217,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
     
     
     // Set a placeholder image first
-    cell.avatarImage.image = [UIImage imageNamed:@"empty_avatar.png"];
+    cell.avatarImage.image = [UIImage imageNamed:@"user_place_holder.png"];
     cell.avatarImage.file = (PFFile *)self.player[kUserProfilePicSmallKey];
     [cell.avatarImage loadInBackground];
 //   PFFile *imageFile = [self.player objectForKey:kUserProfilePicSmallKey];

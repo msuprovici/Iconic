@@ -457,7 +457,7 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     NSData *imageData = UIImagePNGRepresentation(chosenImage);
-    self.imageFile = [PFFile fileWithName:@"team2.png" data:imageData];
+    self.imageFile = [PFFile fileWithName:@"team_place_holder.png" data:imageData];
     self.didCreateTeam = YES;
     
 //    //stop activity indicator

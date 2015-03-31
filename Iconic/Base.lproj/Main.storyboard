@@ -114,7 +114,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_avatar.png" id="dPU-SP-47R" customClass="PFImageView">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_place_holder.png" id="dPU-SP-47R" customClass="PFImageView">
                                                     <rect key="frame" x="16" y="16" width="40" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -1189,7 +1189,7 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         </textView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_avatar.png" id="T3W-Ff-qSQ" customClass="PFImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_place_holder.png" id="T3W-Ff-qSQ" customClass="PFImageView">
                                             <rect key="frame" x="18" y="22" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -1251,7 +1251,7 @@
                                             <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_avatar.png" id="zZC-Sg-FoM" customClass="PFImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_place_holder.png" id="zZC-Sg-FoM" customClass="PFImageView">
                                             <rect key="frame" x="18" y="22" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -1791,7 +1791,7 @@
                                     <action selector="createTeamAction:" destination="wv6-hi-tt4" eventType="touchUpInside" id="thd-CD-AUt"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="team2.png" id="bgr-Du-H35" userLabel="Team Logo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="team_place_holder_large.png" id="bgr-Du-H35" userLabel="Team Logo">
                                 <rect key="frame" x="240" y="239" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1871,7 +1871,7 @@
                                                         <segue destination="tuF-GK-KB7" kind="push" identifier="ActivityDetails" id="qLx-Qv-ZGQ"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_avatar.png" id="tiJ-Zk-FHB" customClass="PFImageView">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_place_holder.png" id="tiJ-Zk-FHB" customClass="PFImageView">
                                                     <rect key="frame" x="18" y="22" width="40" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <gestureRecognizers/>
@@ -2794,7 +2794,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_avatar.png" id="7ct-R7-2e0" customClass="PFImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user_place_holder.png" id="7ct-R7-2e0" customClass="PFImageView">
                                             <rect key="frame" x="10" y="10" width="40" height="40"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -3301,10 +3301,10 @@
         <image name="Schedule_Button.png" width="302" height="42"/>
         <image name="Share_Button.png" width="38" height="55"/>
         <image name="achievment_test.png" width="894" height="894"/>
-        <image name="empty_avatar.png" width="500" height="500"/>
         <image name="noNotification.png" width="183" height="29"/>
         <image name="reveal-icon.png" width="22" height="17"/>
-        <image name="team2.png" width="64" height="64"/>
+        <image name="team_place_holder_large.png" width="77" height="77"/>
+        <image name="user_place_holder.png" width="42" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -3312,9 +3312,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="RgY-QV-Nzf"/>
-        <segue reference="SjS-YP-2E8"/>
         <segue reference="Rnz-xH-lvc"/>
         <segue reference="GlC-f2-v4y"/>
+        <segue reference="f2W-wf-Lkd"/>
+        <segue reference="SjS-YP-2E8"/>
     </inferredMetricsTieBreakers>
 </document>

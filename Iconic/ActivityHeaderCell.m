@@ -72,7 +72,7 @@
     PFUser *user = [activity objectForKey:kActivityUserKey];
    
     // Set a placeholder image first
-    self.avatarImageView.image = [UIImage imageNamed:@"empty_avatar.png"];
+    self.avatarImageView.image = [UIImage imageNamed:@"user_place_holder.png"];
     self.avatarImageView.file = (PFFile *)user[kUserProfilePicSmallKey];
 //    PFFile *imageFile = [user objectForKey:kUserProfilePicSmallKey];
     [self.avatarImageView loadInBackground];
@@ -120,7 +120,7 @@
 
 
         // Set a placeholder image first
-        self.avatarImageView.image = [UIImage imageNamed:@"team2.png"];
+        self.avatarImageView.image = [UIImage imageNamed:@"team_place_holder.png"];
         PFFile *imageFile = [team objectForKey:@"teamAvatar"];
         [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             // Now that the data is fetched, update the cell's image property.

@@ -80,7 +80,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
     //    [imageLayer setMasksToBounds:YES];
     
     // Set a placeholder image first
-    self.avatarImageView.image = [UIImage imageNamed:@"empty_avatar.png"];
+    self.avatarImageView.image = [UIImage imageNamed:@"user_place_holder.png"];
     
     self.avatarImageView.file = (PFFile *)user[kUserProfilePicSmallKey];
     [self.avatarImageView loadInBackground];

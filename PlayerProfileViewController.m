@@ -98,7 +98,7 @@
     self.navigationItem.title = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     
     // Set a placeholder image first
-    self.playerProfilePhoto.image = [UIImage imageNamed:@"empty_avatar.png"];
+    self.playerProfilePhoto.image = [UIImage imageNamed:@"user_place_holder.png"];
     self.playerProfilePhoto.file = (PFFile *)user[kUserProfilePicSmallKey];
     [self.playerProfilePhoto loadInBackground];
     
@@ -240,7 +240,7 @@
     }
     cell.playerTeamLabel.text = [object objectForKey:self.textKey];
     // Set a placeholder image first
-    cell.playerTeamLogo.image = [UIImage imageNamed:@"team2.png"];
+    cell.playerTeamLogo.image = [UIImage imageNamed:@"team_place_holder.png"];
     cell.playerTeamLogo.file = (PFFile *)object[@"teamAvatar"];
     [cell.playerTeamLogo loadInBackground];
     CALayer *imageLayer = cell.playerTeamLogo.layer;

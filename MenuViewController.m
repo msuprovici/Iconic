@@ -141,7 +141,7 @@
              
          PFImageView *photo = [[PFImageView alloc] init];
          
-         photo.image = [UIImage imageWithContentsOfFile:@"empty_avatar.png"]; // placeholder image
+         photo.image = [UIImage imageWithContentsOfFile:@"user_place_holder.png"]; // placeholder image
          photo.file = (PFFile *)profileCell.profilePhoto.file;
          
          [photo loadInBackground];
