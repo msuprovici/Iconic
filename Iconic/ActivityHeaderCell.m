@@ -54,6 +54,8 @@
 - (void)setActivity:(PFObject *)anActivity {
     activity = anActivity;
     
+    [self.activityStatusTextView setTextColor:[UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0]];
+    [self.activityStatusTextView setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f]];
     
     //show user in feed
     

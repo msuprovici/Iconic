@@ -33,7 +33,8 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *likeButton;
 
-@property (strong, nonatomic) IBOutlet UILabel *ActivityLabel;
+
+@property (strong, nonatomic) IBOutlet UITextView *ActivityLabel;
 
 //all other images
 

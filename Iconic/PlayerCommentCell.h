@@ -32,8 +32,9 @@
 
 @property (strong, nonatomic) IBOutlet PFImageView *avatarImageView;
 
+@property (strong, nonatomic) IBOutlet UITextView *contentLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *contentLabel;
+
 
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 

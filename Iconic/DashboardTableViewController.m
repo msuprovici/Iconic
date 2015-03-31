@@ -260,7 +260,7 @@
     
     //Set up 7 day bar chart
     
-    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(28, 0, 300, 170)];
+    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 300, 140)];
     
     NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
     
@@ -590,6 +590,7 @@
     
     return cell;
 }
+
 
 
 /*

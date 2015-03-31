@@ -169,7 +169,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
 //        }
 //    }
     
-    return 55.0f;
+    return 100.0f;
 }
 
 
@@ -177,12 +177,12 @@ static TTTTimeIntervalFormatter *timeFormatter;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 65.0f;
+    return 100.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 55.0f;
+    return 100.0f;
 }
 
 
@@ -195,7 +195,7 @@ static TTTTimeIntervalFormatter *timeFormatter;
         [NSException raise:@"headerView == nil.." format:@"No cells with matching CellIdentifier loaded from your storyboard"];
     }
     //setup activity text
-    cell.ActivityLabel.text = [NSString stringWithFormat:@"Scored %@ points",[self.activity objectForKey:kActivityKey]];
+    cell.ActivityLabel.text = [NSString stringWithFormat:@"%@",[self.activity objectForKey:kActivityKey]];
     
     
     //set time stamp

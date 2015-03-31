@@ -92,10 +92,10 @@
     self.MyTeamScore.textColor = PNWeiboColor;
     
     
-    self.vsTeamName.textColor = PNDarkBlue;
-    self.VSTeamScore.textColor = PNDarkBlue;
+    self.vsTeamName.textColor = [UIColor colorWithRed:1240.0/255.0 green:124.0/255.0 blue:124.0/255.0 alpha:1.0];
+    self.VSTeamScore.textColor = [UIColor colorWithRed:1240.0/255.0 green:124.0/255.0 blue:124.0/255.0 alpha:1.0];
     
-    self.myLeagueName.textColor = PNWeiboColor;
+    self.myLeagueName.textColor = [UIColor colorWithRed:1240.0/255.0 green:124.0/255.0 blue:124.0/255.0 alpha:1.0];
     
     
     

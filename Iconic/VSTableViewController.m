@@ -91,6 +91,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+ 
     
     self.scoutTeamPressed = false;
     
@@ -366,9 +367,9 @@
     
     
     //set my team name
-    self.myTeamName.text = [NSString stringWithFormat:@"%@",[arrayOfMyTeamNames objectAtIndex:index]];
+ 
     
-    self.myTeamName.text = self.myTeamReceived;
+    self.myTeamName.text = [NSString stringWithFormat:@"%@ Teammates",self.myTeamReceived];
     
     
     
@@ -696,6 +697,10 @@
     return cell;
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    return 0.1;
+//}
 
 /*
  // Override if you need to change the ordering of objects in the table.
@@ -829,7 +834,7 @@
 //    NSLog(@"Scout My Team Pressed");
     self.scoutTeamPressed = false;
     //update team label to player's team
-    self.myTeamName.text = self.myTeamReceived;
+    self.myTeamName.text = [NSString stringWithFormat:@"%@ Teammates",self.myTeamReceived];
     //reload table
     [self loadObjects];
 }
@@ -841,7 +846,7 @@
     
     self.scoutTeamPressed = true;
     //update team label to opposing team
-    self.myTeamName.text = self.awayTeam;
+    self.myTeamName.text = [NSString stringWithFormat:@"%@ Teammates",self.awayTeam];
     //reload table
     [self loadObjects];
 }

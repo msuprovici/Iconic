@@ -256,6 +256,8 @@
                                                            [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f],NSFontAttributeName,
                                                            nil] forState:UIControlStateNormal];
     
+   
+    
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0]];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
