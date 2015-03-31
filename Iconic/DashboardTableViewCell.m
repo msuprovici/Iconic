@@ -92,12 +92,15 @@
     self.MyTeamScore.textColor = PNWeiboColor;
     
     
-    self.vsTeamName.textColor = [UIColor colorWithRed:1240.0/255.0 green:124.0/255.0 blue:124.0/255.0 alpha:1.0];
-    self.VSTeamScore.textColor = [UIColor colorWithRed:1240.0/255.0 green:124.0/255.0 blue:124.0/255.0 alpha:1.0];
+    self.vsTeamName.textColor = [UIColor colorWithRed:124.0/255.0 green:124.0/255.0 blue:134.0/255.0 alpha:1.0];
+    self.VSTeamScore.textColor = [UIColor colorWithRed:124.0/255.0 green:124.0/255.0 blue:134.0/255.0 alpha:1.0];
     
-    self.myLeagueName.textColor = [UIColor colorWithRed:1240.0/255.0 green:124.0/255.0 blue:124.0/255.0 alpha:1.0];
+//    self.myLeagueName.textColor = [UIColor colorWithRed:1240.0/255.0 green:124.0/255.0 blue:124.0/255.0 alpha:1.0];
+//    
+//    self.vsTeamName.textColor = [UIColor colorWithRed:7.0/255.0 green:79.0/255.0 blue:87.0/255.0 alpha:1.0];
+//    self.VSTeamScore.textColor = [UIColor colorWithRed:7.0/255.0 green:79.0/255.0 blue:87.0/255.0 alpha:1.0];
     
-    
+    self.myLeagueName.textColor = [UIColor colorWithRed:0.0/255.0 green:42.0/255.0 blue:50.0/255.0 alpha:1.0];
     
     
     //find out what team the player is on and set that as a property so that we can send it to VS view controller
