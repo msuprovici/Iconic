@@ -251,6 +251,9 @@
 //                                                          [UIFont fontWithName:@"HelveticaNeue-Light" size:20], nil]];
     
     
+    [[UITableViewCell appearance] setTintColor:[UIColor colorWithRed:124.0/255.0 green:124.0/255.0 blue:134.0/255.0 alpha:1.0]];
+
+    
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0]];
     
     [[UINavigationBar appearance] setTranslucent:FALSE];

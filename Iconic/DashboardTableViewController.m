@@ -108,7 +108,6 @@
                                                  name:@"achievmentReceived"
                                                object:nil];
     
-    
     [self refreshHomeViewNow];
     [self updatedGameClock];
     

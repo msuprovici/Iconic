@@ -81,6 +81,8 @@
 		5C3BC4BD19DF194D00D9A9AD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA3D1D41831E05D006C7932 /* SystemConfiguration.framework */; };
 		5C3BC4BF19DF194E00D9A9AD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3BC4BE19DF194D00D9A9AD /* libz.dylib */; };
 		5C3BC4CD19DF4E2300D9A9AD /* TodayTeamsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3BC4CC19DF4E2300D9A9AD /* TodayTeamsTableViewCell.m */; };
+		5C418EFF1ACB264400DC30FF /* Add_Team_Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C418EFD1ACB264400DC30FF /* Add_Team_Button@2x.png */; };
+		5C418F001ACB264400DC30FF /* Add_Team_Button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C418EFE1ACB264400DC30FF /* Add_Team_Button@3x.png */; };
 		5C42F7DF1AC1D57100B4F7BB /* noNotification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C42F7DD1AC1D57100B4F7BB /* noNotification@2x.png */; };
 		5C42F7E01AC1D57100B4F7BB /* noNotification@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C42F7DE1AC1D57100B4F7BB /* noNotification@3x.png */; };
 		5C42F8291AC1DE7100B4F7BB /* IconicOnboard7slice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C42F81B1AC1DE7100B4F7BB /* IconicOnboard7slice@3x.png */; };
@@ -249,6 +251,8 @@
 		5CDB875C1ACB0FD1009FE9D2 /* Exit_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDB875A1ACB0FD1009FE9D2 /* Exit_Icon@3x.png */; };
 		5CDB875F1ACB1110009FE9D2 /* Share_Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDB875D1ACB1110009FE9D2 /* Share_Button@2x.png */; };
 		5CDB87601ACB1110009FE9D2 /* Share_Button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDB875E1ACB1110009FE9D2 /* Share_Button@3x.png */; };
+		5CDB87631ACB1360009FE9D2 /* Add_League_Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDB87611ACB1360009FE9D2 /* Add_League_Button@2x.png */; };
+		5CDB87641ACB1360009FE9D2 /* Add_League_Button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDB87621ACB1360009FE9D2 /* Add_League_Button@3x.png */; };
 		5CE57DE718D8C2F0006C9F31 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE57DE618D8C2F0006C9F31 /* CoreMotion.framework */; };
 		5CE7782D1A0D7D0D008B3585 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 5CE778221A0D7D0D008B3585 /* Contents.json */; };
 		5CE7782E1A0D7D0D008B3585 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE778231A0D7D0D008B3585 /* Icon-40.png */; };
@@ -391,6 +395,8 @@
 		5C3BC4BE19DF194D00D9A9AD /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		5C3BC4CB19DF4E2300D9A9AD /* TodayTeamsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayTeamsTableViewCell.h; sourceTree = "<group>"; };
 		5C3BC4CC19DF4E2300D9A9AD /* TodayTeamsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayTeamsTableViewCell.m; sourceTree = "<group>"; };
+		5C418EFD1ACB264400DC30FF /* Add_Team_Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_Team_Button@2x.png"; sourceTree = "<group>"; };
+		5C418EFE1ACB264400DC30FF /* Add_Team_Button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_Team_Button@3x.png"; sourceTree = "<group>"; };
 		5C42F7DD1AC1D57100B4F7BB /* noNotification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noNotification@2x.png"; sourceTree = "<group>"; };
 		5C42F7DE1AC1D57100B4F7BB /* noNotification@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noNotification@3x.png"; sourceTree = "<group>"; };
 		5C42F81B1AC1DE7100B4F7BB /* IconicOnboard7slice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconicOnboard7slice@3x.png"; sourceTree = "<group>"; };
@@ -638,6 +644,8 @@
 		5CDB875A1ACB0FD1009FE9D2 /* Exit_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Exit_Icon@3x.png"; sourceTree = "<group>"; };
 		5CDB875D1ACB1110009FE9D2 /* Share_Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Share_Button@2x.png"; sourceTree = "<group>"; };
 		5CDB875E1ACB1110009FE9D2 /* Share_Button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Share_Button@3x.png"; sourceTree = "<group>"; };
+		5CDB87611ACB1360009FE9D2 /* Add_League_Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_League_Button@2x.png"; sourceTree = "<group>"; };
+		5CDB87621ACB1360009FE9D2 /* Add_League_Button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_League_Button@3x.png"; sourceTree = "<group>"; };
 		5CE57DE618D8C2F0006C9F31 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		5CE778221A0D7D0D008B3585 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		5CE778231A0D7D0D008B3585 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
@@ -975,6 +983,10 @@
 		5C3BBF6E1AC6156700B179B0 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				5C418EFD1ACB264400DC30FF /* Add_Team_Button@2x.png */,
+				5C418EFE1ACB264400DC30FF /* Add_Team_Button@3x.png */,
+				5CDB87611ACB1360009FE9D2 /* Add_League_Button@2x.png */,
+				5CDB87621ACB1360009FE9D2 /* Add_League_Button@3x.png */,
 				5CDB87591ACB0FD1009FE9D2 /* Exit_Icon@2x.png */,
 				5CDB875A1ACB0FD1009FE9D2 /* Exit_Icon@3x.png */,
 				5CDB875D1ACB1110009FE9D2 /* Share_Button@2x.png */,
@@ -1691,6 +1703,7 @@
 				5CDB87511ACB0564009FE9D2 /* LogIn_Facebook_Friends_button@2x.png in Resources */,
 				5C3BBF5A1AC3AD3D00B179B0 /* Leagues_Icon@2x.png in Resources */,
 				5C42F8A31AC21EA500B4F7BB /* LogInButton@2x.png in Resources */,
+				5CDB87641ACB1360009FE9D2 /* Add_League_Button@3x.png in Resources */,
 				5C42F8481AC1FF2700B4F7BB /* IconicOnboard9slice@2x.png in Resources */,
 				5CE778341A0D7D0D008B3585 /* Icon-76@2x.png in Resources */,
 				5C3BBF601AC3AD3D00B179B0 /* Dashboard_Icon@2x.png in Resources */,
@@ -1704,6 +1717,7 @@
 				5C3BBF871AC9D0F400B179B0 /* Followed_User_Icon_White@2x.png in Resources */,
 				5CDB875B1ACB0FD1009FE9D2 /* Exit_Icon@2x.png in Resources */,
 				5C3BBF991AC9DA1900B179B0 /* Chat_Icon_White@2x.png in Resources */,
+				5C418F001ACB264400DC30FF /* Add_Team_Button@3x.png in Resources */,
 				5C881E3D1ABBA2B200C2D958 /* LetsGetStartedButton@3x.png in Resources */,
 				5CE7782D1A0D7D0D008B3585 /* Contents.json in Resources */,
 				5C3BBF5F1AC3AD3D00B179B0 /* Feed_Icon@3x.png in Resources */,
@@ -1722,6 +1736,7 @@
 				5C3BBF811AC9D0F400B179B0 /* Add_Icon_White@2x.png in Resources */,
 				5C3BBF9F1ACA114500B179B0 /* High_Five@2x.png in Resources */,
 				5C42F82C1AC1DE7100B4F7BB /* IconicOnboard6slice@2x.png in Resources */,
+				5CDB87631ACB1360009FE9D2 /* Add_League_Button@2x.png in Resources */,
 				5C42F8311AC1DE7100B4F7BB /* IconicOnboard3slice@3x.png in Resources */,
 				5C3BBF851AC9D0F400B179B0 /* Join_Team_Icon_White@2x.png in Resources */,
 				5C881E431ABBA2B200C2D958 /* NextButton@3x.png in Resources */,
@@ -1762,6 +1777,7 @@
 				5C3BBF831AC9D0F400B179B0 /* Follow_Icon_Red@2x.png in Resources */,
 				5C881E461ABBA2B200C2D958 /* YesButton@2x.png in Resources */,
 				5C3BBF9A1AC9DA1900B179B0 /* Chat_Icon_White@3x.png in Resources */,
+				5C418EFF1ACB264400DC30FF /* Add_Team_Button@2x.png in Resources */,
 				5C3BBF821AC9D0F400B179B0 /* Add_Icon_White@3x.png in Resources */,
 				5C42F82F1AC1DE7100B4F7BB /* IconicOnboard2slice@3x.png in Resources */,
 				5C3BBF2A1AC38BC200B179B0 /* Comment_Icon_Selected@3x.png in Resources */,

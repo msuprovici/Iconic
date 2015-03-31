@@ -38,6 +38,8 @@
     //set arryas for pickers
     self.totalTeamsInLeagueOptions = @[@"2", @"4"];
     
+    
+    
     self.minimumXPValues = @[@"0", @"1", @"2", @"3", @"4", @"5"];
     
     self.numberOfTeams = [@2 integerValue];
@@ -114,22 +116,51 @@
         return 0;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    
+//    
+//    if([pickerView isEqual: self.numberOfTeamsInLeague]){
+//        
+//        return self.totalTeamsInLeagueOptions[row];;
+//        
+//    }
+//    
+//    else if([pickerView isEqual: self.minimumXP]){
+//        
+//        return self.minimumXPValues[row];
+//    }
+//    else
+//        return 0;
+//}
+
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    
     
     if([pickerView isEqual: self.numberOfTeamsInLeague]){
         
-        return self.totalTeamsInLeagueOptions[row];;
+
+        
+        NSAttributedString *attString = [[NSAttributedString alloc] initWithString:self.totalTeamsInLeagueOptions[row] attributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:0.0/255.0 green:42.0/255.0 blue:50.0/255.0 alpha:1.0], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f], NSFontAttributeName, nil] ];
+
+
+        
+        return attString;
         
     }
     
     else if([pickerView isEqual: self.minimumXP]){
         
-        return self.minimumXPValues[row];
+
+
+                NSAttributedString *attXPString = [[NSAttributedString alloc] initWithString:self.minimumXPValues[row] attributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:0.0/255.0 green:42.0/255.0 blue:50.0/255.0 alpha:1.0], NSForegroundColorAttributeName, [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f], NSFontAttributeName, nil] ];
+        
+        return attXPString;
     }
     else
         return 0;
+    
+    
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
@@ -151,6 +182,22 @@
     
    
 }
+
+//- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+//{
+//    UILabel* tView = (UILabel*)view;
+//    if (!tView)
+//    {
+//        tView = [[UILabel alloc] init];
+//        [tView setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f]];
+//        
+//        //[tView setTextAlignment:UITextAlignmentLeft];
+////        tView.numberOfLines=3;
+//    }
+//    // Fill the label text here
+////    tView.text=[wishvalues objectAtIndex:row];
+//    return tView;
+//}
 
 #pragma mark Create League button
 

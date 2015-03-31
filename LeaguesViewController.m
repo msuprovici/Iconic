@@ -90,7 +90,6 @@
 {
     [super viewDidLoad];
     
-     
     self.leaguesArray = [[NSMutableArray alloc] init];
     
 
