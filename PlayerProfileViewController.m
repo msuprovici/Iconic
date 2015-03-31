@@ -76,7 +76,23 @@
     self.streak.text = [NSString stringWithFormat:@"%@ days", [user objectForKey:kPlayerStreak]];
     self.streakLong.text = [NSString stringWithFormat:@"%@ days", [user objectForKey:kPlayerStreakLong]];
     
-    self.playerTeamsTitle.text = [NSString stringWithFormat:@"%@'s Teams", [user objectForKey:kUserDisplayNameKey]];
+    
+    
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    
+    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+    
+    if (numberOfTeams == 0)
+    {
+        self.playerTeamsTitle.hidden = YES;
+    }
+    else
+    {
+        self.playerTeamsTitle.hidden = NO;
+        self.playerTeamsTitle.text = [NSString stringWithFormat:@"%@'s Teams", [user objectForKey:kUserDisplayNameKey]];
+    }
+    
+    
     
     //view controller header title
     self.navigationItem.title = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
