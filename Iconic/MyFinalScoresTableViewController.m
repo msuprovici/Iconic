@@ -81,10 +81,10 @@
     cell.myTeamScore.textColor = PNWeiboColor;
     
     
-    cell.vsTeamName.textColor = PNDarkBlue;
-    cell.vsTeamScore.textColor = PNDarkBlue;
+    cell.vsTeamName.textColor = [UIColor colorWithRed:124.0/255.0 green:124.0/255.0 blue:134.0/255.0 alpha:1.0];
+    cell.vsTeamScore.textColor = [UIColor colorWithRed:124.0/255.0 green:124.0/255.0 blue:134.0/255.0 alpha:1.0];
     
-    cell.myLeague.textColor = PNWeiboColor;
+    cell.myLeague.textColor = [UIColor colorWithRed:0.0/255.0 green:42.0/255.0 blue:50.0/255.0 alpha:1.0];
     
     
     NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];

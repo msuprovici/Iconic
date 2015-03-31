@@ -250,13 +250,21 @@
 //                                                           [UIColor whiteColor],
 //                                                          [UIFont fontWithName:@"HelveticaNeue-Light" size:20], nil]];
     
+    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0]];
+    
+    [[UINavigationBar appearance] setTranslucent:FALSE];
+    
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
    
     [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                            [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f],NSFontAttributeName,
                                                            nil] forState:UIControlStateNormal];
     
-   
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,
+                                                          [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0f], NSFontAttributeName,
+                                                          nil] ];
+    
     
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0]];
     

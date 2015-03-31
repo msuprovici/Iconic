@@ -76,7 +76,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //[self performSegueWithIdentifier:@"MyFinalScores" sender:self];//uncomment to test final scores view controler
+
     
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 
