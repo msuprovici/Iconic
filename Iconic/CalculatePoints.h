@@ -9,17 +9,33 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import <CoreMotion/CoreMotion.h>
+#import "AAPLMotionActivityQuery.h"
+#import "AAPLActivityDataManager.h"
 
 @interface CalculatePoints : NSObject
 
+
+{
+    int pointslabelNumber;
+    
+    NSMutableArray *_objects;
+    NSMutableArray *_stepCounts;
+    AAPLActivityDataManager *_dataManager;
+    AAPLActivityDataManager *_activityDataManager;
+    NSDateFormatter *_dateFormatter;
+    NSString *_currentActivity;
+    NSInteger _currentSteps;
+    
+}
+
 //step counting
-@property (nonatomic, strong) CMStepCounter *cmStepCounter;
+//@property (nonatomic, strong) CMStepCounter *cmStepCounter;
 @property (nonatomic, strong) CMMotionActivityManager *motionActivity;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 
 @property (nonatomic, strong) NSMutableArray *stepsArray;
 @property (nonatomic, strong) NSMutableArray *myWeeleyPointsArray;
-@property (nonatomic, strong) CMStepCounter *stepCounter;
+//@property (nonatomic, strong) CMStepCounter *stepCounter;
 
 //arrays
 @property (strong, nonatomic) NSMutableArray *myTeamData;

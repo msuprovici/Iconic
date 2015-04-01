@@ -332,7 +332,7 @@
     
     if ([PFUser currentUser]) {
 //    [calculatePointsClass retrieveFromParse];
-    [calculatePointsClass incrementPlayerPointsInBackground];
+    [calculatePointsClass findPastWeekleySteps];
     }
     
      [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
@@ -395,7 +395,7 @@
         NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
     
      if ([PFUser currentUser]) {
-        [calculatePoints incrementPlayerPointsInBackground];
+        [calculatePoints findPastWeekleySteps];
         [calculatePoints retrieveFromParse];
 //        [calculatePoints getYesterdaysPointsAndSteps];
      }
@@ -522,7 +522,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         
         //send and retrieve data from Parse
          if ([PFUser currentUser]) {
-        [calculatePoints incrementPlayerPointsInBackground];
+        [calculatePoints findPastWeekleySteps];
         [calculatePoints retrieveFromParse];
          }
         
@@ -566,7 +566,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
         
          if ([PFUser currentUser]) {
-        [calculatePoints incrementPlayerPointsInBackground];
+        [calculatePoints findPastWeekleySteps];
         [calculatePoints retrieveFromParse];
          }
         //        [calculatePoints getYesterdaysPointsAndSteps];
