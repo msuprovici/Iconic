@@ -28,8 +28,7 @@
 
 //My Steps - Today
 
-//step counter
-@property (nonatomic, strong) CMStepCounter *stepCounter;
+
 
 @property (strong, nonatomic) IBOutlet UIView *myStatsView;
 

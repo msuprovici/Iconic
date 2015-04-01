@@ -240,6 +240,10 @@
             
             [self.myWeekleyStepsArray addObject:@(myDaysSteps)];
             
+            if(self.myWeekleyStepsArray.count == 1)
+            {
+                [self getPlayerSteps:myDaysSteps];
+            }
             
             if (self.myWeekleyStepsArray.count == 7) {
                 
@@ -254,6 +258,114 @@
     }
 
 }
+
+
+#pragma mark Steps Methods
+
+-(void)getPlayerSteps:(NSInteger)steps
+{
+  
+    
+    //prevent NAN values
+    if (steps == 0) {
+        self.myPoints = 0;
+        
+        self.pointsValue.text = [@(steps) stringValue];
+        
+    }
+    else
+    {
+        
+        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+        self.myPoints = [calculatePointsClass calculatePoints:steps];
+        
+        
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        formatter.numberStyle = kCFNumberFormatterNoStyle;
+        self.pointsValue.formatBlock = ^NSString* (float value)
+        {
+            NSString* formatted = [formatter stringFromNumber:@((int)value)];
+            return [NSString stringWithFormat:@"%@",formatted];
+        };
+        
+        
+        
+        NSUserDefaults *myRetrievedSteps = [NSUserDefaults standardUserDefaults];
+        
+        int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsToday];
+        
+        //            int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsBeforeSaving];
+        //            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
+        
+        
+        
+        
+        //check if app crashed or was terminated by the user
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        
+        
+        NSDate *dateAppWasLastRan = [defaults objectForKey:kDateAppLastRan];
+        //            NSLog(@"dateAppWasLastLaunched: %@", dateAppWasLastRan);
+        
+        //            NSDate *dateAppWasTerminated = [defaults objectForKey:@"dateAppWasTerminated"];
+        //            NSLog(@"dateAppWasTerminated: %@", dateAppWasTerminated);
+        
+        NSDate *todaysDate = [NSDate date];
+        
+        //            NSLog(@"todaysDate: %@", todaysDate);
+        
+        //find the day of the week string
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEEE"];
+        
+        NSTimeZone * timezone = [NSTimeZone timeZoneWithName: @"PST"];
+        [dateFormatter setTimeZone:timezone];
+        
+        NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
+        NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
+        
+        //            NSLog(@"today's day %@", [dateFormatter stringFromDate:todaysDate]);
+        //            NSLog(@"day app last launched %@", dayAppWasLastActivated);
+        
+        int myStepsGainedDelta;
+        
+        if([todaysDay isEqualToString:dayAppWasLastActivated])
+        {
+            myStepsGainedDelta = (int)steps - myStoredSteps;
+            [self.pointsValue  countFrom:myStoredSteps to:steps withDuration:1];
+            
+        }
+        else
+        {
+            myStepsGainedDelta = (int)steps;
+            [self.pointsValue  countFrom:0 to:steps withDuration:1];
+            
+            
+        }
+        
+        NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
+        
+        [sharedDefaults setInteger:steps forKey:@"totalNumberStepsToday"];
+        [sharedDefaults synchronize];
+        
+        
+        
+        //            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
+        [myRetrievedSteps setInteger:myStepsGainedDelta forKey:kMyStepsDelta];
+        [myRetrievedSteps synchronize];
+        
+        
+        
+    }
+    
+
+    
+}
+
+
+
+
+
 
 -(void)populate7DayBarChart
 {
@@ -310,7 +422,7 @@
 }
 
 
-
+#pragma mark My Stats
 
 -(void)refreshHomeViewNow
 {
@@ -439,71 +551,27 @@
     self.xpValue.text = [NSString stringWithFormat:@"%d",[myLevel intValue]];
     
     
-    //Set up 7 day bar chart
-    
-    
-    
-    
-    
-    
-    
-//    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 300, 140)];
-//    
-//    NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
-//    
-//    self.myWeekleyStepsArray = [myWeekleyPoints objectForKey:kMyStepsWeekArray];
-//                NSLog(@"my weekley steps %@", self.myWeekleyStepsArray);
-//    
-//    
-//    
-//    //steps chart
-//    [self.barChart setYValues:self.myWeekleyStepsArray];
-//    
-//    
-//    [self.barChart setStrokeColor:PNWeiboColor];
-//    [self.barChart setBarBackgroundColor:PNWhite];
-//    [self.barChart strokeChart];
-//    
-//    [self.stepsBarChart addSubview:self.barChart];
-//    
-//    //find max value in the array and insert it into the high value on for the y-axis
-//    //set Y labels for chart
-//    self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyStepsArray valueForKeyPath:@"@max.self"]];
-//    
-//    NSNumber *maxSteps = [self.myWeekleyStepsArray valueForKeyPath:@"@max.self"];
-//    int midStepsValue = [maxSteps intValue];
-//    
-//    
-//    //find mid value in the array and insert it into the high value on for the y-axis
-//    self.mediumValue.text = [NSString stringWithFormat:@"%d",midStepsValue/2];
-//    
-//    
-//    //set X labels for chart
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    //use abbreviated date, ie: "Fri"
-//    [dateFormatter setDateFormat:@"EEE"];
-//    
-//    //set label to today's date
-//    self.todayDay.text = [dateFormatter stringFromDate:[NSDate date]];
-//    //NSLog(@"%@", [dateFormatter stringFromDate:[NSDate date]]);
-//    
-//    //find tomorrow (equivalent to end of day 7 days ago)
-//    NSDateComponents* deltaComps = [[NSDateComponents alloc] init];
-//    [deltaComps setDay:1];
-//    NSDate* tomorrow = [[NSCalendar currentCalendar] dateByAddingComponents:deltaComps toDate:[NSDate date] options:0];
-//    
-//    //NSLog(@"%@", [dateFormatter stringFromDate:tomorrow]);
-//    self.sevenDaysAgoDay.text = [dateFormatter stringFromDate:tomorrow];
-    
-    
-    //get today's steps
-    [self getPlayerSteps];
-    
-    //reload the table view
-    [self.tableView reloadData];
+      [self.tableView reloadData];
     
 
 }
+
+
+- (void)progressDialChange
+{
+    
+    NSArray *progressViews = @[self.xpProgressDial];
+    for (DACircularProgressView *progressView in progressViews) {
+        
+        [progressView setProgress:self.myProgress animated:YES];
+        //        NSLog(@"progress Indicator fired");
+        
+    }
+}
+
+
+
+#pragma mark My Stats
 
 -(void)updatedGameClock
 {
@@ -565,136 +633,9 @@
 
 
 
-//method to show days in timer label
-- (void)progressDialChange
-{
-    
-    NSArray *progressViews = @[self.xpProgressDial];
-    for (DACircularProgressView *progressView in progressViews) {
-        
-        [progressView setProgress:self.myProgress animated:YES];
-//        NSLog(@"progress Indicator fired");
-
-    }
-}
 
 
-#pragma mark Today's steps & points
 
--(void)getPlayerSteps
-{
-    self.stepCounter = [[CMStepCounter alloc] init];
-    NSDate *now = [NSDate date];
-    
-    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-    NSDate *from = [calculatePointsClass beginningOfDay];
-    
-    
-    //    NSLog(@"time now: %@",now);
-    //    NSLog(@"time from: %@",from);
-    
-    [self.stepCounter queryStepCountStartingFrom:from to:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) {
-        
-        
-        
-        //prevent NAN values
-        if (numberOfSteps == 0) {
-            self.myPoints = 0;
-            
-            self.pointsValue.text = [@(numberOfSteps) stringValue];
-            
-        }
-        else
-        {
-            
-            CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-            self.myPoints = [calculatePointsClass calculatePoints:numberOfSteps];
-            
-            
-            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-            formatter.numberStyle = kCFNumberFormatterNoStyle;
-            self.pointsValue.formatBlock = ^NSString* (float value)
-            {
-                NSString* formatted = [formatter stringFromNumber:@((int)value)];
-                return [NSString stringWithFormat:@"%@",formatted];
-            };
-            
-            
-            
-            NSUserDefaults *myRetrievedSteps = [NSUserDefaults standardUserDefaults];
-            
-            int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsToday];
-            
-            //            int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyMostRecentStepsBeforeSaving];
-            //            NSLog(@"kMyMostRecentPointsBeforeSaving in myStats: %d", myStoredPoints);
-            
-            
-            
-            
-            //check if app crashed or was terminated by the user
-            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-           
-            
-            NSDate *dateAppWasLastRan = [defaults objectForKey:kDateAppLastRan];
-            //            NSLog(@"dateAppWasLastLaunched: %@", dateAppWasLastRan);
-            
-            //            NSDate *dateAppWasTerminated = [defaults objectForKey:@"dateAppWasTerminated"];
-            //            NSLog(@"dateAppWasTerminated: %@", dateAppWasTerminated);
-            
-            NSDate *todaysDate = [NSDate date];
-            
-            //            NSLog(@"todaysDate: %@", todaysDate);
-            
-            //find the day of the week string
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"EEEE"];
-            
-            NSTimeZone * timezone = [NSTimeZone timeZoneWithName: @"PST"];
-            [dateFormatter setTimeZone:timezone];
-            
-            NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
-            NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
-            
-            //            NSLog(@"today's day %@", [dateFormatter stringFromDate:todaysDate]);
-            //            NSLog(@"day app last launched %@", dayAppWasLastActivated);
-            
-            int myStepsGainedDelta;
-            
-            if([todaysDay isEqualToString:dayAppWasLastActivated])
-            {
-                myStepsGainedDelta = (int)numberOfSteps - myStoredSteps;
-                [self.pointsValue  countFrom:myStoredSteps to:numberOfSteps withDuration:1];
-                
-            }
-            else
-            {
-                myStepsGainedDelta = (int)numberOfSteps;
-                [self.pointsValue  countFrom:0 to:numberOfSteps withDuration:1];
-                
-                
-            }
-            
-            NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
-            
-            [sharedDefaults setInteger:numberOfSteps forKey:@"totalNumberStepsToday"];
-            [sharedDefaults synchronize];
-            
-            
-            
-            //            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
-            [myRetrievedSteps setInteger:myStepsGainedDelta forKey:kMyStepsDelta];
-            [myRetrievedSteps synchronize];
-            
-  
-            
-        }
-    
-        
-    }];
-    
-    
-    
-}
 
 
 
