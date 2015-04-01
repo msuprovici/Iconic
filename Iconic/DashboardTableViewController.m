@@ -24,6 +24,8 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "AchievmentsViewController.h"
+#import "AAPLMotionActivityQuery.h"
+#import "AAPLActivityDataManager.h"
 
 #import "UIImage+RoundedCornerAdditions.h"
 #import "UIImage+ResizeAdditions.h"
@@ -33,6 +35,14 @@
 
 {
     int pointslabelNumber;
+    
+    NSMutableArray *_objects;
+    NSMutableArray *_stepCounts;
+    AAPLActivityDataManager *_dataManager;
+    AAPLActivityDataManager *_activityDataManager;
+    NSDateFormatter *_dateFormatter;
+    NSString *_currentActivity;
+    NSInteger _currentSteps;
     
 }
 
@@ -80,12 +90,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //[self performSegueWithIdentifier:@"MyFinalScores" sender:self];//uncomment to test final scores view controler
-
+    
     
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 
     
     [self setReceivedNotification:NO];
+    
+    if (!_objects) {
+        _objects = [[NSMutableArray alloc] init];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDays) name:UIApplicationWillEnterForegroundNotification object:nil];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -129,6 +145,7 @@
     if (self.receivedNotification == YES) {
        
         [self refreshHomeViewNow];
+        [self refreshDays];
         self.receivedNotification = NO;
         
        
@@ -137,7 +154,163 @@
    
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self refreshDays];
+}
+
+
+
 #pragma mark Refresh Home View
+
+- (void)refreshDays
+{
+    
+    self.myWeekleyStepsArray = [[NSMutableArray alloc] init];
+    _activityDataManager = [[AAPLActivityDataManager alloc] init];
+
+    
+    if (!_dataManager) {
+        _dataManager = [[AAPLActivityDataManager alloc] init];
+    }
+    if ([AAPLActivityDataManager checkAvailability]) {
+        [_dataManager checkAuthorization:^(BOOL authorized) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (authorized) {
+                    NSDate *date = [NSDate date];
+                    [_objects removeAllObjects];
+                    for (int i = 0; i < 7; ++i){
+                        AAPLMotionActivityQuery *query = [AAPLMotionActivityQuery queryStartingFromDate:date offsetByDay:-i];
+                        [_objects addObject:query];
+                        if(i == 6)
+                        {
+                            [self getMy7DaySteps];
+                        }
+                        
+                    }
+                } else {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"M7 not authorized"
+                                                                    message:@"Please enable Motion Activity for this application." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                    [alert show];
+                }
+            });
+            // We only need the data manager to check for authorization.
+            _dataManager = nil;
+        }];
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"M7 not available"
+                                                        message:@"No activity or step counting is available" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alert show];
+    }
+
+    
+    
+}
+
+-(void)getMy7DaySteps
+{
+    
+
+    
+    for (int i = 0; i < _objects.count; i++) {
+        
+        NSDate * date = _objects[i];
+        
+        
+        _currentSteps = 0;
+        [_activityDataManager stopStepUpdates];
+        [_activityDataManager stopMotionUpdates];
+        
+        
+        [_activityDataManager queryAsync:(AAPLMotionActivityQuery *)date withCompletionHandler:^{
+            
+            if ([(AAPLMotionActivityQuery *)date isToday]) {
+                [_activityDataManager startStepUpdates:^(NSNumber *stepCount) {
+                    _currentSteps = [stepCount integerValue];
+
+                    
+                }];
+
+            }
+            
+           
+            NSInteger myDaysSteps = [_activityDataManager.stepCounts longValue] + _currentSteps;
+            
+            
+            [self.myWeekleyStepsArray addObject:@(myDaysSteps)];
+            
+            
+            if (self.myWeekleyStepsArray.count == 7) {
+                
+
+                [self populate7DayBarChart];
+            }
+
+        }];
+        
+        
+        
+    }
+
+}
+
+-(void)populate7DayBarChart
+{
+    
+    //pedometor gives us the step count starting today and going 7 days back - our chart shows the data in revese order
+    NSArray* reversedDaysStepCount = [[self.myWeekleyStepsArray reverseObjectEnumerator] allObjects];
+    
+    
+    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 300, 140)];
+    
+    //steps chart
+    [self.barChart setYValues:reversedDaysStepCount];
+    
+    
+    [self.barChart setStrokeColor:PNWeiboColor];
+    [self.barChart setBarBackgroundColor:PNWhite];
+    
+    
+    [self.stepsBarChart addSubview:self.barChart];
+    
+    //find max value in the array and insert it into the high value on for the y-axis
+    //set Y labels for chart
+    self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyStepsArray valueForKeyPath:@"@max.self"]];
+    
+    NSNumber *maxSteps = [self.myWeekleyStepsArray valueForKeyPath:@"@max.self"];
+    int midStepsValue = [maxSteps intValue];
+    
+    
+    //find mid value in the array and insert it into the high value on for the y-axis
+    self.mediumValue.text = [NSString stringWithFormat:@"%d",midStepsValue/2];
+    
+    
+    //set X labels for chart
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //use abbreviated date, ie: "Fri"
+    [dateFormatter setDateFormat:@"EEE"];
+    
+    //set label to today's date
+    self.todayDay.text = [dateFormatter stringFromDate:[NSDate date]];
+    //NSLog(@"%@", [dateFormatter stringFromDate:[NSDate date]]);
+    
+    //find tomorrow (equivalent to end of day 7 days ago)
+    NSDateComponents* deltaComps = [[NSDateComponents alloc] init];
+    [deltaComps setDay:1];
+    NSDate* tomorrow = [[NSCalendar currentCalendar] dateByAddingComponents:deltaComps toDate:[NSDate date] options:0];
+    
+    //NSLog(@"%@", [dateFormatter stringFromDate:tomorrow]);
+    self.sevenDaysAgoDay.text = [dateFormatter stringFromDate:tomorrow];
+    
+    [self.barChart strokeChart];
+    
+//    [self performSelector:@selector(animateBarChart) withObject:self afterDelay:2.0];
+
+}
+
+
+
 
 -(void)refreshHomeViewNow
 {
@@ -268,55 +441,59 @@
     
     //Set up 7 day bar chart
     
-    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 300, 140)];
-    
-    NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
-    
-    self.myWeekleyPointsArray = [myWeekleyPoints objectForKey:kMyPointsWeekArray];
-    
-    self.myWeekleyStepsArray = [myWeekleyPoints objectForKey:kMyStepsWeekArray];
-    //            NSLog(@"my weekley steps %@", self.myWeekleyStepsArray);
     
     
     
-    //steps chart
-    [self.barChart setYValues:self.myWeekleyStepsArray];
     
     
-    [self.barChart setStrokeColor:PNWeiboColor];
-    [self.barChart setBarBackgroundColor:PNWhite];
-    [self.barChart strokeChart];
     
-    [self.stepsBarChart addSubview:self.barChart];
-    
-    //find max value in the array and insert it into the high value on for the y-axis
-    //set Y labels for chart
-    self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyStepsArray valueForKeyPath:@"@max.self"]];
-    
-    NSNumber *maxSteps = [self.myWeekleyStepsArray valueForKeyPath:@"@max.self"];
-    int midStepsValue = [maxSteps intValue];
-    
-    
-    //find mid value in the array and insert it into the high value on for the y-axis
-    self.mediumValue.text = [NSString stringWithFormat:@"%d",midStepsValue/2];
-    
-    
-    //set X labels for chart
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //use abbreviated date, ie: "Fri"
-    [dateFormatter setDateFormat:@"EEE"];
-    
-    //set label to today's date
-    self.todayDay.text = [dateFormatter stringFromDate:[NSDate date]];
-    //NSLog(@"%@", [dateFormatter stringFromDate:[NSDate date]]);
-    
-    //find tomorrow (equivalent to end of day 7 days ago)
-    NSDateComponents* deltaComps = [[NSDateComponents alloc] init];
-    [deltaComps setDay:1];
-    NSDate* tomorrow = [[NSCalendar currentCalendar] dateByAddingComponents:deltaComps toDate:[NSDate date] options:0];
-    
-    //NSLog(@"%@", [dateFormatter stringFromDate:tomorrow]);
-    self.sevenDaysAgoDay.text = [dateFormatter stringFromDate:tomorrow];
+//    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 300, 140)];
+//    
+//    NSUserDefaults *myWeekleyPoints = [NSUserDefaults standardUserDefaults];
+//    
+//    self.myWeekleyStepsArray = [myWeekleyPoints objectForKey:kMyStepsWeekArray];
+//                NSLog(@"my weekley steps %@", self.myWeekleyStepsArray);
+//    
+//    
+//    
+//    //steps chart
+//    [self.barChart setYValues:self.myWeekleyStepsArray];
+//    
+//    
+//    [self.barChart setStrokeColor:PNWeiboColor];
+//    [self.barChart setBarBackgroundColor:PNWhite];
+//    [self.barChart strokeChart];
+//    
+//    [self.stepsBarChart addSubview:self.barChart];
+//    
+//    //find max value in the array and insert it into the high value on for the y-axis
+//    //set Y labels for chart
+//    self.highValue.text = [NSString stringWithFormat:@"%@",[self.myWeekleyStepsArray valueForKeyPath:@"@max.self"]];
+//    
+//    NSNumber *maxSteps = [self.myWeekleyStepsArray valueForKeyPath:@"@max.self"];
+//    int midStepsValue = [maxSteps intValue];
+//    
+//    
+//    //find mid value in the array and insert it into the high value on for the y-axis
+//    self.mediumValue.text = [NSString stringWithFormat:@"%d",midStepsValue/2];
+//    
+//    
+//    //set X labels for chart
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    //use abbreviated date, ie: "Fri"
+//    [dateFormatter setDateFormat:@"EEE"];
+//    
+//    //set label to today's date
+//    self.todayDay.text = [dateFormatter stringFromDate:[NSDate date]];
+//    //NSLog(@"%@", [dateFormatter stringFromDate:[NSDate date]]);
+//    
+//    //find tomorrow (equivalent to end of day 7 days ago)
+//    NSDateComponents* deltaComps = [[NSDateComponents alloc] init];
+//    [deltaComps setDay:1];
+//    NSDate* tomorrow = [[NSCalendar currentCalendar] dateByAddingComponents:deltaComps toDate:[NSDate date] options:0];
+//    
+//    //NSLog(@"%@", [dateFormatter stringFromDate:tomorrow]);
+//    self.sevenDaysAgoDay.text = [dateFormatter stringFromDate:tomorrow];
     
     
     //get today's steps

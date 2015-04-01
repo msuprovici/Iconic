@@ -95,6 +95,9 @@
 		5C418F3A1ACB5CDA00DC30FF /* user_place_holder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C418F361ACB5CDA00DC30FF /* user_place_holder@3x.png */; };
 		5C418F3B1ACB5CDA00DC30FF /* team_place_holder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C418F371ACB5CDA00DC30FF /* team_place_holder@2x.png */; };
 		5C418F3C1ACB5CDA00DC30FF /* team_place_holder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C418F381ACB5CDA00DC30FF /* team_place_holder@3x.png */; };
+		5C418F3F1ACC675600DC30FF /* AAPLActivityDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C418F3E1ACC675600DC30FF /* AAPLActivityDataManager.m */; };
+		5C418F431ACC67F900DC30FF /* AAPLMotionActivityQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C418F421ACC67F900DC30FF /* AAPLMotionActivityQuery.m */; };
+		5C418F471ACC7D9700DC30FF /* SampleCodeWorkspaceFinished.inc in Sources */ = {isa = PBXBuildFile; fileRef = 5C418F451ACC7D9700DC30FF /* SampleCodeWorkspaceFinished.inc */; };
 		5C42F7DF1AC1D57100B4F7BB /* noNotification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C42F7DD1AC1D57100B4F7BB /* noNotification@2x.png */; };
 		5C42F7E01AC1D57100B4F7BB /* noNotification@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C42F7DE1AC1D57100B4F7BB /* noNotification@3x.png */; };
 		5C42F8291AC1DE7100B4F7BB /* IconicOnboard7slice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C42F81B1AC1DE7100B4F7BB /* IconicOnboard7slice@3x.png */; };
@@ -421,6 +424,11 @@
 		5C418F361ACB5CDA00DC30FF /* user_place_holder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_place_holder@3x.png"; sourceTree = "<group>"; };
 		5C418F371ACB5CDA00DC30FF /* team_place_holder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "team_place_holder@2x.png"; sourceTree = "<group>"; };
 		5C418F381ACB5CDA00DC30FF /* team_place_holder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "team_place_holder@3x.png"; sourceTree = "<group>"; };
+		5C418F3D1ACC675600DC30FF /* AAPLActivityDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLActivityDataManager.h; sourceTree = "<group>"; };
+		5C418F3E1ACC675600DC30FF /* AAPLActivityDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLActivityDataManager.m; sourceTree = "<group>"; };
+		5C418F411ACC67F900DC30FF /* AAPLMotionActivityQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLMotionActivityQuery.h; sourceTree = "<group>"; };
+		5C418F421ACC67F900DC30FF /* AAPLMotionActivityQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLMotionActivityQuery.m; sourceTree = "<group>"; };
+		5C418F451ACC7D9700DC30FF /* SampleCodeWorkspaceFinished.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = SampleCodeWorkspaceFinished.inc; sourceTree = "<group>"; };
 		5C42F7DD1AC1D57100B4F7BB /* noNotification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noNotification@2x.png"; sourceTree = "<group>"; };
 		5C42F7DE1AC1D57100B4F7BB /* noNotification@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noNotification@3x.png"; sourceTree = "<group>"; };
 		5C42F81B1AC1DE7100B4F7BB /* IconicOnboard7slice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconicOnboard7slice@3x.png"; sourceTree = "<group>"; };
@@ -765,6 +773,7 @@
 		5C118E881926B0E200C1760C /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				5C418F401ACC676400DC30FF /* MotionDataModel */,
 				5C5CBDD319253DB300C2C328 /* LeaguesTeamsModel.xcdatamodeld */,
 				5C118E851926B08E00C1760C /* League.h */,
 				5C118E861926B08E00C1760C /* League.m */,
@@ -1059,6 +1068,18 @@
 				5C3BC4A219DF15CD00D9A9AD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5C418F401ACC676400DC30FF /* MotionDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				5C418F451ACC7D9700DC30FF /* SampleCodeWorkspaceFinished.inc */,
+				5C418F3D1ACC675600DC30FF /* AAPLActivityDataManager.h */,
+				5C418F3E1ACC675600DC30FF /* AAPLActivityDataManager.m */,
+				5C418F411ACC67F900DC30FF /* AAPLMotionActivityQuery.h */,
+				5C418F421ACC67F900DC30FF /* AAPLMotionActivityQuery.m */,
+			);
+			name = MotionDataModel;
 			sourceTree = "<group>";
 		};
 		5C4AB64A1A1E8F25007B8BE8 /* Intercom */ = {
@@ -1889,6 +1910,7 @@
 				5C8BB5B21884627000E89ADF /* TimelineViewController.m in Sources */,
 				5CA6BB4E19C8DDEF00E9946E /* ChatRoomTableViewCell.m in Sources */,
 				5CA19A3918B83E290023C940 /* PNLineChart.m in Sources */,
+				5C418F471ACC7D9700DC30FF /* SampleCodeWorkspaceFinished.inc in Sources */,
 				5CA19A3E18B83F240023C940 /* UICountingLabel.m in Sources */,
 				5CD76B5F188852530014072F /* FeedViewController.m in Sources */,
 				5C539A0F18679A57006676FA /* FollowersViewController.m in Sources */,
@@ -1903,6 +1925,7 @@
 				5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */,
 				5CEC3BDE18A2A86200C444FA /* TeamPlayerCell.m in Sources */,
 				5C4EF985186CBC15000E0E59 /* Utility.m in Sources */,
+				5C418F3F1ACC675600DC30FF /* AAPLActivityDataManager.m in Sources */,
 				5C78DA691899B61700CBA29B /* MBProgressHUD.m in Sources */,
 				5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */,
 				5C539DFD198715090027669A /* Amplitude.m in Sources */,
@@ -1922,6 +1945,7 @@
 				5C48B8BD1880F89F00A09A1C /* UIImage+ResizeAdditions.m in Sources */,
 				5C78DA531899676000CBA29B /* FindFriendsViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
+				5C418F431ACC67F900DC30FF /* AAPLMotionActivityQuery.m in Sources */,
 				5C118E841926B08D00C1760C /* Team.m in Sources */,
 				5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */,
 				5CD93830187B510E006CE08B /* MZAppearance.m in Sources */,

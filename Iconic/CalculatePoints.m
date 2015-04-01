@@ -1168,6 +1168,7 @@
                 if (!error) {
                     //                    NSLog(@"queryStepCount returned %ld steps", (long)numberOfSteps);
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                        [_stepsArray removeAllObjects];
                         [_stepsArray addObject:@(numberOfSteps)];
                         
                         
@@ -1178,33 +1179,33 @@
                             
                             
                             //convert the past 7 days worth of steps to points
-                            NSMutableArray * myWeekleyPoints = [[NSMutableArray alloc]initWithCapacity:7];
-                            
-                            for (int i = 0; i < _stepsArray.count; i++)
-                            {
-                                float daysSteps = [[_stepsArray objectAtIndex:i]floatValue] ;
-                                
-                                CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
-                                
-                                [myWeekleyPoints insertObject:[calculatePointsClass calculatePoints:daysSteps] atIndex:i];
-                                
-//                                if (numberOfSteps == 0)
-                                
-                                //prevent null values
-                                //if 0 steps, insert 0 for the object at index
-                                
-//                                  if([_stepsArray objectAtIndex:i] == 0)
-//                                {
-//                                    
-//                                    [myWeekleyPoints insertObject:[NSNumber numberWithInt:0] atIndex:i];
-//                                }
-//                                else
-//                                {
-//                                    [myWeekleyPoints insertObject:[calculatePointsClass calculatePoints:daysSteps] atIndex:i];
-//                                    
-//                                    //[myWeekleyPoints addObject:[calculatePointsClass calculatePoints:daysSteps]];
-//                                }
-                            }
+//                            NSMutableArray * myWeekleyPoints = [[NSMutableArray alloc]initWithCapacity:7];
+//                            
+//                            for (int i = 0; i < _stepsArray.count; i++)
+//                            {
+//                                float daysSteps = [[_stepsArray objectAtIndex:i]floatValue] ;
+//                                
+//                                CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+//                                
+//                                [myWeekleyPoints insertObject:[calculatePointsClass calculatePoints:daysSteps] atIndex:i];
+//                                
+////                                if (numberOfSteps == 0)
+//                                
+//                                //prevent null values
+//                                //if 0 steps, insert 0 for the object at index
+//                                
+////                                  if([_stepsArray objectAtIndex:i] == 0)
+////                                {
+////                                    
+////                                    [myWeekleyPoints insertObject:[NSNumber numberWithInt:0] atIndex:i];
+////                                }
+////                                else
+////                                {
+////                                    [myWeekleyPoints insertObject:[calculatePointsClass calculatePoints:daysSteps] atIndex:i];
+////                                    
+////                                    //[myWeekleyPoints addObject:[calculatePointsClass calculatePoints:daysSteps]];
+////                                }
+//                            }
 
                             
                             //find the points and steps for today
@@ -1212,13 +1213,14 @@
                                 
                                 if(!error)
                                 {
+//                                    [_stepsArray removeAllObjects];
                                     [_stepsArray addObject:@(numberOfSteps)];
                                     
                                     //add the past 7 days worth of steps to NSuserdefualuts
                                     
                                     NSUserDefaults *myStats = [NSUserDefaults standardUserDefaults];
                                     [myStats setObject:_stepsArray forKey:kMyStepsWeekArray];
-                                    [myStats synchronize];
+//                                    [myStats synchronize];
                                     
                                     //calcualte avg steps/day
                                     NSNumber * totalWeekleySteps = [_stepsArray valueForKeyPath:@"@sum.self"];
@@ -1245,19 +1247,19 @@
 //                                        
 //                                        CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
                                     
-                                    if (numberOfSteps == 0) {
-                                        [myWeekleyPoints addObject:[NSNumber numberWithInt:0]];
-                                    }
-                                    else
-                                    {
-                                        [myWeekleyPoints addObject:[calculatePointsClass calculatePoints:numberOfSteps]];
-                                    }
+//                                    if (numberOfSteps == 0) {
+//                                        [myWeekleyPoints addObject:[NSNumber numberWithInt:0]];
+//                                    }
+//                                    else
+//                                    {
+//                                        [myWeekleyPoints addObject:[calculatePointsClass calculatePoints:numberOfSteps]];
+//                                    }
 //                                    }
                                     
 //                                    NSLog(@"myWeekleyPoints: %@", myWeekleyPoints);
                                     
                                     //save to NSUserDefaults
-                                    [myStats setObject:myWeekleyPoints forKey:kMyPointsWeekArray];
+//                                    [myStats setObject:myWeekleyPoints forKey:kMyPointsWeekArray];
                                     
                                     [myStats synchronize];
                                     
@@ -1265,7 +1267,7 @@
                                     //save the past 7 days worth of steps & points to Parse
                                     PFObject *playerStats = [PFUser currentUser];
                                     [playerStats setObject:_stepsArray forKey:kPlayerStepsWeek];
-                                    [playerStats setObject:myWeekleyPoints forKey:kPlayerPointsWeek];
+//                                    [playerStats setObject:myWeekleyPoints forKey:kPlayerPointsWeek];
                                     [playerStats setObject:averageDailySteps forKey:kPlayerAvgDailySteps];
                                     [playerStats saveEventually];
                                     
