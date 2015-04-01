@@ -70,7 +70,10 @@
 
 - (void)dealloc {
     
-       [[NSNotificationCenter defaultCenter] removeObserver:self name:@"achievmentReceived" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"achievmentReceived" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"JoinedTeam" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LeftTeam" object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DefaultsSync" object:nil];
     
 }
 
@@ -93,6 +96,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveTeamNotificationNow:)
                                                  name:@"LeftTeam"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(defaultsSyncNotification:)
+                                                 name:@"DefaultsSync"
                                                object:nil];
     
     
@@ -753,6 +761,21 @@
         
         [self performSegueWithIdentifier:@"ShowAchievment" sender:self];
     }
+}
+
+-(void)defaultsSyncNotification:(NSNotification *) notification
+{
+    if([[notification name] isEqualToString:@"DefaultsSync"])
+    {
+        [self performSelector:@selector(reoladTableView) withObject:self afterDelay:3.0];
+    }
+}
+
+-(void)reoladTableView
+{
+    [self.tableView reloadData];
+//    NSLog(@"reoladTableView");
+    
 }
 
 

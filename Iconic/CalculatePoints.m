@@ -140,6 +140,11 @@
                     if (i == objects.count -1) {
                         //add teams to defaults
                         [self addTeamsToDefaults];
+                        
+                        //send a nsnotification when deaults has synchronized
+                        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+                        [nc postNotificationName:@"DefaultsSync" object:self ];
+
                     }
                         
                    
@@ -524,6 +529,7 @@
                 {
 //                    NSLog(@"populate defaults");
                     [self populateDefualts];
+                  
                 }
             }
             
@@ -701,6 +707,11 @@
         
         
         [sharedDefaults synchronize];
+        
+        
+//        //send a nsnotification when deaults has synchronized
+//        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+//        [nc postNotificationName:@"DefaultsSync" object:self ];
     }
 
 }
