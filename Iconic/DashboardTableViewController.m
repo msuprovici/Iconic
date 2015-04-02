@@ -189,8 +189,8 @@
                         
                     }
                 } else {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Motion Tracking not authorized"
-                                                                    message:@"Please enable Motion Activity for this application." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Motion Tracking Unauthorized"
+                                                                    message:@"Please enable Motion Activity for this application." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     [alert show];
                     
                     [Amplitude logEvent:@"Dashboard: Not authorized Motion Tracking"];
@@ -201,8 +201,8 @@
         }];
         
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Motion Tracking not available"
-                                                        message:@"No activity or step counting is available" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Motion Tracking Unavailable"
+                                                        message:@"No activity or step counting is available" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         
         [Amplitude logEvent:@"Dashboard: No Motion Tracking Available"];
