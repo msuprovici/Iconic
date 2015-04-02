@@ -98,7 +98,7 @@
     self.navigationItem.title = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     
     // Set a placeholder image first
-    self.playerProfilePhoto.image = [UIImage imageNamed:@"user_place_holder.png"];
+    self.playerProfilePhoto.image = [UIImage imageNamed:@"user_place_holder_large.png"];
     self.playerProfilePhoto.file = (PFFile *)user[kUserProfilePicSmallKey];
     [self.playerProfilePhoto loadInBackground];
     
@@ -300,7 +300,7 @@
         [segue.destinationViewController initWithTeam:team];
         
         //[segue.destinationViewController initWithTeam:self.league];
-        
+        [Amplitude logEvent:@"User Proile: Team selected"];
     }
 }
 
@@ -488,7 +488,7 @@
 //    [self.cheerButton setBackgroundColor:PNDeepGrey];
 //    [self.cheerButton setTitleColor:PNCleanGrey forState:UIControlStateNormal];
     
-    [Amplitude logEvent:@"Cheer button pressed"];
+    [Amplitude logEvent:@"High Five button pressed"];
    
    
     
@@ -502,6 +502,8 @@
 - (void)shouldToggleFollowUser {
     
     if ([self.followUser isSelected]) {
+        
+        [Amplitude logEvent:@"User Proile: Un-followed user"];
         // Unfollow
 //        NSLog(@"unfollow player");
         
@@ -513,6 +515,8 @@
     } else {
         // Follow
 //        NSLog(@"follow player");
+        
+        [Amplitude logEvent:@"User Proile: followed user"];
         self.followUser.selected = YES;
 //        [self.followUser setTitle:@"Following" forState:UIControlStateNormal];
         [Utility followUserEventually:self.playerUserObject block:^(BOOL succeeded, NSError *error) {

@@ -363,7 +363,7 @@
 //                NSLog(@"Chat object saved");
                 [self loadObjects];
                 
-                [Amplitude logEvent:@"Player Comment"];
+                [Amplitude logEvent:@"Cgat View: Player Comment"];
                 
                 if (self.objects.count > 5) {
                     CGPoint offset = CGPointMake(0, self.tableView.contentSize.height - self.tableView.frame.size.height +150);

@@ -12,6 +12,7 @@
 #import "TeamPlayersViewController.h"
 #import <Parse/Parse.h>
 #import "PNColor.h"
+#import "Amplitude.h"
 @interface AccountViewController ()
 
 @end
@@ -96,7 +97,7 @@
 //    self.navigationItem.title = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     
     // Set a placeholder image first
-    self.myProfilePhoto.image = [UIImage imageNamed:@"user_place_holder.png"];
+    self.myProfilePhoto.image = [UIImage imageNamed:@"user_place_holder_large.png"];
     self.myProfilePhoto.file = (PFFile *)user[kUserProfilePicSmallKey];
     [self.myProfilePhoto loadInBackground];
 //    
@@ -259,6 +260,8 @@
         [segue.destinationViewController initWithTeam:team];
         
         //[segue.destinationViewController initWithTeam:self.league];
+        
+        [Amplitude logEvent:@"My Account: League selected"];
         
     }
 }
@@ -435,6 +438,9 @@
 #pragma mark - Add Player Photo
 
 - (IBAction)selectPhoto:(UIButton *)sender {
+    
+    
+    [Amplitude logEvent:@"My Account: Add phto"];
     
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"How would you like to set your picture?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
                             @"Take Picture",

@@ -595,7 +595,7 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    [Amplitude logEvent:@"Teams: Team selected"];
+//    [Amplitude logEvent:@"Teams: Team selected"];
     
 }
 
@@ -679,6 +679,8 @@
         
         //[segue.destinationViewController initWithTeam:self.league];
         
+        [Amplitude logEvent:@"Teams: Team selected"];
+        
     }
     
     
@@ -688,6 +690,8 @@
         
         [segue.destinationViewController initWithLeague:self.league];
         
+        [Amplitude logEvent:@"Teams: create team selected"];
+        
         
     }
     
@@ -695,6 +699,8 @@
         
         [Amplitude logEvent:@"Schedule pressed"];
         [segue.destinationViewController initWithLeague:self.league];
+        
+        [Amplitude logEvent:@"Teams: league selected"];
         
         
     }

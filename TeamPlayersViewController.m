@@ -345,6 +345,10 @@
         
         [segue.destinationViewController initWithPlayer:player];
         
+         [Amplitude logEvent:@"Team: teamate selected"];
+        
+        
+        
        
 //        NSLog(@"player %@", player);
     }
@@ -759,6 +763,8 @@
 -(void)showHomeScreen
 {
     self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:0];
+    
+    [Amplitude logEvent:@"Team: show Dashboard"];
 }
 
 

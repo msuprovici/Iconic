@@ -189,9 +189,11 @@
                         
                     }
                 } else {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"M7 not authorized"
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Motion Tracking not authorized"
                                                                     message:@"Please enable Motion Activity for this application." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
                     [alert show];
+                    
+                    [Amplitude logEvent:@"Dashboard: Not authorized Motion Tracking"];
                 }
             });
             // We only need the data manager to check for authorization.
@@ -199,9 +201,11 @@
         }];
         
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"M7 not available"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Motion Tracking not available"
                                                         message:@"No activity or step counting is available" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alert show];
+        
+        [Amplitude logEvent:@"Dashboard: No Motion Tracking Available"];
     }
 
     
@@ -779,6 +783,7 @@
     else
     {
         [self performSegueWithIdentifier:@"vs" sender:indexPath];
+        
     }
 
 }
@@ -814,7 +819,7 @@
         
     }
     
-    //show final scores
+    //show achievement
     if ([[segue identifier] isEqualToString:@"ShowAchievment"])
     {
         
@@ -822,6 +827,7 @@
         
         
         [segue.destinationViewController initWithAchievment:self.teamAchievmentReceived];
+        [Amplitude logEvent:@"Dashboard: Acheivent Showed"];
         
         
     }
@@ -912,6 +918,8 @@
         {
             // Show Final Scores
             [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
+            
+            [Amplitude logEvent:@"Dashboard: Final Scores Showed"];
             
             [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
             

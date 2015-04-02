@@ -19,5 +19,6 @@
 
 @property (nonatomic,weak) id <ActivityHeaderCellDelegate> delegate;
 
+- (IBAction)findPeople:(id)sender;
 
 @end

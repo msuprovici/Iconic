@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 #import "Utility.h"
 #import "PlayerProfileViewController.h"
+#import "Amplitude.h"
 
 typedef enum {
     FindFriendsFollowingNone = 0,    // User isn't following anybody in Friends list
@@ -389,6 +390,8 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
    [self cell:tappedcell didTapFollowButton:cellUser];
     
     //[self cell:tappedcell didTapFollowButton:[PFUser currentUser]];
+    
+   
 
 }
 
@@ -578,14 +581,17 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 - (void)shouldToggleFollowFriendForCell:(FindFriendsCell*)cell {
     PFUser *cellUser = cell.user;
     if ([cell.followButton isSelected]) {
+        
+        [Amplitude logEvent:@"Find Friends: Un-Followed User Pressed"];
         // Unfollow
-        NSLog(@"unfollow player");
+        //NSLog(@"unfollow user");
         cell.followButton.selected = NO;
         [Utility unfollowUserEventually:cellUser];
         [[NSNotificationCenter defaultCenter] postNotificationName:UtilityUserFollowingChangedNotification object:nil];
     } else {
         // Follow
-        NSLog(@"follow player");
+       // NSLog(@"follow user");
+        [Amplitude logEvent:@"Find Friends: Followed User Pressed"];
         cell.followButton.selected = YES;
         [Utility followUserEventually:cellUser block:^(BOOL succeeded, NSError *error) {
             if (!error) {
@@ -727,6 +733,8 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
         
         [segue.destinationViewController initWithPlayer:cellUser];
         
+        [Amplitude logEvent:@"Find Friends: Selected User"];
+        
     }
 
     
@@ -742,6 +750,8 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 #pragma mark - Invite Contacts Button Pressed
 
 - (IBAction)inviteFriendsPressed:(id)sender {
+    
+    [Amplitude logEvent:@"Find Friends: Invite Contacts Pressed"];
     
     if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied ||
         ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted){
@@ -797,6 +807,8 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 
 - (IBAction)inviteFacebookFriendsPressed:(id)sender {
     
+    [Amplitude logEvent:@"Find Friends: Invite Facebook Friends Pressed"];
+    
     [FBWebDialogs
      presentRequestsDialogModallyWithSession:nil
      message:@"Join my Iconic walking team http://imiconic.com"
@@ -845,6 +857,8 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 
 //connect Facebook if the user has not created an account yet
 - (IBAction)facebookLogInAction:(id)sender {
+    
+    [Amplitude logEvent:@"Find Friends: Connect Facebook Pressed"];
     
     //link user with their facebook account
     

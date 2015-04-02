@@ -19,6 +19,7 @@
 #import "ActivityDeatailsHeaderCell.h"
 #import "ProfileImageView.h"
 #import "FeedViewController.h"
+#import "Amplitude.h"
 
 @interface CommentsViewController ()
 
@@ -486,6 +487,8 @@ static TTTTimeIntervalFormatter *timeFormatter;
         [comment saveEventually:^(BOOL succeeded, NSError *error) {
             [timer invalidate];
             
+            
+            
             if (error && error.code == kPFErrorObjectNotFound) {
                 [[Cache sharedCache] decrementCommentCountForActivity:self.activity];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Could not post comment", nil) message:NSLocalizedString(@"This activity is no longer available", nil) delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
@@ -494,6 +497,8 @@ static TTTTimeIntervalFormatter *timeFormatter;
             }
             
             [[NSNotificationCenter defaultCenter] postNotificationName:ActivityDetailsViewControllerUserCommentedOnActivityNotification object:self.activity userInfo:@{@"comments": @(self.objects.count + 1)}];
+            
+            [Amplitude logEvent:@"Comments View: User Comment"];
             
             
           //[MBProgressHUD hideHUDForView:self.view.superview animated:YES];

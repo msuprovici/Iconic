@@ -17,6 +17,7 @@
 #import "Constants.h"
 #import "Cache.h"
 #import "Utility.h"
+#import "Amplitude.h"
 
 @interface FeedViewController()
 @property (nonatomic, assign) BOOL shouldReloadOnAppear;
@@ -688,6 +689,7 @@
 //        PFObject *activity = [self.objects objectAtIndex:hitIndex.row];
         
         [segue.destinationViewController initWithActivity:activity];
+        [Amplitude logEvent:@"Activity Feed: Selected Comments"];
        
     }
     
@@ -702,6 +704,8 @@
         PFUser *user = [activity objectForKey:kActivityUserKey];
         
         [segue.destinationViewController initWithPlayer:user];
+        
+        [Amplitude logEvent:@"Activity Feed: Selected User"];
         
     }
     
@@ -719,12 +723,16 @@
         
         [segue.destinationViewController initWithTeam:team];
         
+        [Amplitude logEvent:@"Activity Feed: Selected Team"];
+        
     }
     
     if ([segue.identifier isEqualToString:@"SelectedUserNameInFeed"]) {
         
 
         [segue.destinationViewController initWithPlayer:self.toUser];
+        
+        [Amplitude logEvent:@"Activity Feed: Selected Username"];
         
     }
     
@@ -733,12 +741,15 @@
         
         [segue.destinationViewController initWithTeam:self.teamSelected];
         
+        [Amplitude logEvent:@"Activity Feed: Selected Team Name"];
+        
     }
     
     if ([segue.identifier isEqualToString:@"SelectedLeagueNameInFeed"]) {
         
         
         [segue.destinationViewController initWithLeague:self.leagueSelected];
+        [Amplitude logEvent:@"Activity Feed: Selected League Name"];
         
     }
 
@@ -873,4 +884,8 @@
     [self loadObjects];
 }
 
+- (IBAction)findPeople:(id)sender {
+    
+    [Amplitude logEvent:@"Activity Feed: Selected Player"];
+}
 @end

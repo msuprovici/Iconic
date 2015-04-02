@@ -149,6 +149,7 @@
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
+    [Amplitude logEvent:@"Onbaord: Login succesfull"];
     
     //create pointer to current user for push notifications
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
@@ -226,7 +227,7 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
    
-    
+    [Amplitude logEvent:@"Onbaord: Sign Up succesfull"];
     
     //create pointer to current user for push notifications
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
@@ -333,9 +334,19 @@
     
     self.currentIndex = self.currentIndex+1;
 //    NSLog(@"button pressed %lu",  (unsigned long)self.currentIndex);
+    if (self.currentIndex == 0) {
+        
+        [Amplitude logEvent:@"Onboard: Let's Get Started"];
+    }
     
     
-    if (self.currentIndex == 2) {
+    else if (self.currentIndex == 1) {
+        
+        [Amplitude logEvent:@"Onboard: Every Step Counts"];
+        
+    }
+    
+    else if (self.currentIndex == 2) {
         [Amplitude logEvent:@"Onboard: Grant Motion Permission"];
         //        [self.startWalkthroughButton setTitle: @"Grant Motion Permission" forState: UIControlStateNormal];
         [self.startWalkthroughButton setImage:buttonImageMotion forState:UIControlStateNormal];
@@ -364,6 +375,8 @@
         }
         else{
 //            NSLog(@"CMStepCounter is NOT Avaialble");
+            
+            [Amplitude logEvent:@"Onboard: Device did not have step counting"];
         }
         
         //this needs to be here so that the standarad Apple motion permission request pops up
@@ -380,7 +393,7 @@
     }
     else if(self.currentIndex == 4)
     {
-        [Amplitude logEvent:@"Onboard: Next"];
+        [Amplitude logEvent:@"Onboard: Win Together"];
         //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
         [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
         
@@ -389,7 +402,7 @@
     
     else if(self.currentIndex == 5)
     {
-        [Amplitude logEvent:@"Onboard: Next"];
+        [Amplitude logEvent:@"Onboard: Get Inspired"];
         //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
         [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
         
@@ -398,7 +411,7 @@
     
     else if(self.currentIndex == 6)
     {
-        [Amplitude logEvent:@"Onboard: Next"];
+        [Amplitude logEvent:@"Onboard: Get Connected"];
         //        [self.startWalkthroughButton setTitle: @"Next" forState: UIControlStateNormal];
         
         [self.startWalkthroughButton setImage:buttonImageYes forState:UIControlStateNormal];
@@ -409,7 +422,7 @@
 
     
     else if (self.currentIndex == 7) {
-        [Amplitude logEvent:@"Onboard: Notification Yes"];
+        [Amplitude logEvent:@"Onboard: Ask notification Permission"];
         //        [self.startWalkthroughButton setTitle: @"test" forState: UIControlStateNormal];
         
 //        NSLog(@"page == 7");
