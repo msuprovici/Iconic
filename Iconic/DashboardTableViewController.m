@@ -350,7 +350,9 @@
             myStepsGainedDelta = (int)steps - myStoredSteps;
             [self.pointsValue  countFrom:myStoredSteps to:steps withDuration:1];
             
-            NSLog(@"Delta in mystats today: %d", myStepsGainedDelta);
+//            NSLog(@"steps: %d",(int) steps);
+//            NSLog(@"myStoredSteps: %d", myStoredSteps);
+//            NSLog(@"Delta in mystats today: %d", myStepsGainedDelta);
             
             
         }
@@ -988,30 +990,18 @@
 -(void)beginDeltaPointsAnimationNow
 {
     
-    self.deltaPoints.hidden = YES;
-    
+
     //wait untill the countdown is almost finished to begin animation
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(animateDeltaPointsLabelNow) userInfo:nil repeats:NO];
     
     [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0f]];
-    
-    
-    
-    //    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-    //        [calculatePointsClass retrieveFromParse];
-    //        [calculatePointsClass incrementPlayerPointsInBackground];
-    
-    
-    
-    
-    
-    
+
+
 }
 
 -(void)animateDeltaPointsLabelNow
 {
-    //show deltaPoints label
-    self.deltaPoints.hidden = NO;
+    
     
     //populate the deltaValueLabel
     NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
@@ -1026,19 +1016,17 @@
     
     if(myStepsDelta > 0)
     {
+        
+        //show deltaPoints label
+        self.deltaPoints.hidden = NO;
+        
         self.deltaPoints.text = [NSString stringWithFormat:@"+%d", myStepsDelta];
-        
-        //        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-        //        [calculatePointsClass retrieveFromParse];
-        //        [calculatePointsClass incrementPlayerPointsInBackground];
-        //        [self performSelector:@selector(refreshHomeView) withObject:self afterDelay:3.0 ];
-        
-        
         
     }
     else
     {
         
+        self.deltaPoints.hidden = YES;
         //comment out this line to test deltaLabel animations
         self.deltaPoints.text = @"";
         
