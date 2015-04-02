@@ -67,7 +67,7 @@
     
 
     self.myUserName.text = [NSString stringWithFormat:@"%@", [object objectForKey:kUserDisplayNameKey]];
-     self.navigationItem.title = @"Account";
+     self.navigationItem.title = @"Profile";
     
     self.myAvgSteps.text = [NSString stringWithFormat:@"%@ Average Daily Steps", [object objectForKey:kPlayerAvgDailySteps]];
     

@@ -3296,14 +3296,14 @@
         <image name="Invite_Facebook_Friends_button.png" width="302" height="42"/>
         <image name="JoinTeamButton.png" width="452" height="102"/>
         <image name="Join_Team_Icon_White.png" width="27" height="27"/>
-        <image name="Leagues_Icon.png" width="25" height="25"/>
+        <image name="Leagues_Icon.png" width="25" height="26"/>
         <image name="Leave_Team_Icon_White.png" width="27" height="27"/>
         <image name="LetsGetStartedButton.png" width="452" height="102"/>
         <image name="LogIn_Facebook_Friends_button.png" width="302" height="42"/>
         <image name="Schedule_Button.png" width="302" height="42"/>
         <image name="Share_Button.png" width="38" height="55"/>
         <image name="achievment_test.png" width="894" height="894"/>
-        <image name="happy_face.png" width="29" height="29"/>
+        <image name="happy_face.png" width="27" height="27"/>
         <image name="noNotification.png" width="183" height="29"/>
         <image name="reveal-icon.png" width="22" height="17"/>
         <image name="team_place_holder_large.png" width="77" height="77"/>
