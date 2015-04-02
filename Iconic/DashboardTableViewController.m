@@ -157,6 +157,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self refreshDays];
+    
+    NSIndexPath *tableSelection = [self.tableView indexPathForSelectedRow];
+    [self.tableView deselectRowAtIndexPath:tableSelection animated:NO];
 }
 
 
@@ -923,6 +926,9 @@
             
             [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
             
+            //refresh game clock
+            [self updatedGameClock];
+            
         }
         
     }
@@ -937,7 +943,7 @@
 //                       NSLog(@"updateAppDataFromServerNow");
                        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
                        [calculatePointsClass retrieveFromParse];
-                       //                       [calculatePointsClass incrementPlayerPointsInBackground];//commeted this out because it was incrementing my steps value 2x
+                      
                        [calculatePointsClass findPastWeekleySteps];
                        
                        
