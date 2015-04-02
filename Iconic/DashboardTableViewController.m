@@ -132,8 +132,15 @@
                                                  name:@"achievmentReceived"
                                                object:nil];
     
+    [self refreshDays];
     [self refreshHomeViewNow];
     [self updatedGameClock];
+    
+//    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] init];
+//    NSLog(@"totalNumberStepsToday: %ld", (long)[[sharedDefaults objectForKey:@"totalNumberStepsToday"] integerValue]);
+//    NSLog(@"kMyFetchedStepsToday %@", [sharedDefaults objectForKey:kMyFetchedStepsToday]);
+//    NSLog(@"kMyStepsDelta %@", [sharedDefaults objectForKey:kMyStepsDelta]);
+    
     
 }
 
@@ -156,7 +163,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self refreshDays];
+//    [self refreshDays];
     
     NSIndexPath *tableSelection = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:tableSelection animated:NO];
@@ -247,15 +254,13 @@
             
             [self.myWeekleyStepsArray addObject:@(myDaysSteps)];
             
-            if(self.myWeekleyStepsArray.count == 1)
-            {
-                [self getPlayerSteps:myDaysSteps];
-            }
-            
             if (self.myWeekleyStepsArray.count == 7) {
                 
+                //the 1st value in array is today's step count
+                [self getPlayerSteps:(long)[[self.myWeekleyStepsArray objectAtIndex:0] integerValue]];
 
                 [self populate7DayBarChart];
+                
             }
 
         }];
@@ -275,9 +280,13 @@
     
     //prevent NAN values
     if (steps == 0) {
-        self.myPoints = 0;
+        self.myPoints = [NSNumber numberWithInteger: 0];
         
         self.pointsValue.text = [@(steps) stringValue];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:0 forKey:kMyStepsDelta];
+        [defaults synchronize];
         
     }
     else
@@ -341,11 +350,17 @@
             myStepsGainedDelta = (int)steps - myStoredSteps;
             [self.pointsValue  countFrom:myStoredSteps to:steps withDuration:1];
             
+            NSLog(@"Delta in mystats today: %d", myStepsGainedDelta);
+            
+            
         }
         else
         {
             myStepsGainedDelta = (int)steps;
             [self.pointsValue  countFrom:0 to:steps withDuration:1];
+            
+            NSLog(@"Delta in mystats not today: %d", myStepsGainedDelta);
+            
             
             
         }
@@ -357,7 +372,7 @@
         
         
         
-        //            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
+//        NSLog(@"Delta in mystats: %d", myStepsGainedDelta);
         [myRetrievedSteps setInteger:myStepsGainedDelta forKey:kMyStepsDelta];
         [myRetrievedSteps synchronize];
         
@@ -433,7 +448,7 @@
 
 -(void)refreshHomeViewNow
 {
-    
+//    NSLog(@"refresh home view called");
     //set date the app was last active
     //delaying by 3 seconds so to ensure that we don't reset this value right away.  We are using this value to compare with the last date the app ran.  If we don't delay, the date will always be reset to now.
     [self performSelector:@selector(findWhatDateAppActivated) withObject:self afterDelay:3.0];

@@ -28,8 +28,11 @@
     
 }
 
-//step counting
-//@property (nonatomic, strong) CMStepCounter *cmStepCounter;
+
+//step counter
+@property (nonatomic, strong) CMPedometer *stepCounter;
+@property (nonatomic, strong) NSDate *now;
+@property (nonatomic, strong) NSDate *from;
 @property (nonatomic, strong) CMMotionActivityManager *motionActivity;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 

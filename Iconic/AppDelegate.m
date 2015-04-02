@@ -392,6 +392,7 @@
     
         NSDate *fetchEnd = [NSDate date];
         NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
+    
         NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
     
      if ([PFUser currentUser]) {
@@ -527,7 +528,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
          }
         
         
-        NSLog(@"Background Fetch From Push intialized");
+        
         
         //buying Parse 20 seconds to perform retrieve and save
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
@@ -544,7 +545,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
                            [defaults synchronize];
                            
                            
-                           NSLog(@"Background Fetch retrieve and save");
+                           NSLog(@"Background Fetch From weekley notification retrieve and save");
                            handler(UIBackgroundFetchResultNewData);
                            
                        });
@@ -556,14 +557,14 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         
 //        [Amplitude logEvent:@"GetHourlyUpdate Push Received"];
         
-        
+//        NSLog(@"Get Hourly Push Received");
         NSDate *fetchStart = [NSDate date];
         
         CalculatePoints *calculatePoints = [[CalculatePoints alloc]init];
         
         NSDate *fetchEnd = [NSDate date];
         NSTimeInterval timeElapsed = [fetchEnd timeIntervalSinceDate:fetchStart];
-        NSLog(@"Background Fetch Duration: %f seconds", timeElapsed);
+        NSLog(@"Background Fetch From hourly push notifications Duration: %f seconds", timeElapsed);
         
          if ([PFUser currentUser]) {
         [calculatePoints findPastWeekleySteps];
@@ -572,12 +573,14 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         //        [calculatePoints getYesterdaysPointsAndSteps];
         
         //    }];
-        NSLog(@"Background fetch from silent push notification intialized");
+//        NSLog(@"Background fetch from silent push notification intialized");
         
         //buying Parse 20 seconds to perform retrieve and save
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC),
                        dispatch_get_main_queue(), ^{
                            
+                           
+                           NSLog(@"Background Fetch from hourly push retrieve and save");
                            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
                            [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
                            [defaults synchronize];

@@ -816,6 +816,7 @@
                                     
                                     [_stepsArray addObject:@(myDaysSteps)];
                                     
+                                    //find 7 day steps
                                     if(_stepsArray.count == 7)
                                     {
 //                                        NSLog(@"myWeekleySteps: %@", _stepsArray);
@@ -840,12 +841,12 @@
                                         [playerStats setObject:averageDailySteps forKey:kPlayerAvgDailySteps];
                                         [playerStats saveInBackground];
                                         
+                                        //the 1st value in array is today's step count
+                                        [self incrementPlayerPointsInBackground:(long)[[_stepsArray objectAtIndex:0] integerValue]];
+//                                        NSLog(@"[_stepsArray objectAtIndex:0]: %ld", (long)[[_stepsArray objectAtIndex:0] integerValue]);
+                                        
                                     }
                                     
-                                    if(_stepsArray.count == 1)
-                                    {
-                                        [self incrementPlayerPointsInBackground:myDaysSteps];
-                                    }
                                     
                                     
                                 }];
@@ -856,6 +857,9 @@
                         }
                         
                     }
+                    
+
+                    
                 } else {
                     //                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"M7 not authorized"
                     //                                                                    message:@"Please enable Motion Activity for this application." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
@@ -880,6 +884,7 @@
 
 //we are replacing points with steps as per new design
 
+
 -(void)incrementPlayerPointsInBackground: (NSInteger)numberOfSteps
 {
     
@@ -894,20 +899,22 @@
         [sharedDefaults setInteger:numberOfSteps forKey:@"totalNumberStepsToday"];
         [sharedDefaults synchronize];
     
-//        NSLog(@"self.mySteps: %@", self.mySteps);
+    
 
         if(numberOfSteps == 0)
         {
-
+//            NSLog(@"number of steps == 0");
             
-            self.mySteps = 0;
-                
+            self.mySteps = [NSNumber numberWithInteger: 0];
+//            NSLog(@"self.mySteps: %@", self.mySteps);
+            
             
         }
         else
         {
          
             self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
+//            NSLog(@"self.mySteps: %@", self.mySteps);
             
         }
         
@@ -937,7 +944,8 @@
             [playerPoints setObject:myPointsConverted forKey:kPlayerPointsToday];
 
             [playerPoints saveInBackground];
-
+            
+//            [self incrementMyTeamsPointsInBackground:0];
  
         }
         
@@ -993,10 +1001,12 @@
     if([todaysDay isEqualToString:dayAppWasLastActivated])
     {
         self.myStepsDeltaValue = myMostRecentStepsValue - myStoredSteps;
+//         NSLog(@"self.myStepsDeltaValue app opened today: %d", self.myStepsDeltaValue);
     }
     else
     {
         self.myStepsDeltaValue = myMostRecentStepsValue;
+//        NSLog(@"self.myStepsDeltaValue app NOT opened today: %d", self.myStepsDeltaValue);
     }
 
     
@@ -1071,7 +1081,7 @@
     //increment the points for all my teams
     [self incrementMyTeamsPointsInBackground:myNSStepsDeltaValue];
     
-    
+//    NSLog(@"myNSStepsDeltaValue %@", myNSStepsDeltaValue);
     
     
     
@@ -1172,10 +1182,16 @@
             
                for( int i = 0; i < objects.count; i++)
                {
-                   PFObject *myTeams = [objects objectAtIndex:i];
+                   
+                    PFObject *myTeams = [objects objectAtIndex:i];
+                   
+                   
+                   
+                   
                     //increment the team's TOTAL points
                     [myTeams incrementKey:kScore byAmount:delta];
-                    
+//                    NSLog(@"delta %@", delta);
+                   
                     //increment the team's points for today
                     [myTeams incrementKey:kScoreToday byAmount:delta];
 //                NSLog(@"delta in query %@", delta);

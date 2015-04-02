@@ -520,8 +520,8 @@
             
             
             //            NSLog(@"Delta in mystats: %d", myPointsGainedDelta);
-            [myRetrievedSteps setInteger:myStepsGainedDelta forKey:kMyStepsDelta];
-            [myRetrievedSteps synchronize];
+//            [myRetrievedSteps setInteger:myStepsGainedDelta forKey:kMyStepsDelta];
+//            [myRetrievedSteps synchronize];
 
             
 //            [self.pointsValue  countFrom:myStoredPoints to:[self.myPoints intValue] withDuration:1.5];

@@ -91,7 +91,7 @@
         self.streakSubLabel.hidden = true;
     }
 
-    [self loadMySteps];
+//    [self loadMySteps];
 }
 
 
