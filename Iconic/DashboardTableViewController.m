@@ -350,9 +350,9 @@
             myStepsGainedDelta = (int)steps - myStoredSteps;
             [self.pointsValue  countFrom:myStoredSteps to:steps withDuration:1];
             
-//            NSLog(@"steps: %d",(int) steps);
-//            NSLog(@"myStoredSteps: %d", myStoredSteps);
-//            NSLog(@"Delta in mystats today: %d", myStepsGainedDelta);
+            NSLog(@"steps: %d",(int) steps);
+            NSLog(@"myStoredSteps: %d", myStoredSteps);
+            NSLog(@"Delta in mystats today: %d", myStepsGainedDelta);
             
             
         }

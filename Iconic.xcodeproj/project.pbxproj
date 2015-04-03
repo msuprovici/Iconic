@@ -13,10 +13,12 @@
 		5C0FBDE318AD4BC900A0A122 /* LeagueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0FBDE218AD4BC900A0A122 /* LeagueCell.m */; };
 		5C118E841926B08D00C1760C /* Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C118E831926B08D00C1760C /* Team.m */; };
 		5C118E871926B08E00C1760C /* League.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C118E861926B08E00C1760C /* League.m */; };
-		5C1597021ACDEDF000CEA15A /* happy_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1596FE1ACDEDF000CEA15A /* happy_face@2x.png */; };
-		5C1597031ACDEDF000CEA15A /* happy_face@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1596FF1ACDEDF000CEA15A /* happy_face@3x.png */; };
-		5C1597061ACDEEC800CEA15A /* Leagues_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597041ACDEEC800CEA15A /* Leagues_Icon@2x.png */; };
-		5C1597071ACDEEC800CEA15A /* Leagues_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597051ACDEEC800CEA15A /* Leagues_Icon@3x.png */; };
+		5C1597161ACE31EE00CEA15A /* Feed_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597101ACE31EE00CEA15A /* Feed_Icon@2x.png */; };
+		5C1597171ACE31EE00CEA15A /* Feed_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597111ACE31EE00CEA15A /* Feed_Icon@3x.png */; };
+		5C1597181ACE31EE00CEA15A /* Leagues_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597121ACE31EE00CEA15A /* Leagues_Icon@2x.png */; };
+		5C1597191ACE31EE00CEA15A /* Leagues_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597131ACE31EE00CEA15A /* Leagues_Icon@3x.png */; };
+		5C15971A1ACE31EE00CEA15A /* happy_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597141ACE31EE00CEA15A /* happy_face@2x.png */; };
+		5C15971B1ACE31EE00CEA15A /* happy_face@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597151ACE31EE00CEA15A /* happy_face@3x.png */; };
 		5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */; };
 		5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */; };
 		5C2C1CCC185E9142006722D2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CCB185E9142006722D2 /* SWRevealViewController.m */; };
@@ -38,10 +40,6 @@
 		5C3BBF2A1AC38BC200B179B0 /* Comment_Icon_Selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF261AC38BC100B179B0 /* Comment_Icon_Selected@3x.png */; };
 		5C3BBF311AC38FDB00B179B0 /* High_Five_Selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF2D1AC38FDB00B179B0 /* High_Five_Selected@2x.png */; };
 		5C3BBF321AC38FDB00B179B0 /* High_Five_Selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF2E1AC38FDB00B179B0 /* High_Five_Selected@3x.png */; };
-		5C3BBF5C1AC3AD3D00B179B0 /* Profile_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF541AC3AD3D00B179B0 /* Profile_Icon@2x.png */; };
-		5C3BBF5D1AC3AD3D00B179B0 /* Profile_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF551AC3AD3D00B179B0 /* Profile_Icon@3x.png */; };
-		5C3BBF5E1AC3AD3D00B179B0 /* Feed_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF561AC3AD3D00B179B0 /* Feed_Icon@2x.png */; };
-		5C3BBF5F1AC3AD3D00B179B0 /* Feed_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF571AC3AD3D00B179B0 /* Feed_Icon@3x.png */; };
 		5C3BBF601AC3AD3D00B179B0 /* Dashboard_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF581AC3AD3D00B179B0 /* Dashboard_Icon@2x.png */; };
 		5C3BBF611AC3AD3D00B179B0 /* Dashboard_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C3BBF591AC3AD3D00B179B0 /* Dashboard_Icon@3x.png */; };
 		5C3BBF661AC483C700B179B0 /* DashboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3BBF651AC483C700B179B0 /* DashboardTableViewController.m */; };
@@ -333,10 +331,12 @@
 		5C118E831926B08D00C1760C /* Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Team.m; sourceTree = "<group>"; };
 		5C118E851926B08E00C1760C /* League.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = League.h; sourceTree = "<group>"; };
 		5C118E861926B08E00C1760C /* League.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = League.m; sourceTree = "<group>"; };
-		5C1596FE1ACDEDF000CEA15A /* happy_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy_face@2x.png"; sourceTree = "<group>"; };
-		5C1596FF1ACDEDF000CEA15A /* happy_face@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy_face@3x.png"; sourceTree = "<group>"; };
-		5C1597041ACDEEC800CEA15A /* Leagues_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leagues_Icon@2x.png"; sourceTree = "<group>"; };
-		5C1597051ACDEEC800CEA15A /* Leagues_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leagues_Icon@3x.png"; sourceTree = "<group>"; };
+		5C1597101ACE31EE00CEA15A /* Feed_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Feed_Icon@2x.png"; sourceTree = "<group>"; };
+		5C1597111ACE31EE00CEA15A /* Feed_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Feed_Icon@3x.png"; sourceTree = "<group>"; };
+		5C1597121ACE31EE00CEA15A /* Leagues_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leagues_Icon@2x.png"; sourceTree = "<group>"; };
+		5C1597131ACE31EE00CEA15A /* Leagues_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leagues_Icon@3x.png"; sourceTree = "<group>"; };
+		5C1597141ACE31EE00CEA15A /* happy_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy_face@2x.png"; sourceTree = "<group>"; };
+		5C1597151ACE31EE00CEA15A /* happy_face@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy_face@3x.png"; sourceTree = "<group>"; };
 		5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileContentController.h; sourceTree = "<group>"; };
@@ -373,10 +373,6 @@
 		5C3BBF261AC38BC100B179B0 /* Comment_Icon_Selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comment_Icon_Selected@3x.png"; sourceTree = "<group>"; };
 		5C3BBF2D1AC38FDB00B179B0 /* High_Five_Selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High_Five_Selected@2x.png"; sourceTree = "<group>"; };
 		5C3BBF2E1AC38FDB00B179B0 /* High_Five_Selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High_Five_Selected@3x.png"; sourceTree = "<group>"; };
-		5C3BBF541AC3AD3D00B179B0 /* Profile_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Profile_Icon@2x.png"; sourceTree = "<group>"; };
-		5C3BBF551AC3AD3D00B179B0 /* Profile_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Profile_Icon@3x.png"; sourceTree = "<group>"; };
-		5C3BBF561AC3AD3D00B179B0 /* Feed_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Feed_Icon@2x.png"; sourceTree = "<group>"; };
-		5C3BBF571AC3AD3D00B179B0 /* Feed_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Feed_Icon@3x.png"; sourceTree = "<group>"; };
 		5C3BBF581AC3AD3D00B179B0 /* Dashboard_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard_Icon@2x.png"; sourceTree = "<group>"; };
 		5C3BBF591AC3AD3D00B179B0 /* Dashboard_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dashboard_Icon@3x.png"; sourceTree = "<group>"; };
 		5C3BBF641AC483C700B179B0 /* DashboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTableViewController.h; sourceTree = "<group>"; };
@@ -971,14 +967,12 @@
 		5C3BBF511AC3ABDB00B179B0 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				5C1597041ACDEEC800CEA15A /* Leagues_Icon@2x.png */,
-				5C1597051ACDEEC800CEA15A /* Leagues_Icon@3x.png */,
-				5C1596FE1ACDEDF000CEA15A /* happy_face@2x.png */,
-				5C1596FF1ACDEDF000CEA15A /* happy_face@3x.png */,
-				5C3BBF541AC3AD3D00B179B0 /* Profile_Icon@2x.png */,
-				5C3BBF551AC3AD3D00B179B0 /* Profile_Icon@3x.png */,
-				5C3BBF561AC3AD3D00B179B0 /* Feed_Icon@2x.png */,
-				5C3BBF571AC3AD3D00B179B0 /* Feed_Icon@3x.png */,
+				5C1597101ACE31EE00CEA15A /* Feed_Icon@2x.png */,
+				5C1597111ACE31EE00CEA15A /* Feed_Icon@3x.png */,
+				5C1597121ACE31EE00CEA15A /* Leagues_Icon@2x.png */,
+				5C1597131ACE31EE00CEA15A /* Leagues_Icon@3x.png */,
+				5C1597141ACE31EE00CEA15A /* happy_face@2x.png */,
+				5C1597151ACE31EE00CEA15A /* happy_face@3x.png */,
 				5C3BBF581AC3AD3D00B179B0 /* Dashboard_Icon@2x.png */,
 				5C3BBF591AC3AD3D00B179B0 /* Dashboard_Icon@3x.png */,
 			);
@@ -1754,15 +1748,14 @@
 			files = (
 				5C418F091ACB33D300DC30FF /* High_Five_Button_Selected@2x.png in Resources */,
 				5C539A001863D9A1006676FA /* empty_avatar.png in Resources */,
-				5C1597021ACDEDF000CEA15A /* happy_face@2x.png in Resources */,
 				5C539DFF198715090027669A /* LICENSE in Resources */,
 				5CDB87531ACB0564009FE9D2 /* Invite_Contacts_Button@2x.png in Resources */,
 				5C42F8A51AC21EA500B4F7BB /* SignUpButton@2x.png in Resources */,
 				5C42F8301AC1DE7100B4F7BB /* IconicOnboard2slice@2x.png in Resources */,
 				5C42F83B1AC1E5C400B4F7BB /* IconicOnboard1Slice@3x.png in Resources */,
 				5C3BBF891AC9D0F400B179B0 /* Followed_User_Icon_Red@2x.png in Resources */,
-				5C3BBF5D1AC3AD3D00B179B0 /* Profile_Icon@3x.png in Resources */,
 				5C3BBF8B1AC9D0F400B179B0 /* Follow_Icon_White@2x.png in Resources */,
+				5C1597171ACE31EE00CEA15A /* Feed_Icon@3x.png in Resources */,
 				5C3BBFA01ACA114500B179B0 /* High_Five@3x.png in Resources */,
 				5C881E471ABBA2B200C2D958 /* YesButton@3x.png in Resources */,
 				5C418F301ACB5B7900DC30FF /* team_place_holder_large@3x.png in Resources */,
@@ -1779,7 +1772,8 @@
 				5C42F8481AC1FF2700B4F7BB /* IconicOnboard9slice@2x.png in Resources */,
 				5CE778341A0D7D0D008B3585 /* Icon-76@2x.png in Resources */,
 				5C3BBF601AC3AD3D00B179B0 /* Dashboard_Icon@2x.png in Resources */,
-				5C1597031ACDEDF000CEA15A /* happy_face@3x.png in Resources */,
+				5C15971A1ACE31EE00CEA15A /* happy_face@2x.png in Resources */,
+				5C1597181ACE31EE00CEA15A /* Leagues_Icon@2x.png in Resources */,
 				5CDB875C1ACB0FD1009FE9D2 /* Exit_Icon@3x.png in Resources */,
 				5CE7782F1A0D7D0D008B3585 /* Icon-40@2x.png in Resources */,
 				5C418F391ACB5CDA00DC30FF /* user_place_holder@2x.png in Resources */,
@@ -1787,19 +1781,18 @@
 				5C42F8A61AC21EA500B4F7BB /* SignUpButton@3x.png in Resources */,
 				5C42F8321AC1DE7100B4F7BB /* IconicOnboard3slice@2x.png in Resources */,
 				5C42F82D1AC1DE7100B4F7BB /* IconicOnboard4slice@3x.png in Resources */,
+				5C1597191ACE31EE00CEA15A /* Leagues_Icon@3x.png in Resources */,
 				5C3BBF871AC9D0F400B179B0 /* Followed_User_Icon_White@2x.png in Resources */,
 				5CDB875B1ACB0FD1009FE9D2 /* Exit_Icon@2x.png in Resources */,
 				5C3BBF991AC9DA1900B179B0 /* Chat_Icon_White@2x.png in Resources */,
 				5C418F001ACB264400DC30FF /* Add_Team_Button@3x.png in Resources */,
 				5C881E3D1ABBA2B200C2D958 /* LetsGetStartedButton@3x.png in Resources */,
 				5CE7782D1A0D7D0D008B3585 /* Contents.json in Resources */,
-				5C3BBF5F1AC3AD3D00B179B0 /* Feed_Icon@3x.png in Resources */,
 				5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */,
 				5C881E2C1ABBA2B200C2D958 /* Grant_Motion_Permission_Button@2x.png in Resources */,
 				5CE778351A0D7D0D008B3585 /* Icon-Small.png in Resources */,
 				5C42F87F1AC2183100B4F7BB /* ForgotPasswordButton@2x.png in Resources */,
 				5C42F8AE1AC2237E00B4F7BB /* disclaimerText@3x.png in Resources */,
-				5C1597071ACDEEC800CEA15A /* Leagues_Icon@3x.png in Resources */,
 				5C42F7E01AC1D57100B4F7BB /* noNotification@3x.png in Resources */,
 				5C42F8801AC2183100B4F7BB /* ForgotPasswordButton@3x.png in Resources */,
 				5C3BBF311AC38FDB00B179B0 /* High_Five_Selected@2x.png in Resources */,
@@ -1814,15 +1807,14 @@
 				5CDB87631ACB1360009FE9D2 /* Add_League_Button@2x.png in Resources */,
 				5C42F8311AC1DE7100B4F7BB /* IconicOnboard3slice@3x.png in Resources */,
 				5C3BBF851AC9D0F400B179B0 /* Join_Team_Icon_White@2x.png in Resources */,
+				5C1597161ACE31EE00CEA15A /* Feed_Icon@2x.png in Resources */,
 				5C881E431ABBA2B200C2D958 /* NextButton@3x.png in Resources */,
 				5C3BBF6C1AC6152000B179B0 /* JoinTeamButton@2x.png in Resources */,
 				5CDB87541ACB0564009FE9D2 /* Invite_Contacts_Button@3x.png in Resources */,
 				5CE778301A0D7D0D008B3585 /* Icon-40@3x.png in Resources */,
 				5CA3D1951831DF51006C7932 /* InfoPlist.strings in Resources */,
 				5C881E421ABBA2B200C2D958 /* NextButton@2x.png in Resources */,
-				5C3BBF5E1AC3AD3D00B179B0 /* Feed_Icon@2x.png in Resources */,
 				5CE778361A0D7D0D008B3585 /* Icon-Small@2x.png in Resources */,
-				5C3BBF5C1AC3AD3D00B179B0 /* Profile_Icon@2x.png in Resources */,
 				5C42F8291AC1DE7100B4F7BB /* IconicOnboard7slice@3x.png in Resources */,
 				5C418F3B1ACB5CDA00DC30FF /* team_place_holder@2x.png in Resources */,
 				5CE778331A0D7D0D008B3585 /* Icon-76.png in Resources */,
@@ -1836,6 +1828,7 @@
 				5C42F8431AC1FEB800B4F7BB /* JoinButton@2x.png in Resources */,
 				5CDB87601ACB1110009FE9D2 /* Share_Button@3x.png in Resources */,
 				5C418F4A1ACCC4BA00DC30FF /* user_place_holder_large@2x.png in Resources */,
+				5C15971B1ACE31EE00CEA15A /* happy_face@3x.png in Resources */,
 				5C539E00198715090027669A /* README.md in Resources */,
 				5CA3D19E1831DF51006C7932 /* Main.storyboard in Resources */,
 				5C42F85C1AC20A5200B4F7BB /* IconicLogo@3x.png in Resources */,
@@ -1847,7 +1840,6 @@
 				5C3BBF921AC9D28E00B179B0 /* Leave_Team_Icon_White@3x.png in Resources */,
 				5CB75E04188DAE850047BC47 /* scoreboardicon2-01.png in Resources */,
 				5C881E3C1ABBA2B200C2D958 /* LetsGetStartedButton@2x.png in Resources */,
-				5C1597061ACDEEC800CEA15A /* Leagues_Icon@2x.png in Resources */,
 				5C42F82E1AC1DE7100B4F7BB /* IconicOnboard4slice@2x.png in Resources */,
 				5C418F2F1ACB5B7900DC30FF /* team_place_holder_large@2x.png in Resources */,
 				5C881E2D1ABBA2B200C2D958 /* Grant_Motion_Permission_Button@3x.png in Resources */,
