@@ -280,20 +280,21 @@
     
     //prevent NAN values
     if (steps == 0) {
-        self.myPoints = [NSNumber numberWithInteger: 0];
+//        self.myPoints = [NSNumber numberWithInteger: 0];
         
         self.pointsValue.text = [@(steps) stringValue];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:0 forKey:kMyStepsDelta];
+//        [defaults setInteger:0   forKey:kMyFetchedStepsToday];
         [defaults synchronize];
         
     }
     else
     {
         
-        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-        self.myPoints = [calculatePointsClass calculatePoints:steps];
+//        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//        self.myPoints = [calculatePointsClass calculatePoints:steps];
         
         
         NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
@@ -350,9 +351,13 @@
             myStepsGainedDelta = (int)steps - myStoredSteps;
             [self.pointsValue  countFrom:myStoredSteps to:steps withDuration:1];
             
+            [self animateDeltaPointsLabelNow: myStepsGainedDelta];
+            
+            
             NSLog(@"steps: %d",(int) steps);
             NSLog(@"myStoredSteps: %d", myStoredSteps);
             NSLog(@"Delta in mystats today: %d", myStepsGainedDelta);
+            
             
             
         }
@@ -360,6 +365,8 @@
         {
             myStepsGainedDelta = (int)steps;
             [self.pointsValue  countFrom:0 to:steps withDuration:1];
+            
+            [self animateDeltaPointsLabelNow: myStepsGainedDelta];
             
             NSLog(@"Delta in mystats not today: %d", myStepsGainedDelta);
             
@@ -376,6 +383,7 @@
         
 //        NSLog(@"Delta in mystats: %d", myStepsGainedDelta);
         [myRetrievedSteps setInteger:myStepsGainedDelta forKey:kMyStepsDelta];
+//        [myRetrievedSteps setInteger:steps forKey:kMyFetchedStepsToday];
         [myRetrievedSteps synchronize];
         
         
@@ -471,7 +479,7 @@
     int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
     
     if (numberOfTeams > 0) {
-        [self beginDeltaPointsAnimationNow];
+//        [self animateDeltaPointsLabelNow];
         self.myTeamsLabel.hidden = FALSE;
         self.gameClock.hidden = FALSE;
     }
@@ -595,7 +603,7 @@
 
 
 
-#pragma mark My Stats
+
 
 -(void)updatedGameClock
 {
@@ -987,26 +995,27 @@
 
 #pragma mark - Delta Label Animation
 
--(void)beginDeltaPointsAnimationNow
-{
-    
+//-(void)beginDeltaPointsAnimationNow:(int)delta
+//{
+//    
+// 
+//    
+//    //wait untill the countdown is almost finished to begin animation
+//    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(animateDeltaPointsLabelNow: delta) userInfo:nil repeats:NO];
+//    
+//    [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0f]];
+//
+//
+//}
 
-    //wait untill the countdown is almost finished to begin animation
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(animateDeltaPointsLabelNow) userInfo:nil repeats:NO];
-    
-    [timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:1.0f]];
-
-
-}
-
--(void)animateDeltaPointsLabelNow
+-(void)animateDeltaPointsLabelNow: (int)delta
 {
     
     
     //populate the deltaValueLabel
     NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
     
-    int myStepsDelta = (int)[myRetrievedPoints integerForKey:kMyStepsDelta];
+//    int myStepsDelta = (int)[myRetrievedPoints integerForKey:kMyStepsDelta];
     //    int  numberOfTeams = (int)[myRetrievedPoints integerForKey: kNumberOfTeams];
     
     
@@ -1014,13 +1023,13 @@
     
     
     
-    if(myStepsDelta > 0)
+    if(delta > 0)
     {
         
         //show deltaPoints label
         self.deltaPoints.hidden = NO;
         
-        self.deltaPoints.text = [NSString stringWithFormat:@"+%d", myStepsDelta];
+        self.deltaPoints.text = [NSString stringWithFormat:@"+%d", delta];
         
     }
     else
@@ -1036,7 +1045,7 @@
     //animated label that shows the points the player contributed to his or her team(s)
     self.deltaPoints.center = CGPointMake(140, 115);
     float newX = 150.0f;
-    float newY = 265.0f;
+    float newY = 250.0f;
     
     //animate the label so that it drops right on top of my team score
     [UIView transitionWithView:self.deltaPoints

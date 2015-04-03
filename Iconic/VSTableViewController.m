@@ -201,6 +201,12 @@
         // Then create and add our custom BBBadgeBarButtonItem
         BBBadgeBarButtonItem *barButton = [[BBBadgeBarButtonItem alloc] initWithCustomUIButton:self.chatButton];
         barButton.shouldHideBadgeAtZero = YES;
+        barButton.badgeBGColor = [UIColor whiteColor];
+        barButton.badgeTextColor = [UIColor colorWithRed:124.0/255.0 green:124.0/255.0 blue:134.0/255.0 alpha:1.0];
+        barButton.badgeFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f];
+        
+        
+        
         
         //find out how many new chat messages have added since the last time the user opened the team's chat room
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

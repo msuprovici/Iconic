@@ -901,23 +901,23 @@
     
     
 
-        if(numberOfSteps == 0)
-        {
-//            NSLog(@"number of steps == 0");
-            
-            self.mySteps = [NSNumber numberWithInteger: 0];
-//            NSLog(@"self.mySteps: %@", self.mySteps);
-            
-            
-        }
-        else
-        {
-         
-            self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
-//            NSLog(@"self.mySteps: %@", self.mySteps);
-            
-        }
-        
+//        if(numberOfSteps == 0)
+//        {
+////            NSLog(@"number of steps == 0");
+//            
+//            self.mySteps = [NSNumber numberWithInteger: 0];
+////            NSLog(@"self.mySteps: %@", self.mySteps);
+//            
+//            
+//        }
+//        else
+//        {
+//         
+//            self.mySteps = [NSNumber numberWithInteger:numberOfSteps];
+////            NSLog(@"self.mySteps: %@", self.mySteps);
+//            
+//        }
+    
         
         
          //set the player's total points in memory//set the player's total points in memory
@@ -951,7 +951,7 @@
         
         else
         {
-            [self incrementMySteps];
+            [self incrementMySteps: numberOfSteps];
         }
     
     
@@ -960,7 +960,7 @@
 
 
 
--(void)incrementMySteps
+-(void)incrementMySteps: (NSInteger)numberOfSteps
 {
     
     //set the player's total steps in memory
@@ -969,7 +969,11 @@
     
     
     int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsToday];
-    int myMostRecentStepsValue = [self.mySteps intValue];
+    NSLog(@"myStoredSteps: %d", myStoredSteps);
+    int myMostRecentStepsValue = (int)numberOfSteps;
+    NSLog(@"myMostRecentStepsValue: %d", myMostRecentStepsValue);
+    
+//    int myMostRecentStepsValue = [self.mySteps intValue];
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 //    BOOL  appWasTerminated = [defaults boolForKey:kAppWasTerminated];
@@ -1001,12 +1005,12 @@
     if([todaysDay isEqualToString:dayAppWasLastActivated])
     {
         self.myStepsDeltaValue = myMostRecentStepsValue - myStoredSteps;
-//         NSLog(@"self.myStepsDeltaValue app opened today: %d", self.myStepsDeltaValue);
+         NSLog(@"self.myStepsDeltaValue app opened today: %d", self.myStepsDeltaValue);
     }
     else
     {
         self.myStepsDeltaValue = myMostRecentStepsValue;
-//        NSLog(@"self.myStepsDeltaValue app NOT opened today: %d", self.myStepsDeltaValue);
+        NSLog(@"self.myStepsDeltaValue app NOT opened today: %d", self.myStepsDeltaValue);
     }
 
     
@@ -1016,7 +1020,9 @@
 //                                    NSLog(@"myFetchedStepsDeltaValue: %d", self.myStepsDeltaValue);
     
     
-    [myRetrievedSteps setInteger:[self.mySteps intValue] forKey:kMyFetchedStepsToday];
+//    [myRetrievedSteps setInteger:[self.mySteps intValue] forKey:kMyFetchedStepsToday];
+    
+    [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
     
     
     //increment a player's total # of points
@@ -1037,7 +1043,8 @@
     
     //save the player's steps for today to the server
     PFObject *playerSteps = [PFUser currentUser];
-    [playerSteps setObject:self.mySteps forKey:kPlayerPointsToday];
+    NSNumber *mySteps = [NSNumber numberWithInteger:numberOfSteps];//converting nsinteger to nsnumber
+    [playerSteps setObject:mySteps forKey:kPlayerPointsToday];
     //            [playerPoints saveEventually];
   
     [playerSteps saveInBackground];
