@@ -841,9 +841,9 @@
                                         [playerStats setObject:averageDailySteps forKey:kPlayerAvgDailySteps];
                                         [playerStats saveInBackground];
                                         
-                                        //the 1st value in array is today's step count
-                                        [self incrementPlayerPointsInBackground:(long)[[_stepsArray objectAtIndex:0] integerValue]];
-//                                        NSLog(@"[_stepsArray objectAtIndex:0]: %ld", (long)[[_stepsArray objectAtIndex:0] integerValue]);
+//                                        //the 1st value in array is today's step count
+//                                        [self incrementPlayerPointsInBackground:(long)[[_stepsArray objectAtIndex:0] integerValue]];
+////                                        NSLog(@"[_stepsArray objectAtIndex:0]: %ld", (long)[[_stepsArray objectAtIndex:0] integerValue]);
                                         
                                     }
                                     
@@ -857,6 +857,26 @@
                         }
                         
                     }
+               
+                    
+                    //Get today's teps
+                    
+                    self.from = [self beginningOfDay];
+                    self.now = [NSDate date];
+                    _pedometer = [[CMPedometer alloc] init];
+                    
+                    [_pedometer queryPedometerDataFromDate:self.from toDate:self.now withHandler:^(CMPedometerData *pedometerData, NSError *error) {
+                        if (error) {
+                            
+                             NSLog(@"step count error: %@", error);
+                        } else {
+                            
+                            
+                            [self incrementPlayerPointsInBackground:[pedometerData.numberOfSteps integerValue]];
+                           
+                        }
+                    }];
+                    
                     
 
                     
@@ -969,9 +989,9 @@
     
     
     int myStoredSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsToday];
-    NSLog(@"myStoredSteps: %d", myStoredSteps);
+//    NSLog(@"myStoredSteps: %d", myStoredSteps);
     int myMostRecentStepsValue = (int)numberOfSteps;
-    NSLog(@"myMostRecentStepsValue: %d", myMostRecentStepsValue);
+//    NSLog(@"myMostRecentStepsValue: %d", myMostRecentStepsValue);
     
 //    int myMostRecentStepsValue = [self.mySteps intValue];
     
@@ -1005,12 +1025,12 @@
     if([todaysDay isEqualToString:dayAppWasLastActivated])
     {
         self.myStepsDeltaValue = myMostRecentStepsValue - myStoredSteps;
-         NSLog(@"self.myStepsDeltaValue app opened today: %d", self.myStepsDeltaValue);
+//         NSLog(@"self.myStepsDeltaValue app opened today: %d", self.myStepsDeltaValue);
     }
     else
     {
         self.myStepsDeltaValue = myMostRecentStepsValue;
-        NSLog(@"self.myStepsDeltaValue app NOT opened today: %d", self.myStepsDeltaValue);
+//        NSLog(@"self.myStepsDeltaValue app NOT opened today: %d", self.myStepsDeltaValue);
     }
 
     
@@ -1030,6 +1050,8 @@
     int myTotalSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsTotal];
     [myRetrievedSteps synchronize];
     
+    int myFetchedSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsToday];
+    NSLog(@"myFetchedSteps: %d", myFetchedSteps);
     
     int myNewTotalSteps = myTotalSteps + self.myStepsDeltaValue;
     

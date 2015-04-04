@@ -25,14 +25,19 @@
     NSDateFormatter *_dateFormatter;
     NSString *_currentActivity;
     NSInteger _currentSteps;
+    NSNumber *_todaySteps;
+    CMPedometer *_pedometer;
     
 }
 
 
 //step counter
 @property (nonatomic, strong) CMPedometer *stepCounter;
+
 @property (nonatomic, strong) NSDate *now;
 @property (nonatomic, strong) NSDate *from;
+//@property (nonatomic, strong) NSDate *now;
+//@property (nonatomic, strong) NSDate *from;
 @property (nonatomic, strong) CMMotionActivityManager *motionActivity;
 @property (nonatomic, strong) NSOperationQueue *operationQueue;
 
