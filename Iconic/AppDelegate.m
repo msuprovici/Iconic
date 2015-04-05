@@ -332,7 +332,7 @@
     
     if ([PFUser currentUser]) {
 //    [calculatePointsClass retrieveFromParse];
-    [calculatePointsClass findPastWeekleySteps];
+//    [calculatePointsClass findPastWeekleySteps];
     }
     
      [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];

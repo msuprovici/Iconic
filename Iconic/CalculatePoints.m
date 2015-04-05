@@ -767,6 +767,8 @@
 
 -(void)findPastWeekleySteps {
     
+//    NSLog(@"find Past Weekely Stpes");
+    
     _objects = [[NSMutableArray alloc] init];
     _stepsArray = [[NSMutableArray alloc] init];
     
@@ -871,6 +873,7 @@
                              NSLog(@"step count error: %@", error);
                         } else {
                             
+//                             NSLog(@"pedometer query");
                             
                             [self incrementPlayerPointsInBackground:[pedometerData.numberOfSteps integerValue]];
                            
@@ -908,6 +911,7 @@
 -(void)incrementPlayerPointsInBackground: (NSInteger)numberOfSteps
 {
     
+//        NSLog(@"Increment my player points in Background");
     
         
         //convert steps to points
@@ -982,7 +986,7 @@
 
 -(void)incrementMySteps: (NSInteger)numberOfSteps
 {
-    
+//    NSLog(@"Increment my steps");
     //set the player's total steps in memory
     NSUserDefaults *myRetrievedSteps = [NSUserDefaults standardUserDefaults];
     
@@ -1169,7 +1173,7 @@
 
 -(void)incrementMyTeamsPointsInBackground:(NSNumber*)delta
 {
-    
+//    NSLog(@"Increment my teams points in Background");
     //Query Team Class
     PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
     
