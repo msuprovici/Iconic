@@ -397,7 +397,7 @@
     
      if ([PFUser currentUser]) {
         [calculatePoints findPastWeekleySteps];
-        [calculatePoints retrieveFromParse];
+//        [calculatePoints retrieveFromParse];
 //        [calculatePoints getYesterdaysPointsAndSteps];
      }
     
@@ -524,7 +524,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         //send and retrieve data from Parse
          if ([PFUser currentUser]) {
         [calculatePoints findPastWeekleySteps];
-        [calculatePoints retrieveFromParse];
+//        [calculatePoints retrieveFromParse];
          }
         
         
@@ -568,7 +568,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         
          if ([PFUser currentUser]) {
         [calculatePoints findPastWeekleySteps];
-        [calculatePoints retrieveFromParse];
+//        [calculatePoints retrieveFromParse];
          }
         //        [calculatePoints getYesterdaysPointsAndSteps];
         

@@ -966,6 +966,8 @@
             PFObject *playerPoints = [PFUser currentUser];
             NSNumber *myPointsConverted = [NSNumber numberWithInt:0];
             [playerPoints setObject:myPointsConverted forKey:kPlayerPointsToday];
+            
+            [playerPoints setObject:myPointsConverted forKey:@"deltaSteps"];
 
             [playerPoints saveInBackground];
             
@@ -975,6 +977,7 @@
         
         else
         {
+//            NSLog(@"numberOfSteps::: %ld", (long)numberOfSteps);
             [self incrementMySteps: numberOfSteps];
         }
     
@@ -1046,16 +1049,16 @@
     
 //    [myRetrievedSteps setInteger:[self.mySteps intValue] forKey:kMyFetchedStepsToday];
     
-    [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
-    
-    
+//    [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
+//    
+//    [myRetrievedSteps synchronize];
     //increment a player's total # of points
     
     int myTotalSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsTotal];
-    [myRetrievedSteps synchronize];
     
-    int myFetchedSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsToday];
-    NSLog(@"myFetchedSteps: %d", myFetchedSteps);
+    
+//    int myFetchedSteps = (int)[myRetrievedSteps integerForKey:kMyFetchedStepsToday];
+//    NSLog(@"myFetchedSteps: %d", myFetchedSteps);
     
     int myNewTotalSteps = myTotalSteps + self.myStepsDeltaValue;
     
@@ -1063,17 +1066,17 @@
 //                       NSLog(@"myFetchedTotalSteps: %d", myTotalSteps);
 //                        NSLog(@"myFetchedNewTotalSteps: %d", myNewTotalSteps);
     
-    [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
-    [myRetrievedSteps synchronize];
+//    [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
+//    [myRetrievedSteps synchronize];
     
     
-    //save the player's steps for today to the server
-    PFObject *playerSteps = [PFUser currentUser];
-    NSNumber *mySteps = [NSNumber numberWithInteger:numberOfSteps];//converting nsinteger to nsnumber
-    [playerSteps setObject:mySteps forKey:kPlayerPointsToday];
-    //            [playerPoints saveEventually];
-  
-    [playerSteps saveInBackground];
+//    //save the player's steps for today to the server
+//    PFObject *playerSteps = [PFUser currentUser];
+//    NSNumber *mySteps = [NSNumber numberWithInteger:numberOfSteps];//converting nsinteger to nsnumber
+//    [playerSteps setObject:mySteps forKey:kPlayerPointsToday];
+//    //            [playerPoints saveEventually];
+//  
+//    [playerSteps saveInBackground];
     
     
     /*testing player activity class for feed*/
@@ -1112,61 +1115,173 @@
    
     
     //increment the points for all my teams
-    [self incrementMyTeamsPointsInBackground:myNSStepsDeltaValue];
+//    [self incrementMyTeamsPointsInBackground:myNSStepsDeltaValue];
     
 //    NSLog(@"myNSStepsDeltaValue %@", myNSStepsDeltaValue);
     
     
+//    [PFCloud callFunctionInBackground:@"updateMyTeamScores" withParameters:@{ @"delta": myNSStepsDeltaValue } block:^(id object, NSError *error) {
+//        
+//        if (!error) {
+//            NSLog(@"updateMyTeamScores cloud function worked");
+//            
+//            [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
+//            [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
+//            
+//            
+//            [myRetrievedSteps synchronize];
+//
+//            
+//        }
+//        else
+//        {
+//            NSLog(@"updateMyTeamScores cloud function error %@", error);
+//        }
+//        
+//    }];
     
+
     
-    
-    PFQuery *query = [PFUser query];
-    [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
-    
-    
-    
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    if(self.myStepsDeltaValue > 0)
         
-        if(!error)
-        {
-            //retrieve current streak from parse
-            int streak = [[object objectForKey:@"streak"] intValue];
-            //shares today's step count with widget
-            NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
-            [sharedDefaults setInteger:streak  forKey:@"streak"];
-            [sharedDefaults synchronize];
+    {
+        
+    
+        //save the player's steps for today to the server
+        PFObject *user = [PFUser currentUser];
+        
+        NSNumber *mySteps = [NSNumber numberWithInteger:numberOfSteps];//converting nsinteger to nsnumber
+        [user setObject:mySteps forKey:kPlayerPointsToday];
+        
+        
+       
+        //retrieve current streak from parse
+        int streak = [[user objectForKey:@"streak"] intValue];
+        //shares today's step count with widget
+        NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
+        [sharedDefaults setInteger:streak  forKey:@"streak"];
+        [sharedDefaults synchronize];
+        
+        
+        [user incrementKey:kPlayerPoints byAmount:myNSStepsDeltaValue];
+        [user setObject:myNSStepsDeltaValue forKey:@"deltaSteps"];
+        
+        //set player's level
+        //            NSLog(@"myLevel sent to parse %@",myLevel);
+        [user setObject:myLevel forKey:kPlayerXP];
+        
+        
+        
+        //save #points needed to reach the next level
+        
+        [user setObject:myStepsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
+        
+        
+        
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            
+            if (succeeded) {
+                //                            NSLog(@"Player stats save succeded");
+                
+                //add my steps to each one of my teams
+                [PFCloud callFunctionInBackground:@"updateMyTeamScores" withParameters:@{ @"delta": myNSStepsDeltaValue } block:^(id object, NSError *error) {
+                    
+                    if (!error) {
+                        NSLog(@"updateMyTeamScores cloud function worked");
+                        
+                        
+                        [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
+                        [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
+                        [myRetrievedSteps synchronize];
+                        
+                        //populate my teams in memory
+                        [self retrieveFromParse];
+                    }
+                    else
+                    {
+                        NSLog(@"updateMyTeamScores cloud function error %@", error);
+                    }
+                    
+                }];
+            }
+            else{
+                 NSLog(@"Player stats save failed %@", error);
+            }
 
             
-            [object incrementKey:kPlayerPoints byAmount:myNSStepsDeltaValue];
             
             
-            //set player's level
-//            NSLog(@"myLevel sent to parse %@",myLevel);
-            [object setObject:myLevel forKey:kPlayerXP];
-           
-            
-            
-            //save #points needed to reach the next level
-            
-            [object setObject:myStepsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
-            //save the player's points for today to the server
-          
-            
-            [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (succeeded) {
-                    //                            NSLog(@"Player stats save succeded");
-                }
-                else{
-                    //                            NSLog(@"Player stats save failed");
-                }
-            }];
-            
-            
-            
-        }
-        
-        
-    }];
+        }];
+
+    }
+    
+//    PFQuery *query = [PFUser query];
+//    [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+//    
+//    
+//    
+//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//        
+//        if(!error)
+//        {
+//            //retrieve current streak from parse
+//            int streak = [[object objectForKey:@"streak"] intValue];
+//            //shares today's step count with widget
+//            NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
+//            [sharedDefaults setInteger:streak  forKey:@"streak"];
+//            [sharedDefaults synchronize];
+//
+//            
+//            [object incrementKey:kPlayerPoints byAmount:myNSStepsDeltaValue];
+//            [object setObject:myNSStepsDeltaValue forKey:@"deltaSteps"];
+//            
+//            //set player's level
+////            NSLog(@"myLevel sent to parse %@",myLevel);
+//            [object setObject:myLevel forKey:kPlayerXP];
+//           
+//            
+//            
+//            //save #points needed to reach the next level
+//            
+//            [object setObject:myStepsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
+//            //save the player's points for today to the server
+//          
+//            
+//            [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                if (succeeded) {
+//                    //                            NSLog(@"Player stats save succeded");
+//                    
+//                    [PFCloud callFunctionInBackground:@"updateMyTeamScores" withParameters:@{ @"delta": myNSStepsDeltaValue } block:^(id object, NSError *error) {
+//                        
+//                        if (!error) {
+//                            NSLog(@"updateMyTeamScores cloud function worked");
+//                            
+//                            [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
+//                            [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
+//                            
+//                            
+//                            [myRetrievedSteps synchronize];
+//                            
+//                            
+//                        }
+//                        else
+//                        {
+//                            NSLog(@"updateMyTeamScores cloud function error %@", error);
+//                        }
+//                        
+//                    }];
+//                }
+//                else{
+//                    //                            NSLog(@"Player stats save failed");
+//                }
+//            }];
+//            
+//            
+//            
+//        }
+//        
+//        
+//    }];
     
 }
 
@@ -1217,9 +1332,6 @@
                {
                    
                     PFObject *myTeams = [objects objectAtIndex:i];
-                   
-                   
-                   
                    
                     //increment the team's TOTAL points
                     [myTeams incrementKey:kScore byAmount:delta];
