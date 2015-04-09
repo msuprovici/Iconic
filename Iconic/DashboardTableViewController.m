@@ -133,6 +133,7 @@
                                                object:nil];
     
     [self refreshDays];
+    
     [self refreshHomeViewNow];
     [self updatedGameClock];
     
@@ -153,6 +154,7 @@
        
         [self refreshHomeViewNow];
         [self refreshDays];
+        
         self.receivedNotification = NO;
         
        
@@ -187,7 +189,29 @@
         [_dataManager checkAuthorization:^(BOOL authorized) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (authorized) {
-                    NSDate *date = [NSDate date];
+                    
+                     NSDate *date = [NSDate date];
+                    
+                    //Get today's step count
+                    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+                    
+                    self.from = [calculatePointsClass beginningOfDay];
+                    self.now = date;
+                    _pedometer = [[CMPedometer alloc] init];
+                    
+                    [_pedometer queryPedometerDataFromDate:self.from toDate:self.now withHandler:^(CMPedometerData *pedometerData, NSError *error) {
+                        if (error) {
+                            
+                            NSLog(@"step count error: %@", error);
+                        } else {
+                            [self getPlayerSteps:(long)[pedometerData.numberOfSteps integerValue]];
+                        }
+                    }];
+
+                    
+                    
+                    
+                   
                     [_objects removeAllObjects];
                     for (int i = 0; i < 7; ++i){
                         AAPLMotionActivityQuery *query = [AAPLMotionActivityQuery queryStartingFromDate:date offsetByDay:-i];
@@ -257,7 +281,7 @@
             if (self.myWeekleyStepsArray.count == 7) {
                 
                 //the 1st value in array is today's step count
-                [self getPlayerSteps:(long)[[self.myWeekleyStepsArray objectAtIndex:0] integerValue]];
+//                [self getPlayerSteps:(long)[[self.myWeekleyStepsArray objectAtIndex:0] integerValue]];
 
                 [self populate7DayBarChart];
                 
@@ -351,12 +375,21 @@
             myStepsGainedDelta = (int)steps - myStoredSteps;
             [self.pointsValue  countFrom:myStoredSteps to:steps withDuration:1];
             
-            [self animateDeltaPointsLabelNow: myStepsGainedDelta];
+           
+            
+            double delayInSeconds = 1.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                
+                [self animateDeltaPointsLabelNow: myStepsGainedDelta];
+                
+            });
             
             
-            NSLog(@"steps: %d",(int) steps);
-            NSLog(@"myStoredSteps: %d", myStoredSteps);
-            NSLog(@"Delta in mystats today: %d", myStepsGainedDelta);
+//            NSLog(@"steps: %d",(int) steps);
+//            NSLog(@"myStoredSteps: %d", myStoredSteps);
+//            NSLog(@"Delta in mystats today: %d", myStepsGainedDelta);
             
             
             
@@ -366,9 +399,18 @@
             myStepsGainedDelta = (int)steps;
             [self.pointsValue  countFrom:0 to:steps withDuration:1];
             
-            [self animateDeltaPointsLabelNow: myStepsGainedDelta];
+//            [self animateDeltaPointsLabelNow: myStepsGainedDelta];
             
-            NSLog(@"Delta in mystats not today: %d", myStepsGainedDelta);
+            double delayInSeconds = 1.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                
+                [self animateDeltaPointsLabelNow: myStepsGainedDelta];
+                
+            });
+//            
+//            NSLog(@"Delta in mystats not today: %d", myStepsGainedDelta);
             
             
             
@@ -920,6 +962,7 @@
     if([[notification name] isEqualToString:@"DefaultsSync"])
     {
         [self performSelector:@selector(reoladTableView) withObject:self afterDelay:3.0];
+        [self performSelector:@selector(reoladTableView) withObject:self afterDelay:5.0];
     }
 }
 
@@ -1010,16 +1053,9 @@
 
 -(void)animateDeltaPointsLabelNow: (int)delta
 {
+       //populate the deltaValueLabel
     
-    
-    //populate the deltaValueLabel
-    NSUserDefaults *myRetrievedPoints = [NSUserDefaults standardUserDefaults];
-    
-//    int myStepsDelta = (int)[myRetrievedPoints integerForKey:kMyStepsDelta];
-    //    int  numberOfTeams = (int)[myRetrievedPoints integerForKey: kNumberOfTeams];
-    
-    
-    //    NSLog(@"Delta in simplehomeviewcontroller: %d", myStepsDelta);
+//      NSLog(@"Delta in dashboard: %d", delta);
     
     
     

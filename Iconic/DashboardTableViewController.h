@@ -26,7 +26,15 @@
 
 @interface DashboardTableViewController : UITableViewController
 
+{
+    CMPedometer *_pedometer;
+    NSNumber *_todaySteps;
+}
+
 //My Steps - Today
+
+@property (nonatomic, strong) NSDate *now;
+@property (nonatomic, strong) NSDate *from;
 
 
 

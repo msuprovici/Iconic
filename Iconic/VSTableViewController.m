@@ -91,6 +91,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(defaultsSyncNotification:)
+                                                 name:@"DefaultsSync"
+                                               object:nil];
  
     
     self.scoutTeamPressed = false;
@@ -856,4 +860,21 @@
     //reload table
     [self loadObjects];
 }
+
+#pragma mark - NSNotifications
+
+#pragma mark - NSNotificaitons
+
+-(void)defaultsSyncNotification:(NSNotification *) notification
+{
+    if([[notification name] isEqualToString:@"DefaultsSync"])
+    {
+        NSLog(@"Defaults Sync notificaiton");
+        
+        [self.tableView reloadData];
+        [self.view setNeedsDisplay];
+    }
+}
+
+
 @end

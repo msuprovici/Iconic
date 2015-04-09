@@ -1114,31 +1114,7 @@
     NSNumber* myNSStepsDeltaValue = [NSNumber numberWithInt:self.myStepsDeltaValue];
    
     
-    //increment the points for all my teams
-//    [self incrementMyTeamsPointsInBackground:myNSStepsDeltaValue];
-    
-//    NSLog(@"myNSStepsDeltaValue %@", myNSStepsDeltaValue);
-    
-    
-//    [PFCloud callFunctionInBackground:@"updateMyTeamScores" withParameters:@{ @"delta": myNSStepsDeltaValue } block:^(id object, NSError *error) {
-//        
-//        if (!error) {
-//            NSLog(@"updateMyTeamScores cloud function worked");
-//            
-//            [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
-//            [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
-//            
-//            
-//            [myRetrievedSteps synchronize];
-//
-//            
-//        }
-//        else
-//        {
-//            NSLog(@"updateMyTeamScores cloud function error %@", error);
-//        }
-//        
-//    }];
+
     
 
     
@@ -1187,7 +1163,7 @@
                 [PFCloud callFunctionInBackground:@"updateMyTeamScores" withParameters:@{ @"delta": myNSStepsDeltaValue } block:^(id object, NSError *error) {
                     
                     if (!error) {
-                        NSLog(@"updateMyTeamScores cloud function worked");
+//                        NSLog(@"updateMyTeamScores cloud function worked");
                         
                         
                         [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
@@ -1215,156 +1191,90 @@
 
     }
     
-//    PFQuery *query = [PFUser query];
-//    [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+
+    
+}
+
+
+//-(void)incrementMyTeamsPointsInBackground:(NSNumber*)delta
+//{
+////    NSLog(@"Increment my teams points in Background");
+//    //Query Team Class
+//    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
 //    
+//    //Query Teamates Class
+//    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
 //    
+//    //force the queries to be network only
+////    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+////    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
 //    
-//    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+//    //had to set the cahce policy to kPFCachePolicyNetworkElseCache
+//    //kPFCachePolicyCacheThenNetwork ran the query bellow 2x and dobled kScore & kScoreToday
+//    
+////    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+////    query2.cachePolicy = kPFCachePolicyNetworkElseCache;
+//    
+//    //using network only to
+//    query.cachePolicy = kPFCachePolicyNetworkOnly;
+//    query2.cachePolicy = kPFCachePolicyNetworkOnly;
+//    
+//    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+//    
+//    //Query where the current user is a teamate
+//    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
+//    
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 //        
-//        if(!error)
-//        {
-//            //retrieve current streak from parse
-//            int streak = [[object objectForKey:@"streak"] intValue];
-//            //shares today's step count with widget
-//            NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] initWithSuiteName:@"group.stickyplay.iconic"];
-//            [sharedDefaults setInteger:streak  forKey:@"streak"];
-//            [sharedDefaults synchronize];
-//
+//        
+//        if (!error) {
+//            // The find succeeded.
+//            //            NSLog(@"Successfully retrieved my %lu teams", (unsigned long)objects.count);
+////            for (PFObject *object in objects)
+////                
+////            {
+//                //NSLog(@"%@", object.objectId);
+//                
+////            NSLog(@"objects count %lu", (unsigned long)objects.count);
+////                NSLog(@"delta to increment team score: %@", delta);
 //            
-//            [object incrementKey:kPlayerPoints byAmount:myNSStepsDeltaValue];
-//            [object setObject:myNSStepsDeltaValue forKey:@"deltaSteps"];
-//            
-//            //set player's level
-////            NSLog(@"myLevel sent to parse %@",myLevel);
-//            [object setObject:myLevel forKey:kPlayerXP];
-//           
-//            
-//            
-//            //save #points needed to reach the next level
-//            
-//            [object setObject:myStepsToNextLevelDelta forKey:kPlayerPointsToNextLevel];
-//            //save the player's points for today to the server
-//          
-//            
-//            [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                if (succeeded) {
-//                    //                            NSLog(@"Player stats save succeded");
-//                    
-//                    [PFCloud callFunctionInBackground:@"updateMyTeamScores" withParameters:@{ @"delta": myNSStepsDeltaValue } block:^(id object, NSError *error) {
-//                        
-//                        if (!error) {
-//                            NSLog(@"updateMyTeamScores cloud function worked");
-//                            
-//                            [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
-//                            [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
-//                            
-//                            
-//                            [myRetrievedSteps synchronize];
-//                            
-//                            
+//               for( int i = 0; i < objects.count; i++)
+//               {
+//                   
+//                    PFObject *myTeams = [objects objectAtIndex:i];
+//                   
+//                    //increment the team's TOTAL points
+//                    [myTeams incrementKey:kScore byAmount:delta];
+////                    NSLog(@"delta %@", delta);
+//                   
+//                    //increment the team's points for today
+//                    [myTeams incrementKey:kScoreToday byAmount:delta];
+////                NSLog(@"delta in query %@", delta);
+//                    //                    [object save];
+////                    [object saveInBackground];
+////                                        [myTeams saveEventually];
+//                
+//                    [myTeams saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                        if (succeeded) {
+////                            NSLog(@"Team stats succesfully saved");
 //                        }
-//                        else
-//                        {
-//                            NSLog(@"updateMyTeamScores cloud function error %@", error);
+//                        else{
+////                            NSLog(@"Team stats failed to save");
 //                        }
-//                        
 //                    }];
-//                }
-//                else{
-//                    //                            NSLog(@"Player stats save failed");
-//                }
-//            }];
-//            
-//            
+//                   
+//               }
+////            }
 //            
 //        }
-//        
+//        else
+//        {
+//            //  NSLog(@"error");
+//        }
 //        
 //    }];
-    
-}
-
-
--(void)incrementMyTeamsPointsInBackground:(NSNumber*)delta
-{
-//    NSLog(@"Increment my teams points in Background");
-    //Query Team Class
-    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
-    
-    //Query Teamates Class
-    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
-    
-    //force the queries to be network only
-//    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
-//    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
-    
-    //had to set the cahce policy to kPFCachePolicyNetworkElseCache
-    //kPFCachePolicyCacheThenNetwork ran the query bellow 2x and dobled kScore & kScoreToday
-    
-//    query.cachePolicy = kPFCachePolicyNetworkElseCache;
-//    query2.cachePolicy = kPFCachePolicyNetworkElseCache;
-    
-    //using network only to
-    query.cachePolicy = kPFCachePolicyNetworkOnly;
-    query2.cachePolicy = kPFCachePolicyNetworkOnly;
-    
-    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
-    
-    //Query where the current user is a teamate
-    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        
-        if (!error) {
-            // The find succeeded.
-            //            NSLog(@"Successfully retrieved my %lu teams", (unsigned long)objects.count);
-//            for (PFObject *object in objects)
-//                
-//            {
-                //NSLog(@"%@", object.objectId);
-                
-//            NSLog(@"objects count %lu", (unsigned long)objects.count);
-//                NSLog(@"delta to increment team score: %@", delta);
-            
-               for( int i = 0; i < objects.count; i++)
-               {
-                   
-                    PFObject *myTeams = [objects objectAtIndex:i];
-                   
-                    //increment the team's TOTAL points
-                    [myTeams incrementKey:kScore byAmount:delta];
-//                    NSLog(@"delta %@", delta);
-                   
-                    //increment the team's points for today
-                    [myTeams incrementKey:kScoreToday byAmount:delta];
-//                NSLog(@"delta in query %@", delta);
-                    //                    [object save];
-//                    [object saveInBackground];
-//                                        [myTeams saveEventually];
-                
-                    [myTeams saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                        if (succeeded) {
-//                            NSLog(@"Team stats succesfully saved");
-                        }
-                        else{
-//                            NSLog(@"Team stats failed to save");
-                        }
-                    }];
-                   
-               }
-//            }
-            
-        }
-        else
-        {
-            //  NSLog(@"error");
-        }
-        
-    }];
-    
-}
+//    
+//}
 
 
 
