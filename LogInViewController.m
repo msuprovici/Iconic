@@ -51,7 +51,7 @@
     // Create the data model
 //    _pageTitles = @[@"Title 1", @"Title 2", @"Title 3"];
 //    _pageSubTitles = @[@"Subtitle 1", @"Subtitle 2", @"Subtitle 3"];
-    _pageImages = @[@"IconicOnboard1slice@2x.png", @"IconicOnboard2slice@2x.png", @"IconicOnboard3slice@2x.png", @"IconicOnboard4slice@2x.png", @"IconicOnboard6slice@2x.png", @"IconicOnboard7slice@2x.png", @"IconicOnboard8slice@2x.png", @"IconicOnboard9slice@2x.png"];
+    _pageImages = @[@"IconicOnboard1_Slice.png", @"IconicOnboard2_Slice.png", @"IconicOnboard3slice.png", @"IconicOnboard4slice.png", @"IconicOnboard6slice.png", @"IconicOnboard7slice.png", @"IconicOnboard8slice.png", @"IconicOnboard9slice.png"];
     
 //    self.mainTitle.text =[NSString stringWithFormat:@"%@",[_pageTitles objectAtIndex: 0]];
 //    self.subTitle.text =[NSString stringWithFormat:@"%@",[_pageSubTitles objectAtIndex: 0]];
@@ -306,12 +306,12 @@
 
 - (IBAction)startWalkthrough:(id)sender {
     //NSLog(@"button pressed");
-    UIImage * buttonImageMotion = [UIImage imageNamed:@"Grant_Motion_Permission_Button@2x.png"];
-    UIImage * buttonImageNext = [UIImage imageNamed:@"NextButton@2x.png"];
-//    UIImage * buttonImageStart = [UIImage imageNamed:@"LetsGetStartedButton@2x.png"];
-    UIImage * buttonImageYes = [UIImage imageNamed:@"YesButton@2x.png"];
+    UIImage * buttonImageMotion = [UIImage imageNamed:@"Grant_Motion_Permission_Button.png"];
+    UIImage * buttonImageNext = [UIImage imageNamed:@"NextButton.png"];
+    UIImage * buttonImageStart = [UIImage imageNamed:@"LetsGetStartedButton.png"];
+    UIImage * buttonImageYes = [UIImage imageNamed:@"YesButton.png"];
 //    UIImage * buttonImageNo = [UIImage imageNamed:@"NahImGoodButton@2x.png"];
-    UIImage * buttonJoin = [UIImage imageNamed:@"JoinButton@2x.png"];
+    UIImage * buttonJoin = [UIImage imageNamed:@"JoinButton.png"];
     
      CGFloat pageWidth = self.scrollView.frame.size.width;
     CGFloat pageHeight = self.scrollView.frame.size.height;
@@ -337,12 +337,20 @@
     if (self.currentIndex == 0) {
         
         [Amplitude logEvent:@"Onboard: Let's Get Started"];
+        
+        [self.startWalkthroughButton setImage:buttonImageStart forState:UIControlStateNormal];
+        //        NSLog(@"page == 2");
+        self.noNotifications.hidden = YES;
     }
     
     
     else if (self.currentIndex == 1) {
         
         [Amplitude logEvent:@"Onboard: Every Step Counts"];
+        
+        [self.startWalkthroughButton setImage:buttonImageNext forState:UIControlStateNormal];
+        //        NSLog(@"page == 2");
+        self.noNotifications.hidden = YES;
         
     }
     
