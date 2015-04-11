@@ -869,7 +869,7 @@
 {
     if([[notification name] isEqualToString:@"DefaultsSync"])
     {
-        NSLog(@"Defaults Sync notificaiton");
+//        NSLog(@"Defaults Sync notificaiton");
         
         [self.tableView reloadData];
         [self.view setNeedsDisplay];

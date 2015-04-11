@@ -399,6 +399,8 @@
             myStepsGainedDelta = (int)steps;
             [self.pointsValue  countFrom:0 to:steps withDuration:1];
             
+            [self.view setNeedsDisplay];
+            
 //            [self animateDeltaPointsLabelNow: myStepsGainedDelta];
             
             double delayInSeconds = 1.0;
@@ -626,6 +628,7 @@
     
     
       [self.tableView reloadData];
+    [self.view setNeedsDisplay];
     
 
 }
@@ -1030,6 +1033,7 @@
     [defaults setObject:[NSDate date] forKey:kDateAppLastRan];
     [defaults synchronize];
     [self.tableView reloadData];
+    [self.view setNeedsDisplay];
 
 }
 

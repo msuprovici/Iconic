@@ -19,6 +19,21 @@
 #import "AAPLMotionActivityQuery.h"
 #import "AAPLActivityDataManager.h"
 
+
+@interface CalculatePoints ()
+
+{
+    CMPedometer *_pedometer;
+    
+    
+}
+
+@property (nonatomic, strong) NSDate *now;
+@property (nonatomic, strong) NSDate *from;
+
+@end
+
+
 @implementation CalculatePoints
 
 
@@ -1027,6 +1042,9 @@
 //    NSLog(@"todaysDate: %@", todaysDate);
 //    NSLog(@"dateAppWasLastRan: %@", dateAppWasLastRan);
     
+//    NSLog(@"todaysDay: %@", todaysDay);
+//    NSLog(@"dayAppWasLastActivated: %@", dayAppWasLastActivated);
+    
 //   NSLog(@"myStoredSteps: %d", myStoredSteps);
 
     if([todaysDay isEqualToString:dayAppWasLastActivated])
@@ -1122,6 +1140,11 @@
         
     {
         
+        
+        [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
+        [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
+        [myRetrievedSteps synchronize];
+        
     
         //save the player's steps for today to the server
         PFObject *user = [PFUser currentUser];
@@ -1140,7 +1163,7 @@
         
         
         [user incrementKey:kPlayerPoints byAmount:myNSStepsDeltaValue];
-        [user setObject:myNSStepsDeltaValue forKey:@"deltaSteps"];
+//        [user setObject:myNSStepsDeltaValue forKey:@"deltaSteps"];
         
         //set player's level
         //            NSLog(@"myLevel sent to parse %@",myLevel);
@@ -1156,29 +1179,34 @@
         
         [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             
+            
+            
             if (succeeded) {
-                //                            NSLog(@"Player stats save succeded");
                 
-                //add my steps to each one of my teams
-                [PFCloud callFunctionInBackground:@"updateMyTeamScores" withParameters:@{ @"delta": myNSStepsDeltaValue } block:^(id object, NSError *error) {
-                    
-                    if (!error) {
-//                        NSLog(@"updateMyTeamScores cloud function worked");
-                        
-                        
-                        [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
-                        [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
-                        [myRetrievedSteps synchronize];
-                        
-                        //populate my teams in memory
-                        [self retrieveFromParse];
-                    }
-                    else
-                    {
-                        NSLog(@"updateMyTeamScores cloud function error %@", error);
-                    }
-                    
-                }];
+                [self retrieveFromParse];
+                //                            NSLog(@"Player stats save succeded");
+               
+                
+//                //add my steps to each one of my teams
+//                [PFCloud callFunctionInBackground:@"updateMyTeamScores" withParameters:@{ @"delta": myNSStepsDeltaValue } block:^(id object, NSError *error) {
+//                    
+//                    if (!error) {
+////                        NSLog(@"updateMyTeamScores cloud function worked");
+//                        
+//                        
+////                        [myRetrievedSteps setInteger:numberOfSteps forKey:kMyFetchedStepsToday];
+////                        [myRetrievedSteps setInteger:myNewTotalSteps  forKey:kMyFetchedStepsTotal];
+////                        [myRetrievedSteps synchronize];
+//                        
+//                        //populate my teams in memory
+//                        [self retrieveFromParse];
+//                    }
+//                    else
+//                    {
+//                        NSLog(@"updateMyTeamScores cloud function error %@", error);
+//                    }
+//                    
+//                }];
             }
             else{
                  NSLog(@"Player stats save failed %@", error);
