@@ -142,10 +142,10 @@
         [calculatePointsClass loadFacebookUserData];
     }
     
-    //eliminate null values for 1st time users
-    [[PFUser currentUser] setObject:@0 forKey: @"steak"];
-    [[PFUser currentUser] setObject:@0 forKey: @"streakLong"];
-    [[PFUser currentUser] saveInBackground];
+//    //eliminate null values for 1st time users
+//    [[PFUser currentUser] setObject:@0 forKey: @"steak"];
+//    [[PFUser currentUser] setObject:@0 forKey: @"streakLong"];
+//    [[PFUser currentUser] saveInBackground];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
@@ -206,7 +206,7 @@
     
     // Display an alert if a field wasn't completed
     if (!informationComplete) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Please fill out all of the information.  3 charachter minimum for Username/Password/Email", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Please fill out all of the information.  3 character minimum for Username/Password/Email", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
     }
     
     return informationComplete;
@@ -233,6 +233,11 @@
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     currentInstallation[@"user"] = [PFUser currentUser];
     [currentInstallation saveInBackground];
+    
+//    //eliminate null values for 1st time users
+//    [[PFUser currentUser] setObject:@0 forKey: @"steak"];
+//    [[PFUser currentUser] setObject:@0 forKey: @"streakLong"];
+//    [[PFUser currentUser] saveInBackground];
     
     //set parse username as the user id in Amplitude
     NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];

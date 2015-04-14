@@ -306,7 +306,8 @@
     if (steps == 0) {
 //        self.myPoints = [NSNumber numberWithInteger: 0];
         
-        self.pointsValue.text = [@(steps) stringValue];
+//        self.pointsValue.text = [@(steps) stringValue];
+        self.pointsValue.text = @"0";
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:0 forKey:kMyStepsDelta];

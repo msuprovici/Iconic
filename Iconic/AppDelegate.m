@@ -273,8 +273,27 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-
-
+    
+    
+//    ACAccountStore *accountStore;
+//    ACAccountType *accountTypeFB;
+//    if ((accountStore = [[ACAccountStore alloc] init]) &&
+//        (accountTypeFB = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook] ) ){
+//        
+//        NSArray *fbAccounts = [accountStore accountsWithAccountType:accountTypeFB];
+//        id account;
+//        if (fbAccounts && [fbAccounts count] > 0 &&
+//            (account = [fbAccounts objectAtIndex:0])){
+//            
+//            [accountStore renewCredentialsForAccount:account completion:^(ACAccountCredentialRenewResult renewResult, NSError *error) {
+//                //we don't actually need to inspect renewResult or error.
+//                if (error){
+//                    
+//                }
+//            }];
+//        }
+//    }
+    
     
    //sets color of the text inside the button but not the image/accessory
 //   [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Light" size:15], NSFontAttributeName,[UIColor blackColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
@@ -715,6 +734,11 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         [[Cache sharedCache] setFacebookFriends:facebookIds];
         
         if (user) {
+            
+            
+            
+            
+            
             if (![user objectForKey:kUserAlreadyAutoFollowedFacebookFriendsKey]) {
                 self.hud.labelText = NSLocalizedString(@"Following Friends", nil);
                 firstLaunch = YES;

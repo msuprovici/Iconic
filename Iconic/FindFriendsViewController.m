@@ -119,6 +119,25 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
         self.inviteFacebookFriends.hidden = YES;
     }
     
+//    ACAccountStore *accountStore;
+//    ACAccountType *accountTypeFB;
+//    if ((accountStore = [[ACAccountStore alloc] init]) &&
+//        (accountTypeFB = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook] ) ){
+//        
+//        NSArray *fbAccounts = [accountStore accountsWithAccountType:accountTypeFB];
+//        id account;
+//        if (fbAccounts && [fbAccounts count] > 0 &&
+//            (account = [fbAccounts objectAtIndex:0])){
+//            
+//            [accountStore renewCredentialsForAccount:account completion:^(ACAccountCredentialRenewResult renewResult, NSError *error) {
+//                //we don't actually need to inspect renewResult or error.
+//                if (error){
+//                    
+//                }
+//            }];
+//        }
+//    }
+    
    
 }
 
@@ -823,13 +842,22 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
              
              if (result == FBWebDialogResultDialogNotCompleted) {
                  // User clicked the "x" icon
-                 NSLog(@"User canceled request.");
+                 NSLog(@"FBWebDialogResultDialogNotCompleted");
              } else {
                  // Handle the send request callback
                  NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
                  if (![urlParams valueForKey:@"request"]) {
                      // User clicked the Cancel button
-                     NSLog(@"User canceled request.");
+                     NSLog(@"no FB urlParms");
+                     
+                     //if user's tokens have expired make the user login again
+                     if (self.facebookLogIn.hidden == YES) {
+                         self.facebookLogIn.hidden = NO;
+                         self.inviteFacebookFriends.hidden = YES;
+                     }
+                     
+                     
+                     
                  } else {
                      // User clicked the Send button
                      NSString *requestID = [urlParams valueForKey:@"request"];

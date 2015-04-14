@@ -2271,7 +2271,21 @@
 
         }
         else{
-//               NSLog(@"facebook request failed");
+               NSLog(@"facebook request failed");
+            
+//            NSArray *permissionsArray = @[ @"public_profile", @"email" ];
+//            [PFFacebookUtils linkUser:[PFUser currentUser] permissions:permissionsArray block:^(BOOL succeeded, NSError *error) {
+//                if (succeeded) {
+//                    NSLog(@"Woohoo, user logged in with Facebook!");
+//                    
+//                    
+//                }
+//                else
+//                {
+//                    NSLog(@"Could not log in user: %@", error);
+//                }
+//            }];
+
         }
     }];
 }
