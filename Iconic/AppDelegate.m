@@ -9,8 +9,8 @@
 
 #import "AppDelegate.h"
 
-#import <Parse/Parse.h>
-#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import "ContentController.h"
 #import "Cache.h"
 #import "Constants.h"
@@ -97,8 +97,8 @@
     #endif
     
     //Intitialize FB
-    [PFFacebookUtils initializeFacebook];
-    [FBAppEvents activateApp];
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+//    [FBAppEvents activateApp];
     
    
 
@@ -330,12 +330,20 @@
     return [FBSession.activeSession handleOpenURL:url];
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    
+    [FBSDKAppEvents activateApp];
     
     //reset push notification badge to 0 once the app has been opened
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
@@ -345,7 +353,7 @@
     }
     
     // Handle an interruption during the authorization flow, such as the user clicking the home button.
-    [FBSession.activeSession handleDidBecomeActive];
+//    [FBSession.activeSession handleDidBecomeActive];
     
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
     
@@ -354,7 +362,7 @@
 //    [calculatePointsClass findPastWeekleySteps];
     }
     
-     [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
+//     [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
     
     
 }
