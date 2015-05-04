@@ -673,7 +673,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    
+    [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
     
     if ([segue.identifier isEqualToString:@"ActivityDetails"]) {
        

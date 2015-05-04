@@ -720,7 +720,7 @@
 //pass the league to the leagues view controller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"league"]) {
-        
+        [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
         NSIndexPath *hitIndex = [self.tableView indexPathForSelectedRow];
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:hitIndex.row inSection:hitIndex.section];
         
@@ -733,7 +733,7 @@
 
     
     if ([segue.identifier isEqualToString:@"addleague"]) {
-        
+        [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
         [Amplitude logEvent:@"Leagues: Add league pressed"];
         
     }

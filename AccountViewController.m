@@ -248,7 +248,7 @@
 //pass the team to the teammates view controller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"TeamSelectedAccountView"]) {
-        
+        [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
         //Find the row the button was selected from
         //        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
         //        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];

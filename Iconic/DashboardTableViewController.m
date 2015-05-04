@@ -871,7 +871,7 @@
     
     if ([segue.identifier isEqualToString:@"vs"]) {
         
-        
+        [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
         NSIndexPath *indexPath = (NSIndexPath *)sender;
         //we use this index to pass the correct data to the vs view controller
         int myRetreivedIndex = (int)indexPath.row ;
@@ -896,7 +896,7 @@
     //show achievement
     if ([[segue identifier] isEqualToString:@"ShowAchievment"])
     {
-        
+        [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
         //        NSLog(@"achievment object: %@", self.teamAchievmentReceived);
         
         

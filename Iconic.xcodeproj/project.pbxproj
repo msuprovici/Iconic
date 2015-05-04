@@ -373,8 +373,8 @@
 		5C2EA545185164BE00B21C52 /* MyStatsContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStatsContentController.h; sourceTree = "<group>"; };
 		5C2EA546185164BE00B21C52 /* MyStatsContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyStatsContentController.m; sourceTree = "<group>"; };
 		5C2EA54818516B0E00B21C52 /* content_mystats.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = content_mystats.plist; sourceTree = "<group>"; };
-		5C328BF3185F70C100E0E985 /* VSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSViewController.h; path = Iconic/VSViewController.h; sourceTree = "<group>"; };
-		5C328BF4185F70C100E0E985 /* VSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSViewController.m; path = Iconic/VSViewController.m; sourceTree = "<group>"; };
+		5C328BF3185F70C100E0E985 /* VSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSViewController.h; sourceTree = "<group>"; };
+		5C328BF4185F70C100E0E985 /* VSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSViewController.m; sourceTree = "<group>"; };
 		5C328BF6185F773300E0E985 /* VSCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCell.h; sourceTree = "<group>"; };
 		5C328BF7185F773300E0E985 /* VSCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCell.m; sourceTree = "<group>"; };
 		5C328BF9186002D300E0E985 /* LeaguesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaguesViewController.h; sourceTree = "<group>"; };
@@ -866,8 +866,6 @@
 		5C2C1CD0185E98C8006722D2 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				5C328BF3185F70C100E0E985 /* VSViewController.h */,
-				5C328BF4185F70C100E0E985 /* VSViewController.m */,
 				5C2C1CCD185E98A3006722D2 /* MenuViewController.h */,
 				5C2C1CCE185E98A3006722D2 /* MenuViewController.m */,
 			);
@@ -891,16 +889,6 @@
 				5C3BBF651AC483C700B179B0 /* DashboardTableViewController.m */,
 				5C3BBF671AC484BC00B179B0 /* DashboardTableViewCell.h */,
 				5C3BBF681AC484BC00B179B0 /* DashboardTableViewCell.m */,
-				5C48B8941880CFAA00A09A1C /* SimpleHomeViewController.h */,
-				5C48B8951880CFAA00A09A1C /* SimpleHomeViewController.m */,
-				5C2EA53A1851516700B21C52 /* MyStatsViewController.h */,
-				5C2EA53B1851516700B21C52 /* MyStatsViewController.m */,
-				5C2EA53C1851516700B21C52 /* MyStatsViewController.xib */,
-				5C2EA545185164BE00B21C52 /* MyStatsContentController.h */,
-				5C2EA546185164BE00B21C52 /* MyStatsContentController.m */,
-				5C2EA54818516B0E00B21C52 /* content_mystats.plist */,
-				5C356DA71959FF7E00ECF5C9 /* MyTeamsViewController.h */,
-				5C356DA81959FF7E00ECF5C9 /* MyTeamsViewController.m */,
 				5C7207711A79635000D6F5F3 /* MyFinalScoresTableViewController.h */,
 				5C7207721A79635000D6F5F3 /* MyFinalScoresTableViewController.m */,
 				5C7882C21A7C0B8500843E2F /* MyFinalScoresCell.h */,
@@ -1554,6 +1542,18 @@
 		5CB75DFF188A22C70047BC47 /* Not in use */ = {
 			isa = PBXGroup;
 			children = (
+				5C48B8941880CFAA00A09A1C /* SimpleHomeViewController.h */,
+				5C48B8951880CFAA00A09A1C /* SimpleHomeViewController.m */,
+				5C2EA53A1851516700B21C52 /* MyStatsViewController.h */,
+				5C2EA53B1851516700B21C52 /* MyStatsViewController.m */,
+				5C2EA53C1851516700B21C52 /* MyStatsViewController.xib */,
+				5C2EA545185164BE00B21C52 /* MyStatsContentController.h */,
+				5C2EA546185164BE00B21C52 /* MyStatsContentController.m */,
+				5C2EA54818516B0E00B21C52 /* content_mystats.plist */,
+				5C356DA71959FF7E00ECF5C9 /* MyTeamsViewController.h */,
+				5C356DA81959FF7E00ECF5C9 /* MyTeamsViewController.m */,
+				5C328BF3185F70C100E0E985 /* VSViewController.h */,
+				5C328BF4185F70C100E0E985 /* VSViewController.m */,
 				5C394AB0187E5AF000617C9B /* HomeCells */,
 				5C2C1CD0185E98C8006722D2 /* Menu */,
 				5C8BB5B01884627000E89ADF /* TimelineViewController.h */,
