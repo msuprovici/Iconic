@@ -159,6 +159,37 @@
         
        
     }
+    
+    
+    
+    //if the app was 1st oppened today refresh the Dashboard
+    //find the day of the week string
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSDate *dateAppWasLastRan = [defaults objectForKey:kDateAppLastRan];
+    
+    //            NSLog(@"dateAppWasLastLaunched: %@", dateAppWasLastRan);
+    //            NSDate *dateAppWasTerminated = [defaults objectForKey:@"dateAppWasTerminated"];
+    //            NSLog(@"dateAppWasTerminated: %@", dateAppWasTerminated);
+    
+    NSDate *todaysDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE"];
+    
+    NSTimeZone * timezone = [NSTimeZone timeZoneWithName: @"PST"];
+    [dateFormatter setTimeZone:timezone];
+    
+    NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
+    NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
+    if([todaysDay isEqualToString:dayAppWasLastActivated])
+    {
+//        NSLog(@"app was opened today");
+    }
+    else
+    {
+//        NSLog(@"app was NOT opened today");
+        [self refreshDays];
+        [self refreshHomeViewNow];
+    }
   
    
 }
