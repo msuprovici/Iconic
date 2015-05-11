@@ -2201,8 +2201,12 @@
     
 //     NSLog(@"loadFacebookData called");
     // ...
-    FBRequest *request = [FBRequest requestForMe];
-    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+//    FBRequest *request = [FBRequest requestForMe];
+//    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+    
+    if ([FBSDKAccessToken currentAccessToken]) {
+        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+         startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
         if (!error) {
             
 //            NSLog(@"facebook request received");
@@ -2212,7 +2216,7 @@
             NSString *facebookID = userData[@"id"];
             
             NSString *name = userData[@"name"];
-//            NSLog(@"name: %@",name);
+//           NSLog(@"name: %@",name);
             
 //            NSString *userName = userData[@"username"];
 //            NSLog(@"userName: %@",userName);
@@ -2288,6 +2292,7 @@
 
         }
     }];
+  }
 }
 
 

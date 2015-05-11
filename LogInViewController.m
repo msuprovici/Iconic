@@ -141,11 +141,16 @@
 //        NSLog(@"linkedWithFacebook");
         [calculatePointsClass loadFacebookUserData];
     }
+    else
+    {
+//        NSLog(@"NOT linkedWithFacebook");
+    }
     
 //    //eliminate null values for 1st time users
-//    [[PFUser currentUser] setObject:@0 forKey: @"steak"];
-//    [[PFUser currentUser] setObject:@0 forKey: @"streakLong"];
-//    [[PFUser currentUser] saveInBackground];
+    [[PFUser currentUser] setObject:@0 forKey: @"streak"];
+    [[PFUser currentUser] setObject:@0 forKey: @"streakLong"];
+    [[PFUser currentUser] setObject:@0 forKey: @"xp"];
+    [[PFUser currentUser] saveInBackground];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];

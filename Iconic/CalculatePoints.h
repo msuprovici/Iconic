@@ -11,6 +11,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "AAPLMotionActivityQuery.h"
 #import "AAPLActivityDataManager.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface CalculatePoints : NSObject
 
