@@ -117,9 +117,9 @@
     
     //initialize heap analytics
     
-//    [Heap setAppId:@"1914446395"]; //live
+    [Heap setAppId:@"1914446395"]; //live
     
-    [Heap setAppId:@"3704495766"]; //dev
+//    [Heap setAppId:@"3704495766"]; //dev
     #ifdef DEBUG
 //        [Heap enableVisualizer]; //uncomment to set up events
     #endif

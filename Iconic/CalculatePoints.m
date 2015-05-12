@@ -18,6 +18,7 @@
 #import "AppDelegate.h"
 #import "AAPLMotionActivityQuery.h"
 #import "AAPLActivityDataManager.h"
+#import "Amplitude.h"
 
 
 @interface CalculatePoints ()
@@ -2222,6 +2223,11 @@
 //            NSLog(@"userName: %@",userName);
             
             NSString *email = userData[@"email"];
+            
+            //set parse username as the user id in Amplitude
+//            NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
+            [Amplitude setUserId:name];
+            
 //            NSLog(@"email: %@",email);
 //            NSString *location = userData[@"location"][@"name"];
 //            NSString *gender = userData[@"gender"];

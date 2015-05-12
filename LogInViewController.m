@@ -61,18 +61,36 @@
     for (int i = 0; i < [_pageImages count]; i++) {
         //We'll create an imageView object in every 'page' of our scrollView.
         CGRect frame;
+//        if(i == 0)
+//        {
+//            frame.origin.x = 0;
+//            frame.origin.y = -50;
+//   
+//        }
+//        else
+//        {
         frame.origin.x = self.scrollView.frame.size.width * i;
         frame.origin.y = 0;
+//        }
         frame.size = self.scrollView.frame.size;
         //set background image
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
         imageView.image = [UIImage imageNamed:[_pageImages objectAtIndex:i]];
          [self.scrollView addSubview:imageView];
         
+//        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [_pageImages count], imageView.frame.size.height);
+        
     }
     //Set the content size of our scrollview according to the total width of our imageView objects.
-    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width * [_pageImages count], scrollView.frame.size.height);
     
+//    CGRect frame;
+//    UIImageView *onbaordImageView = [[UIImageView alloc] initWithFrame:frame];
+//    onbaordImageView.image = [UIImage imageNamed:@"IconicOnboard8slice.png"];
+//
+//    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [_pageImages count], onbaordImageView.frame.size.height);
+    
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [_pageImages count], self.scrollView.frame.size.height);
     
     self.pageControl.currentPage = 0;
     [self.view addSubview:self.pageControl];
