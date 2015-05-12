@@ -2301,6 +2301,122 @@
   }
 }
 
+#pragma mark - Layer Authentication Methods
+
+- (void)loginLayer
+{
+    
+    // Initializes a LYRClient object
+    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
+    self.layerClient  = [LYRClient clientWithAppID:appID];
+
+    
+    NSLog(@"loginLayer called");
+    //    [SVProgressHUD show];
+    
+    // Connect to Layer
+    // See "Quick Start - Connect" for more details
+    // https://developer.layer.com/docs/quick-start/ios#connect
+    [self.layerClient connectWithCompletion:^(BOOL success, NSError *error) {
+        
+        NSLog(@"connectWithCompletion called");
+        if (!success) {
+            NSLog(@"Failed to connect to Layer: %@", error);
+        } else {
+            
+            NSLog(@"connectWithCompletion sucess");
+            PFUser *user = [PFUser currentUser];
+            NSString *userID = user.objectId;
+            [self authenticateLayerWithUserID:userID completion:^(BOOL success, NSError *error) {
+                if (!error){
+                    //                    [self presentConversationListViewController];
+                    NSLog(@"Layer User authenticated");
+                } else {
+                    NSLog(@"Failed Authenticating Layer Client with error:%@", error);
+                }
+            }];
+        }
+    }];
+}
+
+- (void)authenticateLayerWithUserID:(NSString *)userID completion:(void (^)(BOOL success, NSError * error))completion
+{
+    // Check to see if the layerClient is already authenticated.
+    if (self.layerClient.authenticatedUserID) {
+        // If the layerClient is authenticated with the requested userID, complete the authentication process.
+        if ([self.layerClient.authenticatedUserID isEqualToString:userID]){
+            NSLog(@"Layer Authenticated as User %@", self.layerClient.authenticatedUserID);
+            if (completion) completion(YES, nil);
+            return;
+        } else {
+            //If the authenticated userID is different, then deauthenticate the current client and re-authenticate with the new userID.
+            [self.layerClient deauthenticateWithCompletion:^(BOOL success, NSError *error) {
+                if (!error){
+                    [self authenticationTokenWithUserId:userID completion:^(BOOL success, NSError *error) {
+                        if (completion){
+                            completion(success, error);
+                        }
+                    }];
+                } else {
+                    if (completion){
+                        completion(NO, error);
+                    }
+                }
+            }];
+        }
+    } else {
+        // If the layerClient isn't already authenticated, then authenticate.
+        [self authenticationTokenWithUserId:userID completion:^(BOOL success, NSError *error) {
+            if (completion){
+                completion(success, error);
+            }
+        }];
+    }
+}
+
+- (void)authenticationTokenWithUserId:(NSString *)userID completion:(void (^)(BOOL success, NSError* error))completion
+{
+    /*
+     * 1. Request an authentication Nonce from Layer
+     */
+    [self.layerClient requestAuthenticationNonceWithCompletion:^(NSString *nonce, NSError *error) {
+        if (!nonce) {
+            if (completion) {
+                completion(NO, error);
+            }
+            return;
+        }
+        
+        /*
+         * 2. Acquire identity Token from Layer Identity Service
+         */
+        NSDictionary *parameters = @{@"nonce" : nonce, @"userID" : userID};
+        
+        [PFCloud callFunctionInBackground:@"generateToken" withParameters:parameters block:^(id object, NSError *error) {
+            if (!error){
+                
+                NSString *identityToken = (NSString*)object;
+                [self.layerClient authenticateWithIdentityToken:identityToken completion:^(NSString *authenticatedUserID, NSError *error) {
+                    if (authenticatedUserID) {
+                        if (completion) {
+                            completion(YES, nil);
+                            
+                            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+                            [defaults setBool:true forKey:@"layerAuthenticated"];
+                        }
+                        NSLog(@"Layer Authenticated as User: %@", authenticatedUserID);
+                    } else {
+                        completion(NO, error);
+                    }
+                }];
+            } else {
+                NSLog(@"Parse Cloud function failed to be called to generate token with error: %@", error);
+            }
+        }];
+        
+    }];
+}
+
 
 
 

@@ -149,6 +149,7 @@
 {
     [super viewDidAppear:YES ];
     
+    
     // If we received joined/leave team notification update team charts
     if (self.receivedNotification == YES) {
        
@@ -162,9 +163,22 @@
     
     
     
+    //connect layer for users who signed up before we added the framework
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"userJustLoggedIn"] == nil) {
+        
+        [self connectLayer];
+        
+    }
+
+    
+    
+    
+    
     //if the app was 1st oppened today refresh the Dashboard
     //find the day of the week string
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+//    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSDate *dateAppWasLastRan = [defaults objectForKey:kDateAppLastRan];
     
     //            NSLog(@"dateAppWasLastLaunched: %@", dateAppWasLastRan);
@@ -192,6 +206,18 @@
     }
   
    
+}
+
+-(void)connectLayer
+{
+    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"layerAuthenticated"] == nil) {
+    //        NSLog(@"layer not authenticated");
+        [calculatePointsClass loginLayer];
+        [defaults setBool:true forKey:@"layerAuthenticated"];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

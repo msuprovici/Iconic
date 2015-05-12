@@ -12,6 +12,7 @@
 #import "AAPLMotionActivityQuery.h"
 #import "AAPLActivityDataManager.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <LayerKit/LayerKit.h>
 
 @interface CalculatePoints : NSObject
 
@@ -31,6 +32,8 @@
     
 }
 
+//layer
+@property (nonatomic) LYRClient *layerClient;
 
 //step counter
 @property (nonatomic, strong) CMPedometer *stepCounter;
@@ -158,6 +161,8 @@
 -(void)loadFacebookUserData;
 
 -(void)saveFinalTeamScoresToDefaults;
+
+-(void)loginLayer;
 
 
 @end

@@ -76,18 +76,18 @@
     [Parse setApplicationId:@"LiLukyOROzCPxkNIvG9SD6nPMFdZsFNxzYsB06LT"
                   clientKey:@"NWnu7sQiFf9t3vyruSWQ8CqepFjKQh7IAZr8b3WA"];
     
-//    // Set default ACLs
-//    PFACL *defaultACL = [PFACL ACL];
-//    [defaultACL setPublicReadAccess:YES];
-//    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
-//
+    // Set default ACLs
+    PFACL *defaultACL = [PFACL ACL];
+    [defaultACL setPublicReadAccess:YES];
+    [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+
     
     
     //layer
     // Initializes a LYRClient object
 //    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
 //    LYRClient *layerClient = [LYRClient clientWithAppID:appID];
-//    
+    
 //    // Tells LYRClient to establish a connection with the Layer service
 //    [layerClient connectWithCompletion:^(BOOL success, NSError *error) {
 //        if (success) {

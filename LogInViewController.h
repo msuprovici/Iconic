@@ -15,6 +15,7 @@
 #import <ParseUI/PFSignUpViewController.h>
 #import <ParseUI/PFLogInViewController.h>
 #import "LogInPageContentViewController.h"
+#import <LayerKit/LayerKit.h>
 
 
 @interface LogInViewController :
@@ -22,7 +23,9 @@ UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 //@property (nonatomic, strong) UIPageViewController *pageViewController;
 
-;
+
+
+
 @property (strong, nonatomic) IBOutlet UIButton *startWalkthroughButton;
 
 - (IBAction)startWalkthrough:(id)sender;

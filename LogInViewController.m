@@ -148,9 +148,16 @@
     
     [Amplitude logEvent:@"Onboard: Log In successful"];
     
+   
+    
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
     [calculatePointsClass migrateLeaguesToCoreData];
     [calculatePointsClass autoFollowUsers];
+    //layer
+    [calculatePointsClass loginLayer];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:true forKey:@"userJustLoggedIn"];
     
     BOOL linkedWithFacebook = [PFFacebookUtils isLinkedWithUser:user];
     
@@ -241,11 +248,21 @@
     
 //    NSLog(@"Sign Up Successfull");
     
+    
+    
     [Amplitude logEvent:@"Onboard: SignUp successful"];
+    
+    
     
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
     [calculatePointsClass migrateLeaguesToCoreData];
     [calculatePointsClass autoFollowUsers];
+   
+    [calculatePointsClass loginLayer];
+    
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:true forKey:@"userJustLoggedIn"];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
@@ -653,6 +670,8 @@
     
 
 }
+
+
 
 
 
