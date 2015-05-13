@@ -3,7 +3,7 @@
 //  IconicTests
 //
 //  Created by Mike Suprovici on 11/11/13.
-//  Copyright (c) 2013 Explorence. All rights reserved.
+//  Copyright (c) 2013 Iconic. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>

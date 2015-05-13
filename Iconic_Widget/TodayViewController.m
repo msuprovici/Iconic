@@ -3,7 +3,7 @@
 //  Iconic_Widget
 //
 //  Created by Mike Suprovici on 10/3/14.
-//  Copyright (c) 2014 Explorence. All rights reserved.
+//  Copyright (c) 2014 Iconic. All rights reserved.
 //
 
 #import "TodayViewController.h"
