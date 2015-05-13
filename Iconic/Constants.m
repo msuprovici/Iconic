@@ -3,7 +3,7 @@
 //  Iconic
 //
 //  Created by Mike Suprovici on 12/26/13.
-//  Copyright (c) 2013 Explorence. All rights reserved.
+//  Copyright (c) 2013 Iconic. All rights reserved.
 //
 
 //s9bHjtPJmIosc4TX9QqG9NTkbZHc2usrJDxoEExx

@@ -3,7 +3,7 @@
 //  Iconic
 //
 //  Created by Mike Suprovici on 1/10/14.
-//  Copyright (c) 2014 Explorence. All rights reserved.
+//  Copyright (c) 2014 Iconic All rights reserved.
 //
 
 #import "SimpleHomeViewController.h"

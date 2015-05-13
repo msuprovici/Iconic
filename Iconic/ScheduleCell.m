@@ -3,7 +3,7 @@
 //  Iconic
 //
 //  Created by Mike Suprovici on 12/19/13.
-//  Copyright (c) 2013 Explorence. All rights reserved.
+//  Copyright (c) 2013 Iconic All rights reserved.
 //
 
 #import "ScheduleCell.h"
