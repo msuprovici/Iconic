@@ -2038,7 +2038,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = Explorence;
+				ORGANIZATIONNAME = Iconic;
 				TargetAttributes = {
 					5C3BC49C19DF15CC00D9A9AD = {
 						CreatedOnToolsVersion = 6.0.1;
