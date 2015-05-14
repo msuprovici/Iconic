@@ -27,6 +27,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AchievmentsViewController.h"
 #import <LayerKit/LayerKit.h>
+#import "Flurry.h"
 
 
 
@@ -107,6 +108,13 @@
     //testing key
     [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"]; //dev
     
+    //Flurry
+    
+    //beta key
+    //[Flurry startSession:@"MNPN945STSGP59PFCSFW"];
+    
+    //testing key
+    [Flurry startSession:@"GFB5TWRMW9J2YNCMPK7R"];
 
     //initialize intercom
     
