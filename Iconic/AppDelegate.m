@@ -27,7 +27,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "AchievmentsViewController.h"
 #import <LayerKit/LayerKit.h>
-//#import "Flurry.h"
+#import "Flurry.h"
 
 
 
@@ -114,7 +114,7 @@
     //[Flurry startSession:@"MNPN945STSGP59PFCSFW"];
     
     //testing key
-//    [Flurry startSession:@"GFB5TWRMW9J2YNCMPK7R"];
+    [Flurry startSession:@"GFB5TWRMW9J2YNCMPK7R"];
 
     //initialize intercom
     
