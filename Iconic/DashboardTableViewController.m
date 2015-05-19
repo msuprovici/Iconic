@@ -31,6 +31,8 @@
 #import "UIImage+ResizeAdditions.h"
 #import <CoreMotion/CoreMotion.h>
 
+#import "LayerConversationListViewController.h"
+
 @interface DashboardTableViewController ()
 
 {
@@ -131,6 +133,18 @@
                                              selector:@selector(receivedAchievementNotificationNow:)
                                                  name:@"achievmentReceived"
                                                object:nil];
+  
+    //uncomment to test Layer chat
+  /*
+    //layer authentication
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedLayerAuthenticationNotification:)
+                                                 name:@"LayerAuthenticated"
+                                               object:nil];
+    
+    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+    [calculatePointsClass loginLayer];
+  */
     
     [self refreshDays];
     
@@ -1026,6 +1040,19 @@
         [self performSelector:@selector(reoladTableView) withObject:self afterDelay:5.0];
     }
 }
+
+-(void)receivedLayerAuthenticationNotification:(NSNotification *) notification
+{
+    if([[notification name] isEqualToString:@"LayerAuthenticated"])
+    {
+        NSLog(@"LayerAuthenticated");
+        NSDictionary* userInfo = notification.userInfo;
+        
+        LayerConversationListViewController *controller = [LayerConversationListViewController  conversationListViewControllerWithLayerClient:userInfo[@"layerClient"]];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
+
 
 -(void)reoladTableView
 {

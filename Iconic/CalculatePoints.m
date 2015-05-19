@@ -2330,6 +2330,13 @@
             [self authenticateLayerWithUserID:userID completion:^(BOOL success, NSError *error) {
                 if (!error){
                     //                    [self presentConversationListViewController];
+                    
+                    NSDictionary* userInfo = @{@"layerClient": self.layerClient};
+                    
+                    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+                    [nc postNotificationName:@"LayerAuthenticated" object:self userInfo:userInfo];
+                    
+                    
                     NSLog(@"Layer User authenticated");
                 } else {
                     NSLog(@"Failed Authenticating Layer Client with error:%@", error);

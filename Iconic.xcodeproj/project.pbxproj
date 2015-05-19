@@ -346,6 +346,11 @@
 		5CE778361A0D7D0D008B3585 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE7782B1A0D7D0D008B3585 /* Icon-Small@2x.png */; };
 		5CE778371A0D7D0D008B3585 /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE7782C1A0D7D0D008B3585 /* Icon-Small@3x.png */; };
 		5CEC3BDE18A2A86200C444FA /* TeamPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC3BDD18A2A86200C444FA /* TeamPlayerCell.m */; };
+		5CF7B6BE1B0B8DC00006C318 /* PFUser+ATLParticipant.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6BD1B0B8DC00006C318 /* PFUser+ATLParticipant.m */; };
+		5CF7B6C11B0B92210006C318 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C01B0B92210006C318 /* UserManager.m */; };
+		5CF7B6C41B0B93070006C318 /* LayerConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C31B0B93070006C318 /* LayerConversationListViewController.m */; };
+		5CF7B6C71B0B93670006C318 /* LayerParticipantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C61B0B93670006C318 /* LayerParticipantViewController.m */; };
+		5CF7B6CA1B0B93CB0006C318 /* LayerConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C91B0B93CB0006C318 /* LayerConversationViewController.m */; };
 		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
 		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
 /* End PBXBuildFile section */
@@ -862,6 +867,16 @@
 		5CE7782C1A0D7D0D008B3585 /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
 		5CEC3BDC18A2A86200C444FA /* TeamPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamPlayerCell.h; sourceTree = "<group>"; };
 		5CEC3BDD18A2A86200C444FA /* TeamPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamPlayerCell.m; sourceTree = "<group>"; };
+		5CF7B6BC1B0B8DC00006C318 /* PFUser+ATLParticipant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PFUser+ATLParticipant.h"; path = "../PFUser+ATLParticipant.h"; sourceTree = "<group>"; };
+		5CF7B6BD1B0B8DC00006C318 /* PFUser+ATLParticipant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PFUser+ATLParticipant.m"; path = "../PFUser+ATLParticipant.m"; sourceTree = "<group>"; };
+		5CF7B6BF1B0B92210006C318 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		5CF7B6C01B0B92210006C318 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		5CF7B6C21B0B93070006C318 /* LayerConversationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerConversationListViewController.h; sourceTree = "<group>"; };
+		5CF7B6C31B0B93070006C318 /* LayerConversationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerConversationListViewController.m; sourceTree = "<group>"; };
+		5CF7B6C51B0B93670006C318 /* LayerParticipantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerParticipantViewController.h; sourceTree = "<group>"; };
+		5CF7B6C61B0B93670006C318 /* LayerParticipantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerParticipantViewController.m; sourceTree = "<group>"; };
+		5CF7B6C81B0B93CB0006C318 /* LayerConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerConversationViewController.h; sourceTree = "<group>"; };
+		5CF7B6C91B0B93CB0006C318 /* LayerConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerConversationViewController.m; sourceTree = "<group>"; };
 		5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		5CFB1EB81834381C0026AEB4 /* ScheduleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleGenerator.h; sourceTree = "<group>"; };
@@ -1617,6 +1632,7 @@
 				5C4EF97E1868D99B000E0E59 /* Cache.m */,
 				5CCB26D219085BA5002B6832 /* CalculatePoints.h */,
 				5CCB26D319085BA5002B6832 /* CalculatePoints.m */,
+				5CF7B6CB1B0B99720006C318 /* Layer_Chat */,
 				5C118E881926B0E200C1760C /* DataModel */,
 				5C8B047B189CAF9B000AD0DF /* TabMenu */,
 				5C8B0477189CAE4D000AD0DF /* MyAccount */,
@@ -1973,6 +1989,39 @@
 			path = AppIcon.appiconset;
 			sourceTree = "<group>";
 		};
+		5CF7B6CB1B0B99720006C318 /* Layer_Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5CF7B6CC1B0B99850006C318 /* Layer+Parse_Model */,
+				5CF7B6CD1B0B99AD0006C318 /* AtlasUI */,
+			);
+			name = Layer_Chat;
+			sourceTree = "<group>";
+		};
+		5CF7B6CC1B0B99850006C318 /* Layer+Parse_Model */ = {
+			isa = PBXGroup;
+			children = (
+				5CF7B6BC1B0B8DC00006C318 /* PFUser+ATLParticipant.h */,
+				5CF7B6BD1B0B8DC00006C318 /* PFUser+ATLParticipant.m */,
+				5CF7B6BF1B0B92210006C318 /* UserManager.h */,
+				5CF7B6C01B0B92210006C318 /* UserManager.m */,
+			);
+			name = "Layer+Parse_Model";
+			sourceTree = "<group>";
+		};
+		5CF7B6CD1B0B99AD0006C318 /* AtlasUI */ = {
+			isa = PBXGroup;
+			children = (
+				5CF7B6C21B0B93070006C318 /* LayerConversationListViewController.h */,
+				5CF7B6C31B0B93070006C318 /* LayerConversationListViewController.m */,
+				5CF7B6C81B0B93CB0006C318 /* LayerConversationViewController.h */,
+				5CF7B6C91B0B93CB0006C318 /* LayerConversationViewController.m */,
+				5CF7B6C51B0B93670006C318 /* LayerParticipantViewController.h */,
+				5CF7B6C61B0B93670006C318 /* LayerParticipantViewController.m */,
+			);
+			name = AtlasUI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2290,6 +2339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CF7B6BE1B0B8DC00006C318 /* PFUser+ATLParticipant.m in Sources */,
 				5C539A161867A2AC006676FA /* FollowCell.m in Sources */,
 				5C8BB5B21884627000E89ADF /* TimelineViewController.m in Sources */,
 				5CA6BB4E19C8DDEF00E9946E /* ChatRoomTableViewCell.m in Sources */,
@@ -2347,6 +2397,7 @@
 				5C78DA531899676000CBA29B /* FindFriendsViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
 				5C418F431ACC67F900DC30FF /* AAPLMotionActivityQuery.m in Sources */,
+				5CF7B6C11B0B92210006C318 /* UserManager.m in Sources */,
 				5CC772EB1AFD796700EEEB33 /* ATLParticipantTableViewController.m in Sources */,
 				5C118E841926B08D00C1760C /* Team.m in Sources */,
 				5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */,
@@ -2398,6 +2449,7 @@
 				5C8B0476189CAE3F000AD0DF /* AccountViewController.m in Sources */,
 				5CA19A3818B83E290023C940 /* PNColor.m in Sources */,
 				5CC772EA1AFD796700EEEB33 /* ATLConversationViewController.m in Sources */,
+				5CF7B6C41B0B93070006C318 /* LayerConversationListViewController.m in Sources */,
 				5C539A031863F774006676FA /* ScheduleCell.m in Sources */,
 				5CC772EC1AFD796700EEEB33 /* ATLTypingIndicatorViewController.m in Sources */,
 				5CA19A3618B83E290023C940 /* PNChartLabel.m in Sources */,
@@ -2405,6 +2457,7 @@
 				5CD93838187B5627006CE08B /* DialogViewController.m in Sources */,
 				5C2EA53D1851516700B21C52 /* MyStatsViewController.m in Sources */,
 				5C2C1CCC185E9142006722D2 /* SWRevealViewController.m in Sources */,
+				5CF7B6CA1B0B93CB0006C318 /* LayerConversationViewController.m in Sources */,
 				5CC772EE1AFD796700EEEB33 /* ATLDataSourceChange.m in Sources */,
 				5C48B8A21880F7AB00A09A1C /* UIImage+Additional.m in Sources */,
 				5CA19A3518B83E290023C940 /* PNBarChart.m in Sources */,
@@ -2419,6 +2472,7 @@
 				5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */,
 				5C328BF8185F773300E0E985 /* VSCell.m in Sources */,
 				5CC772ED1AFD796700EEEB33 /* ATLConversationDataSource.m in Sources */,
+				5CF7B6C71B0B93670006C318 /* LayerParticipantViewController.m in Sources */,
 				5CB75DFD1889F65C0047BC47 /* ProfileImageView.m in Sources */,
 				5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */,
 				5CA3D1971831DF51006C7932 /* main.m in Sources */,
