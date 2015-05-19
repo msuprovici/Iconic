@@ -20,6 +20,9 @@
 #import "AAPLActivityDataManager.h"
 #import "Amplitude.h"
 
+#import "PNColor.h"
+#import "ATLOutgoingMessageCollectionViewCell.h"
+
 
 @interface CalculatePoints ()
 
@@ -2335,6 +2338,7 @@
                     
                     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
                     [nc postNotificationName:@"LayerAuthenticated" object:self userInfo:userInfo];
+//                    [self customizeLayerAtlasUI];
                     
                     
                     NSLog(@"Layer User authenticated");
@@ -2423,6 +2427,17 @@
         
     }];
 }
+
+
+//-(void)customizeLayerAtlasUI
+//{
+////    ATLConverationViewController *viewController = [ATLConversationViewController conversationViewControllerWithLayerClient:self.layerClient];
+//    
+//    [[ATLOutgoingMessageCollectionViewCell appearance] setMessageTextColor:[UIColor whiteColor]];
+//    [[ATLOutgoingMessageCollectionViewCell appearance] setMessageTextFont:[UIFont systemFontOfSize:14]];
+//    [[ATLOutgoingMessageCollectionViewCell appearance] setBubbleViewColor:PNWeiboColor];
+//    
+//}
 
 
 

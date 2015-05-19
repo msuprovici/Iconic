@@ -11,6 +11,8 @@
 #import <Bolts/Bolts.h>
 #import "LayerParticipantViewController.h"
 #import "UserManager.h"
+#import "PNColor.h"
+#import "Constants.h"
 
 @interface LayerConversationViewController ()<ATLConversationViewControllerDataSource, ATLConversationViewControllerDelegate, ATLParticipantTableViewControllerDelegate>
 
@@ -40,7 +42,24 @@
 
 - (void)configureUI
 {
+    //Chat cell
+
     [[ATLOutgoingMessageCollectionViewCell appearance] setMessageTextColor:[UIColor whiteColor]];
+    [[ATLOutgoingMessageCollectionViewCell appearance] setMessageTextFont:IconicSubTitleFont];
+    [[ATLOutgoingMessageCollectionViewCell appearance] setBubbleViewColor:IconicRed];
+    
+    
+    [[ATLIncomingMessageCollectionViewCell appearance] setMessageTextColor:IconicBalck];
+    [[ATLIncomingMessageCollectionViewCell appearance] setMessageTextFont:IconicSubTitleFont];
+//    [[ATLIncomingMessageCollectionViewCell appearance] setBubbleViewColor:IconicGrey];
+    
+    
+    //Text input bar
+    [[ATLMessageInputToolbar appearance] setBarTintColor:IconicRed];
+    [[ATLMessageInputToolbar appearance] setTranslucent:NO];
+    [[ATLMessageInputToolbar appearance] setRightAccessoryButtonActiveColor:[UIColor whiteColor]];
+    
+    
 }
 
 #pragma mark - ATLConversationViewControllerDelegate methods

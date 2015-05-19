@@ -251,5 +251,3 @@ NSString *const kPushPayloadFromUserObjectIdKey = @"fu";
 NSString *const kPushPayloadToUserObjectIdKey   = @"tu";
 NSString *const kPushPayloadPhotoObjectIdKey    = @"pid";
 
-
-

@@ -7,6 +7,9 @@
 //
 
 #import "LayerParticipantViewController.h"
+#import "ATLParticipantSectionHeaderView.h"
+#import "ATLAddressBarViewController.h"
+#import "Constants.h"
 
 @interface LayerParticipantViewController ()
 
@@ -19,6 +22,20 @@
     
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(handleCancelTap)];
     self.navigationItem.leftBarButtonItem = cancelItem;
+    
+    [self configureUI];
+}
+
+-(void)configureUI
+{
+    [[ATLParticipantTableViewCell appearance] setTitleColor:IconicBalck];
+    [[ATLParticipantTableViewCell appearance] setTitleFont:IconicTitleFont];
+    [[ATLParticipantSectionHeaderView appearance] setSectionHeaderTextColor:IconicBalck];
+    [[ATLParticipantSectionHeaderView appearance] setBackgroundColor:IconicGrey];
+    
+    
+//    [[ATLParticipantTableViewController appearance] set]
+    
 }
 
 - (void)handleCancelTap

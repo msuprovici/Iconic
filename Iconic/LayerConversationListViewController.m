@@ -10,6 +10,8 @@
 #import "LayerConversationViewController.h"
 #import "UserManager.h"
 #import "ATLConstants.h"
+#import "ATLConversationTableViewCell.h"
+#import "Constants.h"
 
 
 @interface LayerConversationListViewController ()<ATLConversationListViewControllerDelegate, ATLConversationListViewControllerDataSource>
@@ -26,14 +28,36 @@
     self.dataSource = self;
     self.delegate = self;
     
-    [self.navigationController.navigationBar setTintColor:ATLBlueColor()];
+//    [self.navigationController.navigationBar setTintColor:ATLBlueColor()];
+    
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
 //    UIBarButtonItem *logoutItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logoutButtonTapped:)];
 //    [self.navigationItem setLeftBarButtonItem:logoutItem];
     
     UIBarButtonItem *composeItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeButtonTapped:)];
     [self.navigationItem setRightBarButtonItem:composeItem];
+    
+    [self configureUI];
 }
+
+
+
+-(void)configureUI
+{
+    [[ATLConversationTableViewCell appearance] setConversationTitleLabelColor:IconicBalck];
+    [[ATLConversationTableViewCell appearance] setConversationTitleLabelFont:IconicTitleFont];
+    [[ATLConversationTableViewCell appearance] setLastMessageLabelColor:IconicGrey];
+    [[ATLConversationTableViewCell appearance] setLastMessageLabelFont:IconicSubTitleFont];
+    
+    [[ATLConversationTableViewCell appearance] setDateLabelColor: IconicGrey];
+    [[ATLConversationTableViewCell appearance] setDateLabelFont:IconicSmallFont];
+    
+    
+    //    [[ATLParticipantTableViewController appearance] set]
+    
+}
+
 
 #pragma mark - ATLConversationListViewControllerDelegate Methods
 

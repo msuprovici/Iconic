@@ -242,3 +242,13 @@ extern NSString *const kPushPayloadFromUserObjectIdKey;
 extern NSString *const kPushPayloadToUserObjectIdKey;
 extern NSString *const kPushPayloadPhotoObjectIdKey;
 
+#pragma mark - Colors
+
+#define IconicBalck         [UIColor colorWithRed:0.0/255.0 green:42.0/255.0 blue:50.0/255.0 alpha:1.0f]
+#define IconicRed           [UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0]
+#define IconicGrey          [UIColor colorWithRed:124.0/255.0 green:124.0/255.0 blue:134.0/255.0 alpha:1.0f]
+
+#define IconicSmallFont [UIFont fontWithName:@"HelveticaNeue-Light" size:10.0f]
+#define IconicSubTitleFont [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f]
+#define IconicTitleFont [UIFont fontWithName:@"HelveticaNeue-Light" size:20.0f]
+
