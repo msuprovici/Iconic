@@ -13,6 +13,7 @@
 #import "UserManager.h"
 #import "PNColor.h"
 #import "Constants.h"
+#import "Amplitude.h"
 
 @interface LayerConversationViewController ()<ATLConversationViewControllerDataSource, ATLConversationViewControllerDelegate, ATLParticipantTableViewControllerDelegate>
 
@@ -88,8 +89,9 @@
     if (!user) {
         [[UserManager sharedManager] queryAndCacheUsersWithIDs:@[participantIdentifier] completion:^(NSArray *participants, NSError *error) {
             if (participants && error == nil) {
+                
                 [self.addressBarController reloadView];
-                // TODO: Need a good way to refresh all the messages for the refreshed participants...
+                
                 [self reloadCellsForMessagesSentByParticipantWithIdentitifier:participantIdentifier];
             } else {
                 NSLog(@"Error querying for users: %@", error);
@@ -136,6 +138,8 @@
 
 - (void)addressBarViewController:(ATLAddressBarViewController *)addressBarViewController didTapAddContactsButton:(UIButton *)addContactsButton
 {
+    [Amplitude logEvent:@"Conversation: Add contacts"];
+    
     [[UserManager sharedManager] queryForAllUsersWithCompletion:^(NSArray *users, NSError *error) {
         if (!error) {
             LayerParticipantViewController *controller = [LayerParticipantViewController participantTableViewControllerWithParticipants:[NSSet setWithArray:users] sortType:ATLParticipantPickerSortTypeFirstName];
@@ -151,6 +155,7 @@
 
 -(void)addressBarViewController:(ATLAddressBarViewController *)addressBarViewController searchForParticipantsMatchingText:(NSString *)searchText completion:(void (^)(NSArray *))completion
 {
+    [Amplitude logEvent:@"Conversation: Search contacts"];
     [[UserManager sharedManager] queryForUserWithName:searchText completion:^(NSArray *participants, NSError *error) {
         if (!error) {
             if (completion) completion(participants);

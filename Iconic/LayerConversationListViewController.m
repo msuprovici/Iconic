@@ -12,6 +12,7 @@
 #import "ATLConstants.h"
 #import "ATLConversationTableViewCell.h"
 #import "Constants.h"
+#import "Amplitude.h"
 
 
 @interface LayerConversationListViewController ()<ATLConversationListViewControllerDelegate, ATLConversationListViewControllerDataSource>
@@ -63,6 +64,7 @@
 
 - (void)conversationListViewController:(ATLConversationListViewController *)conversationListViewController didSelectConversation:(LYRConversation *)conversation
 {
+    [Amplitude logEvent:@"Conversation List: conversatoin selcted"];
     LayerConversationViewController *controller = [LayerConversationViewController conversationViewControllerWithLayerClient:self.layerClient];
     controller.conversation = conversation;
     controller.displaysAddressBar = YES;
@@ -71,6 +73,7 @@
 
 - (void)conversationListViewController:(ATLConversationListViewController *)conversationListViewController didDeleteConversation:(LYRConversation *)conversation deletionMode:(LYRDeletionMode)deletionMode
 {
+    [Amplitude logEvent:@"Conversation List: conversatoin deleated"];
     NSLog(@"Conversation deleted");
 }
 
@@ -81,6 +84,8 @@
 
 - (void)conversationListViewController:(ATLConversationListViewController *)conversationListViewController didSearchForText:(NSString *)searchText completion:(void (^)(NSSet *filteredParticipants))completion
 {
+    
+    [Amplitude logEvent:@"Conversation List: conversatoin search"];
     [[UserManager sharedManager] queryForUserWithName:searchText completion:^(NSArray *participants, NSError *error) {
         if (!error) {
             if (completion) completion([NSSet setWithArray:participants]);

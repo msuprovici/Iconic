@@ -10,6 +10,7 @@
 #import "ATLParticipantSectionHeaderView.h"
 #import "ATLAddressBarViewController.h"
 #import "Constants.h"
+#import "Amplitude.h"
 
 @interface LayerParticipantViewController ()
 
@@ -19,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [Amplitude logEvent:@"Chat Participants: Loaded"];
     
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(handleCancelTap)];
     self.navigationItem.leftBarButtonItem = cancelItem;
@@ -30,8 +33,8 @@
 {
     [[ATLParticipantTableViewCell appearance] setTitleColor:IconicBalck];
     [[ATLParticipantTableViewCell appearance] setTitleFont:IconicTitleFont];
-    [[ATLParticipantSectionHeaderView appearance] setSectionHeaderTextColor:IconicBalck];
-    [[ATLParticipantSectionHeaderView appearance] setBackgroundColor:IconicGrey];
+//    [[ATLParticipantSectionHeaderView appearance] setSectionHeaderTextColor:IconicBalck];
+//    [[ATLParticipantSectionHeaderView appearance] setBackgroundColor:IconicGrey];
     
     
 //    [[ATLParticipantTableViewController appearance] set]

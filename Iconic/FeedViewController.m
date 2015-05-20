@@ -886,6 +886,6 @@
 
 - (IBAction)findPeople:(id)sender {
     
-    [Amplitude logEvent:@"Activity Feed: Selected Player"];
+    [Amplitude logEvent:@"Activity Feed: Find People"];
 }
 @end

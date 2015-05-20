@@ -135,16 +135,13 @@
                                                object:nil];
   
     //uncomment to test Layer chat
-  /*
+ 
     //layer authentication
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(receivedLayerAuthenticationNotification:)
-                                                 name:@"LayerAuthenticated"
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedLayerAuthenticationNotification:)  name:@"LayerAuthenticated" object:nil];
     
-    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-    [calculatePointsClass loginLayer];
-  */
+//    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//    [calculatePointsClass loginLayer];
+  
     
     [self refreshDays];
     

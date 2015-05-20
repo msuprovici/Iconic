@@ -34,6 +34,7 @@
 
 //layer
 @property (nonatomic) LYRClient *layerClient;
+@property (nonatomic) NSCache *userCache;
 
 //step counter
 @property (nonatomic, strong) CMPedometer *stepCounter;

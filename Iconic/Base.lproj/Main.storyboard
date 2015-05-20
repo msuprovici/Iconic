@@ -1171,7 +1171,7 @@
             <objects>
                 <tableViewController id="tuF-GK-KB7" customClass="CommentsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="agz-Kk-Qxf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1736,7 +1736,7 @@
             <objects>
                 <viewController storyboardIdentifier="CreateTeam" id="wv6-hi-tt4" customClass="CreateTeamViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JTN-uc-wtF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Team" minimumFontSize="17" id="Qec-P3-DLf">
@@ -1835,7 +1835,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FeedViewController" id="YRb-r1-hFU" customClass="FeedViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rm3-hb-ptd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1980,9 +1980,6 @@
                                 <state key="normal" image="Follow_Icon_White.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="yQf-DP-4VV" kind="push" id="ugF-jg-eBD"/>
-                                </connections>
                             </button>
                             <connections>
                                 <action selector="findPeople:" destination="YRb-r1-hFU" id="ovJ-f9-odK"/>
@@ -2139,7 +2136,7 @@
             <objects>
                 <tableViewController title="Teams" id="Quu-w8-KMQ" customClass="TeamsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="k7d-L5-oeV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Vu9-WC-BuJ">
@@ -2167,7 +2164,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="teamsCell" rowHeight="65" id="2hN-Pc-iZd" customClass="TeamCell">
-                                <rect key="frame" x="0.0" y="143" width="320" height="65"/>
+                                <rect key="frame" x="0.0" y="79" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2hN-Pc-iZd" id="pw5-ww-f1l">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="64"/>
@@ -2297,7 +2294,7 @@
             <objects>
                 <tableViewController id="UbG-da-jWg" customClass="PlayerProfileViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="gxJ-9q-Ru6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="oGg-mV-ZYc">
@@ -2726,12 +2723,45 @@
             </objects>
             <point key="canvasLocation" x="-2344" y="2252"/>
         </scene>
+        <!--Chat Activity View Controller-->
+        <scene sceneID="wip-ZC-u58">
+            <objects>
+                <viewController id="LwS-JC-SMB" customClass="Chat_ActivityViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="euM-AC-qQi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VII-pw-10E">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="QCP-GT-GxS">
+                            <rect key="frame" x="96" y="8" width="128" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Chat"/>
+                                <segment title="Activity"/>
+                            </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="segmentChanged:" destination="LwS-JC-SMB" eventType="valueChanged" id="s9x-7f-YOg"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="euM-AC-qQi" id="bGn-CO-uSO"/>
+                        <outlet property="typeSegmentedControl" destination="QCP-GT-GxS" id="Y8d-io-tbb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZJK-Fh-BUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2067" y="-1515"/>
+        </scene>
         <!--Find People-->
         <scene sceneID="ttt-Me-Hck">
             <objects>
-                <tableViewController id="yQf-DP-4VV" customClass="FindFriendsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FindFreindsViewController" id="yQf-DP-4VV" customClass="FindFriendsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" id="FFS-v6-ZV5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="XGg-Sw-VaO">
@@ -2848,7 +2878,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q6d-Yn-sqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2107" y="-1522"/>
+            <point key="canvasLocation" x="-1460" y="-1483"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="u2b-4b-vYw">
@@ -3270,7 +3300,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="YRb-r1-hFU" kind="relationship" relationship="rootViewController" id="dX1-ER-5AN"/>
+                        <segue destination="LwS-JC-SMB" kind="relationship" relationship="rootViewController" id="snL-Dv-1U6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PXn-op-Xtw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3319,9 +3349,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gHY-LU-ack"/>
         <segue reference="X84-Yq-ofY"/>
         <segue reference="Rnz-xH-lvc"/>
+        <segue reference="gBJ-V0-gCX"/>
         <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>

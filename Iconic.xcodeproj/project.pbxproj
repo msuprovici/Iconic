@@ -352,6 +352,7 @@
 		5CF7B6C71B0B93670006C318 /* LayerParticipantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C61B0B93670006C318 /* LayerParticipantViewController.m */; };
 		5CF7B6CA1B0B93CB0006C318 /* LayerConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C91B0B93CB0006C318 /* LayerConversationViewController.m */; };
 		5CF7B6D21B0BA0B20006C318 /* libFlurry_6.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CF7B6D11B0BA0B20006C318 /* libFlurry_6.4.0.a */; };
+		5CF7B6D51B0BEA360006C318 /* Chat+ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */; };
 		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
 		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
 /* End PBXBuildFile section */
@@ -881,6 +882,8 @@
 		5CF7B6CF1B0BA0B20006C318 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		5CF7B6D01B0BA0B20006C318 /* FlurryWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryWatch.h; sourceTree = "<group>"; };
 		5CF7B6D11B0BA0B20006C318 /* libFlurry_6.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.4.0.a; sourceTree = "<group>"; };
+		5CF7B6D31B0BEA360006C318 /* Chat+ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Chat+ActivityViewController.h"; sourceTree = "<group>"; };
+		5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Chat+ActivityViewController.m"; sourceTree = "<group>"; };
 		5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		5CFB1EB81834381C0026AEB4 /* ScheduleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleGenerator.h; sourceTree = "<group>"; };
@@ -1008,6 +1011,8 @@
 		5C2C1CBE185BAF12006722D2 /* Social */ = {
 			isa = PBXGroup;
 			children = (
+				5CF7B6D31B0BEA360006C318 /* Chat+ActivityViewController.h */,
+				5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */,
 				5CB75E01188A233C0047BC47 /* Feed */,
 				5CB75DFE188A21C70047BC47 /* Comments+Likes On Activity */,
 				5CB75E00188A23060047BC47 /* Profile */,
@@ -2400,6 +2405,7 @@
 				5CA7593E1A49ECAE0016ED8E /* AchievmentsViewController.m in Sources */,
 				5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */,
 				5CC773001AFD796700EEEB33 /* ATLConversationView.m in Sources */,
+				5CF7B6D51B0BEA360006C318 /* Chat+ActivityViewController.m in Sources */,
 				5CC773071AFD796700EEEB33 /* ATLParticipantSectionHeaderView.m in Sources */,
 				5C78DA561899678400CBA29B /* FindFriendsCell.m in Sources */,
 				5CC772E71AFD796700EEEB33 /* ATLAddressBarViewController.m in Sources */,

@@ -2312,7 +2312,7 @@
     // Initializes a LYRClient object
     NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
     self.layerClient  = [LYRClient clientWithAppID:appID];
-
+    self.layerClient.autodownloadMIMETypes = [NSSet setWithObjects:@"image/jpeg", @"image/png",@"image/gif",nil];
     
     NSLog(@"loginLayer called");
     //    [SVProgressHUD show];
@@ -2335,10 +2335,21 @@
                     //                    [self presentConversationListViewController];
                     
                     NSDictionary* userInfo = @{@"layerClient": self.layerClient};
+//                    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+//                    [defaults setObject:userInfo forKey:@"layerClient"];
+//                    [defaults synchronize];
+
+                    
+                    
                     
                     NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
                     [nc postNotificationName:@"LayerAuthenticated" object:self userInfo:userInfo];
 //                    [self customizeLayerAtlasUI];
+                    
+                    self.userCache = [[NSCache alloc]init];
+                    [self.userCache setObject:self.layerClient forKey:@"layerClient"];
+                    
+                    NSLog(@"self.userCache in calculate points:%@", [self.userCache objectForKey:@"layerClient"]);
                     
                     
                     NSLog(@"Layer User authenticated");
