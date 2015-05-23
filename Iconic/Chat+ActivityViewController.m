@@ -16,6 +16,7 @@
 #import "LayerConversationViewController.h"
 #import "FindFriendsViewController.h"
 #import "Amplitude.h"
+#import "NSLayerClientObject.h"
 
 
 @interface Chat_ActivityViewController ()
@@ -29,13 +30,28 @@
 
 @implementation Chat_ActivityViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // add viewController so you can switch them later.
     
-    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
-    self.layerClient  = [LYRClient clientWithAppID:appID];
-    self.layerClient.autodownloadMIMETypes = [NSSet setWithObjects:@"image/jpeg", @"image/png",@"image/gif",nil];
+
+    //retrieve cached layer client
+     LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
+    
+    if (cachedLayerClient) {
+        self.layerClient = cachedLayerClient;
+        NSLog(@"cached Layer client");
+    }
+    else
+    {
+        NSLog(@"no cached Layer client");
+        NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
+        self.layerClient  = [LYRClient clientWithAppID:appID];
+        
+        [[NSLayerClientObject sharedInstance] cacheLayerClient:self.layerClient forKey:@"layerClient"];
+    }
+    
     
     
     UIViewController *vc = [self viewControllerForSegmentIndex:self.typeSegmentedControl.selectedSegmentIndex];
@@ -62,16 +78,8 @@
 - (UIViewController *)viewControllerForSegmentIndex:(NSInteger)index {
     UIViewController *vc;
     
-    if(index == 0)
-    {
-        UIBarButtonItem *composeItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeButtonTapped:)];
-        
-        [self.navigationItem setRightBarButtonItem:composeItem];
-        
-        [Amplitude logEvent:@"Conversation: Segment Toggle Presed"];
-    }
     
-    if(index == 1)
+    if(index == 0)
     {
         
         UIBarButtonItem *followFriendsItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Follow_Icon_White.png"] style:UIBarButtonItemStylePlain target:self action:@selector(followButtonTapped:)];
@@ -80,34 +88,37 @@
         
         [Amplitude logEvent:@"Activity: Segment Toggle Presed"];
     }
+    
+    
+    if(index == 1)
+    {
+        UIBarButtonItem *composeItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(composeButtonTapped:)];
+        
+        [self.navigationItem setRightBarButtonItem:composeItem];
+        
+        [Amplitude logEvent:@"Conversation: Segment Toggle Presed"];
+    }
+    
+ 
 
    
     
     switch (index) {
             
-        case 0:
+          case 0:
+            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedViewController"];
+            break;
+            
+        case 1:
             
             vc = [LayerConversationListViewController  conversationListViewControllerWithLayerClient:self.layerClient];
 
             break;
-        case 1:
-            vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedViewController"];
-            break;
+       
     }
     return vc;
 }
 
--(void)receivedLayerAuthenticationNotification:(NSNotification *) notification
-{
-    if([[notification name] isEqualToString:@"LayerAuthenticated"])
-    {
-        NSLog(@"LayerAuthenticated");
-        NSDictionary* userInfo = notification.userInfo;
-        
-        self.layerClient = userInfo[@"layerClient"];
-        
-    }
-}
 
 - (void)composeButtonTapped:(id)sender
 {

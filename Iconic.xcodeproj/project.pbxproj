@@ -353,6 +353,7 @@
 		5CF7B6CA1B0B93CB0006C318 /* LayerConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C91B0B93CB0006C318 /* LayerConversationViewController.m */; };
 		5CF7B6D21B0BA0B20006C318 /* libFlurry_6.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CF7B6D11B0BA0B20006C318 /* libFlurry_6.4.0.a */; };
 		5CF7B6D51B0BEA360006C318 /* Chat+ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */; };
+		5CF7B6DB1B0E7EDA0006C318 /* NSLayerClientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */; };
 		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
 		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
 /* End PBXBuildFile section */
@@ -884,6 +885,8 @@
 		5CF7B6D11B0BA0B20006C318 /* libFlurry_6.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.4.0.a; sourceTree = "<group>"; };
 		5CF7B6D31B0BEA360006C318 /* Chat+ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Chat+ActivityViewController.h"; sourceTree = "<group>"; };
 		5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Chat+ActivityViewController.m"; sourceTree = "<group>"; };
+		5CF7B6D91B0E7ED90006C318 /* NSLayerClientObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSLayerClientObject.h; path = ../NSLayerClientObject.h; sourceTree = "<group>"; };
+		5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSLayerClientObject.m; path = ../NSLayerClientObject.m; sourceTree = "<group>"; };
 		5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		5CFB1EB81834381C0026AEB4 /* ScheduleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleGenerator.h; sourceTree = "<group>"; };
@@ -2003,6 +2006,8 @@
 		5CF7B6CB1B0B99720006C318 /* Layer_Chat */ = {
 			isa = PBXGroup;
 			children = (
+				5CF7B6D91B0E7ED90006C318 /* NSLayerClientObject.h */,
+				5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */,
 				5CF7B6CC1B0B99850006C318 /* Layer+Parse_Model */,
 				5CF7B6CD1B0B99AD0006C318 /* AtlasUI */,
 			);
@@ -2462,6 +2467,7 @@
 				5CC773051AFD796700EEEB33 /* ATLMessageInputToolbar.m in Sources */,
 				5C328BF5185F70C100E0E985 /* VSViewController.m in Sources */,
 				5C2EA547185164BE00B21C52 /* MyStatsContentController.m in Sources */,
+				5CF7B6DB1B0E7EDA0006C318 /* NSLayerClientObject.m in Sources */,
 				5CC772F41AFD796700EEEB33 /* ATLMediaInputStream.m in Sources */,
 				5CD93835187B551D006CE08B /* CustomTransition.m in Sources */,
 				5C04C2F61940E79400E21ED4 /* CustomPFLogInViewController.m in Sources */,

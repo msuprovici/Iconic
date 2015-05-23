@@ -19,9 +19,11 @@
 #import "AAPLMotionActivityQuery.h"
 #import "AAPLActivityDataManager.h"
 #import "Amplitude.h"
+#import "NSLayerClientObject.h"
 
 #import "PNColor.h"
 #import "ATLOutgoingMessageCollectionViewCell.h"
+#import "Chat+ActivityViewController.h"
 
 
 @interface CalculatePoints ()
@@ -2314,6 +2316,10 @@
     self.layerClient  = [LYRClient clientWithAppID:appID];
     self.layerClient.autodownloadMIMETypes = [NSSet setWithObjects:@"image/jpeg", @"image/png",@"image/gif",nil];
     
+
+    //cache the layer client so you can use it throughout the application
+    [[NSLayerClientObject sharedInstance] cacheLayerClient:self.layerClient forKey:@"layerClient"];
+    
     NSLog(@"loginLayer called");
     //    [SVProgressHUD show];
     
@@ -2332,25 +2338,7 @@
             NSString *userID = user.objectId;
             [self authenticateLayerWithUserID:userID completion:^(BOOL success, NSError *error) {
                 if (!error){
-                    //                    [self presentConversationListViewController];
-                    
-                    NSDictionary* userInfo = @{@"layerClient": self.layerClient};
-//                    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-//                    [defaults setObject:userInfo forKey:@"layerClient"];
-//                    [defaults synchronize];
-
-                    
-                    
-                    
-                    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-                    [nc postNotificationName:@"LayerAuthenticated" object:self userInfo:userInfo];
-//                    [self customizeLayerAtlasUI];
-                    
-                    self.userCache = [[NSCache alloc]init];
-                    [self.userCache setObject:self.layerClient forKey:@"layerClient"];
-                    
-                    NSLog(@"self.userCache in calculate points:%@", [self.userCache objectForKey:@"layerClient"]);
-                    
+                
                     
                     NSLog(@"Layer User authenticated");
                 } else {
