@@ -32,6 +32,7 @@
 #import <CoreMotion/CoreMotion.h>
 
 #import "LayerConversationListViewController.h"
+#import "NSLayerClientObject.h"
 
 @interface DashboardTableViewController ()
 
@@ -68,6 +69,9 @@
 
 //achievments
 @property (nonatomic, strong) PFObject * teamAchievmentReceived;
+
+//layer client
+@property (nonatomic) LYRClient *layerClient;
 
 
 
@@ -134,13 +138,7 @@
                                                  name:@"achievmentReceived"
                                                object:nil];
   
-    //uncomment to test Layer chat
  
-    //layer authentication
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedLayerAuthenticationNotification:)  name:@"LayerAuthenticated" object:nil];
-    
-//    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-//    [calculatePointsClass loginLayer];
   
     
     [self refreshDays];
@@ -152,6 +150,17 @@
 //    NSLog(@"totalNumberStepsToday: %ld", (long)[[sharedDefaults objectForKey:@"totalNumberStepsToday"] integerValue]);
 //    NSLog(@"kMyFetchedStepsToday %@", [sharedDefaults objectForKey:kMyFetchedStepsToday]);
 //    NSLog(@"kMyStepsDelta %@", [sharedDefaults objectForKey:kMyStepsDelta]);
+    
+    LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
+    
+    if(cachedLayerClient)
+    {
+//        NSLog(@"cached Layer Client");
+    }
+    else
+    {
+        [self connectLayer];
+    }
     
     
 }
@@ -173,18 +182,7 @@
     }
     
     
-    
-    //connect layer for users who signed up before we added the framework
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([defaults objectForKey:@"userJustLoggedIn"] == nil) {
-        
-        [self connectLayer];
-        
-    }
-
-    
-    
     
     
     //if the app was 1st oppened today refresh the Dashboard
@@ -222,13 +220,8 @@
 -(void)connectLayer
 {
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [calculatePointsClass loginLayer];
     
-    if ([defaults objectForKey:@"layerAuthenticated"] == nil) {
-    //        NSLog(@"layer not authenticated");
-        [calculatePointsClass loginLayer];
-        [defaults setBool:true forKey:@"layerAuthenticated"];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

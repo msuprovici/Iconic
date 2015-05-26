@@ -9,14 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "Atlas.h"
 
-@interface NSLayerClientObject : NSObject
+@interface NSLayerClientObject : NSObject <LYRClientDelegate>
 
 + (NSLayerClientObject*)sharedInstance;
 
 @property (nonatomic) LYRClient *layerClient;
-
-//- (void)setTheLayerClient:(LYRClient *)layerClient;
-
 
 
 // set

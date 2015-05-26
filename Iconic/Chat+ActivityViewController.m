@@ -24,6 +24,7 @@
 //layer
 @property (nonatomic) LYRClient *layerClient;
 
+@property (nonatomic) NSLayerClientObject *layerClientObject;
 
 
 @end
@@ -36,22 +37,6 @@
     // add viewController so you can switch them later.
     
 
-    //retrieve cached layer client
-     LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
-    
-    if (cachedLayerClient) {
-        self.layerClient = cachedLayerClient;
-        NSLog(@"cached Layer client");
-    }
-    else
-    {
-        NSLog(@"no cached Layer client");
-        NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
-        self.layerClient  = [LYRClient clientWithAppID:appID];
-        
-        [[NSLayerClientObject sharedInstance] cacheLayerClient:self.layerClient forKey:@"layerClient"];
-    }
-    
     
     
     UIViewController *vc = [self viewControllerForSegmentIndex:self.typeSegmentedControl.selectedSegmentIndex];
@@ -60,6 +45,25 @@
     [self.contentView addSubview:vc.view];
     self.currentViewController = vc;
 }
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self layerSetUp];
+}
+
+
+-(void)layerSetUp
+{
+    
+
+    //retrieve cached layer client
+    LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
+    self.layerClient = cachedLayerClient;
+        
+
+}
+
 - (IBAction)segmentChanged:(UISegmentedControl *)sender {
     UIViewController *vc = [self viewControllerForSegmentIndex:sender.selectedSegmentIndex];
     [self addChildViewController:vc];

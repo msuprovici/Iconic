@@ -37,6 +37,9 @@
 @property (nonatomic, strong) NSDate *now;
 @property (nonatomic, strong) NSDate *from;
 
+//layer
+@property (nonatomic) NSLayerClientObject *layerClientObject;
+
 @end
 
 
@@ -2310,18 +2313,18 @@
 
 - (void)loginLayer
 {
+
     
     // Initializes a LYRClient object
     NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
     self.layerClient  = [LYRClient clientWithAppID:appID];
     self.layerClient.autodownloadMIMETypes = [NSSet setWithObjects:@"image/jpeg", @"image/png",@"image/gif",nil];
     
-
     //cache the layer client so you can use it throughout the application
     [[NSLayerClientObject sharedInstance] cacheLayerClient:self.layerClient forKey:@"layerClient"];
     
-    NSLog(@"loginLayer called");
-    //    [SVProgressHUD show];
+//    NSLog(@"loginLayer called");
+   
     
     // Connect to Layer
     // See "Quick Start - Connect" for more details
