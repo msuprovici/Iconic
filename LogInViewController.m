@@ -154,7 +154,7 @@
     [calculatePointsClass migrateLeaguesToCoreData];
     [calculatePointsClass autoFollowUsers];
     //layer
-    [calculatePointsClass loginLayer];
+//    [calculatePointsClass loginLayer];
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:true forKey:@"userJustLoggedIn"];
@@ -258,7 +258,7 @@
     [calculatePointsClass migrateLeaguesToCoreData];
     [calculatePointsClass autoFollowUsers];
    
-    [calculatePointsClass loginLayer];
+//    [calculatePointsClass loginLayer];
     
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

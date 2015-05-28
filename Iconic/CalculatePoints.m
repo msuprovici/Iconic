@@ -2311,13 +2311,14 @@
 
 #pragma mark - Layer Authentication Methods
 
-- (void)loginLayer
+- (void)loginLayer: (LYRClient*)layerClient
 {
 
     
     // Initializes a LYRClient object
-    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
-    self.layerClient  = [LYRClient clientWithAppID:appID];
+//    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
+    self.layerClient  = layerClient;
+//    [LYRClient clientWithAppID:appID];
     self.layerClient.autodownloadMIMETypes = [NSSet setWithObjects:@"image/jpeg", @"image/png",@"image/gif",nil];
     
     //cache the layer client so you can use it throughout the application

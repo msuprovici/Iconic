@@ -36,7 +36,16 @@
     [super viewDidLoad];
     // add viewController so you can switch them later.
     
+}
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self layerSetUp];
+    
+    //get the activitySegmentIndex set 
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.typeSegmentedControl.selectedSegmentIndex = [defaults integerForKey:@"activitySegementedControlIndex"];
     
     
     UIViewController *vc = [self viewControllerForSegmentIndex:self.typeSegmentedControl.selectedSegmentIndex];
@@ -44,12 +53,10 @@
     vc.view.frame = self.contentView.bounds;
     [self.contentView addSubview:vc.view];
     self.currentViewController = vc;
-}
+    
+    
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self layerSetUp];
+
 }
 
 

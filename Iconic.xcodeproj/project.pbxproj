@@ -354,6 +354,7 @@
 		5CF7B6D21B0BA0B20006C318 /* libFlurry_6.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CF7B6D11B0BA0B20006C318 /* libFlurry_6.4.0.a */; };
 		5CF7B6D51B0BEA360006C318 /* Chat+ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */; };
 		5CF7B6DB1B0E7EDA0006C318 /* NSLayerClientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */; };
+		5CF7B6DE1B1632160006C318 /* ATLMLayerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6DC1B1632150006C318 /* ATLMLayerClient.m */; };
 		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
 		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
 /* End PBXBuildFile section */
@@ -887,6 +888,8 @@
 		5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Chat+ActivityViewController.m"; sourceTree = "<group>"; };
 		5CF7B6D91B0E7ED90006C318 /* NSLayerClientObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSLayerClientObject.h; path = ../NSLayerClientObject.h; sourceTree = "<group>"; };
 		5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSLayerClientObject.m; path = ../NSLayerClientObject.m; sourceTree = "<group>"; };
+		5CF7B6DC1B1632150006C318 /* ATLMLayerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLMLayerClient.m; sourceTree = "<group>"; };
+		5CF7B6DD1B1632160006C318 /* ATLMLayerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLMLayerClient.h; sourceTree = "<group>"; };
 		5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		5CFB1EB81834381C0026AEB4 /* ScheduleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleGenerator.h; sourceTree = "<group>"; };
@@ -1016,6 +1019,7 @@
 			children = (
 				5CF7B6D31B0BEA360006C318 /* Chat+ActivityViewController.h */,
 				5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */,
+				5CF7B6CB1B0B99720006C318 /* Layer_Chat */,
 				5CB75E01188A233C0047BC47 /* Feed */,
 				5CB75DFE188A21C70047BC47 /* Comments+Likes On Activity */,
 				5CB75E00188A23060047BC47 /* Profile */,
@@ -1646,7 +1650,6 @@
 				5C4EF97E1868D99B000E0E59 /* Cache.m */,
 				5CCB26D219085BA5002B6832 /* CalculatePoints.h */,
 				5CCB26D319085BA5002B6832 /* CalculatePoints.m */,
-				5CF7B6CB1B0B99720006C318 /* Layer_Chat */,
 				5C118E881926B0E200C1760C /* DataModel */,
 				5C8B047B189CAF9B000AD0DF /* TabMenu */,
 				5C8B0477189CAE4D000AD0DF /* MyAccount */,
@@ -1805,6 +1808,8 @@
 		5CC772941AFD787800EEEB33 /* Atlas */ = {
 			isa = PBXGroup;
 			children = (
+				5CF7B6DC1B1632150006C318 /* ATLMLayerClient.m */,
+				5CF7B6DD1B1632160006C318 /* ATLMLayerClient.h */,
 				5CC7726B1AFD784C00EEEB33 /* Atlas.h */,
 				5CC7726C1AFD784C00EEEB33 /* Atlas.m */,
 				5CC772971AFD796700EEEB33 /* Controllers */,
@@ -2499,6 +2504,7 @@
 				5C0FBDE318AD4BC900A0A122 /* LeagueCell.m in Sources */,
 				5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */,
 				5C328BF8185F773300E0E985 /* VSCell.m in Sources */,
+				5CF7B6DE1B1632160006C318 /* ATLMLayerClient.m in Sources */,
 				5CC772ED1AFD796700EEEB33 /* ATLConversationDataSource.m in Sources */,
 				5CF7B6C71B0B93670006C318 /* LayerParticipantViewController.m in Sources */,
 				5CB75DFD1889F65C0047BC47 /* ProfileImageView.m in Sources */,

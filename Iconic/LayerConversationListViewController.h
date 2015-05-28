@@ -14,4 +14,8 @@
 
 @interface LayerConversationListViewController : ATLConversationListViewController
 
+
+- (void)selectConversation:(LYRConversation *)conversation;
+- (void)presentControllerWithConversation:(LYRConversation *)conversation;
+
 @end

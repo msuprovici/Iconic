@@ -32,7 +32,9 @@
 #import <CoreMotion/CoreMotion.h>
 
 #import "LayerConversationListViewController.h"
+#import "LayerConversationViewController.h"
 #import "NSLayerClientObject.h"
+#import "Chat+ActivityViewController.h"
 
 @interface DashboardTableViewController ()
 
@@ -137,6 +139,13 @@
                                              selector:@selector(receivedAchievementNotificationNow:)
                                                  name:@"achievmentReceived"
                                                object:nil];
+    
+    //achievment received
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showLayerConversationViewController:)
+                                                 name:@"newChatMessage"
+                                               object:nil];
+
   
  
   
@@ -162,6 +171,7 @@
         [self connectLayer];
     }
     
+   
     
 }
 
@@ -183,6 +193,10 @@
     
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    //set the default index for the segment for UISegmentControl in the activity view contorller
+    [defaults setInteger:0 forKey:@"activitySegementedControlIndex"];
+    [defaults synchronize];
     
     
     //if the app was 1st oppened today refresh the Dashboard
@@ -220,7 +234,11 @@
 -(void)connectLayer
 {
     CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-    [calculatePointsClass loginLayer];
+    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
+    self.layerClient = [LYRClient clientWithAppID:appID];
+    [calculatePointsClass loginLayer:self.layerClient];
+    
+//    [calculatePointsClass loginLayer];
     
 }
 
@@ -1031,15 +1049,39 @@
     }
 }
 
--(void)receivedLayerAuthenticationNotification:(NSNotification *) notification
+-(void)showLayerConversationViewController:(NSNotification *) notification
 {
-    if([[notification name] isEqualToString:@"LayerAuthenticated"])
+    if([[notification name] isEqualToString:@"newChatMessage"])
     {
-        NSLog(@"LayerAuthenticated");
-        NSDictionary* userInfo = notification.userInfo;
+//        NSLog(@"LayerAuthenticated");
+//        NSDictionary* chatMessage = notification.userInfo;
+        LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
+        LayerConversationListViewController *controller = [LayerConversationListViewController  conversationListViewControllerWithLayerClient:cachedLayerClient];
         
-        LayerConversationListViewController *controller = [LayerConversationListViewController  conversationListViewControllerWithLayerClient:userInfo[@"layerClient"]];
-        [self.navigationController pushViewController:controller animated:YES];
+//        LayerConversationViewController * conversationController = [LayerConversationViewController ]
+        
+//        [self.navigationController pushViewController:controller animated:YES];
+        
+//        Chat_ActivityViewController *activityController = [self.tabBarController.viewControllers objectAtIndex:1];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:1 forKey:@"activitySegementedControlIndex"];
+        
+        [defaults synchronize];
+        
+        
+        Chat_ActivityViewController *activityController = [[Chat_ActivityViewController alloc]init];
+        [activityController.typeSegmentedControl setSelectedSegmentIndex:1];
+//        activityController.typeSegmentedControl.selectedSegmentIndex = 1;
+        self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:1];
+        
+       
+        
+        
+//        [self.tabBarController.viewControllers objectAtIndex:1].typeSegmentedControl.selectedSegmentIndex = 1;
+//         self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:1];
+     
+        
     }
 }
 

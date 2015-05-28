@@ -163,7 +163,9 @@
 
 -(void)saveFinalTeamScoresToDefaults;
 
--(void)loginLayer;
+//-(void)loginLayer;
+
+- (void)loginLayer: (LYRClient*)layerClient;
 
 
 @end
