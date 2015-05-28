@@ -1081,28 +1081,85 @@
 
 -(void)firstAppLoadThisWeek
 {
+
     
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
     
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSObject * checkValue = [defaults objectForKey:@"hasRunAppThisWeekKey"];
-    if(checkValue != nil)
-    {
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         
-        if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == NO)
+        if(!error)
         {
-            // Show Final Scores
-            [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
+//            NSLog(@"bool: %@", [object objectForKey:@"launchedAppThisWeek"]);
             
-            [Amplitude logEvent:@"Dashboard: Final Scores Showed"];
-            
-            [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
-            
-            //refresh game clock
-            [self updatedGameClock];
-            
+            if ([object objectForKey:@"launchedAppThisWeek"] == [NSNumber numberWithBool:FALSE]) {
+                
+                // Show Final Scores
+                [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
+                
+                [Amplitude logEvent:@"Dashboard: Final Scores Showed"];
+                
+                //        [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
+                
+                [object setObject:[NSNumber numberWithBool:TRUE] forKey:@"launchedAppThisWeek"];
+                [object saveInBackground];
+                
+                //refresh game clock
+                [self updatedGameClock];
+                
+            }
+
         }
-        
-    }
+      
+    }];
+    
+    
+    
+    
+    
+//    [user setObject:@TRUE forKey:@"launchedAppThisWeek"];
+
+    
+//    BOOL userLaunchedAppThisWeek = [user objectForKey:@"launchedAppThisWeek"];
+//    NSLog(@"bool: %@", [user objectForKey:@"launchedAppThisWeek"]);
+//    
+//    if ([user objectForKey:@"launchedAppThisWeek"] == [NSNumber numberWithBool:TRUE]) {
+//        
+//        // Show Final Scores
+//        [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
+//        
+//        [Amplitude logEvent:@"Dashboard: Final Scores Showed"];
+//        
+////        [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
+//        
+//        [user setObject:[NSNumber numberWithBool:TRUE] forKey:@"launchedAppThisWeek"];
+//        [user saveInBackground];
+//        
+//        //refresh game clock
+//        [self updatedGameClock];
+//        
+//    }
+    
+//    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+//    NSObject * checkValue = [defaults objectForKey:@"hasRunAppThisWeekKey"];
+//    if(checkValue != nil)
+//    {
+//        
+//        if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == NO)
+//        {
+//            // Show Final Scores
+//            [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
+//            
+//            [Amplitude logEvent:@"Dashboard: Final Scores Showed"];
+//            
+//            [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
+//            
+//            //refresh game clock
+//            [self updatedGameClock];
+//            
+//        }
+//        
+//    }
 }
 
 
