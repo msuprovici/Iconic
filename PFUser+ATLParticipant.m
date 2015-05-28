@@ -35,6 +35,7 @@
 - (UIImage *)avatarImage
 {
 //    return self.avatarImage;
+//    return [self objectForKey:@"photo"];
     return nil;
 }
 
@@ -43,6 +44,7 @@
 //    return [[NSString stringWithFormat:@"%@%@", [self.firstName substringToIndex:1], [self.lastName substringToIndex:1]] uppercaseString];
     
     return [[NSString stringWithFormat:@"%@", [self.firstName substringToIndex:1]] uppercaseString];
+    return nil;
 }
 
 

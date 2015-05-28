@@ -84,6 +84,12 @@
         self.currentViewController = vc;
     }];
     self.navigationItem.title = vc.title;
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    //set the index for the segment for UISegmentControl in the activity view contorller
+    [defaults setInteger:sender.selectedSegmentIndex forKey:@"activitySegementedControlIndex"];
+    [defaults synchronize];
 }
 
 - (UIViewController *)viewControllerForSegmentIndex:(NSInteger)index {

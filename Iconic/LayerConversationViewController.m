@@ -52,6 +52,7 @@
     
     [[ATLIncomingMessageCollectionViewCell appearance] setMessageTextColor:IconicBalck];
     [[ATLIncomingMessageCollectionViewCell appearance] setMessageTextFont:IconicSubTitleFont];
+    
 //    [[ATLIncomingMessageCollectionViewCell appearance] setBubbleViewColor:IconicGrey];
     
     
@@ -59,6 +60,14 @@
     [[ATLMessageInputToolbar appearance] setBarTintColor:IconicRed];
     [[ATLMessageInputToolbar appearance] setTranslucent:NO];
     [[ATLMessageInputToolbar appearance] setRightAccessoryButtonActiveColor:[UIColor whiteColor]];
+    
+    //
+    
+    [[ATLAddressBarTextView appearance] setTextColor:IconicBalck];
+    [[ATLAddressBarTextView appearance] setAddressBarHighlightColor:IconicBalck];
+    [[ATLAddressBarTextView appearance] setAddressBarFont:IconicSubTitleFont];
+    
+    
     
     
 }

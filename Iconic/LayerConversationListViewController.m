@@ -32,7 +32,7 @@
 //    //layer conversation from push
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(showNewLayerConversationViewController:)
-//                                                 name:@"newConversation"
+//                                                 name:@"newChatMessage"
 //                                               object:nil];
 
     
@@ -230,11 +230,11 @@
 //    return nextViewController;
 //}
 
-#pragma mark - NSNotifications
-
+//#pragma mark - NSNotifications
+//
 //-(void)showNewLayerConversationViewController:(NSNotification *) notification
 //{
-//    if([[notification name] isEqualToString:@"newConversation"])
+//    if([[notification name] isEqualToString:@"newChatMessage"])
 //    {
 ////        NSLog(@"LayerAuthenticated");
 //                NSDictionary* chatMessage = notification.userInfo;

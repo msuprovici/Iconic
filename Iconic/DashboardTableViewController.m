@@ -162,6 +162,9 @@
     
     LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
     
+//    LayerConversationListViewController * layerListViewController = [LayerConversationListViewController  conversationListViewControllerWithLayerClient:cachedLayerClient];
+//    [self.navigationController pushViewController:layerListViewController animated:YES];
+    
     if(cachedLayerClient)
     {
 //        NSLog(@"cached Layer Client");
@@ -1053,34 +1056,14 @@
 {
     if([[notification name] isEqualToString:@"newChatMessage"])
     {
-//        NSLog(@"LayerAuthenticated");
-//        NSDictionary* chatMessage = notification.userInfo;
-        LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
-        LayerConversationListViewController *controller = [LayerConversationListViewController  conversationListViewControllerWithLayerClient:cachedLayerClient];
-        
-//        LayerConversationViewController * conversationController = [LayerConversationViewController ]
-        
-//        [self.navigationController pushViewController:controller animated:YES];
-        
-//        Chat_ActivityViewController *activityController = [self.tabBarController.viewControllers objectAtIndex:1];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:1 forKey:@"activitySegementedControlIndex"];
         
         [defaults synchronize];
         
-        
-        Chat_ActivityViewController *activityController = [[Chat_ActivityViewController alloc]init];
-        [activityController.typeSegmentedControl setSelectedSegmentIndex:1];
-//        activityController.typeSegmentedControl.selectedSegmentIndex = 1;
         self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:1];
-        
-       
-        
-        
-//        [self.tabBarController.viewControllers objectAtIndex:1].typeSegmentedControl.selectedSegmentIndex = 1;
-//         self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:1];
-     
+
         
     }
 }
