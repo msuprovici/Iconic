@@ -48,6 +48,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *vsTeamName;
 @property (strong, nonatomic) IBOutlet UICountingLabel *MyTeamScore;
 @property (weak, nonatomic) IBOutlet UILabel *VSTeamScore;
+@property (strong, nonatomic) IBOutlet UILabel *vsLabel;
 
 @property (assign, nonatomic) NSInteger index;
 @property (assign, nonatomic) int myTeamPoints;

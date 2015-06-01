@@ -854,6 +854,7 @@
         cell.MyTeamScore.hidden = TRUE;
         cell.vsTeamName.hidden = TRUE;
         cell.VSTeamScore.hidden = TRUE;
+        cell.vsLabel.hidden = TRUE;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryNone;
         
@@ -865,6 +866,7 @@
         cell.MyTeamScore.hidden = FALSE;
         cell.vsTeamName.hidden = FALSE;
         cell.VSTeamScore.hidden = FALSE;
+        cell.vsLabel.hidden = FALSE;
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
