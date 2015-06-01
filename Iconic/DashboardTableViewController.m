@@ -1083,40 +1083,43 @@
 
 -(void)firstAppLoadThisWeek
 {
-
     
-    PFQuery *query = [PFUser query];
-    [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
+    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
     
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+    
+    if (numberOfTeams > 0)
+    {
+    
+        PFQuery *query = [PFUser query];
+        [query whereKey:@"objectId" equalTo:[PFUser currentUser].objectId];
         
-        if(!error)
-        {
-//            NSLog(@"bool: %@", [object objectForKey:@"launchedAppThisWeek"]);
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             
-            if ([object objectForKey:@"launchedAppThisWeek"] == [NSNumber numberWithBool:FALSE]) {
+            if(!error)
+            {
+    //            NSLog(@"bool: %@", [object objectForKey:@"launchedAppThisWeek"]);
                 
-                // Show Final Scores
-                [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
-                
-                [Amplitude logEvent:@"Dashboard: Final Scores Showed"];
-                
-                //        [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
-                
-                [object setObject:[NSNumber numberWithBool:TRUE] forKey:@"launchedAppThisWeek"];
-                [object saveInBackground];
-                
-                //refresh game clock
-                [self updatedGameClock];
-                
-            }
+                if ([object objectForKey:@"launchedAppThisWeek"] == [NSNumber numberWithBool:FALSE]) {
+                    
+                    // Show Final Scores
+                    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
+                    
+                    [Amplitude logEvent:@"Dashboard: Final Scores Showed"];
+                    
+                    //        [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
+                    
+                    [object setObject:[NSNumber numberWithBool:TRUE] forKey:@"launchedAppThisWeek"];
+                    [object saveInBackground];
+                    
+                }
 
-        }
-      
-    }];
+            }
+          
+        }];
     
     
-    
+    }
     
     
 //    [user setObject:@TRUE forKey:@"launchedAppThisWeek"];
