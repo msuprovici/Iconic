@@ -8,7 +8,7 @@
 
 #import "FindFriendsViewController.h"
 #import "Parse/Parse.h"
-#import <ParseFacebookUtils/PFFacebookUtils.h>
+//#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 #import "AppDelegate.h"
 #import "Cache.h"
@@ -17,6 +17,7 @@
 #import "Utility.h"
 #import "PlayerProfileViewController.h"
 #import "Amplitude.h"
+
 
 typedef enum {
     FindFriendsFollowingNone = 0,    // User isn't following anybody in Friends list
@@ -892,19 +893,23 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     
     // Set permissions required from the facebook user account
     NSArray *permissionsArray = @[ @"public_profile", @"email" ];
-    [PFFacebookUtils linkUser:[PFUser currentUser] permissions:permissionsArray block:^(BOOL succeeded, NSError *error) {
+    
+    
+    [PFFacebookUtils linkUserInBackground:[PFUser currentUser] withPublishPermissions:permissionsArray block:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-//            NSLog(@"Woohoo, user logged in with Facebook!");
+            //            NSLog(@"Woohoo, user logged in with Facebook!");
             self.facebookLogIn.hidden = YES;
             self.inviteFacebookFriends.hidden = NO;
             
         }
         else
         {
-//            NSLog(@"Could not log in user: %@", error);
+            //            NSLog(@"Could not log in user: %@", error);
         }
+        
     }];
-
+    
+  
     
   
     }

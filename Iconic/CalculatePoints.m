@@ -755,7 +755,6 @@
     
     NSArray *arrayOfLeagueNames = [myRetrievedTeams objectForKey:kArrayOfLeagueNames];
     
-    
     [myRetrievedTeams setObject:homeTeamScores  forKey:@"arrayOfFinalHomeTeamScoresWeek"];
     [myRetrievedTeams setObject:awayTeamScores  forKey:@"arrayOfFinalAwayTeamScoresWeek"];
     
@@ -765,8 +764,6 @@
     [myRetrievedTeams setObject:arrayOfLeagueNames  forKey:@"arrayOfFinalLeagueNamesWeek"];
     
     [myRetrievedTeams synchronize];
-
-    
 }
 
 

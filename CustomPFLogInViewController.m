@@ -9,7 +9,9 @@
 #import "CustomPFLogInViewController.h"
 #import "LogInViewController.h"
 #import "PNColor.h"
-#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+
+//#import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "CalculatePoints.h"
 #import "CustomPFSignUpViewController.h"
 #import "Amplitude.h"

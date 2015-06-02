@@ -16,8 +16,8 @@
 #import "CalculatePoints.h"
 #import "Intercom.h"
 #import "Heap.h"
-#import <ParseFacebookUtils/PFFacebookUtils.h>
-
+//#import <ParseFacebookUtils/PFFacebookUtils.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 @interface LogInViewController ()<UIScrollViewDelegate>
 
 @property NSUInteger currentIndex;

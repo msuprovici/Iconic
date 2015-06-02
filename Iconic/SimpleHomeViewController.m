@@ -15,7 +15,7 @@
 #import <Foundation/Foundation.h>
 #import "MyFinalScoresTableViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import <ParseFacebookUtils/PFFacebookUtils.h>
+//#import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "AchievmentsViewController.h"
 
 #import "Cache.h"

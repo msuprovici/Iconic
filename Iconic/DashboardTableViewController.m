@@ -22,7 +22,8 @@
 #import <Foundation/Foundation.h>
 #import "MyFinalScoresTableViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
-#import <ParseFacebookUtils/PFFacebookUtils.h>
+//#import <ParseFacebookUtilsV4/PFFacebookUtilsV4.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import "AchievmentsViewController.h"
 #import "AAPLMotionActivityQuery.h"
 #import "AAPLActivityDataManager.h"
@@ -1084,9 +1085,9 @@
 -(void)firstAppLoadThisWeek
 {
     
-    NSUserDefaults *RetrievedTeams = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    int  numberOfTeams = (int)[RetrievedTeams integerForKey: kNumberOfTeams];
+    int  numberOfTeams = (int)[defaults integerForKey: kNumberOfTeams];
     
     if (numberOfTeams > 0)
     {
@@ -1111,6 +1112,9 @@
                     
                     [object setObject:[NSNumber numberWithBool:TRUE] forKey:@"launchedAppThisWeek"];
                     [object saveInBackground];
+                    
+                    [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
+                    [defaults synchronize];
                     
                 }
 

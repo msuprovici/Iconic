@@ -15,6 +15,9 @@
 #import <Parse/PFObject.h>
 #import <Parse/PFQuery.h>
 #import <ParseUI/PFTableViewCell.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+
+
 #import "FindFriendsCell.h"
 
 @interface FindFriendsViewController : PFQueryTableViewController <FindFriendsCellDelegate, ABPeoplePickerNavigationControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UIActionSheetDelegate>
