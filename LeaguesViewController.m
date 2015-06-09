@@ -77,7 +77,7 @@
         self.paginationEnabled = YES;
         
         // The number of objects to show per page
-        self.objectsPerPage = 10;
+        self.objectsPerPage = 50;
         
         //dictionaries for matchups & round
         self.leagues = [NSMutableDictionary dictionary];

@@ -175,6 +175,8 @@
         [self connectLayer];
     }
     
+    
+     [self firstAppLoadThisWeek];
    
     
 }
@@ -223,14 +225,18 @@
     NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
     if([todaysDay isEqualToString:dayAppWasLastActivated])
     {
-//        NSLog(@"app was opened today");
+        NSLog(@"app was opened today");
     }
     else
     {
-//        NSLog(@"app was NOT opened today");
+        NSLog(@"app was NOT opened today");
         [self refreshDays];
         [self refreshHomeViewNow];
+       
     }
+    
+    
+
   
    
 }
@@ -591,7 +597,7 @@
     //delaying by 3 seconds so to ensure that we don't reset this value right away.  We are using this value to compare with the last date the app ran.  If we don't delay, the date will always be reset to now.
     [self performSelector:@selector(findWhatDateAppActivated) withObject:self afterDelay:3.0];
     //show MyFinalScoresTableViewController if this is the 1st time a user opens the app this week
-    [self firstAppLoadThisWeek];
+//    [self firstAppLoadThisWeek];
     
     //we're updating the app data from the server 3 times so that the scores are always up to date.
     //if we don't do it, team scores are often inaccurate unless we close & refresh the app again.
