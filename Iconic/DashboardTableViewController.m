@@ -156,10 +156,10 @@
     [self refreshHomeViewNow];
     [self updatedGameClock];
     
-//    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] init];
-//    NSLog(@"totalNumberStepsToday: %ld", (long)[[sharedDefaults objectForKey:@"totalNumberStepsToday"] integerValue]);
-//    NSLog(@"kMyFetchedStepsToday %@", [sharedDefaults objectForKey:kMyFetchedStepsToday]);
-//    NSLog(@"kMyStepsDelta %@", [sharedDefaults objectForKey:kMyStepsDelta]);
+    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] init];
+    NSLog(@"totalNumberStepsToday: %ld", (long)[[sharedDefaults objectForKey:@"totalNumberStepsToday"] integerValue]);
+    NSLog(@"kMyFetchedStepsToday %@", [sharedDefaults objectForKey:kMyFetchedStepsToday]);
+    NSLog(@"kMyStepsDelta %@", [sharedDefaults objectForKey:kMyStepsDelta]);
     
     LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
     
@@ -172,8 +172,17 @@
     }
     else
     {
-        [self connectLayer];
-    }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
+                       {
+                           //            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                           
+                           [self connectLayer];
+                           
+                       });
+        
+        
+            }
     
     
      [self firstAppLoadThisWeek];
@@ -276,7 +285,9 @@
     }
     if ([AAPLActivityDataManager checkAvailability]) {
         [_dataManager checkAuthorization:^(BOOL authorized) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
+                           {
+//            dispatch_async(dispatch_get_main_queue(), ^{
                 if (authorized) {
                     
                      NSDate *date = [NSDate date];
@@ -470,8 +481,10 @@
             double delayInSeconds = 1.0;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
             
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
+                           {
+//            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
                 [self animateDeltaPointsLabelNow: myStepsGainedDelta];
                 
             });
@@ -496,8 +509,10 @@
             double delayInSeconds = 1.0;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
             
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
+                           {
+//            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
                 [self animateDeltaPointsLabelNow: myStepsGainedDelta];
                 
             });
