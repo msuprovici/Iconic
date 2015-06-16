@@ -22,9 +22,10 @@
 
 #import <CoreMotion/CoreMotion.h>
 #import "UICountingLabel.h"
+#import "MZTimerLabel.h"
 
 
-@interface DashboardTableViewController : UITableViewController
+@interface DashboardTableViewController : UITableViewController <MZTimerLabelDelegate>
 
 {
     CMPedometer *_pedometer;

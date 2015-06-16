@@ -2329,21 +2329,21 @@
     // https://developer.layer.com/docs/quick-start/ios#connect
     [self.layerClient connectWithCompletion:^(BOOL success, NSError *error) {
         
-        NSLog(@"connectWithCompletion called");
+//        NSLog(@"connectWithCompletion called");
         if (!success) {
             NSLog(@"Failed to connect to Layer: %@", error);
         } else {
             
-            NSLog(@"connectWithCompletion sucess");
+//            NSLog(@"connectWithCompletion sucess");
             PFUser *user = [PFUser currentUser];
             NSString *userID = user.objectId;
             [self authenticateLayerWithUserID:userID completion:^(BOOL success, NSError *error) {
                 if (!error){
                 
                     
-                    NSLog(@"Layer User authenticated");
+//                    NSLog(@"Layer User authenticated");
                 } else {
-                    NSLog(@"Failed Authenticating Layer Client with error:%@", error);
+//                    NSLog(@"Failed Authenticating Layer Client with error:%@", error);
                 }
             }];
         }
@@ -2356,7 +2356,7 @@
     if (self.layerClient.authenticatedUserID) {
         // If the layerClient is authenticated with the requested userID, complete the authentication process.
         if ([self.layerClient.authenticatedUserID isEqualToString:userID]){
-            NSLog(@"Layer Authenticated as User %@", self.layerClient.authenticatedUserID);
+//            NSLog(@"Layer Authenticated as User %@", self.layerClient.authenticatedUserID);
             if (completion) completion(YES, nil);
             return;
         } else {
@@ -2415,7 +2415,7 @@
                             NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
                             [defaults setBool:true forKey:@"layerAuthenticated"];
                         }
-                        NSLog(@"Layer Authenticated as User: %@", authenticatedUserID);
+//                        NSLog(@"Layer Authenticated as User: %@", authenticatedUserID);
                     } else {
                         completion(NO, error);
                     }

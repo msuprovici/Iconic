@@ -157,9 +157,9 @@
     [self updatedGameClock];
     
     NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] init];
-    NSLog(@"totalNumberStepsToday: %ld", (long)[[sharedDefaults objectForKey:@"totalNumberStepsToday"] integerValue]);
-    NSLog(@"kMyFetchedStepsToday %@", [sharedDefaults objectForKey:kMyFetchedStepsToday]);
-    NSLog(@"kMyStepsDelta %@", [sharedDefaults objectForKey:kMyStepsDelta]);
+//    NSLog(@"totalNumberStepsToday: %ld", (long)[[sharedDefaults objectForKey:@"totalNumberStepsToday"] integerValue]);
+//    NSLog(@"kMyFetchedStepsToday %@", [sharedDefaults objectForKey:kMyFetchedStepsToday]);
+//    NSLog(@"kMyStepsDelta %@", [sharedDefaults objectForKey:kMyStepsDelta]);
     
     LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
     
@@ -185,7 +185,7 @@
             }
     
     
-     [self firstAppLoadThisWeek];
+//     [self firstAppLoadThisWeek];
    
     
 }
@@ -193,6 +193,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES ];
+    
     
     
     // If we received joined/leave team notification update team charts
@@ -241,6 +242,8 @@
         NSLog(@"app was NOT opened today");
         [self refreshDays];
         [self refreshHomeViewNow];
+        
+        [self firstAppLoadThisWeek];
        
     }
     
@@ -478,8 +481,8 @@
             
            
             
-            double delayInSeconds = 1.0;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//            double delayInSeconds = 1.0;
+//            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
                            {
@@ -506,8 +509,8 @@
             
 //            [self animateDeltaPointsLabelNow: myStepsGainedDelta];
             
-            double delayInSeconds = 1.0;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//            double delayInSeconds = 1.0;
+//            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
                            {
@@ -1105,7 +1108,7 @@
 
 -(void)firstAppLoadThisWeek
 {
-    
+    NSLog(@"firstAppLoadThisWeek");
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     int  numberOfTeams = (int)[defaults integerForKey: kNumberOfTeams];
@@ -1120,7 +1123,7 @@
             
             if(!error)
             {
-    //            NSLog(@"bool: %@", [object objectForKey:@"launchedAppThisWeek"]);
+                NSLog(@"bool: %@", [object objectForKey:@"launchedAppThisWeek"]);
                 
                 if ([object objectForKey:@"launchedAppThisWeek"] == [NSNumber numberWithBool:FALSE]) {
                     

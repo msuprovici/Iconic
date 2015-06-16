@@ -128,19 +128,19 @@
 
     //initialize intercom
     
-    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"tx0dtabz"];//live
+//    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"tx0dtabz"];//live
     
 //    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"c1ubvxjw"];//dev
     
     
     //initialize heap analytics
     
-    [Heap setAppId:@"1914446395"]; //live
-    
-//    [Heap setAppId:@"3704495766"]; //dev
-    #ifdef DEBUG
-//        [Heap enableVisualizer]; //uncomment to set up events
-    #endif
+//    [Heap setAppId:@"1914446395"]; //live
+//    
+////    [Heap setAppId:@"3704495766"]; //dev
+//    #ifdef DEBUG
+////        [Heap enableVisualizer]; //uncomment to set up events
+//    #endif
     
     //Intitialize FB
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
@@ -555,9 +555,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     NSError *error;
     BOOL success = [self.layerClient updateRemoteNotificationDeviceToken:newDeviceToken error:&error];
     if (success) {
-        NSLog(@"Layer did register for remote notifications");
+//        NSLog(@"Layer did register for remote notifications");
     } else {
-        NSLog(@"Error updating Layer device token for push:%@", error);
+//        NSLog(@"Error updating Layer device token for push:%@", error);
     }
 
     
@@ -813,7 +813,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
 
     }
     
-    handler(UIBackgroundFetchResultNewData);
+//    handler(UIBackgroundFetchResultNewData);
   
         
         return;
