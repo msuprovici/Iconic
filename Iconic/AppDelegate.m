@@ -654,7 +654,13 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
     if ([notificationId isEqualToString:@"GetFinalScorePush"]) {
         
-        NSLog(@"silent notificaiton: get score push");
+//        NSLog(@"silent notificaiton: get score push");
+        
+        
+        CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+        [calculatePointsClass  createFinalTeamScoresNotificationBody];
+        
+        
         
 //        [Amplitude logEvent:@"GetFinalScore Push Received"];
         //reset mysteps at 11:58 pm
@@ -673,6 +679,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         
         NSDateComponents *weekdayComponents =[gregorian components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
+        
+        
         
         NSInteger weekday = [weekdayComponents weekday];
         //Sunday = 1

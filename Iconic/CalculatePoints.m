@@ -1779,13 +1779,14 @@
         //                NSLog(@"finalScoresNotificationText: %@",  finalScoresNotificationText);
         NSString * notificationBeginningText = @"Final:";
         
-        NSString *notificationBody = [NSString stringWithFormat:@"%@ %@", notificationBeginningText, finalScoresNotificationText];
+        _notificationBody = [NSString stringWithFormat:@"%@ %@", notificationBeginningText, finalScoresNotificationText];
 //                        NSLog(@"notificationBody: %@",  notificationBody);
 //                       [self scheduleWeekleyFinalScoresLocalNotification: notificationBody];
         
-        [self scheduleWeekleyFinalScoresLocalNotification: notificationBody];
+        
         
     }
+    [self scheduleWeekleyFinalScoresLocalNotification: _notificationBody];
 }
 
 
@@ -1805,14 +1806,17 @@
 
     
     //send notificaiton at 11:59pm
-    [components setHour:11];
-    [components setMinute:59];
-    [components setSecond:0];
+//    [components setHour:11];
+//    [components setMinute:59];
+//    [components setSecond:0];
+    
+//    [components setHour:13];
+//    [components setMinute:26];
+//    [components setSecond:0];
     
 
   
-    //1st cancel previous notificaitons
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
     
    
     //Alert Body
@@ -1823,6 +1827,9 @@
     
     if (localNotification)
     {
+        
+        //1st cancel previous notificaitons
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
         
         //set time
 //        localNotification.timeZone = [NSTimeZone defaultTimeZone];
@@ -1854,18 +1861,19 @@
         
         
         //if the user has not opened the app this week...
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == NO)
-        {
-            //schedule the local notfication
-            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-            
-            //reschedule the DailySummary Notification
-//            [self scheduleDailySummaryLocalNotification];
-        }
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        if ([defaults boolForKey:@"hasRunAppThisWeekKey"] == NO)
+//        {
+//            //schedule the local notfication
+//            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//            
+//            //reschedule the DailySummary Notification
+////            [self scheduleDailySummaryLocalNotification];
+//        }
         
     }
     
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     return notificationBody;
 }
 

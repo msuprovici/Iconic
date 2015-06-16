@@ -1140,6 +1140,8 @@
                     [defaults setBool:YES forKey:@"hasRunAppThisWeekKey"];
                     [defaults synchronize];
                     
+                    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+                    
                 }
 
             }
