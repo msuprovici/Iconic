@@ -212,43 +212,63 @@
     
     //set the default index for the segment for UISegmentControl in the activity view contorller
     [defaults setInteger:0 forKey:@"activitySegementedControlIndex"];
-    [defaults synchronize];
+    
+    
+    
+   
+    
     
     
     //if the app was 1st oppened today refresh the Dashboard
     //find the day of the week string
 //    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSDate *dateAppWasLastRan = [defaults objectForKey:kDateAppLastRan];
+    NSDate *dateAppWasLastOpened = [defaults objectForKey:@"dateAppWasOpenedByTheUser"];
     
     //            NSLog(@"dateAppWasLastLaunched: %@", dateAppWasLastRan);
     //            NSDate *dateAppWasTerminated = [defaults objectForKey:@"dateAppWasTerminated"];
     //            NSLog(@"dateAppWasTerminated: %@", dateAppWasTerminated);
     
-    NSDate *todaysDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEEE"];
     
-    NSTimeZone * timezone = [NSTimeZone timeZoneWithName: @"PST"];
-    [dateFormatter setTimeZone:timezone];
-    
-    NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
-    NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastRan];
-    if([todaysDay isEqualToString:dayAppWasLastActivated])
+    if(dateAppWasLastOpened != nil)
     {
-        NSLog(@"app was opened today");
+    
+        NSDate *todaysDate = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"EEEE"];
+        
+        NSTimeZone * timezone = [NSTimeZone timeZoneWithName: @"PST"];
+        [dateFormatter setTimeZone:timezone];
+        
+        NSString * todaysDay = [dateFormatter stringFromDate:todaysDate];
+        NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastOpened];
+        if([todaysDay isEqualToString:dayAppWasLastActivated])
+        {
+            NSLog(@"app was opened today");
+            [defaults setObject:[NSDate date] forKey:@"dateAppWasOpenedByTheUser"];
+            [defaults synchronize];
+        }
+        else
+        {
+            NSLog(@"app was NOT opened today");
+            [self refreshDays];
+            [self refreshHomeViewNow];
+            [self firstAppLoadThisWeek];
+            
+            [defaults setObject:[NSDate date] forKey:@"dateAppWasOpenedByTheUser"];
+            [defaults synchronize];
+            
+    //        [self firstAppLoadThisWeek];
+           
+        }
+    
+    
     }
     else
     {
-        NSLog(@"app was NOT opened today");
-        [self refreshDays];
-        [self refreshHomeViewNow];
-        
-        [self firstAppLoadThisWeek];
-       
+        NSLog(@"dateAppWasLastOpened is nil");
+        [defaults setObject:[NSDate date] forKey:@"dateAppWasOpenedByTheUser"];
+        [defaults synchronize];
     }
-    
-    
-
   
    
 }
@@ -1108,7 +1128,7 @@
 
 -(void)firstAppLoadThisWeek
 {
-    NSLog(@"firstAppLoadThisWeek");
+//    NSLog(@"firstAppLoadThisWeek");
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     int  numberOfTeams = (int)[defaults integerForKey: kNumberOfTeams];
