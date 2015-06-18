@@ -121,7 +121,7 @@
     //Flurry
     
     //beta key
-    //[Flurry startSession:@"MNPN945STSGP59PFCSFW"];
+//  [Flurry startSession:@"MNPN945STSGP59PFCSFW"];
     
     //testing key
     [Flurry startSession:@"GFB5TWRMW9J2YNCMPK7R"];
