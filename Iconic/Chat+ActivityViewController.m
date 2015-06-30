@@ -148,9 +148,13 @@
 
 - (void)followButtonTapped:(id)sender
 {
-    FindFriendsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FindFreindsViewController"];;
+    FindFriendsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"FindFriendsNavigationController"];
 
-    [self.navigationController pushViewController:controller animated:YES];
+//    [self.navigationController pushViewController:controller animated:YES];
+    
+    [self.navigationController presentViewController:controller animated:YES completion:^{
+        
+    }];
     
     [Amplitude logEvent:@"Activity Feed: Find People Tapped"];
 }

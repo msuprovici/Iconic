@@ -155,6 +155,7 @@
     
     [self refreshHomeViewNow];
     [self updatedGameClock];
+    [self firstAppLoadThisWeek];
     
     NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] init];
 //    NSLog(@"totalNumberStepsToday: %ld", (long)[[sharedDefaults objectForKey:@"totalNumberStepsToday"] integerValue]);
@@ -252,7 +253,7 @@
             NSLog(@"app was NOT opened today");
             [self refreshDays];
             [self refreshHomeViewNow];
-            [self firstAppLoadThisWeek];
+//            [self firstAppLoadThisWeek];
             
             [defaults setObject:[NSDate date] forKey:@"dateAppWasOpenedByTheUser"];
             [defaults synchronize];
@@ -526,20 +527,30 @@
             [self.pointsValue  countFrom:0 to:steps withDuration:1];
             
             [self.view setNeedsDisplay];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self animateDeltaPointsLabelNow: myStepsGainedDelta];
+            });
             
 //            [self animateDeltaPointsLabelNow: myStepsGainedDelta];
             
 //            double delayInSeconds = 1.0;
 //            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
-                           {
-//            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            
-                [self animateDeltaPointsLabelNow: myStepsGainedDelta];
-                
-            });
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
+//                           {
+////            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//                               
+//                               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//                                   [self animateDeltaPointsLabelNow: myStepsGainedDelta];
+//                               });
 //            
+//                
+//                               
+//                               
+//
+//                
+//            });
+//
 //            NSLog(@"Delta in mystats not today: %d", myStepsGainedDelta);
             
             

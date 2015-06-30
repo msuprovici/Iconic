@@ -16,6 +16,7 @@
 #import "Team.h"
 #import "AppDelegate.h"
 #import "Amplitude.h"
+#import "ScheduleViewController.h"
 
 @interface TeamsViewController ()
 
@@ -688,7 +689,12 @@
     if ([segue.identifier isEqualToString:@"createTeam"]) {
         
         
-        [segue.destinationViewController initWithLeague:self.league];
+        
+        
+        UINavigationController *navController = [segue destinationViewController];
+        CreateTeamViewController *destinationViewController = (CreateTeamViewController *)( [navController topViewController]);
+        [destinationViewController initWithLeague:self.league];
+        
         
         [Amplitude logEvent:@"Teams: create team selected"];
         
@@ -698,7 +704,13 @@
     if ([segue.identifier isEqualToString:@"schedule"]) {
         
         [Amplitude logEvent:@"Schedule pressed"];
-        [segue.destinationViewController initWithLeague:self.league];
+        
+        UINavigationController *navController = [segue destinationViewController];
+        ScheduleViewController *destinationViewController = (ScheduleViewController *)( [navController topViewController]);
+        [destinationViewController initWithLeague:self.league];
+        
+        
+        
         
         [Amplitude logEvent:@"Teams: league selected"];
         

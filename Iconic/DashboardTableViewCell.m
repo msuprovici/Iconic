@@ -200,13 +200,13 @@
                         
                         //show my team's steps before counting up the label bellow
                         self.MyTeamScore.text = [NSString stringWithFormat:@"%d",homeTeamPoints];
-                        [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:2.0];
+//                        [self performSelector:@selector(updateTeamLabel) withObject:self afterDelay:3.5];
                         
-                        //                    double delayInSeconds = 3.0;
-                        //                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                        //                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                        //                        [self updateTeamLabel];
-                        //                    });
+                                            double delayInSeconds = 3.0;
+                                            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                                            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                                                [self updateTeamLabel];
+                                            });
                         
                         
                         

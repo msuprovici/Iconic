@@ -915,4 +915,11 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     }
 
 
+- (IBAction)doneButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+
 @end

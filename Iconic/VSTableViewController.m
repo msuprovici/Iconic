@@ -831,7 +831,11 @@
 //        [segue.destinationViewController initChatWithTeam:self.myTeamReceived];
         [Amplitude logEvent:@"Chat selected"];
         
-        [segue.destinationViewController initWithChatTeam:self.myTeamReceived];
+        UINavigationController *navController = [segue destinationViewController];
+        ChatRoomTableViewController *destinationViewController = (ChatRoomTableViewController *)( [navController topViewController]);
+        [destinationViewController initWithChatTeam:self.myTeamReceived];
+        
+        
         
         
     }

@@ -385,5 +385,10 @@
     return YES;
 }
 
+- (IBAction)doneButtonTapped:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

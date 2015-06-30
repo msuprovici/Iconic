@@ -1,8 +1,140 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Yi2-3K-q1V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Yi2-3K-q1V">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue</string>
+        </mutableArray>
+        <mutableArray key="HelveticaNeueExtras.ttc">
+            <string>HelveticaNeue-CondensedBold</string>
+            <string>HelveticaNeue-CondensedBold</string>
+            <string>HelveticaNeue-CondensedBold</string>
+            <string>HelveticaNeue-CondensedBold</string>
+            <string>HelveticaNeue-CondensedBold</string>
+            <string>HelveticaNeue-CondensedBold</string>
+            <string>HelveticaNeue-CondensedBold</string>
+        </mutableArray>
+        <mutableArray key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Light</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Iconic-->
         <scene sceneID="n8l-lt-A00">
@@ -281,7 +413,7 @@
             <objects>
                 <tableViewController id="1OA-rb-SZS" customClass="MyFinalScoresTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="E9z-ao-pLv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <label key="tableHeaderView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dUW-sS-HHj">
@@ -293,7 +425,7 @@
                         </label>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyFinalScoresCell" rowHeight="80" id="381-hp-4gT" customClass="MyFinalScoresCell">
-                                <rect key="frame" x="0.0" y="50" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="114" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="381-hp-4gT" id="qc2-C5-Qn3">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -350,11 +482,17 @@
                             <outlet property="delegate" destination="1OA-rb-SZS" id="II7-Nw-qwb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Final Scores" id="o3J-Ht-Znf"/>
+                    <navigationItem key="navigationItem" title="Final Scores" id="o3J-Ht-Znf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="knR-cq-QaI">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="1OA-rb-SZS" id="gXs-N5-lyJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lEF-Rl-Fqp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2077" y="-2928"/>
+            <point key="canvasLocation" x="-1687" y="-2933"/>
         </scene>
         <!--My Teams View Controller-->
         <scene sceneID="Ahg-va-eIE">
@@ -878,7 +1016,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="uCQ-5v-qry" kind="push" identifier="ChatSelected" id="yOM-NL-QPd"/>
+                                    <segue destination="Cvr-0e-2Yl" kind="modal" identifier="ChatSelected" id="yOM-NL-QPd"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1171,7 +1309,7 @@
             <objects>
                 <tableViewController id="tuF-GK-KB7" customClass="CommentsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="agz-Kk-Qxf">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1510,7 +1648,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="AccountViewController" id="6i5-gz-KD6" customClass="AccountViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="SGp-hI-O27">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="dR3-AK-0SG">
@@ -1716,7 +1854,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New League" id="vgf-k9-Sx7"/>
+                    <navigationItem key="navigationItem" title="New League" id="vgf-k9-Sx7">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="pUk-jS-g2P">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="lFo-3s-8vR" id="Sln-Zr-Uy5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="createLeague" destination="F9G-yO-W2W" id="szD-65-kbs"/>
                         <outlet property="leagueAddedActivityIndicator" destination="zde-VZ-sBb" id="XuB-7v-Gh7"/>
@@ -1729,14 +1873,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbg-cP-abc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zqi-VT-iID" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2121" y="-5089"/>
+            <point key="canvasLocation" x="-1589" y="-5089"/>
         </scene>
         <!--New Team-->
         <scene sceneID="KTt-0D-Ovp">
             <objects>
                 <viewController storyboardIdentifier="CreateTeam" id="wv6-hi-tt4" customClass="CreateTeamViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JTN-uc-wtF">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Team" minimumFontSize="17" id="Qec-P3-DLf">
@@ -1814,7 +1958,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="New Team" id="e4t-V7-1q3"/>
+                    <navigationItem key="navigationItem" title="New Team" id="e4t-V7-1q3">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="dhG-Xa-iAL">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="wv6-hi-tt4" id="I3N-ZI-wGN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="addTeamLogo" destination="bgr-Du-H35" id="nTo-2V-kMG"/>
                         <outlet property="addTeamLogoButton" destination="nE5-U5-fIs" id="noj-vO-qcS"/>
@@ -1828,14 +1980,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s2N-ZG-rSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6eD-u6-X2M" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1634" y="-5094"/>
+            <point key="canvasLocation" x="-570" y="-5094"/>
         </scene>
         <!--Activity-->
         <scene sceneID="lBY-ZS-NvU">
             <objects>
                 <tableViewController storyboardIdentifier="FeedViewController" id="YRb-r1-hFU" customClass="FeedViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rm3-hb-ptd">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -2046,13 +2198,19 @@
                             <outlet property="delegate" destination="Lae-yS-QNg" id="IfA-1y-GvV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Schedule" id="Hb9-rY-KNW"/>
+                    <navigationItem key="navigationItem" title="Schedule" id="Hb9-rY-KNW">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="9Zb-dJ-cqo">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="Lae-yS-QNg" id="dQX-uN-aeV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4oE-r9-rjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1157" y="-5094"/>
+            <point key="canvasLocation" x="439" y="-5094"/>
         </scene>
         <!--Leagues-->
         <scene sceneID="C8b-lU-tvu">
@@ -2118,7 +2276,7 @@
                         <barButtonItem key="rightBarButtonItem" image="Add_Icon_White.png" id="AbA-hE-crJ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="lFo-3s-8vR" kind="push" identifier="addleague" id="u8W-zH-94E"/>
+                                <segue destination="gDQ-FU-7bK" kind="modal" identifier="addleague" id="u8W-zH-94E"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2136,7 +2294,7 @@
             <objects>
                 <tableViewController title="Teams" id="Quu-w8-KMQ" customClass="TeamsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="k7d-L5-oeV">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Vu9-WC-BuJ">
@@ -2150,7 +2308,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="Lae-yS-QNg" kind="push" identifier="schedule" id="8yd-HL-fG7"/>
+                                        <segue destination="pRu-T8-rSs" kind="modal" identifier="schedule" id="8yd-HL-fG7"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x6e-8L-hdQ">
@@ -2164,7 +2322,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="teamsCell" rowHeight="65" id="2hN-Pc-iZd" customClass="TeamCell">
-                                <rect key="frame" x="0.0" y="79" width="320" height="65"/>
+                                <rect key="frame" x="0.0" y="143" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2hN-Pc-iZd" id="pw5-ww-f1l">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="64"/>
@@ -2208,7 +2366,7 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="createTeamPressed:" destination="Quu-w8-KMQ" id="GwB-nJ-NbJ"/>
-                                <segue destination="wv6-hi-tt4" kind="push" identifier="createTeam" id="i0O-nJ-NVX"/>
+                                <segue destination="IKy-dP-QUt" kind="modal" identifier="createTeam" id="i0O-nJ-NVX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2294,7 +2452,7 @@
             <objects>
                 <tableViewController id="UbG-da-jWg" customClass="PlayerProfileViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="22" sectionFooterHeight="22" id="gxJ-9q-Ru6">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="oGg-mV-ZYc">
@@ -2509,7 +2667,13 @@
                             <outlet property="delegate" destination="uCQ-5v-qry" id="aSh-br-2pT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Chat" id="dwU-t8-bmH"/>
+                    <navigationItem key="navigationItem" title="Chat" id="dwU-t8-bmH">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="DJQ-yi-GkS">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="uCQ-5v-qry" id="U15-9f-JTw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="chatInputField" destination="ucq-QQ-VK7" id="svC-3U-JF3"/>
@@ -2517,7 +2681,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZRa-Nk-LOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-726" y="-3168"/>
+            <point key="canvasLocation" x="338" y="-3168"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="MnR-SJ-9PX">
@@ -2728,7 +2892,7 @@
             <objects>
                 <viewController id="LwS-JC-SMB" customClass="Chat_ActivityViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="euM-AC-qQi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2761,7 +2925,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FindFreindsViewController" id="yQf-DP-4VV" customClass="FindFriendsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" id="FFS-v6-ZV5">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="XGg-Sw-VaO">
@@ -2807,7 +2971,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="65" id="oC2-Ly-xLk" customClass="FindFriendsCell">
-                                <rect key="frame" x="0.0" y="152" width="320" height="65"/>
+                                <rect key="frame" x="0.0" y="216" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oC2-Ly-xLk" id="dDM-tz-SFq">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
@@ -2869,7 +3033,13 @@
                             <outlet property="delegate" destination="yQf-DP-4VV" id="Khu-Aq-Mc0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Find People" id="Fls-mv-1dH"/>
+                    <navigationItem key="navigationItem" title="Find People" id="Fls-mv-1dH">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="done" id="bQk-eO-Ygv">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="yQf-DP-4VV" id="yGd-1d-rD6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="facebookLogIn" destination="MO8-8a-dxM" id="zXH-Q0-yjw"/>
                         <outlet property="inviteFacebookFriends" destination="vt9-85-Lcp" id="O2x-bh-HQa"/>
@@ -2878,7 +3048,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q6d-Yn-sqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1460" y="-1483"/>
+            <point key="canvasLocation" x="-928" y="-1483"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="u2b-4b-vYw">
@@ -2911,7 +3081,7 @@
             <objects>
                 <tableViewController id="Ohn-3Q-cXQ" customClass="DashboardTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="hdH-wE-sYI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="BgW-mj-CvW">
@@ -3110,7 +3280,7 @@
                         <outlet property="xpProgressDial" destination="2Rs-0V-08s" id="bJk-hc-adI"/>
                         <outlet property="xpValue" destination="LKU-kB-mrt" id="SeW-J2-K13"/>
                         <segue destination="7jw-Rg-QgJ" kind="push" identifier="vs" id="zXY-Ed-e7t"/>
-                        <segue destination="1OA-rb-SZS" kind="push" identifier="MyFinalScores" id="pWP-K7-uWG"/>
+                        <segue destination="068-nA-7M5" kind="modal" identifier="MyFinalScores" id="pWP-K7-uWG"/>
                         <segue destination="WY6-bu-bE9" kind="modal" id="41T-Wc-caE"/>
                     </connections>
                 </tableViewController>
@@ -3315,6 +3485,118 @@
             </objects>
             <point key="canvasLocation" x="-2427" y="-2235"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qij-Go-938">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="068-nA-7M5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="WTC-Y0-NaQ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mV7-Hh-G4z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1OA-rb-SZS" kind="relationship" relationship="rootViewController" id="GSl-WH-Cg7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xvO-wE-9WA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2077" y="-2928"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ExO-sL-vTv">
+            <objects>
+                <navigationController storyboardIdentifier="FindFriendsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="qpj-z4-uK8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yik-M0-Ttn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yQf-DP-4VV" kind="relationship" relationship="rootViewController" id="gzz-Fb-fvI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sMu-07-U8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1460" y="-1483"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="RvH-dE-Rdt">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gDQ-FU-7bK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ZeB-v8-AwO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JsC-Ha-ZCV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lFo-3s-8vR" kind="relationship" relationship="rootViewController" id="rr4-fT-Lky"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="STN-HE-9rd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2121" y="-5089"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gac-zS-rlV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IKy-dP-QUt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yqT-LE-mdt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wv6-hi-tt4" kind="relationship" relationship="rootViewController" id="0d7-f9-hY1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WEQ-ns-p3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1102" y="-5094"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EgK-TS-X1W">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pRu-T8-rSs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Uos-OY-jJD"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CXH-AC-KAr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Lae-yS-QNg" kind="relationship" relationship="rootViewController" id="hTb-fb-3dv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lBm-Z2-4ec" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-93" y="-5094"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="USm-Eh-R55">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Cvr-0e-2Yl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="UjX-6O-Pna"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oRc-bo-bb0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uCQ-5v-qry" kind="relationship" relationship="rootViewController" id="YXH-B5-Ajn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H6V-rp-2wc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-194" y="-3168"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Add_Icon_White.png" width="20" height="20"/>
@@ -3357,9 +3639,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="X84-Yq-ofY"/>
-        <segue reference="Rnz-xH-lvc"/>
-        <segue reference="gBJ-V0-gCX"/>
+        <segue reference="cdC-Af-usM"/>
+        <segue reference="hkU-Qn-mtb"/>
+        <segue reference="BKk-Oi-vMX"/>
         <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>
