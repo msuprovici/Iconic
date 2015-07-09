@@ -148,7 +148,10 @@
                                                object:nil];
 
   
- 
+    //refreshes the app when it enters foreground
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(scrollTableViewToTop)
+                                                 name:UIApplicationWillEnterForegroundNotification object:nil];
   
     
     [self refreshDays];
@@ -191,11 +194,16 @@
     
 }
 
+-(void)scrollTableViewToTop
+{
+    [self.tableView setContentOffset:CGPointZero animated:YES];
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES ];
     
-    
+    [self.tableView setContentOffset:CGPointZero animated:YES];
     
     // If we received joined/leave team notification update team charts
     if (self.receivedNotification == YES) {
