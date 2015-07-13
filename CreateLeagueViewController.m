@@ -251,7 +251,7 @@
                         
                         UIAlertAction *okAction = [UIAlertAction
                                                    actionWithTitle:NSLocalizedString(@"OK", @"OK action")
-                                                   style:UIAlertActionStyleDefault
+                                                   style:UIAlertActionStyleDestructive
                                                    handler:^(UIAlertAction *action)
                                                    {
                                                        [Amplitude logEvent:@"Create League: League added"];

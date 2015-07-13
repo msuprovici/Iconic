@@ -334,6 +334,8 @@
     [[UINavigationBar appearance] setTranslucent:FALSE];
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    
    
     [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                            [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f],NSFontAttributeName,

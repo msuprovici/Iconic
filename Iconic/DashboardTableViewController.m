@@ -197,6 +197,7 @@
 -(void)scrollTableViewToTop
 {
     [self.tableView setContentOffset:CGPointZero animated:YES];
+    [self firstAppLoadThisWeek];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -204,6 +205,8 @@
     [super viewDidAppear:YES ];
     
     [self.tableView setContentOffset:CGPointZero animated:YES];
+    
+//    [self firstAppLoadThisWeek];
     
     // If we received joined/leave team notification update team charts
     if (self.receivedNotification == YES) {
@@ -252,7 +255,7 @@
         NSString * dayAppWasLastActivated = [dateFormatter stringFromDate:dateAppWasLastOpened];
         if([todaysDay isEqualToString:dayAppWasLastActivated])
         {
-            NSLog(@"app was opened today");
+//            NSLog(@"app was opened today");
             [defaults setObject:[NSDate date] forKey:@"dateAppWasOpenedByTheUser"];
             [defaults synchronize];
         }
@@ -1162,7 +1165,7 @@
             
             if(!error)
             {
-                NSLog(@"bool: %@", [object objectForKey:@"launchedAppThisWeek"]);
+//                NSLog(@"bool: %@", [object objectForKey:@"launchedAppThisWeek"]);
                 
                 if ([object objectForKey:@"launchedAppThisWeek"] == [NSNumber numberWithBool:FALSE]) {
                     

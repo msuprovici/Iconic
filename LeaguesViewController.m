@@ -132,7 +132,7 @@
         
         //        [self.tableView reloadData];
         
-         NSLog(@"reload view was called");
+//         NSLog(@"reload view was called");
         
         [self.tableView reloadData];
         [self.view setNeedsDisplay];

@@ -594,8 +594,33 @@
         [activity setObject:self.team forKey:@"toTeam"];
         
         NSString * activityString = [NSString stringWithFormat:@"Joined team: %@",[self.team objectForKey:kTeams]];
+        
+        
         [activity setObject:activityString forKey:@"activityString"];
         [activity saveInBackground];
+        
+        
+        
+        //alert the user they joined the team
+        NSString *alertMessage = [NSString stringWithFormat:@"Welcome to team: %@",[self.team objectForKey:kTeams]];
+        
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Congratulations"
+                                              message:alertMessage
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+     
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"Nice", @"OK action")
+                                   style:UIAlertActionStyleDestructive
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                   }];
+       
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+
 
         
     }
@@ -753,6 +778,27 @@
         NSString * activityString = [NSString stringWithFormat:@"Left team: %@",[self.team objectForKey:kTeams]];
         [activity setObject:activityString forKey:@"activityString"];
         [activity saveInBackground];
+        
+        
+        
+        
+        //alert the user they left the team
+        NSString *alertMessage = [NSString stringWithFormat:@"You left team: %@",[self.team objectForKey:kTeams]];
+        
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:@"Bummer"
+                                              message:alertMessage
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *okAction = [UIAlertAction
+                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                                   style:UIAlertActionStyleDestructive
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                   }];
+        
+        [alertController addAction:okAction];
+        [self presentViewController:alertController animated:YES completion:nil];
         
     }
     
