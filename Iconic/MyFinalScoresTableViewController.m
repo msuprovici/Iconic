@@ -97,12 +97,20 @@
     
     NSArray *arrayOfLeagueNames = [RetrievedTeams objectForKey:kArrayOfLeagueNames];
     
+    NSArray *homeTeamRecords = [RetrievedTeams objectForKey:@"homeTeamRecords"];
+    NSArray *awayTeamRecords = [RetrievedTeams objectForKey:@"awayTeamRecords"];
+    
     
     //set team names
     NSString * homeTeamName = [NSString stringWithFormat:@"%@",[homeTeamNames objectAtIndex:indexPath.row]];
    
     
     NSString * awayTeamName = [NSString stringWithFormat:@"%@",[awayTeamNames objectAtIndex:indexPath.row]];
+    //set records
+    
+    NSString *homeTeamRecord = [NSString stringWithFormat:@"%@", [homeTeamRecords objectAtIndex:indexPath.row]];
+    
+    NSString *awayTeamRecord = [NSString stringWithFormat:@"%@", [awayTeamRecords objectAtIndex:indexPath.row]];
     
     
     
@@ -127,10 +135,14 @@
                 
                 cell.myTeamScore.text = homeTeamScore;
                 
+                cell.myTeamRecord.text = homeTeamRecord;
+                
                 
                 cell.vsTeamName.text = awayTeamName;
                 
                 cell.vsTeamScore.text = awayTeamScore;
+                
+                cell.vsTeamRecord.text = awayTeamRecord;
 
                 
             }
@@ -142,10 +154,14 @@
                
                 cell.myTeamScore.text = awayTeamScore;
                 
+                cell.myTeamRecord.text = awayTeamRecord;
+                
                 
                 cell.vsTeamName.text = homeTeamName;
                 
                 cell.vsTeamScore.text = homeTeamScore;
+                
+                cell.vsTeamRecord.text = homeTeamRecord;
                 
                 
             }

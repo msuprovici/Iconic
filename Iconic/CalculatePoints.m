@@ -85,6 +85,8 @@
     
     self.arrayOfFinalhomeTeamScores = [[NSMutableArray alloc] init];
     self.arrayOfFinalawayTeamScores = [[NSMutableArray alloc] init];
+    
+  
 
     
     //Query Team Class
@@ -600,18 +602,23 @@
         
         int numberOfTeamsInLeague = [[homeTeamPointer objectForKey:@"numberOfTeamsInLeague"]intValue];
         
-        //only show records for leagues with more then two teams
-        if(numberOfTeamsInLeague > 2)
-        {
-            self.homeTeamRecord = homeTeamRecord;
-            self.awayTeamRecord = awayTeamRecord;
-        }
-        else
-        {
-            self.homeTeamRecord = @"";
-            self.awayTeamRecord = @"";
-            
-        }
+        
+        self.homeTeamRecord = homeTeamRecord;
+        self.awayTeamRecord = awayTeamRecord;
+        
+        
+//        //only show records for leagues with more then two teams
+//        if(numberOfTeamsInLeague > 2)
+//        {
+//            self.homeTeamRecord = homeTeamRecord;
+//            self.awayTeamRecord = awayTeamRecord;
+//        }
+//        else
+//        {
+//            self.homeTeamRecord = @"";
+//            self.awayTeamRecord = @"";
+//            
+//        }
         
         //add objects to array of teamScores(array) objects so that we don't have to download again
         [self.arrayOfhomeTeamScores addObject:homeTeamTotalScore];

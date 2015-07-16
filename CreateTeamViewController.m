@@ -216,10 +216,13 @@
                                 [team setObject:@1 forKey:@"round"];
                                 [team setObject:@0 forKey:@"wins"];
                                 [team setObject:@0 forKey:@"losses"];
+                                [team setObject:@0 forKey:@"scoreRecord"];
                                 [team setObject:@(maximumTeamsInLeague) forKey:@"numberOfTeamsInLeague"];
                                 [team setObject:[NSNumber numberWithBool:FALSE] forKey:@"leadChange"];
                                 [team setObject:[NSNumber numberWithBool:FALSE] forKey:@"teamLeading"];
                                 [team setObject:[NSNumber numberWithBool:FALSE] forKey:@"sentSaturdayNotification"];
+                                [team setObject:[NSNumber numberWithBool:FALSE] forKey:@"sentRecordScoreNotificationToday"];
+                                
                                 
                                 [team setObject:[PFUser currentUser] forKey:@"teamCreator"];
                                 

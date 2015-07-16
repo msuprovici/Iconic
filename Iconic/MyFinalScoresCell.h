@@ -14,6 +14,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *vsTeamName;
 @property (strong, nonatomic) IBOutlet UILabel *myTeamScore;
 @property (strong, nonatomic) IBOutlet UILabel *myLeague;
+@property (weak, nonatomic) IBOutlet UILabel *myTeamRecord;
+@property (weak, nonatomic) IBOutlet UILabel *vsTeamRecord;
 
 
 @property (strong, nonatomic) IBOutlet UILabel *vsTeamScore;
