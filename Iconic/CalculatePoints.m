@@ -1679,7 +1679,7 @@
 //    localNotification.fireDate = [cal dateByAddingComponents:components toDate:now options:0];
    localNotification.fireDate = [cal dateFromComponents:components];
     
-    //repeate daily
+   
     localNotification.repeatInterval = NSCalendarUnitDay;
     localNotification.soundName = UILocalNotificationDefaultSoundName;
     
