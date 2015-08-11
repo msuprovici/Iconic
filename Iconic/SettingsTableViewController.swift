@@ -15,6 +15,8 @@ class SettingsTableViewController: UITableViewController {
     // MARK: Properties
     var settingText: [String] = ["notification1", "notification2", "notification3", "notification4", "notification5", "notification6"]
     
+    var headerText: [String] = ["Notfications", ""]
+    
     
 
     override func viewDidLoad() {
@@ -74,6 +76,11 @@ class SettingsTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return headerText[section]
+    }
+    
 
 
     /*
