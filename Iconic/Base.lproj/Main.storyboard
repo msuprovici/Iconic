@@ -1467,7 +1467,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="follow" id="7xw-EI-8x9" customClass="FollowCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7xw-EI-8x9" id="yum-Ze-KMx">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1523,7 +1523,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="follow" id="D2C-Jm-CgW" customClass="FollowCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D2C-Jm-CgW" id="P0z-b0-A7H">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1579,7 +1579,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="follow" id="w1f-zs-XIu" customClass="FollowCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w1f-zs-XIu" id="1Ae-95-dNx">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1783,7 +1783,20 @@
                             <outlet property="delegate" destination="6i5-gz-KD6" id="TSb-Po-TI1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="j71-2k-EPN"/>
+                    <navigationItem key="navigationItem" id="j71-2k-EPN">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="JeV-wd-pyY">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eBP-Qw-r7i">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ocM-JH-RZW" kind="modal" id="uBW-IF-kUB"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="rEz-Rl-7gi" id="gz1-Xy-bcj"/>
                         <outlet property="myAvgSteps" destination="2dG-aP-gvw" id="Vz1-EF-HpU"/>
@@ -1798,6 +1811,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cK6-Ou-8KV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2067" y="-5785"/>
+        </scene>
+        <!--Settings Table View Controller-->
+        <scene sceneID="lq6-7t-FW6">
+            <objects>
+                <tableViewController id="pIL-GU-0QV" customClass="SettingsTableViewController" customModule="Iconic" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="88w-1S-ZcL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ySP-Od-pKD">
+                                <rect key="frame" x="0.0" y="114" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ySP-Od-pKD" id="5Zm-aw-U3d">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="pIL-GU-0QV" id="4B5-xq-EMb"/>
+                            <outlet property="delegate" destination="pIL-GU-0QV" id="VcQ-6T-t3f"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ZLZ-xh-zVT"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PpB-He-WI1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-950" y="-5785"/>
         </scene>
         <!--Create League-->
         <scene sceneID="jde-1t-tFb">
@@ -2989,7 +3031,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="65" id="oC2-Ly-xLk" customClass="FindFriendsCell">
-                                <rect key="frame" x="0.0" y="152" width="320" height="65"/>
+                                <rect key="frame" x="0.0" y="216" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oC2-Ly-xLk" id="dDM-tz-SFq">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
@@ -3614,6 +3656,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H6V-rp-2wc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-194" y="-3168"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vQM-Y8-Z9M">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ocM-JH-RZW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="607-Du-kf8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pIL-GU-0QV" kind="relationship" relationship="rootViewController" id="x8p-MG-CQx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LM7-6U-7mS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1497" y="-5785"/>
         </scene>
     </scenes>
     <resources>

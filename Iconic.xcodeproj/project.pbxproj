@@ -311,6 +311,7 @@
 		5CC773191B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC773171B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png */; };
 		5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7FAAF185810A600A360A1 /* TeamatesCell.m */; };
 		5CCB26D419085BA5002B6832 /* CalculatePoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB26D319085BA5002B6832 /* CalculatePoints.m */; };
+		5CD74A2D1B7A717000BD2A41 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD74A2C1B7A717000BD2A41 /* SettingsTableViewController.swift */; };
 		5CD76B5F188852530014072F /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD76B5E188852530014072F /* FeedViewController.m */; };
 		5CD93826187B5047006CE08B /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9381D187B5047006CE08B /* MZFormSheetBackgroundWindow.m */; };
 		5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9381F187B5047006CE08B /* MZFormSheetController.m */; };
@@ -826,6 +827,8 @@
 		5CC7FAAF185810A600A360A1 /* TeamatesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamatesCell.m; sourceTree = "<group>"; };
 		5CCB26D219085BA5002B6832 /* CalculatePoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatePoints.h; sourceTree = "<group>"; };
 		5CCB26D319085BA5002B6832 /* CalculatePoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatePoints.m; sourceTree = "<group>"; };
+		5CD74A2B1B7A716D00BD2A41 /* Iconic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Iconic-Bridging-Header.h"; sourceTree = "<group>"; };
+		5CD74A2C1B7A717000BD2A41 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		5CD76B5D188852530014072F /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		5CD76B5E188852530014072F /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		5CD9381C187B5047006CE08B /* MZFormSheetBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindow.h; sourceTree = "<group>"; };
@@ -1638,6 +1641,7 @@
 			children = (
 				5C3BC4B319DF169E00D9A9AD /* Iconic.entitlements */,
 				5CA3D19C1831DF51006C7932 /* Main.storyboard */,
+				5CD74A2B1B7A716D00BD2A41 /* Iconic-Bridging-Header.h */,
 				5CA3D1991831DF51006C7932 /* AppDelegate.h */,
 				5CA3D19A1831DF51006C7932 /* AppDelegate.m */,
 				5C2EA5421851641500B21C52 /* ContentController.h */,
@@ -1652,6 +1656,7 @@
 				5CCB26D319085BA5002B6832 /* CalculatePoints.m */,
 				5C118E881926B0E200C1760C /* DataModel */,
 				5C8B047B189CAF9B000AD0DF /* TabMenu */,
+				5CD74A2E1B7A719000BD2A41 /* Settings */,
 				5C8B0477189CAE4D000AD0DF /* MyAccount */,
 				5C726C0F196B2C15007C4F4E /* PlayerProfile */,
 				5C2C1CBE185BAF12006722D2 /* Social */,
@@ -1948,6 +1953,14 @@
 				5CC772E61AFD796700EEEB33 /* ATLProgressView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5CD74A2E1B7A719000BD2A41 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5CD74A2C1B7A717000BD2A41 /* SettingsTableViewController.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		5CD9381B187B5000006CE08B /* MZFromSheetControler */ = {
@@ -2411,6 +2424,7 @@
 				5CC772F51AFD796700EEEB33 /* ATLMessagingUtilities.m in Sources */,
 				5CC772FC1AFD796700EEEB33 /* ATLConversationCollectionViewFooter.m in Sources */,
 				5CD93826187B5047006CE08B /* MZFormSheetBackgroundWindow.m in Sources */,
+				5CD74A2D1B7A717000BD2A41 /* SettingsTableViewController.swift in Sources */,
 				5CA19A2018B51F6D0023C940 /* MZTimerLabel.m in Sources */,
 				5CA7593E1A49ECAE0016ED8E /* AchievmentsViewController.m in Sources */,
 				5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */,
@@ -2708,6 +2722,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Iconic/Iconic.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
@@ -2725,6 +2740,7 @@
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";
 				INFOPLIST_FILE = "Iconic/Iconic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Intercom",
@@ -2740,6 +2756,8 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "563a0dd6-8bce-4955-a3cd-ee8ceef50421";
+				SWIFT_OBJC_BRIDGING_HEADER = "Iconic/Iconic-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2749,6 +2767,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Iconic/Iconic.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
@@ -2766,6 +2785,7 @@
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";
 				INFOPLIST_FILE = "Iconic/Iconic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Intercom",
@@ -2781,6 +2801,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "563a0dd6-8bce-4955-a3cd-ee8ceef50421";
+				SWIFT_OBJC_BRIDGING_HEADER = "Iconic/Iconic-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
