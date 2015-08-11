@@ -8,7 +8,14 @@
 
 import UIKit
 
+
 class SettingsTableViewController: UITableViewController {
+    
+    
+    // MARK: Properties
+    var settingText: [String] = ["notification1", "notification2", "notification3", "notification4", "notification5", "notification6"]
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +25,9 @@ class SettingsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+       
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,24 +40,41 @@ class SettingsTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        
+        if(section == 0){
+        return settingText.count
+        }
+        else{
+            return 1
+        }
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("SettingsCell", forIndexPath: indexPath) as! SettingsTableViewCell
 
         // Configure the cell...
+        
+        if(indexPath.section == 0){
+        cell.settingsText.text = settingText[indexPath.row]
+        }
+        else if(indexPath.section == 1){
+            
+            cell.settingsText.text = "Log Out"
+            cell.settingsText.textAlignment = .Center;
+            cell.settingsText.textColor = UIColor.redColor();
+            
+        }
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -93,5 +120,13 @@ class SettingsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
+        self.dismissViewControllerAnimated(true,completion:{})
+        
+        
+        
+    }
 
 }

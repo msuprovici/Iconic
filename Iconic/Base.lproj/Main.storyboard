@@ -1812,7 +1812,7 @@
             </objects>
             <point key="canvasLocation" x="-2067" y="-5785"/>
         </scene>
-        <!--Settings Table View Controller-->
+        <!--Settings-->
         <scene sceneID="lq6-7t-FW6">
             <objects>
                 <tableViewController id="pIL-GU-0QV" customClass="SettingsTableViewController" customModule="Iconic" customModuleProvider="target" sceneMemberID="viewController">
@@ -1821,13 +1821,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ySP-Od-pKD">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="ySP-Od-pKD" customClass="SettingsTableViewCell" customModule="Iconic" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ySP-Od-pKD" id="5Zm-aw-U3d">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3fF-eK-H4d">
+                                            <rect key="frame" x="8" y="11" width="304" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="settingsText" destination="3fF-eK-H4d" id="gob-ls-pBo"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1835,7 +1847,13 @@
                             <outlet property="delegate" destination="pIL-GU-0QV" id="VcQ-6T-t3f"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ZLZ-xh-zVT"/>
+                    <navigationItem key="navigationItem" title="Settings" id="ZLZ-xh-zVT">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="done" id="mn6-aZ-hzu">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="pIL-GU-0QV" id="xCk-1r-fcc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PpB-He-WI1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

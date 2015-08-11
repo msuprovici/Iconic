@@ -312,6 +312,7 @@
 		5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7FAAF185810A600A360A1 /* TeamatesCell.m */; };
 		5CCB26D419085BA5002B6832 /* CalculatePoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB26D319085BA5002B6832 /* CalculatePoints.m */; };
 		5CD74A2D1B7A717000BD2A41 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD74A2C1B7A717000BD2A41 /* SettingsTableViewController.swift */; };
+		5CD74A301B7A92F900BD2A41 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD74A2F1B7A92F800BD2A41 /* SettingsTableViewCell.swift */; };
 		5CD76B5F188852530014072F /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD76B5E188852530014072F /* FeedViewController.m */; };
 		5CD93826187B5047006CE08B /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9381D187B5047006CE08B /* MZFormSheetBackgroundWindow.m */; };
 		5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9381F187B5047006CE08B /* MZFormSheetController.m */; };
@@ -829,6 +830,7 @@
 		5CCB26D319085BA5002B6832 /* CalculatePoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatePoints.m; sourceTree = "<group>"; };
 		5CD74A2B1B7A716D00BD2A41 /* Iconic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Iconic-Bridging-Header.h"; sourceTree = "<group>"; };
 		5CD74A2C1B7A717000BD2A41 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		5CD74A2F1B7A92F800BD2A41 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		5CD76B5D188852530014072F /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		5CD76B5E188852530014072F /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		5CD9381C187B5047006CE08B /* MZFormSheetBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindow.h; sourceTree = "<group>"; };
@@ -1959,6 +1961,7 @@
 			isa = PBXGroup;
 			children = (
 				5CD74A2C1B7A717000BD2A41 /* SettingsTableViewController.swift */,
+				5CD74A2F1B7A92F800BD2A41 /* SettingsTableViewCell.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2413,6 +2416,7 @@
 				5C418F3F1ACC675600DC30FF /* AAPLActivityDataManager.m in Sources */,
 				5C78DA691899B61700CBA29B /* MBProgressHUD.m in Sources */,
 				5CC772F31AFD796700EEEB33 /* ATLLocationManager.m in Sources */,
+				5CD74A301B7A92F900BD2A41 /* SettingsTableViewCell.swift in Sources */,
 				5CC773091AFD796700EEEB33 /* ATLProgressView.m in Sources */,
 				5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */,
 				5C539DFD198715090027669A /* Amplitude.m in Sources */,
