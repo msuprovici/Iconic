@@ -13,14 +13,11 @@ class SettingsTableViewController: UITableViewController {
     
     
     // MARK: Properties
-    var settingText: [String] = ["notification1", "notification2", "notification3", "notification4", "notification5", "notification6"]
-    
+   
     var headerText: [String] = ["Notfications", ""]
-    
-    
-    
-//    var settingsListItemObjects = [SettingsListItem]()
-//    var settingsListItemObject = SettingsListItem?()
+   
+    var settingsListItemObjects = [SettingsListItem]()
+
     
     
 
@@ -33,11 +30,30 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-//        if let savedSettingsListItems = loadSettingsListItems() {
-//            settingsListItemObjects += savedSettingsListItems
-//        }
-
-       
+        
+        // Load any saved settings, otherwise load default data.
+        if let savedSettigns = loadSettingsListItems() {
+            settingsListItemObjects += savedSettigns
+        }
+        else {
+            loadSettingsListItemObjects()
+        }
+        
+    }
+    
+    
+    func loadSettingsListItemObjects(){
+        
+        let setting1 = SettingsListItem(itemName: "notification1", selected: false)
+        let setting2 = SettingsListItem(itemName: "notification2", selected: false)
+        let setting3 = SettingsListItem(itemName: "notification3", selected: false)
+        let setting4 = SettingsListItem(itemName: "notification4", selected: false)
+        let setting5 = SettingsListItem(itemName: "notification5", selected: false)
+        let setting6 = SettingsListItem(itemName: "notification6", selected: false)
+        
+   
+        settingsListItemObjects += [setting1, setting2, setting3, setting4, setting5, setting6]
+        
         
     }
 
@@ -59,7 +75,7 @@ class SettingsTableViewController: UITableViewController {
         // Return the number of rows in the section.
         
         if(section == 0){
-        return settingText.count
+        return settingsListItemObjects.count
         }
         else{
             return 1
@@ -72,12 +88,31 @@ class SettingsTableViewController: UITableViewController {
 
         // Configure the cell...
         
-        if(indexPath.section == 0){
-        cell.settingsText.text = settingText[indexPath.row]
-        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        if(indexPath.section == 0)
+        {
+            
+            let settingListObject = settingsListItemObjects[indexPath.row]
+                
+                
+            cell.settingsText.text = settingListObject.itemName
+        
+                if(settingListObject.selected == true)
+                {
+                    cell.accessoryType = UITableViewCellAccessoryType.None
+                }
+                else if (settingListObject.selected == false)
+                {
+                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                }
+                else
+                {
+                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                }
             
         }
-        else if(indexPath.section == 1){
+            
+        else if(indexPath.section == 1)
+        {
             
             cell.settingsText.text = "Log Out"
             cell.settingsText.textAlignment = .Center;
@@ -93,9 +128,28 @@ class SettingsTableViewController: UITableViewController {
         if(indexPath.section == 0){
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
         selectedCell?.accessoryType = .None
+        
+        let settingListObject = settingsListItemObjects[indexPath.row]
+        
             
-//            let tappedItem = settingText[indexPath.row]
-//            settingsListItemObject = SettingsListItem(itemName: tappedItem, selected: true)
+        // save object if item is slelected
+        if(settingListObject.selected == true)
+            {
+                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: false)
+
+                saveSettingsListItem()
+                
+            }
+            else
+            {
+                
+                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: true)
+
+                saveSettingsListItem()
+            }
+            
+            
+            
             
         }
         
@@ -107,8 +161,26 @@ class SettingsTableViewController: UITableViewController {
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
         selectedCell?.accessoryType = .Checkmark
             
-//            let tappedItem = settingText[indexPath.row]
-//            settingsListItemObject = SettingsListItem(itemName: tappedItem, selected: false)
+            let settingListObject = settingsListItemObjects[indexPath.row]
+            
+            
+            // save object if item is de-slelected
+            if(settingListObject.selected == true)
+            {
+
+                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: false)
+                
+                saveSettingsListItem()
+            }
+            else
+            {
+                
+                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: true)
+
+                saveSettingsListItem()
+            }
+            
+
         }
         
     }
@@ -175,20 +247,24 @@ class SettingsTableViewController: UITableViewController {
     
     
     
-//    // MARK: NSCoding
-//    
-//    func saveSettingsListItem() {
-//        
-//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(settingsListItemObjects, toFile: SettingsListItem.ArchiveURL.path!)
-//        if !isSuccessfulSave {
-//            print("Failed to save meals...")
-//        }
-//        
-//    }
-//    
-//    func loadSettingsListItems() -> [SettingsListItem]? {
-//        return NSKeyedUnarchiver.unarchiveObjectWithFile(SettingsListItem.ArchiveURL.path!) as? [SettingsListItem]
-//    }
+    // MARK: NSCoding
+    
+    func saveSettingsListItem() {
+        
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(settingsListItemObjects, toFile: SettingsListItem.ArchiveURL.path!)
+        if !isSuccessfulSave {
+            print("Failed to save setting...")
+        }
+        else
+        {
+            print("Save succesful...")
+        }
+        
+    }
+    
+    func loadSettingsListItems() -> [SettingsListItem]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(SettingsListItem.ArchiveURL.path!) as? [SettingsListItem]
+    }
 
 
 }
