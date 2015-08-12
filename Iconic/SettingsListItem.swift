@@ -14,6 +14,7 @@ class SettingsListItem: NSObject, NSCoding {
     
     var itemName: String
     var selected: Bool
+    var parseKey: String
     
     
     // MARK: Archiving Paths
@@ -28,20 +29,23 @@ class SettingsListItem: NSObject, NSCoding {
         
         static let itemNameKey = "settingName"
         static let settingSelectedKey = "settingSelected"
+        static let parseNameKey = "parseSettingName"
+        
         
     }
     
     
     //Mark: Initialization
     
-    init(itemName: String, selected: Bool)
+    init(itemName: String, selected: Bool, parseKey: String)
     {
         self.itemName = itemName
         self.selected = selected
+        self.parseKey = parseKey
         
         super.init()
         
-//        // Initialization should fail if there is no name or if the rating is negative.
+//        // Initialization should fail if there is no name
 //        if itemName.isEmpty {
 //            return nil
 //        }
@@ -54,6 +58,7 @@ class SettingsListItem: NSObject, NSCoding {
         
         aCoder.encodeObject(itemName, forKey: PropertyKey.itemNameKey)
         aCoder.encodeObject(selected, forKey: PropertyKey.settingSelectedKey)
+        aCoder.encodeObject(parseKey, forKey: PropertyKey.parseNameKey)
        
     }
     
@@ -61,12 +66,14 @@ class SettingsListItem: NSObject, NSCoding {
         
         let itemName = aDecoder.decodeObjectForKey(PropertyKey.itemNameKey) as! String
         
+        let parseKey = aDecoder.decodeObjectForKey(PropertyKey.parseNameKey) as! String
+        
         let selected = aDecoder.decodeObjectForKey(PropertyKey.settingSelectedKey) as! Bool
         
         
         // Must call designated initilizer.
         
-          self.init(itemName: itemName, selected: selected)
+        self.init(itemName: itemName, selected: selected, parseKey: parseKey)
         
     }
 
