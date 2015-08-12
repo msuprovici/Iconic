@@ -313,6 +313,7 @@
 		5CCB26D419085BA5002B6832 /* CalculatePoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB26D319085BA5002B6832 /* CalculatePoints.m */; };
 		5CD74A2D1B7A717000BD2A41 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD74A2C1B7A717000BD2A41 /* SettingsTableViewController.swift */; };
 		5CD74A301B7A92F900BD2A41 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD74A2F1B7A92F800BD2A41 /* SettingsTableViewCell.swift */; };
+		5CD74A321B7AB72100BD2A41 /* SettingsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD74A311B7AB72100BD2A41 /* SettingsListItem.swift */; };
 		5CD76B5F188852530014072F /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD76B5E188852530014072F /* FeedViewController.m */; };
 		5CD93826187B5047006CE08B /* MZFormSheetBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9381D187B5047006CE08B /* MZFormSheetBackgroundWindow.m */; };
 		5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD9381F187B5047006CE08B /* MZFormSheetController.m */; };
@@ -831,6 +832,7 @@
 		5CD74A2B1B7A716D00BD2A41 /* Iconic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Iconic-Bridging-Header.h"; sourceTree = "<group>"; };
 		5CD74A2C1B7A717000BD2A41 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		5CD74A2F1B7A92F800BD2A41 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		5CD74A311B7AB72100BD2A41 /* SettingsListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListItem.swift; sourceTree = "<group>"; };
 		5CD76B5D188852530014072F /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		5CD76B5E188852530014072F /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		5CD9381C187B5047006CE08B /* MZFormSheetBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZFormSheetBackgroundWindow.h; sourceTree = "<group>"; };
@@ -1962,6 +1964,7 @@
 			children = (
 				5CD74A2C1B7A717000BD2A41 /* SettingsTableViewController.swift */,
 				5CD74A2F1B7A92F800BD2A41 /* SettingsTableViewCell.swift */,
+				5CD74A311B7AB72100BD2A41 /* SettingsListItem.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2462,6 +2465,7 @@
 				5C328BFB186002D300E0E985 /* LeaguesViewController.m in Sources */,
 				5C48B8BC1880F89F00A09A1C /* UIImage+AlphaAdditions.m in Sources */,
 				5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */,
+				5CD74A321B7AB72100BD2A41 /* SettingsListItem.swift in Sources */,
 				5CC773011AFD796700EEEB33 /* ATLIncomingMessageCollectionViewCell.m in Sources */,
 				5CC773021AFD796700EEEB33 /* ATLMessageBubbleView.m in Sources */,
 				5C47815E18C0EE5F002E6C3F /* VSTableViewController.m in Sources */,

@@ -18,6 +18,11 @@ class SettingsTableViewController: UITableViewController {
     var headerText: [String] = ["Notfications", ""]
     
     
+    
+//    var settingsListItemObjects = [SettingsListItem]()
+//    var settingsListItemObject = SettingsListItem?()
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,10 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+//        if let savedSettingsListItems = loadSettingsListItems() {
+//            settingsListItemObjects += savedSettingsListItems
+//        }
+
        
         
     }
@@ -65,6 +74,8 @@ class SettingsTableViewController: UITableViewController {
         
         if(indexPath.section == 0){
         cell.settingsText.text = settingText[indexPath.row]
+        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            
         }
         else if(indexPath.section == 1){
             
@@ -76,6 +87,32 @@ class SettingsTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if(indexPath.section == 0){
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+        selectedCell?.accessoryType = .None
+            
+//            let tappedItem = settingText[indexPath.row]
+//            settingsListItemObject = SettingsListItem(itemName: tappedItem, selected: true)
+            
+        }
+        
+    }
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if(indexPath.section == 0){
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+        selectedCell?.accessoryType = .Checkmark
+            
+//            let tappedItem = settingText[indexPath.row]
+//            settingsListItemObject = SettingsListItem(itemName: tappedItem, selected: false)
+        }
+        
+    }
+    
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return headerText[section]
@@ -131,9 +168,27 @@ class SettingsTableViewController: UITableViewController {
     
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true,completion:{})
-        
-        
-        
+ 
     }
+    
+    
+    
+    
+    
+//    // MARK: NSCoding
+//    
+//    func saveSettingsListItem() {
+//        
+//        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(settingsListItemObjects, toFile: SettingsListItem.ArchiveURL.path!)
+//        if !isSuccessfulSave {
+//            print("Failed to save meals...")
+//        }
+//        
+//    }
+//    
+//    func loadSettingsListItems() -> [SettingsListItem]? {
+//        return NSKeyedUnarchiver.unarchiveObjectWithFile(SettingsListItem.ArchiveURL.path!) as? [SettingsListItem]
+//    }
+
 
 }
