@@ -49,14 +49,14 @@ class SettingsTableViewController: UITableViewController {
         
         
         
-//        if let savedTeamSettings = loadTeamSettingsListItems(){
-//            teamSettingsListItemObjects += savedTeamSettings
-//        }
-//        else
-//        {
-//            loadTeamSettingsListItemObjects()
-//        }
-        loadTeamSettingsListItemObjects()
+        if let savedTeamSettings = loadTeamSettingsListItems(){
+            teamSettingsListItemObjects += savedTeamSettings
+        }
+        else
+        {
+            loadTeamSettingsListItemObjects()
+        }
+       
         
         
     }
@@ -129,6 +129,8 @@ class SettingsTableViewController: UITableViewController {
         
         if(indexPath.section == 0)
         {
+            cell.settingsText.textAlignment = .Left;
+            cell.settingsText.textColor = UIColor(red: 0/255, green: 42/255, blue: 50/255, alpha: 1)
             
             let settingListObject = settingsListItemObjects[indexPath.row]
                 
@@ -149,8 +151,11 @@ class SettingsTableViewController: UITableViewController {
             
         else if(indexPath.section == 1)
         {
+            cell.settingsText.textAlignment = .Left;
+            cell.settingsText.textColor = UIColor(red: 0/255, green: 42/255, blue: 50/255, alpha: 1)
             
             let teamSettingListObject = teamSettingsListItemObjects[indexPath.row]
+            
             
             
             cell.settingsText.text = teamSettingListObject.itemName
@@ -170,7 +175,7 @@ class SettingsTableViewController: UITableViewController {
             cell.accessoryType = UITableViewCellAccessoryType.None
             cell.settingsText.text = "Log Out"
             cell.settingsText.textAlignment = .Center;
-            cell.settingsText.textColor = UIColor.redColor();
+            cell.settingsText.textColor = UIColor(red: 250/255, green: 0/255, blue: 33/255, alpha: 1);
         }
 
         return cell
