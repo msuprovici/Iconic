@@ -34,6 +34,7 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+//        loadSettingsListItemObjects()
         
         // Load any saved settings, otherwise load default data.
         if let savedSettigns = loadSettingsListItems() {
@@ -48,16 +49,16 @@ class SettingsTableViewController: UITableViewController {
     
     func loadSettingsListItemObjects(){
         
-        let setting1 = SettingsListItem(itemName: "notification1", selected: false, parseKey: "steps5kPermission")
-        let setting2 = SettingsListItem(itemName: "notification2", selected: false, parseKey: "")
-        let setting3 = SettingsListItem(itemName: "notification3", selected: false, parseKey: "")
-        let setting4 = SettingsListItem(itemName: "notification4", selected: false, parseKey: "")
-        let setting5 = SettingsListItem(itemName: "notification5", selected: false, parseKey: "")
-        let setting6 = SettingsListItem(itemName: "notification6", selected: false, parseKey: "")
+        let setting1 = SettingsListItem(itemName: "Record Daily Steps", selected: false, parseKey: "highDailyStepsPermission")
+        let setting2 = SettingsListItem(itemName: "Low Steps", selected: false, parseKey: "lowStepsPermission")
+        let setting3 = SettingsListItem(itemName: "Streaks", selected: false, parseKey: "streakPermission")
+        let setting4 = SettingsListItem(itemName: "5k Steps", selected: false, parseKey: "steps5kPermission")
+        let setting5 = SettingsListItem(itemName: "10k Steps", selected: false, parseKey: "steps10kPermission")
+        let setting6 = SettingsListItem(itemName: "15k Steps", selected: false, parseKey: "steps15kPermission")
+        let setting7 = SettingsListItem(itemName: "20k Steps", selected: false, parseKey: "steps20kPermission")
         
-   
-        settingsListItemObjects += [setting1, setting2, setting3, setting4, setting5, setting6]
         
+        settingsListItemObjects += [setting1, setting2, setting3, setting4, setting5, setting6, setting7]
         
     }
 
@@ -108,10 +109,10 @@ class SettingsTableViewController: UITableViewController {
                 {
                     cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                 }
-                else
-                {
-                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-                }
+//                else
+//                {
+//                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+//                }
             
         }
             
@@ -131,41 +132,24 @@ class SettingsTableViewController: UITableViewController {
         
         if(indexPath.section == 0){
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
-        selectedCell?.accessoryType = .None
+//        selectedCell?.accessoryType = .None
         
         let settingListObject = settingsListItemObjects[indexPath.row]
         
             
         // save object if item is slelected
-        if(settingListObject.selected == true)
+          
+            if (settingListObject.selected == true)
             {
+                
+                selectedCell?.accessoryType = .Checkmark
+                
+//                print("    select row: not selected")
                 
                 settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: false, parseKey: settingListObject.parseKey)
 
                 saveSettingsListItem()
                 
-                
-                user?.setObject(true, forKey: settingListObject.parseKey)
-                
-                user?.saveInBackgroundWithBlock {
-                    (success: Bool, error: NSError?) -> Void in
-                    if (success) {
-                        // The object has been saved.
-                         print("User saved")
-                    } else {
-                        // There was a problem, check error.description
-                         print("User failed to saved")
-                    }
-                }
-                
-               
-            }
-            else
-            {
-                
-                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: true, parseKey: settingListObject.parseKey)
-
-                saveSettingsListItem()
                 
                 user?.setObject(false, forKey: settingListObject.parseKey)
                 
@@ -173,75 +157,77 @@ class SettingsTableViewController: UITableViewController {
                     (success: Bool, error: NSError?) -> Void in
                     if (success) {
                         // The object has been saved.
-                        print("User saved")
+//                         print("  User saved in select")
                     } else {
                         // There was a problem, check error.description
-                        print("User failed to saved")
+                         print("  User failed to saved")
+                    }
+                }
+            
+            }
+            else
+            {
+                selectedCell?.accessoryType = .None
+                
+//                print("    select row: selected")
+                
+                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: true, parseKey: settingListObject.parseKey)
+                
+                saveSettingsListItem()
+                
+                
+                user?.setObject(false, forKey: settingListObject.parseKey)
+                
+                user?.saveInBackgroundWithBlock {
+                    (success: Bool, error: NSError?) -> Void in
+                    if (success) {
+                        // The object has been saved.
+//                        print("  User saved in select")
+                    } else {
+                        // There was a problem, check error.description
+                        print("  User failed to saved")
                     }
                 }
 
             }
-            
-            
-            
             
         }
         
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if(indexPath.section == 0){
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
-        selectedCell?.accessoryType = .Checkmark
-            
-            let settingListObject = settingsListItemObjects[indexPath.row]
-            
-            
-            // save object if item is de-slelected
-            if(settingListObject.selected == true)
-            {
-
-                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: false, parseKey: settingListObject.parseKey)
-                
-                saveSettingsListItem()
-                
-                user?.setObject(true, forKey: settingListObject.parseKey)
-                
-                user?.saveInBackgroundWithBlock {
-                    (success: Bool, error: NSError?) -> Void in
-                    if (success) {
-                        // The object has been saved.
-                    } else {
-                        // There was a problem, check error.description
-                    }
-                }
-
-            }
-            else
-            {
-                
-                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: true, parseKey: settingListObject.parseKey)
-
-                saveSettingsListItem()
-                
-                user?.setObject(false, forKey: settingListObject.parseKey)
-                
-                user?.saveInBackgroundWithBlock {
-                    (success: Bool, error: NSError?) -> Void in
-                    if (success) {
-                        // The object has been saved.
-                    } else {
-                        // There was a problem, check error.description
-                    }
-                }
-
-            }
-            
-
-        }
-        
-    }
+//    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        if(indexPath.section == 0){
+//        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+//        selectedCell?.accessoryType = .Checkmark
+//            
+//            let settingListObject = settingsListItemObjects[indexPath.row]
+//            
+//
+//                print("    de-select row: not selected")
+//                
+//                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: true, parseKey: settingListObject.parseKey)
+//
+//                saveSettingsListItem()
+//                
+//                user?.setObject(true, forKey: settingListObject.parseKey)
+//                
+//                user?.saveInBackgroundWithBlock {
+//                    (success: Bool, error: NSError?) -> Void in
+//                    if (success) {
+//                        // The object has been saved.
+//                        print("  User saved in de-select")
+//                    } else {
+//                        // There was a problem, check error.description
+//                    }
+////                }
+//
+//            }
+//            
+//
+//        }
+//        
+//    }
     
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -317,7 +303,8 @@ class SettingsTableViewController: UITableViewController {
         }
         else
         {
-//            print("Save succesful...")
+           print("    saveSettingsListItem Save succesful...")
+            
         }
         
     }
