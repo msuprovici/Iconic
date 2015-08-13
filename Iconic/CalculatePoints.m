@@ -1880,7 +1880,24 @@
         
     }
     
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    
+    
+    //if no value just set the bool to true
+    if([defaults objectForKey:@"finalScoresNotificaitonPermision"] == nil)
+    {
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    }
+    
+    else if ([defaults boolForKey:@"finalScoresNotificaitonPermision"] == true)
+    {
+    
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        
+    }
+    
+    
     return notificationBody;
 }
 

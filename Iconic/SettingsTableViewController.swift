@@ -22,6 +22,8 @@ class SettingsTableViewController: UITableViewController {
     var settingsListItemObjects = [SettingsListItem]()
     
     var teamSettingsListItemObjects = [TeamSettingsListItem]()
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
 
     
     
@@ -66,14 +68,15 @@ class SettingsTableViewController: UITableViewController {
         let setting2 = SettingsListItem(itemName: "Low Steps", selected: false, parseKey: "lowStepsPermission")
         let setting3 = SettingsListItem(itemName: "Streaks", selected: false, parseKey: "streakPermission")
         let setting4 = SettingsListItem(itemName: "XP Level Up", selected: false, parseKey: "xpPermission")
-        let setting5 = SettingsListItem(itemName: "5k Steps", selected: false, parseKey: "steps5kPermission")
-        let setting6 = SettingsListItem(itemName: "10k Steps", selected: false, parseKey: "steps10kPermission")
-        let setting7 = SettingsListItem(itemName: "15k Steps", selected: false, parseKey: "steps15kPermission")
-        let setting8 = SettingsListItem(itemName: "20k Steps", selected: false, parseKey: "steps20kPermission")
+        let setting5 = SettingsListItem(itemName: "High Five", selected: false, parseKey: "cheerPermission")
+        let setting6 = SettingsListItem(itemName: "5k Steps", selected: false, parseKey: "steps5kPermission")
+        let setting7 = SettingsListItem(itemName: "10k Steps", selected: false, parseKey: "steps10kPermission")
+        let setting8 = SettingsListItem(itemName: "15k Steps", selected: false, parseKey: "steps15kPermission")
+        let setting9 = SettingsListItem(itemName: "20k Steps", selected: false, parseKey: "steps20kPermission")
         
         
         
-        settingsListItemObjects += [setting1, setting2, setting3, setting4, setting5, setting6, setting7, setting8]
+        settingsListItemObjects += [setting1, setting2, setting3, setting4, setting5, setting6, setting7, setting8, setting9]
         
     }
     
@@ -140,10 +143,7 @@ class SettingsTableViewController: UITableViewController {
                 {
                     cell.accessoryType = UITableViewCellAccessoryType.Checkmark
                 }
-//                else
-//                {
-//                    cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-//                }
+
             
         }
             
@@ -165,8 +165,9 @@ class SettingsTableViewController: UITableViewController {
             }
             
         }
-        else
+        else if(indexPath.section == 2)
         {
+            cell.accessoryType = UITableViewCellAccessoryType.None
             cell.settingsText.text = "Log Out"
             cell.settingsText.textAlignment = .Center;
             cell.settingsText.textColor = UIColor.redColor();
@@ -266,7 +267,7 @@ class SettingsTableViewController: UITableViewController {
                 if(teamSettingListObject.itemName .isEqual("Team Updates"))
                 {
                     
-                    let defaults = NSUserDefaults.standardUserDefaults()
+                    
                     
                     var notificationChannels = defaults.arrayForKey("arrayOfMyTeamNames");
                     
@@ -277,12 +278,19 @@ class SettingsTableViewController: UITableViewController {
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {
                             // The object has been saved.
-                                                    print("  Installation channel saved in select")
+//                                                    print("  Installation channel saved in select")
                         } else {
                             // There was a problem, check error.description
                             print("  Installation chanels failed to save")
                         }
                     }
+                }
+                
+                if(teamSettingListObject.itemName .isEqual("Final Scores"))
+                {
+                    defaults.setBool(true, forKey: "finalScoresNotificaitonPermision")
+                    // print("  finalScoresNotificaitonPermision - true")
+
                 }
             
                 
@@ -315,12 +323,19 @@ class SettingsTableViewController: UITableViewController {
                         (success: Bool, error: NSError?) -> Void in
                         if (success) {
                             // The object has been saved.
-                            print("  Installation channel saved in select")
+//                            print("  Installation channel saved in select")
                         } else {
                             // There was a problem, check error.description
                             print("  Installation chanels failed to save")
                         }
                     }
+                }
+                
+                if(teamSettingListObject.itemName .isEqual("Final Scores"))
+                {
+                    defaults.setBool(false, forKey: "finalScoresNotificaitonPermision")
+                    //print("  finalScoresNotificaitonPermision - false")
+                    
                 }
 
                 
