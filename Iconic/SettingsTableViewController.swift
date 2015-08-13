@@ -16,11 +16,11 @@ class SettingsTableViewController: UITableViewController {
     
     var user = PFUser.currentUser()
    
-    var headerText: [String] = ["Notfications", ""]
+    var headerText: [String] = ["Personal Notfications", "Team Notifications", ""]
    
     var settingsListItemObjects = [SettingsListItem]()
     
-    
+    var teamSettingsListItemObjects = [TeamSettingsListItem]()
 
     
     
@@ -44,6 +44,18 @@ class SettingsTableViewController: UITableViewController {
             loadSettingsListItemObjects()
         }
         
+        
+        
+        if let savedTeamSettings = loadTeamSettingsListItems(){
+            teamSettingsListItemObjects += savedTeamSettings
+        }
+        else
+        {
+            loadTeamSettingsListItemObjects()
+        }
+        
+        
+        
     }
     
     
@@ -61,6 +73,16 @@ class SettingsTableViewController: UITableViewController {
         settingsListItemObjects += [setting1, setting2, setting3, setting4, setting5, setting6, setting7]
         
     }
+    
+    func loadTeamSettingsListItemObjects(){
+        
+        let teamSetting1 = TeamSettingsListItem(itemName: "Team updates", selected: false)
+        let teamSetting2 = TeamSettingsListItem(itemName: "Final Scores", selected: false)
+        
+        teamSettingsListItemObjects += [teamSetting1, teamSetting2]
+    }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,15 +94,21 @@ class SettingsTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 2
+        return 3
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         
-        if(section == 0){
-        return settingsListItemObjects.count
+        if(section == 0)
+        {
+            return settingsListItemObjects.count
+        }
+        else if(section == 1)
+        {
+            return teamSettingsListItemObjects.count
+            
         }
         else{
             return 1
@@ -119,10 +147,26 @@ class SettingsTableViewController: UITableViewController {
         else if(indexPath.section == 1)
         {
             
+            let teamSettingListObject = teamSettingsListItemObjects[indexPath.row]
+            
+            
+            cell.settingsText.text = teamSettingListObject.itemName
+            
+            if(teamSettingListObject.selected == true)
+            {
+                cell.accessoryType = UITableViewCellAccessoryType.None
+            }
+            else if (teamSettingListObject.selected == false)
+            {
+                cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            }
+            
+        }
+        else
+        {
             cell.settingsText.text = "Log Out"
             cell.settingsText.textAlignment = .Center;
             cell.settingsText.textColor = UIColor.redColor();
-            
         }
 
         return cell
@@ -191,6 +235,44 @@ class SettingsTableViewController: UITableViewController {
 
             }
             
+        }
+        else if (indexPath.section == 1)
+        {
+            let selectedTeamSettingsCell = tableView.cellForRowAtIndexPath(indexPath)
+            //        selectedCell?.accessoryType = .None
+            
+            let teamSettingListObject = teamSettingsListItemObjects[indexPath.row]
+            
+            
+            // save object if item is slelected
+            
+            if (teamSettingListObject.selected == true)
+            {
+                
+                selectedTeamSettingsCell?.accessoryType = .Checkmark
+                
+                //                print("    select row: not selected")
+                
+                teamSettingsListItemObjects[indexPath.row] = TeamSettingsListItem(itemName: teamSettingListObject.itemName, selected: false)
+                
+                saveTeamSettingsListItem()
+                
+                
+                
+            }
+            else
+            {
+                selectedTeamSettingsCell?.accessoryType = .None
+                
+                //                print("    select row: selected")
+                
+                teamSettingsListItemObjects[indexPath.row] = TeamSettingsListItem(itemName: teamSettingListObject.itemName, selected: true)
+                
+                saveTeamSettingsListItem()
+                
+                
+                
+            }
         }
         
     }
@@ -303,7 +385,7 @@ class SettingsTableViewController: UITableViewController {
         }
         else
         {
-           print("    saveSettingsListItem Save succesful...")
+//           print("    saveSettingsListItem Save succesful...")
             
         }
         
@@ -312,6 +394,29 @@ class SettingsTableViewController: UITableViewController {
     func loadSettingsListItems() -> [SettingsListItem]? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(SettingsListItem.ArchiveURL.path!) as? [SettingsListItem]
     }
+    
+    
+    
+    func saveTeamSettingsListItem() {
+        
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(teamSettingsListItemObjects, toFile: TeamSettingsListItem.ArchiveURL.path!)
+        if !isSuccessfulSave {
+            print("Failed to save setting...")
+            
+            
+        }
+        else
+        {
+//            print("    saveTeamSettingsListItem Save succesful...")
+            
+        }
+        
+    }
+    
+    func loadTeamSettingsListItems() -> [TeamSettingsListItem]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(TeamSettingsListItem.ArchiveURL.path!) as? [TeamSettingsListItem]
+    }
+
 
 
 }

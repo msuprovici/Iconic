@@ -336,6 +336,7 @@
 		5CDB87601ACB1110009FE9D2 /* Share_Button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDB875E1ACB1110009FE9D2 /* Share_Button@3x.png */; };
 		5CDB87631ACB1360009FE9D2 /* Add_League_Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDB87611ACB1360009FE9D2 /* Add_League_Button@2x.png */; };
 		5CDB87641ACB1360009FE9D2 /* Add_League_Button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDB87621ACB1360009FE9D2 /* Add_League_Button@3x.png */; };
+		5CDFB0C31B7CDF4600179867 /* TeamSettingsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDFB0C21B7CDF4500179867 /* TeamSettingsListItem.swift */; };
 		5CE57DE718D8C2F0006C9F31 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE57DE618D8C2F0006C9F31 /* CoreMotion.framework */; };
 		5CE7782D1A0D7D0D008B3585 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 5CE778221A0D7D0D008B3585 /* Contents.json */; };
 		5CE7782E1A0D7D0D008B3585 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE778231A0D7D0D008B3585 /* Icon-40.png */; };
@@ -864,6 +865,7 @@
 		5CDB875E1ACB1110009FE9D2 /* Share_Button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Share_Button@3x.png"; sourceTree = "<group>"; };
 		5CDB87611ACB1360009FE9D2 /* Add_League_Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_League_Button@2x.png"; sourceTree = "<group>"; };
 		5CDB87621ACB1360009FE9D2 /* Add_League_Button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_League_Button@3x.png"; sourceTree = "<group>"; };
+		5CDFB0C21B7CDF4500179867 /* TeamSettingsListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamSettingsListItem.swift; sourceTree = "<group>"; };
 		5CE57DE618D8C2F0006C9F31 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		5CE778221A0D7D0D008B3585 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		5CE778231A0D7D0D008B3585 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
@@ -1965,6 +1967,7 @@
 				5CD74A2C1B7A717000BD2A41 /* SettingsTableViewController.swift */,
 				5CD74A2F1B7A92F800BD2A41 /* SettingsTableViewCell.swift */,
 				5CD74A311B7AB72100BD2A41 /* SettingsListItem.swift */,
+				5CDFB0C21B7CDF4500179867 /* TeamSettingsListItem.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2477,6 +2480,7 @@
 				5CC772F01AFD796700EEEB33 /* ATLParticipantTableDataSet.m in Sources */,
 				5C539A1318679F3A006676FA /* PlayerTeamsViewController.m in Sources */,
 				5CA19A3718B83E290023C940 /* PNCircleChart.m in Sources */,
+				5CDFB0C31B7CDF4600179867 /* TeamSettingsListItem.swift in Sources */,
 				5CD93831187B510E006CE08B /* NSInvocation+Copy.m in Sources */,
 				5C349E9D18602ED600325A29 /* TeamPlayersViewController.m in Sources */,
 				5C118E871926B08E00C1760C /* League.m in Sources */,
