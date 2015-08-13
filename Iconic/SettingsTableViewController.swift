@@ -9,6 +9,7 @@
 import UIKit
 
 
+
 class SettingsTableViewController: UITableViewController {
     
     
@@ -46,14 +47,14 @@ class SettingsTableViewController: UITableViewController {
         
         
         
-        if let savedTeamSettings = loadTeamSettingsListItems(){
-            teamSettingsListItemObjects += savedTeamSettings
-        }
-        else
-        {
-            loadTeamSettingsListItemObjects()
-        }
-        
+//        if let savedTeamSettings = loadTeamSettingsListItems(){
+//            teamSettingsListItemObjects += savedTeamSettings
+//        }
+//        else
+//        {
+//            loadTeamSettingsListItemObjects()
+//        }
+        loadTeamSettingsListItemObjects()
         
         
     }
@@ -64,19 +65,21 @@ class SettingsTableViewController: UITableViewController {
         let setting1 = SettingsListItem(itemName: "Record Daily Steps", selected: false, parseKey: "highDailyStepsPermission")
         let setting2 = SettingsListItem(itemName: "Low Steps", selected: false, parseKey: "lowStepsPermission")
         let setting3 = SettingsListItem(itemName: "Streaks", selected: false, parseKey: "streakPermission")
-        let setting4 = SettingsListItem(itemName: "5k Steps", selected: false, parseKey: "steps5kPermission")
-        let setting5 = SettingsListItem(itemName: "10k Steps", selected: false, parseKey: "steps10kPermission")
-        let setting6 = SettingsListItem(itemName: "15k Steps", selected: false, parseKey: "steps15kPermission")
-        let setting7 = SettingsListItem(itemName: "20k Steps", selected: false, parseKey: "steps20kPermission")
+        let setting4 = SettingsListItem(itemName: "XP Level Up", selected: false, parseKey: "xpPermission")
+        let setting5 = SettingsListItem(itemName: "5k Steps", selected: false, parseKey: "steps5kPermission")
+        let setting6 = SettingsListItem(itemName: "10k Steps", selected: false, parseKey: "steps10kPermission")
+        let setting7 = SettingsListItem(itemName: "15k Steps", selected: false, parseKey: "steps15kPermission")
+        let setting8 = SettingsListItem(itemName: "20k Steps", selected: false, parseKey: "steps20kPermission")
         
         
-        settingsListItemObjects += [setting1, setting2, setting3, setting4, setting5, setting6, setting7]
+        
+        settingsListItemObjects += [setting1, setting2, setting3, setting4, setting5, setting6, setting7, setting8]
         
     }
     
     func loadTeamSettingsListItemObjects(){
         
-        let teamSetting1 = TeamSettingsListItem(itemName: "Team updates", selected: false)
+        let teamSetting1 = TeamSettingsListItem(itemName: "Team Updates", selected: false)
         let teamSetting2 = TeamSettingsListItem(itemName: "Final Scores", selected: false)
         
         teamSettingsListItemObjects += [teamSetting1, teamSetting2]
@@ -259,6 +262,34 @@ class SettingsTableViewController: UITableViewController {
                 
                 
                 
+                
+                if(teamSettingListObject.itemName .isEqual("Team Updates"))
+                {
+                    
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    
+                    var notificationChannels = defaults.arrayForKey("arrayOfMyTeamNames");
+                    
+                    
+                    let installation = PFInstallation.currentInstallation()
+                    installation.setObject(notificationChannels!, forKey: "channels")
+                    installation.saveInBackgroundWithBlock{
+                        (success: Bool, error: NSError?) -> Void in
+                        if (success) {
+                            // The object has been saved.
+                                                    print("  Installation channel saved in select")
+                        } else {
+                            // There was a problem, check error.description
+                            print("  Installation chanels failed to save")
+                        }
+                    }
+                }
+            
+                
+                
+                
+                
+                
             }
             else
             {
@@ -269,6 +300,29 @@ class SettingsTableViewController: UITableViewController {
                 teamSettingsListItemObjects[indexPath.row] = TeamSettingsListItem(itemName: teamSettingListObject.itemName, selected: true)
                 
                 saveTeamSettingsListItem()
+                
+                
+                if(teamSettingListObject.itemName .isEqual("Team Updates"))
+                {
+                
+                    
+                    
+                    var notificationChannels: [String] = [];
+                    
+                    let installation = PFInstallation.currentInstallation()
+                    installation.setObject(notificationChannels, forKey: "channels")
+                    installation.saveInBackgroundWithBlock{
+                        (success: Bool, error: NSError?) -> Void in
+                        if (success) {
+                            // The object has been saved.
+                            print("  Installation channel saved in select")
+                        } else {
+                            // There was a problem, check error.description
+                            print("  Installation chanels failed to save")
+                        }
+                    }
+                }
+
                 
                 
                 
