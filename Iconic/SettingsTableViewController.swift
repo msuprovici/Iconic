@@ -24,7 +24,10 @@ class SettingsTableViewController: UITableViewController {
     var teamSettingsListItemObjects = [TeamSettingsListItem]()
     
     let defaults = NSUserDefaults.standardUserDefaults()
+    
+    let app = UIApplication.sharedApplication()
 
+    
     
     
 
@@ -64,28 +67,64 @@ class SettingsTableViewController: UITableViewController {
     
     func loadSettingsListItemObjects(){
         
-        let setting1 = SettingsListItem(itemName: "Record Daily Steps", selected: false, parseKey: "highDailyStepsPermission")
-        let setting2 = SettingsListItem(itemName: "Low Steps", selected: false, parseKey: "lowStepsPermission")
-        let setting3 = SettingsListItem(itemName: "Streaks", selected: false, parseKey: "streakPermission")
-        let setting4 = SettingsListItem(itemName: "XP Level Up", selected: false, parseKey: "xpPermission")
-        let setting5 = SettingsListItem(itemName: "High Five", selected: false, parseKey: "cheerPermission")
-        let setting6 = SettingsListItem(itemName: "5k Steps", selected: false, parseKey: "steps5kPermission")
-        let setting7 = SettingsListItem(itemName: "10k Steps", selected: false, parseKey: "steps10kPermission")
-        let setting8 = SettingsListItem(itemName: "15k Steps", selected: false, parseKey: "steps15kPermission")
-        let setting9 = SettingsListItem(itemName: "20k Steps", selected: false, parseKey: "steps20kPermission")
         
         
         
-        settingsListItemObjects += [setting1, setting2, setting3, setting4, setting5, setting6, setting7, setting8, setting9]
+        if(app.isRegisteredForRemoteNotifications())
+        {
+        
+            let setting1 = SettingsListItem(itemName: "Record Daily Steps", selected: false, parseKey: "highDailyStepsPermission")
+            let setting2 = SettingsListItem(itemName: "Low Steps", selected: false, parseKey: "lowStepsPermission")
+            let setting3 = SettingsListItem(itemName: "Streaks", selected: false, parseKey: "streakPermission")
+            let setting4 = SettingsListItem(itemName: "XP Level Up", selected: false, parseKey: "xpPermission")
+            let setting5 = SettingsListItem(itemName: "High Five", selected: false, parseKey: "cheerPermission")
+            let setting6 = SettingsListItem(itemName: "5k Steps", selected: false, parseKey: "steps5kPermission")
+            let setting7 = SettingsListItem(itemName: "10k Steps", selected: false, parseKey: "steps10kPermission")
+            let setting8 = SettingsListItem(itemName: "15k Steps", selected: false, parseKey: "steps15kPermission")
+            let setting9 = SettingsListItem(itemName: "20k Steps", selected: false, parseKey: "steps20kPermission")
+            
+            
+            
+            settingsListItemObjects += [setting1, setting2, setting3, setting4, setting5, setting6, setting7, setting8, setting9]
+            
+        }
+        else
+        {
+            let setting1 = SettingsListItem(itemName: "Record Daily Steps", selected: true, parseKey: "highDailyStepsPermission")
+            let setting2 = SettingsListItem(itemName: "Low Steps", selected: true, parseKey: "lowStepsPermission")
+            let setting3 = SettingsListItem(itemName: "Streaks", selected: true, parseKey: "streakPermission")
+            let setting4 = SettingsListItem(itemName: "XP Level Up", selected: true, parseKey: "xpPermission")
+            let setting5 = SettingsListItem(itemName: "High Five", selected: true, parseKey: "cheerPermission")
+            let setting6 = SettingsListItem(itemName: "5k Steps", selected: true, parseKey: "steps5kPermission")
+            let setting7 = SettingsListItem(itemName: "10k Steps", selected: true, parseKey: "steps10kPermission")
+            let setting8 = SettingsListItem(itemName: "15k Steps", selected: true, parseKey: "steps15kPermission")
+            let setting9 = SettingsListItem(itemName: "20k Steps", selected: true, parseKey: "steps20kPermission")
+            
+            
+            
+            settingsListItemObjects += [setting1, setting2, setting3, setting4, setting5, setting6, setting7, setting8, setting9]
+        }
         
     }
     
     func loadTeamSettingsListItemObjects(){
         
-        let teamSetting1 = TeamSettingsListItem(itemName: "Team Updates", selected: false)
-        let teamSetting2 = TeamSettingsListItem(itemName: "Final Scores", selected: false)
+        if(app.isRegisteredForRemoteNotifications())
+        {
         
-        teamSettingsListItemObjects += [teamSetting1, teamSetting2]
+            let teamSetting1 = TeamSettingsListItem(itemName: "Team Updates", selected: false)
+            let teamSetting2 = TeamSettingsListItem(itemName: "Final Scores", selected: false)
+            
+            teamSettingsListItemObjects += [teamSetting1, teamSetting2]
+            
+        }
+        else
+        {
+            let teamSetting1 = TeamSettingsListItem(itemName: "Team Updates", selected: true)
+            let teamSetting2 = TeamSettingsListItem(itemName: "Final Scores", selected: true)
+            
+            teamSettingsListItemObjects += [teamSetting1, teamSetting2]
+        }
     }
     
     

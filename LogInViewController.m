@@ -159,6 +159,7 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:true forKey:@"userJustLoggedIn"];
     [defaults setBool:true forKey:@"finalScoresNotificaitonPermision"];
+    [defaults synchronize];
     
     BOOL linkedWithFacebook = [PFFacebookUtils isLinkedWithUser:user];
     
@@ -272,6 +273,7 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:true forKey:@"userJustLoggedIn"];
     [defaults setBool:true forKey:@"finalScoresNotificaitonPermision"];
+    [defaults synchronize];
     
     [self dismissViewControllerAnimated:YES completion:NULL];
     [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
