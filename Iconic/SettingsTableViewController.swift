@@ -228,59 +228,89 @@ class SettingsTableViewController: UITableViewController {
         
         let settingListObject = settingsListItemObjects[indexPath.row]
         
-            
-        // save object if item is slelected
-          
-            if (settingListObject.selected == true)
-            {
-                
-                selectedCell?.accessoryType = .Checkmark
-                
-//                print("    select row: not selected")
-                
-                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: false, parseKey: settingListObject.parseKey)
+        if(app.isRegisteredForRemoteNotifications())
+        {
+                // save object if item is slelected
+                  
+                    if (settingListObject.selected == true)
+                    {
+                        
+                        selectedCell?.accessoryType = .Checkmark
+                        
+        //                print("    select row: not selected")
+                        
+                        settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: false, parseKey: settingListObject.parseKey)
 
-                saveSettingsListItem()
-                
-                
-                user?.setObject(false, forKey: settingListObject.parseKey)
-                
-                user?.saveInBackgroundWithBlock {
-                    (success: Bool, error: NSError?) -> Void in
-                    if (success) {
-                        // The object has been saved.
-//                         print("  User saved in select")
-                    } else {
-                        // There was a problem, check error.description
-                         print("  User failed to saved")
+                        saveSettingsListItem()
+                        
+                        
+                        user?.setObject(false, forKey: settingListObject.parseKey)
+                        
+                        user?.saveInBackgroundWithBlock {
+                            (success: Bool, error: NSError?) -> Void in
+                            if (success) {
+                                // The object has been saved.
+        //                         print("  User saved in select")
+                            } else {
+                                // There was a problem, check error.description
+                                 print("  User failed to saved")
+                            }
+                        }
+                    
                     }
-                }
+                    else
+                    {
+                        selectedCell?.accessoryType = .None
+                        
+        //                print("    select row: selected")
+                        
+                        settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: true, parseKey: settingListObject.parseKey)
+                        
+                        saveSettingsListItem()
+                        
+                        
+                        user?.setObject(false, forKey: settingListObject.parseKey)
+                        
+                        user?.saveInBackgroundWithBlock {
+                            (success: Bool, error: NSError?) -> Void in
+                            if (success) {
+                                // The object has been saved.
+        //                        print("  User saved in select")
+                            } else {
+                                // There was a problem, check error.description
+                                print("  User failed to saved")
+                            }
+                        }
+
+                    }
             
             }
             else
             {
-                selectedCell?.accessoryType = .None
+                var alert = UIAlertController(title: "Allow Push Notifications", message: "You will be prompted to enable push notifications.", preferredStyle: UIAlertControllerStyle.Alert)
                 
-//                print("    select row: selected")
-                
-                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: true, parseKey: settingListObject.parseKey)
-                
-                saveSettingsListItem()
-                
-                
-                user?.setObject(false, forKey: settingListObject.parseKey)
-                
-                user?.saveInBackgroundWithBlock {
-                    (success: Bool, error: NSError?) -> Void in
-                    if (success) {
-                        // The object has been saved.
-//                        print("  User saved in select")
-                    } else {
-                        // There was a problem, check error.description
-                        print("  User failed to saved")
+                alert.addAction(UIAlertAction(title: "Allow", style: .Default, handler: { action in
+                    switch action.style{
+                    case .Default:
+                        println("allow push")
+                        self.app.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Badge | .Sound | .Alert, categories: nil))
+                        self.app.registerForRemoteNotifications()
+                        
+                    case .Cancel:
+                        println("cancel")
+                        
+                    case .Destructive:
+                        println("destructive")
                     }
+                }))
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                    // ...
                 }
-
+                alert.addAction(cancelAction)
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+                
             }
             
         }
@@ -291,53 +321,82 @@ class SettingsTableViewController: UITableViewController {
             
             let teamSettingListObject = teamSettingsListItemObjects[indexPath.row]
             
-            
-            // save object if item is slelected
-            
-            if (teamSettingListObject.selected == true)
+            if(app.isRegisteredForRemoteNotifications())
             {
-                
-                selectedTeamSettingsCell?.accessoryType = .Checkmark
-                
-                //                print("    select row: not selected")
-                
-                teamSettingsListItemObjects[indexPath.row] = TeamSettingsListItem(itemName: teamSettingListObject.itemName, selected: false)
-                
-                saveTeamSettingsListItem()
-                
-                
-                
-                
-                if(teamSettingListObject.itemName .isEqual("Team Updates"))
-                {
+                    // save object if item is slelected
                     
-                    
-                    
-                    var notificationChannels = defaults.arrayForKey("arrayOfMyTeamNames");
-                    
-                    
-                    let installation = PFInstallation.currentInstallation()
-                    installation.setObject(notificationChannels!, forKey: "channels")
-                    installation.saveInBackgroundWithBlock{
-                        (success: Bool, error: NSError?) -> Void in
-                        if (success) {
-                            // The object has been saved.
-//                                                    print("  Installation channel saved in select")
-                        } else {
-                            // There was a problem, check error.description
-                            print("  Installation chanels failed to save")
+                    if (teamSettingListObject.selected == true)
+                    {
+                        
+                        selectedTeamSettingsCell?.accessoryType = .Checkmark
+                        
+                        //                print("    select row: not selected")
+                        
+                        teamSettingsListItemObjects[indexPath.row] = TeamSettingsListItem(itemName: teamSettingListObject.itemName, selected: false)
+                        
+                        saveTeamSettingsListItem()
+                        
+                        
+                        
+                        
+                        if(teamSettingListObject.itemName .isEqual("Team Updates"))
+                        {
+                            
+                            
+                            
+                            var notificationChannels = defaults.arrayForKey("arrayOfMyTeamNames");
+                            
+                            
+                            let installation = PFInstallation.currentInstallation()
+                            installation.setObject(notificationChannels!, forKey: "channels")
+                            installation.saveInBackgroundWithBlock{
+                                (success: Bool, error: NSError?) -> Void in
+                                if (success) {
+                                    // The object has been saved.
+        //                                                    print("  Installation channel saved in select")
+                                } else {
+                                    // There was a problem, check error.description
+                                    print("  Installation chanels failed to save")
+                                }
+                            }
                         }
-                    }
-                }
-                
-                if(teamSettingListObject.itemName .isEqual("Final Scores"))
-                {
-                    defaults.setBool(true, forKey: "finalScoresNotificaitonPermision")
-                    // print("  finalScoresNotificaitonPermision - true")
+                        
+                        if(teamSettingListObject.itemName .isEqual("Final Scores"))
+                        {
+                            defaults.setBool(true, forKey: "finalScoresNotificaitonPermision")
+                            // print("  finalScoresNotificaitonPermision - true")
 
+                        }
+                    
+            }
+                    else
+                    {
+                        var alert = UIAlertController(title: "Allow Push Notifications", message: "You will be prompted to enable push notifications.", preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Allow", style: .Default, handler: { action in
+                            switch action.style{
+                            case .Default:
+                                println("allow push")
+                                self.app.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Badge | .Sound | .Alert, categories: nil))
+                                self.app.registerForRemoteNotifications()
+                                
+                            case .Cancel:
+                                println("cancel")
+                                
+                            case .Destructive:
+                                println("destructive")
+                            }
+                        }))
+                        
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                            // ...
+                        }
+                        alert.addAction(cancelAction)
+                        
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
                 }
-            
-                
+
                 
                 
                 
@@ -387,42 +446,36 @@ class SettingsTableViewController: UITableViewController {
                 
             }
         }
+        else if (indexPath.section == 2)
+        {
+            var alert = UIAlertController(title: "Log Out", message: "Are you sure that you want to log out?", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "Log Out", style: .Default, handler: { action in
+                switch action.style{
+                case .Default:
+                    println("log out")
+                    
+                    
+                case .Cancel:
+                    println("cancel")
+                    
+                case .Destructive:
+                    println("destructive")
+                }
+            }))
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                // ...
+            }
+            alert.addAction(cancelAction)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+
+        }
         
     }
     
-//    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        if(indexPath.section == 0){
-//        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
-//        selectedCell?.accessoryType = .Checkmark
-//            
-//            let settingListObject = settingsListItemObjects[indexPath.row]
-//            
-//
-//                print("    de-select row: not selected")
-//                
-//                settingsListItemObjects[indexPath.row] = SettingsListItem(itemName: settingListObject.itemName, selected: true, parseKey: settingListObject.parseKey)
-//
-//                saveSettingsListItem()
-//                
-//                user?.setObject(true, forKey: settingListObject.parseKey)
-//                
-//                user?.saveInBackgroundWithBlock {
-//                    (success: Bool, error: NSError?) -> Void in
-//                    if (success) {
-//                        // The object has been saved.
-//                        print("  User saved in de-select")
-//                    } else {
-//                        // There was a problem, check error.description
-//                    }
-////                }
-//
-//            }
-//            
-//
-//        }
-//        
-//    }
+
     
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

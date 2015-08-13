@@ -160,16 +160,16 @@
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
 //    [FBAppEvents activateApp];
     
-    // Checking if app is running iOS 8
-    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
-        // Register device for iOS8
-        UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-        [application registerUserNotificationSettings:notificationSettings];
-        [application registerForRemoteNotifications];
-    } else {
-        // Register device for iOS7
-        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
-    }
+//    // Checking if app is running iOS 8
+//    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
+//        // Register device for iOS8
+//        UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+//        [application registerUserNotificationSettings:notificationSettings];
+//        [application registerForRemoteNotifications];
+//    } else {
+//        // Register device for iOS7
+//        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
+//    }
 
     
 //    // Register for push notifications
@@ -577,7 +577,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     }
 
     
-       
+    
 }
 
 - (void)application:(UIApplication *)application
