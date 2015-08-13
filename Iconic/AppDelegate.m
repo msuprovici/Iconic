@@ -166,7 +166,8 @@
 //        UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
 //        [application registerUserNotificationSettings:notificationSettings];
 //        [application registerForRemoteNotifications];
-//    } else {
+//    }
+//    else {
 //        // Register device for iOS7
 //        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
 //    }
