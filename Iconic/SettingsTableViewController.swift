@@ -325,126 +325,125 @@ class SettingsTableViewController: UITableViewController {
             {
                     // save object if item is slelected
                     
-                    if (teamSettingListObject.selected == true)
-                    {
-                        
-                        selectedTeamSettingsCell?.accessoryType = .Checkmark
-                        
-                        //                print("    select row: not selected")
-                        
-                        teamSettingsListItemObjects[indexPath.row] = TeamSettingsListItem(itemName: teamSettingListObject.itemName, selected: false)
-                        
-                        saveTeamSettingsListItem()
-                        
-                        
-                        
-                        
-                        if(teamSettingListObject.itemName .isEqual("Team Updates"))
+                        if (teamSettingListObject.selected == true)
                         {
                             
+                            selectedTeamSettingsCell?.accessoryType = .Checkmark
+                            
+                            //                print("    select row: not selected")
+                            
+                            teamSettingsListItemObjects[indexPath.row] = TeamSettingsListItem(itemName: teamSettingListObject.itemName, selected: false)
+                            
+                            saveTeamSettingsListItem()
                             
                             
-                            var notificationChannels = defaults.arrayForKey("arrayOfMyTeamNames");
                             
                             
-                            let installation = PFInstallation.currentInstallation()
-                            installation.setObject(notificationChannels!, forKey: "channels")
-                            installation.saveInBackgroundWithBlock{
-                                (success: Bool, error: NSError?) -> Void in
-                                if (success) {
-                                    // The object has been saved.
-        //                                                    print("  Installation channel saved in select")
-                                } else {
-                                    // There was a problem, check error.description
-                                    print("  Installation chanels failed to save")
+                            if(teamSettingListObject.itemName .isEqual("Team Updates"))
+                            {
+                                
+                                
+                                
+                                var notificationChannels = defaults.arrayForKey("arrayOfMyTeamNames");
+                                
+                                
+                                let installation = PFInstallation.currentInstallation()
+                                installation.setObject(notificationChannels!, forKey: "channels")
+                                installation.saveInBackgroundWithBlock{
+                                    (success: Bool, error: NSError?) -> Void in
+                                    if (success) {
+                                        // The object has been saved.
+            //                                                    print("  Installation channel saved in select")
+                                    } else {
+                                        // There was a problem, check error.description
+                                        print("  Installation chanels failed to save")
+                                    }
                                 }
                             }
-                        }
-                        
-                        if(teamSettingListObject.itemName .isEqual("Final Scores"))
-                        {
-                            defaults.setBool(true, forKey: "finalScoresNotificaitonPermision")
-                            // print("  finalScoresNotificaitonPermision - true")
+                            
+                            if(teamSettingListObject.itemName .isEqual("Final Scores"))
+                            {
+                                defaults.setBool(true, forKey: "finalScoresNotificaitonPermision")
+                                // print("  finalScoresNotificaitonPermision - true")
 
-                        }
-                    
-            }
-                    else
-                    {
-                        var alert = UIAlertController(title: "Allow Push Notifications", message: "You will be prompted to enable push notifications.", preferredStyle: UIAlertControllerStyle.Alert)
-                        
-                        alert.addAction(UIAlertAction(title: "Allow", style: .Default, handler: { action in
-                            switch action.style{
-                            case .Default:
-                                println("allow push")
-                                self.app.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Badge | .Sound | .Alert, categories: nil))
-                                self.app.registerForRemoteNotifications()
-                                
-                            case .Cancel:
-                                println("cancel")
-                                
-                            case .Destructive:
-                                println("destructive")
                             }
-                        }))
-                        
-                        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                            // ...
-                        }
-                        alert.addAction(cancelAction)
-                        
-                        self.presentViewController(alert, animated: true, completion: nil)
                         
                 }
+                 
+                else
+                {
+                    selectedTeamSettingsCell?.accessoryType = .None
+                    
+                    //                print("    select row: selected")
+                    
+                    teamSettingsListItemObjects[indexPath.row] = TeamSettingsListItem(itemName: teamSettingListObject.itemName, selected: true)
+                    
+                    saveTeamSettingsListItem()
+                    
+                    
+                    if(teamSettingListObject.itemName .isEqual("Team Updates"))
+                    {
+                    
+                        
+                        
+                        var notificationChannels: [String] = [];
+                        
+                        let installation = PFInstallation.currentInstallation()
+                        installation.setObject(notificationChannels, forKey: "channels")
+                        installation.saveInBackgroundWithBlock{
+                            (success: Bool, error: NSError?) -> Void in
+                            if (success) {
+                                // The object has been saved.
+    //                            print("  Installation channel saved in select")
+                            } else {
+                                // There was a problem, check error.description
+                                print("  Installation chanels failed to save")
+                            }
+                        }
+                    }
+                    
+                    if(teamSettingListObject.itemName .isEqual("Final Scores"))
+                    {
+                        defaults.setBool(false, forKey: "finalScoresNotificaitonPermision")
+                        //print("  finalScoresNotificaitonPermision - false")
+                        
+                    }
 
-                
-                
-                
-                
+                    
+                    
+                    
+                }
             }
             else
             {
-                selectedTeamSettingsCell?.accessoryType = .None
+                var alert = UIAlertController(title: "Allow Push Notifications", message: "You will be prompted to enable push notifications.", preferredStyle: UIAlertControllerStyle.Alert)
                 
-                //                print("    select row: selected")
-                
-                teamSettingsListItemObjects[indexPath.row] = TeamSettingsListItem(itemName: teamSettingListObject.itemName, selected: true)
-                
-                saveTeamSettingsListItem()
-                
-                
-                if(teamSettingListObject.itemName .isEqual("Team Updates"))
-                {
-                
-                    
-                    
-                    var notificationChannels: [String] = [];
-                    
-                    let installation = PFInstallation.currentInstallation()
-                    installation.setObject(notificationChannels, forKey: "channels")
-                    installation.saveInBackgroundWithBlock{
-                        (success: Bool, error: NSError?) -> Void in
-                        if (success) {
-                            // The object has been saved.
-//                            print("  Installation channel saved in select")
-                        } else {
-                            // There was a problem, check error.description
-                            print("  Installation chanels failed to save")
-                        }
+                alert.addAction(UIAlertAction(title: "Allow", style: .Default, handler: { action in
+                    switch action.style{
+                    case .Default:
+                        println("allow push")
+                        self.app.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Badge | .Sound | .Alert, categories: nil))
+                        self.app.registerForRemoteNotifications()
+                        
+                    case .Cancel:
+                        println("cancel")
+                        
+                    case .Destructive:
+                        println("destructive")
                     }
+                }))
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                    // ...
                 }
+                alert.addAction(cancelAction)
                 
-                if(teamSettingListObject.itemName .isEqual("Final Scores"))
-                {
-                    defaults.setBool(false, forKey: "finalScoresNotificaitonPermision")
-                    //print("  finalScoresNotificaitonPermision - false")
-                    
-                }
-
-                
-                
+                self.presentViewController(alert, animated: true, completion: nil)
                 
             }
+            
+    
+        
         }
         else if (indexPath.section == 2)
         {
