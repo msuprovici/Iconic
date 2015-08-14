@@ -455,17 +455,34 @@ class SettingsTableViewController: UITableViewController {
         {
             var alert = UIAlertController(title: "Log Out", message: "Are you sure that you want to log out?", preferredStyle: UIAlertControllerStyle.Alert)
             
-            alert.addAction(UIAlertAction(title: "Log Out", style: .Default, handler: { action in
+            alert.addAction(UIAlertAction(title: "Log Out", style: .Destructive, handler: { action in
                 switch action.style{
-                case .Default:
+                case .Destructive:
                     println("log out")
                     
+                    PFUser.logOutInBackgroundWithBlock({ (error: NSError?) -> Void in
+                        
+                        if let error = error{
+                            println("log out did not work")
+                        }
+                        else
+                        {
+                            println("log out succesfull")
+                            PFQuery.clearAllCachedResults()
+                            
+                            self.performSegueWithIdentifier("GoBackToLogin", sender: nil)
+
+
+                        }
+                      
+                    })
                     
                 case .Cancel:
                     println("cancel")
                     
-                case .Destructive:
-                    println("destructive")
+                case .Default:
+                    println("default")
+                    
                 }
             }))
             

@@ -359,6 +359,7 @@
 		5CF7B6D51B0BEA360006C318 /* Chat+ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */; };
 		5CF7B6DB1B0E7EDA0006C318 /* NSLayerClientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */; };
 		5CF7B6DE1B1632160006C318 /* ATLMLayerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6DC1B1632150006C318 /* ATLMLayerClient.m */; };
+		5CF8D7A31B7D65E00034D32E /* LogOutSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF8D7A21B7D65E00034D32E /* LogOutSegue.swift */; };
 		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
 		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
 /* End PBXBuildFile section */
@@ -899,6 +900,7 @@
 		5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSLayerClientObject.m; path = ../NSLayerClientObject.m; sourceTree = "<group>"; };
 		5CF7B6DC1B1632150006C318 /* ATLMLayerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLMLayerClient.m; sourceTree = "<group>"; };
 		5CF7B6DD1B1632160006C318 /* ATLMLayerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLMLayerClient.h; sourceTree = "<group>"; };
+		5CF8D7A21B7D65E00034D32E /* LogOutSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogOutSegue.swift; sourceTree = "<group>"; };
 		5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		5CFB1EB81834381C0026AEB4 /* ScheduleGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleGenerator.h; sourceTree = "<group>"; };
@@ -1968,6 +1970,7 @@
 				5CD74A2F1B7A92F800BD2A41 /* SettingsTableViewCell.swift */,
 				5CD74A311B7AB72100BD2A41 /* SettingsListItem.swift */,
 				5CDFB0C21B7CDF4500179867 /* TeamSettingsListItem.swift */,
+				5CF8D7A21B7D65E00034D32E /* LogOutSegue.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -2471,6 +2474,7 @@
 				5CD74A321B7AB72100BD2A41 /* SettingsListItem.swift in Sources */,
 				5CC773011AFD796700EEEB33 /* ATLIncomingMessageCollectionViewCell.m in Sources */,
 				5CC773021AFD796700EEEB33 /* ATLMessageBubbleView.m in Sources */,
+				5CF8D7A31B7D65E00034D32E /* LogOutSegue.swift in Sources */,
 				5C47815E18C0EE5F002E6C3F /* VSTableViewController.m in Sources */,
 				5C7207731A79635000D6F5F3 /* MyFinalScoresTableViewController.m in Sources */,
 				5CC773081AFD796700EEEB33 /* ATLParticipantTableViewCell.m in Sources */,
