@@ -70,11 +70,15 @@
     self.playerUserName.text = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     self.userName = [NSString stringWithFormat:@"%@", [user objectForKey:kUserDisplayNameKey]];
     
+    NSNumber *notificationBool = [user objectForKey:@"cheerPermission"];
+    self.notifcationPermission = [notificationBool boolValue];
+    
     self.playerAvgSteps.text = [NSString stringWithFormat:@"%@ Average Daily Steps", [user objectForKey:kPlayerAvgDailySteps]];
     
     self.playerXP.text = [NSString stringWithFormat:@"XP: %@", [user objectForKey:kPlayerXP]];
     self.streak.text = [NSString stringWithFormat:@"%@ days", [user objectForKey:kPlayerStreak]];
     self.streakLong.text = [NSString stringWithFormat:@"%@ days", [user objectForKey:kPlayerStreakLong]];
+    
     
     
     
@@ -472,7 +476,7 @@
  */
 - (IBAction)cheerButtonPressed:(id)sender {
     
-    [PFCloud callFunctionInBackground:@"Cheer" withParameters:@{ @"username": self.userName } block:^(id object, NSError *error) {
+    [PFCloud callFunctionInBackground:@"Cheer" withParameters:@{ @"username": self.userName, @"cheerPermission": [NSNumber numberWithBool:self.notifcationPermission]} block:^(id object, NSError *error) {
         
         if (!error) {
             NSLog(@"cheer cloud function worked %@", object);

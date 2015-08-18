@@ -43,6 +43,8 @@
 
 @property (nonatomic, strong) NSString *userName;
 
+@property BOOL notifcationPermission;
+
 -(void)initWithPlayer:(PFObject*)aPlayer;
 
 @end
