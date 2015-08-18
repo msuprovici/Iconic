@@ -190,8 +190,10 @@
     
     
 //     [self firstAppLoadThisWeek];
-   
     
+
+
+   
 }
 
 -(void)scrollTableViewToTop

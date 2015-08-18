@@ -171,7 +171,36 @@
         [[PFUser currentUser] setObject:@0 forKey: @"streak"];
         [[PFUser currentUser] setObject:@0 forKey: @"streakLong"];
         [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey:@"launchedAppThisWeek"];
-//        [[PFUser currentUser] setObject:@0 forKey: @"xp"];
+        
+        
+         //set push notification permissions
+        UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        if (settings.types == UIUserNotificationTypeNone)
+        {
+            //    if (curentSettings.types = deniedNotifications) {
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"cheerPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"xpPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"streakPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"steps5kPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"steps10kPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"steps15kPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"steps20kPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"lowStepsPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"highDailyStepsPermission"];
+        }
+        else{
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"cheerPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"xpPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"streakPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"steps5kPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"steps10kPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"steps15kPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"steps20kPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"lowStepsPermission"];
+            [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"highDailyStepsPermission"];
+        }
+        
+
         [[PFUser currentUser] saveInBackground];
     }
     else
@@ -290,6 +319,36 @@
      [[PFUser currentUser] setObject:@0 forKey: @"streak"];
     [[PFUser currentUser] setObject:@0 forKey: @"streakLong"];
     [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey:@"launchedAppThisWeek"];
+    
+    
+    //set push notification permissions
+    
+    UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    if (settings.types == UIUserNotificationTypeNone)
+    {
+        //    if (curentSettings.types = deniedNotifications) {
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"cheerPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"xpPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"streakPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"steps5kPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"steps10kPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"steps15kPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"steps20kPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"lowStepsPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:TRUE] forKey: @"highDailyStepsPermission"];
+    }
+    else{
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"cheerPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"xpPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"streakPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"steps5kPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"steps10kPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"steps15kPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"steps20kPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"lowStepsPermission"];
+        [[PFUser currentUser] setObject:[NSNumber numberWithBool:false] forKey: @"highDailyStepsPermission"];
+    }
+    
     [[PFUser currentUser] saveInBackground];
     
     //set parse username as the user id in Amplitude
