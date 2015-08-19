@@ -353,6 +353,10 @@
 		5CE778361A0D7D0D008B3585 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE7782B1A0D7D0D008B3585 /* Icon-Small@2x.png */; };
 		5CE778371A0D7D0D008B3585 /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CE7782C1A0D7D0D008B3585 /* Icon-Small@3x.png */; };
 		5CEC3BDE18A2A86200C444FA /* TeamPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CEC3BDD18A2A86200C444FA /* TeamPlayerCell.m */; };
+		5CF74BF41B85371600EC67C4 /* CreateUsername@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF74BF21B85371600EC67C4 /* CreateUsername@2x.png */; };
+		5CF74BF51B85371600EC67C4 /* CreateUsername@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF74BF31B85371600EC67C4 /* CreateUsername@3x.png */; };
+		5CF74BFC1B853C5600EC67C4 /* SubmitButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF74BFA1B853C5600EC67C4 /* SubmitButton@2x.png */; };
+		5CF74BFD1B853C5600EC67C4 /* SubmitButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF74BFB1B853C5600EC67C4 /* SubmitButton@3x.png */; };
 		5CF7B6BE1B0B8DC00006C318 /* PFUser+ATLParticipant.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6BD1B0B8DC00006C318 /* PFUser+ATLParticipant.m */; };
 		5CF7B6C11B0B92210006C318 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C01B0B92210006C318 /* UserManager.m */; };
 		5CF7B6C41B0B93070006C318 /* LayerConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C31B0B93070006C318 /* LayerConversationListViewController.m */; };
@@ -887,6 +891,10 @@
 		5CE7782C1A0D7D0D008B3585 /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
 		5CEC3BDC18A2A86200C444FA /* TeamPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamPlayerCell.h; sourceTree = "<group>"; };
 		5CEC3BDD18A2A86200C444FA /* TeamPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamPlayerCell.m; sourceTree = "<group>"; };
+		5CF74BF21B85371600EC67C4 /* CreateUsername@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CreateUsername@2x.png"; sourceTree = "<group>"; };
+		5CF74BF31B85371600EC67C4 /* CreateUsername@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CreateUsername@3x.png"; sourceTree = "<group>"; };
+		5CF74BFA1B853C5600EC67C4 /* SubmitButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SubmitButton@2x.png"; sourceTree = "<group>"; };
+		5CF74BFB1B853C5600EC67C4 /* SubmitButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SubmitButton@3x.png"; sourceTree = "<group>"; };
 		5CF7B6BC1B0B8DC00006C318 /* PFUser+ATLParticipant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PFUser+ATLParticipant.h"; path = "../PFUser+ATLParticipant.h"; sourceTree = "<group>"; };
 		5CF7B6BD1B0B8DC00006C318 /* PFUser+ATLParticipant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PFUser+ATLParticipant.m"; path = "../PFUser+ATLParticipant.m"; sourceTree = "<group>"; };
 		5CF7B6BF1B0B92210006C318 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
@@ -1486,6 +1494,8 @@
 				5C881E2B1ABBA2B200C2D958 /* YesButton@3x.png */,
 				5C42F8411AC1FEB800B4F7BB /* JoinButton@2x.png */,
 				5C42F8421AC1FEB800B4F7BB /* JoinButton@3x.png */,
+				5CF74BFA1B853C5600EC67C4 /* SubmitButton@2x.png */,
+				5CF74BFB1B853C5600EC67C4 /* SubmitButton@3x.png */,
 			);
 			name = Buttons;
 			sourceTree = "<group>";
@@ -1513,6 +1523,8 @@
 				5C42F85A1AC20A5200B4F7BB /* IconicLogo@3x.png */,
 				5C42F8AB1AC2237E00B4F7BB /* disclaimerText@2x.png */,
 				5C42F8AC1AC2237E00B4F7BB /* disclaimerText@3x.png */,
+				5CF74BF21B85371600EC67C4 /* CreateUsername@2x.png */,
+				5CF74BF31B85371600EC67C4 /* CreateUsername@3x.png */,
 			);
 			name = OnBoardingImages;
 			sourceTree = "<group>";
@@ -2233,6 +2245,7 @@
 				5C3BBFA01ACA114500B179B0 /* High_Five@3x.png in Resources */,
 				5C74845C1AD9B64C001917CC /* IconicOnboard6slice@3x.png in Resources */,
 				5C7484571AD9B64C001917CC /* IconicOnboard8slice@2x.png in Resources */,
+				5CF74BFD1B853C5600EC67C4 /* SubmitButton@3x.png in Resources */,
 				5C881E471ABBA2B200C2D958 /* YesButton@3x.png in Resources */,
 				5C418F301ACB5B7900DC30FF /* team_place_holder_large@3x.png in Resources */,
 				5C74845A1AD9B64C001917CC /* IconicOnboard7slice@3x.png in Resources */,
@@ -2254,6 +2267,7 @@
 				5C3BBF601AC3AD3D00B179B0 /* Dashboard_Icon@2x.png in Resources */,
 				5C15971A1ACE31EE00CEA15A /* happy_face@2x.png in Resources */,
 				5C1597181ACE31EE00CEA15A /* Leagues_Icon@2x.png in Resources */,
+				5CF74BF41B85371600EC67C4 /* CreateUsername@2x.png in Resources */,
 				5CDB875C1ACB0FD1009FE9D2 /* Exit_Icon@3x.png in Resources */,
 				5CC773191B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png in Resources */,
 				5CC772841AFD786900EEEB33 /* camera_dark.png in Resources */,
@@ -2345,6 +2359,7 @@
 				5C7484611AD9B64C001917CC /* IconicOnboard2_Slice@2x.png in Resources */,
 				5C418EFF1ACB264400DC30FF /* Add_Team_Button@2x.png in Resources */,
 				5C3BBF821AC9D0F400B179B0 /* Add_Icon_White@3x.png in Resources */,
+				5CF74BFC1B853C5600EC67C4 /* SubmitButton@2x.png in Resources */,
 				5C3BBF2A1AC38BC200B179B0 /* Comment_Icon_Selected@3x.png in Resources */,
 				5C418F3A1ACB5CDA00DC30FF /* user_place_holder@3x.png in Resources */,
 				5C03048E1A410A5500E86578 /* team2.png in Resources */,
@@ -2352,6 +2367,7 @@
 				5C418F0B1ACB33D300DC30FF /* Schedule_Button@2x.png in Resources */,
 				5C42F8441AC1FEB800B4F7BB /* JoinButton@3x.png in Resources */,
 				5CC772821AFD786900EEEB33 /* block@2x.png in Resources */,
+				5CF74BF51B85371600EC67C4 /* CreateUsername@3x.png in Resources */,
 				5C3BBF911AC9D28E00B179B0 /* Leave_Team_Icon_White@2x.png in Resources */,
 				5C42F7DF1AC1D57100B4F7BB /* noNotification@2x.png in Resources */,
 				5C42F8AD1AC2237E00B4F7BB /* disclaimerText@2x.png in Resources */,

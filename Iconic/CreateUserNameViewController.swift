@@ -43,13 +43,15 @@ class CreateUserNameViewController: UIViewController, UITextFieldDelegate {
     */
 
     @IBAction func submitUserNamePressed(sender: UIButton) {
+    
         
         CreateUserName.resignFirstResponder();
 //        enteredValue.text = CreateUserName.text;
-        
-        var query : PFQuery = PFUser.query()!
-        query.whereKey("username", equalTo: CreateUserName.text)
-        query.findObjectsInBackgroundWithBlock {
+        if(count (CreateUserName.text) > 3)
+        {
+            var query : PFQuery = PFUser.query()!
+            query.whereKey("username", equalTo: CreateUserName.text)
+            query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
             
             if error == nil {
@@ -113,7 +115,30 @@ class CreateUserNameViewController: UIViewController, UITextFieldDelegate {
                 println("Error: \(error!) \(error!.userInfo!)")
             }
         }
-        
+      }
+        else
+        {
+            var alert = UIAlertController(title: "Username should be at least 4 characters", message: "Please enter a new username.", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
+                switch action.style{
+                case .Default:
+                    println("user name too short")
+                    
+                    
+                case .Cancel:
+                    println("cancel")
+                    
+                case .Destructive:
+                    println("destructive")
+                }
+            }))
+            
+            
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+
+        }
         
     }
     
