@@ -2272,7 +2272,7 @@
 //            NSString *relationship = userData[@"relationship_status"];
             
             
-            [PFUser currentUser][@"username"] = name;
+//            [PFUser currentUser][@"username"] = name;
             [PFUser currentUser][@"email"] = email;
             [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 
