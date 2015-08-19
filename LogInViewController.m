@@ -215,8 +215,22 @@
 ////    [[PFUser currentUser] setObject:@0 forKey: @"xp"];
 //    [[PFUser currentUser] saveInBackground];
     
-    [self dismissViewControllerAnimated:YES completion:NULL];
-    [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
+    
+    PFUser * loggedInUser = [PFUser currentUser];
+    
+    //if user is new have them create a username
+    if(loggedInUser.isNew)
+    {
+        [self dismissViewControllerAnimated:YES completion:NULL];
+        [self performSegueWithIdentifier:@"userLoggedInWithFB" sender:self];
+    }
+    else{
+        [self dismissViewControllerAnimated:YES completion:NULL];
+        [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
+    }
+    
+ 
+    
     [Amplitude logEvent:@"Onbaord: Login succesfull"];
     
     //create pointer to current user for push notifications

@@ -2813,6 +2813,7 @@
                         <outlet property="scrollView" destination="74L-dr-NWU" id="1Ga-ql-XUb"/>
                         <outlet property="startWalkthroughButton" destination="79b-Eq-S5o" id="dpj-tJ-1gS"/>
                         <segue destination="sEI-Ya-ylU" kind="push" identifier="LoginSuccesful" id="Wkm-gx-o8j"/>
+                        <segue destination="hap-Fx-EWy" kind="push" identifier="userLoggedInWithFB" id="axE-KT-Q8m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KW9-y0-Amg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3158,6 +3159,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dna-xB-0j3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3771" y="-4412"/>
+        </scene>
+        <!--Create User Name View Controller-->
+        <scene sceneID="Bsb-8s-Nrm">
+            <objects>
+                <viewController id="hap-Fx-EWy" customClass="CreateUserNameViewController" customModule="Iconic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6ic-ml-wZq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="TYa-Fb-naJ">
+                                <rect key="frame" x="58" y="215" width="205" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Create a Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FGE-UE-SAA">
+                                <rect key="frame" x="58" y="166" width="205" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nxq-BM-Cat">
+                                <rect key="frame" x="137" y="280" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitUserNamePressed:" destination="hap-Fx-EWy" eventType="touchUpInside" id="JHv-vo-2vn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mjq-Lt-hzm"/>
+                    <connections>
+                        <outlet property="CreateUserName" destination="TYa-Fb-naJ" id="R7R-Ni-0aP"/>
+                        <outlet property="submitUserName" destination="nxq-BM-Cat" id="gkB-dm-MqT"/>
+                        <segue destination="sEI-Ya-ylU" kind="push" identifier="userNameCreated" id="pOA-YH-Rjm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lBA-mb-gdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4094" y="-3775"/>
         </scene>
         <!--Iconic-->
         <scene sceneID="CzR-Fe-BRD">
@@ -3741,6 +3787,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="pOA-YH-Rjm"/>
         <segue reference="UaI-gb-hq2"/>
         <segue reference="RgY-QV-Nzf"/>
         <segue reference="SjS-YP-2E8"/>

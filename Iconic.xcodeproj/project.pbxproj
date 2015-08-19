@@ -15,6 +15,7 @@
 		5C118E871926B08E00C1760C /* League.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C118E861926B08E00C1760C /* League.m */; };
 		5C13105E1B83EEC7004E096B /* Settings_White@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C13105C1B83EEC7004E096B /* Settings_White@2x.png */; };
 		5C13105F1B83EEC7004E096B /* Settings_White@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C13105D1B83EEC7004E096B /* Settings_White@3x.png */; };
+		5C1310611B84FB03004E096B /* CreateUserNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1310601B84FB03004E096B /* CreateUserNameViewController.swift */; };
 		5C1597161ACE31EE00CEA15A /* Feed_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597101ACE31EE00CEA15A /* Feed_Icon@2x.png */; };
 		5C1597171ACE31EE00CEA15A /* Feed_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597111ACE31EE00CEA15A /* Feed_Icon@3x.png */; };
 		5C1597181ACE31EE00CEA15A /* Leagues_Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597121ACE31EE00CEA15A /* Leagues_Icon@2x.png */; };
@@ -412,6 +413,7 @@
 		5C118E861926B08E00C1760C /* League.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = League.m; sourceTree = "<group>"; };
 		5C13105C1B83EEC7004E096B /* Settings_White@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings_White@2x.png"; sourceTree = "<group>"; };
 		5C13105D1B83EEC7004E096B /* Settings_White@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings_White@3x.png"; sourceTree = "<group>"; };
+		5C1310601B84FB03004E096B /* CreateUserNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserNameViewController.swift; sourceTree = "<group>"; };
 		5C1597101ACE31EE00CEA15A /* Feed_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Feed_Icon@2x.png"; sourceTree = "<group>"; };
 		5C1597111ACE31EE00CEA15A /* Feed_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Feed_Icon@3x.png"; sourceTree = "<group>"; };
 		5C1597121ACE31EE00CEA15A /* Leagues_Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leagues_Icon@2x.png"; sourceTree = "<group>"; };
@@ -1140,6 +1142,7 @@
 				5C04C2F51940E79400E21ED4 /* CustomPFLogInViewController.m */,
 				5C04C2F11940E63700E21ED4 /* CustomPFSignUpViewController.h */,
 				5C04C2F21940E63700E21ED4 /* CustomPFSignUpViewController.m */,
+				5C1310601B84FB03004E096B /* CreateUserNameViewController.swift */,
 			);
 			name = LogIn;
 			sourceTree = "<group>";
@@ -2481,6 +2484,7 @@
 				5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */,
 				5CD74A321B7AB72100BD2A41 /* SettingsListItem.swift in Sources */,
 				5CC773011AFD796700EEEB33 /* ATLIncomingMessageCollectionViewCell.m in Sources */,
+				5C1310611B84FB03004E096B /* CreateUserNameViewController.swift in Sources */,
 				5CC773021AFD796700EEEB33 /* ATLMessageBubbleView.m in Sources */,
 				5CF8D7A31B7D65E00034D32E /* LogOutSegue.swift in Sources */,
 				5C47815E18C0EE5F002E6C3F /* VSTableViewController.m in Sources */,
