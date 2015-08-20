@@ -2163,6 +2163,7 @@
 		5CA3D17F1831DF51006C7932 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Explorence;
 				TargetAttributes = {

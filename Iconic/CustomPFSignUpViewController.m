@@ -50,16 +50,19 @@
     //set button text
     self.signUpView.signUpButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     [self.signUpView.signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+   
     
     
     // Set field text color
     self.signUpView.usernameField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     self.signUpView.usernameField.textColor = PNWeiboColor;
     [self.signUpView.usernameField setBackgroundColor:PNHealYellow];
+    self.signUpView.usernameField.placeholder = @"Username (at least 4 charachters)";
     
     self.signUpView.passwordField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     [self.signUpView.passwordField setTextColor:PNWeiboColor];
     [self.signUpView.passwordField setBackgroundColor:PNHealYellow];
+     self.signUpView.passwordField.placeholder = @"Password (at least 4 charachters)";
     
     
     self.signUpView.emailField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
