@@ -5,3 +5,4 @@
 #import "AccountViewController.h"
 #import "Constants.h"
 #import "LogInViewController.h"
+#import "Helpshift.h"

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C0068C31B891A8B00008E31 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C0068C21B891A8B00008E31 /* QuickLook.framework */; };
+		5C0068C51B891A9E00008E31 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C0068C41B891A9E00008E31 /* CoreText.framework */; };
+		5C0068C71B891AB500008E31 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C0068C61B891AB500008E31 /* CoreTelephony.framework */; };
+		5C0068C81B891AD900008E31 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3BC4BE19DF194D00D9A9AD /* libz.dylib */; };
 		5C03048E1A410A5500E86578 /* team2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C03048D1A410A5500E86578 /* team2.png */; };
 		5C04C2F31940E63700E21ED4 /* CustomPFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C04C2F21940E63700E21ED4 /* CustomPFSignUpViewController.m */; };
 		5C04C2F61940E79400E21ED4 /* CustomPFLogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C04C2F51940E79400E21ED4 /* CustomPFLogInViewController.m */; };
@@ -339,6 +343,40 @@
 		5CDB87601ACB1110009FE9D2 /* Share_Button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDB875E1ACB1110009FE9D2 /* Share_Button@3x.png */; };
 		5CDB87631ACB1360009FE9D2 /* Add_League_Button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDB87611ACB1360009FE9D2 /* Add_League_Button@2x.png */; };
 		5CDB87641ACB1360009FE9D2 /* Add_League_Button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDB87621ACB1360009FE9D2 /* Add_League_Button@3x.png */; };
+		5CDC2E331B89167E0030F711 /* HelpshiftLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2DFA1B89167E0030F711 /* HelpshiftLocalizable.strings */; };
+		5CDC2E341B89167E0030F711 /* HS-Attachment.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E111B89167E0030F711 /* HS-Attachment.png */; };
+		5CDC2E351B89167E0030F711 /* HS-Attachment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E121B89167E0030F711 /* HS-Attachment@2x.png */; };
+		5CDC2E361B89167E0030F711 /* HS-Attachment@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E131B89167E0030F711 /* HS-Attachment@3x.png */; };
+		5CDC2E371B89167E0030F711 /* HS-camera-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E141B89167E0030F711 /* HS-camera-button.png */; };
+		5CDC2E381B89167E0030F711 /* HS-camera-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E151B89167E0030F711 /* HS-camera-button@2x.png */; };
+		5CDC2E391B89167E0030F711 /* HS-camera-button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E161B89167E0030F711 /* HS-camera-button@3x.png */; };
+		5CDC2E3A1B89167E0030F711 /* HS-delete-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E171B89167E0030F711 /* HS-delete-button.png */; };
+		5CDC2E3B1B89167E0030F711 /* HS-delete-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E181B89167E0030F711 /* HS-delete-button@2x.png */; };
+		5CDC2E3C1B89167E0030F711 /* HS-delete-button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E191B89167E0030F711 /* HS-delete-button@3x.png */; };
+		5CDC2E3D1B89167E0030F711 /* HS-no-connection.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E1A1B89167E0030F711 /* HS-no-connection.png */; };
+		5CDC2E3E1B89167E0030F711 /* HS-no-connection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E1B1B89167E0030F711 /* HS-no-connection@2x.png */; };
+		5CDC2E3F1B89167E0030F711 /* HS-powered-by-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E1C1B89167E0030F711 /* HS-powered-by-logo.png */; };
+		5CDC2E401B89167E0030F711 /* HS-powered-by-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E1D1B89167E0030F711 /* HS-powered-by-logo@2x.png */; };
+		5CDC2E411B89167E0030F711 /* HS-powered-by-logo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E1E1B89167E0030F711 /* HS-powered-by-logo@3x.png */; };
+		5CDC2E421B89167E0030F711 /* HS-screenshot-error.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E1F1B89167E0030F711 /* HS-screenshot-error.png */; };
+		5CDC2E431B89167E0030F711 /* HS-screenshot-error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E201B89167E0030F711 /* HS-screenshot-error@2x.png */; };
+		5CDC2E441B89167E0030F711 /* HSChatBubbleBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E211B89167E0030F711 /* HSChatBubbleBlue.png */; };
+		5CDC2E451B89167E0030F711 /* HSChatBubbleBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E221B89167E0030F711 /* HSChatBubbleBlue@2x.png */; };
+		5CDC2E461B89167E0030F711 /* HSChatBubbleBlue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E231B89167E0030F711 /* HSChatBubbleBlue@3x.png */; };
+		5CDC2E471B89167E0030F711 /* HSChatBubbleWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E241B89167E0030F711 /* HSChatBubbleWhite.png */; };
+		5CDC2E481B89167E0030F711 /* HSChatBubbleWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E251B89167E0030F711 /* HSChatBubbleWhite@2x.png */; };
+		5CDC2E491B89167E0030F711 /* HSChatBubbleWhite@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E261B89167E0030F711 /* HSChatBubbleWhite@3x.png */; };
+		5CDC2E4A1B89167E0030F711 /* HSConfirmBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E271B89167E0030F711 /* HSConfirmBox.png */; };
+		5CDC2E4B1B89167E0030F711 /* HSConfirmBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E281B89167E0030F711 /* HSConfirmBox@2x.png */; };
+		5CDC2E4C1B89167E0030F711 /* HSTutorial.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E291B89167E0030F711 /* HSTutorial.png */; };
+		5CDC2E4D1B89167E0030F711 /* HSTutorial@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E2A1B89167E0030F711 /* HSTutorial@2x.png */; };
+		5CDC2E4E1B89167E0030F711 /* HSTutorial@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E2B1B89167E0030F711 /* HSTutorial@3x.png */; };
+		5CDC2E4F1B89167E0030F711 /* HSTutorialiPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E2C1B89167E0030F711 /* HSTutorialiPad.png */; };
+		5CDC2E501B89167E0030F711 /* HSTutorialiPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E2D1B89167E0030F711 /* HSTutorialiPad@2x.png */; };
+		5CDC2E511B89167E0030F711 /* HSTutorialiPad@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E2E1B89167E0030F711 /* HSTutorialiPad@3x.png */; };
+		5CDC2E521B89167E0030F711 /* HelpshiftConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E301B89167E0030F711 /* HelpshiftConfig.plist */; };
+		5CDC2E531B89167E0030F711 /* HelpshiftConfigDark.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CDC2E311B89167E0030F711 /* HelpshiftConfigDark.plist */; };
+		5CDC2E541B89167E0030F711 /* libHelpshift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CDC2E321B89167E0030F711 /* libHelpshift.a */; };
 		5CDFB0C31B7CDF4600179867 /* TeamSettingsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDFB0C21B7CDF4500179867 /* TeamSettingsListItem.swift */; };
 		5CE57DE718D8C2F0006C9F31 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE57DE618D8C2F0006C9F31 /* CoreMotion.framework */; };
 		5CE7782D1A0D7D0D008B3585 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 5CE778221A0D7D0D008B3585 /* Contents.json */; };
@@ -403,6 +441,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C0068C21B891A8B00008E31 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		5C0068C41B891A9E00008E31 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		5C0068C61B891AB500008E31 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		5C03048D1A410A5500E86578 /* team2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = team2.png; sourceTree = "<group>"; };
 		5C04C2F11940E63700E21ED4 /* CustomPFSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPFSignUpViewController.h; sourceTree = "<group>"; };
 		5C04C2F21940E63700E21ED4 /* CustomPFSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPFSignUpViewController.m; sourceTree = "<group>"; };
@@ -876,6 +917,61 @@
 		5CDB875E1ACB1110009FE9D2 /* Share_Button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Share_Button@3x.png"; sourceTree = "<group>"; };
 		5CDB87611ACB1360009FE9D2 /* Add_League_Button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_League_Button@2x.png"; sourceTree = "<group>"; };
 		5CDB87621ACB1360009FE9D2 /* Add_League_Button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Add_League_Button@3x.png"; sourceTree = "<group>"; };
+		5CDC2DF81B89167E0030F711 /* Helpshift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helpshift.h; sourceTree = "<group>"; };
+		5CDC2DFB1B89167E0030F711 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2DFC1B89167E0030F711 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2DFD1B89167E0030F711 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2DFE1B89167E0030F711 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2DFF1B89167E0030F711 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E001B89167E0030F711 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E011B89167E0030F711 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E021B89167E0030F711 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E031B89167E0030F711 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E041B89167E0030F711 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E051B89167E0030F711 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E061B89167E0030F711 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E071B89167E0030F711 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E081B89167E0030F711 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E091B89167E0030F711 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E0A1B89167E0030F711 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E0B1B89167E0030F711 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E0C1B89167E0030F711 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E0D1B89167E0030F711 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/HelpshiftLocalizable.strings; sourceTree = "<group>"; };
+		5CDC2E0E1B89167E0030F711 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/HelpshiftLocalizable.strings"; sourceTree = "<group>"; };
+		5CDC2E0F1B89167E0030F711 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/HelpshiftLocalizable.strings"; sourceTree = "<group>"; };
+		5CDC2E111B89167E0030F711 /* HS-Attachment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-Attachment.png"; sourceTree = "<group>"; };
+		5CDC2E121B89167E0030F711 /* HS-Attachment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-Attachment@2x.png"; sourceTree = "<group>"; };
+		5CDC2E131B89167E0030F711 /* HS-Attachment@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-Attachment@3x.png"; sourceTree = "<group>"; };
+		5CDC2E141B89167E0030F711 /* HS-camera-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-camera-button.png"; sourceTree = "<group>"; };
+		5CDC2E151B89167E0030F711 /* HS-camera-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-camera-button@2x.png"; sourceTree = "<group>"; };
+		5CDC2E161B89167E0030F711 /* HS-camera-button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-camera-button@3x.png"; sourceTree = "<group>"; };
+		5CDC2E171B89167E0030F711 /* HS-delete-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-delete-button.png"; sourceTree = "<group>"; };
+		5CDC2E181B89167E0030F711 /* HS-delete-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-delete-button@2x.png"; sourceTree = "<group>"; };
+		5CDC2E191B89167E0030F711 /* HS-delete-button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-delete-button@3x.png"; sourceTree = "<group>"; };
+		5CDC2E1A1B89167E0030F711 /* HS-no-connection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-no-connection.png"; sourceTree = "<group>"; };
+		5CDC2E1B1B89167E0030F711 /* HS-no-connection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-no-connection@2x.png"; sourceTree = "<group>"; };
+		5CDC2E1C1B89167E0030F711 /* HS-powered-by-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-powered-by-logo.png"; sourceTree = "<group>"; };
+		5CDC2E1D1B89167E0030F711 /* HS-powered-by-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-powered-by-logo@2x.png"; sourceTree = "<group>"; };
+		5CDC2E1E1B89167E0030F711 /* HS-powered-by-logo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-powered-by-logo@3x.png"; sourceTree = "<group>"; };
+		5CDC2E1F1B89167E0030F711 /* HS-screenshot-error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-screenshot-error.png"; sourceTree = "<group>"; };
+		5CDC2E201B89167E0030F711 /* HS-screenshot-error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HS-screenshot-error@2x.png"; sourceTree = "<group>"; };
+		5CDC2E211B89167E0030F711 /* HSChatBubbleBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HSChatBubbleBlue.png; sourceTree = "<group>"; };
+		5CDC2E221B89167E0030F711 /* HSChatBubbleBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HSChatBubbleBlue@2x.png"; sourceTree = "<group>"; };
+		5CDC2E231B89167E0030F711 /* HSChatBubbleBlue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HSChatBubbleBlue@3x.png"; sourceTree = "<group>"; };
+		5CDC2E241B89167E0030F711 /* HSChatBubbleWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HSChatBubbleWhite.png; sourceTree = "<group>"; };
+		5CDC2E251B89167E0030F711 /* HSChatBubbleWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HSChatBubbleWhite@2x.png"; sourceTree = "<group>"; };
+		5CDC2E261B89167E0030F711 /* HSChatBubbleWhite@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HSChatBubbleWhite@3x.png"; sourceTree = "<group>"; };
+		5CDC2E271B89167E0030F711 /* HSConfirmBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HSConfirmBox.png; sourceTree = "<group>"; };
+		5CDC2E281B89167E0030F711 /* HSConfirmBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HSConfirmBox@2x.png"; sourceTree = "<group>"; };
+		5CDC2E291B89167E0030F711 /* HSTutorial.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HSTutorial.png; sourceTree = "<group>"; };
+		5CDC2E2A1B89167E0030F711 /* HSTutorial@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HSTutorial@2x.png"; sourceTree = "<group>"; };
+		5CDC2E2B1B89167E0030F711 /* HSTutorial@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HSTutorial@3x.png"; sourceTree = "<group>"; };
+		5CDC2E2C1B89167E0030F711 /* HSTutorialiPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HSTutorialiPad.png; sourceTree = "<group>"; };
+		5CDC2E2D1B89167E0030F711 /* HSTutorialiPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HSTutorialiPad@2x.png"; sourceTree = "<group>"; };
+		5CDC2E2E1B89167E0030F711 /* HSTutorialiPad@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HSTutorialiPad@3x.png"; sourceTree = "<group>"; };
+		5CDC2E301B89167E0030F711 /* HelpshiftConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HelpshiftConfig.plist; sourceTree = "<group>"; };
+		5CDC2E311B89167E0030F711 /* HelpshiftConfigDark.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HelpshiftConfigDark.plist; sourceTree = "<group>"; };
+		5CDC2E321B89167E0030F711 /* libHelpshift.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libHelpshift.a; sourceTree = "<group>"; };
 		5CDFB0C21B7CDF4500179867 /* TeamSettingsListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamSettingsListItem.swift; sourceTree = "<group>"; };
 		5CE57DE618D8C2F0006C9F31 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		5CE778221A0D7D0D008B3585 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
@@ -944,6 +1040,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C0068C81B891AD900008E31 /* libz.dylib in Frameworks */,
+				5C0068C71B891AB500008E31 /* CoreTelephony.framework in Frameworks */,
+				5C0068C51B891A9E00008E31 /* CoreText.framework in Frameworks */,
+				5C0068C31B891A8B00008E31 /* QuickLook.framework in Frameworks */,
 				5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */,
 				5CF7B6D21B0BA0B20006C318 /* libFlurry_6.4.0.a in Frameworks */,
 				5CA3D1C91831E025006C7932 /* CoreLocation.framework in Frameworks */,
@@ -971,6 +1071,7 @@
 				5C78DA5A189996E000CBA29B /* AddressBook.framework in Frameworks */,
 				5C78DA58189996C500CBA29B /* AddressBookUI.framework in Frameworks */,
 				5C4AB6511A1E94EE007B8BE8 /* libHeap.a in Frameworks */,
+				5CDC2E541B89167E0030F711 /* libHelpshift.a in Frameworks */,
 				5C22F6A41AF81FE5007E69DD /* FBSDKMessengerShareKit.framework in Frameworks */,
 				5C22F6941AF81FD3007E69DD /* ParseUI.framework in Frameworks */,
 				5C22F6931AF81FD3007E69DD /* ParseCrashReporting.framework in Frameworks */,
@@ -1355,6 +1456,7 @@
 		5C4EF986186D01FF000E0E59 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				5CDC2E551B89168F0030F711 /* Helpshift */,
 				5CF7B6CE1B0BA0B20006C318 /* Flurry */,
 				5CC772941AFD787800EEEB33 /* Atlas */,
 				5C4AB64E1A1E94EE007B8BE8 /* heap-ios-latest */,
@@ -1629,6 +1731,9 @@
 		5CA3D1891831DF51006C7932 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5C0068C61B891AB500008E31 /* CoreTelephony.framework */,
+				5C0068C41B891A9E00008E31 /* CoreText.framework */,
+				5C0068C21B891A8B00008E31 /* QuickLook.framework */,
 				5CC772951AFD78C600EEEB33 /* AssetsLibrary.framework */,
 				5CC772651AFD6C3A00EEEB33 /* LayerKit.embeddedframework */,
 				5C22F6A61AF81FF9007E69DD /* FacebookSDK */,
@@ -2036,6 +2141,72 @@
 			name = "Custom Dialog";
 			sourceTree = "<group>";
 		};
+		5CDC2DF91B89167E0030F711 /* HSLocalization */ = {
+			isa = PBXGroup;
+			children = (
+				5CDC2DFA1B89167E0030F711 /* HelpshiftLocalizable.strings */,
+			);
+			path = HSLocalization;
+			sourceTree = "<group>";
+		};
+		5CDC2E101B89167E0030F711 /* HSResources */ = {
+			isa = PBXGroup;
+			children = (
+				5CDC2E111B89167E0030F711 /* HS-Attachment.png */,
+				5CDC2E121B89167E0030F711 /* HS-Attachment@2x.png */,
+				5CDC2E131B89167E0030F711 /* HS-Attachment@3x.png */,
+				5CDC2E141B89167E0030F711 /* HS-camera-button.png */,
+				5CDC2E151B89167E0030F711 /* HS-camera-button@2x.png */,
+				5CDC2E161B89167E0030F711 /* HS-camera-button@3x.png */,
+				5CDC2E171B89167E0030F711 /* HS-delete-button.png */,
+				5CDC2E181B89167E0030F711 /* HS-delete-button@2x.png */,
+				5CDC2E191B89167E0030F711 /* HS-delete-button@3x.png */,
+				5CDC2E1A1B89167E0030F711 /* HS-no-connection.png */,
+				5CDC2E1B1B89167E0030F711 /* HS-no-connection@2x.png */,
+				5CDC2E1C1B89167E0030F711 /* HS-powered-by-logo.png */,
+				5CDC2E1D1B89167E0030F711 /* HS-powered-by-logo@2x.png */,
+				5CDC2E1E1B89167E0030F711 /* HS-powered-by-logo@3x.png */,
+				5CDC2E1F1B89167E0030F711 /* HS-screenshot-error.png */,
+				5CDC2E201B89167E0030F711 /* HS-screenshot-error@2x.png */,
+				5CDC2E211B89167E0030F711 /* HSChatBubbleBlue.png */,
+				5CDC2E221B89167E0030F711 /* HSChatBubbleBlue@2x.png */,
+				5CDC2E231B89167E0030F711 /* HSChatBubbleBlue@3x.png */,
+				5CDC2E241B89167E0030F711 /* HSChatBubbleWhite.png */,
+				5CDC2E251B89167E0030F711 /* HSChatBubbleWhite@2x.png */,
+				5CDC2E261B89167E0030F711 /* HSChatBubbleWhite@3x.png */,
+				5CDC2E271B89167E0030F711 /* HSConfirmBox.png */,
+				5CDC2E281B89167E0030F711 /* HSConfirmBox@2x.png */,
+				5CDC2E291B89167E0030F711 /* HSTutorial.png */,
+				5CDC2E2A1B89167E0030F711 /* HSTutorial@2x.png */,
+				5CDC2E2B1B89167E0030F711 /* HSTutorial@3x.png */,
+				5CDC2E2C1B89167E0030F711 /* HSTutorialiPad.png */,
+				5CDC2E2D1B89167E0030F711 /* HSTutorialiPad@2x.png */,
+				5CDC2E2E1B89167E0030F711 /* HSTutorialiPad@3x.png */,
+			);
+			path = HSResources;
+			sourceTree = "<group>";
+		};
+		5CDC2E2F1B89167E0030F711 /* HSThemes */ = {
+			isa = PBXGroup;
+			children = (
+				5CDC2E301B89167E0030F711 /* HelpshiftConfig.plist */,
+				5CDC2E311B89167E0030F711 /* HelpshiftConfigDark.plist */,
+			);
+			path = HSThemes;
+			sourceTree = "<group>";
+		};
+		5CDC2E551B89168F0030F711 /* Helpshift */ = {
+			isa = PBXGroup;
+			children = (
+				5CDC2DF81B89167E0030F711 /* Helpshift.h */,
+				5CDC2DF91B89167E0030F711 /* HSLocalization */,
+				5CDC2E101B89167E0030F711 /* HSResources */,
+				5CDC2E2F1B89167E0030F711 /* HSThemes */,
+				5CDC2E321B89167E0030F711 /* libHelpshift.a */,
+			);
+			name = Helpshift;
+			sourceTree = "<group>";
+		};
 		5CE778211A0D7D0D008B3585 /* AppIcon.appiconset */ = {
 			isa = PBXGroup;
 			children = (
@@ -2203,6 +2374,26 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
+				cs,
+				de,
+				es,
+				fr,
+				hu,
+				id,
+				it,
+				ja,
+				ko,
+				nl,
+				pl,
+				pt,
+				ru,
+				sl,
+				th,
+				tr,
+				vi,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 5CA3D17E1831DF51006C7932;
 			productRefGroup = 5CA3D1881831DF51006C7932 /* Products */;
@@ -2231,23 +2422,32 @@
 			files = (
 				5C418F091ACB33D300DC30FF /* High_Five_Button_Selected@2x.png in Resources */,
 				5C539A001863D9A1006676FA /* empty_avatar.png in Resources */,
+				5CDC2E531B89167E0030F711 /* HelpshiftConfigDark.plist in Resources */,
 				5C539DFF198715090027669A /* LICENSE in Resources */,
 				5C74845D1AD9B64C001917CC /* IconicOnboard4slice@2x.png in Resources */,
 				5CC772931AFD786900EEEB33 /* plus@3x.png in Resources */,
 				5CC772871AFD786900EEEB33 /* chevron.png in Resources */,
 				5CC7728C1AFD786900EEEB33 /* layerLogo@2x.png in Resources */,
+				5CDC2E3D1B89167E0030F711 /* HS-no-connection.png in Resources */,
 				5CC772891AFD786900EEEB33 /* chevron@3x.png in Resources */,
+				5CDC2E421B89167E0030F711 /* HS-screenshot-error.png in Resources */,
 				5CDB87531ACB0564009FE9D2 /* Invite_Contacts_Button@2x.png in Resources */,
 				5CC7728B1AFD786900EEEB33 /* layerLogo.png in Resources */,
+				5CDC2E511B89167E0030F711 /* HSTutorialiPad@3x.png in Resources */,
+				5CDC2E431B89167E0030F711 /* HS-screenshot-error@2x.png in Resources */,
 				5C42F8A51AC21EA500B4F7BB /* SignUpButton@2x.png in Resources */,
 				5C3BBF891AC9D0F400B179B0 /* Followed_User_Icon_Red@2x.png in Resources */,
 				5C3BBF8B1AC9D0F400B179B0 /* Follow_Icon_White@2x.png in Resources */,
 				5C1597171ACE31EE00CEA15A /* Feed_Icon@3x.png in Resources */,
 				5C3BBFA01ACA114500B179B0 /* High_Five@3x.png in Resources */,
 				5C74845C1AD9B64C001917CC /* IconicOnboard6slice@3x.png in Resources */,
+				5CDC2E411B89167E0030F711 /* HS-powered-by-logo@3x.png in Resources */,
 				5C7484571AD9B64C001917CC /* IconicOnboard8slice@2x.png in Resources */,
+				5CDC2E361B89167E0030F711 /* HS-Attachment@3x.png in Resources */,
+				5CDC2E461B89167E0030F711 /* HSChatBubbleBlue@3x.png in Resources */,
 				5CF74BFD1B853C5600EC67C4 /* SubmitButton@3x.png in Resources */,
 				5C881E471ABBA2B200C2D958 /* YesButton@3x.png in Resources */,
+				5CDC2E3F1B89167E0030F711 /* HS-powered-by-logo.png in Resources */,
 				5C418F301ACB5B7900DC30FF /* team_place_holder_large@3x.png in Resources */,
 				5C74845A1AD9B64C001917CC /* IconicOnboard7slice@3x.png in Resources */,
 				5CC772911AFD786900EEEB33 /* plus.png in Resources */,
@@ -2256,8 +2456,10 @@
 				5C3BBFA21ACA114500B179B0 /* Comment_Icon@2x.png in Resources */,
 				5C3BBF8A1AC9D0F400B179B0 /* Followed_User_Icon_Red@3x.png in Resources */,
 				5C3BBF881AC9D0F400B179B0 /* Followed_User_Icon_White@3x.png in Resources */,
+				5CDC2E521B89167E0030F711 /* HelpshiftConfig.plist in Resources */,
 				5CA3D1A61831DF51006C7932 /* Images.xcassets in Resources */,
 				5CDB87511ACB0564009FE9D2 /* LogIn_Facebook_Friends_button@2x.png in Resources */,
+				5CDC2E331B89167E0030F711 /* HelpshiftLocalizable.strings in Resources */,
 				5C42F8A31AC21EA500B4F7BB /* LogInButton@2x.png in Resources */,
 				5CDB87641ACB1360009FE9D2 /* Add_League_Button@3x.png in Resources */,
 				5C418F3C1ACB5CDA00DC30FF /* team_place_holder@3x.png in Resources */,
@@ -2265,19 +2467,25 @@
 				5CC7728D1AFD786900EEEB33 /* layerLogo@3x.png in Resources */,
 				5CC772811AFD786900EEEB33 /* block.png in Resources */,
 				5C7484591AD9B64C001917CC /* IconicOnboard7slice@2x.png in Resources */,
+				5CDC2E451B89167E0030F711 /* HSChatBubbleBlue@2x.png in Resources */,
 				5C3BBF601AC3AD3D00B179B0 /* Dashboard_Icon@2x.png in Resources */,
 				5C15971A1ACE31EE00CEA15A /* happy_face@2x.png in Resources */,
+				5CDC2E3C1B89167E0030F711 /* HS-delete-button@3x.png in Resources */,
 				5C1597181ACE31EE00CEA15A /* Leagues_Icon@2x.png in Resources */,
 				5CF74BF41B85371600EC67C4 /* CreateUsername@2x.png in Resources */,
+				5CDC2E4B1B89167E0030F711 /* HSConfirmBox@2x.png in Resources */,
+				5CDC2E481B89167E0030F711 /* HSChatBubbleWhite@2x.png in Resources */,
 				5CDB875C1ACB0FD1009FE9D2 /* Exit_Icon@3x.png in Resources */,
 				5CC773191B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png in Resources */,
 				5CC772841AFD786900EEEB33 /* camera_dark.png in Resources */,
 				5CE7782F1A0D7D0D008B3585 /* Icon-40@2x.png in Resources */,
 				5C418F391ACB5CDA00DC30FF /* user_place_holder@2x.png in Resources */,
 				5C881E441ABBA2B200C2D958 /* SignInWithEmailButton@2x.png in Resources */,
+				5CDC2E3E1B89167E0030F711 /* HS-no-connection@2x.png in Resources */,
 				5CC7726A1AFD6C3A00EEEB33 /* layer-client-messaging-schema.bundle in Resources */,
 				5C42F8A61AC21EA500B4F7BB /* SignUpButton@3x.png in Resources */,
 				5C1597191ACE31EE00CEA15A /* Leagues_Icon@3x.png in Resources */,
+				5CDC2E391B89167E0030F711 /* HS-camera-button@3x.png in Resources */,
 				5CC7728A1AFD786900EEEB33 /* layerbell.caf in Resources */,
 				5C3BBF871AC9D0F400B179B0 /* Followed_User_Icon_White@2x.png in Resources */,
 				5CDB875B1ACB0FD1009FE9D2 /* Exit_Icon@2x.png in Resources */,
@@ -2285,6 +2493,7 @@
 				5C418F001ACB264400DC30FF /* Add_Team_Button@3x.png in Resources */,
 				5C881E3D1ABBA2B200C2D958 /* LetsGetStartedButton@3x.png in Resources */,
 				5CE7782D1A0D7D0D008B3585 /* Contents.json in Resources */,
+				5CDC2E4F1B89167E0030F711 /* HSTutorialiPad.png in Resources */,
 				5C74845E1AD9B64C001917CC /* IconicOnboard4slice@3x.png in Resources */,
 				5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */,
 				5C881E2C1ABBA2B200C2D958 /* Grant_Motion_Permission_Button@2x.png in Resources */,
@@ -2310,15 +2519,18 @@
 				5C1597161ACE31EE00CEA15A /* Feed_Icon@2x.png in Resources */,
 				5C881E431ABBA2B200C2D958 /* NextButton@3x.png in Resources */,
 				5C3BBF6C1AC6152000B179B0 /* JoinTeamButton@2x.png in Resources */,
+				5CDC2E4C1B89167E0030F711 /* HSTutorial.png in Resources */,
 				5CDB87541ACB0564009FE9D2 /* Invite_Contacts_Button@3x.png in Resources */,
 				5CE778301A0D7D0D008B3585 /* Icon-40@3x.png in Resources */,
 				5CA3D1951831DF51006C7932 /* InfoPlist.strings in Resources */,
 				5C881E421ABBA2B200C2D958 /* NextButton@2x.png in Resources */,
+				5CDC2E3B1B89167E0030F711 /* HS-delete-button@2x.png in Resources */,
 				5CC773181B0295BD00EEEB33 /* IconicOnboard1_Slice@2x.png in Resources */,
 				5CE778361A0D7D0D008B3585 /* Icon-Small@2x.png in Resources */,
 				5C418F3B1ACB5CDA00DC30FF /* team_place_holder@2x.png in Resources */,
 				5CC7728E1AFD786900EEEB33 /* location_dark.png in Resources */,
 				5C13105F1B83EEC7004E096B /* Settings_White@3x.png in Resources */,
+				5CDC2E501B89167E0030F711 /* HSTutorialiPad@2x.png in Resources */,
 				5CE778331A0D7D0D008B3585 /* Icon-76.png in Resources */,
 				5CDB87501ACB0564009FE9D2 /* Invite_Facebook_Friends_button@3x.png in Resources */,
 				5CE7782E1A0D7D0D008B3585 /* Icon-40.png in Resources */,
@@ -2329,6 +2541,7 @@
 				5C7484551AD9B64C001917CC /* IconicOnboard9slice@3x.png in Resources */,
 				5CDB87601ACB1110009FE9D2 /* Share_Button@3x.png in Resources */,
 				5C418F4A1ACCC4BA00DC30FF /* user_place_holder_large@2x.png in Resources */,
+				5CDC2E3A1B89167E0030F711 /* HS-delete-button.png in Resources */,
 				5C15971B1ACE31EE00CEA15A /* happy_face@3x.png in Resources */,
 				5C539E00198715090027669A /* README.md in Resources */,
 				5CA3D19E1831DF51006C7932 /* Main.storyboard in Resources */,
@@ -2344,38 +2557,49 @@
 				5CC772901AFD786900EEEB33 /* location_dark@3x.png in Resources */,
 				5C7484561AD9B64C001917CC /* IconicOnboard9slice@2x.png in Resources */,
 				5C881E2D1ABBA2B200C2D958 /* Grant_Motion_Permission_Button@3x.png in Resources */,
+				5CDC2E401B89167E0030F711 /* HS-powered-by-logo@2x.png in Resources */,
 				5CC772831AFD786900EEEB33 /* block@3x.png in Resources */,
 				5C418F0C1ACB33D300DC30FF /* Schedule_Button@3x.png in Resources */,
 				5C3BBF841AC9D0F400B179B0 /* Follow_Icon_Red@3x.png in Resources */,
 				5CC772881AFD786900EEEB33 /* chevron@2x.png in Resources */,
 				5C3BBFA11ACA114500B179B0 /* Comment_Icon@3x.png in Resources */,
 				5C418F081ACB33D300DC30FF /* High_Five_Button@3x.png in Resources */,
+				5CDC2E471B89167E0030F711 /* HSChatBubbleWhite.png in Resources */,
 				5C881E451ABBA2B200C2D958 /* SignInWithEmailButton@3x.png in Resources */,
 				5C13105E1B83EEC7004E096B /* Settings_White@2x.png in Resources */,
+				5CDC2E381B89167E0030F711 /* HS-camera-button@2x.png in Resources */,
 				5C7484581AD9B64C001917CC /* IconicOnboard8slice@3x.png in Resources */,
 				5C3BBF831AC9D0F400B179B0 /* Follow_Icon_Red@2x.png in Resources */,
 				5C74845B1AD9B64C001917CC /* IconicOnboard6slice@2x.png in Resources */,
 				5C881E461ABBA2B200C2D958 /* YesButton@2x.png in Resources */,
 				5C3BBF9A1AC9DA1900B179B0 /* Chat_Icon_White@3x.png in Resources */,
+				5CDC2E491B89167E0030F711 /* HSChatBubbleWhite@3x.png in Resources */,
+				5CDC2E4D1B89167E0030F711 /* HSTutorial@2x.png in Resources */,
 				5C7484611AD9B64C001917CC /* IconicOnboard2_Slice@2x.png in Resources */,
+				5CDC2E4E1B89167E0030F711 /* HSTutorial@3x.png in Resources */,
 				5C418EFF1ACB264400DC30FF /* Add_Team_Button@2x.png in Resources */,
 				5C3BBF821AC9D0F400B179B0 /* Add_Icon_White@3x.png in Resources */,
 				5CF74BFC1B853C5600EC67C4 /* SubmitButton@2x.png in Resources */,
 				5C3BBF2A1AC38BC200B179B0 /* Comment_Icon_Selected@3x.png in Resources */,
 				5C418F3A1ACB5CDA00DC30FF /* user_place_holder@3x.png in Resources */,
+				5CDC2E4A1B89167E0030F711 /* HSConfirmBox.png in Resources */,
 				5C03048E1A410A5500E86578 /* team2.png in Resources */,
+				5CDC2E371B89167E0030F711 /* HS-camera-button.png in Resources */,
 				5C418F0A1ACB33D300DC30FF /* High_Five_Button_Selected@3x.png in Resources */,
 				5C418F0B1ACB33D300DC30FF /* Schedule_Button@2x.png in Resources */,
+				5CDC2E351B89167E0030F711 /* HS-Attachment@2x.png in Resources */,
 				5C42F8441AC1FEB800B4F7BB /* JoinButton@3x.png in Resources */,
 				5CC772821AFD786900EEEB33 /* block@2x.png in Resources */,
 				5CF74BF51B85371600EC67C4 /* CreateUsername@3x.png in Resources */,
 				5C3BBF911AC9D28E00B179B0 /* Leave_Team_Icon_White@2x.png in Resources */,
+				5CDC2E441B89167E0030F711 /* HSChatBubbleBlue.png in Resources */,
 				5C42F7DF1AC1D57100B4F7BB /* noNotification@2x.png in Resources */,
 				5C42F8AD1AC2237E00B4F7BB /* disclaimerText@2x.png in Resources */,
 				5C3BBF291AC38BC200B179B0 /* Comment_Icon_Selected@2x.png in Resources */,
 				5CD9383A187B814F006CE08B /* achievment_test.png in Resources */,
 				5C2EA53E1851516700B21C52 /* MyStatsViewController.xib in Resources */,
 				5CDB875F1ACB1110009FE9D2 /* Share_Button@2x.png in Resources */,
+				5CDC2E341B89167E0030F711 /* HS-Attachment.png in Resources */,
 				5CC772921AFD786900EEEB33 /* plus@2x.png in Resources */,
 				5C42F85B1AC20A5200B4F7BB /* IconicLogo@2x.png in Resources */,
 				5C3BBF8C1AC9D0F400B179B0 /* Follow_Icon_White@3x.png in Resources */,
@@ -2624,6 +2848,34 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		5CDC2DFA1B89167E0030F711 /* HelpshiftLocalizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5CDC2DFB1B89167E0030F711 /* ar */,
+				5CDC2DFC1B89167E0030F711 /* cs */,
+				5CDC2DFD1B89167E0030F711 /* de */,
+				5CDC2DFE1B89167E0030F711 /* en */,
+				5CDC2DFF1B89167E0030F711 /* es */,
+				5CDC2E001B89167E0030F711 /* fr */,
+				5CDC2E011B89167E0030F711 /* hu */,
+				5CDC2E021B89167E0030F711 /* id */,
+				5CDC2E031B89167E0030F711 /* it */,
+				5CDC2E041B89167E0030F711 /* ja */,
+				5CDC2E051B89167E0030F711 /* ko */,
+				5CDC2E061B89167E0030F711 /* nl */,
+				5CDC2E071B89167E0030F711 /* pl */,
+				5CDC2E081B89167E0030F711 /* pt */,
+				5CDC2E091B89167E0030F711 /* ru */,
+				5CDC2E0A1B89167E0030F711 /* sl */,
+				5CDC2E0B1B89167E0030F711 /* th */,
+				5CDC2E0C1B89167E0030F711 /* tr */,
+				5CDC2E0D1B89167E0030F711 /* vi */,
+				5CDC2E0E1B89167E0030F711 /* zh-Hans */,
+				5CDC2E0F1B89167E0030F711 /* zh-Hant */,
+			);
+			name = HelpshiftLocalizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -2791,6 +3043,7 @@
 					"$(PROJECT_DIR)/Intercom",
 					"$(PROJECT_DIR)/heap-ios-latest",
 					"$(PROJECT_DIR)/Flurry",
+					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
@@ -2836,6 +3089,7 @@
 					"$(PROJECT_DIR)/Intercom",
 					"$(PROJECT_DIR)/heap-ios-latest",
 					"$(PROJECT_DIR)/Flurry",
+					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";

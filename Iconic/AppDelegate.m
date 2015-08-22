@@ -31,7 +31,7 @@
 #import "NSLayerClientObject.h"
 #import "ATLMLayerClient.h"
 #import "LayerConversationListViewController.h"
-
+#import "Helpshift.h"
 
 
 @interface AppDelegate ()
@@ -105,6 +105,17 @@
             [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    //Helpshift - user feedback crm
+    [Helpshift installForApiKey:@"9397c3001d4a630a953359add784a5a0"
+                     domainName:@"iconic.helpshift.com"
+                          appID:@"iconic_platform_20150822182921470-d193036549166a3"];
 
     
     
