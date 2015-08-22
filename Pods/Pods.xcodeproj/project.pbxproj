@@ -1,0 +1,410 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		19EE21561281E5F5C0B5A85CFDC1A411 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636BC752E7946EF6919A00D1F8EAE693 /* Foundation.framework */; };
+		B991A49F4C12A4F8462C02B69D83DB11 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F544E664EA23C82471AAB47D479D781B /* Pods-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		02ABFB5CB4991CDC51D05BA649C99915 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = de.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/de.lproj"; sourceTree = "<group>"; };
+		04DFF7C6E134A8B0DDDAA7DCE3DCE993 /* HSChatBubbleWhite@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HSChatBubbleWhite@3x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSChatBubbleWhite@3x.png"; sourceTree = "<group>"; };
+		0D03F46DF01C2BF36A2C2CF3265E0BF4 /* HS-Attachment@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-Attachment@3x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-Attachment@3x.png"; sourceTree = "<group>"; };
+		1318D8C31CEE50FFBB34470B4AD35339 /* HSChatBubbleWhite.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = HSChatBubbleWhite.png; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSChatBubbleWhite.png"; sourceTree = "<group>"; };
+		159ABA5D365330A649E68548865615DD /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = ru.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/ru.lproj"; sourceTree = "<group>"; };
+		15A529C27057E4A57D259CBC6E6CE49C /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		17CD841203CA88DEB130F5DB9A7B83A9 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = en.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/en.lproj"; sourceTree = "<group>"; };
+		1FAE7A7CD2766B261E6625FB35B30093 /* HSTutorialiPad@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HSTutorialiPad@3x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSTutorialiPad@3x.png"; sourceTree = "<group>"; };
+		20A4EB2209722108F23125CAF8AFE9B6 /* HS-no-connection.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-no-connection.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-no-connection.png"; sourceTree = "<group>"; };
+		277B553F8DFF145A82EEDFAF13B2C30F /* HSChatBubbleWhite@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HSChatBubbleWhite@2x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSChatBubbleWhite@2x.png"; sourceTree = "<group>"; };
+		28599B7B59031A15F7821187488F8628 /* HS-powered-by-logo@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-powered-by-logo@3x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-powered-by-logo@3x.png"; sourceTree = "<group>"; };
+		334E43EE261FB1F4FA338D776AE1A7D7 /* cs.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = cs.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/cs.lproj"; sourceTree = "<group>"; };
+		36C097FD6B90CAF23AF9D519002BD7CC /* HS-camera-button@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-camera-button@2x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-camera-button@2x.png"; sourceTree = "<group>"; };
+		373EFCC3ECB3BC003D7052DAA8AEED9E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		391573ABAC3B282B18E5656BCE73E62C /* HS-camera-button@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-camera-button@3x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-camera-button@3x.png"; sourceTree = "<group>"; };
+		3EF9DFF8EF59F6A38C42B293B20CD495 /* HS-delete-button@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-delete-button@2x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-delete-button@2x.png"; sourceTree = "<group>"; };
+		42002EA3EB1F5FCC47B0DDE65A8684A4 /* HS-Attachment.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-Attachment.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-Attachment.png"; sourceTree = "<group>"; };
+		5998A83F89E1CA5B1518AC70FD120C2E /* HSTutorial.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = HSTutorial.png; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSTutorial.png"; sourceTree = "<group>"; };
+		636BC752E7946EF6919A00D1F8EAE693 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		641AE05DD55E5E6AC1590CD7B4A18F97 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		65CF1696D60C5C8ADCCCA04C1B48F611 /* sl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = sl.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/sl.lproj"; sourceTree = "<group>"; };
+		69EF751B8C7FC4A09B65E85BE8F77E92 /* HS-camera-button.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-camera-button.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-camera-button.png"; sourceTree = "<group>"; };
+		6A47DA86A57B70AFA5307FA78EB9010B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		6AF4F9BF8F43C4B7BF9F5B7779B48DB4 /* vi.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = vi.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/vi.lproj"; sourceTree = "<group>"; };
+		6F929AB3EEE032DD67A89CD516CAC07C /* HSTutorial@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HSTutorial@2x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSTutorial@2x.png"; sourceTree = "<group>"; };
+		7330A7DFAA1F3A6B05B95120DCA47BEB /* zh-Hant.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = "zh-Hant.lproj"; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/zh-Hant.lproj"; sourceTree = "<group>"; };
+		77FBA4FCC724A2EC568FEBC1FCE2DCD9 /* HSConfirmBox.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = HSConfirmBox.png; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSConfirmBox.png"; sourceTree = "<group>"; };
+		8328D88CF199C440E581078E76C3E481 /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = ja.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/ja.lproj"; sourceTree = "<group>"; };
+		85BB4BB11152E3F8A229AB0A0F2FAEDA /* HS-powered-by-logo@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-powered-by-logo@2x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-powered-by-logo@2x.png"; sourceTree = "<group>"; };
+		88F93AF8B7D5DA98B30F17F62934DDF6 /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = "zh-Hans.lproj"; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/zh-Hans.lproj"; sourceTree = "<group>"; };
+		8CC0C1097D233DE67F92C5200A2A90B5 /* HSTutorial@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HSTutorial@3x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSTutorial@3x.png"; sourceTree = "<group>"; };
+		91AECFEA2B1EAF29557C340E4B851060 /* HSTutorialiPad@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HSTutorialiPad@2x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSTutorialiPad@2x.png"; sourceTree = "<group>"; };
+		91C08BD3618DA74235CDA4453CCF0ED0 /* HS-delete-button.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-delete-button.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-delete-button.png"; sourceTree = "<group>"; };
+		95F5535EA8532496F882018A04CBBF3D /* ar.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = ar.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/ar.lproj"; sourceTree = "<group>"; };
+		9FF2D198CDEB91B98A47DB3AC72911CC /* HS-Attachment@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-Attachment@2x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-Attachment@2x.png"; sourceTree = "<group>"; };
+		A48FCD438701D3F5251248E3D9293D61 /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = es.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/es.lproj"; sourceTree = "<group>"; };
+		A695A3570EE627A77944BE39AA67F8D2 /* id.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = id.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/id.lproj"; sourceTree = "<group>"; };
+		AE4F8C15345683624B03C11484905FAF /* Helpshift.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Helpshift.h; path = "helpshift-sdk-ios-v4.13.0/Helpshift.h"; sourceTree = "<group>"; };
+		AE98795B765A86162914396E4F7DF0F8 /* HSTutorialiPad.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = HSTutorialiPad.png; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSTutorialiPad.png"; sourceTree = "<group>"; };
+		AEEDA5F6291892906F3CBBF39B8BC98F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B396575D752C7D4BAD5FD04188867ED5 /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = it.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/it.lproj"; sourceTree = "<group>"; };
+		B49521D8B84B8BB080BC1ABE69B15E30 /* HS-screenshot-error.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-screenshot-error.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-screenshot-error.png"; sourceTree = "<group>"; };
+		B4C6375F040CA2BC578402BF67CD80C5 /* pl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = pl.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/pl.lproj"; sourceTree = "<group>"; };
+		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BEF2B3602065007E647C8EDBFD3B072D /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = pt.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/pt.lproj"; sourceTree = "<group>"; };
+		BF59BC15D23E1E1912C8F334E7236813 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		C054976E25F6494E8D88910F7B755AA5 /* tr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = tr.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/tr.lproj"; sourceTree = "<group>"; };
+		C177A1D523D51013474719FB14549379 /* HSChatBubbleBlue@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HSChatBubbleBlue@3x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSChatBubbleBlue@3x.png"; sourceTree = "<group>"; };
+		C4C3BF9EC1D3CF3331161498DAE030F5 /* ko.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = ko.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/ko.lproj"; sourceTree = "<group>"; };
+		C65AF1CCD022C99C1F196C22B1026907 /* HSChatBubbleBlue.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = HSChatBubbleBlue.png; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSChatBubbleBlue.png"; sourceTree = "<group>"; };
+		CAECA8511F92FF63023D2915310E8C78 /* HS-screenshot-error@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-screenshot-error@2x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-screenshot-error@2x.png"; sourceTree = "<group>"; };
+		CEC19D280B943B3EF1CF7FF4BF934714 /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = nl.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/nl.lproj"; sourceTree = "<group>"; };
+		D8757C62673D634BD0F49D4C9FABB992 /* HS-powered-by-logo.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-powered-by-logo.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-powered-by-logo.png"; sourceTree = "<group>"; };
+		DF38FA109D44D585BBAA0831E0DEE454 /* th.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = th.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/th.lproj"; sourceTree = "<group>"; };
+		DF8DF25E119D53E7854BB168D984A481 /* HSConfirmBox@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HSConfirmBox@2x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSConfirmBox@2x.png"; sourceTree = "<group>"; };
+		E9D06F3687475FD42FA84DA983DB5FA7 /* hu.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = hu.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/hu.lproj"; sourceTree = "<group>"; };
+		EB247085FF0E5CD0CC39FB020431E6AA /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = fr.lproj; path = "helpshift-sdk-ios-v4.13.0/HSLocalization/fr.lproj"; sourceTree = "<group>"; };
+		EEDBE1E1B9B153DA7D8AF0D09C93DEE0 /* HS-delete-button@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-delete-button@3x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-delete-button@3x.png"; sourceTree = "<group>"; };
+		F544E664EA23C82471AAB47D479D781B /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		F855DDDABE8C4D99BC8CAD82E52161C9 /* HS-no-connection@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HS-no-connection@2x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HS-no-connection@2x.png"; sourceTree = "<group>"; };
+		FF8F17FCF897AB0A60F95A743CB3E17C /* HSChatBubbleBlue@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "HSChatBubbleBlue@2x.png"; path = "helpshift-sdk-ios-v4.13.0/HSResources/HSChatBubbleBlue@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2E78C4AC537A1782BCFD134B2B8940E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19EE21561281E5F5C0B5A85CFDC1A411 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		53F661C0CA7190D2CF05023FB33D61E4 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				636BC752E7946EF6919A00D1F8EAE693 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				9C2AB9B6900BE02067DAB626870F756D /* Pods */,
+				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
+				D2411A5FE7F7A004607BED49990C37F4 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8AF23BAC54F9AAB6BB6A65269762F416 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				42002EA3EB1F5FCC47B0DDE65A8684A4 /* HS-Attachment.png */,
+				9FF2D198CDEB91B98A47DB3AC72911CC /* HS-Attachment@2x.png */,
+				0D03F46DF01C2BF36A2C2CF3265E0BF4 /* HS-Attachment@3x.png */,
+				69EF751B8C7FC4A09B65E85BE8F77E92 /* HS-camera-button.png */,
+				36C097FD6B90CAF23AF9D519002BD7CC /* HS-camera-button@2x.png */,
+				391573ABAC3B282B18E5656BCE73E62C /* HS-camera-button@3x.png */,
+				91C08BD3618DA74235CDA4453CCF0ED0 /* HS-delete-button.png */,
+				3EF9DFF8EF59F6A38C42B293B20CD495 /* HS-delete-button@2x.png */,
+				EEDBE1E1B9B153DA7D8AF0D09C93DEE0 /* HS-delete-button@3x.png */,
+				20A4EB2209722108F23125CAF8AFE9B6 /* HS-no-connection.png */,
+				F855DDDABE8C4D99BC8CAD82E52161C9 /* HS-no-connection@2x.png */,
+				D8757C62673D634BD0F49D4C9FABB992 /* HS-powered-by-logo.png */,
+				85BB4BB11152E3F8A229AB0A0F2FAEDA /* HS-powered-by-logo@2x.png */,
+				28599B7B59031A15F7821187488F8628 /* HS-powered-by-logo@3x.png */,
+				B49521D8B84B8BB080BC1ABE69B15E30 /* HS-screenshot-error.png */,
+				CAECA8511F92FF63023D2915310E8C78 /* HS-screenshot-error@2x.png */,
+				C65AF1CCD022C99C1F196C22B1026907 /* HSChatBubbleBlue.png */,
+				FF8F17FCF897AB0A60F95A743CB3E17C /* HSChatBubbleBlue@2x.png */,
+				C177A1D523D51013474719FB14549379 /* HSChatBubbleBlue@3x.png */,
+				1318D8C31CEE50FFBB34470B4AD35339 /* HSChatBubbleWhite.png */,
+				277B553F8DFF145A82EEDFAF13B2C30F /* HSChatBubbleWhite@2x.png */,
+				04DFF7C6E134A8B0DDDAA7DCE3DCE993 /* HSChatBubbleWhite@3x.png */,
+				77FBA4FCC724A2EC568FEBC1FCE2DCD9 /* HSConfirmBox.png */,
+				DF8DF25E119D53E7854BB168D984A481 /* HSConfirmBox@2x.png */,
+				5998A83F89E1CA5B1518AC70FD120C2E /* HSTutorial.png */,
+				6F929AB3EEE032DD67A89CD516CAC07C /* HSTutorial@2x.png */,
+				8CC0C1097D233DE67F92C5200A2A90B5 /* HSTutorial@3x.png */,
+				AE98795B765A86162914396E4F7DF0F8 /* HSTutorialiPad.png */,
+				91AECFEA2B1EAF29557C340E4B851060 /* HSTutorialiPad@2x.png */,
+				1FAE7A7CD2766B261E6625FB35B30093 /* HSTutorialiPad@3x.png */,
+				95F5535EA8532496F882018A04CBBF3D /* ar.lproj */,
+				334E43EE261FB1F4FA338D776AE1A7D7 /* cs.lproj */,
+				02ABFB5CB4991CDC51D05BA649C99915 /* de.lproj */,
+				17CD841203CA88DEB130F5DB9A7B83A9 /* en.lproj */,
+				A48FCD438701D3F5251248E3D9293D61 /* es.lproj */,
+				EB247085FF0E5CD0CC39FB020431E6AA /* fr.lproj */,
+				E9D06F3687475FD42FA84DA983DB5FA7 /* hu.lproj */,
+				A695A3570EE627A77944BE39AA67F8D2 /* id.lproj */,
+				B396575D752C7D4BAD5FD04188867ED5 /* it.lproj */,
+				8328D88CF199C440E581078E76C3E481 /* ja.lproj */,
+				C4C3BF9EC1D3CF3331161498DAE030F5 /* ko.lproj */,
+				CEC19D280B943B3EF1CF7FF4BF934714 /* nl.lproj */,
+				B4C6375F040CA2BC578402BF67CD80C5 /* pl.lproj */,
+				BEF2B3602065007E647C8EDBFD3B072D /* pt.lproj */,
+				159ABA5D365330A649E68548865615DD /* ru.lproj */,
+				65CF1696D60C5C8ADCCCA04C1B48F611 /* sl.lproj */,
+				DF38FA109D44D585BBAA0831E0DEE454 /* th.lproj */,
+				C054976E25F6494E8D88910F7B755AA5 /* tr.lproj */,
+				6AF4F9BF8F43C4B7BF9F5B7779B48DB4 /* vi.lproj */,
+				88F93AF8B7D5DA98B30F17F62934DDF6 /* zh-Hans.lproj */,
+				7330A7DFAA1F3A6B05B95120DCA47BEB /* zh-Hant.lproj */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		8DA0CA80E6653BAA697CF3FCFFBFCBD9 /* Helpshift */ = {
+			isa = PBXGroup;
+			children = (
+				AE4F8C15345683624B03C11484905FAF /* Helpshift.h */,
+				8AF23BAC54F9AAB6BB6A65269762F416 /* Resources */,
+			);
+			path = Helpshift;
+			sourceTree = "<group>";
+		};
+		952EEBFAF8F7E620423C9F156F25A506 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				15A529C27057E4A57D259CBC6E6CE49C /* Pods-acknowledgements.markdown */,
+				BF59BC15D23E1E1912C8F334E7236813 /* Pods-acknowledgements.plist */,
+				F544E664EA23C82471AAB47D479D781B /* Pods-dummy.m */,
+				641AE05DD55E5E6AC1590CD7B4A18F97 /* Pods-resources.sh */,
+				6A47DA86A57B70AFA5307FA78EB9010B /* Pods.debug.xcconfig */,
+				373EFCC3ECB3BC003D7052DAA8AEED9E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
+		9C2AB9B6900BE02067DAB626870F756D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8DA0CA80E6653BAA697CF3FCFFBFCBD9 /* Helpshift */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				53F661C0CA7190D2CF05023FB33D61E4 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AEEDA5F6291892906F3CBBF39B8BC98F /* libPods.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2411A5FE7F7A004607BED49990C37F4 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				952EEBFAF8F7E620423C9F156F25A506 /* Pods */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1469924FC52F60B0068FA24EEFCB3EFC /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C358AA8BB91700063133597D41C4E0E /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				60DB2522D6809309FA2F3B04848E7536 /* Sources */,
+				2E78C4AC537A1782BCFD134B2B8940E0 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = AEEDA5F6291892906F3CBBF39B8BC98F /* libPods.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = CCA510CFBEA2D207524CDA0D73C3B561 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1469924FC52F60B0068FA24EEFCB3EFC /* Pods */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		60DB2522D6809309FA2F3B04848E7536 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B991A49F4C12A4F8462C02B69D83DB11 /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		03FE3C5BFBEF48ECE61B2233313521E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A47DA86A57B70AFA5307FA78EB9010B /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		D9E2B1721C393356DBD5CCE324D4231C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 373EFCC3ECB3BC003D7052DAA8AEED9E /* Pods.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		FB45FFD90572718D82AB9092B750F0CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */,
+				FB45FFD90572718D82AB9092B750F0CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C358AA8BB91700063133597D41C4E0E /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03FE3C5BFBEF48ECE61B2233313521E1 /* Debug */,
+				D9E2B1721C393356DBD5CCE324D4231C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

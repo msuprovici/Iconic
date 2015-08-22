@@ -26,6 +26,8 @@ class SettingsTableViewController: UITableViewController {
     let defaults = NSUserDefaults.standardUserDefaults()
     
     let app = UIApplication.sharedApplication()
+    
+    let helpshift = Helpshift.sharedInstance()
 
     
     
@@ -559,6 +561,10 @@ class SettingsTableViewController: UITableViewController {
     
     
     
+    
+    @IBAction func feedbackPressed(sender: UIBarButtonItem) {
+        helpshift.showConversation(self, withOptions: nil)
+    }
     
     
     // MARK: NSCoding

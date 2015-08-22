@@ -31,6 +31,8 @@
 #import "NSLayerClientObject.h"
 #import "ATLMLayerClient.h"
 #import "LayerConversationListViewController.h"
+//#import "ATConnect.h"
+#import "Helpshift.h"
 
 
 
@@ -120,9 +122,15 @@
 //        }
 //    }];
     
+    //Helpshift - user feedback crm
+    [Helpshift installForApiKey:@"9397c3001d4a630a953359add784a5a0"
+                     domainName:@"iconic.helpshift.com"
+                          appID:@"iconic_platform_20150822182921470-d193036549166a3"];
     
     
     
+ 
+
     
        
     //initialize Amplitude analytics
@@ -140,21 +148,6 @@
     //testing key
     [Flurry startSession:@"GFB5TWRMW9J2YNCMPK7R"];
 
-    //initialize intercom
-    
-//    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"tx0dtabz"];//live
-    
-//    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"c1ubvxjw"];//dev
-    
-    
-    //initialize heap analytics
-    
-//    [Heap setAppId:@"1914446395"]; //live
-//    
-////    [Heap setAppId:@"3704495766"]; //dev
-//    #ifdef DEBUG
-////        [Heap enableVisualizer]; //uncomment to set up events
-//    #endif
     
     //Intitialize FB
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
