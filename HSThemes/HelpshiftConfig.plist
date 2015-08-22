@@ -5,9 +5,9 @@
 	<key>Global Attributes</key>
 	<dict>
 		<key>Font name</key>
-		<string></string>
+		<string>HelveticaNeue-Light </string>
 		<key>Bold font name</key>
-		<string></string>
+		<string>HelveticaNeue</string>
 		<key>Background color</key>
 		<string></string>
 		<key>Background image</key>
@@ -17,7 +17,7 @@
 		<key>Separator line color</key>
 		<string></string>
 		<key>Text color</key>
-		<string></string>
+		<string>#002A32</string>
 		<key>Contact us button color</key>
 		<string></string>
 		<key>Cell selection color</key>
@@ -42,7 +42,7 @@
 		<key>Background color</key>
 		<string></string>
 		<key>Set Translucent</key>
-		<true/>
+		<false/>
 		<key>Text shadow color (iOS 6)</key>
 		<string></string>
 		<key>Background image (iOS 6)</key>
@@ -69,7 +69,7 @@
 	<key>FAQ and Chat</key>
 	<dict>
 		<key>Chat send button color</key>
-		<string></string>
+		<string>#FA0021</string>
 		<key>FAQ yes button color</key>
 		<string></string>
 		<key>FAQ no button color</key>
