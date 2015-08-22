@@ -1,0 +1,10 @@
+PODS:
+  - Helpshift (4.13.0)
+
+DEPENDENCIES:
+  - Helpshift
+
+SPEC CHECKSUMS:
+  Helpshift: 7611a36eca09d83349038037130fd4aa1b16fb2b
+
+COCOAPODS: 0.38.2
