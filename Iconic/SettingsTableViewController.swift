@@ -73,7 +73,7 @@ class SettingsTableViewController: UITableViewController {
         let deniedNotfications = UIUserNotificationType.None
         
 
-        if(settings.types == deniedNotfications)
+        if(settings!.types == deniedNotfications)
 
         {
             
@@ -121,7 +121,7 @@ class SettingsTableViewController: UITableViewController {
         let deniedNotfications = UIUserNotificationType.None
         
         
-        if(settings.types == deniedNotfications)
+        if(settings!.types == deniedNotfications)
         
        
         {
@@ -248,7 +248,7 @@ class SettingsTableViewController: UITableViewController {
         let settings = UIApplication.sharedApplication().currentUserNotificationSettings()
         let deniedNotfications = UIUserNotificationType.None
             
-        if(settings.types != deniedNotfications)
+        if(settings!.types != deniedNotfications)
         {
                 // save object if item is slelected
                   
@@ -302,20 +302,22 @@ class SettingsTableViewController: UITableViewController {
             }
             else
             {
-                var alert = UIAlertController(title: "Allow Push Notifications", message: "You will be prompted to enable push notifications.", preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "Allow Push Notifications", message: "You will be prompted to enable push notifications.", preferredStyle: UIAlertControllerStyle.Alert)
                 
                 alert.addAction(UIAlertAction(title: "Allow", style: .Default, handler: { action in
                     switch action.style{
                     case .Default:
-                        println("allow push")
-                        self.app.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Badge | .Sound | .Alert, categories: nil))
+                        print("allow push")
+                        
+                        
+                        self.app.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
                         self.app.registerForRemoteNotifications()
                         
                     case .Cancel:
-                        println("cancel")
+                        print("cancel")
                         
                     case .Destructive:
-                        println("destructive")
+                        print("destructive")
                     }
                 }))
                 
@@ -340,7 +342,7 @@ class SettingsTableViewController: UITableViewController {
             let deniedNotfications = UIUserNotificationType.None
 
             
-            if(settings.types != deniedNotfications)
+            if(settings!.types != deniedNotfications)
             {
                     // save object if item is slelected
                     print("  app registered for notifications")
@@ -430,15 +432,17 @@ class SettingsTableViewController: UITableViewController {
                 alert.addAction(UIAlertAction(title: "Allow", style: .Default, handler: { action in
                     switch action.style{
                     case .Default:
-                        println("allow push")
-                        self.app.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Badge | .Sound | .Alert, categories: nil))
+                        print("allow push")
+                        
+                        
+                        self.app.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil))
                         self.app.registerForRemoteNotifications()
                         
                     case .Cancel:
-                        println("cancel")
+                        print("cancel")
                         
                     case .Destructive:
-                        println("destructive")
+                        print("destructive")
                     }
                 }))
                 
@@ -459,16 +463,16 @@ class SettingsTableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "Log Out", style: .Destructive, handler: { action in
                 switch action.style{
                 case .Destructive:
-                    println("log out")
+                    print("log out")
                     
                     PFUser.logOutInBackgroundWithBlock({ (error: NSError?) -> Void in
                         
                         if let error = error{
-                            println("log out did not work")
+                            print("log out did not work")
                         }
                         else
                         {
-                            println("log out succesfull")
+                            print("log out succesfull")
                             PFQuery.clearAllCachedResults()
                             
                             self.performSegueWithIdentifier("GoBackToLogin", sender: nil)
@@ -479,10 +483,10 @@ class SettingsTableViewController: UITableViewController {
                     })
                     
                 case .Cancel:
-                    println("cancel")
+                    print("cancel")
                     
                 case .Default:
-                    println("default")
+                    print("default")
                     
                 }
             }))

@@ -47,16 +47,16 @@ class CreateUserNameViewController: UIViewController, UITextFieldDelegate {
         
         CreateUserName.resignFirstResponder();
 //        enteredValue.text = CreateUserName.text;
-        if(count (CreateUserName.text) > 3)
+        if(CreateUserName.text?.characters.count > 3)
         {
             var query : PFQuery = PFUser.query()!
-            query.whereKey("username", equalTo: CreateUserName.text)
+            query.whereKey("username", equalTo: CreateUserName.text!)
             query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]?, error: NSError?) -> Void in
             
             if error == nil {
                 // The find succeeded.
-                println("Successfully retrieved \(objects!.count) objects.")
+                print("Successfully retrieved \(objects!.count) objects.")
                 
                 if(objects!.count >= 1)
                 {
@@ -66,14 +66,14 @@ class CreateUserNameViewController: UIViewController, UITextFieldDelegate {
                     alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
                         switch action.style{
                         case .Default:
-                            println("allow push")
+                            print("allow push")
                             
                             
                         case .Cancel:
-                            println("cancel")
+                            print("cancel")
                             
                         case .Destructive:
-                            println("destructive")
+                            print("destructive")
                         }
                     }))
                     
@@ -112,7 +112,7 @@ class CreateUserNameViewController: UIViewController, UITextFieldDelegate {
 //                }
             } else {
                 // Log details of the failure
-                println("Error: \(error!) \(error!.userInfo!)")
+                print("Error: \(error!) \(error!.userInfo)")
             }
         }
       }
@@ -123,14 +123,14 @@ class CreateUserNameViewController: UIViewController, UITextFieldDelegate {
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { action in
                 switch action.style{
                 case .Default:
-                    println("user name too short")
+                    print("user name too short")
                     
                     
                 case .Cancel:
-                    println("cancel")
+                    print("cancel")
                     
                 case .Destructive:
-                    println("destructive")
+                    print("destructive")
                 }
             }))
             
@@ -145,29 +145,29 @@ class CreateUserNameViewController: UIViewController, UITextFieldDelegate {
     
     // UITextField Delegates
     func textFieldDidBeginEditing(textField: UITextField) {
-        println("TextField did begin editing method called")
+        print("TextField did begin editing method called")
     }
     func textFieldDidEndEditing(textField: UITextField) {
-        println("TextField did end editing method called")
+        print("TextField did end editing method called")
     }
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        println("TextField should begin editing method called")
+        print("TextField should begin editing method called")
         return true;
     }
     func textFieldShouldClear(textField: UITextField) -> Bool {
-        println("TextField should clear method called")
+        print("TextField should clear method called")
         return true;
     }
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-        println("TextField should snd editing method called")
+        print("TextField should snd editing method called")
         return true;
     }
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        println("While entering the characters this method gets called")
+        print("While entering the characters this method gets called")
         return true;
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        println("TextField should return method called")
+        print("TextField should return method called")
         CreateUserName.resignFirstResponder();
         return true;
     }

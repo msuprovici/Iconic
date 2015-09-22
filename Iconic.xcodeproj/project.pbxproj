@@ -400,7 +400,6 @@
 		5CF7B6C41B0B93070006C318 /* LayerConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C31B0B93070006C318 /* LayerConversationListViewController.m */; };
 		5CF7B6C71B0B93670006C318 /* LayerParticipantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C61B0B93670006C318 /* LayerParticipantViewController.m */; };
 		5CF7B6CA1B0B93CB0006C318 /* LayerConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C91B0B93CB0006C318 /* LayerConversationViewController.m */; };
-		5CF7B6D21B0BA0B20006C318 /* libFlurry_6.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CF7B6D11B0BA0B20006C318 /* libFlurry_6.4.0.a */; };
 		5CF7B6D51B0BEA360006C318 /* Chat+ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */; };
 		5CF7B6DB1B0E7EDA0006C318 /* NSLayerClientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */; };
 		5CF7B6DE1B1632160006C318 /* ATLMLayerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6DC1B1632150006C318 /* ATLMLayerClient.m */; };
@@ -1001,9 +1000,6 @@
 		5CF7B6C61B0B93670006C318 /* LayerParticipantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerParticipantViewController.m; sourceTree = "<group>"; };
 		5CF7B6C81B0B93CB0006C318 /* LayerConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerConversationViewController.h; sourceTree = "<group>"; };
 		5CF7B6C91B0B93CB0006C318 /* LayerConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerConversationViewController.m; sourceTree = "<group>"; };
-		5CF7B6CF1B0BA0B20006C318 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		5CF7B6D01B0BA0B20006C318 /* FlurryWatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryWatch.h; sourceTree = "<group>"; };
-		5CF7B6D11B0BA0B20006C318 /* libFlurry_6.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.4.0.a; sourceTree = "<group>"; };
 		5CF7B6D31B0BEA360006C318 /* Chat+ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Chat+ActivityViewController.h"; sourceTree = "<group>"; };
 		5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Chat+ActivityViewController.m"; sourceTree = "<group>"; };
 		5CF7B6D91B0E7ED90006C318 /* NSLayerClientObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSLayerClientObject.h; path = ../NSLayerClientObject.h; sourceTree = "<group>"; };
@@ -1045,7 +1041,6 @@
 				5C0068C51B891A9E00008E31 /* CoreText.framework in Frameworks */,
 				5C0068C31B891A8B00008E31 /* QuickLook.framework in Frameworks */,
 				5CA3D1D51831E05D006C7932 /* SystemConfiguration.framework in Frameworks */,
-				5CF7B6D21B0BA0B20006C318 /* libFlurry_6.4.0.a in Frameworks */,
 				5CA3D1C91831E025006C7932 /* CoreLocation.framework in Frameworks */,
 				5CC772961AFD78C600EEEB33 /* AssetsLibrary.framework in Frameworks */,
 				5CA3D1D11831E04C006C7932 /* Security.framework in Frameworks */,
@@ -1457,7 +1452,6 @@
 			isa = PBXGroup;
 			children = (
 				5CDC2E551B89168F0030F711 /* Helpshift */,
-				5CF7B6CE1B0BA0B20006C318 /* Flurry */,
 				5CC772941AFD787800EEEB33 /* Atlas */,
 				5C4AB64E1A1E94EE007B8BE8 /* heap-ios-latest */,
 				5C4AB64A1A1E8F25007B8BE8 /* Intercom */,
@@ -2260,16 +2254,6 @@
 			name = AtlasUI;
 			sourceTree = "<group>";
 		};
-		5CF7B6CE1B0BA0B20006C318 /* Flurry */ = {
-			isa = PBXGroup;
-			children = (
-				5CF7B6CF1B0BA0B20006C318 /* Flurry.h */,
-				5CF7B6D01B0BA0B20006C318 /* FlurryWatch.h */,
-				5CF7B6D11B0BA0B20006C318 /* libFlurry_6.4.0.a */,
-			);
-			path = Flurry;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2884,8 +2868,8 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = Iconic_Widget/Iconic_Widget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2914,8 +2898,8 @@
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_ENTITLEMENTS = Iconic_Widget/Iconic_Widget.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3023,6 +3007,7 @@
 				CODE_SIGN_ENTITLEMENTS = Iconic/Iconic.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -3069,6 +3054,7 @@
 				CODE_SIGN_ENTITLEMENTS = Iconic/Iconic.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mihnea Suprovici (AN7WR6B4RC)";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
