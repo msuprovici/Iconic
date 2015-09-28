@@ -98,7 +98,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self performSegueWithIdentifier:@"MyFinalScores" sender:self];//uncomment to test final scores view controler
+    
+
+//    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];//uncomment to test final scores view controler
+//    [self performSelector:@selector(showFinalScores) withObject:self afterDelay:4];
     
     
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
@@ -158,7 +161,8 @@
     
     [self refreshHomeViewNow];
     [self updatedGameClock];
-    [self firstAppLoadThisWeek];
+    [self performSelector:@selector(firstAppLoadThisWeek) withObject:self afterDelay:2];
+//    [self firstAppLoadThisWeek];
     
     NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] init];
 //    NSLog(@"totalNumberStepsToday: %ld", (long)[[sharedDefaults objectForKey:@"totalNumberStepsToday"] integerValue]);
@@ -195,6 +199,8 @@
 
    
 }
+
+
 
 -(void)scrollTableViewToTop
 {
@@ -663,8 +669,11 @@
     
     //we're updating the app data from the server 3 times so that the scores are always up to date.
     //if we don't do it, team scores are often inaccurate unless we close & refresh the app again.
+
     
-    [self performSelector:@selector(updateAppDataFromServerNow) withObject:self afterDelay:2];
+//    [self performSelector:@selector(updateAppDataFromServerNow) withObject:self afterDelay:1.0];
+    
+    [self updateAppDataFromServerNow];
     
     [self populateMyStats];
     
@@ -1171,8 +1180,11 @@
                 
                 if ([object objectForKey:@"launchedAppThisWeek"] == [NSNumber numberWithBool:FALSE]) {
                     
+                    
+                    
                     // Show Final Scores
-                    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
+//                    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
+                    [self performSelector:@selector(showFinalScoresViewController) withObject:self afterDelay:4];
                     
                     [Amplitude logEvent:@"Dashboard: Final Scores Showed"];
                     
@@ -1241,6 +1253,10 @@
 //    }
 }
 
+-(void)showFinalScoresViewController
+{
+    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];
+}
 
 
 -(void)updateAppDataFromServerNow

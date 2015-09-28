@@ -667,7 +667,10 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         
         
         CalculatePoints *calculatePointsClass = [[CalculatePoints alloc]init];
+        [calculatePointsClass retrieveFromParse];
         [calculatePointsClass  createFinalTeamScoresNotificationBody];
+        
+        
         
         
         
