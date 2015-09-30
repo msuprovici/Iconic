@@ -829,44 +829,44 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     
     [Amplitude logEvent:@"Find Friends: Invite Facebook Friends Pressed"];
     
-    [FBWebDialogs
-     presentRequestsDialogModallyWithSession:nil
-     message:@"Join my Iconic walking team http://imiconic.com"
-     title:nil
-     parameters:nil
-     handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
-         if (error) {
-             // Error launching the dialog or sending the request.
-             NSLog(@"Error sending request.");
-         } else {
-        
-             
-             if (result == FBWebDialogResultDialogNotCompleted) {
-                 // User clicked the "x" icon
-                 NSLog(@"FBWebDialogResultDialogNotCompleted");
-             } else {
-                 // Handle the send request callback
-                 NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
-                 if (![urlParams valueForKey:@"request"]) {
-                     // User clicked the Cancel button
-                     NSLog(@"no FB urlParms");
-                     
-                     //if user's tokens have expired make the user login again
-                     if (self.facebookLogIn.hidden == YES) {
-                         self.facebookLogIn.hidden = NO;
-                         self.inviteFacebookFriends.hidden = YES;
-                     }
-                     
-                     
-                     
-                 } else {
-                     // User clicked the Send button
-                     NSString *requestID = [urlParams valueForKey:@"request"];
-                     NSLog(@"Request ID: %@", requestID);
-                 }
-             }
-         }
-     }];
+//    [FBWebDialogs
+//     presentRequestsDialogModallyWithSession:nil
+//     message:@"Join my Iconic walking team http://imiconic.com"
+//     title:nil
+//     parameters:nil
+//     handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+//         if (error) {
+//             // Error launching the dialog or sending the request.
+//             NSLog(@"Error sending request.");
+//         } else {
+//        
+//             
+//             if (result == FBWebDialogResultDialogNotCompleted) {
+//                 // User clicked the "x" icon
+//                 NSLog(@"FBWebDialogResultDialogNotCompleted");
+//             } else {
+//                 // Handle the send request callback
+//                 NSDictionary *urlParams = [self parseURLParams:[resultURL query]];
+//                 if (![urlParams valueForKey:@"request"]) {
+//                     // User clicked the Cancel button
+//                     NSLog(@"no FB urlParms");
+//                     
+//                     //if user's tokens have expired make the user login again
+//                     if (self.facebookLogIn.hidden == YES) {
+//                         self.facebookLogIn.hidden = NO;
+//                         self.inviteFacebookFriends.hidden = YES;
+//                     }
+//                     
+//                     
+//                     
+//                 } else {
+//                     // User clicked the Send button
+//                     NSString *requestID = [urlParams valueForKey:@"request"];
+//                     NSLog(@"Request ID: %@", requestID);
+//                 }
+//             }
+//         }
+//     }];
     
     
 }

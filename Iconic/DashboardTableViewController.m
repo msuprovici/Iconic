@@ -21,7 +21,7 @@
 #import "Amplitude.h"
 #import <Foundation/Foundation.h>
 #import "MyFinalScoresTableViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
+
 //#import <ParseFacebookUtilsV4/PFFacebookUtilsV4.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import "AchievmentsViewController.h"

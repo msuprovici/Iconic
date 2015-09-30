@@ -24,7 +24,7 @@
 #import "Intercom.h"
 #import "Heap.h"
 #import "ParseCrashReporting/ParseCrashReporting.h"
-#import <FacebookSDK/FacebookSDK.h>
+
 #import "AchievmentsViewController.h"
 #import <LayerKit/LayerKit.h>
 //#import "Flurry.h"
@@ -430,9 +430,12 @@
 //}
 
 // Facebook oauth callback
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [FBSession.activeSession handleOpenURL:url];
-}
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+//    
+//    
+//    
+////    return [FBAppCall.activeSession handleOpenURL:url];
+//}
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
@@ -1059,15 +1062,19 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
             
             [user saveEventually];
         }
-        
-        [FBRequestConnection startForMyFriendsWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me"
+                                                                       parameters:@{@"fields": @"id, name, email"}];
+        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+            // TODO: handle results or error of request.
             if (!error) {
                 [self facebookRequestDidLoad:result];
             } else {
                 [self facebookRequestDidFailWithError:error];
             }
         }];
-    }
+        
+        
+            }
 }
 
 - (void)facebookRequestDidFailWithError:(NSError *)error {
