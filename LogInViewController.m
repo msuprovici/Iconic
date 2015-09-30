@@ -626,7 +626,7 @@
         //    logInViewController.facebookPermissions = @[@"friends_about_me"];
         //    logInViewController.fields = PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook  ;
         
-        logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsFacebook | PFLogInFieldsSignUpButton ;
+        logInViewController.fields = PFLogInFieldsFacebook |  PFLogInFieldsDismissButton | PFLogInFieldsLogInButton | PFLogInFieldsPasswordForgotten | PFLogInFieldsUsernameAndPassword | PFLogInFieldsSignUpButton ;
         
         //    logInViewController.fields = PFLogInFieldsFacebook | PFLogInFieldsSignUpButton |PFLogInFieldsDismissButton  ;
         logInViewController.facebookPermissions = @[ @"public_profile", @"email" ];

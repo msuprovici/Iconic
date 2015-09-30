@@ -10,6 +10,9 @@
 #import "AppDelegate.h"
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import <FBSDKCoreKit/FBSDKApplicationDelegate.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import "ContentController.h"
 #import "Cache.h"
@@ -169,6 +172,9 @@
     
     //Intitialize FB
     [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                    didFinishLaunchingWithOptions:launchOptions];
+    
 //    [FBAppEvents activateApp];
     
 //    // Checking if app is running iOS 8
@@ -437,6 +443,10 @@
 ////    return [FBAppCall.activeSession handleOpenURL:url];
 //}
 
+// Facebook oauth callback
+
+
+
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
@@ -450,7 +460,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     
-    [FBSDKAppEvents activateApp];
+//    [FBSDKAppEvents activateApp];
     
     //reset push notification badge to 0 once the app has been opened
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
@@ -1062,16 +1072,33 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
             
             [user saveEventually];
         }
-        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me"
-                                                                       parameters:@{@"fields": @"id, name, email"}];
-        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-            // TODO: handle results or error of request.
-            if (!error) {
-                [self facebookRequestDidLoad:result];
-            } else {
-                [self facebookRequestDidFailWithError:error];
-            }
-        }];
+        
+//        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+//        [login logInWithReadPermissions:@[@"email"] handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+//            if (error) {
+//                // Process error
+//            } else if (result.isCancelled) {
+//                // Handle cancellations
+//            } else {
+//                // If you ask for multiple permissions at once, you
+//                // should check if specific permissions missing
+//                if ([result.grantedPermissions containsObject:@"email"]) {
+//                    // Do work
+//                }
+//            }
+//        }];
+        
+        
+//        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me"
+//                                                                       parameters:@{@"fields": @"id, name, email"}];
+//        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+//            // TODO: handle results or error of request.
+//            if (!error) {
+//                [self facebookRequestDidLoad:result];
+//            } else {
+//                [self facebookRequestDidFailWithError:error];
+//            }
+//        }];
         
         
             }
