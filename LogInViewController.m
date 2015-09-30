@@ -240,7 +240,7 @@
         }
         else{
             
-            NSLog(@"My total steps %@", [loggedInUser objectForKey:@"points"]);
+//            NSLog(@"My total steps %@", [loggedInUser objectForKey:@"points"]);
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             
             [defaults setObject:[loggedInUser objectForKey:@"points"] forKey:kMyFetchedStepsTotal];
@@ -295,6 +295,8 @@
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error {
     
     [Amplitude logEvent:@"Onboard: LogIn failed"];
+    
+    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Wrong Username/Password", nil) message:NSLocalizedString(@"Please fill out all of the information.  4 character minimum for Username/Password", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
 //    NSLog(@"Failed to log in...");
 //    [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
 }
