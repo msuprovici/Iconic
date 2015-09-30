@@ -111,7 +111,11 @@
     
     
     
+    //Intitialize FB
     
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+    
+    //    [FBAppEvents activateApp];
     
     
     
@@ -170,12 +174,7 @@
 ////        [Heap enableVisualizer]; //uncomment to set up events
 //    #endif
     
-    //Intitialize FB
-    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
-    return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                    didFinishLaunchingWithOptions:launchOptions];
-    
-//    [FBAppEvents activateApp];
+
     
 //    // Checking if app is running iOS 8
 //    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
@@ -380,8 +379,10 @@
     
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:250.0/255.0 green:0.0/255.0 blue:33.0/255.0 alpha:1.0]];
     
+    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+  
 
     
     
@@ -460,7 +461,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     
-//    [FBSDKAppEvents activateApp];
+    [FBSDKAppEvents activateApp];
     
     //reset push notification badge to 0 once the app has been opened
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
