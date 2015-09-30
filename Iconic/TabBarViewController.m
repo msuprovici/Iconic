@@ -33,6 +33,10 @@
 - (BOOL)prefersStatusBarHidden {
     return NO;
 }
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
 - (void)didReceiveMemoryWarning
 {

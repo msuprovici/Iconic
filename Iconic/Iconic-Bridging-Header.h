@@ -6,3 +6,4 @@
 #import "Constants.h"
 #import "LogInViewController.h"
 #import "Helpshift.h"
+#import <Parse/Parse.h>
