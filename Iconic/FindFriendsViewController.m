@@ -825,11 +825,15 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 
 #pragma mark - Invite Facebook Friends
 
-- (IBAction)inviteFacebookFriendsPressed:(id)sender {
-    
-    [Amplitude logEvent:@"Find Friends: Invite Facebook Friends Pressed"];
-    
-//    [FBWebDialogs
+//- (IBAction)inviteFacebookFriendsPressed:(id)sender {
+//    
+//    [Amplitude logEvent:@"Find Friends: Invite Facebook Friends Pressed"];
+//    
+//    
+//    
+//    
+//    
+//    [FBSDKAppInviteDialog
 //     presentRequestsDialogModallyWithSession:nil
 //     message:@"Join my Iconic walking team http://imiconic.com"
 //     title:nil
@@ -867,9 +871,9 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
 //             }
 //         }
 //     }];
-    
-    
-}
+//    
+//    
+//}
 
 - (NSDictionary*)parseURLParams:(NSString *)query {
     NSArray *pairs = [query componentsSeparatedByString:@"&"];

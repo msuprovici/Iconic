@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Yi2-3K-q1V">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -2516,7 +2515,7 @@
                     <navigationItem key="navigationItem" title="My Team" id="k8m-HH-2kz">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="nI4-3m-LI2">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SNh-hs-EDZ">
-                                <rect key="frame" x="254" y="6" width="29" height="30"/>
+                                <rect key="frame" x="275" y="7" width="29" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Join_Team_Icon_White.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2547,7 +2546,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="oGg-mV-ZYc">
-                            <rect key="frame" x="0.0" y="64" width="320" height="351"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="351"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="MUm-0U-niA" customClass="PFImageView">
@@ -3021,32 +3020,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="XGg-Sw-VaO">
-                            <rect key="frame" x="0.0" y="64" width="320" height="130"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vt9-85-Lcp">
-                                    <rect key="frame" x="10" y="75" width="300" height="40"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" image="Invite_Facebook_Friends_button.png">
-                                        <color key="titleColor" red="0.0" green="0.1647058824" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="inviteFacebookFriendsPressed:" destination="yQf-DP-4VV" eventType="touchUpInside" id="tXh-xQ-TPx"/>
-                                        <action selector="inviteFriendsPressed:" destination="yQf-DP-4VV" eventType="touchUpInside" id="poL-SR-VaI"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MO8-8a-dxM">
-                                    <rect key="frame" x="10" y="75" width="300" height="40"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" image="LogIn_Facebook_Friends_button.png">
-                                        <color key="titleColor" red="0.0" green="0.1647058824" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="facebookLogInAction:" destination="yQf-DP-4VV" eventType="touchUpInside" id="QhI-Vm-Dcz"/>
-                                    </connections>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gRm-B8-W0B">
                                     <rect key="frame" x="10" y="18" width="300" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -3063,7 +3039,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="65" id="oC2-Ly-xLk" customClass="FindFriendsCell">
-                                <rect key="frame" x="0.0" y="216" width="320" height="65"/>
+                                <rect key="frame" x="0.0" y="150" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oC2-Ly-xLk" id="dDM-tz-SFq">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
@@ -3133,8 +3109,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="facebookLogIn" destination="MO8-8a-dxM" id="zXH-Q0-yjw"/>
-                        <outlet property="inviteFacebookFriends" destination="vt9-85-Lcp" id="O2x-bh-HQa"/>
                         <outlet property="inviteFriends" destination="gRm-B8-W0B" id="8fM-Yp-Uyl"/>
                     </connections>
                 </tableViewController>
@@ -3775,13 +3749,11 @@
         <image name="High_Five_Button_Selected.png" width="452" height="102"/>
         <image name="High_Five_Selected.png" width="14" height="21"/>
         <image name="Invite_Contacts_Button.png" width="302" height="42"/>
-        <image name="Invite_Facebook_Friends_button.png" width="302" height="42"/>
         <image name="JoinTeamButton.png" width="452" height="102"/>
         <image name="Join_Team_Icon_White.png" width="27" height="27"/>
         <image name="Leagues_Icon.png" width="25" height="26"/>
         <image name="Leave_Team_Icon_White.png" width="27" height="27"/>
         <image name="LetsGetStartedButton.png" width="452" height="102"/>
-        <image name="LogIn_Facebook_Friends_button.png" width="302" height="42"/>
         <image name="Schedule_Button.png" width="302" height="42"/>
         <image name="Settings_White.png" width="27" height="27"/>
         <image name="Share_Button.png" width="38" height="55"/>
@@ -3794,11 +3766,11 @@
         <image name="user_place_holder.png" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Wkm-gx-o8j"/>
-        <segue reference="aIn-p4-fYp"/>
-        <segue reference="X84-Yq-ofY"/>
         <segue reference="Rnz-xH-lvc"/>
-        <segue reference="gHY-LU-ack"/>
+        <segue reference="X84-Yq-ofY"/>
+        <segue reference="aIn-p4-fYp"/>
+        <segue reference="Wkm-gx-o8j"/>
+        <segue reference="gBJ-V0-gCX"/>
         <segue reference="GlC-f2-v4y"/>
     </inferredMetricsTieBreakers>
 </document>
