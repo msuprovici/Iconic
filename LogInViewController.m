@@ -18,6 +18,7 @@
 #import "Heap.h"
 //#import <ParseFacebookUtils/PFFacebookUtils.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import "Constants.h"
 @interface LogInViewController ()<UIScrollViewDelegate>
 
 @property NSUInteger currentIndex;
@@ -202,10 +203,56 @@
         
 
         [[PFUser currentUser] saveInBackground];
+        
+        PFUser * loggedInUser = [PFUser currentUser];
+        
+        //if user is new have them create a username
+        if(loggedInUser.isNew)
+        {
+            [self dismissViewControllerAnimated:YES completion:NULL];
+            [self performSegueWithIdentifier:@"userLoggedInWithFB" sender:self];
+        }
+        else{
+            
+            //NSLog(@"My total steps %@", [loggedInUser objectForKey:@"points"]);
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            
+            [defaults setObject:[loggedInUser objectForKey:@"points"] forKey:kMyFetchedStepsTotal];
+            [defaults synchronize];
+            
+            
+            
+            
+            [self dismissViewControllerAnimated:YES completion:NULL];
+            [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
+        }
+
     }
     else
     {
 //        NSLog(@"NOT linkedWithFacebook");
+        PFUser * loggedInUser = [PFUser currentUser];
+        
+        
+        if(loggedInUser.isNew)
+        {
+        
+        }
+        else{
+            
+            NSLog(@"My total steps %@", [loggedInUser objectForKey:@"points"]);
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            
+            [defaults setObject:[loggedInUser objectForKey:@"points"] forKey:kMyFetchedStepsTotal];
+            [defaults synchronize];
+            
+            
+            
+            
+            [self dismissViewControllerAnimated:YES completion:NULL];
+            [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
+        }
+
     }
     
 ////    //eliminate null values for 1st time Facebook login users
@@ -216,18 +263,6 @@
 //    [[PFUser currentUser] saveInBackground];
     
     
-    PFUser * loggedInUser = [PFUser currentUser];
-    
-    //if user is new have them create a username
-    if(loggedInUser.isNew)
-    {
-        [self dismissViewControllerAnimated:YES completion:NULL];
-        [self performSegueWithIdentifier:@"userLoggedInWithFB" sender:self];
-    }
-    else{
-        [self dismissViewControllerAnimated:YES completion:NULL];
-        [self performSegueWithIdentifier:@"LoginSuccesful" sender:self];
-    }
     
  
     
