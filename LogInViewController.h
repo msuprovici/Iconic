@@ -37,8 +37,10 @@ UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *Login;
 @property (strong, nonatomic) IBOutlet UIButton *SignUp;
 
+@property (weak, nonatomic) IBOutlet UIView *walkThroughView;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
+@property (weak, nonatomic) IBOutlet UIImageView *walkThroughImage;
 
 @property (strong, nonatomic) IBOutlet UIButton *noNotifications;
 - (IBAction)noNotificationPressed:(id)sender;

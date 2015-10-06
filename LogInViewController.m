@@ -61,7 +61,7 @@
     
     for (int i = 0; i < [_pageImages count]; i++) {
         //We'll create an imageView object in every 'page' of our scrollView.
-        CGRect frame;
+//        CGRect frame;
 //        if(i == 0)
 //        {
 //            frame.origin.x = 0;
@@ -70,14 +70,32 @@
 //        }
 //        else
 //        {
-        frame.origin.x = self.scrollView.frame.size.width * i;
+        
+        
+        CGRect frame;
+        //        if(i == 0)
+        //        {
+        //            frame.origin.x = 0;
+        //            frame.origin.y = -50;
+        //
+        //        }
+        //        else
+        //        {
+        frame.origin.x = self.view.frame.size.width * i;
         frame.origin.y = 0;
-//        }
-        frame.size = self.scrollView.frame.size;
+        frame.size.width = self.view.frame.size.width;
+        frame.size.height = self.view.frame.size.height - 90;
+        //frame.size.height = self.scrollView.frame.size.height;
+        //        }
+        //frame.size = self.scrollView.frame.size;
         //set background image
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
         imageView.image = [UIImage imageNamed:[_pageImages objectAtIndex:i]];
-         [self.scrollView addSubview:imageView];
+        [self.scrollView addSubview:imageView];
+//        self.walkThroughImage.image = [UIImage imageNamed:[_pageImages objectAtIndex:i]];
+//        [self.scrollView addSubview: self.walkThroughView];
+//        [self.walkThroughView addSubview:self.walkThroughImage];
+//         [self.scrollView addSubview:self.walkThroughImage.image];
         
 //        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [_pageImages count], imageView.frame.size.height);
         
@@ -90,8 +108,24 @@
 //
 //    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [_pageImages count], onbaordImageView.frame.size.height);
     
-    
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [_pageImages count], self.scrollView.frame.size.height);
+//    self.scrollView.contentSize = CGSizeMake(self.walkThroughImage.frame.size.width * [_pageImages count], self.walkThroughImage.frame.size.height);
+    
+//    CGRect viewFrame = self.walkThroughView.frame;
+//    
+//    viewFrame.size.width = self.walkThroughImage.frame.size.width * [_pageImages count];
+//    viewFrame.size.height = self.walkThroughImage.frame.size.height;
+//    [self.walkThroughView setFrame:viewFrame];
+//    
+//    CGRect imageFrame = self.walkThroughImage.frame;
+//    
+//    viewFrame.size.width = self.walkThroughImage.frame.size.width * [_pageImages count];
+//    viewFrame.size.height = self.walkThroughImage.frame.size.height;
+//    [self.walkThroughImage setFrame:imageFrame];
+    
+    
+    
+    
     
     self.pageControl.currentPage = 0;
     [self.view addSubview:self.pageControl];
@@ -481,11 +515,18 @@
 //    UIImage * buttonImageNo = [UIImage imageNamed:@"NahImGoodButton@2x.png"];
     UIImage * buttonJoin = [UIImage imageNamed:@"JoinButton.png"];
     
-     CGFloat pageWidth = self.scrollView.frame.size.width;
+    
+    
+    CGFloat pageWidth = self.view.frame.size.width;
     CGFloat pageHeight = self.scrollView.frame.size.height;
-    float newPosition = scrollView.contentOffset.x+pageWidth;
+    float newPosition = (self.currentIndex + 1) * pageWidth;
     CGRect toVisible = CGRectMake(newPosition, 0, pageWidth, pageHeight);
+    
+    if(self.currentIndex < 7)
+    {
     [scrollView scrollRectToVisible:toVisible animated:YES];
+    }
+    
     
 //    CGFloat pageWidth = self.scrollView.frame.size.width;
 //    uint page = self.scrollView.frame.size.width / pageWidth;
