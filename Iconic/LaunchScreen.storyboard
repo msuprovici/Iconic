@@ -38,7 +38,7 @@
                             <constraint firstAttribute="centerX" secondItem="GJd-Yh-RWb" secondAttribute="centerX" id="Q3B-4B-g5h"/>
                             <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="gm8-Ia-vAc"/>
                             <constraint firstItem="GJd-Yh-RWb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="bottom" multiplier="1/3" constant="1" id="moa-c2-u7t">
-                                <variation key="heightClass=regular-widthClass=compact" constant="132.83333333333337"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="133.83333333333337"/>
                             </constraint>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="GJd-Yh-RWb" secondAttribute="bottom" constant="379" id="sbn-ND-jfZ"/>
                             <constraint firstItem="GJd-Yh-RWb" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="x7j-FC-K8j"/>
