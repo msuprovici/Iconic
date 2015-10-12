@@ -4856,7 +4856,7 @@
                                     <rect key="frame" x="28" y="102" width="300" height="140"/>
                                     <color key="backgroundColor" red="0.95686274510000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXu-mt-QIO" userLabel="Label - High">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXu-mt-QIO" userLabel="Label - High">
                                     <rect key="frame" x="10" y="127" width="37" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="37" id="RQg-G1-1gO"/>
@@ -4865,7 +4865,7 @@
                                     <color key="textColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSr-xg-e39">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSr-xg-e39">
                                     <rect key="frame" x="10" y="164" width="37" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="Blb-p3-1Ia"/>
@@ -4914,7 +4914,7 @@
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="constraints">
-                                            <include reference="I2j-DK-kpS"/>
+                                            <exclude reference="I2j-DK-kpS"/>
                                             <include reference="pMO-ml-XZ5"/>
                                         </mask>
                                     </variation>
@@ -4941,7 +4941,7 @@
                                 <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Rs-0V-08s" customClass="DACircularProgressView">
                                     <rect key="frame" x="247" y="29" width="58" height="58"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKU-kB-mrt" userLabel="Label - XPvalue" customClass="UICountingLabel">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKU-kB-mrt" userLabel="Label - XPvalue" customClass="UICountingLabel">
                                             <rect key="frame" x="256" y="37" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="0Tg-jq-F6v"/>
@@ -4997,7 +4997,7 @@
                                         </mask>
                                     </variation>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d05-pi-ey9" userLabel="Delta Steps">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d05-pi-ey9" userLabel="Delta Steps">
                                     <rect key="frame" x="23" y="259" width="82" height="18"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="82" id="a41-Bh-Ij9"/>
@@ -5130,6 +5130,9 @@
                                 </constraint>
                                 <constraint firstItem="d05-pi-ey9" firstAttribute="top" secondItem="Chd-qB-kHW" secondAttribute="bottom" constant="17" id="tjN-BE-Eco"/>
                                 <constraint firstItem="Dmd-Lj-5hJ" firstAttribute="centerX" secondItem="4zd-Xx-w2f" secondAttribute="centerX" id="ulL-tP-5a0"/>
+                                <constraint firstItem="2Rs-0V-08s" firstAttribute="leading" secondItem="poq-Qs-0gY" secondAttribute="trailing" constant="17" id="v5h-zS-glz">
+                                    <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                                </constraint>
                                 <constraint firstItem="ZUU-9j-Agp" firstAttribute="leading" secondItem="BgW-mj-CvW" secondAttribute="leading" constant="66" id="vYL-CA-aAR"/>
                                 <constraint firstItem="Nt0-QW-cQH" firstAttribute="baseline" secondItem="SPn-cq-VYe" secondAttribute="baseline" id="yb3-kE-rQY"/>
                                 <constraint firstItem="Chd-qB-kHW" firstAttribute="centerY" secondItem="BSr-xg-e39" secondAttribute="centerY" id="zAP-f4-5tM"/>
@@ -5147,6 +5150,7 @@
                                     <exclude reference="Bwp-T2-7yn"/>
                                     <exclude reference="kfd-Cx-sKr"/>
                                     <exclude reference="nli-qk-VHQ"/>
+                                    <exclude reference="v5h-zS-glz"/>
                                     <exclude reference="ljn-4x-wOn"/>
                                     <exclude reference="FhU-ei-xWm"/>
                                     <exclude reference="G5l-CT-pik"/>
@@ -5167,6 +5171,7 @@
                                     <exclude reference="kfd-Cx-sKr"/>
                                     <exclude reference="nli-qk-VHQ"/>
                                     <exclude reference="tdv-6G-82D"/>
+                                    <include reference="v5h-zS-glz"/>
                                     <exclude reference="ljn-4x-wOn"/>
                                     <exclude reference="3Qq-8W-r3a"/>
                                     <include reference="FhU-ei-xWm"/>
