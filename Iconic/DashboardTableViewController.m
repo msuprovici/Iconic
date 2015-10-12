@@ -103,7 +103,7 @@
 //    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];//uncomment to test final scores view controler
 //    [self performSelector:@selector(showFinalScores) withObject:self afterDelay:4];
     
-    
+//    [self populate7DayBarChart];//uncommet to test chart in simulator
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 
     
@@ -606,9 +606,11 @@
     
     //pedometor gives us the step count starting today and going 7 days back - our chart shows the data in revese order
     NSArray* reversedDaysStepCount = [[self.myWeekleyStepsArray reverseObjectEnumerator] allObjects];
+//    NSArray* reversedDaysStepCount = @[@50, @23, @100, @200, @130, @10, @90];//uncommet to test chart in simulator
+    //self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 300, 140)];
     
+    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-12.5, self.stepsBarChart.frame.size.height)];
     
-    self.barChart = [[PNBarChart alloc] initWithFrame:CGRectMake(0, 0, 300, 140)];
     
     //steps chart
     [self.barChart setYValues:reversedDaysStepCount];
