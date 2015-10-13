@@ -4807,9 +4807,27 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nxq-BM-Cat" userLabel="Submit">
                                 <rect key="frame" x="52" y="259" width="497" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="538-qz-Dq0">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="225"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="50" id="ETB-Gr-pbm"/>
+                                </constraints>
                                 <state key="normal" title="Button" image="SubmitButton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="538-qz-Dq0"/>
+                                        <exclude reference="ETB-Gr-pbm"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="538-qz-Dq0"/>
+                                        <include reference="ETB-Gr-pbm"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="submitUserNamePressed:" destination="hap-Fx-EWy" eventType="touchUpInside" id="JHv-vo-2vn"/>
                                 </connections>
@@ -4819,14 +4837,16 @@
                         <constraints>
                             <constraint firstItem="82s-DP-whQ" firstAttribute="centerX" secondItem="TYa-Fb-naJ" secondAttribute="centerX" id="08J-Zf-8jJ"/>
                             <constraint firstAttribute="trailing" secondItem="82s-DP-whQ" secondAttribute="trailing" id="0P8-lB-tEC"/>
-                            <constraint firstItem="Ct1-il-EU7" firstAttribute="top" secondItem="nxq-BM-Cat" secondAttribute="bottom" constant="259" id="8Qz-tm-jdp"/>
-                            <constraint firstItem="nxq-BM-Cat" firstAttribute="leading" secondItem="6ic-ml-wZq" secondAttribute="leadingMargin" constant="32" id="Jd6-WU-d0u"/>
+                            <constraint firstItem="Ct1-il-EU7" firstAttribute="top" secondItem="nxq-BM-Cat" secondAttribute="bottom" constant="259" id="8Qz-tm-jdp">
+                                <variation key="heightClass=regular-widthClass=compact" constant="375"/>
+                            </constraint>
                             <constraint firstItem="82s-DP-whQ" firstAttribute="top" secondItem="DwJ-jD-WIN" secondAttribute="bottom" id="M6v-A7-jjj"/>
-                            <constraint firstItem="nxq-BM-Cat" firstAttribute="centerY" secondItem="6ic-ml-wZq" secondAttribute="centerY" id="RML-1f-c1m"/>
                             <constraint firstItem="TYa-Fb-naJ" firstAttribute="centerX" secondItem="nxq-BM-Cat" secondAttribute="centerX" id="Zqu-Jh-7JZ"/>
                             <constraint firstItem="TYa-Fb-naJ" firstAttribute="leading" secondItem="6ic-ml-wZq" secondAttribute="leadingMargin" id="Zv9-Ho-Vu1"/>
                             <constraint firstItem="82s-DP-whQ" firstAttribute="leading" secondItem="6ic-ml-wZq" secondAttribute="leading" id="mhj-9C-coG"/>
-                            <constraint firstItem="nxq-BM-Cat" firstAttribute="top" secondItem="TYa-Fb-naJ" secondAttribute="bottom" constant="32" id="oqY-g6-I1Q"/>
+                            <constraint firstItem="nxq-BM-Cat" firstAttribute="top" secondItem="TYa-Fb-naJ" secondAttribute="bottom" constant="32" id="oqY-g6-I1Q">
+                                <variation key="heightClass=regular-widthClass=compact" constant="148"/>
+                            </constraint>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Mjq-Lt-hzm"/>
@@ -5958,9 +5978,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Rnz-xH-lvc"/>
-        <segue reference="gHY-LU-ack"/>
         <segue reference="X84-Yq-ofY"/>
-        <segue reference="Wkm-gx-o8j"/>
+        <segue reference="gHY-LU-ack"/>
+        <segue reference="pOA-YH-Rjm"/>
         <segue reference="aIn-p4-fYp"/>
         <segue reference="TGw-xZ-C7R"/>
     </inferredMetricsTieBreakers>
