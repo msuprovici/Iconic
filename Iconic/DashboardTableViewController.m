@@ -100,8 +100,8 @@
     [super viewDidLoad];
     
 
-//    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];//uncomment to test final scores view controler
-//    [self performSelector:@selector(showFinalScores) withObject:self afterDelay:4];
+    [self performSegueWithIdentifier:@"MyFinalScores" sender:self];//uncomment to test final scores view controler
+    [self performSelector:@selector(showFinalScores) withObject:self afterDelay:4];
     
 //    [self populate7DayBarChart];//uncommet to test chart in simulator
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
