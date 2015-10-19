@@ -399,8 +399,8 @@
 
     [Amplitude logEvent:@"Create Team: Add Logo"];
     UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"How would you like to set your logo?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:
-                            @"Take Picture",
-                            @"Choose Picture",
+                            @"Take Photo",
+                            @"Choose Photo",
                             
                             nil];
     popup.tag = 1;
