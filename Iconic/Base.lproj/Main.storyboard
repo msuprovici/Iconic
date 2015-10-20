@@ -4300,7 +4300,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="oGg-mV-ZYc">
-                            <rect key="frame" x="0.0" y="64" width="600" height="351"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="351"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MUm-0U-niA" customClass="PFImageView">
@@ -4474,7 +4474,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PlayerTeamCell" rowHeight="57" id="BY8-cH-K8H" customClass="PlayerTeamsCell">
-                                <rect key="frame" x="0.0" y="437" width="600" height="57"/>
+                                <rect key="frame" x="0.0" y="373" width="600" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BY8-cH-K8H" id="TZj-Lp-XQd">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="56"/>
@@ -5642,9 +5642,6 @@
                                 </mask>
                                 <mask key="constraints">
                                     <exclude reference="ljn-4x-wOn"/>
-                                    <exclude reference="WSE-Ks-WU9"/>
-                                    <exclude reference="iWV-C6-KOf"/>
-                                    <exclude reference="kB4-Dz-Nxf"/>
                                     <exclude reference="X9P-3W-WHN"/>
                                     <exclude reference="H3E-f4-UjP"/>
                                     <exclude reference="oGE-1N-qvi"/>
@@ -5664,6 +5661,9 @@
                                     <exclude reference="FhU-ei-xWm"/>
                                     <exclude reference="G5l-CT-pik"/>
                                     <exclude reference="VMS-KW-SJC"/>
+                                    <exclude reference="WSE-Ks-WU9"/>
+                                    <exclude reference="iWV-C6-KOf"/>
+                                    <exclude reference="kB4-Dz-Nxf"/>
                                 </mask>
                             </variation>
                             <variation key="heightClass=regular-widthClass=compact">
@@ -5672,9 +5672,6 @@
                                 </mask>
                                 <mask key="constraints">
                                     <exclude reference="ljn-4x-wOn"/>
-                                    <exclude reference="WSE-Ks-WU9"/>
-                                    <include reference="iWV-C6-KOf"/>
-                                    <include reference="kB4-Dz-Nxf"/>
                                     <include reference="X9P-3W-WHN"/>
                                     <exclude reference="mtr-Gw-35m"/>
                                     <exclude reference="H3E-f4-UjP"/>
@@ -5700,6 +5697,9 @@
                                     <include reference="FhU-ei-xWm"/>
                                     <exclude reference="G5l-CT-pik"/>
                                     <exclude reference="VMS-KW-SJC"/>
+                                    <exclude reference="WSE-Ks-WU9"/>
+                                    <include reference="iWV-C6-KOf"/>
+                                    <include reference="kB4-Dz-Nxf"/>
                                 </mask>
                             </variation>
                         </view>
