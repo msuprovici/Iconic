@@ -86,7 +86,7 @@
     
     // Set frame for elements
 
-    [self.signUpView.signUpButton setFrame:CGRectMake(16.0f, 400.0f, 288.0f, 40.0f)];
+    [self.signUpView.signUpButton setFrame:CGRectMake(((self.view.frame.size.width - (self.view.frame.size.width - 30))/2), 2.1*(self.view.frame.size.height/3), (self.view.frame.size.width - 30), 45.0)];
 
 }
 

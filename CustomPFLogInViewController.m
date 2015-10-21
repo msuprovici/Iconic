@@ -107,10 +107,14 @@
     
     // Set frame for elements
 
-    [self.logInView.signUpButton setFrame:CGRectMake(16.0f, 510.0f, 288.0f, 40.0f)];
-    [self.logInView.logInButton setFrame:CGRectMake(16.0f, 300.0f, 288.0f, 40.0f)];
-    [self.logInView.passwordForgottenButton setFrame:CGRectMake(120.0f, 350.0f, 85.0f, 12.0f)];
-    [self.fieldsBackground setFrame:CGRectMake(8.0f, 415.0f, 300.0f, 24.0f)];
+//    [self.logInView.signUpButton setFrame:CGRectMake(16.0f, 510.0f, 289.0, 40.0)];
+    [self.logInView.signUpButton setFrame:CGRectMake(((self.view.frame.size.width - (self.view.frame.size.width - 30))/2), 2.8*(self.view.frame.size.height/4), (self.view.frame.size.width - 30), 45.0)];
+//    [self.logInView.logInButton setFrame:CGRectMake(16.0f, 300.0f, 288.0f, 40.0f)];
+    
+     [self.logInView.logInButton setFrame:CGRectMake(((self.view.frame.size.width - (self.view.frame.size.width - 30))/2), (self.view.frame.size.height/1.9), (self.view.frame.size.width - 30), 45.0)];
+    
+    [self.logInView.passwordForgottenButton setFrame:CGRectMake(((self.view.frame.size.width - 85)/2), (self.view.frame.size.height/1.8)+50, 85.0, 12.0)];
+    [self.fieldsBackground setFrame:CGRectMake(((self.view.frame.size.width - 300)/2), (self.view.frame.size.height - 45), 300, 24.0)];
 }
 
 
