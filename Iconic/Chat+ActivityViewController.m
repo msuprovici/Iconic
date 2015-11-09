@@ -7,13 +7,15 @@
 //
 
 #import "Chat+ActivityViewController.h"
-#import "LayerConversationListViewController.h"
 #import "CalculatePoints.h"
-#import <LayerKit/LayerKit.h>
-#import "ATLConstants.h"
-#import "ATLConversationTableViewCell.h"
-#import "LayerConversationListViewController.h"
-#import "LayerConversationViewController.h"
+
+//#import "LayerConversationListViewController.h"
+//#import <LayerKit/LayerKit.h>
+//#import "ATLConstants.h"
+//#import "ATLConversationTableViewCell.h"
+//#import "LayerConversationListViewController.h"
+//#import "LayerConversationViewController.h"
+
 #import "FindFriendsViewController.h"
 #import "Amplitude.h"
 #import "NSLayerClientObject.h"
@@ -128,7 +130,7 @@
             
         case 1:
             
-            vc = [LayerConversationListViewController  conversationListViewControllerWithLayerClient:self.layerClient];
+//            vc = [LayerConversationListViewController  conversationListViewControllerWithLayerClient:self.layerClient];
 
             break;
        
@@ -137,14 +139,14 @@
 }
 
 
-- (void)composeButtonTapped:(id)sender
-{
-    LayerConversationViewController *controller = [LayerConversationViewController conversationViewControllerWithLayerClient:self.layerClient];
-    controller.displaysAddressBar = YES;
-    [self.navigationController pushViewController:controller animated:YES];
-    
-    [Amplitude logEvent:@"Conversation: Compose Button Presed"];
-}
+//- (void)composeButtonTapped:(id)sender
+//{
+//    LayerConversationViewController *controller = [LayerConversationViewController conversationViewControllerWithLayerClient:self.layerClient];
+//    controller.displaysAddressBar = YES;
+//    [self.navigationController pushViewController:controller animated:YES];
+//    
+//    [Amplitude logEvent:@"Conversation: Compose Button Presed"];
+//}
 
 - (void)followButtonTapped:(id)sender
 {

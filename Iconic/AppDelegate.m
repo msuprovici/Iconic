@@ -29,11 +29,11 @@
 #import "ParseCrashReporting/ParseCrashReporting.h"
 
 #import "AchievmentsViewController.h"
-#import <LayerKit/LayerKit.h>
-//#import "Flurry.h"
-#import "NSLayerClientObject.h"
-#import "ATLMLayerClient.h"
-#import "LayerConversationListViewController.h"
+//#import <LayerKit/LayerKit.h>
+////#import "Flurry.h"
+//#import "NSLayerClientObject.h"
+//#import "ATLMLayerClient.h"
+//#import "LayerConversationListViewController.h"
 #import "Helpshift.h"
 
 
@@ -55,11 +55,11 @@
 - (BOOL)shouldProceedToMainInterface:(PFUser *)user;
 
 
-@property (nonatomic) LYRClient *layerClient;
-
-@property (nonatomic) ATLMLayerClient *ATLMlayerClient;
-
-@property (nonatomic) LayerConversationListViewController *conversationListViewController;
+//@property (nonatomic) LYRClient *layerClient;
+//
+//@property (nonatomic) ATLMLayerClient *ATLMlayerClient;
+//
+//@property (nonatomic) LayerConversationListViewController *conversationListViewController;
 
 @end
 
@@ -263,22 +263,22 @@
        
        
        //layer
-       LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
-       
-       if(cachedLayerClient)
-       {
-           //        NSLog(@"cached Layer Client");
-       }
-       else
-       {
-           CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-           
-            NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
-           self.layerClient = [LYRClient clientWithAppID:appID];
-           [calculatePointsClass loginLayer:self.layerClient];
-           
-           
-       }
+//       LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
+//       
+//       if(cachedLayerClient)
+//       {
+//           //        NSLog(@"cached Layer Client");
+//       }
+//       else
+//       {
+//           CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//           
+//            NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
+//           self.layerClient = [LYRClient clientWithAppID:appID];
+//           [calculatePointsClass loginLayer:self.layerClient];
+//           
+//           
+//       }
 
        
        
@@ -595,13 +595,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     
     [currentInstallation saveInBackground];
     
-    NSError *error;
-    BOOL success = [self.layerClient updateRemoteNotificationDeviceToken:newDeviceToken error:&error];
-    if (success) {
-//        NSLog(@"Layer did register for remote notifications");
-    } else {
-//        NSLog(@"Error updating Layer device token for push:%@", error);
-    }
+//    NSError *error;
+//    BOOL success = [self.layerClient updateRemoteNotificationDeviceToken:newDeviceToken error:&error];
+//    if (success) {
+////        NSLog(@"Layer did register for remote notifications");
+//    } else {
+////        NSLog(@"Error updating Layer device token for push:%@", error);
+//    }
 
     
     
@@ -629,45 +629,45 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
 
 //    NSLog(@"User Info: %@", userInfo);
-    BOOL userTappedRemoteNotification = application.applicationState == UIApplicationStateInactive;
-    __block LYRConversation *conversation = [self conversationFromRemoteNotification:userInfo];
-    if (userTappedRemoteNotification && conversation) {
-
-    } else if (userTappedRemoteNotification) {
-    }
-    
-    BOOL success = [self.layerClient synchronizeWithRemoteNotification:userInfo completion:^(NSArray *changes, NSError *error) {
-        if (changes.count) {
-            handler(UIBackgroundFetchResultNewData);
-        } else {
-            handler(error ? UIBackgroundFetchResultFailed : UIBackgroundFetchResultNoData);
-        }
-        
-        // Try navigating once the synchronization completed
-        if (userTappedRemoteNotification && !conversation) {
-//            [SVProgressHUD dismiss];
-            NSLog(@"userTappedRemoteNotification");
-            conversation = [self conversationFromRemoteNotification:userInfo];
-            
-            NSDictionary* chatConversation = [[NSMutableDictionary alloc]init];
-            
-            [chatConversation setValue:conversation forKey:@"conversation"];
-  
-            NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
-            [nc postNotificationName:@"newChatMessage" object:chatConversation ];
-            
-            
-            [nc postNotificationName:@"newConversation" object:chatConversation ];
-            
-            
-            
-//            [self navigateToViewForConversation:conversation];
-        }
-    }];
-    
-    if (!success) {
-        handler(UIBackgroundFetchResultNoData);
-    }
+//    BOOL userTappedRemoteNotification = application.applicationState == UIApplicationStateInactive;
+//    __block LYRConversation *conversation = [self conversationFromRemoteNotification:userInfo];
+//    if (userTappedRemoteNotification && conversation) {
+//
+//    } else if (userTappedRemoteNotification) {
+//    }
+//    
+//    BOOL success = [self.layerClient synchronizeWithRemoteNotification:userInfo completion:^(NSArray *changes, NSError *error) {
+//        if (changes.count) {
+//            handler(UIBackgroundFetchResultNewData);
+//        } else {
+//            handler(error ? UIBackgroundFetchResultFailed : UIBackgroundFetchResultNoData);
+//        }
+//        
+//        // Try navigating once the synchronization completed
+//        if (userTappedRemoteNotification && !conversation) {
+////            [SVProgressHUD dismiss];
+//            NSLog(@"userTappedRemoteNotification");
+//            conversation = [self conversationFromRemoteNotification:userInfo];
+//            
+//            NSDictionary* chatConversation = [[NSMutableDictionary alloc]init];
+//            
+//            [chatConversation setValue:conversation forKey:@"conversation"];
+//  
+//            NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+//            [nc postNotificationName:@"newChatMessage" object:chatConversation ];
+//            
+//            
+//            [nc postNotificationName:@"newConversation" object:chatConversation ];
+//            
+//            
+//            
+////            [self navigateToViewForConversation:conversation];
+//        }
+//    }];
+//    
+//    if (!success) {
+//        handler(UIBackgroundFetchResultNoData);
+//    }
 
     
     
@@ -854,36 +854,36 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
 }
 
-- (LYRMessage *)messageFromRemoteNotification:(NSDictionary *)remoteNotification
-{
-    static NSString *const LQSPushMessageIdentifierKeyPath = @"layer.message_identifier";
-    
-    // Retrieve message URL from Push Notification
-    NSURL *messageURL = [NSURL URLWithString:[remoteNotification valueForKeyPath:LQSPushMessageIdentifierKeyPath]];
-    
-    // Retrieve LYRMessage from Message URL
-    LYRQuery *query = [LYRQuery queryWithClass:[LYRMessage class]];
-    query.predicate = [LYRPredicate predicateWithProperty:@"identifier" operator:LYRPredicateOperatorIsIn value:[NSSet setWithObject:messageURL]];
-    
-    NSError *error;
-    NSOrderedSet *messages = [self.layerClient executeQuery:query error:&error];
-    if (!error) {
-        NSLog(@"Query contains %lu messages", (unsigned long)messages.count);
-        LYRMessage *message= messages.firstObject;
-        LYRMessagePart *messagePart = message.parts[0];
-        NSLog(@"Pushed Message Contents: %@",[[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]);
-    } else {
-        NSLog(@"Query failed with error %@", error);
-    }
-    
-    return [messages firstObject];
-}
-
-- (LYRConversation *)conversationFromRemoteNotification:(NSDictionary *)remoteNotification
-{
-    NSURL *conversationIdentifier = [NSURL URLWithString:[remoteNotification valueForKeyPath:@"layer.conversation_identifier"]];
-    return [self.ATLMlayerClient existingConversationForIdentifier:conversationIdentifier];
-}
+//- (LYRMessage *)messageFromRemoteNotification:(NSDictionary *)remoteNotification
+//{
+//    static NSString *const LQSPushMessageIdentifierKeyPath = @"layer.message_identifier";
+//    
+//    // Retrieve message URL from Push Notification
+//    NSURL *messageURL = [NSURL URLWithString:[remoteNotification valueForKeyPath:LQSPushMessageIdentifierKeyPath]];
+//    
+//    // Retrieve LYRMessage from Message URL
+//    LYRQuery *query = [LYRQuery queryWithClass:[LYRMessage class]];
+//    query.predicate = [LYRPredicate predicateWithProperty:@"identifier" operator:LYRPredicateOperatorIsIn value:[NSSet setWithObject:messageURL]];
+//    
+//    NSError *error;
+//    NSOrderedSet *messages = [self.layerClient executeQuery:query error:&error];
+//    if (!error) {
+//        NSLog(@"Query contains %lu messages", (unsigned long)messages.count);
+//        LYRMessage *message= messages.firstObject;
+//        LYRMessagePart *messagePart = message.parts[0];
+//        NSLog(@"Pushed Message Contents: %@",[[NSString alloc] initWithData:messagePart.data encoding:NSUTF8StringEncoding]);
+//    } else {
+//        NSLog(@"Query failed with error %@", error);
+//    }
+//    
+//    return [messages firstObject];
+//}
+//
+//- (LYRConversation *)conversationFromRemoteNotification:(NSDictionary *)remoteNotification
+//{
+//    NSURL *conversationIdentifier = [NSURL URLWithString:[remoteNotification valueForKeyPath:@"layer.conversation_identifier"]];
+//    return [self.ATLMlayerClient existingConversationForIdentifier:conversationIdentifier];
+//}
 
 //- (void)navigateToViewForConversation:(LYRConversation *)conversation
 //{

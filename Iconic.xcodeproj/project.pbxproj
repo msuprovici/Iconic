@@ -26,13 +26,13 @@
 		5C1597191ACE31EE00CEA15A /* Leagues_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597131ACE31EE00CEA15A /* Leagues_Icon@3x.png */; };
 		5C15971A1ACE31EE00CEA15A /* happy_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597141ACE31EE00CEA15A /* happy_face@2x.png */; };
 		5C15971B1ACE31EE00CEA15A /* happy_face@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597151ACE31EE00CEA15A /* happy_face@3x.png */; };
-		5C1B03A61BC486330053CE84 /* IconicOnboard9slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03A51BC486320053CE84 /* IconicOnboard9slice@2x.png */; settings = {ASSET_TAGS = (); }; };
-		5C1B03AA1BC486FB0053CE84 /* IconicOnboard6slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03A91BC486FB0053CE84 /* IconicOnboard6slice@2x.png */; settings = {ASSET_TAGS = (); }; };
-		5C1B03AC1BC487410053CE84 /* IconicOnboard7slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03AB1BC487410053CE84 /* IconicOnboard7slice@2x.png */; settings = {ASSET_TAGS = (); }; };
-		5C1B03AE1BC4876C0053CE84 /* IconicOnboard8slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03AD1BC4876C0053CE84 /* IconicOnboard8slice@2x.png */; settings = {ASSET_TAGS = (); }; };
-		5C1B03B01BC488620053CE84 /* IconicOnboard1_Slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03AF1BC488620053CE84 /* IconicOnboard1_Slice@2x.png */; settings = {ASSET_TAGS = (); }; };
-		5C1B03B21BC4886C0053CE84 /* IconicOnboard2_Slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03B11BC4886C0053CE84 /* IconicOnboard2_Slice@2x.png */; settings = {ASSET_TAGS = (); }; };
-		5C1B03B41BC488780053CE84 /* IconicOnboard4slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03B31BC488780053CE84 /* IconicOnboard4slice@2x.png */; settings = {ASSET_TAGS = (); }; };
+		5C1B03A61BC486330053CE84 /* IconicOnboard9slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03A51BC486320053CE84 /* IconicOnboard9slice@2x.png */; };
+		5C1B03AA1BC486FB0053CE84 /* IconicOnboard6slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03A91BC486FB0053CE84 /* IconicOnboard6slice@2x.png */; };
+		5C1B03AC1BC487410053CE84 /* IconicOnboard7slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03AB1BC487410053CE84 /* IconicOnboard7slice@2x.png */; };
+		5C1B03AE1BC4876C0053CE84 /* IconicOnboard8slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03AD1BC4876C0053CE84 /* IconicOnboard8slice@2x.png */; };
+		5C1B03B01BC488620053CE84 /* IconicOnboard1_Slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03AF1BC488620053CE84 /* IconicOnboard1_Slice@2x.png */; };
+		5C1B03B21BC4886C0053CE84 /* IconicOnboard2_Slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03B11BC4886C0053CE84 /* IconicOnboard2_Slice@2x.png */; };
+		5C1B03B41BC488780053CE84 /* IconicOnboard4slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03B31BC488780053CE84 /* IconicOnboard4slice@2x.png */; };
 		5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */; };
 		5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */; };
 		5C2C1CCC185E9142006722D2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CCB185E9142006722D2 /* SWRevealViewController.m */; };
@@ -305,19 +305,19 @@
 		5CC773091AFD796700EEEB33 /* ATLProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772E61AFD796700EEEB33 /* ATLProgressView.m */; };
 		5CC773191B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC773171B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png */; };
 		5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7FAAF185810A600A360A1 /* TeamatesCell.m */; };
-		5CC9777B1BC42B7100BACA30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CC9777A1BC42B7000BACA30 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
-		5CC9779B1BC4411200BACA30 /* IconicOnboard3slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC9779A1BC4411200BACA30 /* IconicOnboard3slice@2x.png */; settings = {ASSET_TAGS = (); }; };
+		5CC9777B1BC42B7100BACA30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CC9777A1BC42B7000BACA30 /* LaunchScreen.storyboard */; };
+		5CC9779B1BC4411200BACA30 /* IconicOnboard3slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC9779A1BC4411200BACA30 /* IconicOnboard3slice@2x.png */; };
 		5CCB26D419085BA5002B6832 /* CalculatePoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CCB26D319085BA5002B6832 /* CalculatePoints.m */; };
-		5CD169C21BBB924E00D3EFBC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169BD1BBB924E00D3EFBC /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
-		5CD169C31BBB924E00D3EFBC /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169BE1BBB924E00D3EFBC /* ParseCrashReporting.framework */; settings = {ASSET_TAGS = (); }; };
-		5CD169C41BBB924E00D3EFBC /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169BF1BBB924E00D3EFBC /* ParseFacebookUtilsV4.framework */; settings = {ASSET_TAGS = (); }; };
-		5CD169C51BBB924E00D3EFBC /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169C01BBB924E00D3EFBC /* ParseTwitterUtils.framework */; settings = {ASSET_TAGS = (); }; };
-		5CD169C61BBB924E00D3EFBC /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169C11BBB924E00D3EFBC /* ParseUI.framework */; settings = {ASSET_TAGS = (); }; };
-		5CD169CB1BBB928300D3EFBC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169C71BBB928300D3EFBC /* FBSDKCoreKit.framework */; settings = {ASSET_TAGS = (); }; };
-		5CD169CC1BBB928300D3EFBC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169C81BBB928300D3EFBC /* FBSDKLoginKit.framework */; settings = {ASSET_TAGS = (); }; };
-		5CD169CD1BBB928300D3EFBC /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169C91BBB928300D3EFBC /* FBSDKMessengerShareKit.framework */; settings = {ASSET_TAGS = (); }; };
-		5CD169CE1BBB928300D3EFBC /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169CA1BBB928300D3EFBC /* FBSDKShareKit.framework */; settings = {ASSET_TAGS = (); }; };
-		5CD169D01BBB931200D3EFBC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169CF1BBB931200D3EFBC /* Bolts.framework */; settings = {ASSET_TAGS = (); }; };
+		5CD169C21BBB924E00D3EFBC /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169BD1BBB924E00D3EFBC /* Parse.framework */; };
+		5CD169C31BBB924E00D3EFBC /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169BE1BBB924E00D3EFBC /* ParseCrashReporting.framework */; };
+		5CD169C41BBB924E00D3EFBC /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169BF1BBB924E00D3EFBC /* ParseFacebookUtilsV4.framework */; };
+		5CD169C51BBB924E00D3EFBC /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169C01BBB924E00D3EFBC /* ParseTwitterUtils.framework */; };
+		5CD169C61BBB924E00D3EFBC /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169C11BBB924E00D3EFBC /* ParseUI.framework */; };
+		5CD169CB1BBB928300D3EFBC /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169C71BBB928300D3EFBC /* FBSDKCoreKit.framework */; };
+		5CD169CC1BBB928300D3EFBC /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169C81BBB928300D3EFBC /* FBSDKLoginKit.framework */; };
+		5CD169CD1BBB928300D3EFBC /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169C91BBB928300D3EFBC /* FBSDKMessengerShareKit.framework */; };
+		5CD169CE1BBB928300D3EFBC /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169CA1BBB928300D3EFBC /* FBSDKShareKit.framework */; };
+		5CD169D01BBB931200D3EFBC /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD169CF1BBB931200D3EFBC /* Bolts.framework */; };
 		5CD74A2D1B7A717000BD2A41 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD74A2C1B7A717000BD2A41 /* SettingsTableViewController.swift */; };
 		5CD74A301B7A92F900BD2A41 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD74A2F1B7A92F800BD2A41 /* SettingsTableViewCell.swift */; };
 		5CD74A321B7AB72100BD2A41 /* SettingsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD74A311B7AB72100BD2A41 /* SettingsListItem.swift */; };
@@ -1136,9 +1136,6 @@
 		5C2C1CBE185BAF12006722D2 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				5CF7B6D31B0BEA360006C318 /* Chat+ActivityViewController.h */,
-				5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */,
-				5CF7B6CB1B0B99720006C318 /* Layer_Chat */,
 				5CB75E01188A233C0047BC47 /* Feed */,
 				5CB75DFE188A21C70047BC47 /* Comments+Likes On Activity */,
 				5CB75E00188A23060047BC47 /* Profile */,
@@ -1869,6 +1866,7 @@
 		5CB75DFF188A22C70047BC47 /* Not in use */ = {
 			isa = PBXGroup;
 			children = (
+				5CF7B6CB1B0B99720006C318 /* Layer_Chat */,
 				5C48B8941880CFAA00A09A1C /* SimpleHomeViewController.h */,
 				5C48B8951880CFAA00A09A1C /* SimpleHomeViewController.m */,
 				5C2EA53A1851516700B21C52 /* MyStatsViewController.h */,
@@ -2221,6 +2219,8 @@
 		5CF7B6CB1B0B99720006C318 /* Layer_Chat */ = {
 			isa = PBXGroup;
 			children = (
+				5CF7B6D31B0BEA360006C318 /* Chat+ActivityViewController.h */,
+				5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */,
 				5CF7B6D91B0E7ED90006C318 /* NSLayerClientObject.h */,
 				5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */,
 				5CF7B6CC1B0B99850006C318 /* Layer+Parse_Model */,
