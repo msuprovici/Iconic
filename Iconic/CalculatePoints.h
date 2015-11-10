@@ -12,7 +12,7 @@
 #import "AAPLMotionActivityQuery.h"
 #import "AAPLActivityDataManager.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <LayerKit/LayerKit.h>
+//#import <LayerKit/LayerKit.h>
 
 @interface CalculatePoints : NSObject
 
@@ -32,8 +32,8 @@
     
 }
 
-//layer
-@property (nonatomic) LYRClient *layerClient;
+////layer
+//@property (nonatomic) LYRClient *layerClient;
 @property (nonatomic) NSCache *userCache;
 
 //step counter
@@ -164,9 +164,11 @@
 
 -(void)saveFinalTeamScoresToDefaults;
 
+-(void)addPushChannels;
+
 //-(void)loginLayer;
 
-- (void)loginLayer: (LYRClient*)layerClient;
+//- (void)loginLayer: (LYRClient*)layerClient;
 
 
 @end

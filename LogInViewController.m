@@ -14,8 +14,8 @@
 #import <CoreMotion/CoreMotion.h>
 #import "Amplitude.h"
 #import "CalculatePoints.h"
-#import "Intercom.h"
-#import "Heap.h"
+//#import "Intercom.h"
+//#import "Heap.h"
 //#import <ParseFacebookUtils/PFFacebookUtils.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import "Constants.h"
@@ -307,6 +307,11 @@
     currentInstallation[@"user"] = [PFUser currentUser];
     [currentInstallation saveInBackground];
     
+    //create push channels on the installation object
+    [calculatePointsClass addPushChannels];
+    
+    
+    
    
         //set parse username as the user id in Amplitude
         NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
@@ -314,14 +319,14 @@
     
     
     //set parse username for Intercom
-    [Intercom beginSessionForUserWithUserId:userId completion:nil];
+//    [Intercom beginSessionForUserWithUserId:userId completion:nil];
     
-    // set parse username for Heap
-    NSDictionary* userProperties = @{
-                                     @"name": userId,
-                                     };
-    
-    [Heap identify:userProperties];
+//    // set parse username for Heap
+//    NSDictionary* userProperties = @{
+//                                     @"name": userId,
+//                                     };
+//    
+//    [Heap identify:userProperties];
 
 }
 
@@ -440,15 +445,15 @@
     NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
     [Amplitude setUserId:userId];
     
-    //set parse username for Intercom
-    [Intercom beginSessionForUserWithUserId:userId completion:nil];
-    
-    // set parse username for Heap
-    NSDictionary* userProperties = @{
-                                     @"name": userId,
-                                     };
-    
-    [Heap identify:userProperties];
+//    //set parse username for Intercom
+//    [Intercom beginSessionForUserWithUserId:userId completion:nil];
+//    
+//    // set parse username for Heap
+//    NSDictionary* userProperties = @{
+//                                     @"name": userId,
+//                                     };
+//    
+//    [Heap identify:userProperties];
 
     
 }

@@ -73,8 +73,8 @@
 //achievments
 @property (nonatomic, strong) PFObject * teamAchievmentReceived;
 
-//layer client
-@property (nonatomic) LYRClient *layerClient;
+////layer client
+//@property (nonatomic) LYRClient *layerClient;
 
 
 
@@ -164,38 +164,39 @@
     [self performSelector:@selector(firstAppLoadThisWeek) withObject:self afterDelay:2];
 //    [self firstAppLoadThisWeek];
     
-    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] init];
+//    NSUserDefaults *sharedDefaults = [[NSUserDefaults alloc] init];
 //    NSLog(@"totalNumberStepsToday: %ld", (long)[[sharedDefaults objectForKey:@"totalNumberStepsToday"] integerValue]);
 //    NSLog(@"kMyFetchedStepsToday %@", [sharedDefaults objectForKey:kMyFetchedStepsToday]);
 //    NSLog(@"kMyStepsDelta %@", [sharedDefaults objectForKey:kMyStepsDelta]);
     
-    LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
-    
-//    LayerConversationListViewController * layerListViewController = [LayerConversationListViewController  conversationListViewControllerWithLayerClient:cachedLayerClient];
-//    [self.navigationController pushViewController:layerListViewController animated:YES];
-    
-    if(cachedLayerClient)
-    {
-//        NSLog(@"cached Layer Client");
-    }
-    else
-    {
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
-                       {
-                           //            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                           
-                           [self connectLayer];
-                           
-                       });
-        
-        
-            }
+//    LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
+//    
+////    LayerConversationListViewController * layerListViewController = [LayerConversationListViewController  conversationListViewControllerWithLayerClient:cachedLayerClient];
+////    [self.navigationController pushViewController:layerListViewController animated:YES];
+//    
+//    if(cachedLayerClient)
+//    {
+////        NSLog(@"cached Layer Client");
+//    }
+//    else
+//    {
+//        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, (unsigned long)NULL), ^(void)
+//                       {
+//                           //            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//                           
+//                           [self connectLayer];
+//                           
+//                       });
+//        
+//        
+//            }
     
     
 //     [self firstAppLoadThisWeek];
     
-
+    
+ 
 
    
 }
@@ -293,16 +294,16 @@
    
 }
 
--(void)connectLayer
-{
-    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
-    self.layerClient = [LYRClient clientWithAppID:appID];
-    [calculatePointsClass loginLayer:self.layerClient];
-    
-//    [calculatePointsClass loginLayer];
-    
-}
+//-(void)connectLayer
+//{
+//    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
+//    self.layerClient = [LYRClient clientWithAppID:appID];
+//    [calculatePointsClass loginLayer:self.layerClient];
+//    
+////    [calculatePointsClass loginLayer];
+//    
+//}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -1268,8 +1269,9 @@
 //                       NSLog(@"updateAppDataFromServerNow");
                        CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
                        [calculatePointsClass retrieveFromParse];
-                      
+                       
                        [calculatePointsClass findPastWeekleySteps];
+                       
                        
                        
                        //update core data with most recent league data

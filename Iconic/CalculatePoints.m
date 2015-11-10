@@ -22,8 +22,8 @@
 #import "NSLayerClientObject.h"
 
 #import "PNColor.h"
-#import "ATLOutgoingMessageCollectionViewCell.h"
-#import "Chat+ActivityViewController.h"
+//#import "ATLOutgoingMessageCollectionViewCell.h"
+//#import "Chat+ActivityViewController.h"
 
 
 @interface CalculatePoints ()
@@ -2337,139 +2337,226 @@
     }];
   }
 }
+#pragma mark - Edit push channels
+-(void)addPushChannels
+{
+    
+    //find my team names
+    //Query Team Class
+    PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];
+    
+    //Query Teamates Class
+    PFQuery *query2 = [PFQuery queryWithClassName:kTeamPlayersClass];
+    //    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    //    query2.cachePolicy = kPFCachePolicyCacheThenNetwork;
+    
+    [query2 whereKey:kTeamate equalTo:[PFUser currentUser]];
+    
+    
+    [query whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:query2];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        
+        if(!error)
+        {
+            if(objects.count > 0)
+            {
+                
+                
+                    NSMutableArray *myRetrievedTeamsArrayEdited = [[NSMutableArray alloc] init];
+                    
+                        for (int i = 0; i < objects.count; i++)
+                        {
+                            PFObject *myTeamObject = objects[i];
+                            
+                            //subscribe to the team's push notificaiton channel
+                            NSString *pushChanelName = [NSString stringWithFormat:@"%@", [myTeamObject objectForKey:kTeams]];
+                           
+                            
+                            //find if team name has spaces
+                            //Parse push notification channels must not contain spaces
+                            NSRange whiteSpaceRange = [pushChanelName rangeOfCharacterFromSet:[NSCharacterSet whitespaceCharacterSet]];
+                            if (whiteSpaceRange.location != NSNotFound) {
+                                
+                                
+                                //            NSLog(@"Found whitespace");
+                                NSString *chanelNameNoSpaces = [pushChanelName stringByReplacingOccurrencesOfString:@" " withString:@""];
+                                
+                                [myRetrievedTeamsArrayEdited addObject:chanelNameNoSpaces];
+                                
+                            }
+                            else
+                            {
+                                [myRetrievedTeamsArrayEdited addObject:pushChanelName];
+                            }
+                            
+                            //once we reached the end of the array  save channels
+                            if (i == objects.count - 1)
+                            {
+//                                 NSLog(@"myRetrievedTeamsArrayEdited: %@", myRetrievedTeamsArrayEdited);
+                                
+                                NSArray *myTeamChannels = myRetrievedTeamsArrayEdited;
+                                
+                                PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+                                
+                                [currentInstallation setChannels:myTeamChannels];
+                                
+                                [currentInstallation saveInBackground];
+
+//                                if(![currentInstallation channels]) {
+//                                    NSLog(@"User is not subscribed");
+//                                    [currentInstallation setChannels:myRetrievedTeamsArrayEdited];
+//                                    [currentInstallation saveInBackground];
+//                                    
+//                                }
+                            }
+
+                        }
+            }
+        }
+        
+    }];
+    
+}
+
+
 
 #pragma mark - Layer Authentication Methods
 
-- (void)loginLayer: (LYRClient*)layerClient
-{
 
-    
-    // Initializes a LYRClient object
-//    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
-    self.layerClient  = layerClient;
-//    [LYRClient clientWithAppID:appID];
-    self.layerClient.autodownloadMIMETypes = [NSSet setWithObjects:@"image/jpeg", @"image/png",@"image/gif",nil];
-    
-    //cache the layer client so you can use it throughout the application
-    [[NSLayerClientObject sharedInstance] cacheLayerClient:self.layerClient forKey:@"layerClient"];
-    
-//    NSLog(@"loginLayer called");
-   
-    
-    // Connect to Layer
-    // See "Quick Start - Connect" for more details
-    // https://developer.layer.com/docs/quick-start/ios#connect
-    [self.layerClient connectWithCompletion:^(BOOL success, NSError *error) {
-        
-//        NSLog(@"connectWithCompletion called");
-        if (!success) {
-            NSLog(@"Failed to connect to Layer: %@", error);
-        } else {
-            
-//            NSLog(@"connectWithCompletion sucess");
-            PFUser *user = [PFUser currentUser];
-            NSString *userID = user.objectId;
-            [self authenticateLayerWithUserID:userID completion:^(BOOL success, NSError *error) {
-                if (!error){
-                
-                    
-//                    NSLog(@"Layer User authenticated");
-                } else {
-//                    NSLog(@"Failed Authenticating Layer Client with error:%@", error);
-                }
-            }];
-        }
-    }];
-}
-
-- (void)authenticateLayerWithUserID:(NSString *)userID completion:(void (^)(BOOL success, NSError * error))completion
-{
-    // Check to see if the layerClient is already authenticated.
-    if (self.layerClient.authenticatedUserID) {
-        // If the layerClient is authenticated with the requested userID, complete the authentication process.
-        if ([self.layerClient.authenticatedUserID isEqualToString:userID]){
-//            NSLog(@"Layer Authenticated as User %@", self.layerClient.authenticatedUserID);
-            if (completion) completion(YES, nil);
-            return;
-        } else {
-            //If the authenticated userID is different, then deauthenticate the current client and re-authenticate with the new userID.
-            [self.layerClient deauthenticateWithCompletion:^(BOOL success, NSError *error) {
-                if (!error){
-                    [self authenticationTokenWithUserId:userID completion:^(BOOL success, NSError *error) {
-                        if (completion){
-                            completion(success, error);
-                        }
-                    }];
-                } else {
-                    if (completion){
-                        completion(NO, error);
-                    }
-                }
-            }];
-        }
-    } else {
-        // If the layerClient isn't already authenticated, then authenticate.
-        [self authenticationTokenWithUserId:userID completion:^(BOOL success, NSError *error) {
-            if (completion){
-                completion(success, error);
-            }
-        }];
-    }
-}
-
-- (void)authenticationTokenWithUserId:(NSString *)userID completion:(void (^)(BOOL success, NSError* error))completion
-{
-    /*
-     * 1. Request an authentication Nonce from Layer
-     */
-    [self.layerClient requestAuthenticationNonceWithCompletion:^(NSString *nonce, NSError *error) {
-        if (!nonce) {
-            if (completion) {
-                completion(NO, error);
-            }
-            return;
-        }
-        
-        /*
-         * 2. Acquire identity Token from Layer Identity Service
-         */
-        NSDictionary *parameters = @{@"nonce" : nonce, @"userID" : userID};
-        
-        [PFCloud callFunctionInBackground:@"generateToken" withParameters:parameters block:^(id object, NSError *error) {
-            if (!error){
-                
-                NSString *identityToken = (NSString*)object;
-                [self.layerClient authenticateWithIdentityToken:identityToken completion:^(NSString *authenticatedUserID, NSError *error) {
-                    if (authenticatedUserID) {
-                        if (completion) {
-                            completion(YES, nil);
-                            
-                            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-                            [defaults setBool:true forKey:@"layerAuthenticated"];
-                        }
-//                        NSLog(@"Layer Authenticated as User: %@", authenticatedUserID);
-                    } else {
-                        completion(NO, error);
-                    }
-                }];
-            } else {
-                NSLog(@"Parse Cloud function failed to be called to generate token with error: %@", error);
-            }
-        }];
-        
-    }];
-}
-
-
-//-(void)customizeLayerAtlasUI
+//#pragma mark - Layer Authentication Methods
+//
+//- (void)loginLayer: (LYRClient*)layerClient
 //{
-////    ATLConverationViewController *viewController = [ATLConversationViewController conversationViewControllerWithLayerClient:self.layerClient];
+//
 //    
-//    [[ATLOutgoingMessageCollectionViewCell appearance] setMessageTextColor:[UIColor whiteColor]];
-//    [[ATLOutgoingMessageCollectionViewCell appearance] setMessageTextFont:[UIFont systemFontOfSize:14]];
-//    [[ATLOutgoingMessageCollectionViewCell appearance] setBubbleViewColor:PNWeiboColor];
+//    // Initializes a LYRClient object
+////    NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
+//    self.layerClient  = layerClient;
+////    [LYRClient clientWithAppID:appID];
+//    self.layerClient.autodownloadMIMETypes = [NSSet setWithObjects:@"image/jpeg", @"image/png",@"image/gif",nil];
 //    
+//    //cache the layer client so you can use it throughout the application
+//    [[NSLayerClientObject sharedInstance] cacheLayerClient:self.layerClient forKey:@"layerClient"];
+//    
+////    NSLog(@"loginLayer called");
+//   
+//    
+//    // Connect to Layer
+//    // See "Quick Start - Connect" for more details
+//    // https://developer.layer.com/docs/quick-start/ios#connect
+//    [self.layerClient connectWithCompletion:^(BOOL success, NSError *error) {
+//        
+////        NSLog(@"connectWithCompletion called");
+//        if (!success) {
+//            NSLog(@"Failed to connect to Layer: %@", error);
+//        } else {
+//            
+////            NSLog(@"connectWithCompletion sucess");
+//            PFUser *user = [PFUser currentUser];
+//            NSString *userID = user.objectId;
+//            [self authenticateLayerWithUserID:userID completion:^(BOOL success, NSError *error) {
+//                if (!error){
+//                
+//                    
+////                    NSLog(@"Layer User authenticated");
+//                } else {
+////                    NSLog(@"Failed Authenticating Layer Client with error:%@", error);
+//                }
+//            }];
+//        }
+//    }];
 //}
+//
+//- (void)authenticateLayerWithUserID:(NSString *)userID completion:(void (^)(BOOL success, NSError * error))completion
+//{
+//    // Check to see if the layerClient is already authenticated.
+//    if (self.layerClient.authenticatedUserID) {
+//        // If the layerClient is authenticated with the requested userID, complete the authentication process.
+//        if ([self.layerClient.authenticatedUserID isEqualToString:userID]){
+////            NSLog(@"Layer Authenticated as User %@", self.layerClient.authenticatedUserID);
+//            if (completion) completion(YES, nil);
+//            return;
+//        } else {
+//            //If the authenticated userID is different, then deauthenticate the current client and re-authenticate with the new userID.
+//            [self.layerClient deauthenticateWithCompletion:^(BOOL success, NSError *error) {
+//                if (!error){
+//                    [self authenticationTokenWithUserId:userID completion:^(BOOL success, NSError *error) {
+//                        if (completion){
+//                            completion(success, error);
+//                        }
+//                    }];
+//                } else {
+//                    if (completion){
+//                        completion(NO, error);
+//                    }
+//                }
+//            }];
+//        }
+//    } else {
+//        // If the layerClient isn't already authenticated, then authenticate.
+//        [self authenticationTokenWithUserId:userID completion:^(BOOL success, NSError *error) {
+//            if (completion){
+//                completion(success, error);
+//            }
+//        }];
+//    }
+//}
+//
+//- (void)authenticationTokenWithUserId:(NSString *)userID completion:(void (^)(BOOL success, NSError* error))completion
+//{
+//    /*
+//     * 1. Request an authentication Nonce from Layer
+//     */
+//    [self.layerClient requestAuthenticationNonceWithCompletion:^(NSString *nonce, NSError *error) {
+//        if (!nonce) {
+//            if (completion) {
+//                completion(NO, error);
+//            }
+//            return;
+//        }
+//        
+//        /*
+//         * 2. Acquire identity Token from Layer Identity Service
+//         */
+//        NSDictionary *parameters = @{@"nonce" : nonce, @"userID" : userID};
+//        
+//        [PFCloud callFunctionInBackground:@"generateToken" withParameters:parameters block:^(id object, NSError *error) {
+//            if (!error){
+//                
+//                NSString *identityToken = (NSString*)object;
+//                [self.layerClient authenticateWithIdentityToken:identityToken completion:^(NSString *authenticatedUserID, NSError *error) {
+//                    if (authenticatedUserID) {
+//                        if (completion) {
+//                            completion(YES, nil);
+//                            
+//                            NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+//                            [defaults setBool:true forKey:@"layerAuthenticated"];
+//                        }
+////                        NSLog(@"Layer Authenticated as User: %@", authenticatedUserID);
+//                    } else {
+//                        completion(NO, error);
+//                    }
+//                }];
+//            } else {
+//                NSLog(@"Parse Cloud function failed to be called to generate token with error: %@", error);
+//            }
+//        }];
+//        
+//    }];
+//}
+//
+//
+////-(void)customizeLayerAtlasUI
+////{
+//////    ATLConverationViewController *viewController = [ATLConversationViewController conversationViewControllerWithLayerClient:self.layerClient];
+////    
+////    [[ATLOutgoingMessageCollectionViewCell appearance] setMessageTextColor:[UIColor whiteColor]];
+////    [[ATLOutgoingMessageCollectionViewCell appearance] setMessageTextFont:[UIFont systemFontOfSize:14]];
+////    [[ATLOutgoingMessageCollectionViewCell appearance] setBubbleViewColor:PNWeiboColor];
+////    
+////}
 
 
 
