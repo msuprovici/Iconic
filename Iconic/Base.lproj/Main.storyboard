@@ -3024,11 +3024,11 @@
                                     <exclude reference="FOI-nB-RXr"/>
                                     <exclude reference="Yrt-zw-muD"/>
                                     <exclude reference="ZTz-Bj-oEr"/>
-                                    <exclude reference="C5Q-3P-EPx"/>
-                                    <exclude reference="GCo-B2-CAf"/>
                                     <exclude reference="H48-Ko-RPC"/>
                                     <exclude reference="PTH-Bk-wyo"/>
                                     <exclude reference="cSH-Ic-q8a"/>
+                                    <exclude reference="C5Q-3P-EPx"/>
+                                    <exclude reference="GCo-B2-CAf"/>
                                     <exclude reference="4LP-NP-noN"/>
                                     <exclude reference="fsz-Rl-fbN"/>
                                     <exclude reference="Q9R-KT-tRO"/>
@@ -3057,11 +3057,11 @@
                                     <include reference="FOI-nB-RXr"/>
                                     <include reference="Yrt-zw-muD"/>
                                     <include reference="ZTz-Bj-oEr"/>
-                                    <include reference="C5Q-3P-EPx"/>
-                                    <include reference="GCo-B2-CAf"/>
                                     <include reference="H48-Ko-RPC"/>
                                     <include reference="PTH-Bk-wyo"/>
                                     <include reference="cSH-Ic-q8a"/>
+                                    <include reference="C5Q-3P-EPx"/>
+                                    <include reference="GCo-B2-CAf"/>
                                     <include reference="4LP-NP-noN"/>
                                     <include reference="fsz-Rl-fbN"/>
                                     <include reference="Q9R-KT-tRO"/>
@@ -3087,6 +3087,9 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.1647058824" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                <rect key="frame" x="75" y="13" width="417" height="30"/>
+                                            </variation>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FQr-vu-0Hq" customClass="PFImageView">
                                             <rect key="frame" x="20" y="8" width="40" height="40"/>
@@ -4161,7 +4164,8 @@
                                                             <exclude reference="b6K-ta-Pmh"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="265" y="12" width="230" height="40"/>
                                                         <mask key="constraints">
                                                             <include reference="0lS-23-97g"/>
                                                             <exclude reference="b6K-ta-Pmh"/>
@@ -4186,6 +4190,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="60" y="33" width="500" height="60"/>
+                                                    </variation>
                                                 </textView>
                                             </subviews>
                                             <animations/>
@@ -5591,9 +5598,9 @@
                                 <exclude reference="PUe-Wt-qMc"/>
                                 <exclude reference="Scl-ET-x6m"/>
                                 <exclude reference="uda-GL-MKM"/>
+                                <exclude reference="gIK-M3-B8o"/>
                                 <exclude reference="i5t-vq-pbW"/>
                                 <exclude reference="nMi-FD-srq"/>
-                                <exclude reference="gIK-M3-B8o"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -5606,9 +5613,9 @@
                                 <include reference="PUe-Wt-qMc"/>
                                 <include reference="Scl-ET-x6m"/>
                                 <exclude reference="uda-GL-MKM"/>
+                                <include reference="gIK-M3-B8o"/>
                                 <include reference="i5t-vq-pbW"/>
                                 <include reference="nMi-FD-srq"/>
-                                <include reference="gIK-M3-B8o"/>
                             </mask>
                         </variation>
                     </view>
@@ -5822,7 +5829,7 @@
                         <viewControllerLayoutGuide type="bottom" id="jIo-LX-PWN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="euM-AC-qQi">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5862,7 +5869,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="XGg-Sw-VaO">
-                            <rect key="frame" x="0.0" y="64" width="600" height="64"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRm-B8-W0B">
@@ -5888,7 +5895,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="65" id="oC2-Ly-xLk" customClass="FindFriendsCell">
-                                <rect key="frame" x="0.0" y="150" width="600" height="65"/>
+                                <rect key="frame" x="0.0" y="86" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oC2-Ly-xLk" id="dDM-tz-SFq">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
@@ -7383,11 +7390,11 @@
         <image name="user_place_holder.png" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TGw-xZ-C7R"/>
-        <segue reference="Wkm-gx-o8j"/>
+        <segue reference="pOA-YH-Rjm"/>
         <segue reference="UaI-gb-hq2"/>
         <segue reference="RgY-QV-Nzf"/>
         <segue reference="gHY-LU-ack"/>
         <segue reference="Rnz-xH-lvc"/>
+        <segue reference="TGw-xZ-C7R"/>
     </inferredMetricsTieBreakers>
 </document>

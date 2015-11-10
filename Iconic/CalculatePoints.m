@@ -2340,7 +2340,7 @@
 #pragma mark - Edit push channels
 -(void)addPushChannels
 {
-    
+   
     //find my team names
     //Query Team Class
     PFQuery *query = [PFQuery queryWithClassName:kTeamTeamsClass];

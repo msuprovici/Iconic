@@ -359,22 +359,11 @@ class SettingsTableViewController: UITableViewController {
                             
                             if(teamSettingListObject.itemName .isEqual("Team Updates"))
                             {
+                                
+                                let calcualtePointsClass = CalculatePoints()
+                                calcualtePointsClass.addPushChannels()
 
-                                var notificationChannels = defaults.arrayForKey("arrayOfMyTeamNames");
-                                
-                                
-                                let installation = PFInstallation.currentInstallation()
-                                installation.setObject(notificationChannels!, forKey: "channels")
-                                installation.saveInBackgroundWithBlock{
-                                    (success: Bool, error: NSError?) -> Void in
-                                    if (success) {
-                                        // The object has been saved.
-            //                                                    print("  Installation channel saved in select")
-                                    } else {
-                                        // There was a problem, check error.description
-                                        print("  Installation chanels failed to save")
-                                    }
-                                }
+
                             }
                             
                             if(teamSettingListObject.itemName .isEqual("Final Scores"))
@@ -400,7 +389,7 @@ class SettingsTableViewController: UITableViewController {
                     if(teamSettingListObject.itemName .isEqual("Team Updates"))
                     {
  
-                        var notificationChannels: [String] = [];
+                        let notificationChannels: [String] = [];
                         
                         let installation = PFInstallation.currentInstallation()
                         installation.setObject(notificationChannels, forKey: "channels")
@@ -427,7 +416,7 @@ class SettingsTableViewController: UITableViewController {
             }
             else
             {
-                var alert = UIAlertController(title: "Allow Push Notifications", message: "You will be prompted to enable push notifications.", preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "Allow Push Notifications", message: "You will be prompted to enable push notifications.", preferredStyle: UIAlertControllerStyle.Alert)
                 
                 alert.addAction(UIAlertAction(title: "Allow", style: .Default, handler: { action in
                     switch action.style{
@@ -458,7 +447,7 @@ class SettingsTableViewController: UITableViewController {
         }
         else if (indexPath.section == 2)
         {
-            var alert = UIAlertController(title: "Log Out", message: "Are you sure that you want to log out?", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Log Out", message: "Are you sure that you want to log out?", preferredStyle: UIAlertControllerStyle.Alert)
             
             alert.addAction(UIAlertAction(title: "Log Out", style: .Destructive, handler: { action in
                 switch action.style{
