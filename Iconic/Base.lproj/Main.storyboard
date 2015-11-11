@@ -5494,6 +5494,9 @@
                                 <rect key="frame" x="20" y="0.0" width="560" height="510"/>
                                 <animations/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="-32" width="600" height="528"/>
+                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="H5O-hK-5UJ" id="cgO-65-I0f"/>
                                 </connections>
@@ -5516,7 +5519,8 @@
                                         <exclude reference="Usq-3Z-s8v"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="188" y="498" width="226" height="50"/>
                                     <mask key="constraints">
                                         <include reference="SLR-Qb-gK4"/>
                                         <include reference="Usq-3Z-s8v"/>
@@ -5545,7 +5549,8 @@
                                         <exclude reference="ogS-Ea-5pL"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="259" y="560" width="82" height="14"/>
                                     <mask key="constraints">
                                         <include reference="lek-5e-1bw"/>
                                         <exclude reference="o5w-hz-wJs"/>
@@ -6043,6 +6048,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="CreateUsername.png" translatesAutoresizingMaskIntoConstraints="NO" id="82s-DP-whQ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                                 <animations/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="20" width="600" height="510"/>
+                                </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nxq-BM-Cat" userLabel="Submit">
                                 <rect key="frame" x="52" y="259" width="497" height="82"/>
@@ -6062,7 +6070,8 @@
                                         <exclude reference="ETB-Gr-pbm"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="89" y="175" width="225" height="50"/>
                                     <mask key="constraints">
                                         <include reference="538-qz-Dq0"/>
                                         <include reference="ETB-Gr-pbm"/>
@@ -6079,6 +6088,9 @@
                                 <color key="textColor" red="0.0" green="0.1647058824" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="21" y="102" width="360" height="30"/>
+                                </variation>
                             </textField>
                         </subviews>
                         <animations/>
@@ -6890,6 +6902,7 @@
                         <segue destination="7jw-Rg-QgJ" kind="show" identifier="vs" id="zXY-Ed-e7t"/>
                         <segue destination="068-nA-7M5" kind="presentation" identifier="MyFinalScores" id="pWP-K7-uWG"/>
                         <segue destination="WY6-bu-bE9" kind="presentation" id="41T-Wc-caE"/>
+                        <segue destination="Cvr-0e-2Yl" kind="presentation" identifier="ShowTeamChat" id="44s-yh-n6H"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNN-ut-gi9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -7393,6 +7406,7 @@
         <segue reference="pOA-YH-Rjm"/>
         <segue reference="UaI-gb-hq2"/>
         <segue reference="RgY-QV-Nzf"/>
+        <segue reference="44s-yh-n6H"/>
         <segue reference="gHY-LU-ack"/>
         <segue reference="Rnz-xH-lvc"/>
         <segue reference="TGw-xZ-C7R"/>

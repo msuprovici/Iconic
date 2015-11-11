@@ -45,7 +45,7 @@
     return self;
 }
 
-//get the league passed from the leagues view controller
+
 -(void)initWithChatTeam:(NSString *)aTeam
 {
     self.team = aTeam;
@@ -65,7 +65,7 @@
     [defaults setObject:[NSDate date] forKey:dateTeamChatRoomVisited];
     [defaults synchronize];
 
-   
+   [self.navigationItem setTitle:self.team];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

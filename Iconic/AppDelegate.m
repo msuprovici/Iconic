@@ -24,9 +24,10 @@
 #import "CalculatePoints.h"
 #import "Amplitude.h"
 #import <Crashlytics/Crashlytics.h>
-#import "Intercom.h"
-#import "Heap.h"
+//#import "Intercom.h"
+//#import "Heap.h"
 #import "ParseCrashReporting/ParseCrashReporting.h"
+#import "ChatRoomTableViewController.h"
 
 #import "AchievmentsViewController.h"
 //#import <LayerKit/LayerKit.h>
@@ -246,16 +247,16 @@
        NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
        [Amplitude setUserId:userId];
        
-       //set parse username for Intercom
-       [Intercom beginSessionForUserWithUserId:userId completion:nil];
-       
-       
-       // set parse username for Heap
-       NSDictionary* userProperties = @{
-                                        @"name": userId,
-                                        };
-       
-       [Heap identify:userProperties];
+//       //set parse username for Intercom
+//       [Intercom beginSessionForUserWithUserId:userId completion:nil];
+//       
+//       
+//       // set parse username for Heap
+//       NSDictionary* userProperties = @{
+//                                        @"name": userId,
+//                                        };
+//       
+//       [Heap identify:userProperties];
        
        [calculatePointsClass migrateLeaguesToCoreData];
        
@@ -303,7 +304,7 @@
     // Extract the notification data
     NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
     
-    NSString *notificationId = [notificationPayload objectForKey:@"teamAchievmentID"];
+    NSString *notificationId = notificationPayload[@"notificationID"];
     
     if ([notificationId isEqualToString:@"AchievmentReceived"]) {
         
@@ -330,6 +331,33 @@
     }];
         
     }
+    
+    
+    if ([notificationId isEqualToString:@"TeamChat"]) {
+        
+        
+        [PFPush handlePush:notificationPayload];
+//        NSString *teamName = [notificationPayload objectForKey:@"myTeamName"];
+//        NSDictionary* teamDetails = @{@"teamName": teamName};
+        
+//        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+//        [nc postNotificationName:@"chatReceived" object:self userInfo:teamDetails];
+        
+        NSLog(@"TeamChat received in didFinishLaunching");
+        
+
+//        
+//        ChatRoomTableViewController *viewController = [[ChatRoomTableViewController alloc] init];
+//        [viewController initWithChatTeam:teamName];
+//        
+//        UINavigationController *navController = [[UINavigationController alloc] init];
+//        
+//        [navController pushViewController:viewController animated:YES];
+        
+        
+
+    }
+
     
 //    pageControl.hidden = YES;
     
@@ -673,7 +701,11 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
     
     
     
-    NSString *notificationId = [userInfo objectForKey:@"notificationID"];
+    NSString *notificationId = userInfo[@"notificationId"];
+    
+//      NSLog(@"notificationId: %@",notificationId);
+//    
+//    NSLog(@"userInfo: %@", userInfo);
     
     if ([notificationId isEqualToString:@"GetFinalScorePush"]) {
         
@@ -845,6 +877,27 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
                 handler(UIBackgroundFetchResultNoData);
             }        }];
 
+    }
+    
+    
+    if ([notificationId isEqualToString:@"TeamChat"]) {
+//        NSLog(@"TeamChat received");
+        if(application.applicationState == UIApplicationStateActive)
+        {
+        [PFPush handlePush:userInfo];
+        }
+        else
+        {
+        
+        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:@"chatReceived" object:self userInfo:userInfo];
+        }
+
+
+        handler(UIBackgroundFetchResultNewData);
+        
+        
+        
     }
     
 //    handler(UIBackgroundFetchResultNewData);

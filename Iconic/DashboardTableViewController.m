@@ -36,6 +36,7 @@
 #import "LayerConversationViewController.h"
 #import "NSLayerClientObject.h"
 #import "Chat+ActivityViewController.h"
+#import "ChatRoomTableViewController.h"
 
 @interface DashboardTableViewController ()
 
@@ -72,6 +73,7 @@
 
 //achievments
 @property (nonatomic, strong) PFObject * teamAchievmentReceived;
+@property (nonatomic, strong) NSString * chatFromTeamName;
 
 ////layer client
 //@property (nonatomic) LYRClient *layerClient;
@@ -146,9 +148,15 @@
     
     //achievment received
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(showLayerConversationViewController:)
-                                                 name:@"newChatMessage"
+                                             selector:@selector(receivedChatNotification:)
+                                                 name:@"chatReceived"
                                                object:nil];
+    
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(showLayerConversationViewController:)
+//                                                 name:@"newChatMessage"
+//                                               object:nil];
 
   
     //refreshes the app when it enters foreground
@@ -1070,6 +1078,23 @@
         
         
     }
+    
+    //show chat
+    if ([[segue identifier] isEqualToString:@"ShowTeamChat"])
+    {
+//        [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
+        //        NSLog(@"achievment object: %@", self.teamAchievmentReceived);
+        
+        UINavigationController *navController = [segue destinationViewController];
+        ChatRoomTableViewController *destinationViewController = (ChatRoomTableViewController *)( [navController topViewController]);
+        [destinationViewController initWithChatTeam:self.chatFromTeamName];
+        
+//        [segue.destinationViewController initWithChatTeam:self.chatFromTeamName];
+        [Amplitude logEvent:@"Dashboard: Team Chat Showed"];
+        
+        
+    }
+
 
 }
 
@@ -1124,6 +1149,25 @@
         
         [self performSegueWithIdentifier:@"ShowAchievment" sender:self];
     }
+    
+    
+}
+
+-(void)receivedChatNotification:(NSNotification *) notification
+{
+    if([[notification name] isEqualToString:@"chatReceived"])
+    {
+//                NSLog(@"chatReceived notification");
+        
+        NSDictionary* userInfo = notification.userInfo;
+        
+        self.chatFromTeamName = userInfo[@"myTeamName"];
+        
+        
+        [self performSegueWithIdentifier:@"ShowTeamChat" sender:self];
+    }
+
+    
 }
 
 -(void)defaultsSyncNotification:(NSNotification *) notification
@@ -1135,21 +1179,21 @@
     }
 }
 
--(void)showLayerConversationViewController:(NSNotification *) notification
-{
-    if([[notification name] isEqualToString:@"newChatMessage"])
-    {
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setInteger:1 forKey:@"activitySegementedControlIndex"];
-        
-        [defaults synchronize];
-        
-        self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:1];
-
-        
-    }
-}
+//-(void)showLayerConversationViewController:(NSNotification *) notification
+//{
+//    if([[notification name] isEqualToString:@"newChatMessage"])
+//    {
+//        
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setInteger:1 forKey:@"activitySegementedControlIndex"];
+//        
+//        [defaults synchronize];
+//        
+//        self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:1];
+//
+//        
+//    }
+//}
 
 
 -(void)reoladTableView
