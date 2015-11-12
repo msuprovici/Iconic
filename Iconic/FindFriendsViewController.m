@@ -751,7 +751,11 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
         //[self shouldToggleFollowFriendForCell:tappedcell];
         PFUser *cellUser = tappedcell.user;
         
-        [segue.destinationViewController initWithPlayer:cellUser];
+        UINavigationController *navController = [segue destinationViewController];
+        PlayerProfileViewController *destinationViewController = (PlayerProfileViewController *)( [navController topViewController]);
+        [destinationViewController initWithPlayer:cellUser];
+        
+//        [segue.destinationViewController initWithPlayer:cellUser];
         
         [Amplitude logEvent:@"Find Friends: Selected User"];
         

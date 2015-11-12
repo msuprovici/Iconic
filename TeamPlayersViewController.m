@@ -343,7 +343,11 @@
         
         PFObject *player = [playerPointer objectForKey:kTeamate];
         
-        [segue.destinationViewController initWithPlayer:player];
+        UINavigationController *navController = [segue destinationViewController];
+        PlayerProfileViewController *destinationViewController = (PlayerProfileViewController *)( [navController topViewController]);
+        [destinationViewController initWithPlayer:player];
+        
+//        [segue.destinationViewController initWithPlayer:player];
         
          [Amplitude logEvent:@"Team: teamate selected"];
         

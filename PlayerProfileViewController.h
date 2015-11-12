@@ -46,5 +46,6 @@
 @property BOOL notifcationPermission;
 
 -(void)initWithPlayer:(PFObject*)aPlayer;
+- (IBAction)doneButtonPressed:(id)sender;
 
 @end

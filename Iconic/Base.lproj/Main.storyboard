@@ -1824,7 +1824,7 @@
                                     <outlet property="playerName" destination="Fxq-XK-l1O" id="gpG-cg-wRL"/>
                                     <outlet property="playerPhoto" destination="FZe-r7-qCH" id="XPn-RF-fTU"/>
                                     <outlet property="playerPoints" destination="zoy-dJ-EMH" id="rhZ-eZ-3Aa"/>
-                                    <segue destination="UbG-da-jWg" kind="show" identifier="PlayerSelectedVSPlayersView" id="cdC-Af-usM"/>
+                                    <segue destination="ju0-Pd-TTd" kind="presentation" identifier="PlayerSelectedVSPlayersView" id="cdC-Af-usM"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -4143,7 +4143,7 @@
                                                         </mask>
                                                     </variation>
                                                     <connections>
-                                                        <segue destination="UbG-da-jWg" kind="show" identifier="FeedPlayerSegue" id="PMz-E9-Z88"/>
+                                                        <segue destination="ju0-Pd-TTd" kind="presentation" identifier="FeedPlayerSegue" id="PMz-E9-Z88"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDa-8O-A9e" userLabel="teamButtonPressed">
@@ -4327,7 +4327,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="UbG-da-jWg" kind="show" identifier="SelectedUserNameInFeed" id="gHY-LU-ack"/>
+                        <segue destination="ju0-Pd-TTd" kind="presentation" identifier="SelectedUserNameInFeed" id="gHY-LU-ack"/>
                         <segue destination="k2R-Un-KHX" kind="show" identifier="SelectedTeamNameInFeed" id="RZ4-Fm-Edx"/>
                         <segue destination="Quu-w8-KMQ" kind="show" identifier="SelectedLeagueNameInFeed" id="Rnz-xH-lvc"/>
                     </connections>
@@ -4858,7 +4858,7 @@
                                 <connections>
                                     <outlet property="playerName" destination="cWd-5c-cul" id="uHb-d6-mQL"/>
                                     <outlet property="playerPhoto" destination="V6F-PU-6iy" id="g8U-ei-fJD"/>
-                                    <segue destination="UbG-da-jWg" kind="show" identifier="PlayerSelectedTeamPlayersView" id="SjS-YP-2E8"/>
+                                    <segue destination="ju0-Pd-TTd" kind="presentation" identifier="PlayerSelectedTeamPlayersView" id="SjS-YP-2E8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -4919,8 +4919,7 @@
                                             <exclude reference="lbF-An-WpN"/>
                                         </mask>
                                     </variation>
-                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="128" y="17" width="120" height="120"/>
+                                    <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="constraints">
                                             <include reference="B8A-rz-4Q6"/>
                                             <include reference="lbF-An-WpN"/>
@@ -4944,7 +4943,7 @@
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="23" y="138" width="330" height="33"/>
+                                        <rect key="frame" x="135" y="138" width="330" height="33"/>
                                         <mask key="constraints">
                                             <include reference="0US-i4-X92"/>
                                             <include reference="tCN-1B-y00"/>
@@ -4967,8 +4966,7 @@
                                             <exclude reference="Dkx-HF-jtM"/>
                                         </mask>
                                     </variation>
-                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="153" y="169" width="71" height="18"/>
+                                    <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="constraints">
                                             <include reference="9HV-1D-pTU"/>
                                             <include reference="Dkx-HF-jtM"/>
@@ -4992,7 +4990,7 @@
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="83" y="212" width="71" height="25"/>
+                                        <rect key="frame" x="195" y="212" width="71" height="25"/>
                                         <mask key="constraints">
                                             <include reference="CPX-Bl-edA"/>
                                             <include reference="YOo-Hd-eUf"/>
@@ -5016,7 +5014,7 @@
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="219" y="212" width="75" height="25"/>
+                                        <rect key="frame" x="331" y="212" width="75" height="25"/>
                                         <mask key="constraints">
                                             <include reference="6vT-Ze-Abb"/>
                                             <include reference="Asz-zV-KZm"/>
@@ -5042,7 +5040,7 @@
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="76" y="264" width="225" height="50"/>
+                                        <rect key="frame" x="188" y="264" width="225" height="50"/>
                                         <mask key="constraints">
                                             <include reference="ixV-AI-SS1"/>
                                             <include reference="oRs-B5-drR"/>
@@ -5069,7 +5067,7 @@
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="71" y="234" width="95" height="19"/>
+                                        <rect key="frame" x="183" y="234" width="95" height="19"/>
                                         <mask key="constraints">
                                             <include reference="fBO-WF-GHT"/>
                                             <include reference="x0w-Uu-zhw"/>
@@ -5093,7 +5091,7 @@
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="209" y="235" width="95" height="18"/>
+                                        <rect key="frame" x="321" y="235" width="95" height="18"/>
                                         <mask key="constraints">
                                             <include reference="3Cy-nJ-EAT"/>
                                             <include reference="YfF-09-MjM"/>
@@ -5117,7 +5115,7 @@
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="23" y="185" width="330" height="27"/>
+                                        <rect key="frame" x="135" y="185" width="330" height="27"/>
                                         <mask key="constraints">
                                             <include reference="NFx-Aa-BU3"/>
                                             <include reference="qNA-QK-2j2"/>
@@ -5141,7 +5139,7 @@
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                        <rect key="frame" x="-5" y="330" width="385" height="21"/>
+                                        <rect key="frame" x="108" y="330" width="384" height="21"/>
                                         <mask key="constraints">
                                             <include reference="tae-NO-OMC"/>
                                             <include reference="w48-qp-YqQ"/>
@@ -5242,9 +5240,6 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                             <color key="textColor" red="0.0" green="0.1647058824" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                <rect key="frame" x="75" y="13" width="259" height="30"/>
-                                            </variation>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Pa-Sb-xy0" customClass="PFImageView">
                                             <rect key="frame" x="20" y="8" width="40" height="40"/>
@@ -5315,6 +5310,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="abb-en-3ld">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="osO-ab-CGg">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="UbG-da-jWg" id="tUY-0f-hkR"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="2gf-Ch-Bzh">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vav-ND-7Sj">
                                 <rect key="frame" x="254" y="7" width="29" height="29"/>
@@ -5330,6 +5330,8 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="cheerButton" destination="2Nl-2C-BvQ" id="bzg-TK-dOC"/>
                         <outlet property="followUser" destination="Vav-ND-7Sj" id="WGN-Yl-28s"/>
@@ -5344,7 +5346,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DUH-Yv-nl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-930" y="-4159.859154929577"/>
+            <point key="canvasLocation" x="-12" y="-4160.25"/>
         </scene>
         <!--Chat-->
         <scene sceneID="k2Y-fI-PCk">
@@ -5834,7 +5836,7 @@
                         <viewControllerLayoutGuide type="bottom" id="jIo-LX-PWN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="euM-AC-qQi">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -5950,7 +5952,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="UbG-da-jWg" kind="show" identifier="SelectUserFromFindFriendsViewController" id="gBJ-V0-gCX"/>
+                                                <segue destination="ju0-Pd-TTd" kind="presentation" identifier="SelectUserFromFindFriendsViewController" id="gBJ-V0-gCX"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -6903,6 +6905,7 @@
                         <segue destination="068-nA-7M5" kind="presentation" identifier="MyFinalScores" id="pWP-K7-uWG"/>
                         <segue destination="WY6-bu-bE9" kind="presentation" id="41T-Wc-caE"/>
                         <segue destination="Cvr-0e-2Yl" kind="presentation" identifier="ShowTeamChat" id="44s-yh-n6H"/>
+                        <segue destination="ju0-Pd-TTd" kind="presentation" identifier="ShowTeammate" id="yyv-Ix-DTc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNN-ut-gi9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -7365,6 +7368,25 @@
             </objects>
             <point key="canvasLocation" x="-3577.5" y="-2361"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2Zs-Wf-pv5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ju0-Pd-TTd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gX3-ud-V75">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UbG-da-jWg" kind="relationship" relationship="rootViewController" id="yha-Bi-Nd6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nab-Ul-sqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-930" y="-4160.25"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Add_Icon_White.png" width="20" height="20"/>
@@ -7403,12 +7425,12 @@
         <image name="user_place_holder.png" width="42" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="44s-yh-n6H"/>
         <segue reference="pOA-YH-Rjm"/>
         <segue reference="UaI-gb-hq2"/>
-        <segue reference="RgY-QV-Nzf"/>
-        <segue reference="44s-yh-n6H"/>
-        <segue reference="gHY-LU-ack"/>
         <segue reference="Rnz-xH-lvc"/>
+        <segue reference="yyv-Ix-DTc"/>
+        <segue reference="f2W-wf-Lkd"/>
         <segue reference="TGw-xZ-C7R"/>
     </inferredMetricsTieBreakers>
 </document>

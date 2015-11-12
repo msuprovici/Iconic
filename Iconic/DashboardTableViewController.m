@@ -37,6 +37,7 @@
 #import "NSLayerClientObject.h"
 #import "Chat+ActivityViewController.h"
 #import "ChatRoomTableViewController.h"
+#import "PlayerProfileViewController.h"
 
 @interface DashboardTableViewController ()
 
@@ -73,7 +74,12 @@
 
 //achievments
 @property (nonatomic, strong) PFObject * teamAchievmentReceived;
+
+//chat
 @property (nonatomic, strong) NSString * chatFromTeamName;
+
+//cheer
+@property (nonatomic, strong) PFUser * myTeammate;
 
 ////layer client
 //@property (nonatomic) LYRClient *layerClient;
@@ -146,10 +152,15 @@
                                                  name:@"achievmentReceived"
                                                object:nil];
     
-    //achievment received
+    //chat received
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivedChatNotification:)
                                                  name:@"chatReceived"
+                                               object:nil];
+    //cheer
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedCheerNotification:)
+                                                 name:@"cheerReceived"
                                                object:nil];
     
     
@@ -1094,6 +1105,26 @@
         
         
     }
+    
+    //Show Teammate
+    if ([[segue identifier] isEqualToString:@"ShowTeammate"])
+    {
+        //        [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
+             NSLog(@"ShowTeammate");
+        
+        UINavigationController *navController = [segue destinationViewController];
+        PlayerProfileViewController *destinationViewController = (PlayerProfileViewController *)( [navController topViewController]);
+        [destinationViewController initWithPlayer:self.myTeammate];
+        
+//        PlayerProfileViewController *destinationViewController = [[PlayerProfileViewController alloc] init];
+//        [destinationViewController initWithPlayer:self.myTeammate];
+        
+        //        [segue.destinationViewController initWithChatTeam:self.chatFromTeamName];
+        [Amplitude logEvent:@"Dashboard: Teammate Showed after cheer"];
+        
+        
+    }
+    
 
 
 }
@@ -1169,6 +1200,29 @@
 
     
 }
+
+
+-(void)receivedCheerNotification:(NSNotification *) notification
+{
+    if([[notification name] isEqualToString:@"cheerReceived"])
+    {
+                        NSLog(@"cheerReceived notification");
+        
+        NSDictionary* userInfo = notification.userInfo;
+        self.myTeammate = userInfo[@"teammate"];
+        [self performSegueWithIdentifier:@"ShowTeammate" sender:self];
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+}
+
+
 
 -(void)defaultsSyncNotification:(NSNotification *) notification
 {

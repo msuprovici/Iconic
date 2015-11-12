@@ -819,7 +819,11 @@
         
         [Amplitude logEvent:@"Teamate selected from game details"];
         
-        [segue.destinationViewController initWithPlayer:player];
+        UINavigationController *navController = [segue destinationViewController];
+        PlayerProfileViewController *destinationViewController = (PlayerProfileViewController *)( [navController topViewController]);
+        [destinationViewController initWithPlayer:player];
+        
+//        [segue.destinationViewController initWithPlayer:player];
         
         
 //        NSLog(@"VS view controller player %@", player);

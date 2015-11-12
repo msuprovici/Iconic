@@ -900,6 +900,43 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))handler {
         
     }
     
+    if ([notificationId isEqualToString:@"Cheer"]) {
+        //        NSLog(@"TeamChat received");
+        if(application.applicationState == UIApplicationStateActive)
+        {
+            [PFPush handlePush:userInfo];
+        }
+        else
+        {
+            PFQuery *query = [PFUser query];
+            [query whereKey:@"username" equalTo:userInfo[@"username"]];
+            
+            [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                
+                if (!error) {
+                    
+                    PFUser * teammate = (PFUser *)object;
+                    
+                     NSDictionary* myTeammate = @{@"teammate": teammate};
+                    
+                    NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+                    [nc postNotificationName:@"cheerReceived" object:self userInfo:myTeammate];
+                    
+                }
+                
+            }];
+
+            
+        }
+        
+        
+        handler(UIBackgroundFetchResultNewData);
+        
+        
+        
+    }
+
+    
 //    handler(UIBackgroundFetchResultNewData);
   
         

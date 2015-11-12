@@ -705,7 +705,11 @@
         
         PFUser *user = [activity objectForKey:kActivityUserKey];
         
-        [segue.destinationViewController initWithPlayer:user];
+        UINavigationController *navController = [segue destinationViewController];
+        PlayerProfileViewController *destinationViewController = (PlayerProfileViewController *)( [navController topViewController]);
+        [destinationViewController initWithPlayer:user];
+        
+        //[segue.destinationViewController initWithPlayer:user];
         
         [Amplitude logEvent:@"Activity Feed: Selected User"];
         
@@ -731,8 +735,12 @@
     
     if ([segue.identifier isEqualToString:@"SelectedUserNameInFeed"]) {
         
+        
+        UINavigationController *navController = [segue destinationViewController];
+        PlayerProfileViewController *destinationViewController = (PlayerProfileViewController *)( [navController topViewController]);
+        [destinationViewController initWithPlayer:self.toUser];
 
-        [segue.destinationViewController initWithPlayer:self.toUser];
+//        [segue.destinationViewController initWithPlayer:self.toUser];
         
         [Amplitude logEvent:@"Activity Feed: Selected Username"];
         
