@@ -4611,7 +4611,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Vu9-WC-BuJ">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="57"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="57"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6e-8L-hdQ">
@@ -4706,7 +4706,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="teamsCell" rowHeight="65" id="2hN-Pc-iZd" customClass="TeamCell">
-                                <rect key="frame" x="0.0" y="79" width="600" height="65"/>
+                                <rect key="frame" x="0.0" y="143" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2hN-Pc-iZd" id="pw5-ww-f1l">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="64"/>
@@ -4822,10 +4822,10 @@
                                 <rect key="frame" x="0.0" y="86" width="600" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UYf-Vy-sfV" id="1Vw-qr-CC3">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="64"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWd-5c-cul">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWd-5c-cul">
                                             <rect key="frame" x="73" y="17" width="466" height="29"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
@@ -5891,31 +5891,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="XGg-Sw-VaO">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRm-B8-W0B">
-                                    <rect key="frame" x="10" y="18" width="580" height="40"/>
-                                    <animations/>
-                                    <state key="normal" image="Invite_Contacts_Button.png">
-                                        <color key="titleColor" red="0.0" green="0.1647058824" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="inviteFriendsPressed:" destination="yQf-DP-4VV" eventType="touchUpInside" id="Ejh-n6-PxP"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <animations/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="gRm-B8-W0B" firstAttribute="leading" secondItem="XGg-Sw-VaO" secondAttribute="leading" constant="10" id="I4u-H5-1cc"/>
-                                <constraint firstItem="gRm-B8-W0B" firstAttribute="top" secondItem="XGg-Sw-VaO" secondAttribute="top" constant="18" id="IJ2-II-zEw"/>
-                                <constraint firstItem="gRm-B8-W0B" firstAttribute="centerX" secondItem="XGg-Sw-VaO" secondAttribute="centerX" id="Jh5-Ug-UUv"/>
-                                <constraint firstAttribute="bottom" secondItem="gRm-B8-W0B" secondAttribute="bottom" constant="6" id="LNv-E2-Edz"/>
-                            </constraints>
-                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendCell" rowHeight="65" id="oC2-Ly-xLk" customClass="FindFriendsCell">
                                 <rect key="frame" x="0.0" y="86" width="600" height="65"/>
@@ -6014,10 +5989,13 @@
                                 <action selector="doneButtonPressed:" destination="yQf-DP-4VV" id="yGd-1d-rD6"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="upload.png" style="plain" id="Jeu-L0-Nbd">
+                            <connections>
+                                <action selector="inviteFriendsPressed:" destination="yQf-DP-4VV" id="bCd-Vx-SiX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="inviteFriends" destination="gRm-B8-W0B" id="8fM-Yp-Uyl"/>
-                    </connections>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q6d-Yn-sqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -7423,7 +7401,6 @@
         <image name="High_Five_Button.png" width="452" height="102"/>
         <image name="High_Five_Button_Selected.png" width="452" height="102"/>
         <image name="High_Five_Selected.png" width="14" height="21"/>
-        <image name="Invite_Contacts_Button.png" width="302" height="42"/>
         <image name="JoinTeamButton.png" width="452" height="102"/>
         <image name="Join_Team_Icon_White.png" width="27" height="27"/>
         <image name="Leagues_Icon.png" width="25" height="26"/>
@@ -7444,10 +7421,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="pOA-YH-Rjm"/>
         <segue reference="UaI-gb-hq2"/>
-        <segue reference="44s-yh-n6H"/>
         <segue reference="Rnz-xH-lvc"/>
+        <segue reference="gBJ-V0-gCX"/>
         <segue reference="BKk-Oi-vMX"/>
-        <segue reference="SjS-YP-2E8"/>
+        <segue reference="44s-yh-n6H"/>
         <segue reference="TGw-xZ-C7R"/>
     </inferredMetricsTieBreakers>
 </document>

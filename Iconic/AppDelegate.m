@@ -146,10 +146,10 @@
        
     //initialize Amplitude analytics
      //beta key
-//   [Amplitude initializeApiKey:@"43017a7316efee7bf680d57d7c3ab327"]; //live
+   [Amplitude initializeApiKey:@"43017a7316efee7bf680d57d7c3ab327"]; //live
     
     //testing key
-    [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"]; //dev
+//    [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"]; //dev
     
     //Flurry
     

@@ -777,53 +777,67 @@ static NSUInteger const kCellActivityNumLabelTag = 5;
     
     [Amplitude logEvent:@"Find Friends: Invite Contacts Pressed"];
     
-    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied ||
-        ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted){
-        //Check if contacts access was denied
-//        NSLog(@"Denied");
-        
-        
-        UIAlertController *alertController = [UIAlertController
-                                              alertControllerWithTitle:@"Contacts access was previously denied"
-                                              message:@"Go to iOS Settings -> Iconic -> Contacts to allow access"
-                                              preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *okAction = [UIAlertAction
-                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
-                                   style:UIAlertActionStyleDefault
-                                   handler:^(UIAlertAction *action)
-                                   {
-                                       
-                                   }];
+    
+    NSString *alertMessage = [NSString stringWithFormat:@"Check out the new Iconic app @ www.imiconic.com"];
+    
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[alertMessage]
+                                                                                         applicationActivities:nil];
+    
+    [self presentViewController:activityViewController
+                       animated:YES
+                     completion:^{
+                         //                         NSLog(@"share sheet showed.");
+                     }];
 
-        [alertController addAction:okAction];
-        [self presentViewController:alertController animated:YES completion:nil];
-        
-        
-    } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized){
-        
-//        NSLog(@"Authorized");
-        
-        //if contacts access permission was given then show contacts
-        [self inviteFriendsButtonAction:sender];
-        
-
-    } else{ //ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined
-        
-//        NSLog(@"Not determined");
-        //if contacts access permission is not determined grant access
-        ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
-            if (!granted){
-                //4
-//                NSLog(@"Just denied");
-                return;
-            }
-            //5
-//            NSLog(@"Just authorized");
-           [self inviteFriendsButtonAction:sender];
-
-        });
-    }
+    
+//    if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied ||
+//        ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted){
+//        //Check if contacts access was denied
+////        NSLog(@"Denied");
+//        
+//        
+//        UIAlertController *alertController = [UIAlertController
+//                                              alertControllerWithTitle:@"Contacts access was previously denied"
+//                                              message:@"Go to iOS Settings -> Iconic -> Contacts to allow access"
+//                                              preferredStyle:UIAlertControllerStyleAlert];
+//        
+//        UIAlertAction *okAction = [UIAlertAction
+//                                   actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+//                                   style:UIAlertActionStyleDefault
+//                                   handler:^(UIAlertAction *action)
+//                                   {
+//                                       
+//                                   }];
+//
+//        [alertController addAction:okAction];
+//        [self presentViewController:alertController animated:YES completion:nil];
+//        
+//        
+//    } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized){
+//        
+////        NSLog(@"Authorized");
+//        
+//        //if contacts access permission was given then show contacts
+//        [self inviteFriendsButtonAction:sender];
+//        
+//
+//    } else{ //ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined
+//        
+////        NSLog(@"Not determined");
+//        //if contacts access permission is not determined grant access
+//        ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
+//            if (!granted){
+//                //4
+////                NSLog(@"Just denied");
+//                return;
+//            }
+//            //5
+////            NSLog(@"Just authorized");
+//           [self inviteFriendsButtonAction:sender];
+//
+//        });
+//    }
     
 }
 
