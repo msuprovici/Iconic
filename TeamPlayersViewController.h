@@ -41,5 +41,7 @@
 -(void)initWithLeague:(PFObject *)aLeague;
 
 
+- (IBAction)inviteTeammates:(id)sender;
+
 
 @end

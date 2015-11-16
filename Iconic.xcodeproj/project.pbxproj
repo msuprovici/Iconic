@@ -204,6 +204,8 @@
 		5C8BB5C418860F9700E89ADF /* ActivityHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5C318860F9700E89ADF /* ActivityHeaderCell.m */; };
 		5C8BB5CB1886256400E89ADF /* TTTTimeIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8BB5CA1886256400E89ADF /* TTTTimeIntervalFormatter.m */; };
 		5C905C6919F5BE9700D9FC06 /* CreateLeagueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C905C6819F5BE9700D9FC06 /* CreateLeagueViewController.m */; };
+		5C9C7B381BFA59E30079B266 /* upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C7B361BFA59E30079B266 /* upload@2x.png */; };
+		5C9C7B391BFA59E30079B266 /* upload@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C9C7B371BFA59E30079B266 /* upload@3x.png */; };
 		5CA19A2018B51F6D0023C940 /* MZTimerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA19A1F18B51F6D0023C940 /* MZTimerLabel.m */; };
 		5CA19A3418B83E290023C940 /* PNBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA19A2318B83E290023C940 /* PNBar.m */; };
 		5CA19A3518B83E290023C940 /* PNBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA19A2518B83E290023C940 /* PNBarChart.m */; };
@@ -699,6 +701,8 @@
 		5C8BB5CA1886256400E89ADF /* TTTTimeIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTimeIntervalFormatter.m; sourceTree = "<group>"; };
 		5C905C6719F5BE9700D9FC06 /* CreateLeagueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateLeagueViewController.h; sourceTree = "<group>"; };
 		5C905C6819F5BE9700D9FC06 /* CreateLeagueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateLeagueViewController.m; sourceTree = "<group>"; };
+		5C9C7B361BFA59E30079B266 /* upload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upload@2x.png"; sourceTree = "<group>"; };
+		5C9C7B371BFA59E30079B266 /* upload@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upload@3x.png"; sourceTree = "<group>"; };
 		5CA19A1E18B51F6D0023C940 /* MZTimerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
 		5CA19A1F18B51F6D0023C940 /* MZTimerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
 		5CA19A2218B83E290023C940 /* PNBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNBar.h; sourceTree = "<group>"; };
@@ -1335,6 +1339,8 @@
 				5C3BBF981AC9DA1900B179B0 /* Chat_Icon_White@3x.png */,
 				5C13105C1B83EEC7004E096B /* Settings_White@2x.png */,
 				5C13105D1B83EEC7004E096B /* Settings_White@3x.png */,
+				5C9C7B361BFA59E30079B266 /* upload@2x.png */,
+				5C9C7B371BFA59E30079B266 /* upload@3x.png */,
 			);
 			name = ToolBar;
 			sourceTree = "<group>";
@@ -2444,6 +2450,7 @@
 				5CDB87511ACB0564009FE9D2 /* LogIn_Facebook_Friends_button@2x.png in Resources */,
 				5CDC2E331B89167E0030F711 /* HelpshiftLocalizable.strings in Resources */,
 				5C42F8A31AC21EA500B4F7BB /* LogInButton@2x.png in Resources */,
+				5C9C7B381BFA59E30079B266 /* upload@2x.png in Resources */,
 				5CDB87641ACB1360009FE9D2 /* Add_League_Button@3x.png in Resources */,
 				5C418F3C1ACB5CDA00DC30FF /* team_place_holder@3x.png in Resources */,
 				5CE778341A0D7D0D008B3585 /* Icon-76@2x.png in Resources */,
@@ -2523,6 +2530,7 @@
 				5C3BBF861AC9D0F400B179B0 /* Join_Team_Icon_White@3x.png in Resources */,
 				5C42F8431AC1FEB800B4F7BB /* JoinButton@2x.png in Resources */,
 				5C7484551AD9B64C001917CC /* IconicOnboard9slice@3x.png in Resources */,
+				5C9C7B391BFA59E30079B266 /* upload@3x.png in Resources */,
 				5CDB87601ACB1110009FE9D2 /* Share_Button@3x.png in Resources */,
 				5C418F4A1ACCC4BA00DC30FF /* user_place_holder_large@2x.png in Resources */,
 				5CDC2E3A1B89167E0030F711 /* HS-delete-button.png in Resources */,

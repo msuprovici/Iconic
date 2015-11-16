@@ -946,6 +946,20 @@
 }
 
 
+#pragma mark Share
 
-
+- (IBAction)inviteTeammates:(id)sender {
+    
+    NSString *alertMessage = [NSString stringWithFormat:@"Get the Iconic app @ www.imiconic.com & join my new team: %@",[self.team objectForKey:kTeams]];
+    
+    
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[alertMessage]
+                                                                                         applicationActivities:nil];
+    
+    [self presentViewController:activityViewController
+                       animated:YES
+                     completion:^{
+//                         NSLog(@"share sheet showed.");
+                     }];
+}
 @end
