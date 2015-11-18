@@ -247,64 +247,8 @@
 		5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF91889CCB60047BC47 /* ActivityDeatailsHeaderCell.m */; };
 		5CB75DFD1889F65C0047BC47 /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DFC1889F65C0047BC47 /* ProfileImageView.m */; };
 		5CB75E04188DAE850047BC47 /* scoreboardicon2-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB75E02188DAE850047BC47 /* scoreboardicon2-01.png */; };
-		5CC772691AFD6C3A00EEEB33 /* LayerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC772661AFD6C3A00EEEB33 /* LayerKit.framework */; };
 		5CC7726A1AFD6C3A00EEEB33 /* layer-client-messaging-schema.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772681AFD6C3A00EEEB33 /* layer-client-messaging-schema.bundle */; };
-		5CC7726D1AFD784C00EEEB33 /* Atlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7726C1AFD784C00EEEB33 /* Atlas.m */; };
-		5CC772811AFD786900EEEB33 /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC7726E1AFD786900EEEB33 /* block.png */; };
-		5CC772821AFD786900EEEB33 /* block@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC7726F1AFD786900EEEB33 /* block@2x.png */; };
-		5CC772831AFD786900EEEB33 /* block@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772701AFD786900EEEB33 /* block@3x.png */; };
-		5CC772841AFD786900EEEB33 /* camera_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772711AFD786900EEEB33 /* camera_dark.png */; };
-		5CC772851AFD786900EEEB33 /* camera_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772721AFD786900EEEB33 /* camera_dark@2x.png */; };
-		5CC772861AFD786900EEEB33 /* camera_dark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772731AFD786900EEEB33 /* camera_dark@3x.png */; };
-		5CC772871AFD786900EEEB33 /* chevron.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772741AFD786900EEEB33 /* chevron.png */; };
-		5CC772881AFD786900EEEB33 /* chevron@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772751AFD786900EEEB33 /* chevron@2x.png */; };
-		5CC772891AFD786900EEEB33 /* chevron@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772761AFD786900EEEB33 /* chevron@3x.png */; };
-		5CC7728A1AFD786900EEEB33 /* layerbell.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772771AFD786900EEEB33 /* layerbell.caf */; };
-		5CC7728B1AFD786900EEEB33 /* layerLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772781AFD786900EEEB33 /* layerLogo.png */; };
-		5CC7728C1AFD786900EEEB33 /* layerLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772791AFD786900EEEB33 /* layerLogo@2x.png */; };
-		5CC7728D1AFD786900EEEB33 /* layerLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC7727A1AFD786900EEEB33 /* layerLogo@3x.png */; };
-		5CC7728E1AFD786900EEEB33 /* location_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC7727B1AFD786900EEEB33 /* location_dark.png */; };
-		5CC7728F1AFD786900EEEB33 /* location_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC7727C1AFD786900EEEB33 /* location_dark@2x.png */; };
-		5CC772901AFD786900EEEB33 /* location_dark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC7727D1AFD786900EEEB33 /* location_dark@3x.png */; };
-		5CC772911AFD786900EEEB33 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC7727E1AFD786900EEEB33 /* plus.png */; };
-		5CC772921AFD786900EEEB33 /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC7727F1AFD786900EEEB33 /* plus@2x.png */; };
-		5CC772931AFD786900EEEB33 /* plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772801AFD786900EEEB33 /* plus@3x.png */; };
 		5CC772961AFD78C600EEEB33 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC772951AFD78C600EEEB33 /* AssetsLibrary.framework */; };
-		5CC772E71AFD796700EEEB33 /* ATLAddressBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772991AFD796700EEEB33 /* ATLAddressBarViewController.m */; };
-		5CC772E81AFD796700EEEB33 /* ATLBaseConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7729B1AFD796700EEEB33 /* ATLBaseConversationViewController.m */; };
-		5CC772E91AFD796700EEEB33 /* ATLConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7729D1AFD796700EEEB33 /* ATLConversationListViewController.m */; };
-		5CC772EA1AFD796700EEEB33 /* ATLConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7729F1AFD796700EEEB33 /* ATLConversationViewController.m */; };
-		5CC772EB1AFD796700EEEB33 /* ATLParticipantTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772A11AFD796700EEEB33 /* ATLParticipantTableViewController.m */; };
-		5CC772EC1AFD796700EEEB33 /* ATLTypingIndicatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772A31AFD796700EEEB33 /* ATLTypingIndicatorViewController.m */; };
-		5CC772ED1AFD796700EEEB33 /* ATLConversationDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772A61AFD796700EEEB33 /* ATLConversationDataSource.m */; };
-		5CC772EE1AFD796700EEEB33 /* ATLDataSourceChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772A81AFD796700EEEB33 /* ATLDataSourceChange.m */; };
-		5CC772EF1AFD796700EEEB33 /* ATLMediaAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772AA1AFD796700EEEB33 /* ATLMediaAttachment.m */; };
-		5CC772F01AFD796700EEEB33 /* ATLParticipantTableDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772AC1AFD796700EEEB33 /* ATLParticipantTableDataSet.m */; };
-		5CC772F11AFD796700EEEB33 /* ATLConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772B51AFD796700EEEB33 /* ATLConstants.m */; };
-		5CC772F21AFD796700EEEB33 /* ATLErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772B71AFD796700EEEB33 /* ATLErrors.m */; };
-		5CC772F31AFD796700EEEB33 /* ATLLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772B91AFD796700EEEB33 /* ATLLocationManager.m */; };
-		5CC772F41AFD796700EEEB33 /* ATLMediaInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772BB1AFD796700EEEB33 /* ATLMediaInputStream.m */; };
-		5CC772F51AFD796700EEEB33 /* ATLMessagingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772BD1AFD796700EEEB33 /* ATLMessagingUtilities.m */; };
-		5CC772F61AFD796700EEEB33 /* ATLUIImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772BF1AFD796700EEEB33 /* ATLUIImageHelper.m */; };
-		5CC772F71AFD796700EEEB33 /* ATLAddressBarContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772C21AFD796700EEEB33 /* ATLAddressBarContainerView.m */; };
-		5CC772F81AFD796700EEEB33 /* ATLAddressBarTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772C41AFD796700EEEB33 /* ATLAddressBarTextView.m */; };
-		5CC772F91AFD796700EEEB33 /* ATLAddressBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772C61AFD796700EEEB33 /* ATLAddressBarView.m */; };
-		5CC772FA1AFD796700EEEB33 /* ATLAvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772C81AFD796700EEEB33 /* ATLAvatarImageView.m */; };
-		5CC772FB1AFD796700EEEB33 /* ATLConversationCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772CA1AFD796700EEEB33 /* ATLConversationCollectionView.m */; };
-		5CC772FC1AFD796700EEEB33 /* ATLConversationCollectionViewFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772CC1AFD796700EEEB33 /* ATLConversationCollectionViewFooter.m */; };
-		5CC772FD1AFD796700EEEB33 /* ATLConversationCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772CE1AFD796700EEEB33 /* ATLConversationCollectionViewHeader.m */; };
-		5CC772FE1AFD796700EEEB33 /* ATLConversationCollectionViewMoreMessagesHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772D01AFD796700EEEB33 /* ATLConversationCollectionViewMoreMessagesHeader.m */; };
-		5CC772FF1AFD796700EEEB33 /* ATLConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772D21AFD796700EEEB33 /* ATLConversationTableViewCell.m */; };
-		5CC773001AFD796700EEEB33 /* ATLConversationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772D41AFD796700EEEB33 /* ATLConversationView.m */; };
-		5CC773011AFD796700EEEB33 /* ATLIncomingMessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772D61AFD796700EEEB33 /* ATLIncomingMessageCollectionViewCell.m */; };
-		5CC773021AFD796700EEEB33 /* ATLMessageBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772D81AFD796700EEEB33 /* ATLMessageBubbleView.m */; };
-		5CC773031AFD796700EEEB33 /* ATLMessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772DA1AFD796700EEEB33 /* ATLMessageCollectionViewCell.m */; };
-		5CC773041AFD796700EEEB33 /* ATLMessageComposeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772DC1AFD796700EEEB33 /* ATLMessageComposeTextView.m */; };
-		5CC773051AFD796700EEEB33 /* ATLMessageInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772DE1AFD796700EEEB33 /* ATLMessageInputToolbar.m */; };
-		5CC773061AFD796700EEEB33 /* ATLOutgoingMessageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772E01AFD796700EEEB33 /* ATLOutgoingMessageCollectionViewCell.m */; };
-		5CC773071AFD796700EEEB33 /* ATLParticipantSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772E21AFD796700EEEB33 /* ATLParticipantSectionHeaderView.m */; };
-		5CC773081AFD796700EEEB33 /* ATLParticipantTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772E41AFD796700EEEB33 /* ATLParticipantTableViewCell.m */; };
-		5CC773091AFD796700EEEB33 /* ATLProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC772E61AFD796700EEEB33 /* ATLProgressView.m */; };
 		5CC773191B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC773171B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png */; };
 		5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7FAAF185810A600A360A1 /* TeamatesCell.m */; };
 		5CC9777B1BC42B7100BACA30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CC9777A1BC42B7000BACA30 /* LaunchScreen.storyboard */; };
@@ -397,14 +341,6 @@
 		5CF74BF51B85371600EC67C4 /* CreateUsername@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF74BF31B85371600EC67C4 /* CreateUsername@3x.png */; };
 		5CF74BFC1B853C5600EC67C4 /* SubmitButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF74BFA1B853C5600EC67C4 /* SubmitButton@2x.png */; };
 		5CF74BFD1B853C5600EC67C4 /* SubmitButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CF74BFB1B853C5600EC67C4 /* SubmitButton@3x.png */; };
-		5CF7B6BE1B0B8DC00006C318 /* PFUser+ATLParticipant.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6BD1B0B8DC00006C318 /* PFUser+ATLParticipant.m */; };
-		5CF7B6C11B0B92210006C318 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C01B0B92210006C318 /* UserManager.m */; };
-		5CF7B6C41B0B93070006C318 /* LayerConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C31B0B93070006C318 /* LayerConversationListViewController.m */; };
-		5CF7B6C71B0B93670006C318 /* LayerParticipantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C61B0B93670006C318 /* LayerParticipantViewController.m */; };
-		5CF7B6CA1B0B93CB0006C318 /* LayerConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6C91B0B93CB0006C318 /* LayerConversationViewController.m */; };
-		5CF7B6D51B0BEA360006C318 /* Chat+ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */; };
-		5CF7B6DB1B0E7EDA0006C318 /* NSLayerClientObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */; };
-		5CF7B6DE1B1632160006C318 /* ATLMLayerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF7B6DC1B1632150006C318 /* ATLMLayerClient.m */; };
 		5CF8D7A31B7D65E00034D32E /* LogOutSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF8D7A21B7D65E00034D32E /* LogOutSegue.swift */; };
 		5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */; };
 		5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFB1EB91834381C0026AEB4 /* ScheduleGenerator.m */; };
@@ -771,103 +707,7 @@
 		5CB75E02188DAE850047BC47 /* scoreboardicon2-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scoreboardicon2-01.png"; sourceTree = "<group>"; };
 		5CC772661AFD6C3A00EEEB33 /* LayerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LayerKit.framework; sourceTree = "<group>"; };
 		5CC772681AFD6C3A00EEEB33 /* layer-client-messaging-schema.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "layer-client-messaging-schema.bundle"; sourceTree = "<group>"; };
-		5CC7726B1AFD784C00EEEB33 /* Atlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Atlas.h; sourceTree = "<group>"; };
-		5CC7726C1AFD784C00EEEB33 /* Atlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Atlas.m; sourceTree = "<group>"; };
-		5CC7726E1AFD786900EEEB33 /* block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block.png; sourceTree = "<group>"; };
-		5CC7726F1AFD786900EEEB33 /* block@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "block@2x.png"; sourceTree = "<group>"; };
-		5CC772701AFD786900EEEB33 /* block@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "block@3x.png"; sourceTree = "<group>"; };
-		5CC772711AFD786900EEEB33 /* camera_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_dark.png; sourceTree = "<group>"; };
-		5CC772721AFD786900EEEB33 /* camera_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_dark@2x.png"; sourceTree = "<group>"; };
-		5CC772731AFD786900EEEB33 /* camera_dark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_dark@3x.png"; sourceTree = "<group>"; };
-		5CC772741AFD786900EEEB33 /* chevron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron.png; sourceTree = "<group>"; };
-		5CC772751AFD786900EEEB33 /* chevron@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chevron@2x.png"; sourceTree = "<group>"; };
-		5CC772761AFD786900EEEB33 /* chevron@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chevron@3x.png"; sourceTree = "<group>"; };
-		5CC772771AFD786900EEEB33 /* layerbell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = layerbell.caf; sourceTree = "<group>"; };
-		5CC772781AFD786900EEEB33 /* layerLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = layerLogo.png; sourceTree = "<group>"; };
-		5CC772791AFD786900EEEB33 /* layerLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "layerLogo@2x.png"; sourceTree = "<group>"; };
-		5CC7727A1AFD786900EEEB33 /* layerLogo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "layerLogo@3x.png"; sourceTree = "<group>"; };
-		5CC7727B1AFD786900EEEB33 /* location_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_dark.png; sourceTree = "<group>"; };
-		5CC7727C1AFD786900EEEB33 /* location_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_dark@2x.png"; sourceTree = "<group>"; };
-		5CC7727D1AFD786900EEEB33 /* location_dark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_dark@3x.png"; sourceTree = "<group>"; };
-		5CC7727E1AFD786900EEEB33 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
-		5CC7727F1AFD786900EEEB33 /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
-		5CC772801AFD786900EEEB33 /* plus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@3x.png"; sourceTree = "<group>"; };
 		5CC772951AFD78C600EEEB33 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		5CC772981AFD796700EEEB33 /* ATLAddressBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLAddressBarViewController.h; sourceTree = "<group>"; };
-		5CC772991AFD796700EEEB33 /* ATLAddressBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLAddressBarViewController.m; sourceTree = "<group>"; };
-		5CC7729A1AFD796700EEEB33 /* ATLBaseConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLBaseConversationViewController.h; sourceTree = "<group>"; };
-		5CC7729B1AFD796700EEEB33 /* ATLBaseConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLBaseConversationViewController.m; sourceTree = "<group>"; };
-		5CC7729C1AFD796700EEEB33 /* ATLConversationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLConversationListViewController.h; sourceTree = "<group>"; };
-		5CC7729D1AFD796700EEEB33 /* ATLConversationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLConversationListViewController.m; sourceTree = "<group>"; };
-		5CC7729E1AFD796700EEEB33 /* ATLConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLConversationViewController.h; sourceTree = "<group>"; };
-		5CC7729F1AFD796700EEEB33 /* ATLConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLConversationViewController.m; sourceTree = "<group>"; };
-		5CC772A01AFD796700EEEB33 /* ATLParticipantTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLParticipantTableViewController.h; sourceTree = "<group>"; };
-		5CC772A11AFD796700EEEB33 /* ATLParticipantTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLParticipantTableViewController.m; sourceTree = "<group>"; };
-		5CC772A21AFD796700EEEB33 /* ATLTypingIndicatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLTypingIndicatorViewController.h; sourceTree = "<group>"; };
-		5CC772A31AFD796700EEEB33 /* ATLTypingIndicatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLTypingIndicatorViewController.m; sourceTree = "<group>"; };
-		5CC772A51AFD796700EEEB33 /* ATLConversationDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLConversationDataSource.h; sourceTree = "<group>"; };
-		5CC772A61AFD796700EEEB33 /* ATLConversationDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLConversationDataSource.m; sourceTree = "<group>"; };
-		5CC772A71AFD796700EEEB33 /* ATLDataSourceChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLDataSourceChange.h; sourceTree = "<group>"; };
-		5CC772A81AFD796700EEEB33 /* ATLDataSourceChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLDataSourceChange.m; sourceTree = "<group>"; };
-		5CC772A91AFD796700EEEB33 /* ATLMediaAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLMediaAttachment.h; sourceTree = "<group>"; };
-		5CC772AA1AFD796700EEEB33 /* ATLMediaAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLMediaAttachment.m; sourceTree = "<group>"; };
-		5CC772AB1AFD796700EEEB33 /* ATLParticipantTableDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLParticipantTableDataSet.h; sourceTree = "<group>"; };
-		5CC772AC1AFD796700EEEB33 /* ATLParticipantTableDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLParticipantTableDataSet.m; sourceTree = "<group>"; };
-		5CC772AE1AFD796700EEEB33 /* ATLAvatarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLAvatarItem.h; sourceTree = "<group>"; };
-		5CC772AF1AFD796700EEEB33 /* ATLConversationPresenting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLConversationPresenting.h; sourceTree = "<group>"; };
-		5CC772B01AFD796700EEEB33 /* ATLMessagePresenting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLMessagePresenting.h; sourceTree = "<group>"; };
-		5CC772B11AFD796700EEEB33 /* ATLParticipant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLParticipant.h; sourceTree = "<group>"; };
-		5CC772B21AFD796700EEEB33 /* ATLParticipantPresenting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLParticipantPresenting.h; sourceTree = "<group>"; };
-		5CC772B41AFD796700EEEB33 /* ATLConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLConstants.h; sourceTree = "<group>"; };
-		5CC772B51AFD796700EEEB33 /* ATLConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLConstants.m; sourceTree = "<group>"; };
-		5CC772B61AFD796700EEEB33 /* ATLErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLErrors.h; sourceTree = "<group>"; };
-		5CC772B71AFD796700EEEB33 /* ATLErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLErrors.m; sourceTree = "<group>"; };
-		5CC772B81AFD796700EEEB33 /* ATLLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLLocationManager.h; sourceTree = "<group>"; };
-		5CC772B91AFD796700EEEB33 /* ATLLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLLocationManager.m; sourceTree = "<group>"; };
-		5CC772BA1AFD796700EEEB33 /* ATLMediaInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLMediaInputStream.h; sourceTree = "<group>"; };
-		5CC772BB1AFD796700EEEB33 /* ATLMediaInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLMediaInputStream.m; sourceTree = "<group>"; };
-		5CC772BC1AFD796700EEEB33 /* ATLMessagingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLMessagingUtilities.h; sourceTree = "<group>"; };
-		5CC772BD1AFD796700EEEB33 /* ATLMessagingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLMessagingUtilities.m; sourceTree = "<group>"; };
-		5CC772BE1AFD796700EEEB33 /* ATLUIImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLUIImageHelper.h; sourceTree = "<group>"; };
-		5CC772BF1AFD796700EEEB33 /* ATLUIImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLUIImageHelper.m; sourceTree = "<group>"; };
-		5CC772C11AFD796700EEEB33 /* ATLAddressBarContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLAddressBarContainerView.h; sourceTree = "<group>"; };
-		5CC772C21AFD796700EEEB33 /* ATLAddressBarContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLAddressBarContainerView.m; sourceTree = "<group>"; };
-		5CC772C31AFD796700EEEB33 /* ATLAddressBarTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLAddressBarTextView.h; sourceTree = "<group>"; };
-		5CC772C41AFD796700EEEB33 /* ATLAddressBarTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLAddressBarTextView.m; sourceTree = "<group>"; };
-		5CC772C51AFD796700EEEB33 /* ATLAddressBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLAddressBarView.h; sourceTree = "<group>"; };
-		5CC772C61AFD796700EEEB33 /* ATLAddressBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLAddressBarView.m; sourceTree = "<group>"; };
-		5CC772C71AFD796700EEEB33 /* ATLAvatarImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLAvatarImageView.h; sourceTree = "<group>"; };
-		5CC772C81AFD796700EEEB33 /* ATLAvatarImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLAvatarImageView.m; sourceTree = "<group>"; };
-		5CC772C91AFD796700EEEB33 /* ATLConversationCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLConversationCollectionView.h; sourceTree = "<group>"; };
-		5CC772CA1AFD796700EEEB33 /* ATLConversationCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLConversationCollectionView.m; sourceTree = "<group>"; };
-		5CC772CB1AFD796700EEEB33 /* ATLConversationCollectionViewFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLConversationCollectionViewFooter.h; sourceTree = "<group>"; };
-		5CC772CC1AFD796700EEEB33 /* ATLConversationCollectionViewFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLConversationCollectionViewFooter.m; sourceTree = "<group>"; };
-		5CC772CD1AFD796700EEEB33 /* ATLConversationCollectionViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLConversationCollectionViewHeader.h; sourceTree = "<group>"; };
-		5CC772CE1AFD796700EEEB33 /* ATLConversationCollectionViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLConversationCollectionViewHeader.m; sourceTree = "<group>"; };
-		5CC772CF1AFD796700EEEB33 /* ATLConversationCollectionViewMoreMessagesHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLConversationCollectionViewMoreMessagesHeader.h; sourceTree = "<group>"; };
-		5CC772D01AFD796700EEEB33 /* ATLConversationCollectionViewMoreMessagesHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLConversationCollectionViewMoreMessagesHeader.m; sourceTree = "<group>"; };
-		5CC772D11AFD796700EEEB33 /* ATLConversationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLConversationTableViewCell.h; sourceTree = "<group>"; };
-		5CC772D21AFD796700EEEB33 /* ATLConversationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLConversationTableViewCell.m; sourceTree = "<group>"; };
-		5CC772D31AFD796700EEEB33 /* ATLConversationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLConversationView.h; sourceTree = "<group>"; };
-		5CC772D41AFD796700EEEB33 /* ATLConversationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLConversationView.m; sourceTree = "<group>"; };
-		5CC772D51AFD796700EEEB33 /* ATLIncomingMessageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLIncomingMessageCollectionViewCell.h; sourceTree = "<group>"; };
-		5CC772D61AFD796700EEEB33 /* ATLIncomingMessageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLIncomingMessageCollectionViewCell.m; sourceTree = "<group>"; };
-		5CC772D71AFD796700EEEB33 /* ATLMessageBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLMessageBubbleView.h; sourceTree = "<group>"; };
-		5CC772D81AFD796700EEEB33 /* ATLMessageBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLMessageBubbleView.m; sourceTree = "<group>"; };
-		5CC772D91AFD796700EEEB33 /* ATLMessageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLMessageCollectionViewCell.h; sourceTree = "<group>"; };
-		5CC772DA1AFD796700EEEB33 /* ATLMessageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLMessageCollectionViewCell.m; sourceTree = "<group>"; };
-		5CC772DB1AFD796700EEEB33 /* ATLMessageComposeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLMessageComposeTextView.h; sourceTree = "<group>"; };
-		5CC772DC1AFD796700EEEB33 /* ATLMessageComposeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLMessageComposeTextView.m; sourceTree = "<group>"; };
-		5CC772DD1AFD796700EEEB33 /* ATLMessageInputToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLMessageInputToolbar.h; sourceTree = "<group>"; };
-		5CC772DE1AFD796700EEEB33 /* ATLMessageInputToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLMessageInputToolbar.m; sourceTree = "<group>"; };
-		5CC772DF1AFD796700EEEB33 /* ATLOutgoingMessageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLOutgoingMessageCollectionViewCell.h; sourceTree = "<group>"; };
-		5CC772E01AFD796700EEEB33 /* ATLOutgoingMessageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLOutgoingMessageCollectionViewCell.m; sourceTree = "<group>"; };
-		5CC772E11AFD796700EEEB33 /* ATLParticipantSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLParticipantSectionHeaderView.h; sourceTree = "<group>"; };
-		5CC772E21AFD796700EEEB33 /* ATLParticipantSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLParticipantSectionHeaderView.m; sourceTree = "<group>"; };
-		5CC772E31AFD796700EEEB33 /* ATLParticipantTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLParticipantTableViewCell.h; sourceTree = "<group>"; };
-		5CC772E41AFD796700EEEB33 /* ATLParticipantTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLParticipantTableViewCell.m; sourceTree = "<group>"; };
-		5CC772E51AFD796700EEEB33 /* ATLProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLProgressView.h; sourceTree = "<group>"; };
-		5CC772E61AFD796700EEEB33 /* ATLProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLProgressView.m; sourceTree = "<group>"; };
 		5CC773171B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconicOnboard1_Slice@3x.png"; sourceTree = "<group>"; };
 		5CC7FAAE185810A500A360A1 /* TeamatesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamatesCell.h; sourceTree = "<group>"; };
 		5CC7FAAF185810A600A360A1 /* TeamatesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamatesCell.m; sourceTree = "<group>"; };
@@ -994,22 +834,6 @@
 		5CF74BF31B85371600EC67C4 /* CreateUsername@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CreateUsername@3x.png"; sourceTree = "<group>"; };
 		5CF74BFA1B853C5600EC67C4 /* SubmitButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SubmitButton@2x.png"; sourceTree = "<group>"; };
 		5CF74BFB1B853C5600EC67C4 /* SubmitButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SubmitButton@3x.png"; sourceTree = "<group>"; };
-		5CF7B6BC1B0B8DC00006C318 /* PFUser+ATLParticipant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PFUser+ATLParticipant.h"; path = "../PFUser+ATLParticipant.h"; sourceTree = "<group>"; };
-		5CF7B6BD1B0B8DC00006C318 /* PFUser+ATLParticipant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PFUser+ATLParticipant.m"; path = "../PFUser+ATLParticipant.m"; sourceTree = "<group>"; };
-		5CF7B6BF1B0B92210006C318 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
-		5CF7B6C01B0B92210006C318 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
-		5CF7B6C21B0B93070006C318 /* LayerConversationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerConversationListViewController.h; sourceTree = "<group>"; };
-		5CF7B6C31B0B93070006C318 /* LayerConversationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerConversationListViewController.m; sourceTree = "<group>"; };
-		5CF7B6C51B0B93670006C318 /* LayerParticipantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerParticipantViewController.h; sourceTree = "<group>"; };
-		5CF7B6C61B0B93670006C318 /* LayerParticipantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerParticipantViewController.m; sourceTree = "<group>"; };
-		5CF7B6C81B0B93CB0006C318 /* LayerConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerConversationViewController.h; sourceTree = "<group>"; };
-		5CF7B6C91B0B93CB0006C318 /* LayerConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerConversationViewController.m; sourceTree = "<group>"; };
-		5CF7B6D31B0BEA360006C318 /* Chat+ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Chat+ActivityViewController.h"; sourceTree = "<group>"; };
-		5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Chat+ActivityViewController.m"; sourceTree = "<group>"; };
-		5CF7B6D91B0E7ED90006C318 /* NSLayerClientObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSLayerClientObject.h; path = ../NSLayerClientObject.h; sourceTree = "<group>"; };
-		5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSLayerClientObject.m; path = ../NSLayerClientObject.m; sourceTree = "<group>"; };
-		5CF7B6DC1B1632150006C318 /* ATLMLayerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLMLayerClient.m; sourceTree = "<group>"; };
-		5CF7B6DD1B1632160006C318 /* ATLMLayerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLMLayerClient.h; sourceTree = "<group>"; };
 		5CF8D7A21B7D65E00034D32E /* LogOutSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogOutSegue.swift; sourceTree = "<group>"; };
 		5CFB1EB51834355C0026AEB4 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		5CFB1EB61834355C0026AEB4 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
@@ -1067,7 +891,6 @@
 				5CD169C51BBB924E00D3EFBC /* ParseTwitterUtils.framework in Frameworks */,
 				5C78DA641899979800CBA29B /* Accounts.framework in Frameworks */,
 				5C78DA5E1899971200CBA29B /* MessageUI.framework in Frameworks */,
-				5CC772691AFD6C3A00EEEB33 /* LayerKit.framework in Frameworks */,
 				5C78DA5C189996F700CBA29B /* Social.framework in Frameworks */,
 				5C78DA5A189996E000CBA29B /* AddressBook.framework in Frameworks */,
 				5CD169C21BBB924E00D3EFBC /* Parse.framework in Frameworks */,
@@ -1453,7 +1276,6 @@
 			isa = PBXGroup;
 			children = (
 				5CDC2E551B89168F0030F711 /* Helpshift */,
-				5CC772941AFD787800EEEB33 /* Atlas */,
 				5C4AB64E1A1E94EE007B8BE8 /* heap-ios-latest */,
 				5C4AB64A1A1E8F25007B8BE8 /* Intercom */,
 				5CA6BB5319CA431C00E9946E /* BBBadgeBarButtonItem */,
@@ -1872,7 +1694,6 @@
 		5CB75DFF188A22C70047BC47 /* Not in use */ = {
 			isa = PBXGroup;
 			children = (
-				5CF7B6CB1B0B99720006C318 /* Layer_Chat */,
 				5C48B8941880CFAA00A09A1C /* SimpleHomeViewController.h */,
 				5C48B8951880CFAA00A09A1C /* SimpleHomeViewController.m */,
 				5C2EA53A1851516700B21C52 /* MyStatsViewController.h */,
@@ -1939,151 +1760,6 @@
 				5CC772681AFD6C3A00EEEB33 /* layer-client-messaging-schema.bundle */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		5CC772941AFD787800EEEB33 /* Atlas */ = {
-			isa = PBXGroup;
-			children = (
-				5CF7B6DC1B1632150006C318 /* ATLMLayerClient.m */,
-				5CF7B6DD1B1632160006C318 /* ATLMLayerClient.h */,
-				5CC7726B1AFD784C00EEEB33 /* Atlas.h */,
-				5CC7726C1AFD784C00EEEB33 /* Atlas.m */,
-				5CC772971AFD796700EEEB33 /* Controllers */,
-				5CC772A41AFD796700EEEB33 /* Models */,
-				5CC772AD1AFD796700EEEB33 /* Protocols */,
-				5CC772B31AFD796700EEEB33 /* Utilities */,
-				5CC772C01AFD796700EEEB33 /* Views */,
-				5CC7726E1AFD786900EEEB33 /* block.png */,
-				5CC7726F1AFD786900EEEB33 /* block@2x.png */,
-				5CC772701AFD786900EEEB33 /* block@3x.png */,
-				5CC772711AFD786900EEEB33 /* camera_dark.png */,
-				5CC772721AFD786900EEEB33 /* camera_dark@2x.png */,
-				5CC772731AFD786900EEEB33 /* camera_dark@3x.png */,
-				5CC772741AFD786900EEEB33 /* chevron.png */,
-				5CC772751AFD786900EEEB33 /* chevron@2x.png */,
-				5CC772761AFD786900EEEB33 /* chevron@3x.png */,
-				5CC772771AFD786900EEEB33 /* layerbell.caf */,
-				5CC772781AFD786900EEEB33 /* layerLogo.png */,
-				5CC772791AFD786900EEEB33 /* layerLogo@2x.png */,
-				5CC7727A1AFD786900EEEB33 /* layerLogo@3x.png */,
-				5CC7727B1AFD786900EEEB33 /* location_dark.png */,
-				5CC7727C1AFD786900EEEB33 /* location_dark@2x.png */,
-				5CC7727D1AFD786900EEEB33 /* location_dark@3x.png */,
-				5CC7727E1AFD786900EEEB33 /* plus.png */,
-				5CC7727F1AFD786900EEEB33 /* plus@2x.png */,
-				5CC772801AFD786900EEEB33 /* plus@3x.png */,
-			);
-			name = Atlas;
-			sourceTree = "<group>";
-		};
-		5CC772971AFD796700EEEB33 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				5CC772981AFD796700EEEB33 /* ATLAddressBarViewController.h */,
-				5CC772991AFD796700EEEB33 /* ATLAddressBarViewController.m */,
-				5CC7729A1AFD796700EEEB33 /* ATLBaseConversationViewController.h */,
-				5CC7729B1AFD796700EEEB33 /* ATLBaseConversationViewController.m */,
-				5CC7729C1AFD796700EEEB33 /* ATLConversationListViewController.h */,
-				5CC7729D1AFD796700EEEB33 /* ATLConversationListViewController.m */,
-				5CC7729E1AFD796700EEEB33 /* ATLConversationViewController.h */,
-				5CC7729F1AFD796700EEEB33 /* ATLConversationViewController.m */,
-				5CC772A01AFD796700EEEB33 /* ATLParticipantTableViewController.h */,
-				5CC772A11AFD796700EEEB33 /* ATLParticipantTableViewController.m */,
-				5CC772A21AFD796700EEEB33 /* ATLTypingIndicatorViewController.h */,
-				5CC772A31AFD796700EEEB33 /* ATLTypingIndicatorViewController.m */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		5CC772A41AFD796700EEEB33 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				5CC772A51AFD796700EEEB33 /* ATLConversationDataSource.h */,
-				5CC772A61AFD796700EEEB33 /* ATLConversationDataSource.m */,
-				5CC772A71AFD796700EEEB33 /* ATLDataSourceChange.h */,
-				5CC772A81AFD796700EEEB33 /* ATLDataSourceChange.m */,
-				5CC772A91AFD796700EEEB33 /* ATLMediaAttachment.h */,
-				5CC772AA1AFD796700EEEB33 /* ATLMediaAttachment.m */,
-				5CC772AB1AFD796700EEEB33 /* ATLParticipantTableDataSet.h */,
-				5CC772AC1AFD796700EEEB33 /* ATLParticipantTableDataSet.m */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		5CC772AD1AFD796700EEEB33 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				5CC772AE1AFD796700EEEB33 /* ATLAvatarItem.h */,
-				5CC772AF1AFD796700EEEB33 /* ATLConversationPresenting.h */,
-				5CC772B01AFD796700EEEB33 /* ATLMessagePresenting.h */,
-				5CC772B11AFD796700EEEB33 /* ATLParticipant.h */,
-				5CC772B21AFD796700EEEB33 /* ATLParticipantPresenting.h */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		5CC772B31AFD796700EEEB33 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				5CC772B41AFD796700EEEB33 /* ATLConstants.h */,
-				5CC772B51AFD796700EEEB33 /* ATLConstants.m */,
-				5CC772B61AFD796700EEEB33 /* ATLErrors.h */,
-				5CC772B71AFD796700EEEB33 /* ATLErrors.m */,
-				5CC772B81AFD796700EEEB33 /* ATLLocationManager.h */,
-				5CC772B91AFD796700EEEB33 /* ATLLocationManager.m */,
-				5CC772BA1AFD796700EEEB33 /* ATLMediaInputStream.h */,
-				5CC772BB1AFD796700EEEB33 /* ATLMediaInputStream.m */,
-				5CC772BC1AFD796700EEEB33 /* ATLMessagingUtilities.h */,
-				5CC772BD1AFD796700EEEB33 /* ATLMessagingUtilities.m */,
-				5CC772BE1AFD796700EEEB33 /* ATLUIImageHelper.h */,
-				5CC772BF1AFD796700EEEB33 /* ATLUIImageHelper.m */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		5CC772C01AFD796700EEEB33 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5CC772C11AFD796700EEEB33 /* ATLAddressBarContainerView.h */,
-				5CC772C21AFD796700EEEB33 /* ATLAddressBarContainerView.m */,
-				5CC772C31AFD796700EEEB33 /* ATLAddressBarTextView.h */,
-				5CC772C41AFD796700EEEB33 /* ATLAddressBarTextView.m */,
-				5CC772C51AFD796700EEEB33 /* ATLAddressBarView.h */,
-				5CC772C61AFD796700EEEB33 /* ATLAddressBarView.m */,
-				5CC772C71AFD796700EEEB33 /* ATLAvatarImageView.h */,
-				5CC772C81AFD796700EEEB33 /* ATLAvatarImageView.m */,
-				5CC772C91AFD796700EEEB33 /* ATLConversationCollectionView.h */,
-				5CC772CA1AFD796700EEEB33 /* ATLConversationCollectionView.m */,
-				5CC772CB1AFD796700EEEB33 /* ATLConversationCollectionViewFooter.h */,
-				5CC772CC1AFD796700EEEB33 /* ATLConversationCollectionViewFooter.m */,
-				5CC772CD1AFD796700EEEB33 /* ATLConversationCollectionViewHeader.h */,
-				5CC772CE1AFD796700EEEB33 /* ATLConversationCollectionViewHeader.m */,
-				5CC772CF1AFD796700EEEB33 /* ATLConversationCollectionViewMoreMessagesHeader.h */,
-				5CC772D01AFD796700EEEB33 /* ATLConversationCollectionViewMoreMessagesHeader.m */,
-				5CC772D11AFD796700EEEB33 /* ATLConversationTableViewCell.h */,
-				5CC772D21AFD796700EEEB33 /* ATLConversationTableViewCell.m */,
-				5CC772D31AFD796700EEEB33 /* ATLConversationView.h */,
-				5CC772D41AFD796700EEEB33 /* ATLConversationView.m */,
-				5CC772D51AFD796700EEEB33 /* ATLIncomingMessageCollectionViewCell.h */,
-				5CC772D61AFD796700EEEB33 /* ATLIncomingMessageCollectionViewCell.m */,
-				5CC772D71AFD796700EEEB33 /* ATLMessageBubbleView.h */,
-				5CC772D81AFD796700EEEB33 /* ATLMessageBubbleView.m */,
-				5CC772D91AFD796700EEEB33 /* ATLMessageCollectionViewCell.h */,
-				5CC772DA1AFD796700EEEB33 /* ATLMessageCollectionViewCell.m */,
-				5CC772DB1AFD796700EEEB33 /* ATLMessageComposeTextView.h */,
-				5CC772DC1AFD796700EEEB33 /* ATLMessageComposeTextView.m */,
-				5CC772DD1AFD796700EEEB33 /* ATLMessageInputToolbar.h */,
-				5CC772DE1AFD796700EEEB33 /* ATLMessageInputToolbar.m */,
-				5CC772DF1AFD796700EEEB33 /* ATLOutgoingMessageCollectionViewCell.h */,
-				5CC772E01AFD796700EEEB33 /* ATLOutgoingMessageCollectionViewCell.m */,
-				5CC772E11AFD796700EEEB33 /* ATLParticipantSectionHeaderView.h */,
-				5CC772E21AFD796700EEEB33 /* ATLParticipantSectionHeaderView.m */,
-				5CC772E31AFD796700EEEB33 /* ATLParticipantTableViewCell.h */,
-				5CC772E41AFD796700EEEB33 /* ATLParticipantTableViewCell.m */,
-				5CC772E51AFD796700EEEB33 /* ATLProgressView.h */,
-				5CC772E61AFD796700EEEB33 /* ATLProgressView.m */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		5CD74A2E1B7A719000BD2A41 /* Settings */ = {
@@ -2220,43 +1896,6 @@
 				5CE7782C1A0D7D0D008B3585 /* Icon-Small@3x.png */,
 			);
 			path = AppIcon.appiconset;
-			sourceTree = "<group>";
-		};
-		5CF7B6CB1B0B99720006C318 /* Layer_Chat */ = {
-			isa = PBXGroup;
-			children = (
-				5CF7B6D31B0BEA360006C318 /* Chat+ActivityViewController.h */,
-				5CF7B6D41B0BEA360006C318 /* Chat+ActivityViewController.m */,
-				5CF7B6D91B0E7ED90006C318 /* NSLayerClientObject.h */,
-				5CF7B6DA1B0E7ED90006C318 /* NSLayerClientObject.m */,
-				5CF7B6CC1B0B99850006C318 /* Layer+Parse_Model */,
-				5CF7B6CD1B0B99AD0006C318 /* AtlasUI */,
-			);
-			name = Layer_Chat;
-			sourceTree = "<group>";
-		};
-		5CF7B6CC1B0B99850006C318 /* Layer+Parse_Model */ = {
-			isa = PBXGroup;
-			children = (
-				5CF7B6BC1B0B8DC00006C318 /* PFUser+ATLParticipant.h */,
-				5CF7B6BD1B0B8DC00006C318 /* PFUser+ATLParticipant.m */,
-				5CF7B6BF1B0B92210006C318 /* UserManager.h */,
-				5CF7B6C01B0B92210006C318 /* UserManager.m */,
-			);
-			name = "Layer+Parse_Model";
-			sourceTree = "<group>";
-		};
-		5CF7B6CD1B0B99AD0006C318 /* AtlasUI */ = {
-			isa = PBXGroup;
-			children = (
-				5CF7B6C21B0B93070006C318 /* LayerConversationListViewController.h */,
-				5CF7B6C31B0B93070006C318 /* LayerConversationListViewController.m */,
-				5CF7B6C81B0B93CB0006C318 /* LayerConversationViewController.h */,
-				5CF7B6C91B0B93CB0006C318 /* LayerConversationViewController.m */,
-				5CF7B6C51B0B93670006C318 /* LayerParticipantViewController.h */,
-				5CF7B6C61B0B93670006C318 /* LayerParticipantViewController.m */,
-			);
-			name = AtlasUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2413,15 +2052,10 @@
 				5C539A001863D9A1006676FA /* empty_avatar.png in Resources */,
 				5CDC2E531B89167E0030F711 /* HelpshiftConfigDark.plist in Resources */,
 				5C539DFF198715090027669A /* LICENSE in Resources */,
-				5CC772931AFD786900EEEB33 /* plus@3x.png in Resources */,
-				5CC772871AFD786900EEEB33 /* chevron.png in Resources */,
 				5C1B03B21BC4886C0053CE84 /* IconicOnboard2_Slice@2x.png in Resources */,
-				5CC7728C1AFD786900EEEB33 /* layerLogo@2x.png in Resources */,
 				5CDC2E3D1B89167E0030F711 /* HS-no-connection.png in Resources */,
-				5CC772891AFD786900EEEB33 /* chevron@3x.png in Resources */,
 				5CDC2E421B89167E0030F711 /* HS-screenshot-error.png in Resources */,
 				5CDB87531ACB0564009FE9D2 /* Invite_Contacts_Button@2x.png in Resources */,
-				5CC7728B1AFD786900EEEB33 /* layerLogo.png in Resources */,
 				5CDC2E511B89167E0030F711 /* HSTutorialiPad@3x.png in Resources */,
 				5CDC2E431B89167E0030F711 /* HS-screenshot-error@2x.png in Resources */,
 				5C42F8A51AC21EA500B4F7BB /* SignUpButton@2x.png in Resources */,
@@ -2439,7 +2073,6 @@
 				5C1B03B01BC488620053CE84 /* IconicOnboard1_Slice@2x.png in Resources */,
 				5C418F301ACB5B7900DC30FF /* team_place_holder_large@3x.png in Resources */,
 				5C74845A1AD9B64C001917CC /* IconicOnboard7slice@3x.png in Resources */,
-				5CC772911AFD786900EEEB33 /* plus.png in Resources */,
 				5C3BBF611AC3AD3D00B179B0 /* Dashboard_Icon@3x.png in Resources */,
 				5C7484621AD9B64C001917CC /* IconicOnboard2_Slice@3x.png in Resources */,
 				5C3BBFA21ACA114500B179B0 /* Comment_Icon@2x.png in Resources */,
@@ -2454,8 +2087,6 @@
 				5CDB87641ACB1360009FE9D2 /* Add_League_Button@3x.png in Resources */,
 				5C418F3C1ACB5CDA00DC30FF /* team_place_holder@3x.png in Resources */,
 				5CE778341A0D7D0D008B3585 /* Icon-76@2x.png in Resources */,
-				5CC7728D1AFD786900EEEB33 /* layerLogo@3x.png in Resources */,
-				5CC772811AFD786900EEEB33 /* block.png in Resources */,
 				5CDC2E451B89167E0030F711 /* HSChatBubbleBlue@2x.png in Resources */,
 				5C3BBF601AC3AD3D00B179B0 /* Dashboard_Icon@2x.png in Resources */,
 				5C15971A1ACE31EE00CEA15A /* happy_face@2x.png in Resources */,
@@ -2467,7 +2098,6 @@
 				5CDC2E481B89167E0030F711 /* HSChatBubbleWhite@2x.png in Resources */,
 				5CDB875C1ACB0FD1009FE9D2 /* Exit_Icon@3x.png in Resources */,
 				5CC773191B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png in Resources */,
-				5CC772841AFD786900EEEB33 /* camera_dark.png in Resources */,
 				5CE7782F1A0D7D0D008B3585 /* Icon-40@2x.png in Resources */,
 				5C418F391ACB5CDA00DC30FF /* user_place_holder@2x.png in Resources */,
 				5C881E441ABBA2B200C2D958 /* SignInWithEmailButton@2x.png in Resources */,
@@ -2476,7 +2106,6 @@
 				5C42F8A61AC21EA500B4F7BB /* SignUpButton@3x.png in Resources */,
 				5C1597191ACE31EE00CEA15A /* Leagues_Icon@3x.png in Resources */,
 				5CDC2E391B89167E0030F711 /* HS-camera-button@3x.png in Resources */,
-				5CC7728A1AFD786900EEEB33 /* layerbell.caf in Resources */,
 				5C3BBF871AC9D0F400B179B0 /* Followed_User_Icon_White@2x.png in Resources */,
 				5CC9777B1BC42B7100BACA30 /* LaunchScreen.storyboard in Resources */,
 				5CDB875B1ACB0FD1009FE9D2 /* Exit_Icon@2x.png in Resources */,
@@ -2489,8 +2118,6 @@
 				5C2EA54918516B0E00B21C52 /* content_mystats.plist in Resources */,
 				5C881E2C1ABBA2B200C2D958 /* Grant_Motion_Permission_Button@2x.png in Resources */,
 				5CE778351A0D7D0D008B3585 /* Icon-Small.png in Resources */,
-				5CC7728F1AFD786900EEEB33 /* location_dark@2x.png in Resources */,
-				5CC772851AFD786900EEEB33 /* camera_dark@2x.png in Resources */,
 				5C42F87F1AC2183100B4F7BB /* ForgotPasswordButton@2x.png in Resources */,
 				5C42F8AE1AC2237E00B4F7BB /* disclaimerText@3x.png in Resources */,
 				5C1B03A61BC486330053CE84 /* IconicOnboard9slice@2x.png in Resources */,
@@ -2500,7 +2127,6 @@
 				5C42F8A41AC21EA500B4F7BB /* LogInButton@3x.png in Resources */,
 				5CE778311A0D7D0D008B3585 /* Icon-60@2x.png in Resources */,
 				5C418F4B1ACCC4BA00DC30FF /* user_place_holder_large@3x.png in Resources */,
-				5CC772861AFD786900EEEB33 /* camera_dark@3x.png in Resources */,
 				5C74845F1AD9B64C001917CC /* IconicOnboard3slice@3x.png in Resources */,
 				5CE778321A0D7D0D008B3585 /* Icon-60@3x.png in Resources */,
 				5CDB87521ACB0564009FE9D2 /* LogIn_Facebook_Friends_button@3x.png in Resources */,
@@ -2519,7 +2145,6 @@
 				5CDC2E3B1B89167E0030F711 /* HS-delete-button@2x.png in Resources */,
 				5CE778361A0D7D0D008B3585 /* Icon-Small@2x.png in Resources */,
 				5C418F3B1ACB5CDA00DC30FF /* team_place_holder@2x.png in Resources */,
-				5CC7728E1AFD786900EEEB33 /* location_dark.png in Resources */,
 				5C13105F1B83EEC7004E096B /* Settings_White@3x.png in Resources */,
 				5CDC2E501B89167E0030F711 /* HSTutorialiPad@2x.png in Resources */,
 				5CE778331A0D7D0D008B3585 /* Icon-76.png in Resources */,
@@ -2546,13 +2171,10 @@
 				5CB75E04188DAE850047BC47 /* scoreboardicon2-01.png in Resources */,
 				5C881E3C1ABBA2B200C2D958 /* LetsGetStartedButton@2x.png in Resources */,
 				5C418F2F1ACB5B7900DC30FF /* team_place_holder_large@2x.png in Resources */,
-				5CC772901AFD786900EEEB33 /* location_dark@3x.png in Resources */,
 				5C881E2D1ABBA2B200C2D958 /* Grant_Motion_Permission_Button@3x.png in Resources */,
 				5CDC2E401B89167E0030F711 /* HS-powered-by-logo@2x.png in Resources */,
-				5CC772831AFD786900EEEB33 /* block@3x.png in Resources */,
 				5C418F0C1ACB33D300DC30FF /* Schedule_Button@3x.png in Resources */,
 				5C3BBF841AC9D0F400B179B0 /* Follow_Icon_Red@3x.png in Resources */,
-				5CC772881AFD786900EEEB33 /* chevron@2x.png in Resources */,
 				5C3BBFA11ACA114500B179B0 /* Comment_Icon@3x.png in Resources */,
 				5C418F081ACB33D300DC30FF /* High_Five_Button@3x.png in Resources */,
 				5CDC2E471B89167E0030F711 /* HSChatBubbleWhite.png in Resources */,
@@ -2581,7 +2203,6 @@
 				5C418F0B1ACB33D300DC30FF /* Schedule_Button@2x.png in Resources */,
 				5CDC2E351B89167E0030F711 /* HS-Attachment@2x.png in Resources */,
 				5C42F8441AC1FEB800B4F7BB /* JoinButton@3x.png in Resources */,
-				5CC772821AFD786900EEEB33 /* block@2x.png in Resources */,
 				5CF74BF51B85371600EC67C4 /* CreateUsername@3x.png in Resources */,
 				5C3BBF911AC9D28E00B179B0 /* Leave_Team_Icon_White@2x.png in Resources */,
 				5CDC2E441B89167E0030F711 /* HSChatBubbleBlue.png in Resources */,
@@ -2592,7 +2213,6 @@
 				5C2EA53E1851516700B21C52 /* MyStatsViewController.xib in Resources */,
 				5CDB875F1ACB1110009FE9D2 /* Share_Button@2x.png in Resources */,
 				5CDC2E341B89167E0030F711 /* HS-Attachment.png in Resources */,
-				5CC772921AFD786900EEEB33 /* plus@2x.png in Resources */,
 				5C42F85B1AC20A5200B4F7BB /* IconicLogo@2x.png in Resources */,
 				5C3BBF8C1AC9D0F400B179B0 /* Follow_Icon_White@3x.png in Resources */,
 				5CE778371A0D7D0D008B3585 /* Icon-Small@3x.png in Resources */,
@@ -2639,16 +2259,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CF7B6BE1B0B8DC00006C318 /* PFUser+ATLParticipant.m in Sources */,
 				5C539A161867A2AC006676FA /* FollowCell.m in Sources */,
 				5C8BB5B21884627000E89ADF /* TimelineViewController.m in Sources */,
 				5CA6BB4E19C8DDEF00E9946E /* ChatRoomTableViewCell.m in Sources */,
-				5CC772FA1AFD796700EEEB33 /* ATLAvatarImageView.m in Sources */,
-				5CC772F21AFD796700EEEB33 /* ATLErrors.m in Sources */,
 				5CA19A3918B83E290023C940 /* PNLineChart.m in Sources */,
 				5C418F471ACC7D9700DC30FF /* SampleCodeWorkspaceFinished.inc in Sources */,
 				5CA19A3E18B83F240023C940 /* UICountingLabel.m in Sources */,
-				5CC772F81AFD796700EEEB33 /* ATLAddressBarTextView.m in Sources */,
 				5CD76B5F188852530014072F /* FeedViewController.m in Sources */,
 				5C539A0F18679A57006676FA /* FollowersViewController.m in Sources */,
 				5CD93829187B5047006CE08B /* MZTransition.m in Sources */,
@@ -2660,55 +2276,35 @@
 				5C2C1CCF185E98A3006722D2 /* MenuViewController.m in Sources */,
 				5C48B8BB1880F89F00A09A1C /* UIImage+RoundedCornerAdditions.m in Sources */,
 				5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */,
-				5CC772FD1AFD796700EEEB33 /* ATLConversationCollectionViewHeader.m in Sources */,
 				5CEC3BDE18A2A86200C444FA /* TeamPlayerCell.m in Sources */,
-				5CC773031AFD796700EEEB33 /* ATLMessageCollectionViewCell.m in Sources */,
 				5C4EF985186CBC15000E0E59 /* Utility.m in Sources */,
-				5CC772F61AFD796700EEEB33 /* ATLUIImageHelper.m in Sources */,
-				5CC772FB1AFD796700EEEB33 /* ATLConversationCollectionView.m in Sources */,
 				5C418F3F1ACC675600DC30FF /* AAPLActivityDataManager.m in Sources */,
 				5C78DA691899B61700CBA29B /* MBProgressHUD.m in Sources */,
-				5CC772F31AFD796700EEEB33 /* ATLLocationManager.m in Sources */,
 				5CD74A301B7A92F900BD2A41 /* SettingsTableViewCell.swift in Sources */,
-				5CC773091AFD796700EEEB33 /* ATLProgressView.m in Sources */,
 				5C539A061864E8DA006676FA /* ProfileInfoCell.m in Sources */,
 				5C539DFD198715090027669A /* Amplitude.m in Sources */,
-				5CC773041AFD796700EEEB33 /* ATLMessageComposeTextView.m in Sources */,
-				5CC772F11AFD796700EEEB33 /* ATLConstants.m in Sources */,
 				5C726C08196B1433007C4F4E /* AccountMyTeamCell.m in Sources */,
 				5C4EF97F1868D99B000E0E59 /* Cache.m in Sources */,
 				5CD93828187B5047006CE08B /* MZFormSheetSegue.m in Sources */,
-				5CC772F51AFD796700EEEB33 /* ATLMessagingUtilities.m in Sources */,
-				5CC772FC1AFD796700EEEB33 /* ATLConversationCollectionViewFooter.m in Sources */,
 				5CD93826187B5047006CE08B /* MZFormSheetBackgroundWindow.m in Sources */,
 				5CD74A2D1B7A717000BD2A41 /* SettingsTableViewController.swift in Sources */,
 				5CA19A2018B51F6D0023C940 /* MZTimerLabel.m in Sources */,
 				5CA7593E1A49ECAE0016ED8E /* AchievmentsViewController.m in Sources */,
 				5C328BFF18601ADF00E0E985 /* TeamsViewController.m in Sources */,
-				5CC773001AFD796700EEEB33 /* ATLConversationView.m in Sources */,
-				5CF7B6D51B0BEA360006C318 /* Chat+ActivityViewController.m in Sources */,
-				5CC773071AFD796700EEEB33 /* ATLParticipantSectionHeaderView.m in Sources */,
 				5C78DA561899678400CBA29B /* FindFriendsCell.m in Sources */,
-				5CC772E71AFD796700EEEB33 /* ATLAddressBarViewController.m in Sources */,
 				5C726C0B196B2BDE007C4F4E /* PlayerProfileViewController.m in Sources */,
 				5C48B8961880CFAA00A09A1C /* SimpleHomeViewController.m in Sources */,
 				5C8BB5C418860F9700E89ADF /* ActivityHeaderCell.m in Sources */,
 				5CCB26D419085BA5002B6832 /* CalculatePoints.m in Sources */,
 				5C905C6919F5BE9700D9FC06 /* CreateLeagueViewController.m in Sources */,
-				5CC772EF1AFD796700EEEB33 /* ATLMediaAttachment.m in Sources */,
 				5C48B8BD1880F89F00A09A1C /* UIImage+ResizeAdditions.m in Sources */,
 				5C78DA531899676000CBA29B /* FindFriendsViewController.m in Sources */,
 				5CFB1EB71834355C0026AEB4 /* ScheduleViewController.m in Sources */,
 				5C418F431ACC67F900DC30FF /* AAPLMotionActivityQuery.m in Sources */,
-				5CF7B6C11B0B92210006C318 /* UserManager.m in Sources */,
-				5CC772EB1AFD796700EEEB33 /* ATLParticipantTableViewController.m in Sources */,
 				5C118E841926B08D00C1760C /* Team.m in Sources */,
 				5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */,
-				5CC773061AFD796700EEEB33 /* ATLOutgoingMessageCollectionViewCell.m in Sources */,
 				5CD93830187B510E006CE08B /* MZAppearance.m in Sources */,
 				5CA19A3A18B83E290023C940 /* PNLineChartData.m in Sources */,
-				5CC772E91AFD796700EEEB33 /* ATLConversationListViewController.m in Sources */,
-				5CC772FF1AFD796700EEEB33 /* ATLConversationTableViewCell.m in Sources */,
 				5C3BBF661AC483C700B179B0 /* DashboardTableViewController.m in Sources */,
 				5C2C1CD3185EADF2006722D2 /* ActivityViewController.m in Sources */,
 				5C8B047A189CAF8E000AD0DF /* TabBarViewController.m in Sources */,
@@ -2716,17 +2312,12 @@
 				5C48B8BC1880F89F00A09A1C /* UIImage+AlphaAdditions.m in Sources */,
 				5CD93827187B5047006CE08B /* MZFormSheetController.m in Sources */,
 				5CD74A321B7AB72100BD2A41 /* SettingsListItem.swift in Sources */,
-				5CC773011AFD796700EEEB33 /* ATLIncomingMessageCollectionViewCell.m in Sources */,
 				5C1310611B84FB03004E096B /* CreateUserNameViewController.swift in Sources */,
-				5CC773021AFD796700EEEB33 /* ATLMessageBubbleView.m in Sources */,
 				5CF8D7A31B7D65E00034D32E /* LogOutSegue.swift in Sources */,
 				5C47815E18C0EE5F002E6C3F /* VSTableViewController.m in Sources */,
 				5C7207731A79635000D6F5F3 /* MyFinalScoresTableViewController.m in Sources */,
-				5CC773081AFD796700EEEB33 /* ATLParticipantTableViewCell.m in Sources */,
 				5C8BB5CB1886256400E89ADF /* TTTTimeIntervalFormatter.m in Sources */,
 				5CFB1EBA1834381C0026AEB4 /* ScheduleGenerator.m in Sources */,
-				5CC7726D1AFD784C00EEEB33 /* Atlas.m in Sources */,
-				5CC772F01AFD796700EEEB33 /* ATLParticipantTableDataSet.m in Sources */,
 				5C539A1318679F3A006676FA /* PlayerTeamsViewController.m in Sources */,
 				5CA19A3718B83E290023C940 /* PNCircleChart.m in Sources */,
 				5CDFB0C31B7CDF4600179867 /* TeamSettingsListItem.swift in Sources */,
@@ -2735,38 +2326,27 @@
 				5C118E871926B08E00C1760C /* League.m in Sources */,
 				5CA6BB5619CA431C00E9946E /* BBBadgeBarButtonItem.m in Sources */,
 				5C2EA5441851641500B21C52 /* ContentController.m in Sources */,
-				5CC772E81AFD796700EEEB33 /* ATLBaseConversationViewController.m in Sources */,
 				5C8BB5B81884AFE900E89ADF /* CommentCell.m in Sources */,
 				5C6A6EE018A47BE40044269F /* TeamCell.m in Sources */,
 				5C5CBDD519253DB300C2C328 /* LeaguesTeamsModel.xcdatamodeld in Sources */,
-				5CC772F91AFD796700EEEB33 /* ATLAddressBarView.m in Sources */,
 				5CA19A3B18B83E290023C940 /* PNLineChartDataItem.m in Sources */,
 				5C78C0FC19F6103300533E30 /* CreateTeamViewController.m in Sources */,
 				5C04C2F31940E63700E21ED4 /* CustomPFSignUpViewController.m in Sources */,
 				5C539A091864E900006676FA /* FeedCell.m in Sources */,
-				5CC773051AFD796700EEEB33 /* ATLMessageInputToolbar.m in Sources */,
 				5C328BF5185F70C100E0E985 /* VSViewController.m in Sources */,
 				5C2EA547185164BE00B21C52 /* MyStatsContentController.m in Sources */,
-				5CF7B6DB1B0E7EDA0006C318 /* NSLayerClientObject.m in Sources */,
-				5CC772F41AFD796700EEEB33 /* ATLMediaInputStream.m in Sources */,
 				5CD93835187B551D006CE08B /* CustomTransition.m in Sources */,
 				5C04C2F61940E79400E21ED4 /* CustomPFLogInViewController.m in Sources */,
 				5C539DFE198715090027669A /* AmplitudeLocationManagerDelegate.m in Sources */,
-				5CC772FE1AFD796700EEEB33 /* ATLConversationCollectionViewMoreMessagesHeader.m in Sources */,
 				5C8BB5B51884AF7300E89ADF /* CommentsViewController.m in Sources */,
 				5C8B0476189CAE3F000AD0DF /* AccountViewController.m in Sources */,
 				5CA19A3818B83E290023C940 /* PNColor.m in Sources */,
-				5CC772EA1AFD796700EEEB33 /* ATLConversationViewController.m in Sources */,
-				5CF7B6C41B0B93070006C318 /* LayerConversationListViewController.m in Sources */,
 				5C539A031863F774006676FA /* ScheduleCell.m in Sources */,
-				5CC772EC1AFD796700EEEB33 /* ATLTypingIndicatorViewController.m in Sources */,
 				5CA19A3618B83E290023C940 /* PNChartLabel.m in Sources */,
 				5C78DA711899B91400CBA29B /* Reachability.m in Sources */,
 				5CD93838187B5627006CE08B /* DialogViewController.m in Sources */,
 				5C2EA53D1851516700B21C52 /* MyStatsViewController.m in Sources */,
 				5C2C1CCC185E9142006722D2 /* SWRevealViewController.m in Sources */,
-				5CF7B6CA1B0B93CB0006C318 /* LayerConversationViewController.m in Sources */,
-				5CC772EE1AFD796700EEEB33 /* ATLDataSourceChange.m in Sources */,
 				5C48B8A21880F7AB00A09A1C /* UIImage+Additional.m in Sources */,
 				5CA19A3518B83E290023C940 /* PNBarChart.m in Sources */,
 				5CA7BC4A18C1A59500DBBC7D /* VSTableViewCell.m in Sources */,
@@ -2779,14 +2359,10 @@
 				5C0FBDE318AD4BC900A0A122 /* LeagueCell.m in Sources */,
 				5CA3D1E71832F9D1006C7932 /* LogInViewController.m in Sources */,
 				5C328BF8185F773300E0E985 /* VSCell.m in Sources */,
-				5CF7B6DE1B1632160006C318 /* ATLMLayerClient.m in Sources */,
-				5CC772ED1AFD796700EEEB33 /* ATLConversationDataSource.m in Sources */,
-				5CF7B6C71B0B93670006C318 /* LayerParticipantViewController.m in Sources */,
 				5CB75DFD1889F65C0047BC47 /* ProfileImageView.m in Sources */,
 				5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */,
 				5CA3D1971831DF51006C7932 /* main.m in Sources */,
 				5C7882C41A7C0B8500843E2F /* MyFinalScoresCell.m in Sources */,
-				5CC772F71AFD796700EEEB33 /* ATLAddressBarContainerView.m in Sources */,
 				5CA6BB4B19C8DDAD00E9946E /* ChatRoomTableViewController.m in Sources */,
 				5CB75DF71889A0630047BC47 /* PlayerCommentCell.m in Sources */,
 			);

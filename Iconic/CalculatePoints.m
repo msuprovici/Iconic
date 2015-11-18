@@ -19,7 +19,7 @@
 #import "AAPLMotionActivityQuery.h"
 #import "AAPLActivityDataManager.h"
 #import "Amplitude.h"
-#import "NSLayerClientObject.h"
+//#import "NSLayerClientObject.h"
 
 #import "PNColor.h"
 //#import "ATLOutgoingMessageCollectionViewCell.h"
@@ -37,8 +37,8 @@
 @property (nonatomic, strong) NSDate *now;
 @property (nonatomic, strong) NSDate *from;
 
-//layer
-@property (nonatomic) NSLayerClientObject *layerClientObject;
+////layer
+//@property (nonatomic) NSLayerClientObject *layerClientObject;
 
 @end
 

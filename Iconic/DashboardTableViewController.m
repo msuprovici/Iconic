@@ -32,10 +32,10 @@
 #import "UIImage+ResizeAdditions.h"
 #import <CoreMotion/CoreMotion.h>
 
-#import "LayerConversationListViewController.h"
-#import "LayerConversationViewController.h"
-#import "NSLayerClientObject.h"
-#import "Chat+ActivityViewController.h"
+//#import "LayerConversationListViewController.h"
+//#import "LayerConversationViewController.h"
+//#import "NSLayerClientObject.h"
+//#import "Chat+ActivityViewController.h"
 #import "ChatRoomTableViewController.h"
 #import "PlayerProfileViewController.h"
 
