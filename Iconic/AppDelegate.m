@@ -81,8 +81,7 @@
     //perform background fetch
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     
-    //Parse crash reporting
-    [ParseCrashReporting enable];
+    
     
     //local data store
 //    [Parse enableLocalDatastore];
@@ -146,10 +145,10 @@
        
     //initialize Amplitude analytics
      //beta key
-   [Amplitude initializeApiKey:@"43017a7316efee7bf680d57d7c3ab327"]; //live
+//   [Amplitude initializeApiKey:@"43017a7316efee7bf680d57d7c3ab327"]; //live
     
     //testing key
-//    [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"]; //dev
+    [Amplitude initializeApiKey:@"57b975d88461d62229be49013e2b5465"]; //dev
     
     //Flurry
     
@@ -392,7 +391,16 @@
     
     [[UINavigationBar appearance] setTranslucent:FALSE];
     
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    
+//    if([UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+//        [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+//    }
+//   else
+//   {
+//       self.window.tintColor = [UIColor whiteColor];
+//   }
+    
     
     
    
