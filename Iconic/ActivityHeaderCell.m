@@ -90,9 +90,10 @@
     
     
     NSString *authorName = [user objectForKey:kUserDisplayNameKey];
-    [self.userButton setTitle:authorName forState:UIControlStateNormal];
+    [self.userSelectedButton setTitle:authorName forState:UIControlStateNormal];
+    self.userSelectedButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Neue-Medium" size:20];
    
-    [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.userSelectedButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         
         [self.commentButton addTarget:self action:@selector(didTapCommentOnActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -137,9 +138,9 @@
 
         
         NSString *teamName = [team objectForKey:@"teams"];
-        [self.userButton setTitle:teamName forState:UIControlStateNormal];
-        self.userButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Neue-Medium" size:20];//changing font to differentiate between team & user activity
-        [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.teamSelectedButton setTitle:teamName forState:UIControlStateNormal];
+        self.teamSelectedButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Neue-Medium" size:20];//changing font to differentiate between team & user activity
+//        [self.userButton addTarget:self action:@selector(didTapUserButtonAction:) forControlEvents:UIControlEventTouchUpInside];
         
         
         //hiding buttons because current archiecture does not allow for likes & comments on team activity, just user activity.
