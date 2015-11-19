@@ -709,6 +709,7 @@
         ScheduleViewController *destinationViewController = (ScheduleViewController *)( [navController topViewController]);
         [destinationViewController initWithLeague:self.league];
         
+//        [segue.destinationViewController initWithLeague:self.league];
         
         
         
