@@ -26,6 +26,7 @@
 @property (nonatomic, assign) BOOL receivedAddedTeamNotification;
 @property PFObject *leagueLeft;
 @property PFObject *leagueJoined;
+@property (nonatomic, retain) NSMutableArray *myLeagues;
 
 
 @end
@@ -166,61 +167,74 @@
     [self.leagues removeAllObjects];
     [self.categories removeAllObjects];
     
-    NSInteger section = 0;
+    NSInteger section = 1;
     NSInteger rowIndex = 0;
     
     
+    
+    
+    
+    
+    //get my leagues from core data
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext * context = [appDelegate managedObjectContext];
+    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    [request setEntity:entityDesc];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"onteam = YES"];
+    [request setPredicate:pred];
+
+    NSArray *fetchedLeagues = [context executeFetchRequest:request error:&error];
+    
+
+
+    NSString * myLeagues = @"My Leagues";
+    
+    NSString *myLeagueName;
+    
+    NSMutableArray *myObjectsInSection = [[NSMutableArray alloc] init];
+    self.myLeagues = [[NSMutableArray alloc] init];
+    
+    for(int i = 0; i < fetchedLeagues.count; i++)
+    {
+        
+        
+        NSManagedObject *myLeagueNames = fetchedLeagues[i];
+        
+        
+        myLeagueName = [NSString stringWithFormat:@"%@",[myLeagueNames valueForKeyPath:kLeagues]];
+        [self.categories setObject:myLeagues forKey:[NSNumber numberWithInt:0]];
+//        [myObjectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
+        
+        
+        
+        [self.myLeagues addObject:myLeagueName];
+        
+    }
+    [self.leagues setObject:self.myLeagues forKey:myLeagues];
+    
     for (PFObject *object in self.objects) {
-        NSString *league = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagueCategories]];
-        NSMutableArray *objectsInSection = [self.leagues objectForKey:league];
+        NSString *leagueCategory = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagueCategories]];
+        
+//        NSLog(@"leagueCategory %@", leagueCategory);
+        
+        NSMutableArray *objectsInSection = [self.leagues objectForKey:leagueCategory];
         if (!objectsInSection) {
             objectsInSection = [NSMutableArray array];
+//            NSLog(@"objectsInSection %@", objectsInSection);
             
             // this is the first time we see this leagues section - increment the section index
-            [self.categories setObject:league forKey:[NSNumber numberWithInt:section++]];
+            [self.categories setObject:leagueCategory forKey:[NSNumber numberWithInt:section++]];
             
                   }
         
         [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
-        [self.leagues setObject:objectsInSection forKey:league];
+        [self.leagues setObject:objectsInSection forKey:leagueCategory];
         
 
 
-        
-        
-        
-        
-        
-//        NSInteger count = [objectsInSection count];
-//        for (NSInteger index = (count - 1); index >= 0; index--) {
-//            objectsInSection *p = objectsInSection[index];
-//            if ([objectsInSection isEqualToString:@"NFL"]) {
-//                [objectsInSection removeObjectAtIndex:index];
-//            }
-//        }
-//        
-//        
-        
-        
-//        
-//        PFObject *leagueName = [self.leagues objectForKey:kLeagues];
-//        
-//        if (object == leagueName) // Are they the same?
-//        {
-//            [self.leagues setObject:objectsInSection forKey:league];
-//        }
-        
-//        // Now we check if we already had this wall post
-//        
-//        for (PFObject *leagueNames in self.leagues) // Loop through all the wall posts we have
-//        {
-//            PFObject * myLeagueName = [leagueNames objectForKey:kLeagues];
-//            
-//            if (object == leagueNames && leagueName == myLeagueName) // Are they the same?
-//            {
-//                [self.leagues setObject:objectsInSection forKey:league];
-//            }
-//        }
         
            }
     
@@ -287,9 +301,21 @@
 //     
 //     
 //     if (leagueName == receivedLeagueName) {
-     
+        if(indexPath.section == 0)
+        {
+            
+            
+            
+            
+             cell.leagueName.text =[self.myLeagues objectAtIndex:indexPath.row];
+        }
+        else
+        {
+   
          cell.leagueName.text =[object objectForKey:self.textKey];
          cell.leagueLevel.text = [NSString stringWithFormat:@"%@",[object objectForKey:@"Level"]];
+        }
+     
 //        int leagueLevel = (int)[object objectForKey:@"Level"];
 //         NSLog(@"leagueLevel %@", [object objectForKey:@"Level"]);
      
@@ -303,96 +329,97 @@
      
 
      int playerXP = [[defaults objectForKey:@"myXP"]intValue];
+     
 //     NSNumber *myXP = [NSNumber numberWithInt:playerXP];
 //     NSLog(@"playerXP %@", [defaults objectForKey:@"myXP"]);
-//
-//    
-//     if ([defaults objectForKey:@"myXP"] < [object objectForKey:@"Level"]) {
-//         [cell.leagueLocked setHidden:NO];
-//         cell.leagueLocked.text =[NSString stringWithFormat:@"XP: %@", [object objectForKey:@"Level"]];
-//     }
-//     else
-//     {
-//         [cell.leagueLocked setHidden:YES];
-//     }
+
+    
+     if ([defaults objectForKey:@"myXP"] < [object objectForKey:@"Level"]) {
+         [cell.leagueLocked setHidden:NO];
+         cell.leagueLocked.text =[NSString stringWithFormat:@"XP: %@", [object objectForKey:@"Level"]];
+     }
+     else
+     {
+         [cell.leagueLocked setHidden:YES];
+     }
      
      
      
      
- // Configure the cell
-         //cell.leagueName.text =[object objectForKey:self.textKey];
-         //cell.textLabel.text = [object objectForKey:self.textKey];
-         //cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
-         //cell.imageView.file = [object objectForKey:self.imageKey];
-         
-     
- //cell.textLabel.text = [object objectForKey:self.textKey];
- //cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
- //cell.imageView.file = [object objectForKey:self.imageKey];
+//  Configure the cell
+//         cell.leagueName.text =[object objectForKey:self.textKey];
+//         cell.textLabel.text = [object objectForKey:self.textKey];
+//         cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+//         cell.imageView.file = [object objectForKey:self.imageKey];
+//         
+//     
+// cell.textLabel.text = [object objectForKey:self.textKey];
+// cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
+// cell.imageView.file = [object objectForKey:self.imageKey];
      
      
 
      
      //set check mark if the player is on a team
      
-     AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-     NSManagedObjectContext * context = [appDelegate managedObjectContext];
-     NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
-     NSFetchRequest *request = [[NSFetchRequest alloc]init];
-     [request setEntity:entityDesc];
-     
-     
-     //     NSString *currentLeague = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagues]];
-     //     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
-     NSPredicate *pred = [NSPredicate predicateWithFormat:@"onteam = YES"];
-     [request setPredicate:pred];
-     //    NSError *error;
-     NSError *error;
-     NSArray *fetchedLeagues = [context executeFetchRequest:request error:&error];
-     NSString *myLeagueName;
+//     AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+//     NSManagedObjectContext * context = [appDelegate managedObjectContext];
+//     NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
+//     NSFetchRequest *request = [[NSFetchRequest alloc]init];
+//     [request setEntity:entityDesc];
+//     
+//     
+//     //     NSString *currentLeague = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagues]];
+//     //     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
+//     NSPredicate *pred = [NSPredicate predicateWithFormat:@"onteam = YES"];
+//     [request setPredicate:pred];
+//     //    NSError *error;
+//     NSError *error;
+//     NSArray *fetchedLeagues = [context executeFetchRequest:request error:&error];
+//     NSString *myLeagueName;
 //     NSNumber *leagueLevel;
      
      
-     NSString *leagueLeft = [NSString stringWithFormat:@"%@",[self.leagueLeft objectForKey:kLeagues]];
-//     NSString *leagueJoined = [NSString stringWithFormat:@"%@",[self.leagueJoined objectForKey:kLeagues]];
-     
-     
-     //     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
-     //     NSLog(@"self.objects %@", self.objects);
-     
-     if (fetchedLeagues.count == 0)
-     {
-//         NSLog(@"I am on no teams");
-         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-         
-     }
-     
-     for(int i = 0; i < fetchedLeagues.count; i++)
-     {
-     
-         
-         NSManagedObject *myLeagueNames = fetchedLeagues[i];
-         
-//         NSLog(@"cell.leagueName.text %@", [NSString stringWithFormat:@"%@",cell.leagueName.text]);
-         myLeagueName = [NSString stringWithFormat:@"%@",[myLeagueNames valueForKeyPath:kLeagues]];
-         
-         
-         
-//         leagueLevel = [myLeagueNames valueForKeyPath:@"level"];
-         
-         if ([cell.leagueName.text isEqualToString: myLeagueName] )
-         {
-             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//             NSLog(@"leagues are equal");
-         }
-         else if ([cell.leagueName.text isEqualToString: leagueLeft] )
-         {
-//              NSLog(@"left league");
-             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-         }
-         
-         
-     }
+//     NSString *leagueLeft = [NSString stringWithFormat:@"%@",[self.leagueLeft objectForKey:kLeagues]];
+////     NSString *leagueJoined = [NSString stringWithFormat:@"%@",[self.leagueJoined objectForKey:kLeagues]];
+//     
+//     
+//     //     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
+//     //     NSLog(@"self.objects %@", self.objects);
+//     
+//     if (fetchedLeagues.count == 0)
+//     {
+////         NSLog(@"I am on no teams");
+//         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//         
+//     }
+//     
+//     for(int i = 0; i < fetchedLeagues.count; i++)
+//     {
+//     
+//         
+//         NSManagedObject *myLeagueNames = fetchedLeagues[i];
+//         
+////         NSLog(@"cell.leagueName.text %@", [NSString stringWithFormat:@"%@",cell.leagueName.text]);
+//         myLeagueName = [NSString stringWithFormat:@"%@",[myLeagueNames valueForKeyPath:kLeagues]];
+//         
+//         
+//         
+////         leagueLevel = [myLeagueNames valueForKeyPath:@"level"];
+//         
+//         if ([cell.leagueName.text isEqualToString: myLeagueName] )
+//         {
+//             cell.accessoryType = UITableViewCellAccessoryCheckmark;
+////             NSLog(@"leagues are equal");
+//         }
+//         else if ([cell.leagueName.text isEqualToString: leagueLeft])
+//         {
+////              NSLog(@"left league");
+//             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//         }
+//         
+//         
+//     }
      
      
      //grey out cell if the player's XP is not high enough to unlock the other leagues
@@ -529,6 +556,7 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    
     [Amplitude logEvent:@"Leagues: League selected"];
     
 }
@@ -724,9 +752,14 @@
         NSIndexPath *hitIndex = [self.tableView indexPathForSelectedRow];
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:hitIndex.row inSection:hitIndex.section];
         
-        
+        if (hitIndex.section == 0) {
+            
+        }
+        else
+        {
          //to pass the correct object we need to use the objectAtIndexPath method
         [segue.destinationViewController initWithLeague:[self objectAtIndexPath:newIndexPath]];
+        }
         
     }
     
