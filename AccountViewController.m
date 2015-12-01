@@ -13,7 +13,7 @@
 #import <Parse/Parse.h>
 #import "PNColor.h"
 #import "Amplitude.h"
-#import "Iconic-Swift.h"
+#import "Iconic-Bridging-Header.h"
 
 
 @interface AccountViewController ()
