@@ -33,6 +33,7 @@
 		5C1B03B01BC488620053CE84 /* IconicOnboard1_Slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03AF1BC488620053CE84 /* IconicOnboard1_Slice@2x.png */; };
 		5C1B03B21BC4886C0053CE84 /* IconicOnboard2_Slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03B11BC4886C0053CE84 /* IconicOnboard2_Slice@2x.png */; };
 		5C1B03B41BC488780053CE84 /* IconicOnboard4slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03B31BC488780053CE84 /* IconicOnboard4slice@2x.png */; };
+		5C291DA31BFFEF02004A499F /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C291DA21BFFEF01004A499F /* Fabric.framework */; };
 		5C2C1CBD185BAEE6006722D2 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */; };
 		5C2C1CC1185C2E46006722D2 /* ProfileContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CC0185C2E46006722D2 /* ProfileContentController.m */; };
 		5C2C1CCC185E9142006722D2 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2C1CCB185E9142006722D2 /* SWRevealViewController.m */; };
@@ -411,6 +412,7 @@
 		5C1B03AF1BC488620053CE84 /* IconicOnboard1_Slice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconicOnboard1_Slice@2x.png"; sourceTree = "<group>"; };
 		5C1B03B11BC4886C0053CE84 /* IconicOnboard2_Slice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconicOnboard2_Slice@2x.png"; sourceTree = "<group>"; };
 		5C1B03B31BC488780053CE84 /* IconicOnboard4slice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconicOnboard4slice@2x.png"; sourceTree = "<group>"; };
+		5C291DA21BFFEF01004A499F /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		5C2C1CBB185BAEE6006722D2 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		5C2C1CBC185BAEE6006722D2 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		5C2C1CBF185C2E46006722D2 /* ProfileContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileContentController.h; sourceTree = "<group>"; };
@@ -911,6 +913,7 @@
 				5C4AB64D1A1E8F25007B8BE8 /* libIntercom.a in Frameworks */,
 				5CA3D18B1831DF51006C7932 /* Foundation.framework in Frameworks */,
 				5CD169C41BBB924E00D3EFBC /* ParseFacebookUtilsV4.framework in Frameworks */,
+				5C291DA31BFFEF02004A499F /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1565,6 +1568,7 @@
 				5C8022AE1A7321ED0023A15D /* AdSupport.framework */,
 				5C4AB6521A1E956A007B8BE8 /* libicucore.dylib */,
 				5C3BC4BE19DF194D00D9A9AD /* libz.dylib */,
+				5C291DA21BFFEF01004A499F /* Fabric.framework */,
 				5C539E021987F97E0027669A /* Crashlytics.framework */,
 				5C5CBDD61925484D00C2C328 /* CoreData.framework */,
 				5CE57DE618D8C2F0006C9F31 /* CoreMotion.framework */,
@@ -2249,7 +2253,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run dccd1cb0874211ca77a81c83ab5926ee77e129d4 08cc05af67180115c0a016fe2ab814aa8502e31757a4aeb812fb85f58ae659af";
+			shellScript = "./Fabric.framework/run dccd1cb0874211ca77a81c83ab5926ee77e129d4 08cc05af67180115c0a016fe2ab814aa8502e31757a4aeb812fb85f58ae659af";
 		};
 /* End PBXShellScriptBuildPhase section */
 
