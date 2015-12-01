@@ -19,6 +19,8 @@
 @interface LeaguesViewController ()
 
 @property NSMutableArray *leaguesArray;
+@property NSArray *myTeamObjectsArray;
+@property NSMutableArray *myTeamNamesArray;
 
 @property (nonatomic, retain) NSMutableDictionary *leagues;
 @property (nonatomic, retain) NSMutableDictionary *categories;
@@ -84,6 +86,32 @@
         self.leagues = [NSMutableDictionary dictionary];
         self.categories = [NSMutableDictionary dictionary];
     }
+    
+    
+    //get player's teams
+    PFUser * user = [PFUser currentUser];
+    
+    PFQuery *teamQuery = [PFQuery queryWithClassName:kTeamTeamsClass];
+    
+    PFQuery *teamPlayersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
+    [teamPlayersClass whereKey:kUserObjectIdString equalTo:user.objectId];
+    [teamQuery whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
+    [teamQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        if(!error)
+        {
+            self.myTeamNamesArray = [[NSMutableArray alloc]init];
+            self.myTeamObjectsArray = objects;
+            for (int i = 0; i < objects.count; i++) {
+                PFObject *myTeam = objects[i];
+                NSString *myTeamName = [myTeam objectForKey:@"teams"];
+                
+                [self.myTeamNamesArray addObject:myTeamName];
+            }
+        }
+    }];
+
+    
     return self;
 }
 
@@ -119,6 +147,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    
 }
 
 
@@ -175,45 +205,16 @@
     
     
     
-    //get my leagues from core data
+    //1st add my leagues to the legues dictionary
     
-    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext * context = [appDelegate managedObjectContext];
-    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc]init];
-    [request setEntity:entityDesc];
-    
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"onteam = YES"];
-    [request setPredicate:pred];
-
-    NSArray *fetchedLeagues = [context executeFetchRequest:request error:&error];
-    
-
-
-    NSString * myLeagues = @"My Leagues";
-    
-    NSString *myLeagueName;
-    
-    NSMutableArray *myObjectsInSection = [[NSMutableArray alloc] init];
-    self.myLeagues = [[NSMutableArray alloc] init];
-    
-    for(int i = 0; i < fetchedLeagues.count; i++)
+    if(self.myTeamNamesArray.count > 0)
     {
+        NSString * myLeagues = @"My Leagues";
         
-        
-        NSManagedObject *myLeagueNames = fetchedLeagues[i];
-        
-        
-        myLeagueName = [NSString stringWithFormat:@"%@",[myLeagueNames valueForKeyPath:kLeagues]];
         [self.categories setObject:myLeagues forKey:[NSNumber numberWithInt:0]];
-//        [myObjectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
-        
-        
-        
-        [self.myLeagues addObject:myLeagueName];
-        
+        [self.leagues setObject:self.myTeamNamesArray forKey:myLeagues];
     }
-    [self.leagues setObject:self.myLeagues forKey:myLeagues];
+    
     
     for (PFObject *object in self.objects) {
         NSString *leagueCategory = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagueCategories]];
@@ -262,9 +263,13 @@
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
     
+    
+    
     // Order by teamMatchup type
    // [query orderByAscending:@"round"];
     [query orderByAscending:@"categories"];
+    
+    
     
     return query;
 }
@@ -293,35 +298,28 @@
  }
  
      
-//     //compare the league name column
-//     NSString *leagueName = [object objectForKey:kLeagues];
-//     PFObject *leagueCategory = [object objectForKey:kLeagueCategories];
-//     
-//     NSString *receivedLeagueName = [self.objects objectAtIndex:cell.tag];;
-//     
-//     
-//     if (leagueName == receivedLeagueName) {
+    if(self.myTeamNamesArray.count > 0) {
+        
+        //show names of my leagues in the 1st section if I'm on a team in this league
         if(indexPath.section == 0)
         {
-            
-            
-            
-            
-             cell.leagueName.text =[self.myLeagues objectAtIndex:indexPath.row];
+            cell.leagueName.text =[self.myTeamNamesArray objectAtIndex:indexPath.row];
         }
         else
         {
-   
+            
+            cell.leagueName.text =[object objectForKey:self.textKey];
+            cell.leagueLevel.text = [NSString stringWithFormat:@"%@",[object objectForKey:@"Level"]];
+        }
+        
+     }
+     else
+     {
          cell.leagueName.text =[object objectForKey:self.textKey];
          cell.leagueLevel.text = [NSString stringWithFormat:@"%@",[object objectForKey:@"Level"]];
-        }
+     }
      
-//        int leagueLevel = (int)[object objectForKey:@"Level"];
-//         NSLog(@"leagueLevel %@", [object objectForKey:@"Level"]);
      
-//        cell.leagueLocked.text =[NSString stringWithFormat:@"XP: %@", [object objectForKey:@"Level"]];
-     
-//     [cell.leagueLocked setHidden:YES];
  
      
      
@@ -346,80 +344,6 @@
      
      
      
-//  Configure the cell
-//         cell.leagueName.text =[object objectForKey:self.textKey];
-//         cell.textLabel.text = [object objectForKey:self.textKey];
-//         cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
-//         cell.imageView.file = [object objectForKey:self.imageKey];
-//         
-//     
-// cell.textLabel.text = [object objectForKey:self.textKey];
-// cell.textLabel.font = [UIFont fontWithName:@"DIN Alternate" size:17];
-// cell.imageView.file = [object objectForKey:self.imageKey];
-     
-     
-
-     
-     //set check mark if the player is on a team
-     
-//     AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
-//     NSManagedObjectContext * context = [appDelegate managedObjectContext];
-//     NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
-//     NSFetchRequest *request = [[NSFetchRequest alloc]init];
-//     [request setEntity:entityDesc];
-//     
-//     
-//     //     NSString *currentLeague = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagues]];
-//     //     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
-//     NSPredicate *pred = [NSPredicate predicateWithFormat:@"onteam = YES"];
-//     [request setPredicate:pred];
-//     //    NSError *error;
-//     NSError *error;
-//     NSArray *fetchedLeagues = [context executeFetchRequest:request error:&error];
-//     NSString *myLeagueName;
-//     NSNumber *leagueLevel;
-     
-     
-//     NSString *leagueLeft = [NSString stringWithFormat:@"%@",[self.leagueLeft objectForKey:kLeagues]];
-////     NSString *leagueJoined = [NSString stringWithFormat:@"%@",[self.leagueJoined objectForKey:kLeagues]];
-//     
-//     
-//     //     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
-//     //     NSLog(@"self.objects %@", self.objects);
-//     
-//     if (fetchedLeagues.count == 0)
-//     {
-////         NSLog(@"I am on no teams");
-//         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//         
-//     }
-//     
-//     for(int i = 0; i < fetchedLeagues.count; i++)
-//     {
-//     
-//         
-//         NSManagedObject *myLeagueNames = fetchedLeagues[i];
-//         
-////         NSLog(@"cell.leagueName.text %@", [NSString stringWithFormat:@"%@",cell.leagueName.text]);
-//         myLeagueName = [NSString stringWithFormat:@"%@",[myLeagueNames valueForKeyPath:kLeagues]];
-//         
-//         
-//         
-////         leagueLevel = [myLeagueNames valueForKeyPath:@"level"];
-//         
-//         if ([cell.leagueName.text isEqualToString: myLeagueName] )
-//         {
-//             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-////             NSLog(@"leagues are equal");
-//         }
-//         else if ([cell.leagueName.text isEqualToString: leagueLeft])
-//         {
-////              NSLog(@"left league");
-//             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//         }
-//         
-//         
-//     }
      
      
      //grey out cell if the player's XP is not high enough to unlock the other leagues
@@ -435,14 +359,6 @@
          //cell.selectionStyle = UITableViewCellSelectionStyleDefault;
          cell.userInteractionEnabled = YES;
      }
-//     else if(playerXP == leagueLevel)
-//     {
-//         [cell.leagueLocked setHidden:YES];
-//         [cell.leagueLevel setHidden:YES];
-//         [cell.unlocksAtLevelTitle setHidden:YES];
-//         //cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-//         cell.userInteractionEnabled = YES;
-//     }
      else{
          [cell.leagueLocked setHidden:NO];
          [cell.leagueLevel setHidden:NO];
@@ -484,9 +400,9 @@
 // Get the array of indeces for that section. This lets us pick the correct PFObject from self.objects
 - (PFObject *)objectAtIndexPath:(NSIndexPath *)indexPath {
     
-    
+
     NSString *leagues = [self categories:indexPath.section];
-   
+    
     NSArray *rowIndecesInSection = [self.leagues objectForKey:leagues];
     
     NSNumber *rowIndex = [rowIndecesInSection objectAtIndex:indexPath.row];
@@ -494,25 +410,6 @@
     return [self.objects objectAtIndex:[rowIndex intValue]];
 }
 
-
-/*
- // Override to customize the look of the cell that allows the user to load the next page of objects.
- // The default implementation is a UITableViewCellStyleDefault cell with simple labels.
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForNextPageAtIndexPath:(NSIndexPath *)indexPath {
- static NSString *CellIdentifier = @"NextPage";
- 
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
- 
- if (cell == nil) {
- cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
- }
- 
- cell.selectionStyle = UITableViewCellSelectionStyleNone;
- cell.textLabel.text = @"Load more...";
- 
- return cell;
- }
- */
 
 
 #pragma mark - Table view data source
@@ -574,121 +471,6 @@
     return indexPath;
 }
 
-//
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    NSString *roundType = [self categories:section];
-//    
-//    return roundType;
-//}
-
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//
-//   static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//    if (indexPath.section == self.objects.count) {
-//
-//        UITableViewCell *cell = [self tableView:tableView cellForNextPageAtIndexPath:indexPath];
-//        return cell;
-//    }
-//
-//
-// //static NSString *CellIdentifier = @"Matchup";
-////    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//
-//
-//    // Configure the cell...
-//
-////    ScheduleGenerator *scheduleMatchup = [self.scheduledMatchups objectAtIndex:indexPath.row];
-////    cell.textLabel.text = scheduleMatchup.itemName;
-////
-////    if (scheduleMatchup.selected) {
-////
-////    //TO DO: perfom segue to VS (matchup detail) view - MS
-////   //the checkmark bellow is just a test and will be taken out later
-////        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-////    } else {
-////        cell.accessoryType = UITableViewCellAccessoryNone;
-////    }
-//
-//    return cell;
-//}
-
-#pragma mark - Table view delegate
-
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-//
-//    PFObject *selectedObject = [self objectAtIndexPath:indexPath];
-//
-//
-//
-////create selection here
-//
-////code de-selects cell after selection
-//    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-////find the corresponding item scheduledMatchups
-////    ScheduleGenerator *tappedItem = [self.scheduledMatchups objectAtIndex:indexPath.row];
-////
-////    //toggle the compeltion state of the tapped item
-////    tappedItem.selected = !tappedItem.selected;
-////
-//    //tell the table view to reload the row whose data you just updated
-//  [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//}
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a story board-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- 
- */
 
 #pragma mark - Receive NSNotification
 
@@ -752,14 +534,26 @@
         NSIndexPath *hitIndex = [self.tableView indexPathForSelectedRow];
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:hitIndex.row inSection:hitIndex.section];
         
-        if (hitIndex.section == 0) {
+        if(self.myTeamNamesArray.count > 0)
+        {
+            //use my team's objects if the object is in my leagues section
+            if (hitIndex.section == 0) {
+            [segue.destinationViewController initWithLeague:[self.myTeamObjectsArray objectAtIndex: newIndexPath.row]];
+            }
             
+            //else use pfobject from query in section
+            {
+             //to pass the correct object we need to use the objectAtIndexPath method
+                [segue.destinationViewController initWithLeague:[self objectAtIndexPath:newIndexPath]];
+                
+            }
         }
         else
         {
-         //to pass the correct object we need to use the objectAtIndexPath method
-        [segue.destinationViewController initWithLeague:[self objectAtIndexPath:newIndexPath]];
+            [segue.destinationViewController initWithLeague:[self objectAtIndexPath:newIndexPath]];
         }
+        
+        
         
     }
     
