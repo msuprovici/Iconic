@@ -1373,7 +1373,7 @@
                        
                        
                        //update core data with most recent league data
-                       //        [calculatePointsClass migrateLeaguesToCoreData];
+                               [calculatePointsClass migrateLeaguesToCoreData];
                        
                        //        NSLog(@"Calling this in 10 seconds");
                        
