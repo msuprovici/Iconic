@@ -88,7 +88,7 @@
     }
     
     
-    //get player's teams
+    //get the leagues the user is in
     PFUser * user = [PFUser currentUser];
     
     PFQuery *teamQuery = [PFQuery queryWithClassName:kTeamTeamsClass];
@@ -104,7 +104,7 @@
             self.myTeamObjectsArray = objects;
             for (int i = 0; i < objects.count; i++) {
                 PFObject *myTeam = objects[i];
-                NSString *myTeamName = [myTeam objectForKey:@"teams"];
+                NSString *myTeamName = [myTeam objectForKey:@"league"];
                 
                 [self.myTeamNamesArray addObject:myTeamName];
             }
