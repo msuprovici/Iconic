@@ -23,7 +23,7 @@
 #import "SimpleHomeViewController.h"
 #import "CalculatePoints.h"
 #import "Amplitude.h"
-#import <Crashlytics/Crashlytics.h>
+//#import <Crashlytics/Crashlytics.h>
 //#import "Intercom.h"
 //#import "Heap.h"
 #import "ParseCrashReporting/ParseCrashReporting.h"
@@ -36,7 +36,7 @@
 //#import "ATLMLayerClient.h"
 //#import "LayerConversationListViewController.h"
 #import "Helpshift.h"
-#import <Fabric/Fabric.h>
+//#import <Fabric/Fabric.h>
 
 
 @interface AppDelegate ()
@@ -215,7 +215,7 @@
     
     //Crashlytics crash reporting
 //    [Crashlytics startWithAPIKey:@"dccd1cb0874211ca77a81c83ab5926ee77e129d4"];
-    [Fabric with:@[[Crashlytics class]]];
+//    [Fabric with:@[[Crashlytics class]]];
     
     //local notification
     
