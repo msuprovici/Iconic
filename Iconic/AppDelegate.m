@@ -36,6 +36,7 @@
 //#import "ATLMLayerClient.h"
 //#import "LayerConversationListViewController.h"
 #import "Helpshift.h"
+#import <Fabric/Fabric.h>
 
 
 @interface AppDelegate ()
@@ -213,7 +214,8 @@
     
     
     //Crashlytics crash reporting
-    [Crashlytics startWithAPIKey:@"dccd1cb0874211ca77a81c83ab5926ee77e129d4"];
+//    [Crashlytics startWithAPIKey:@"dccd1cb0874211ca77a81c83ab5926ee77e129d4"];
+    [Fabric with:@[[Crashlytics class]]];
     
     //local notification
     
@@ -257,7 +259,7 @@
 //       
 //       [Heap identify:userProperties];
        
-       [calculatePointsClass migrateLeaguesToCoreData];
+//       [calculatePointsClass migrateLeaguesToCoreData];
        
        [calculatePointsClass autoFollowUsers];
        
