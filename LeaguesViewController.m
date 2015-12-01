@@ -19,8 +19,9 @@
 @interface LeaguesViewController ()
 
 @property NSMutableArray *leaguesArray;
-@property NSArray *myTeamObjectsArray;
-@property NSMutableArray *myTeamNamesArray;
+@property NSMutableArray *myLeagueNamesArray;
+@property NSMutableArray *myStoredLeagueNamesArray;
+@property NSMutableArray *myLeagueObjectsArray;
 
 @property (nonatomic, retain) NSMutableDictionary *leagues;
 @property (nonatomic, retain) NSMutableDictionary *categories;
@@ -88,29 +89,6 @@
     }
     
     
-    //get the leagues the user is in
-    PFUser * user = [PFUser currentUser];
-    
-    PFQuery *teamQuery = [PFQuery queryWithClassName:kTeamTeamsClass];
-    
-    PFQuery *teamPlayersClass = [PFQuery queryWithClassName:kTeamPlayersClass];
-    [teamPlayersClass whereKey:kUserObjectIdString equalTo:user.objectId];
-    [teamQuery whereKey:@"objectId" matchesKey:kTeamObjectIdString inQuery:teamPlayersClass];
-    [teamQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        
-        if(!error)
-        {
-            self.myTeamNamesArray = [[NSMutableArray alloc]init];
-            self.myTeamObjectsArray = objects;
-            for (int i = 0; i < objects.count; i++) {
-                PFObject *myTeam = objects[i];
-                NSString *myTeamName = [myTeam objectForKey:@"league"];
-                
-                [self.myTeamNamesArray addObject:myTeamName];
-            }
-        }
-    }];
-
     
     return self;
 }
@@ -148,7 +126,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    
+    [self findMyLeagues];
 }
 
 
@@ -164,15 +142,19 @@
         //        [self.tableView reloadData];
         
 //         NSLog(@"reload view was called");
-        
+        [self findMyLeagues];
+        [self loadObjects];
         [self.tableView reloadData];
         [self.view setNeedsDisplay];
         self.receivedJoinLeaveNotification = NO;
+        
     }
     
     if(self.receivedAddedTeamNotification == YES)
     {
+        [self findMyLeagues];
         [self loadObjects];
+        [self.tableView reloadData];
     }
 }
 
@@ -181,6 +163,82 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)findMyLeagues
+{
+    //get the leagues names the user is in from core data then downolad the parse objects
+    
+    self.myLeagueNamesArray = [[NSMutableArray alloc]init];
+    
+    //set check mark if the player is on a team
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext * context = [appDelegate managedObjectContext];
+    NSEntityDescription * entityDesc = [NSEntityDescription entityForName:@"Team" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc]init];
+    [request setEntity:entityDesc];
+    
+    
+    //     NSString *currentLeague = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagues]];
+    //     NSLog(@"currentLeague %@", [NSString stringWithFormat:@"%@",currentLeague]);
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"onteam = YES"];
+    [request setPredicate:pred];
+    //    NSError *error;
+    NSError *error;
+    NSArray *fetchedLeagues = [context executeFetchRequest:request error:&error];
+    NSString *myLeagueName;
+    
+    self.myStoredLeagueNamesArray = [[NSMutableArray alloc]init];
+    
+    for(int i = 0; i < fetchedLeagues.count; i++)
+    {
+        
+        
+        NSManagedObject *myLeagueNames = fetchedLeagues[i];
+        
+        //         NSLog(@"cell.leagueName.text %@", [NSString stringWithFormat:@"%@",cell.leagueName.text]);
+        myLeagueName = [NSString stringWithFormat:@"%@",[myLeagueNames valueForKeyPath:kLeagues]];
+        
+        
+        [self.myStoredLeagueNamesArray addObject:myLeagueName];
+        
+        
+        if (i == fetchedLeagues.count - 1)
+        {
+            //NSLog(@"self.myLeagueNamesArray %@", self.myLeagueNamesArray);
+            
+            PFQuery *leagueQuery = [PFQuery queryWithClassName:@"league"];
+            [leagueQuery whereKey:@"league" containedIn: self.myStoredLeagueNamesArray];
+            
+            [leagueQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+                
+                if(!error)
+                {
+                    self.myLeagueObjectsArray = [[NSMutableArray alloc]init];
+                    
+                    if(objects.count > 0)
+                    {
+                        [self.myLeagueObjectsArray addObjectsFromArray:objects];
+                        
+                        for(int i = 0; i < self.myLeagueObjectsArray.count; i++)
+                        {
+                            //add league names to a new array so that we can maintain the same order as the objects in myLeagueObjectsArray
+                            NSString * leagueName = [NSString stringWithFormat:@"%@", [self.myLeagueObjectsArray[i] objectForKey:@"league"]];
+                            [self.myLeagueNamesArray addObject:leagueName];
+                        }
+                        
+                        //                        NSLog(@"self.myLeagueObjectsArray %@", self.myLeagueObjectsArray);
+                    }
+                }
+                
+            }];
+            
+            
+            
+        }
+        
+    }
+
 }
 
 #pragma mark - PFQueryTableViewController
@@ -197,8 +255,7 @@
     [self.leagues removeAllObjects];
     [self.categories removeAllObjects];
     
-    NSInteger section = 1;
-    NSInteger rowIndex = 0;
+   
     
     
     
@@ -207,37 +264,73 @@
     
     //1st add my leagues to the legues dictionary
     
-    if(self.myTeamNamesArray.count > 0)
+   
+    
+    if(self.myLeagueNamesArray.count > 0)
     {
+        NSInteger section = 1;
+        NSInteger rowIndex = 0;
+        
         NSString * myLeagues = @"My Leagues";
         
         [self.categories setObject:myLeagues forKey:[NSNumber numberWithInt:0]];
-        [self.leagues setObject:self.myTeamNamesArray forKey:myLeagues];
-    }
+        [self.leagues setObject:self.myLeagueNamesArray forKey:myLeagues];
+   
     
     
-    for (PFObject *object in self.objects) {
-        NSString *leagueCategory = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagueCategories]];
-        
-//        NSLog(@"leagueCategory %@", leagueCategory);
-        
-        NSMutableArray *objectsInSection = [self.leagues objectForKey:leagueCategory];
-        if (!objectsInSection) {
-            objectsInSection = [NSMutableArray array];
-//            NSLog(@"objectsInSection %@", objectsInSection);
-            
-            // this is the first time we see this leagues section - increment the section index
-            [self.categories setObject:leagueCategory forKey:[NSNumber numberWithInt:section++]];
-            
-                  }
-        
-        [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
-        [self.leagues setObject:objectsInSection forKey:leagueCategory];
+            for (PFObject *object in self.objects) {
+                NSString *leagueCategory = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagueCategories]];
+                
+        //        NSLog(@"leagueCategory %@", leagueCategory);
+                
+                NSMutableArray *objectsInSection = [self.leagues objectForKey:leagueCategory];
+                    if (!objectsInSection)
+                    {
+                        objectsInSection = [NSMutableArray array];
+            //            NSLog(@"objectsInSection %@", objectsInSection);
+                        
+                        // this is the first time we see this leagues section - increment the section index
+                        [self.categories setObject:leagueCategory forKey:[NSNumber numberWithInt:section++]];
+                        
+                    }
+                
+                [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
+                [self.leagues setObject:objectsInSection forKey:leagueCategory];
         
 
 
         
            }
+        
+       }
+    else
+    {
+        
+        NSInteger section = 0;
+        NSInteger rowIndex = 0;
+        
+        for (PFObject *object in self.objects) {
+            NSString *leagueCategory = [NSString stringWithFormat:@"%@",[object objectForKey:kLeagueCategories]];
+            
+            //        NSLog(@"leagueCategory %@", leagueCategory);
+            
+            NSMutableArray *objectsInSection = [self.leagues objectForKey:leagueCategory];
+                if (!objectsInSection)
+                {
+                    objectsInSection = [NSMutableArray array];
+                    //            NSLog(@"objectsInSection %@", objectsInSection);
+                    
+                    // this is the first time we see this leagues section - increment the section index
+                    [self.categories setObject:leagueCategory forKey:[NSNumber numberWithInt:section++]];
+                    
+                }
+            
+            [objectsInSection addObject:[NSNumber numberWithInt:rowIndex++]];
+            [self.leagues setObject:objectsInSection forKey:leagueCategory];
+            }
+            
+
+    }
     
   
     
@@ -298,75 +391,120 @@
  }
  
      
-    if(self.myTeamNamesArray.count > 0) {
+    if(self.myLeagueNamesArray.count > 0) {
         
         //show names of my leagues in the 1st section if I'm on a team in this league
         if(indexPath.section == 0)
         {
-            cell.leagueName.text =[self.myTeamNamesArray objectAtIndex:indexPath.row];
+            cell.leagueName.text =[self.myLeagueNamesArray objectAtIndex:indexPath.row];
+            [cell.leagueLocked setHidden:YES];
+            [cell.leagueLevel setHidden:YES];
+            [cell.unlocksAtLevelTitle setHidden:YES];
+            //cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+            cell.userInteractionEnabled = YES;
         }
         else
         {
             
             cell.leagueName.text =[object objectForKey:self.textKey];
-            cell.leagueLevel.text = [NSString stringWithFormat:@"%@",[object objectForKey:@"Level"]];
+            cell.leagueLevel.text = [NSString stringWithFormat:@"XP: %@",[object objectForKey:@"Level"]];
+            
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            
+            
+            int playerXP = [[defaults objectForKey:@"myXP"]intValue];
+            cell.leagueName.text =[object objectForKey:self.textKey];
+            cell.leagueLevel.text = [NSString stringWithFormat:@"XP: %@",[object objectForKey:@"Level"]];
+            //grey out cell if the player's XP is not high enough to unlock the other leagues
+            
+            int leagueLevel = [[object objectForKey:@"Level"] intValue];
+//                 NSLog(@"leagueLevel %d", leagueLevel);
+//                 NSLog(@"playerXP %d", playerXP);
+            if(playerXP >= leagueLevel)
+            {
+                [cell.leagueLocked setHidden:YES];
+                [cell.leagueLevel setHidden:YES];
+                [cell.unlocksAtLevelTitle setHidden:YES];
+                //cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+                cell.userInteractionEnabled = YES;
+            }
+            else{
+                [cell.leagueLocked setHidden:NO];
+                [cell.leagueLevel setHidden:NO];
+                [cell.unlocksAtLevelTitle setHidden:NO];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.userInteractionEnabled = NO;
+            }
+            
+            if ([defaults objectForKey:@"myXP"] < [object objectForKey:@"Level"]) {
+                [cell.leagueLocked setHidden:NO];
+                //         cell.leagueLocked.text =[NSString stringWithFormat:@"XP: %@", [object objectForKey:@"Level"]];
+            }
+            else
+            {
+                [cell.leagueLocked setHidden:YES];
+            }
         }
         
      }
      else
      {
+         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+         
+         
+         int playerXP = [[defaults objectForKey:@"myXP"]intValue];
          cell.leagueName.text =[object objectForKey:self.textKey];
-         cell.leagueLevel.text = [NSString stringWithFormat:@"%@",[object objectForKey:@"Level"]];
+         cell.leagueLevel.text = [NSString stringWithFormat:@"XP: %@",[object objectForKey:@"Level"]];
+         //grey out cell if the player's XP is not high enough to unlock the other leagues
+         
+         int leagueLevel = [[object objectForKey:@"Level"] intValue];
+         //     NSLog(@"leagueLevel %d", leagueLevel);
+         //     NSLog(@"playerXP %d", playerXP);
+         if(playerXP >= leagueLevel)
+         {
+             [cell.leagueLocked setHidden:YES];
+             [cell.leagueLevel setHidden:YES];
+             [cell.unlocksAtLevelTitle setHidden:YES];
+             //cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+             cell.userInteractionEnabled = YES;
+         }
+         else{
+             [cell.leagueLocked setHidden:NO];
+             [cell.leagueLevel setHidden:NO];
+             [cell.unlocksAtLevelTitle setHidden:NO];
+             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+             cell.userInteractionEnabled = NO;
+         }
+         
+         if ([defaults objectForKey:@"myXP"] < [object objectForKey:@"Level"]) {
+             [cell.leagueLocked setHidden:NO];
+             //         cell.leagueLocked.text =[NSString stringWithFormat:@"XP: %@", [object objectForKey:@"Level"]];
+         }
+         else
+         {
+             [cell.leagueLocked setHidden:YES];
+         }
+
      }
      
      
  
      
      
-     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-     
-
-     int playerXP = [[defaults objectForKey:@"myXP"]intValue];
+    
      
 //     NSNumber *myXP = [NSNumber numberWithInt:playerXP];
 //     NSLog(@"playerXP %@", [defaults objectForKey:@"myXP"]);
 
     
-     if ([defaults objectForKey:@"myXP"] < [object objectForKey:@"Level"]) {
-         [cell.leagueLocked setHidden:NO];
-         cell.leagueLocked.text =[NSString stringWithFormat:@"XP: %@", [object objectForKey:@"Level"]];
-     }
-     else
-     {
-         [cell.leagueLocked setHidden:YES];
-     }
-     
-     
-     
-     
-     
-     
-     //grey out cell if the player's XP is not high enough to unlock the other leagues
-     
-     int leagueLevel = [cell.leagueLevel.text intValue];
-//     NSLog(@"leagueLevel %d", leagueLevel);
-//     NSLog(@"playerXP %d", playerXP);
-     if(playerXP >= leagueLevel)
-     {
-         [cell.leagueLocked setHidden:YES];
-         [cell.leagueLevel setHidden:YES];
-         [cell.unlocksAtLevelTitle setHidden:YES];
-         //cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-         cell.userInteractionEnabled = YES;
-     }
-     else{
-         [cell.leagueLocked setHidden:NO];
-         [cell.leagueLevel setHidden:NO];
-         [cell.unlocksAtLevelTitle setHidden:NO];
-         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-         cell.userInteractionEnabled = NO;
-     }
 
+     
+     
+     
+     
+     
+     
+  
 
  
  return cell;
@@ -534,16 +672,20 @@
         NSIndexPath *hitIndex = [self.tableView indexPathForSelectedRow];
         NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:hitIndex.row inSection:hitIndex.section];
         
-        if(self.myTeamNamesArray.count > 0)
+        if(self.myLeagueNamesArray.count > 0)
         {
             //use my team's objects if the object is in my leagues section
             if (hitIndex.section == 0) {
-            [segue.destinationViewController initWithLeague:[self.myTeamObjectsArray objectAtIndex: newIndexPath.row]];
+//                NSLog(@"%@ team object section 0", [self.myLeagueObjectsArray objectAtIndex: newIndexPath.row]);
+            [segue.destinationViewController initWithLeague:[self.myLeagueObjectsArray objectAtIndex: newIndexPath.row]];
+                
             }
             
             //else use pfobject from query in section
+            else
             {
              //to pass the correct object we need to use the objectAtIndexPath method
+//                 NSLog(@"%@ team object section 1+", [self objectAtIndexPath:newIndexPath]);
                 [segue.destinationViewController initWithLeague:[self objectAtIndexPath:newIndexPath]];
                 
             }
