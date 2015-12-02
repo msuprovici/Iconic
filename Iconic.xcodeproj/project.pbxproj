@@ -26,6 +26,12 @@
 		5C1597191ACE31EE00CEA15A /* Leagues_Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597131ACE31EE00CEA15A /* Leagues_Icon@3x.png */; };
 		5C15971A1ACE31EE00CEA15A /* happy_face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597141ACE31EE00CEA15A /* happy_face@2x.png */; };
 		5C15971B1ACE31EE00CEA15A /* happy_face@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1597151ACE31EE00CEA15A /* happy_face@3x.png */; };
+		5C19734D1C0FB15600834699 /* Iconic_Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1973471C0FB15600834699 /* Iconic_Icon-29@2x.png */; };
+		5C19734E1C0FB15600834699 /* Iconic_Icon-29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1973481C0FB15600834699 /* Iconic_Icon-29@3x.png */; };
+		5C19734F1C0FB15600834699 /* Iconic_Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1973491C0FB15600834699 /* Iconic_Icon-40@2x.png */; };
+		5C1973501C0FB15600834699 /* Iconic_Icon-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19734A1C0FB15600834699 /* Iconic_Icon-40@3x.png */; };
+		5C1973511C0FB15600834699 /* Iconic_Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19734B1C0FB15600834699 /* Iconic_Icon-60@2x.png */; };
+		5C1973521C0FB15600834699 /* Iconic_Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C19734C1C0FB15600834699 /* Iconic_Icon-60@3x.png */; };
 		5C1B03A61BC486330053CE84 /* IconicOnboard9slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03A51BC486320053CE84 /* IconicOnboard9slice@2x.png */; };
 		5C1B03AA1BC486FB0053CE84 /* IconicOnboard6slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03A91BC486FB0053CE84 /* IconicOnboard6slice@2x.png */; };
 		5C1B03AC1BC487410053CE84 /* IconicOnboard7slice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B03AB1BC487410053CE84 /* IconicOnboard7slice@2x.png */; };
@@ -400,6 +406,12 @@
 		5C1597131ACE31EE00CEA15A /* Leagues_Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leagues_Icon@3x.png"; sourceTree = "<group>"; };
 		5C1597141ACE31EE00CEA15A /* happy_face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy_face@2x.png"; sourceTree = "<group>"; };
 		5C1597151ACE31EE00CEA15A /* happy_face@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "happy_face@3x.png"; sourceTree = "<group>"; };
+		5C1973471C0FB15600834699 /* Iconic_Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Iconic_Icon-29@2x.png"; sourceTree = "<group>"; };
+		5C1973481C0FB15600834699 /* Iconic_Icon-29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Iconic_Icon-29@3x.png"; sourceTree = "<group>"; };
+		5C1973491C0FB15600834699 /* Iconic_Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Iconic_Icon-40@2x.png"; sourceTree = "<group>"; };
+		5C19734A1C0FB15600834699 /* Iconic_Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Iconic_Icon-40@3x.png"; sourceTree = "<group>"; };
+		5C19734B1C0FB15600834699 /* Iconic_Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Iconic_Icon-60@2x.png"; sourceTree = "<group>"; };
+		5C19734C1C0FB15600834699 /* Iconic_Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Iconic_Icon-60@3x.png"; sourceTree = "<group>"; };
 		5C1B03A51BC486320053CE84 /* IconicOnboard9slice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconicOnboard9slice@2x.png"; sourceTree = "<group>"; };
 		5C1B03A91BC486FB0053CE84 /* IconicOnboard6slice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconicOnboard6slice@2x.png"; sourceTree = "<group>"; };
 		5C1B03AB1BC487410053CE84 /* IconicOnboard7slice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconicOnboard7slice@2x.png"; sourceTree = "<group>"; };
@@ -926,6 +938,19 @@
 			name = DataModel;
 			sourceTree = "<group>";
 		};
+		5C19733A1C0FABB600834699 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				5C1973471C0FB15600834699 /* Iconic_Icon-29@2x.png */,
+				5C1973481C0FB15600834699 /* Iconic_Icon-29@3x.png */,
+				5C1973491C0FB15600834699 /* Iconic_Icon-40@2x.png */,
+				5C19734A1C0FB15600834699 /* Iconic_Icon-40@3x.png */,
+				5C19734B1C0FB15600834699 /* Iconic_Icon-60@2x.png */,
+				5C19734C1C0FB15600834699 /* Iconic_Icon-60@3x.png */,
+			);
+			name = Icon;
+			sourceTree = "<group>";
+		};
 		5C22F6A61AF81FF9007E69DD /* FacebookSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -1109,6 +1134,7 @@
 		5C3BBECE1AC35FCE00B179B0 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				5C19733A1C0FABB600834699 /* Icon */,
 				5C3BBF511AC3ABDB00B179B0 /* TabBar */,
 				5C3BBF621AC3ADB000B179B0 /* ToolBar */,
 				5C3BBF631AC3AE4500B179B0 /* Feed */,
@@ -2012,6 +2038,7 @@
 				5CDC2E511B89167E0030F711 /* HSTutorialiPad@3x.png in Resources */,
 				5CDC2E431B89167E0030F711 /* HS-screenshot-error@2x.png in Resources */,
 				5C42F8A51AC21EA500B4F7BB /* SignUpButton@2x.png in Resources */,
+				5C1973521C0FB15600834699 /* Iconic_Icon-60@3x.png in Resources */,
 				5C3BBF891AC9D0F400B179B0 /* Followed_User_Icon_Red@2x.png in Resources */,
 				5C3BBF8B1AC9D0F400B179B0 /* Follow_Icon_White@2x.png in Resources */,
 				5C1597171ACE31EE00CEA15A /* Feed_Icon@3x.png in Resources */,
@@ -2038,6 +2065,7 @@
 				5C42F8A31AC21EA500B4F7BB /* LogInButton@2x.png in Resources */,
 				5C9C7B381BFA59E30079B266 /* upload@2x.png in Resources */,
 				5CDB87641ACB1360009FE9D2 /* Add_League_Button@3x.png in Resources */,
+				5C19734E1C0FB15600834699 /* Iconic_Icon-29@3x.png in Resources */,
 				5C418F3C1ACB5CDA00DC30FF /* team_place_holder@3x.png in Resources */,
 				5CE778341A0D7D0D008B3585 /* Icon-76@2x.png in Resources */,
 				5CDC2E451B89167E0030F711 /* HSChatBubbleBlue@2x.png in Resources */,
@@ -2088,6 +2116,7 @@
 				5CDB87631ACB1360009FE9D2 /* Add_League_Button@2x.png in Resources */,
 				5C3BBF851AC9D0F400B179B0 /* Join_Team_Icon_White@2x.png in Resources */,
 				5C1597161ACE31EE00CEA15A /* Feed_Icon@2x.png in Resources */,
+				5C19734F1C0FB15600834699 /* Iconic_Icon-40@2x.png in Resources */,
 				5C881E431ABBA2B200C2D958 /* NextButton@3x.png in Resources */,
 				5C3BBF6C1AC6152000B179B0 /* JoinTeamButton@2x.png in Resources */,
 				5CDC2E4C1B89167E0030F711 /* HSTutorial.png in Resources */,
@@ -2108,6 +2137,7 @@
 				5C3BBF861AC9D0F400B179B0 /* Join_Team_Icon_White@3x.png in Resources */,
 				5C42F8431AC1FEB800B4F7BB /* JoinButton@2x.png in Resources */,
 				5C7484551AD9B64C001917CC /* IconicOnboard9slice@3x.png in Resources */,
+				5C19734D1C0FB15600834699 /* Iconic_Icon-29@2x.png in Resources */,
 				5C9C7B391BFA59E30079B266 /* upload@3x.png in Resources */,
 				5CDB87601ACB1110009FE9D2 /* Share_Button@3x.png in Resources */,
 				5C418F4A1ACCC4BA00DC30FF /* user_place_holder_large@2x.png in Resources */,
@@ -2116,6 +2146,7 @@
 				5C539E00198715090027669A /* README.md in Resources */,
 				5CA3D19E1831DF51006C7932 /* Main.storyboard in Resources */,
 				5C42F85C1AC20A5200B4F7BB /* IconicLogo@3x.png in Resources */,
+				5C1973511C0FB15600834699 /* Iconic_Icon-60@2x.png in Resources */,
 				5C3BBF321AC38FDB00B179B0 /* High_Five_Selected@3x.png in Resources */,
 				5CDB874F1ACB0564009FE9D2 /* Invite_Facebook_Friends_button@2x.png in Resources */,
 				5C539DFC198715090027669A /* Amplitude-iOS.podspec in Resources */,
@@ -2148,6 +2179,7 @@
 				5CF74BFC1B853C5600EC67C4 /* SubmitButton@2x.png in Resources */,
 				5C3BBF2A1AC38BC200B179B0 /* Comment_Icon_Selected@3x.png in Resources */,
 				5C1B03AC1BC487410053CE84 /* IconicOnboard7slice@2x.png in Resources */,
+				5C1973501C0FB15600834699 /* Iconic_Icon-40@3x.png in Resources */,
 				5C418F3A1ACB5CDA00DC30FF /* user_place_holder@3x.png in Resources */,
 				5CDC2E4A1B89167E0030F711 /* HSConfirmBox.png in Resources */,
 				5C03048E1A410A5500E86578 /* team2.png in Resources */,
