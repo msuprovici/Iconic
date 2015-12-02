@@ -208,6 +208,8 @@
         barButton.badgeBGColor = [UIColor whiteColor];
         barButton.badgeTextColor = [UIColor colorWithRed:124.0/255.0 green:124.0/255.0 blue:134.0/255.0 alpha:1.0];
         barButton.badgeFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0f];
+        barButton.badgePadding = 1;
+        
         
         
         
