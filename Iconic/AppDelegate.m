@@ -154,11 +154,6 @@
     //testing key
 //    [Flurry startSession:@"GFB5TWRMW9J2YNCMPK7R"];
 
-    //initialize intercom
-    
-//    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"tx0dtabz"];//live
-    
-//    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"c1ubvxjw"];//dev
     
     
     
@@ -235,15 +230,6 @@
        NSString *userId =  [[PFUser currentUser] objectForKey:@"username"];
        [Amplitude setUserId:userId];
        
-//       //set parse username for Intercom
-//       [Intercom beginSessionForUserWithUserId:userId completion:nil];
-//       
-//       
-//       // set parse username for Heap
-//       NSDictionary* userProperties = @{
-//                                        @"name": userId,
-//                                        };
-//       
 
        
 //       [calculatePointsClass migrateLeaguesToCoreData];
