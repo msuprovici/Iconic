@@ -161,14 +161,6 @@
 //    [Intercom setApiKey:@"ios_sdk-ef94768add5214ef0cd00d0bf8195444ee082b0c" forAppId:@"c1ubvxjw"];//dev
     
     
-    //initialize heap analytics
-    
-//    [Heap setAppId:@"1914446395"]; //live
-//    
-////    [Heap setAppId:@"3704495766"]; //dev
-//    #ifdef DEBUG
-////        [Heap enableVisualizer]; //uncomment to set up events
-//    #endif  
     
 
     
@@ -252,30 +244,14 @@
 //                                        @"name": userId,
 //                                        };
 //       
-//       [Heap identify:userProperties];
+
        
 //       [calculatePointsClass migrateLeaguesToCoreData];
        
        [calculatePointsClass autoFollowUsers];
        
        
-       //layer
-//       LYRClient * cachedLayerClient = [[NSLayerClientObject sharedInstance] getCachedLayerClientForKey:@"layerClient"];
-//       
-//       if(cachedLayerClient)
-//       {
-//           //        NSLog(@"cached Layer Client");
-//       }
-//       else
-//       {
-//           CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-//           
-//            NSUUID *appID = [[NSUUID alloc] initWithUUIDString:@"42b66e50-f517-11e4-9829-c8f500001922"];
-//           self.layerClient = [LYRClient clientWithAppID:appID];
-//           [calculatePointsClass loginLayer:self.layerClient];
-//           
-//           
-//       }
+
 
        
        

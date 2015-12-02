@@ -135,7 +135,6 @@
 		5C48B8BC1880F89F00A09A1C /* UIImage+AlphaAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48B8B61880F89F00A09A1C /* UIImage+AlphaAdditions.m */; };
 		5C48B8BD1880F89F00A09A1C /* UIImage+ResizeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C48B8B81880F89F00A09A1C /* UIImage+ResizeAdditions.m */; };
 		5C4AB64D1A1E8F25007B8BE8 /* libIntercom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4AB64C1A1E8F25007B8BE8 /* libIntercom.a */; };
-		5C4AB6511A1E94EE007B8BE8 /* libHeap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4AB6501A1E94EE007B8BE8 /* libHeap.a */; };
 		5C4AB6531A1E956A007B8BE8 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C4AB6521A1E956A007B8BE8 /* libicucore.dylib */; };
 		5C4EF97F1868D99B000E0E59 /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4EF97E1868D99B000E0E59 /* Cache.m */; };
 		5C4EF982186CA7BD000E0E59 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C4EF981186CA7BD000E0E59 /* Constants.m */; };
@@ -533,8 +532,6 @@
 		5C48B8BA1880F89F00A09A1C /* UIImage+ResizeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ResizeAdditions.h"; sourceTree = "<group>"; };
 		5C4AB64B1A1E8F25007B8BE8 /* Intercom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intercom.h; sourceTree = "<group>"; };
 		5C4AB64C1A1E8F25007B8BE8 /* libIntercom.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libIntercom.a; sourceTree = "<group>"; };
-		5C4AB64F1A1E94EE007B8BE8 /* Heap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Heap.h; sourceTree = "<group>"; };
-		5C4AB6501A1E94EE007B8BE8 /* libHeap.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libHeap.a; sourceTree = "<group>"; };
 		5C4AB6521A1E956A007B8BE8 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		5C4EF97D1868D99B000E0E59 /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
 		5C4EF97E1868D99B000E0E59 /* Cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cache.m; sourceTree = "<group>"; };
@@ -895,7 +892,6 @@
 				5CD169C21BBB924E00D3EFBC /* Parse.framework in Frameworks */,
 				5CD169CE1BBB928300D3EFBC /* FBSDKShareKit.framework in Frameworks */,
 				5C78DA58189996C500CBA29B /* AddressBookUI.framework in Frameworks */,
-				5C4AB6511A1E94EE007B8BE8 /* libHeap.a in Frameworks */,
 				5CDC2E541B89167E0030F711 /* libHelpshift.a in Frameworks */,
 				5CA3D1CF1831E045006C7932 /* QuartzCore.framework in Frameworks */,
 				5CD169CD1BBB928300D3EFBC /* FBSDKMessengerShareKit.framework in Frameworks */,
@@ -1263,20 +1259,10 @@
 			path = Intercom;
 			sourceTree = "<group>";
 		};
-		5C4AB64E1A1E94EE007B8BE8 /* heap-ios-latest */ = {
-			isa = PBXGroup;
-			children = (
-				5C4AB64F1A1E94EE007B8BE8 /* Heap.h */,
-				5C4AB6501A1E94EE007B8BE8 /* libHeap.a */,
-			);
-			path = "heap-ios-latest";
-			sourceTree = "<group>";
-		};
 		5C4EF986186D01FF000E0E59 /* External */ = {
 			isa = PBXGroup;
 			children = (
 				5CDC2E551B89168F0030F711 /* Helpshift */,
-				5C4AB64E1A1E94EE007B8BE8 /* heap-ios-latest */,
 				5C4AB64A1A1E8F25007B8BE8 /* Intercom */,
 				5CA6BB5319CA431C00E9946E /* BBBadgeBarButtonItem */,
 				5C539DF3198715090027669A /* Amplitude-iOS-master */,
@@ -2589,7 +2575,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Intercom",
-					"$(PROJECT_DIR)/heap-ios-latest",
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
@@ -2631,7 +2616,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Intercom",
-					"$(PROJECT_DIR)/heap-ios-latest",
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
