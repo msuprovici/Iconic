@@ -247,7 +247,6 @@
 		5CB75DFA1889CCB60047BC47 /* ActivityDeatailsHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DF91889CCB60047BC47 /* ActivityDeatailsHeaderCell.m */; };
 		5CB75DFD1889F65C0047BC47 /* ProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CB75DFC1889F65C0047BC47 /* ProfileImageView.m */; };
 		5CB75E04188DAE850047BC47 /* scoreboardicon2-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB75E02188DAE850047BC47 /* scoreboardicon2-01.png */; };
-		5CC7726A1AFD6C3A00EEEB33 /* layer-client-messaging-schema.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5CC772681AFD6C3A00EEEB33 /* layer-client-messaging-schema.bundle */; };
 		5CC772961AFD78C600EEEB33 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CC772951AFD78C600EEEB33 /* AssetsLibrary.framework */; };
 		5CC773191B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC773171B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png */; };
 		5CC7FAB0185810A600A360A1 /* TeamatesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CC7FAAF185810A600A360A1 /* TeamatesCell.m */; };
@@ -705,8 +704,6 @@
 		5CB75DFB1889F65C0047BC47 /* ProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageView.h; sourceTree = "<group>"; };
 		5CB75DFC1889F65C0047BC47 /* ProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageView.m; sourceTree = "<group>"; };
 		5CB75E02188DAE850047BC47 /* scoreboardicon2-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scoreboardicon2-01.png"; sourceTree = "<group>"; };
-		5CC772661AFD6C3A00EEEB33 /* LayerKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LayerKit.framework; sourceTree = "<group>"; };
-		5CC772681AFD6C3A00EEEB33 /* layer-client-messaging-schema.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = "layer-client-messaging-schema.bundle"; sourceTree = "<group>"; };
 		5CC772951AFD78C600EEEB33 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		5CC773171B0295BD00EEEB33 /* IconicOnboard1_Slice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IconicOnboard1_Slice@3x.png"; sourceTree = "<group>"; };
 		5CC7FAAE185810A500A360A1 /* TeamatesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamatesCell.h; sourceTree = "<group>"; };
@@ -1555,7 +1552,6 @@
 				5C0068C41B891A9E00008E31 /* CoreText.framework */,
 				5C0068C21B891A8B00008E31 /* QuickLook.framework */,
 				5CC772951AFD78C600EEEB33 /* AssetsLibrary.framework */,
-				5CC772651AFD6C3A00EEEB33 /* LayerKit.embeddedframework */,
 				5C22F6A61AF81FF9007E69DD /* FacebookSDK */,
 				5C22F6A71AF8200C007E69DD /* ParseSDK */,
 				5C8022D01A7470340023A15D /* libstdc++.6.0.9.dylib */,
@@ -1745,23 +1741,6 @@
 				5C539A081864E900006676FA /* FeedCell.m */,
 			);
 			name = Feed;
-			sourceTree = "<group>";
-		};
-		5CC772651AFD6C3A00EEEB33 /* LayerKit.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				5CC772661AFD6C3A00EEEB33 /* LayerKit.framework */,
-				5CC772671AFD6C3A00EEEB33 /* Resources */,
-			);
-			path = LayerKit.embeddedframework;
-			sourceTree = "<group>";
-		};
-		5CC772671AFD6C3A00EEEB33 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				5CC772681AFD6C3A00EEEB33 /* layer-client-messaging-schema.bundle */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		5CD74A2E1B7A719000BD2A41 /* Settings */ = {
@@ -2104,7 +2083,6 @@
 				5C418F391ACB5CDA00DC30FF /* user_place_holder@2x.png in Resources */,
 				5C881E441ABBA2B200C2D958 /* SignInWithEmailButton@2x.png in Resources */,
 				5CDC2E3E1B89167E0030F711 /* HS-no-connection@2x.png in Resources */,
-				5CC7726A1AFD6C3A00EEEB33 /* layer-client-messaging-schema.bundle in Resources */,
 				5C42F8A61AC21EA500B4F7BB /* SignUpButton@3x.png in Resources */,
 				5C1597191ACE31EE00CEA15A /* Leagues_Icon@3x.png in Resources */,
 				5CDC2E391B89167E0030F711 /* HS-camera-button@3x.png in Resources */,
@@ -2602,7 +2580,6 @@
 					"$(SRCROOT)",
 					/Users/msadmin/iOS/IconicBuilds/Iconic,
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/LayerKit.embeddedframework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";
@@ -2613,7 +2590,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Intercom",
 					"$(PROJECT_DIR)/heap-ios-latest",
-					"$(PROJECT_DIR)/Flurry",
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
@@ -2646,7 +2622,6 @@
 					"$(SRCROOT)",
 					/Users/msadmin/iOS/IconicBuilds/Iconic,
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/LayerKit.embeddedframework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Iconic/Iconic-Prefix.pch";
@@ -2657,7 +2632,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Intercom",
 					"$(PROJECT_DIR)/heap-ios-latest",
-					"$(PROJECT_DIR)/Flurry",
 					"$(PROJECT_DIR)",
 				);
 				ONLY_ACTIVE_ARCH = NO;

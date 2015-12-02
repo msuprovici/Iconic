@@ -12,7 +12,7 @@
 #import "AAPLMotionActivityQuery.h"
 #import "AAPLActivityDataManager.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-//#import <LayerKit/LayerKit.h>
+
 
 @interface CalculatePoints : NSObject
 

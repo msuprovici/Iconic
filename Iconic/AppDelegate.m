@@ -23,21 +23,16 @@
 #import "SimpleHomeViewController.h"
 #import "CalculatePoints.h"
 #import "Amplitude.h"
-//#import <Crashlytics/Crashlytics.h>
-//#import "Intercom.h"
-//#import "Heap.h"
+
+
 #import "ParseCrashReporting/ParseCrashReporting.h"
 #import "ChatRoomTableViewController.h"
 
 #import "AchievmentsViewController.h"
-//#import <LayerKit/LayerKit.h>
-////#import "Flurry.h"
-//#import "NSLayerClientObject.h"
-//#import "ATLMLayerClient.h"
-//#import "LayerConversationListViewController.h"
+
 #import "Helpshift.h"
 //#import <Fabric/Fabric.h>
-
+//#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 //@property (nonatomic, strong) IBOutlet ContentController * contentController;
