@@ -22,7 +22,7 @@
 #import <Foundation/Foundation.h>
 #import "MyFinalScoresTableViewController.h"
 
-//#import <ParseFacebookUtilsV4/PFFacebookUtilsV4.h>
+
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import "AchievmentsViewController.h"
 #import "AAPLMotionActivityQuery.h"
@@ -32,10 +32,7 @@
 #import "UIImage+ResizeAdditions.h"
 #import <CoreMotion/CoreMotion.h>
 
-//#import "LayerConversationListViewController.h"
-//#import "LayerConversationViewController.h"
-//#import "NSLayerClientObject.h"
-//#import "Chat+ActivityViewController.h"
+
 #import "ChatRoomTableViewController.h"
 #import "PlayerProfileViewController.h"
 
@@ -234,13 +231,15 @@
     
     [self.tableView setContentOffset:CGPointZero animated:YES];
     
+//    [self refreshDays];
+    
 //    [self firstAppLoadThisWeek];
     
     // If we received joined/leave team notification update team charts
     if (self.receivedNotification == YES) {
        
         [self refreshHomeViewNow];
-        [self refreshDays];
+//        [self refreshDays];
         
         self.receivedNotification = NO;
         
@@ -355,21 +354,21 @@
                     
                      NSDate *date = [NSDate date];
                     
-                    //Get today's step count
-                    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
-                    
-                    self.from = [calculatePointsClass beginningOfDay];
-                    self.now = date;
-                    _pedometer = [[CMPedometer alloc] init];
-                    
-                    [_pedometer queryPedometerDataFromDate:self.from toDate:self.now withHandler:^(CMPedometerData *pedometerData, NSError *error) {
-                        if (error) {
-                            
-                            NSLog(@"step count error: %@", error);
-                        } else {
-                            [self getPlayerSteps:(long)[pedometerData.numberOfSteps integerValue]];
-                        }
-                    }];
+//                    //Get today's step count
+//                    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+//                    
+//                    self.from = [calculatePointsClass beginningOfDay];
+//                    self.now = date;
+//                    _pedometer = [[CMPedometer alloc] init];
+//                    
+//                    [_pedometer queryPedometerDataFromDate:self.from toDate:self.now withHandler:^(CMPedometerData *pedometerData, NSError *error) {
+//                        if (error) {
+//                            
+//                            NSLog(@"step count error: %@", error);
+//                        } else {
+//                            [self getPlayerSteps:(long)[pedometerData.numberOfSteps integerValue]];
+//                        }
+//                    }];
 
                     
                     
@@ -698,6 +697,23 @@
     [self updateAppDataFromServerNow];
     
     [self populateMyStats];
+    
+    //Get today's step count
+    CalculatePoints * calculatePointsClass = [[CalculatePoints alloc]init];
+    
+    self.from = [calculatePointsClass beginningOfDay];
+    self.now = [NSDate date];
+    _pedometer = [[CMPedometer alloc] init];
+    
+    [_pedometer queryPedometerDataFromDate:self.from toDate:self.now withHandler:^(CMPedometerData *pedometerData, NSError *error) {
+        if (error) {
+            
+            NSLog(@"step count error: %@", error);
+        } else {
+            [self getPlayerSteps:(long)[pedometerData.numberOfSteps integerValue]];
+        }
+    }];
+
     
     
     
