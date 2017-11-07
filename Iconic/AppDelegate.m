@@ -49,8 +49,8 @@
     //perform background fetch
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     
-    [Parse setApplicationId:@"LiLukyOROzCPxkNIvG9SD6nPMFdZsFNxzYsB06LT"
-                  clientKey:@"NWnu7sQiFf9t3vyruSWQ8CqepFjKQh7IAZr8b3WA"];
+    [Parse setApplicationId:@""
+                  clientKey:@""];
     
     //Round Robin: testing out new schedule parse cloud function
     /*[PFCloud callFunctionInBackground:@"schedule"
